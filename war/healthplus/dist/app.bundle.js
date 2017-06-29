@@ -230,97 +230,97 @@ exports.push([module.i, "@font-face {\n    font-family: 'Fira Sans';\n    src: u
 /* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "1f04b3db52fddd9c31c0341ac056b4ea.woff2";
+module.exports = __webpack_require__.p + "dist/fonts/firasans-bold-webfont.woff2";
 
 /***/ }),
 /* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "12e60f2eaddc50f104540a739124e392.woff";
+module.exports = __webpack_require__.p + "dist/fonts/firasans-bold-webfont.woff";
 
 /***/ }),
 /* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "e1d97c0e81d4d05045e4d7dc8d9a2816.woff2";
+module.exports = __webpack_require__.p + "dist/fonts/firasans-italic-webfont.woff2";
 
 /***/ }),
 /* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "57254f80c4bcdbfb53d1fdda044933c9.woff";
+module.exports = __webpack_require__.p + "dist/fonts/firasans-italic-webfont.woff";
 
 /***/ }),
 /* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "4e7ec5d7771ffb190554ac0043c3942b.woff2";
+module.exports = __webpack_require__.p + "dist/fonts/firasans-medium-webfont.woff2";
 
 /***/ }),
 /* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "bef446058860deaa59701d7ff1dc831c.woff";
+module.exports = __webpack_require__.p + "dist/fonts/firasans-medium-webfont.woff";
 
 /***/ }),
 /* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "e9057cc1fd7e7a58d1d064267925e908.woff2";
+module.exports = __webpack_require__.p + "dist/fonts/firasans-mediumitalic-webfont.woff2";
 
 /***/ }),
 /* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "14da3dc85c226dcd2552e2a9be954f7e.woff";
+module.exports = __webpack_require__.p + "dist/fonts/firasans-mediumitalic-webfont.woff";
 
 /***/ }),
 /* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "f8677ceef2116817e3a4e402267ca570.woff2";
+module.exports = __webpack_require__.p + "dist/fonts/firasans-regular-webfont.woff2";
 
 /***/ }),
 /* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "f350007cd90c323319fda16617fa677f.woff";
+module.exports = __webpack_require__.p + "dist/fonts/firasans-regular-webfont.woff";
 
 /***/ }),
 /* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "674f50d287a8c48dc19ba404d20fe713.eot";
+module.exports = __webpack_require__.p + "dist/fonts/fontawesome-webfont.eot";
 
 /***/ }),
 /* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "674f50d287a8c48dc19ba404d20fe713.eot";
+module.exports = __webpack_require__.p + "dist/fonts/fontawesome-webfont.eot";
 
 /***/ }),
 /* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "af7ae505a9eed503f8b8e6982036873e.woff2";
+module.exports = __webpack_require__.p + "dist/fonts/fontawesome-webfont.woff2";
 
 /***/ }),
 /* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "fee66e712a8a08eef5805a46892932ad.woff";
+module.exports = __webpack_require__.p + "dist/fonts/fontawesome-webfont.woff";
 
 /***/ }),
 /* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "b06871f281fee6b241d60582ae9369b9.ttf";
+module.exports = __webpack_require__.p + "dist/fonts/fontawesome-webfont.ttf";
 
 /***/ }),
 /* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "acf3dcb7ff752b5296ca23ba2c7c2606.svg";
+module.exports = __webpack_require__.p + "dist/fonts/fontawesome-webfont.svg";
 
 /***/ }),
 /* 21 */
