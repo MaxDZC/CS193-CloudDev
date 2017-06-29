@@ -1,0 +1,45 @@
+.navbar__background{
+  height: $heightRow;
+  background-color: $softWhite;
+}
+
+.navbar__btn{
+  display: inline-block;
+  height: 100%;
+  margin-left: -0.15em;
+  padding: $sizePaddingHalf $sizePadding 0 $sizePadding;
+  width: auto;
+  font-size: $sizeTextNavbar;
+  font-weight: 500;
+  line-height: $sizeTextNavbar;
+  text-align: center;
+  cursor: normal;
+  transition: 0.1s ease;
+}
+
+.navbar__btn:hover{
+  background-color: $babyBlue;
+  color: $black;
+  cursor: pointer;
+  transition: 0.1s ease;
+}
+
+.navbar__btn--selected{
+  background-color: $teal;
+  color: $white;
+}
+
+.navbar__btn--action{
+  background-color: $seafoamGreen;
+  color: $black;
+}
+
+.navbar__btn--action:hover{
+  @extend .navbar__btn:hover;
+  background-color: $shamrockGreen;
+  color: $white;
+}
+
+.navbar__action-container{
+  text-align: right;
+}

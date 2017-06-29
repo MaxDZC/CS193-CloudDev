@@ -1,0 +1,30 @@
+body{
+  font-family: $font;
+  font-size: $sizeText;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased !important;
+  -webkit-text-stroke: 0.1px;
+}
+
+h1{
+  @extend .match-padding;
+  font-size: $sizePageTitle;
+  font-weight: 700;
+}
+
+.subtitle{
+  display: inline-block;
+  font-size: $sizeText;
+  text-transform: uppercase;
+}
+
+.subtitle--variable{
+  font-style: italic;
+  text-transform: none;
+}
+
+.match-padding { padding: 0 15px; }
+
+.float-right { float: right; }
+
+.float-left { float: left; }

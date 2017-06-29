@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+  <head ng-app="hplus">
+    <title>HealthPlus</title>
+    <!-- <script src="../app/libraries/angular.min.js"></script> -->
+    <script src="dist/app.bundle.js"></script>
+    <link href="assets/css/main.css" rel="stylesheet">
+  </head>
+
+  <body>
+    <div class="row">
+      <div class="col col-md-10 col-md-offset-1 header__background">
+
+        <div class="col col-md-8">
+          <span class="header__app-text">HealthPlus</span>
+        </div>
+
+        <div class="col col-md-4 header__user-container">
+          <span class="header__user-alignment">
+            <span class="header__user-name">James Appleseed</span>
+            <span class="header__user-title">Administrator</span>
+          </span>
+
+          <span class="fa-stack fa-lg header__user-alignment">
+            <i class="fa fa-square fa-stack-2x"></i>
+            <i class="fa fa-chevron-down fa-stack-1x fa-inverse"></i>
+          </span>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="row navbar__background">        
+      <div class="col col-md-10 col-md-offset-1">
+
+        <div class="col col-md-8">
+          <div class="navbar__btn navbar__btn--selected">
+            Diseases
+          </div>
+          <div class="navbar__btn">
+            Medicines
+          </div>
+        </div>
+
+        <div class="col col-md-4 navbar__action-container">          
+          <div class="navbar__btn navbar__btn--action">
+            Register Disease
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col col-md-8 col-md-offset-1">
+        <h1>List of all diseases</h1>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col col-md-2 col-md-offset-1">
+
+        <div class="row">
+          <div class="col col-md-6">
+            <span class="subtitle">
+              Search
+            </span>
+          </div>
+          <br><br>
+        </div>
+        <div class="match-padding">
+          <select>
+            <option>Disease</option>
+            <option>Medicine</option>
+          </select>
+
+          <input type="text" placeholder="Enter a keyword">
+
+          <button>Search</button>
+        </div>
+
+      </div>
+
+      <div class="col col-md-8">
+
+        <div class="col col-md-12">
+          <span class="subtitle">
+            69 Results Matching
+          </span>
+          
+          <span class="subtitle subtitle--variable">
+            Pneumoultramicroscopicsilicovolcanoconiosis
+          </span>
+          <br><br>
+        
+          <div class="card__container">
+            <div class="card__title">
+              Tuberculosis
+            </div>
+            <div class="card__desc">
+              Symptoms: Fever, chills, night sweats, loss of appetite, weight loss and fatigue.
+            </div>
+          </div>
+
+          <div class="card__container">
+            <div class="card__title">
+              Pneumonia
+            </div>
+            <div class="card__desc">
+              Symptoms: Cough, fever, shaking chills, shortness of breath, chest pain, and 3 more...
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+
+
+
+  </body>
+</html>
