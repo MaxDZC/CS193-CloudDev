@@ -3848,30 +3848,110 @@
   text-align: right;
 }
 
-/* line 6, C:/xamppNew/htdocs/CS193-CloudDev/war/healthplus/app/shared/scss/partials/_base.scss */
+/* line 1, C:/xamppNew/htdocs/CS193-CloudDev/war/healthplus/app/shared/scss/partials/_input.scss */
+input[type=text] {
+  margin-bottom: 0.6em;
+  width: 100%;
+  padding: 0.25em;
+  font-family: "Fira Sans", Helvetica, Arial, sans-serif;
+  font-size: 1.3em;
+  color: #000;
+  -webkit-font-smoothing: antialiased !important;
+}
+
+/* line 11, C:/xamppNew/htdocs/CS193-CloudDev/war/healthplus/app/shared/scss/partials/_input.scss */
+select {
+  margin-bottom: 0.6em;
+  width: 100%;
+  padding: 0.25em;
+  font-family: "Fira Sans", Helvetica, Arial, sans-serif;
+  font-size: 1.3em;
+  -webkit-font-smoothing: antialiased !important;
+}
+
+/* line 20, C:/xamppNew/htdocs/CS193-CloudDev/war/healthplus/app/shared/scss/partials/_input.scss */
+option {
+  width: 100%;
+}
+
+/* line 24, C:/xamppNew/htdocs/CS193-CloudDev/war/healthplus/app/shared/scss/partials/_input.scss */
+button {
+  padding: 0.6em;
+  font-family: "Fira Sans", Helvetica, Arial, sans-serif;
+  font-size: 1.3em;
+  color: #000 !important;
+  background-color: #78C5EB;
+  border: none;
+}
+
+/* line 33, C:/xamppNew/htdocs/CS193-CloudDev/war/healthplus/app/shared/scss/partials/_input.scss */
+input, select, option {
+  outline: 0;
+}
+
+/* line 1, C:/xamppNew/htdocs/CS193-CloudDev/war/healthplus/app/shared/scss/partials/_card.scss */
+.card__container {
+  height: 5.5em;
+  margin-bottom: 0.25em;
+  width: 100%;
+  padding: 1em;
+  background-color: #EEE;
+  cursor: pointer;
+}
+
+/* line 10, C:/xamppNew/htdocs/CS193-CloudDev/war/healthplus/app/shared/scss/partials/_card.scss */
+.card__title {
+  display: block;
+  font-size: 2em;
+  font-weight: 700;
+}
+
+/* line 16, C:/xamppNew/htdocs/CS193-CloudDev/war/healthplus/app/shared/scss/partials/_card.scss */
+.card__desc {
+  display: block;
+  font-size: 1.3em;
+  font-style: italic;
+}
+
+/* line 8, C:/xamppNew/htdocs/CS193-CloudDev/war/healthplus/app/shared/scss/partials/_base.scss */
 body {
   font-family: "Fira Sans", Helvetica, Arial, sans-serif;
   font-size: 1.3em;
   font-weight: 400;
+  -webkit-font-smoothing: antialiased !important;
+  -webkit-text-stroke: 0.1px;
 }
 
-/* line 12, C:/xamppNew/htdocs/CS193-CloudDev/war/healthplus/app/shared/scss/partials/_base.scss */
+/* line 16, C:/xamppNew/htdocs/CS193-CloudDev/war/healthplus/app/shared/scss/partials/_base.scss */
 h1 {
   font-size: 3em;
   font-weight: 700;
 }
 
-/* line 18, C:/xamppNew/htdocs/CS193-CloudDev/war/healthplus/app/shared/scss/partials/_base.scss */
+/* line 22, C:/xamppNew/htdocs/CS193-CloudDev/war/healthplus/app/shared/scss/partials/_base.scss */
+.subtitle {
+  display: inline-block;
+  font-size: 1.3em;
+  text-transform: uppercase;
+}
+
+/* line 28, C:/xamppNew/htdocs/CS193-CloudDev/war/healthplus/app/shared/scss/partials/_base.scss */
+.subtitle--variable {
+  font-style: italic;
+  text-transform: none;
+}
+
+/* line 33, C:/xamppNew/htdocs/CS193-CloudDev/war/healthplus/app/shared/scss/partials/_base.scss */
 .match-padding, h1 {
   padding: 0 15px;
 }
 
-/* line 20, C:/xamppNew/htdocs/CS193-CloudDev/war/healthplus/app/shared/scss/partials/_base.scss */
+/* line 35, C:/xamppNew/htdocs/CS193-CloudDev/war/healthplus/app/shared/scss/partials/_base.scss */
 .float-right {
   float: right;
 }
 
-/* line 22, C:/xamppNew/htdocs/CS193-CloudDev/war/healthplus/app/shared/scss/partials/_base.scss */
+/* line 37, C:/xamppNew/htdocs/CS193-CloudDev/war/healthplus/app/shared/scss/partials/_base.scss */
 .float-left {
   float: left;
 }
@@ -3888,11 +3968,6 @@ html {
   font-family: sans-serif;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
-}
-
-/* line 6, C:/xamppNew/htdocs/CS193-CloudDev/war/healthplus/app/shared/scss/vendor/bootstrap.min.css */
-body {
-  margin: 0;
 }
 
 /* line 6, C:/xamppNew/htdocs/CS193-CloudDev/war/healthplus/app/shared/scss/vendor/bootstrap.min.css */
@@ -4006,24 +4081,12 @@ code, kbd, pre, samp {
 }
 
 /* line 6, C:/xamppNew/htdocs/CS193-CloudDev/war/healthplus/app/shared/scss/vendor/bootstrap.min.css */
-button, input, optgroup, select, textarea {
-  color: inherit;
-  font: inherit;
-  margin: 0;
-}
-
-/* line 6, C:/xamppNew/htdocs/CS193-CloudDev/war/healthplus/app/shared/scss/vendor/bootstrap.min.css */
 button {
   overflow: visible;
 }
 
 /* line 6, C:/xamppNew/htdocs/CS193-CloudDev/war/healthplus/app/shared/scss/vendor/bootstrap.min.css */
-button, select {
-  text-transform: none;
-}
-
-/* line 6, C:/xamppNew/htdocs/CS193-CloudDev/war/healthplus/app/shared/scss/vendor/bootstrap.min.css */
-button, html input[type="button"], input[type="reset"], input[type="submit"] {
+button, button, html input[type="button"], input[type="reset"], input[type="submit"] {
   -webkit-appearance: button;
   cursor: pointer;
 }
@@ -4125,14 +4188,7 @@ html {
 }
 
 /* line 6, C:/xamppNew/htdocs/CS193-CloudDev/war/healthplus/app/shared/scss/vendor/bootstrap.min.css */
-input, button, select, textarea {
-  font-family: inherit;
-  font-size: inherit;
-  line-height: inherit;
-}
-
-/* line 6, C:/xamppNew/htdocs/CS193-CloudDev/war/healthplus/app/shared/scss/vendor/bootstrap.min.css */
-a {
+input, button, a {
   color: #337ab7;
   text-decoration: none;
 }

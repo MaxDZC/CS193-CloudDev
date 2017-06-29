@@ -1,0 +1,33 @@
+input[type=text]{
+  margin-bottom: $sizePaddingHalf;
+  width: 100%;
+  padding: $sizePaddingThin;
+  font-family: $font;
+  font-size: $sizeText;
+  color: $black;
+  -webkit-font-smoothing: antialiased !important;
+}
+
+select{
+  margin-bottom: $sizePaddingHalf;
+  width: 100%;
+  padding: $sizePaddingThin;
+  font-family: $font;
+  font-size: $sizeText;
+  -webkit-font-smoothing: antialiased !important;
+}
+
+option{
+  width: 100%;
+}
+
+button{
+  padding: $sizePaddingHalf;
+  font-family: $font;
+  font-size: $sizeText;
+  color: $black !important;
+  background-color: $babyBlue;
+  border: none;
+}
+
+input, select, option { outline: 0 }

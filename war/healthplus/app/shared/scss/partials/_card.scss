@@ -1,0 +1,20 @@
+.card__container{
+  height: $heightCard;
+  margin-bottom: $sizePaddingThin;
+  width: 100%;
+  padding: $sizePadding;
+  background-color: $softWhite;
+  cursor: pointer;
+}
+
+.card__title{
+  display: block;
+  font-size: $sizeCardTitle;
+  font-weight: 700;
+}
+
+.card__desc{
+  display: block;
+  font-size: $sizeText;
+  font-style: italic;
+}
