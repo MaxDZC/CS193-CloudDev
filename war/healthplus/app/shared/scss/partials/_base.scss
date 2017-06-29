@@ -1,0 +1,22 @@
+@import "../modules/all";
+@import 'header';
+@import 'navbar';
+
+
+body{
+  font-family: $font;
+  font-size: $sizeText;
+  font-weight: 400;
+}
+
+h1{
+  @extend .match-padding;
+  font-size: $sizePageTitle;
+  font-weight: 700;
+}
+
+.match-padding { padding: 0 15px; }
+
+.float-right { float: right; }
+
+.float-left { float: left; }

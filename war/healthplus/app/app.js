@@ -1,2 +1,1 @@
-var healthplus = angular.module('healthplus', []);
-
+var app = angular.module('healthplus', []);

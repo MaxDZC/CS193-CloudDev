@@ -1,0 +1,33 @@
+.header__background{
+  height: $heightRow;
+}
+
+.header__app-text{
+  height: $heightRow;
+  font-size: 2em;
+  font-weight: 500;
+  line-height: 2em;
+}
+
+.header__user-container{
+  margin-top: $sizePaddingRow;
+  height: $heightRow;
+  text-align: right;
+}
+
+.header__user-name{
+  display: block;
+  font-size: $sizeText;
+  font-weight: 500;
+}
+
+.header__user-title{
+  @extend .header__user-name;
+  font-weight: 400;
+}
+
+.header__user-alignment{
+  display: inline-block;
+  padding: 0 $sizePaddingThin;
+  vertical-align: top;
+}
