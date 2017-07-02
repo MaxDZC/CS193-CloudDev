@@ -14,7 +14,7 @@ If you want it to automatically compile for you, type in `webpack --watch`.
 
 ## How to run the thing in Eclipse
 1. Use the eclipse sir gave us and follow his [instructions][instruction].
-2. I hope you followed the Getting Started instructions and webpacked.
+2. If you haven't followed the Getting Started instructions and webpacked, do it now.
 3. Run it as a Web Application. (looks like a blue google 'g' symbol)
 4. That's really all there is to it. To see the thing: `http://localhost:8888/healthplus/`
 
