@@ -54,14 +54,14 @@ require('./components/mymodule/mymodule.main.js');
 
 3. weebpack and run the thing. Your module url: `http://localhost:8888/healthplus/#!/urlforyourmodule`
 
-**"I can't see it what do I do?"**
+------
 
-Empty Cache and Hard Reload (for Google Chrome)
+#Still can't see your module? 
+Empty Cache and Hard Reload (for Google Chrome (idk how to do it for other browsers sorry))
 1. Right click 
 2. Inspect
 3. Right Click on reload symbol (swirly arrow upper left)
 4. Click on 'Empty Cache and Hard Reload'
-idk how to do it for other browsers sorry
 
 ------
 ## Directory Structure
