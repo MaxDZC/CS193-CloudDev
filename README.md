@@ -114,4 +114,4 @@ webpack.config.js                       --> File that makes Webpack do its job w
 ```
 
 [node]: https://nodejs.org/en/
-[instruction]: goo.gl/nMpBYp
+[instruction]: https://drive.google.com/drive/folders/0B9VWiPnJTkPAVWltXzE4VExuVzg
