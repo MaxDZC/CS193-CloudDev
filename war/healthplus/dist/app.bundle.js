@@ -35412,12 +35412,14 @@ __webpack_require__(28);
 __webpack_require__(31);
 __webpack_require__(34);
 __webpack_require__(36);
+__webpack_require__(38);
 
 angular.module('hplus.modules', [
   'hplus.modules.header',
   'hplus.modules.navbar',
   'hplus.modules.explorediseases',
-  'hplus.modules.registerdoctor'
+  'hplus.modules.registerdoctor',
+  'hplus.modules.registerdiseases'
 ]);
 
 
@@ -35525,6 +35527,28 @@ angular.module('hplus.modules.registerdoctor', [])
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"row\">\r\n  <div class=\"col col-md-8 col-md-offset-1\">\r\n    <h1>Register an Account</h1>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row\">\r\n  <div class=\"col col-md-2 col-md-offset-1\">\r\n    <div class=\"row\">\r\n      <div class=\"col col-md-12\">\r\n        <label>First Name</label>\r\n        <input type=\"text\">\r\n        <label>Address</label>\r\n        <input type=\"text\">\r\n        <label>Username</label>\r\n        <input type=\"text\">\r\n        <label>Password</label>\r\n        <input type=\"text\">\r\n        <label>Confirm Password</label>\r\n        <input type=\"text\">\r\n        <br><br><br><br>\r\n        <button>Sign up</button>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <div class=\"col col-md-2 col-md-offset-1\">\r\n    <div class=\"row\">\r\n      <div class=\"col col-md-12\">\r\n        <label>Last Name</label>\r\n        <input type=\"text\">\r\n        <label>Contact Number</label>\r\n        <input type=\"text\">\r\n        <label>Birthday</label>\r\n        <input type=\"text\">\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>";
+
+/***/ }),
+/* 38 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var registerdiseases = __webpack_require__(39);
+
+angular.module('hplus.modules.registerdiseases', [])
+
+  .config(function ($routeProvider){  
+    $routeProvider
+      .when('/diseases/register',{
+        template: registerdiseases
+      })
+  });
+
+
+/***/ }),
+/* 39 */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"row\">\r\n  <div class=\"col col-md-8 col-md-offset-1\">\r\n    <h1>Register Diseases</h1>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row\">\r\n  <div class=\"col col-md-2 col-md-offset-1\">\r\n\r\n    <div class=\"row\">\r\n      <div class=\"col col-md-12\">\r\n        <label>\r\n          Name of Disease\r\n        </label>\r\n        <input type=\"text\" value=\"Diabetes Mellitus Type 2\">\r\n\t\t    <br><br>\r\n\t\t    <button>Save</button>\r\n      </div>\r\n    </div>\r\n    \r\n  </div>\r\n\r\n  <div class=\"col col-md-3 col-md-offset-1\">\r\n    <div class=\"row\">\r\n\t    <div class=\"col col-md-12\">\r\n\t        <label>\r\n\t\t        Symptoms\r\n\t\t      </label>\r\n\t\t      <br>\r\n\t\t      <div>\r\n\t\t        \r\n\t\t      </div>\r\n\t    </div>\r\n    </div>\r\n  </div>\r\n\r\n  <div class=\"col col-md-3 col-md-offset-1\">\r\n    <div class=\"row\">\r\n\t    <div class=\"col col-md-12\">\r\n\t      <div class=\"form-group\">\r\n\t\t       <label>\r\n\t\t        Medicines\r\n\t\t      </label>\r\n\t\t\t\t  <input type=\"text\" class=\"form-control\" placeholder=\"Search\">\r\n\t\t\t\t  <div class=\"form-control\">\r\n\t          <input type=\"checkbox\">Metformin<br>\r\n\t          <input type=\"checkbox\">Methadone<br>\r\n\t          <input type=\"checkbox\">Methamphetamine<br>\r\n\t          <input type=\"checkbox\">Methazolamide<br>\r\n\t          <input type=\"checkbox\">Methenamine<br>\r\n\t          <input type=\"checkbox\">Methimazole<br>\r\n\t          <input type=\"checkbox\">Meth\r\n\t\t\t\t  </div>\r\n\t\t\t\t</div>\r\n\t    </div>\r\n    </div>\r\n  </div>\r\n  \r\n</div>";
 
 /***/ })
 /******/ ]);
