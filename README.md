@@ -107,7 +107,7 @@ require('./components/mymodule/mymodule.main.js');
 
 ------
 
-##Still can't see your module? 
+## Still can't see your module? 
 Empty Cache and Hard Reload (for Google Chrome (idk how to do it for other browsers sorry))
 1. Right click 
 2. Inspect
