@@ -102,6 +102,15 @@ angular.module('hplus.modules.mymodule', [])
 ```
 require('./components/mymodule/mymodule.main.js');
 ```
+and 
+```
+angular.module('hplus.modules', [
+  'hplus.modules.header',
+  'hplus.modules.navbar',
+  'hplus.modules.explorediseases',
+  'hplus.modules.mymodule'
+]);
+```
 
 3. weebpack and run the thing. Your module url: `http://localhost:8888/healthplus/#!/urlforyourmodule`
 
