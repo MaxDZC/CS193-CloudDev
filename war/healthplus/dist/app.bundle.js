@@ -35411,11 +35411,13 @@ function ngViewFillContentFactory($compile, $controller, $route) {
 __webpack_require__(28);
 __webpack_require__(31);
 __webpack_require__(34);
+__webpack_require__(36);
 
 angular.module('hplus.modules', [
   'hplus.modules.header',
   'hplus.modules.navbar',
-  'hplus.modules.explorediseases'
+  'hplus.modules.explorediseases',
+  'hplus.modules.registerdoctor'
 ]);
 
 
@@ -35501,6 +35503,28 @@ angular.module('hplus.modules.explorediseases', [])
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"row\">\r\n  <div class=\"col col-md-8 col-md-offset-1\">\r\n    <h1>List of all diseases</h1>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row\">\r\n  <div class=\"col col-md-2 col-md-offset-1\">\r\n\r\n    <div class=\"row\">\r\n      <div class=\"col col-md-6\">\r\n        <span class=\"subtitle\">\r\n          Search\r\n        </span>\r\n      </div>\r\n      <br><br>\r\n    </div>\r\n    <div class=\"match-padding\">\r\n      <select>\r\n        <option>Disease</option>\r\n        <option>Medicine</option>\r\n      </select>\r\n\r\n      <input type=\"text\" placeholder=\"Enter a keyword\">\r\n\r\n      <button>Search</button>\r\n    </div>\r\n\r\n  </div>\r\n\r\n  <div class=\"col col-md-8\">\r\n\r\n    <div class=\"col col-md-12\">\r\n      <span class=\"subtitle\">\r\n        69 Results Matching\r\n      </span>\r\n      \r\n      <span class=\"subtitle subtitle--variable\">\r\n        Pneumoultramicroscopicsilicovolcanoconiosis\r\n      </span>\r\n      <br><br>\r\n    \r\n      <div class=\"card__container\">\r\n        <div class=\"card__title\">\r\n          Tuberculosis\r\n        </div>\r\n        <div class=\"card__desc\">\r\n          Symptoms: Fever, chills, night sweats, loss of appetite, weight loss and fatigue.\r\n        </div>\r\n      </div>\r\n\r\n      <div class=\"card__container\">\r\n        <div class=\"card__title\">\r\n          Pneumonia\r\n        </div>\r\n        <div class=\"card__desc\">\r\n          Symptoms: Cough, fever, shaking chills, shortness of breath, chest pain, and 3 more...\r\n        </div>\r\n      </div>\r\n\r\n\r\n    </div>\r\n  </div>\r\n</div>";
+
+/***/ }),
+/* 36 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var registerdoctor = __webpack_require__(37);
+
+angular.module('hplus.modules.registerdoctor', [])
+
+  .config(function ($routeProvider){  
+    $routeProvider
+      .when('/register',{
+        template: registerdoctor
+      })
+  });
+
+
+/***/ }),
+/* 37 */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"row\">\r\n  <div class=\"col col-md-8 col-md-offset-1\">\r\n    <h1>Register an Account</h1>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row\">\r\n  <div class=\"col col-md-2 col-md-offset-1\">\r\n    <div class=\"row\">\r\n      <div class=\"col col-md-12\">\r\n        <label>First Name</label>\r\n        <input type=\"text\">\r\n        <label>Address</label>\r\n        <input type=\"text\">\r\n        <label>Username</label>\r\n        <input type=\"text\">\r\n        <label>Password</label>\r\n        <input type=\"text\">\r\n        <label>Confirm Password</label>\r\n        <input type=\"text\">\r\n        <br><br><br><br>\r\n        <button>Sign up</button>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <div class=\"col col-md-2 col-md-offset-1\">\r\n    <div class=\"row\">\r\n      <div class=\"col col-md-12\">\r\n        <label>Last Name</label>\r\n        <input type=\"text\">\r\n        <label>Contact Number</label>\r\n        <input type=\"text\">\r\n        <label>Birthday</label>\r\n        <input type=\"text\">\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>";
 
 /***/ })
 /******/ ]);
