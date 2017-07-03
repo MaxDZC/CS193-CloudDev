@@ -30,4 +30,10 @@ button{
   border: none;
 }
 
+button.outline{
+  padding: $sizePaddingHalf $sizePadding;
+  background-color: $white;
+  border:1.5px solid $black;
+}
+
 input, select, option { outline: 0 }
