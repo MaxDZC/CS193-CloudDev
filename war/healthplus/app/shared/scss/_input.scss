@@ -1,4 +1,4 @@
-input[type=text]{
+input[type=text], textarea{
   margin-bottom: $sizePaddingHalf;
   width: 100%;
   padding: $sizePaddingThin;
@@ -19,6 +19,10 @@ select{
 
 option{
   width: 100%;
+}
+
+textarea{
+  resize: none;
 }
 
 button{
