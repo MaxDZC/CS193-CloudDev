@@ -2,7 +2,7 @@
 @import "../app/shared/scss/vendor/fonts/firasans.css";
 @import '../app/shared/scss/vendor/font-awesome/scss/font-awesome';
 
-
+@import "../app/shared/scss/paginate";
 @import "../app/shared/scss/colors";
 @import "../app/shared/scss/sizes";
 @import "../app/shared/scss/typography";
@@ -15,3 +15,4 @@
 @import "../app/shared/navbar/navbar";
 @import "../app/shared/footer/footer";
 @import "../app/components/userLogin/loginForm";
+

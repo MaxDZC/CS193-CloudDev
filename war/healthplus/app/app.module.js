@@ -9,7 +9,7 @@ require('./components/editdoctor/editdoctor.main.js');
 require('./components/exploredoctors/exploredoctors.main.js');
 require('./components/exploremedicines/exploremedicines.main.js');
 require('./components/userLogin/loginForm.main.js');
-
+require('./shared/parts/pagination/pagination.main.js');
 angular.module('hplus.modules', [
   'hplus.modules.header',
   'hplus.modules.navbar',
@@ -21,6 +21,7 @@ angular.module('hplus.modules', [
   'hplus.modules.editdoctor',
   'hplus.modules.exploredoctors',
   'hplus.modules.exploremedicines',
-  'hplus.modules.userLogin'
+  'hplus.modules.userLogin',
+  'hplus.modules.pagination'
 ]);
 
