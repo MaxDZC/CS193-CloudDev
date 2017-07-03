@@ -4,7 +4,7 @@ angular.module('hplus.modules.exploredoctors', [])
 
   .config(function ($routeProvider){  
     $routeProvider
-      .when('/List/SearchRegisteredDoctors',{
+      .when('/admin/list/doctor',{
         template: exploredoctors
       })
   });

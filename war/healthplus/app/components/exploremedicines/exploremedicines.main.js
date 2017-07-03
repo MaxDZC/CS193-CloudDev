@@ -4,7 +4,7 @@ angular.module('hplus.modules.exploremedicines', [])
 
   .config(function ($routeProvider){  
     $routeProvider
-      .when('/List/SearchMedicine',{
+      .when('/admin/list/medicine',{
         template: exploremedicines
       })
   });
