@@ -23,6 +23,11 @@ h1{
   text-transform: none;
 }
 
+.subtitle__value{
+  font-size: $sizeTextNavbar;
+  font-weight: 500;
+}
+
 .match-padding { padding: 0 15px; }
 
 .float-right { float: right; }
