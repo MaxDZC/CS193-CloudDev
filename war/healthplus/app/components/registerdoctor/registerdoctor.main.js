@@ -4,7 +4,7 @@ angular.module('hplus.modules.registerdoctor', [])
 
   .config(function ($routeProvider){  
     $routeProvider
-      .when('/register',{
+      .when('/admin/register/doctor',{
         template: registerdoctor
       })
   });

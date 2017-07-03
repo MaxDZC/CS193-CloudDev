@@ -8,7 +8,7 @@ angular.module('hplus.modules.explorediseases', [])
         template: explorediseases
       })
       
-      .when('/diseases/explore',{
+      .when('/admin/list/disease',{
         template: explorediseases
       })
   });
