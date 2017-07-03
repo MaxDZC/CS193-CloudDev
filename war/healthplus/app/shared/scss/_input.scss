@@ -1,11 +1,19 @@
 input[type=text], textarea{
+  margin-top: $sizePaddingHalf;
   margin-bottom: $sizePaddingHalf;
   width: 100%;
-  padding: $sizePaddingThin;
+  padding: $sizePaddingHalf;
   font-family: $font;
   font-size: $sizeText;
   color: $black;
+  border: 1.5px solid $black;
+  transition: 0.3s ease;
   -webkit-font-smoothing: antialiased !important;
+}
+
+input[type=text]:focus{
+  border: 1.5px solid $seafoamGreen;
+  transition: 0.3s ease;
 }
 
 select{
@@ -32,6 +40,19 @@ button{
   color: $black !important;
   background-color: $babyBlue;
   border: none;
+  transition: 0.2s ease;
+}
+
+button.outline{
+  padding: $sizePaddingHalf $sizePadding;
+  background-color: $softWhite;
+  transition: 0.2s ease;
+  border: 1.5px solid $black;
+}
+
+button:hover{
+  background-color: $babyBlue;
+  transition: 0.2s ease;
 }
 
 input, select, option { outline: 0 }

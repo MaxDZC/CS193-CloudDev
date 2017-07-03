@@ -18,3 +18,28 @@
   font-size: $sizeText;
   font-style: italic;
 }
+
+.detail__container{
+  margin-bottom: $sizePaddingThin;
+  width: 100%;
+  padding: $sizePadding;
+  background-color: $softWhite;
+}
+
+.detail__title{
+  display: block;
+  font-size: $sizeDetailTitle;
+  font-weight: 700;
+}
+
+.detail__desc{
+  display: block;
+  font-size: $sizeText;
+  font-style: bold;
+}
+
+.detail__subtitle{
+  display: block;
+  font-size: $sizeDetailTitle;
+  font-weight: 500;
+}

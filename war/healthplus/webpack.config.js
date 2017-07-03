@@ -36,6 +36,14 @@ module.exports = {
                             loader: "file-loader?name=dist/fonts/[name].[ext]"
                         }
                       ]
+              },
+              {
+                test: /\.(jpe?g|png|gif|svg)$/i, 
+                use:  [ 
+                        { 
+                            loader: "file-loader?name=/dist/img/[name].[ext]"
+                        }
+                      ]
               }
             ]
   }
