@@ -1,11 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-	
-	<title>List of Registered Doctors</title><!-- Module Name -->
-</head>
-<body>
+
 	<div class="row"><!-- Header Portion -->
   		<div class="col col-md-10 col-md-offset-1">
     		<h1>List of All Doctors</h1><!-- Header Name for this Module -->
@@ -32,7 +25,7 @@
     		</div>
 
   		</div>
-
+       <div ng-controller="modalCtrl as alert"> 
   		<div class="col col-md-8"><!-- Section containing the tabulated list of doctors -->
 
     		<div class="col col-md-12">
@@ -45,7 +38,7 @@
     			
       			<div class="card__container">
         			<div class="card__title">
-          				Aplia, Kate MD
+          				Aplia, Kate MD <span ng-click="alert.confirm()" class="delete__icon"><i class="fa fa-trash-o" aria-hidden="true"></i></span>
         			</div>
         			<div class="card__desc">
           				General Practice
@@ -54,7 +47,7 @@
 
       			<div class="card__container">
         			<div class="card__title">
-          				Appleseed, John DDS
+          				Appleseed, John DDS<span ng-click="alert.confirm()" class="delete__icon"><i class="fa fa-trash-o" aria-hidden="true"></i></span>
         			</div>
         			<div class="card__desc">
           				Dentistry
@@ -63,7 +56,7 @@
       			
       			<div class="card__container">
         			<div class="card__title">
-          				Siewel, Nao Ng OD
+          				Siewel, Nao Ng OD<span ng-click="alert.confirm()" class="delete__icon"><i class="fa fa-trash-o" aria-hidden="true"></i></span>
         			</div>
         			<div class="card__desc">
           				Optometry
@@ -102,7 +95,5 @@
   				</ul>
   			</nav>
   		</div> -->
-  		
+  		</div>
 	</div>
-</body>
-</html>

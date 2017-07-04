@@ -29,7 +29,7 @@
   </div>
 
   <div class="col col-md-8">
-
+  <div ng-controller="modalCtrl as alert"> 
     <div class="col col-md-12 marginBottom">
       <span class="subtitle">
         69 Results Matching
@@ -42,7 +42,7 @@
     
       <div class="card__container">
         <div class="card__title">
-          Tuberculosis
+          Tuberculosis <span ng-click="alert.confirm()" class="delete__icon"><i class="fa fa-trash-o" aria-hidden="true"></i></span>
         </div>
         <div class="card__desc">
           Symptoms: Fever, chills, night sweats, loss of appetite, weight loss and fatigue.
@@ -51,27 +51,18 @@
 
       <div class="card__container">
         <div class="card__title">
-          Pneumonia
+          Pneumonia <span ng-click="alert.confirm()" class="delete__icon"><i class="fa fa-trash-o" aria-hidden="true"></i></span>
         </div>
         <div class="card__desc">
           Symptoms: Cough, fever, shaking chills, shortness of breath, chest pain, and 3 more...
         </div>
       </div>
 
-
+  </div>
     </div>
 
            <div>
-            <div ng-controller="demoCtrl as demo"> 
-              <p>
-                <h2>Simple Alert</h2>
-                <button ng-click="demo.alert()">click</button>
-              </p>
-              <p>
-                <h2>Simple Confirm</h2>
-                <button ng-click="demo.confirm()">click</button>
-              </p>
-            </div>
+          
             
           </div>
   </div>
