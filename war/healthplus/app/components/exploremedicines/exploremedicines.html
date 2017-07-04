@@ -41,10 +41,10 @@
       			<br><br>
       			
     			<!-- List Section -->
-    			  <div ng-controller="modalCtrl as alert"> 
+    			 
       			<div class="card__container">
         			<div class="card__title">
-          				Metformin<span ng-click="alert.confirm()" class="delete__icon"><i class="fa fa-trash-o" aria-hidden="true"></i></span>
+          				Metformin
         			</div>
         			<div class="card__desc">
           				Diabetes Mellitus
@@ -53,8 +53,7 @@
 
       			<div class="card__container">
         			<div class="card__title">
-          				Methadone <span ng-click="alert.confirm()" class="delete__icon"><i class="fa fa-trash-o" aria-hidden="true"></i></span>
-        			</div>
+          				Methadone        			</div>
         			<div class="card__desc">
           				Opioid dependency, chronic pain
         			</div>
@@ -62,8 +61,8 @@
       			
       			<div class="card__container">
         			<div class="card__title">
-          				Methamphetamine <span ng-click="alert.confirm()" class="delete__icon"><i class="fa fa-trash-o" aria-hidden="true"></i></span>
-        			</div>
+          				Methamphetamine
+        			</div>x
         			<div class="card__desc">
           				Attention deficit hyperactivity disorder, obesity, and more...
         			</div>
@@ -71,14 +70,14 @@
       			
       			<div class="card__container">
         			<div class="card__title">
-          				Methazolamide <span ng-click="alert.confirm()" class="delete__icon"><i class="fa fa-trash-o" aria-hidden="true"></i></span>
+          				Methazolamide
         			</div>
         			<div class="card__desc">
           				Intraocular pressure in glaucoma
         			</div>
       			</div>
       			</div>
-    		</div>
+    	
     		<br><br><br><br><br>
     		<div class="col col-md-5 col-md-offset-1"><!-- Detail Sector -->
       			<label class="subtitle">
@@ -115,9 +114,9 @@
         			</span>
         			
         			<br><br>
-        			
-        			<button>Edit</button>
-        			
+        			 <div ng-controller="modalCtrl as alert"> 
+        			<a href="#!/admin/edit/medicine"><button >Edit</button></a><button class="delete_btn" ng-click="alert.confirm()">Delete</button>
+        			</div>
       			</div>
       		</div>
   		</div>
@@ -128,7 +127,7 @@
 	<!-- Pagination Section -->
 	<div class="row">
 	
-		<div class="col col-md-2 col-md-offset-5">
+		<div class="col col-md-3 col-md-offset-5">
 		
 			<div class="pagination__container">
 			
