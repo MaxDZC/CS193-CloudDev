@@ -3,6 +3,8 @@ require('./shared/navbar/navbar.main.js');
 require('./components/explorediseases/explorediseases.main.js');
 require('./shared/footer/footer.main.js');
 require('./components/registerdoctor/registerdoctor.main.js');
+require('./components/registerdiseases/registerdiseases.main.js');
+require('./components/registermedicine/registermedicine.main.js');
 require('./components/viewdoctor/viewdoctor.main.js');
 require('./components/editdoctor/editdoctor.main.js');
 require('./components/exploredoctors/exploredoctors.main.js');
@@ -15,8 +17,10 @@ angular.module('hplus.modules', [
   'hplus.modules.header',
   'hplus.modules.navbar',
   'hplus.modules.explorediseases',
-  'hplus.modules.footer',
   'hplus.modules.registerdoctor',
+  'hplus.modules.registerdiseases',
+  'hplus.modules.registermedicine',
+  'hplus.modules.footer',
   'hplus.modules.viewdoctor',
   'hplus.modules.editdoctor',
   'hplus.modules.exploredoctors',
