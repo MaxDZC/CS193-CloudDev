@@ -15,7 +15,7 @@ angular.module('hplus.modules.alertDemo', [])
 				text: "Your will not be able to recover this imaginary file!", //light text
 				type: "warning", //type -- adds appropiriate icon
 				showCancelButton: true, // displays cancel btton
-				confirmButtonColor: "#DD6B55",
+				confirmButtonColor: "#254d5e",
 				confirmButtonText: "Yes, delete it!",
 				closeOnConfirm: false, //do not close popup after click on confirm, usefull when you want to display a subsequent popup
 				closeOnCancel: false

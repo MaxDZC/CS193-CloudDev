@@ -56,3 +56,20 @@ button:hover{
 }
 
 input, select, option { outline: 0 }
+
+.navbar__btn.navbar__btn--selected a {
+  color: white !important ;
+  text-decoration: none;
+}
+.sweet-alert button {
+ 
+  color: #fff !important;
+  
+}
+.confirm  {
+ background-color: #254d5e !important;
+}
+input, button, a {
+ 
+  text-decoration: none !important;
+}
