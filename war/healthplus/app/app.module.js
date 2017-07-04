@@ -27,5 +27,5 @@ angular.module('hplus.modules', [
   'hplus.modules.exploremedicines',
   'hplus.modules.userLogin',
   'hplus.modules.pagination', 
-  'hplus.modules.alertDemo'
+  'hplus.modules.modal'
 ]);

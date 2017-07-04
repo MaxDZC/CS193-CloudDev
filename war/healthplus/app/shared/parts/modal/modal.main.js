@@ -1,5 +1,5 @@
-angular.module('hplus.modules.alertDemo', [])
-	.controller('demoCtrl',['SweetAlert', function(SweetAlert){
+angular.module('hplus.modules.modal', [])
+	.controller('modalCtrl',['SweetAlert', function(SweetAlert){
 		var vm = this;
 		
 		console.log("Controller Got Called biatch!");
@@ -9,10 +9,10 @@ angular.module('hplus.modules.alertDemo', [])
 		}
 		
 		vm.confirm = function(){
-			console.log("Confirm got called!");
+			
 			SweetAlert.swal({
 				title: "Are you sure?", //Bold text
-				text: "Your will not be able to recover this imaginary file!", //light text
+				text: "Your will not be able to recover this record !", //light text
 				type: "warning", //type -- adds appropiriate icon
 				showCancelButton: true, // displays cancel btton
 				confirmButtonColor: "#254d5e",
@@ -22,7 +22,7 @@ angular.module('hplus.modules.alertDemo', [])
 			}, 
 			function(isConfirm){ //Function that triggers on user action.
 				if(isConfirm){
-					SweetAlert.swal("Deleted!");
+					SweetAlert.swal("Record Deleted!");
 				} else {
 					SweetAlert.swal("Your file is safe!");
 				}
