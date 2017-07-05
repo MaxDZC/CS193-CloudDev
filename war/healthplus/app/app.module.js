@@ -6,18 +6,18 @@ require('./components/registerdoctor/registerdoctor.main.js');
 require('./components/registerdiseases/registerdiseases.main.js');
 require('./components/registermedicine/registermedicine.main.js');
 require('./components/viewdoctor/viewdoctor.main.js');
+require('./components/viewmedicine/viewmedicine.main.js');
 require('./components/editdoctor/editdoctor.main.js');
 require('./components/exploredoctors/exploredoctors.main.js');
 require('./components/exploremedicines/exploremedicines.main.js');
 require('./components/userLogin/loginForm.main.js');
 require('./shared/parts/pagination/pagination.main.js');
-<<<<<<< HEAD
+
 require('./components/createmedicalrecord/createmedicalrecord.main.js');
-=======
+
 require('./shared/parts/modal/modal.main.js');
 require('./components/editdisease/editdisease.main.js');
 require('./components/editmedicine/editmedicine.main.js');
->>>>>>> 24ec37c857e1fa3047fea5a02c20a53e1b2ce512
 angular.module('hplus.modules', [
   'hplus.modules.header',
   'hplus.modules.navbar',
@@ -27,6 +27,7 @@ angular.module('hplus.modules', [
   'hplus.modules.registermedicine',
   'hplus.modules.footer',
   'hplus.modules.viewdoctor',
+  'hplus.modules.viewmedicine',
   'hplus.modules.editdoctor',
   'hplus.modules.editmedicine',
   'hplus.modules.editdisease',
