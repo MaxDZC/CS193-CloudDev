@@ -6,13 +6,15 @@
 @import "../app/shared/scss/colors";
 @import "../app/shared/scss/sizes";
 @import "../app/shared/scss/typography";
-@import "../app/shared/parts/modal/modal";
+
 @import "../app/shared/scss/base";
 @import "../app/shared/scss/input";
 @import "../app/shared/scss/card";
+@import "../app/shared/scss/table";
 @import "../app/shared/scss/pagination";
 @import "../app/shared/header/header";
 @import "../app/shared/navbar/navbar";
 @import "../app/shared/footer/footer";
 @import "../app/components/userLogin/loginForm";
 
+@import "../app/components/createmedicalrecord/createmedicalrecord";

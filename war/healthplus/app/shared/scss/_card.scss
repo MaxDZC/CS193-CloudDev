@@ -6,7 +6,10 @@
   background-color: $softWhite;
   cursor: pointer;
 }
-
+.card__container--flex{
+  @extend  .card__container;
+  height: 25em !important;
+}
 .card__title{
   display: block;
   font-size: $sizeCardTitle;
