@@ -5,7 +5,7 @@ angular.module('hplus.modules.modal', [])
 		console.log("Controller Got Called biatch!");
 		
 		vm.alert = function(){
-			SweetAlert.swal("I'm a fancy Alert"); //simple alert
+			SweetAlert.swal("Record Updated!"); //simple alert
 		}
 		
 		vm.confirm = function(){

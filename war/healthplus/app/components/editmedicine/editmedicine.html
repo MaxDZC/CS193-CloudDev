@@ -1,11 +1,11 @@
 <div class="row">
   <div class="col col-md-8 col-md-offset-1">
-    <h1>Register Medicine</h1>
+    <h1>Edit Medicine</h1>
   </div>
 </div>
 
 <div class="row">
-  <div class="col col-md-2 col-md-offset-1">
+  <div class="col col-md-3 col-md-offset-1">
     <div class="row">
       <div class="col col-md-12">
       Name of Medicine:
@@ -14,13 +14,16 @@
       <br><br>
     </div>
     <div class="row">
+   
       <div class="col col-md-12">
        Price (PHP) : <input type = "text" id = "priceInputField" value = "3.75">
       </div>
       <br><br>
     </div>
-    <div class="col col-md-1" id = "saveMed">
-      <button>Save</button>
+    <div class="col col-md-12" id = "saveMed">
+     <div ng-controller="modalCtrl as alert"> 
+                  			<button  ng-click="alert.alert()" >Update</button><button class="outline delete_btn" ng-click="alert.confirm()">Delete</button>
+                  			</div>
     </div>
   </div>
 
