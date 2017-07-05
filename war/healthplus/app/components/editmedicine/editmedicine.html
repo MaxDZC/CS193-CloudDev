@@ -5,7 +5,7 @@
 </div>
 
 <div class="row">
-  <div class="col col-md-2 col-md-offset-1">
+  <div class="col col-md-3 col-md-offset-1">
     <div class="row">
       <div class="col col-md-12">
       Name of Medicine:
@@ -20,8 +20,10 @@
       </div>
       <br><br>
     </div>
-    <div class="col col-md-1" id = "saveMed">
-      <button>Update</button>
+    <div class="col col-md-12" id = "saveMed">
+     <div ng-controller="modalCtrl as alert"> 
+                  			<button  ng-click="alert.alert()" >Update</button><button class="outline delete_btn" ng-click="alert.confirm()">Delete</button>
+                  			</div>
     </div>
   </div>
 
