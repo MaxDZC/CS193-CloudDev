@@ -1,0 +1,60 @@
+input[type=text], input[type=password], textarea{
+  margin-top: $sizePaddingHalf;
+  margin-bottom: $sizePaddingHalf;
+  width: 100%;
+  padding: $sizePaddingHalf;
+  font-family: $font;
+  font-size: $sizeText;
+  color: $black;
+  border: 1.5px solid $black;
+  transition: 0.3s ease;
+  -webkit-font-smoothing: antialiased !important;
+}
+
+input[type=text]:focus{
+  border: 1.5px solid $seafoamGreen;
+  transition: 0.3s ease;
+}
+.shortinput{
+  width:50% !important;
+}
+select{
+  margin-bottom: $sizePaddingHalf;
+  width: 100%;
+  padding: $sizePaddingThin;
+  font-family: $font;
+  font-size: $sizeText;
+  -webkit-font-smoothing: antialiased !important;
+}
+
+option{
+  width: 100%;
+}
+
+textarea{
+  resize: none;
+}
+
+button{
+  padding: $sizePaddingHalf;
+  font-family: $font;
+  font-size: $sizeText;
+  color: $black !important;
+  background-color: $babyBlue;
+  border: none;
+  transition: 0.2s ease;
+}
+
+button.outline{
+  padding: $sizePaddingHalf $sizePadding;
+  background-color: $softWhite;
+  transition: 0.2s ease;
+  border: 1.5px solid $black;
+}
+
+button:hover{
+  background-color: $babyBlue;
+  transition: 0.2s ease;
+}
+
+input, select, option { outline: 0 }

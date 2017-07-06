@@ -1,0 +1,63 @@
+.card__container{
+  height: $heightCard;
+  margin-bottom: $sizePaddingThin;
+  width: 100%;
+  padding: $sizePadding;
+  background-color: $softWhite;
+  cursor: pointer;
+}
+.card__container--custom1{
+  @extend  .card__container;
+  height: 25em !important;
+}
+.card__container--flex{
+  @extend  .card__container;
+  height: auto !important;
+}
+.card__container--tiny{
+  @extend  .card__container;
+  height: .2em !important;
+  padding-top:.1em !important;
+  width: 4.5em !important;
+  background-color:white;
+}
+.card__title{
+  display: block;
+  font-size: $sizeCardTitle;
+  font-weight: 700;
+}
+
+.card__desc{
+  display: block;
+  font-size: $sizeText;
+  font-style: italic;
+}
+.card__desc--tiny{
+  font-size: .5em;
+  text-align: center;
+}
+
+.detail__container{
+  margin-bottom: $sizePaddingThin;
+  width: 100%;
+  padding: $sizePadding;
+  background-color: $softWhite;
+}
+
+.detail__title{
+  display: block;
+  font-size: $sizeDetailTitle;
+  font-weight: 700;
+}
+
+.detail__desc{
+  display: block;
+  font-size: $sizeText;
+  font-style: bold;
+}
+
+.detail__subtitle{
+  display: block;
+  font-size: $sizeDetailTitle;
+  font-weight: 500;
+}
