@@ -4,7 +4,7 @@ angular.module('hplus.modules.editdisease', [])
 
   .config(function ($routeProvider){  
     $routeProvider      
-      .when('/admin/edit/disease',{
+      .when('/admin/update/disease',{
         template: editdisease
       })
   });
