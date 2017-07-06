@@ -1,167 +1,109 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-	
-	<title>List of Registered Doctors</title><!-- Module Name -->
-</head>
-<body>
-	<div class="row"><!-- Header Portion -->
-  		<div class="col col-md-10 col-md-offset-1">
-    		<h1>List of All Doctors</h1><!-- Header Name for this Module -->
-  		</div>
-	</div>
+<div class="row"><!-- Header Portion -->
+		<div class="col col-md-10 col-md-offset-1">
+  		<h1>List of All Doctors</h1><!-- Header Name for this Module -->
+		</div>
+</div>
 
-	<div class="row"><!-- Body Portion -->
-  		<div class="col col-md-2 col-md-offset-1"><!-- Section for search -->
+<div class="row"><!-- Body Portion -->
+		<div class="col col-md-2 col-md-offset-1"><!-- Section for search -->
 
-    		<div class="row">
-      			<div class="col col-md-6">
-        			<label class="subtitle">
-          				Search
-        			</label>
-      			</div>
-    			<br><br>
-    		</div>
-    		
-    		<div class="match-padding">
-
-      			<input type="text" placeholder="Enter a name">
-
-      			<button>Search</button>
-    		</div>
-
-  		</div>
-
-  		<div class="col col-md-8"><!-- Section containing the tabulated list of doctors -->
-
-    		<div class="col col-md-12">
+  		<div class="row">
+    			<div class="col col-md-6">
       			<label class="subtitle">
-        			ALL RESULTS
+        				Search
       			</label>
-      			<br><br>
-      			
-    			<!-- List Section -->
-    			
-      			<div class="card__container">
-        			<div class="card__title">
-<<<<<<< HEAD
-          				Aplia, Kate MD
-=======
-          				Aplia, Kate MD <a href="#!/admin/edit/doctor"> <span class="delete__icon"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></span></a>
->>>>>>> 24ec37c857e1fa3047fea5a02c20a53e1b2ce512
-        			</div>
-        			<div class="card__desc">
-          				General Practice
-        			</div>
-      			</div>
-
-      			<div class="card__container">
-        			<div class="card__title">
-<<<<<<< HEAD
-          				Appleseed, John DDS
-        			</div>
-=======
-          				Appleseed, John DDS<a href="#!/admin/edit/doctor"> <span class="delete__icon"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></span></a>        			</div>
->>>>>>> 24ec37c857e1fa3047fea5a02c20a53e1b2ce512
-        			<div class="card__desc">
-          				Dentistry
-        			</div>
-      			</div>
-      			
-      			<div class="card__container">
-        			<div class="card__title">
-<<<<<<< HEAD
-          				Siewel, Nao Ng OD
-        			</div>
-=======
-          				Siewel, Nao Ng OD<a href="#!/admin/edit/doctore"> <span class="delete__icon"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></span></a>        			</div>
->>>>>>> 24ec37c857e1fa3047fea5a02c20a53e1b2ce512
-        			<div class="card__desc">
-          				Optometry
-        			</div>
-      			</div>
-      			
-    		</div>
+    			</div>
+  			<br><br>
   		</div>
-<<<<<<< HEAD
-  		<!-- Pagination Section -->
-  		<!--  <div class="col col-md-2 col-md-offset-9">
-  			<nav aria-label="Page navigation">
-  				<ul class="pagination">
-  					<li>
-  						<a href="#">
-  							<span class="glyphicon glyphicon-fast-backward" aria-hidden="true"></span>
-  						</a>
-  					</li>
-  					<li>
-  						<a href="#">
-  							<span class="glyphicon glyphicon-step-backward" aria-hidden="true"></span>
-  						</a>
-  					</li>
-  					<li><a href="#">1</a></li>
-  					<li><a href="#">2</a></li>
-  					<li><a href="#">3</a></li>
-  					<li>
-  						<a href="#">
-  							<span class="glyphicon glyphicon-step-forward" aria-hidden="true"></span>
-  						</a>
-  					</li>
-  					<li>
-  						<a href="#">
-  							<span class="glyphicon glyphicon-fast-forward" aria-hidden="true"></span>
-  						</a>
-  					</li>
-  				</ul>
-  			</nav>
-  		</div> -->
-=======
-	</div>
+  		
+  		<div class="match-padding">
+
+    			<input type="text" placeholder="Enter a name">
+
+    			<button>Search</button>
+  		</div>
+
+		</div>
+    <div ng-controller="modalCtrl as alert">
+		<div class="col col-md-8"><!-- Section containing the tabulated list of doctors -->
+
+  		<div class="col col-md-12">
+    			<label class="subtitle">
+      			ALL RESULTS
+    			</label>
+    			<br><br>
+    			
+  			<!-- List Section -->
+  			
+    			<div class="card__container">
+      			<div class="card__title">
+        				Aplia, Kate MD <a href="#!/admin/edit/doctor"> <span class="delete__icon"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></span></a>
+      			</div>
+      			<div class="card__desc">
+        				General Practice
+      			</div>
+    			</div>
+
+    			<div class="card__container">
+      			<div class="card__title">
+        				Appleseed, John DDS<a href="#!/admin/edit/doctor"> <span class="delete__icon"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></span></a>        			</div>
+      			<div class="card__desc">
+        				Dentistry
+      			</div>
+    			</div>
+    			
+    			<div class="card__container">
+      			<div class="card__title">
+        				Siewel, Nao Ng OD<a href="#!/admin/edit/doctore"> <span class="delete__icon"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></span></a>        			</div>
+      			<div class="card__desc">
+        				Optometry
+      			</div>
+    			</div>
+    			
+  		</div>
+		</div>
+</div>
+
+<br><br><br><br><br><br>
+<br><br><br><br><br><br>
+<br><br><br>
+
+<!-- Pagination Section -->
+<div class="row">
+
+	<div class="col col-md-3 col-md-offset-8">
 	
-	<br><br><br><br><br><br>
-	<br><br><br><br><br><br>
-	<br><br><br>
-	
-	<!-- Pagination Section -->
-	<div class="row">
-	
-		<div class="col col-md-3 col-md-offset-8">
+		<div class="pagination__container">
 		
-			<div class="pagination__container">
-			
-				<div class="pagination__page">
-					<<
-				</div>
-				
-				<div class="pagination__page">
-					<
-				</div>
-				
-				<div class="pagination__page ">
-					2
-				</div>
-				
-				<div class="pagination__page pagination__current">
-					3
-				</div>
-				
-				<div class="pagination__page">
-					4
-				</div>
-				
-				<div class="pagination__page">
-					>
-				</div>
-				
-				<div class="pagination__page">
-					>>
-				</div>
-				
+			<div class="pagination__page">
+				<<
 			</div>
 			
-  		</div>
->>>>>>> 24ec37c857e1fa3047fea5a02c20a53e1b2ce512
-  		
-	</div>
-</body>
-</html>
+			<div class="pagination__page">
+				<
+			</div>
+			
+			<div class="pagination__page ">
+				2
+			</div>
+			
+			<div class="pagination__page pagination__current">
+				3
+			</div>
+			
+			<div class="pagination__page">
+				4
+			</div>
+			
+			<div class="pagination__page">
+				>
+			</div>
+			
+			<div class="pagination__page">
+				>>
+			</div>
+			
+		</div>
+		
+		</div>
+</div>
