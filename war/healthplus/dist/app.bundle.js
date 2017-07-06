@@ -154,17 +154,18 @@ __webpack_require__(2);
 __webpack_require__(23);
 __webpack_require__(25);
 __webpack_require__(27)
-__webpack_require__(64);
-__webpack_require__(65);
-//require('./shared/parts/modal/sweet-alert.min.js');
+__webpack_require__(59);
+__webpack_require__(60);
 
 var app = angular.module('hplus', [
-  'ngRoute',
-  'hplus.modules',
-  'oitozero.ngSweetAlert']);
+                            'ngRoute',
+                            'hplus.modules',
+                            'oitozero.ngSweetAlert'
+                          ]
+                        );
 
 app.config(function ($routeProvider){  
-  $routeProvider    
+  $routeProvider   
     .otherwise({
       redirectTo: '/'
     });  
@@ -211,7 +212,7 @@ exports = module.exports = __webpack_require__(0)(undefined);
 exports.i(__webpack_require__(4), "");
 
 // module
-exports.push([module.i, "@charset \"UTF-8\";\n/*!\n * Bootstrap v3.3.7 (http://getbootstrap.com)\n * Copyright 2011-2016 Twitter, Inc.\n * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)\n * Modified by Joshua Velasco\n */\n/*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */\nhtml {\n  font-family: sans-serif;\n  -ms-text-size-adjust: 100%;\n  -webkit-text-size-adjust: 100%; }\n\narticle, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {\n  display: block; }\n\naudio, canvas, progress, video {\n  display: inline-block;\n  vertical-align: baseline; }\n\naudio:not([controls]) {\n  display: none;\n  height: 0; }\n\n[hidden], template {\n  display: none; }\n\na {\n  background-color: transparent; }\n\na:active, a:hover {\n  outline: 0; }\n\nabbr[title] {\n  border-bottom: 1px dotted; }\n\nb, strong {\n  font-weight: bold; }\n\ndfn {\n  font-style: italic; }\n\nmark {\n  background: #ff0;\n  color: #000; }\n\nsmall {\n  font-size: 80%; }\n\nsub, sup {\n  font-size: 75%;\n  line-height: 0;\n  position: relative;\n  vertical-align: baseline; }\n\nsup {\n  top: -0.5em; }\n\nsub {\n  bottom: -0.25em; }\n\nimg {\n  border: 0; }\n\nsvg:not(:root) {\n  overflow: hidden; }\n\nfigure {\n  margin: 1em 40px; }\n\nhr {\n  -webkit-box-sizing: content-box;\n  -moz-box-sizing: content-box;\n  box-sizing: content-box;\n  height: 0; }\n\npre {\n  overflow: auto; }\n\ncode, kbd, pre, samp {\n  font-family: monospace, monospace;\n  font-size: 1em; }\n\nbutton {\n  overflow: visible; }\n\nbutton, button, html input[type=\"button\"], input[type=\"reset\"], input[type=\"submit\"] {\n  -webkit-appearance: button;\n  cursor: pointer; }\n\nbutton[disabled], html input[disabled] {\n  cursor: default; }\n\nbutton::-moz-focus-inner, input::-moz-focus-inner {\n  border: 0;\n  padding: 0; }\n\ninput {\n  line-height: normal; }\n\ninput[type=\"checkbox\"], input[type=\"radio\"] {\n  -webkit-box-sizing: border-box;\n  -moz-box-sizing: border-box;\n  box-sizing: border-box;\n  padding: 0; }\n\ninput[type=\"number\"]::-webkit-inner-spin-button, input[type=\"number\"]::-webkit-outer-spin-button {\n  height: auto; }\n\ninput[type=\"search\"] {\n  -webkit-appearance: textfield;\n  -webkit-box-sizing: content-box;\n  -moz-box-sizing: content-box;\n  box-sizing: content-box; }\n\ninput[type=\"search\"]::-webkit-search-cancel-button, input[type=\"search\"]::-webkit-search-decoration {\n  -webkit-appearance: none; }\n\nfieldset {\n  border: 1px solid #c0c0c0;\n  margin: 0 2px;\n  padding: 0.35em 0.625em 0.75em; }\n\nlegend {\n  border: 0;\n  padding: 0; }\n\ntextarea {\n  overflow: auto; }\n\noptgroup {\n  font-weight: bold; }\n\ntable {\n  border-collapse: collapse;\n  border-spacing: 0; }\n\ntd, th {\n  padding: 0; }\n\n* {\n  -webkit-box-sizing: border-box;\n  -moz-box-sizing: border-box;\n  box-sizing: border-box; }\n\n*:before, *:after {\n  -webkit-box-sizing: border-box;\n  -moz-box-sizing: border-box;\n  box-sizing: border-box; }\n\nhtml {\n  font-size: 10px;\n  -webkit-tap-highlight-color: transparent; }\n\ninput, button, a {\n  color: #337ab7;\n  text-decoration: none; }\n\na:hover, a:focus {\n  color: #23527c;\n  text-decoration: underline; }\n\na:focus {\n  outline: 5px auto -webkit-focus-ring-color;\n  outline-offset: -2px; }\n\nfigure {\n  margin: 0; }\n\nimg {\n  vertical-align: middle; }\n\n.img-responsive {\n  display: block;\n  max-width: 100%;\n  height: auto; }\n\n.img-rounded {\n  border-radius: 6px; }\n\n.img-thumbnail {\n  padding: 4px;\n  line-height: 1.42857143;\n  background-color: #fff;\n  border: 1px solid #ddd;\n  border-radius: 4px;\n  -webkit-transition: all .2s ease-in-out;\n  -o-transition: all .2s ease-in-out;\n  transition: all .2s ease-in-out;\n  display: inline-block;\n  max-width: 100%;\n  height: auto; }\n\n.img-circle {\n  border-radius: 50%; }\n\nhr {\n  margin-top: 20px;\n  margin-bottom: 20px;\n  border: 0;\n  border-top: 1px solid #eee; }\n\n.sr-only {\n  position: absolute;\n  width: 1px;\n  height: 1px;\n  margin: -1px;\n  padding: 0;\n  overflow: hidden;\n  clip: rect(0, 0, 0, 0);\n  border: 0; }\n\n.sr-only-focusable:active, .sr-only-focusable:focus {\n  position: static;\n  width: auto;\n  height: auto;\n  margin: 0;\n  overflow: visible;\n  clip: auto; }\n\n[role=\"button\"] {\n  cursor: pointer; }\n\n.container {\n  margin-right: auto;\n  margin-left: auto;\n  padding-left: 15px;\n  padding-right: 15px; }\n\n@media (min-width: 768px) {\n  .container {\n    width: 750px; } }\n\n@media (min-width: 992px) {\n  .container {\n    width: 970px; } }\n\n@media (min-width: 1200px) {\n  .container {\n    width: 1170px; } }\n\n.container-fluid {\n  margin-right: auto;\n  margin-left: auto;\n  padding-left: 15px;\n  padding-right: 15px; }\n\n.col-xs-1, .col-sm-1, .col-md-1, .col-lg-1, .col-xs-2, .col-sm-2, .col-md-2, .col-lg-2, .col-xs-3, .col-sm-3, .col-md-3, .col-lg-3, .col-xs-4, .col-sm-4, .col-md-4, .col-lg-4, .col-xs-5, .col-sm-5, .col-md-5, .col-lg-5, .col-xs-6, .col-sm-6, .col-md-6, .col-lg-6, .col-xs-7, .col-sm-7, .col-md-7, .col-lg-7, .col-xs-8, .col-sm-8, .col-md-8, .col-lg-8, .col-xs-9, .col-sm-9, .col-md-9, .col-lg-9, .col-xs-10, .col-sm-10, .col-md-10, .col-lg-10, .col-xs-11, .col-sm-11, .col-md-11, .col-lg-11, .col-xs-12, .col-sm-12, .col-md-12, .col-lg-12 {\n  position: relative;\n  min-height: 1px;\n  padding-left: 15px;\n  padding-right: 15px; }\n\n.col-xs-1, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9, .col-xs-10, .col-xs-11, .col-xs-12 {\n  float: left; }\n\n.col-xs-12 {\n  width: 100%; }\n\n.col-xs-11 {\n  width: 91.66666667%; }\n\n.col-xs-10 {\n  width: 83.33333333%; }\n\n.col-xs-9 {\n  width: 75%; }\n\n.col-xs-8 {\n  width: 66.66666667%; }\n\n.col-xs-7 {\n  width: 58.33333333%; }\n\n.col-xs-6 {\n  width: 50%; }\n\n.col-xs-5 {\n  width: 41.66666667%; }\n\n.col-xs-4 {\n  width: 33.33333333%; }\n\n.col-xs-3 {\n  width: 25%; }\n\n.col-xs-2 {\n  width: 16.66666667%; }\n\n.col-xs-1 {\n  width: 8.33333333%; }\n\n.col-xs-pull-12 {\n  right: 100%; }\n\n.col-xs-pull-11 {\n  right: 91.66666667%; }\n\n.col-xs-pull-10 {\n  right: 83.33333333%; }\n\n.col-xs-pull-9 {\n  right: 75%; }\n\n.col-xs-pull-8 {\n  right: 66.66666667%; }\n\n.col-xs-pull-7 {\n  right: 58.33333333%; }\n\n.col-xs-pull-6 {\n  right: 50%; }\n\n.col-xs-pull-5 {\n  right: 41.66666667%; }\n\n.col-xs-pull-4 {\n  right: 33.33333333%; }\n\n.col-xs-pull-3 {\n  right: 25%; }\n\n.col-xs-pull-2 {\n  right: 16.66666667%; }\n\n.col-xs-pull-1 {\n  right: 8.33333333%; }\n\n.col-xs-pull-0 {\n  right: auto; }\n\n.col-xs-push-12 {\n  left: 100%; }\n\n.col-xs-push-11 {\n  left: 91.66666667%; }\n\n.col-xs-push-10 {\n  left: 83.33333333%; }\n\n.col-xs-push-9 {\n  left: 75%; }\n\n.col-xs-push-8 {\n  left: 66.66666667%; }\n\n.col-xs-push-7 {\n  left: 58.33333333%; }\n\n.col-xs-push-6 {\n  left: 50%; }\n\n.col-xs-push-5 {\n  left: 41.66666667%; }\n\n.col-xs-push-4 {\n  left: 33.33333333%; }\n\n.col-xs-push-3 {\n  left: 25%; }\n\n.col-xs-push-2 {\n  left: 16.66666667%; }\n\n.col-xs-push-1 {\n  left: 8.33333333%; }\n\n.col-xs-push-0 {\n  left: auto; }\n\n.col-xs-offset-12 {\n  margin-left: 100%; }\n\n.col-xs-offset-11 {\n  margin-left: 91.66666667%; }\n\n.col-xs-offset-10 {\n  margin-left: 83.33333333%; }\n\n.col-xs-offset-9 {\n  margin-left: 75%; }\n\n.col-xs-offset-8 {\n  margin-left: 66.66666667%; }\n\n.col-xs-offset-7 {\n  margin-left: 58.33333333%; }\n\n.col-xs-offset-6 {\n  margin-left: 50%; }\n\n.col-xs-offset-5 {\n  margin-left: 41.66666667%; }\n\n.col-xs-offset-4 {\n  margin-left: 33.33333333%; }\n\n.col-xs-offset-3 {\n  margin-left: 25%; }\n\n.col-xs-offset-2 {\n  margin-left: 16.66666667%; }\n\n.col-xs-offset-1 {\n  margin-left: 8.33333333%; }\n\n.col-xs-offset-0 {\n  margin-left: 0; }\n\n@media (min-width: 768px) {\n  .col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12 {\n    float: left; }\n  .col-sm-12 {\n    width: 100%; }\n  .col-sm-11 {\n    width: 91.66666667%; }\n  .col-sm-10 {\n    width: 83.33333333%; }\n  .col-sm-9 {\n    width: 75%; }\n  .col-sm-8 {\n    width: 66.66666667%; }\n  .col-sm-7 {\n    width: 58.33333333%; }\n  .col-sm-6 {\n    width: 50%; }\n  .col-sm-5 {\n    width: 41.66666667%; }\n  .col-sm-4 {\n    width: 33.33333333%; }\n  .col-sm-3 {\n    width: 25%; }\n  .col-sm-2 {\n    width: 16.66666667%; }\n  .col-sm-1 {\n    width: 8.33333333%; }\n  .col-sm-pull-12 {\n    right: 100%; }\n  .col-sm-pull-11 {\n    right: 91.66666667%; }\n  .col-sm-pull-10 {\n    right: 83.33333333%; }\n  .col-sm-pull-9 {\n    right: 75%; }\n  .col-sm-pull-8 {\n    right: 66.66666667%; }\n  .col-sm-pull-7 {\n    right: 58.33333333%; }\n  .col-sm-pull-6 {\n    right: 50%; }\n  .col-sm-pull-5 {\n    right: 41.66666667%; }\n  .col-sm-pull-4 {\n    right: 33.33333333%; }\n  .col-sm-pull-3 {\n    right: 25%; }\n  .col-sm-pull-2 {\n    right: 16.66666667%; }\n  .col-sm-pull-1 {\n    right: 8.33333333%; }\n  .col-sm-pull-0 {\n    right: auto; }\n  .col-sm-push-12 {\n    left: 100%; }\n  .col-sm-push-11 {\n    left: 91.66666667%; }\n  .col-sm-push-10 {\n    left: 83.33333333%; }\n  .col-sm-push-9 {\n    left: 75%; }\n  .col-sm-push-8 {\n    left: 66.66666667%; }\n  .col-sm-push-7 {\n    left: 58.33333333%; }\n  .col-sm-push-6 {\n    left: 50%; }\n  .col-sm-push-5 {\n    left: 41.66666667%; }\n  .col-sm-push-4 {\n    left: 33.33333333%; }\n  .col-sm-push-3 {\n    left: 25%; }\n  .col-sm-push-2 {\n    left: 16.66666667%; }\n  .col-sm-push-1 {\n    left: 8.33333333%; }\n  .col-sm-push-0 {\n    left: auto; }\n  .col-sm-offset-12 {\n    margin-left: 100%; }\n  .col-sm-offset-11 {\n    margin-left: 91.66666667%; }\n  .col-sm-offset-10 {\n    margin-left: 83.33333333%; }\n  .col-sm-offset-9 {\n    margin-left: 75%; }\n  .col-sm-offset-8 {\n    margin-left: 66.66666667%; }\n  .col-sm-offset-7 {\n    margin-left: 58.33333333%; }\n  .col-sm-offset-6 {\n    margin-left: 50%; }\n  .col-sm-offset-5 {\n    margin-left: 41.66666667%; }\n  .col-sm-offset-4 {\n    margin-left: 33.33333333%; }\n  .col-sm-offset-3 {\n    margin-left: 25%; }\n  .col-sm-offset-2 {\n    margin-left: 16.66666667%; }\n  .col-sm-offset-1 {\n    margin-left: 8.33333333%; }\n  .col-sm-offset-0 {\n    margin-left: 0; } }\n\n@media (min-width: 992px) {\n  .col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12 {\n    float: left; }\n  .col-md-12 {\n    width: 100%; }\n  .col-md-11 {\n    width: 91.66666667%; }\n  .col-md-10 {\n    width: 83.33333333%; }\n  .col-md-9 {\n    width: 75%; }\n  .col-md-8 {\n    width: 66.66666667%; }\n  .col-md-7 {\n    width: 58.33333333%; }\n  .col-md-6 {\n    width: 50%; }\n  .col-md-5 {\n    width: 41.66666667%; }\n  .col-md-4 {\n    width: 33.33333333%; }\n  .col-md-3 {\n    width: 25%; }\n  .col-md-2 {\n    width: 16.66666667%; }\n  .col-md-1 {\n    width: 8.33333333%; }\n  .col-md-pull-12 {\n    right: 100%; }\n  .col-md-pull-11 {\n    right: 91.66666667%; }\n  .col-md-pull-10 {\n    right: 83.33333333%; }\n  .col-md-pull-9 {\n    right: 75%; }\n  .col-md-pull-8 {\n    right: 66.66666667%; }\n  .col-md-pull-7 {\n    right: 58.33333333%; }\n  .col-md-pull-6 {\n    right: 50%; }\n  .col-md-pull-5 {\n    right: 41.66666667%; }\n  .col-md-pull-4 {\n    right: 33.33333333%; }\n  .col-md-pull-3 {\n    right: 25%; }\n  .col-md-pull-2 {\n    right: 16.66666667%; }\n  .col-md-pull-1 {\n    right: 8.33333333%; }\n  .col-md-pull-0 {\n    right: auto; }\n  .col-md-push-12 {\n    left: 100%; }\n  .col-md-push-11 {\n    left: 91.66666667%; }\n  .col-md-push-10 {\n    left: 83.33333333%; }\n  .col-md-push-9 {\n    left: 75%; }\n  .col-md-push-8 {\n    left: 66.66666667%; }\n  .col-md-push-7 {\n    left: 58.33333333%; }\n  .col-md-push-6 {\n    left: 50%; }\n  .col-md-push-5 {\n    left: 41.66666667%; }\n  .col-md-push-4 {\n    left: 33.33333333%; }\n  .col-md-push-3 {\n    left: 25%; }\n  .col-md-push-2 {\n    left: 16.66666667%; }\n  .col-md-push-1 {\n    left: 8.33333333%; }\n  .col-md-push-0 {\n    left: auto; }\n  .col-md-offset-12 {\n    margin-left: 100%; }\n  .col-md-offset-11 {\n    margin-left: 91.66666667%; }\n  .col-md-offset-10 {\n    margin-left: 83.33333333%; }\n  .col-md-offset-9 {\n    margin-left: 75%; }\n  .col-md-offset-8 {\n    margin-left: 66.66666667%; }\n  .col-md-offset-7 {\n    margin-left: 58.33333333%; }\n  .col-md-offset-6 {\n    margin-left: 50%; }\n  .col-md-offset-5 {\n    margin-left: 41.66666667%; }\n  .col-md-offset-4 {\n    margin-left: 33.33333333%; }\n  .col-md-offset-3 {\n    margin-left: 25%; }\n  .col-md-offset-2 {\n    margin-left: 16.66666667%; }\n  .col-md-offset-1 {\n    margin-left: 8.33333333%; }\n  .col-md-offset-0 {\n    margin-left: 0; } }\n\n@media (min-width: 1200px) {\n  .col-lg-1, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-10, .col-lg-11, .col-lg-12 {\n    float: left; }\n  .col-lg-12 {\n    width: 100%; }\n  .col-lg-11 {\n    width: 91.66666667%; }\n  .col-lg-10 {\n    width: 83.33333333%; }\n  .col-lg-9 {\n    width: 75%; }\n  .col-lg-8 {\n    width: 66.66666667%; }\n  .col-lg-7 {\n    width: 58.33333333%; }\n  .col-lg-6 {\n    width: 50%; }\n  .col-lg-5 {\n    width: 41.66666667%; }\n  .col-lg-4 {\n    width: 33.33333333%; }\n  .col-lg-3 {\n    width: 25%; }\n  .col-lg-2 {\n    width: 16.66666667%; }\n  .col-lg-1 {\n    width: 8.33333333%; }\n  .col-lg-pull-12 {\n    right: 100%; }\n  .col-lg-pull-11 {\n    right: 91.66666667%; }\n  .col-lg-pull-10 {\n    right: 83.33333333%; }\n  .col-lg-pull-9 {\n    right: 75%; }\n  .col-lg-pull-8 {\n    right: 66.66666667%; }\n  .col-lg-pull-7 {\n    right: 58.33333333%; }\n  .col-lg-pull-6 {\n    right: 50%; }\n  .col-lg-pull-5 {\n    right: 41.66666667%; }\n  .col-lg-pull-4 {\n    right: 33.33333333%; }\n  .col-lg-pull-3 {\n    right: 25%; }\n  .col-lg-pull-2 {\n    right: 16.66666667%; }\n  .col-lg-pull-1 {\n    right: 8.33333333%; }\n  .col-lg-pull-0 {\n    right: auto; }\n  .col-lg-push-12 {\n    left: 100%; }\n  .col-lg-push-11 {\n    left: 91.66666667%; }\n  .col-lg-push-10 {\n    left: 83.33333333%; }\n  .col-lg-push-9 {\n    left: 75%; }\n  .col-lg-push-8 {\n    left: 66.66666667%; }\n  .col-lg-push-7 {\n    left: 58.33333333%; }\n  .col-lg-push-6 {\n    left: 50%; }\n  .col-lg-push-5 {\n    left: 41.66666667%; }\n  .col-lg-push-4 {\n    left: 33.33333333%; }\n  .col-lg-push-3 {\n    left: 25%; }\n  .col-lg-push-2 {\n    left: 16.66666667%; }\n  .col-lg-push-1 {\n    left: 8.33333333%; }\n  .col-lg-push-0 {\n    left: auto; }\n  .col-lg-offset-12 {\n    margin-left: 100%; }\n  .col-lg-offset-11 {\n    margin-left: 91.66666667%; }\n  .col-lg-offset-10 {\n    margin-left: 83.33333333%; }\n  .col-lg-offset-9 {\n    margin-left: 75%; }\n  .col-lg-offset-8 {\n    margin-left: 66.66666667%; }\n  .col-lg-offset-7 {\n    margin-left: 58.33333333%; }\n  .col-lg-offset-6 {\n    margin-left: 50%; }\n  .col-lg-offset-5 {\n    margin-left: 41.66666667%; }\n  .col-lg-offset-4 {\n    margin-left: 33.33333333%; }\n  .col-lg-offset-3 {\n    margin-left: 25%; }\n  .col-lg-offset-2 {\n    margin-left: 16.66666667%; }\n  .col-lg-offset-1 {\n    margin-left: 8.33333333%; }\n  .col-lg-offset-0 {\n    margin-left: 0; } }\n\n.clearfix:before, .clearfix:after, .container:before, .container:after, .container-fluid:before, .container-fluid:after, .row:before, .row:after {\n  content: \" \";\n  display: table; }\n\n.clearfix:after, .container:after, .container-fluid:after, .row:after {\n  clear: both; }\n\n.center-block {\n  display: block;\n  margin-left: auto;\n  margin-right: auto; }\n\n.pull-right {\n  float: right !important; }\n\n.pull-left {\n  float: left !important; }\n\n.hide {\n  display: none !important; }\n\n.show {\n  display: block !important; }\n\n.invisible {\n  visibility: hidden; }\n\n.text-hide {\n  font: 0/0 a;\n  color: transparent;\n  text-shadow: none;\n  background-color: transparent;\n  border: 0; }\n\n.hidden {\n  display: none !important; }\n\n.affix {\n  position: fixed; }\n\n@-ms-viewport {\n  width: device-width; }\n\n.visible-xs, .visible-sm, .visible-md, .visible-lg {\n  display: none !important; }\n\n.visible-xs-block, .visible-xs-inline, .visible-xs-inline-block, .visible-sm-block, .visible-sm-inline, .visible-sm-inline-block, .visible-md-block, .visible-md-inline, .visible-md-inline-block, .visible-lg-block, .visible-lg-inline, .visible-lg-inline-block {\n  display: none !important; }\n\n@media (max-width: 767px) {\n  .visible-xs {\n    display: block !important; }\n  table.visible-xs {\n    display: table !important; }\n  tr.visible-xs {\n    display: table-row !important; }\n  th.visible-xs, td.visible-xs {\n    display: table-cell !important; } }\n\n@media (max-width: 767px) {\n  .visible-xs-block {\n    display: block !important; } }\n\n@media (max-width: 767px) {\n  .visible-xs-inline {\n    display: inline !important; } }\n\n@media (max-width: 767px) {\n  .visible-xs-inline-block {\n    display: inline-block !important; } }\n\n@media (min-width: 768px) and (max-width: 991px) {\n  .visible-sm {\n    display: block !important; }\n  table.visible-sm {\n    display: table !important; }\n  tr.visible-sm {\n    display: table-row !important; }\n  th.visible-sm, td.visible-sm {\n    display: table-cell !important; } }\n\n@media (min-width: 768px) and (max-width: 991px) {\n  .visible-sm-block {\n    display: block !important; } }\n\n@media (min-width: 768px) and (max-width: 991px) {\n  .visible-sm-inline {\n    display: inline !important; } }\n\n@media (min-width: 768px) and (max-width: 991px) {\n  .visible-sm-inline-block {\n    display: inline-block !important; } }\n\n@media (min-width: 992px) and (max-width: 1199px) {\n  .visible-md {\n    display: block !important; }\n  table.visible-md {\n    display: table !important; }\n  tr.visible-md {\n    display: table-row !important; }\n  th.visible-md, td.visible-md {\n    display: table-cell !important; } }\n\n@media (min-width: 992px) and (max-width: 1199px) {\n  .visible-md-block {\n    display: block !important; } }\n\n@media (min-width: 992px) and (max-width: 1199px) {\n  .visible-md-inline {\n    display: inline !important; } }\n\n@media (min-width: 992px) and (max-width: 1199px) {\n  .visible-md-inline-block {\n    display: inline-block !important; } }\n\n@media (min-width: 1200px) {\n  .visible-lg {\n    display: block !important; }\n  table.visible-lg {\n    display: table !important; }\n  tr.visible-lg {\n    display: table-row !important; }\n  th.visible-lg, td.visible-lg {\n    display: table-cell !important; } }\n\n@media (min-width: 1200px) {\n  .visible-lg-block {\n    display: block !important; } }\n\n@media (min-width: 1200px) {\n  .visible-lg-inline {\n    display: inline !important; } }\n\n@media (min-width: 1200px) {\n  .visible-lg-inline-block {\n    display: inline-block !important; } }\n\n@media (max-width: 767px) {\n  .hidden-xs {\n    display: none !important; } }\n\n@media (min-width: 768px) and (max-width: 991px) {\n  .hidden-sm {\n    display: none !important; } }\n\n@media (min-width: 992px) and (max-width: 1199px) {\n  .hidden-md {\n    display: none !important; } }\n\n@media (min-width: 1200px) {\n  .hidden-lg {\n    display: none !important; } }\n\n.visible-print {\n  display: none !important; }\n\n@media print {\n  .visible-print {\n    display: block !important; }\n  table.visible-print {\n    display: table !important; }\n  tr.visible-print {\n    display: table-row !important; }\n  th.visible-print, td.visible-print {\n    display: table-cell !important; } }\n\n.visible-print-block {\n  display: none !important; }\n\n@media print {\n  .visible-print-block {\n    display: block !important; } }\n\n.visible-print-inline {\n  display: none !important; }\n\n@media print {\n  .visible-print-inline {\n    display: inline !important; } }\n\n.visible-print-inline-block {\n  display: none !important; }\n\n@media print {\n  .visible-print-inline-block {\n    display: inline-block !important; } }\n\n@media print {\n  .hidden-print {\n    display: none !important; } }\n\n/*!\n *  Font Awesome 4.7.0 by @davegandy - http://fontawesome.io - @fontawesome\n *  License - http://fontawesome.io/license (Font: SIL OFL 1.1, CSS: MIT License)\n */\n/* FONT PATH\n * -------------------------- */\n@font-face {\n  font-family: 'FontAwesome';\n  src: url(" + __webpack_require__(15) + ");\n  src: url(" + __webpack_require__(16) + "?#iefix&v=4.7.0) format(\"embedded-opentype\"), url(" + __webpack_require__(17) + ") format(\"woff2\"), url(" + __webpack_require__(18) + ") format(\"woff\"), url(" + __webpack_require__(19) + ") format(\"truetype\"), url(" + __webpack_require__(20) + "#fontawesomeregular) format(\"svg\");\n  font-weight: normal;\n  font-style: normal; }\n\n.fa {\n  display: inline-block;\n  font: normal normal normal 14px/1 FontAwesome;\n  font-size: inherit;\n  text-rendering: auto;\n  -webkit-font-smoothing: antialiased;\n  -moz-osx-font-smoothing: grayscale; }\n\n/* makes the font 33% larger relative to the icon container */\n.fa-lg {\n  font-size: 1.33333em;\n  line-height: 0.75em;\n  vertical-align: -15%; }\n\n.fa-2x {\n  font-size: 2em; }\n\n.fa-3x {\n  font-size: 3em; }\n\n.fa-4x {\n  font-size: 4em; }\n\n.fa-5x {\n  font-size: 5em; }\n\n.fa-fw {\n  width: 1.28571em;\n  text-align: center; }\n\n.fa-ul {\n  padding-left: 0;\n  margin-left: 2.14286em;\n  list-style-type: none; }\n  .fa-ul > li {\n    position: relative; }\n\n.fa-li {\n  position: absolute;\n  left: -2.14286em;\n  width: 2.14286em;\n  top: 0.14286em;\n  text-align: center; }\n  .fa-li.fa-lg {\n    left: -1.85714em; }\n\n.fa-border {\n  padding: .2em .25em .15em;\n  border: solid 0.08em #eee;\n  border-radius: .1em; }\n\n.fa-pull-left {\n  float: left; }\n\n.fa-pull-right {\n  float: right; }\n\n.fa.fa-pull-left {\n  margin-right: .3em; }\n\n.fa.fa-pull-right {\n  margin-left: .3em; }\n\n/* Deprecated as of 4.4.0 */\n.pull-right {\n  float: right; }\n\n.pull-left {\n  float: left; }\n\n.fa.pull-left {\n  margin-right: .3em; }\n\n.fa.pull-right {\n  margin-left: .3em; }\n\n.fa-spin {\n  -webkit-animation: fa-spin 2s infinite linear;\n  animation: fa-spin 2s infinite linear; }\n\n.fa-pulse {\n  -webkit-animation: fa-spin 1s infinite steps(8);\n  animation: fa-spin 1s infinite steps(8); }\n\n@-webkit-keyframes fa-spin {\n  0% {\n    -webkit-transform: rotate(0deg);\n    transform: rotate(0deg); }\n  100% {\n    -webkit-transform: rotate(359deg);\n    transform: rotate(359deg); } }\n\n@keyframes fa-spin {\n  0% {\n    -webkit-transform: rotate(0deg);\n    transform: rotate(0deg); }\n  100% {\n    -webkit-transform: rotate(359deg);\n    transform: rotate(359deg); } }\n\n.fa-rotate-90 {\n  -ms-filter: \"progid:DXImageTransform.Microsoft.BasicImage(rotation=1)\";\n  -webkit-transform: rotate(90deg);\n  -ms-transform: rotate(90deg);\n  transform: rotate(90deg); }\n\n.fa-rotate-180 {\n  -ms-filter: \"progid:DXImageTransform.Microsoft.BasicImage(rotation=2)\";\n  -webkit-transform: rotate(180deg);\n  -ms-transform: rotate(180deg);\n  transform: rotate(180deg); }\n\n.fa-rotate-270 {\n  -ms-filter: \"progid:DXImageTransform.Microsoft.BasicImage(rotation=3)\";\n  -webkit-transform: rotate(270deg);\n  -ms-transform: rotate(270deg);\n  transform: rotate(270deg); }\n\n.fa-flip-horizontal {\n  -ms-filter: \"progid:DXImageTransform.Microsoft.BasicImage(rotation=0, mirror=1)\";\n  -webkit-transform: scale(-1, 1);\n  -ms-transform: scale(-1, 1);\n  transform: scale(-1, 1); }\n\n.fa-flip-vertical {\n  -ms-filter: \"progid:DXImageTransform.Microsoft.BasicImage(rotation=2, mirror=1)\";\n  -webkit-transform: scale(1, -1);\n  -ms-transform: scale(1, -1);\n  transform: scale(1, -1); }\n\n:root .fa-rotate-90,\n:root .fa-rotate-180,\n:root .fa-rotate-270,\n:root .fa-flip-horizontal,\n:root .fa-flip-vertical {\n  filter: none; }\n\n.fa-stack {\n  position: relative;\n  display: inline-block;\n  width: 2em;\n  height: 2em;\n  line-height: 2em;\n  vertical-align: middle; }\n\n.fa-stack-1x, .fa-stack-2x {\n  position: absolute;\n  left: 0;\n  width: 100%;\n  text-align: center; }\n\n.fa-stack-1x {\n  line-height: inherit; }\n\n.fa-stack-2x {\n  font-size: 2em; }\n\n.fa-inverse {\n  color: #fff; }\n\n/* Font Awesome uses the Unicode Private Use Area (PUA) to ensure screen\n   readers do not read off random characters that represent icons */\n.fa-glass:before {\n  content: \"\\F000\"; }\n\n.fa-music:before {\n  content: \"\\F001\"; }\n\n.fa-search:before {\n  content: \"\\F002\"; }\n\n.fa-envelope-o:before {\n  content: \"\\F003\"; }\n\n.fa-heart:before {\n  content: \"\\F004\"; }\n\n.fa-star:before {\n  content: \"\\F005\"; }\n\n.fa-star-o:before {\n  content: \"\\F006\"; }\n\n.fa-user:before {\n  content: \"\\F007\"; }\n\n.fa-film:before {\n  content: \"\\F008\"; }\n\n.fa-th-large:before {\n  content: \"\\F009\"; }\n\n.fa-th:before {\n  content: \"\\F00A\"; }\n\n.fa-th-list:before {\n  content: \"\\F00B\"; }\n\n.fa-check:before {\n  content: \"\\F00C\"; }\n\n.fa-remove:before,\n.fa-close:before,\n.fa-times:before {\n  content: \"\\F00D\"; }\n\n.fa-search-plus:before {\n  content: \"\\F00E\"; }\n\n.fa-search-minus:before {\n  content: \"\\F010\"; }\n\n.fa-power-off:before {\n  content: \"\\F011\"; }\n\n.fa-signal:before {\n  content: \"\\F012\"; }\n\n.fa-gear:before,\n.fa-cog:before {\n  content: \"\\F013\"; }\n\n.fa-trash-o:before {\n  content: \"\\F014\"; }\n\n.fa-home:before {\n  content: \"\\F015\"; }\n\n.fa-file-o:before {\n  content: \"\\F016\"; }\n\n.fa-clock-o:before {\n  content: \"\\F017\"; }\n\n.fa-road:before {\n  content: \"\\F018\"; }\n\n.fa-download:before {\n  content: \"\\F019\"; }\n\n.fa-arrow-circle-o-down:before {\n  content: \"\\F01A\"; }\n\n.fa-arrow-circle-o-up:before {\n  content: \"\\F01B\"; }\n\n.fa-inbox:before {\n  content: \"\\F01C\"; }\n\n.fa-play-circle-o:before {\n  content: \"\\F01D\"; }\n\n.fa-rotate-right:before,\n.fa-repeat:before {\n  content: \"\\F01E\"; }\n\n.fa-refresh:before {\n  content: \"\\F021\"; }\n\n.fa-list-alt:before {\n  content: \"\\F022\"; }\n\n.fa-lock:before {\n  content: \"\\F023\"; }\n\n.fa-flag:before {\n  content: \"\\F024\"; }\n\n.fa-headphones:before {\n  content: \"\\F025\"; }\n\n.fa-volume-off:before {\n  content: \"\\F026\"; }\n\n.fa-volume-down:before {\n  content: \"\\F027\"; }\n\n.fa-volume-up:before {\n  content: \"\\F028\"; }\n\n.fa-qrcode:before {\n  content: \"\\F029\"; }\n\n.fa-barcode:before {\n  content: \"\\F02A\"; }\n\n.fa-tag:before {\n  content: \"\\F02B\"; }\n\n.fa-tags:before {\n  content: \"\\F02C\"; }\n\n.fa-book:before {\n  content: \"\\F02D\"; }\n\n.fa-bookmark:before {\n  content: \"\\F02E\"; }\n\n.fa-print:before {\n  content: \"\\F02F\"; }\n\n.fa-camera:before {\n  content: \"\\F030\"; }\n\n.fa-font:before {\n  content: \"\\F031\"; }\n\n.fa-bold:before {\n  content: \"\\F032\"; }\n\n.fa-italic:before {\n  content: \"\\F033\"; }\n\n.fa-text-height:before {\n  content: \"\\F034\"; }\n\n.fa-text-width:before {\n  content: \"\\F035\"; }\n\n.fa-align-left:before {\n  content: \"\\F036\"; }\n\n.fa-align-center:before {\n  content: \"\\F037\"; }\n\n.fa-align-right:before {\n  content: \"\\F038\"; }\n\n.fa-align-justify:before {\n  content: \"\\F039\"; }\n\n.fa-list:before {\n  content: \"\\F03A\"; }\n\n.fa-dedent:before,\n.fa-outdent:before {\n  content: \"\\F03B\"; }\n\n.fa-indent:before {\n  content: \"\\F03C\"; }\n\n.fa-video-camera:before {\n  content: \"\\F03D\"; }\n\n.fa-photo:before,\n.fa-image:before,\n.fa-picture-o:before {\n  content: \"\\F03E\"; }\n\n.fa-pencil:before {\n  content: \"\\F040\"; }\n\n.fa-map-marker:before {\n  content: \"\\F041\"; }\n\n.fa-adjust:before {\n  content: \"\\F042\"; }\n\n.fa-tint:before {\n  content: \"\\F043\"; }\n\n.fa-edit:before,\n.fa-pencil-square-o:before {\n  content: \"\\F044\"; }\n\n.fa-share-square-o:before {\n  content: \"\\F045\"; }\n\n.fa-check-square-o:before {\n  content: \"\\F046\"; }\n\n.fa-arrows:before {\n  content: \"\\F047\"; }\n\n.fa-step-backward:before {\n  content: \"\\F048\"; }\n\n.fa-fast-backward:before {\n  content: \"\\F049\"; }\n\n.fa-backward:before {\n  content: \"\\F04A\"; }\n\n.fa-play:before {\n  content: \"\\F04B\"; }\n\n.fa-pause:before {\n  content: \"\\F04C\"; }\n\n.fa-stop:before {\n  content: \"\\F04D\"; }\n\n.fa-forward:before {\n  content: \"\\F04E\"; }\n\n.fa-fast-forward:before {\n  content: \"\\F050\"; }\n\n.fa-step-forward:before {\n  content: \"\\F051\"; }\n\n.fa-eject:before {\n  content: \"\\F052\"; }\n\n.fa-chevron-left:before {\n  content: \"\\F053\"; }\n\n.fa-chevron-right:before {\n  content: \"\\F054\"; }\n\n.fa-plus-circle:before {\n  content: \"\\F055\"; }\n\n.fa-minus-circle:before {\n  content: \"\\F056\"; }\n\n.fa-times-circle:before {\n  content: \"\\F057\"; }\n\n.fa-check-circle:before {\n  content: \"\\F058\"; }\n\n.fa-question-circle:before {\n  content: \"\\F059\"; }\n\n.fa-info-circle:before {\n  content: \"\\F05A\"; }\n\n.fa-crosshairs:before {\n  content: \"\\F05B\"; }\n\n.fa-times-circle-o:before {\n  content: \"\\F05C\"; }\n\n.fa-check-circle-o:before {\n  content: \"\\F05D\"; }\n\n.fa-ban:before {\n  content: \"\\F05E\"; }\n\n.fa-arrow-left:before {\n  content: \"\\F060\"; }\n\n.fa-arrow-right:before {\n  content: \"\\F061\"; }\n\n.fa-arrow-up:before {\n  content: \"\\F062\"; }\n\n.fa-arrow-down:before {\n  content: \"\\F063\"; }\n\n.fa-mail-forward:before,\n.fa-share:before {\n  content: \"\\F064\"; }\n\n.fa-expand:before {\n  content: \"\\F065\"; }\n\n.fa-compress:before {\n  content: \"\\F066\"; }\n\n.fa-plus:before {\n  content: \"\\F067\"; }\n\n.fa-minus:before {\n  content: \"\\F068\"; }\n\n.fa-asterisk:before {\n  content: \"\\F069\"; }\n\n.fa-exclamation-circle:before {\n  content: \"\\F06A\"; }\n\n.fa-gift:before {\n  content: \"\\F06B\"; }\n\n.fa-leaf:before {\n  content: \"\\F06C\"; }\n\n.fa-fire:before {\n  content: \"\\F06D\"; }\n\n.fa-eye:before {\n  content: \"\\F06E\"; }\n\n.fa-eye-slash:before {\n  content: \"\\F070\"; }\n\n.fa-warning:before,\n.fa-exclamation-triangle:before {\n  content: \"\\F071\"; }\n\n.fa-plane:before {\n  content: \"\\F072\"; }\n\n.fa-calendar:before {\n  content: \"\\F073\"; }\n\n.fa-random:before {\n  content: \"\\F074\"; }\n\n.fa-comment:before {\n  content: \"\\F075\"; }\n\n.fa-magnet:before {\n  content: \"\\F076\"; }\n\n.fa-chevron-up:before {\n  content: \"\\F077\"; }\n\n.fa-chevron-down:before {\n  content: \"\\F078\"; }\n\n.fa-retweet:before {\n  content: \"\\F079\"; }\n\n.fa-shopping-cart:before {\n  content: \"\\F07A\"; }\n\n.fa-folder:before {\n  content: \"\\F07B\"; }\n\n.fa-folder-open:before {\n  content: \"\\F07C\"; }\n\n.fa-arrows-v:before {\n  content: \"\\F07D\"; }\n\n.fa-arrows-h:before {\n  content: \"\\F07E\"; }\n\n.fa-bar-chart-o:before,\n.fa-bar-chart:before {\n  content: \"\\F080\"; }\n\n.fa-twitter-square:before {\n  content: \"\\F081\"; }\n\n.fa-facebook-square:before {\n  content: \"\\F082\"; }\n\n.fa-camera-retro:before {\n  content: \"\\F083\"; }\n\n.fa-key:before {\n  content: \"\\F084\"; }\n\n.fa-gears:before,\n.fa-cogs:before {\n  content: \"\\F085\"; }\n\n.fa-comments:before {\n  content: \"\\F086\"; }\n\n.fa-thumbs-o-up:before {\n  content: \"\\F087\"; }\n\n.fa-thumbs-o-down:before {\n  content: \"\\F088\"; }\n\n.fa-star-half:before {\n  content: \"\\F089\"; }\n\n.fa-heart-o:before {\n  content: \"\\F08A\"; }\n\n.fa-sign-out:before {\n  content: \"\\F08B\"; }\n\n.fa-linkedin-square:before {\n  content: \"\\F08C\"; }\n\n.fa-thumb-tack:before {\n  content: \"\\F08D\"; }\n\n.fa-external-link:before {\n  content: \"\\F08E\"; }\n\n.fa-sign-in:before {\n  content: \"\\F090\"; }\n\n.fa-trophy:before {\n  content: \"\\F091\"; }\n\n.fa-github-square:before {\n  content: \"\\F092\"; }\n\n.fa-upload:before {\n  content: \"\\F093\"; }\n\n.fa-lemon-o:before {\n  content: \"\\F094\"; }\n\n.fa-phone:before {\n  content: \"\\F095\"; }\n\n.fa-square-o:before {\n  content: \"\\F096\"; }\n\n.fa-bookmark-o:before {\n  content: \"\\F097\"; }\n\n.fa-phone-square:before {\n  content: \"\\F098\"; }\n\n.fa-twitter:before {\n  content: \"\\F099\"; }\n\n.fa-facebook-f:before,\n.fa-facebook:before {\n  content: \"\\F09A\"; }\n\n.fa-github:before {\n  content: \"\\F09B\"; }\n\n.fa-unlock:before {\n  content: \"\\F09C\"; }\n\n.fa-credit-card:before {\n  content: \"\\F09D\"; }\n\n.fa-feed:before,\n.fa-rss:before {\n  content: \"\\F09E\"; }\n\n.fa-hdd-o:before {\n  content: \"\\F0A0\"; }\n\n.fa-bullhorn:before {\n  content: \"\\F0A1\"; }\n\n.fa-bell:before {\n  content: \"\\F0F3\"; }\n\n.fa-certificate:before {\n  content: \"\\F0A3\"; }\n\n.fa-hand-o-right:before {\n  content: \"\\F0A4\"; }\n\n.fa-hand-o-left:before {\n  content: \"\\F0A5\"; }\n\n.fa-hand-o-up:before {\n  content: \"\\F0A6\"; }\n\n.fa-hand-o-down:before {\n  content: \"\\F0A7\"; }\n\n.fa-arrow-circle-left:before {\n  content: \"\\F0A8\"; }\n\n.fa-arrow-circle-right:before {\n  content: \"\\F0A9\"; }\n\n.fa-arrow-circle-up:before {\n  content: \"\\F0AA\"; }\n\n.fa-arrow-circle-down:before {\n  content: \"\\F0AB\"; }\n\n.fa-globe:before {\n  content: \"\\F0AC\"; }\n\n.fa-wrench:before {\n  content: \"\\F0AD\"; }\n\n.fa-tasks:before {\n  content: \"\\F0AE\"; }\n\n.fa-filter:before {\n  content: \"\\F0B0\"; }\n\n.fa-briefcase:before {\n  content: \"\\F0B1\"; }\n\n.fa-arrows-alt:before {\n  content: \"\\F0B2\"; }\n\n.fa-group:before,\n.fa-users:before {\n  content: \"\\F0C0\"; }\n\n.fa-chain:before,\n.fa-link:before {\n  content: \"\\F0C1\"; }\n\n.fa-cloud:before {\n  content: \"\\F0C2\"; }\n\n.fa-flask:before {\n  content: \"\\F0C3\"; }\n\n.fa-cut:before,\n.fa-scissors:before {\n  content: \"\\F0C4\"; }\n\n.fa-copy:before,\n.fa-files-o:before {\n  content: \"\\F0C5\"; }\n\n.fa-paperclip:before {\n  content: \"\\F0C6\"; }\n\n.fa-save:before,\n.fa-floppy-o:before {\n  content: \"\\F0C7\"; }\n\n.fa-square:before {\n  content: \"\\F0C8\"; }\n\n.fa-navicon:before,\n.fa-reorder:before,\n.fa-bars:before {\n  content: \"\\F0C9\"; }\n\n.fa-list-ul:before {\n  content: \"\\F0CA\"; }\n\n.fa-list-ol:before {\n  content: \"\\F0CB\"; }\n\n.fa-strikethrough:before {\n  content: \"\\F0CC\"; }\n\n.fa-underline:before {\n  content: \"\\F0CD\"; }\n\n.fa-table:before {\n  content: \"\\F0CE\"; }\n\n.fa-magic:before {\n  content: \"\\F0D0\"; }\n\n.fa-truck:before {\n  content: \"\\F0D1\"; }\n\n.fa-pinterest:before {\n  content: \"\\F0D2\"; }\n\n.fa-pinterest-square:before {\n  content: \"\\F0D3\"; }\n\n.fa-google-plus-square:before {\n  content: \"\\F0D4\"; }\n\n.fa-google-plus:before {\n  content: \"\\F0D5\"; }\n\n.fa-money:before {\n  content: \"\\F0D6\"; }\n\n.fa-caret-down:before {\n  content: \"\\F0D7\"; }\n\n.fa-caret-up:before {\n  content: \"\\F0D8\"; }\n\n.fa-caret-left:before {\n  content: \"\\F0D9\"; }\n\n.fa-caret-right:before {\n  content: \"\\F0DA\"; }\n\n.fa-columns:before {\n  content: \"\\F0DB\"; }\n\n.fa-unsorted:before,\n.fa-sort:before {\n  content: \"\\F0DC\"; }\n\n.fa-sort-down:before,\n.fa-sort-desc:before {\n  content: \"\\F0DD\"; }\n\n.fa-sort-up:before,\n.fa-sort-asc:before {\n  content: \"\\F0DE\"; }\n\n.fa-envelope:before {\n  content: \"\\F0E0\"; }\n\n.fa-linkedin:before {\n  content: \"\\F0E1\"; }\n\n.fa-rotate-left:before,\n.fa-undo:before {\n  content: \"\\F0E2\"; }\n\n.fa-legal:before,\n.fa-gavel:before {\n  content: \"\\F0E3\"; }\n\n.fa-dashboard:before,\n.fa-tachometer:before {\n  content: \"\\F0E4\"; }\n\n.fa-comment-o:before {\n  content: \"\\F0E5\"; }\n\n.fa-comments-o:before {\n  content: \"\\F0E6\"; }\n\n.fa-flash:before,\n.fa-bolt:before {\n  content: \"\\F0E7\"; }\n\n.fa-sitemap:before {\n  content: \"\\F0E8\"; }\n\n.fa-umbrella:before {\n  content: \"\\F0E9\"; }\n\n.fa-paste:before,\n.fa-clipboard:before {\n  content: \"\\F0EA\"; }\n\n.fa-lightbulb-o:before {\n  content: \"\\F0EB\"; }\n\n.fa-exchange:before {\n  content: \"\\F0EC\"; }\n\n.fa-cloud-download:before {\n  content: \"\\F0ED\"; }\n\n.fa-cloud-upload:before {\n  content: \"\\F0EE\"; }\n\n.fa-user-md:before {\n  content: \"\\F0F0\"; }\n\n.fa-stethoscope:before {\n  content: \"\\F0F1\"; }\n\n.fa-suitcase:before {\n  content: \"\\F0F2\"; }\n\n.fa-bell-o:before {\n  content: \"\\F0A2\"; }\n\n.fa-coffee:before {\n  content: \"\\F0F4\"; }\n\n.fa-cutlery:before {\n  content: \"\\F0F5\"; }\n\n.fa-file-text-o:before {\n  content: \"\\F0F6\"; }\n\n.fa-building-o:before {\n  content: \"\\F0F7\"; }\n\n.fa-hospital-o:before {\n  content: \"\\F0F8\"; }\n\n.fa-ambulance:before {\n  content: \"\\F0F9\"; }\n\n.fa-medkit:before {\n  content: \"\\F0FA\"; }\n\n.fa-fighter-jet:before {\n  content: \"\\F0FB\"; }\n\n.fa-beer:before {\n  content: \"\\F0FC\"; }\n\n.fa-h-square:before {\n  content: \"\\F0FD\"; }\n\n.fa-plus-square:before {\n  content: \"\\F0FE\"; }\n\n.fa-angle-double-left:before {\n  content: \"\\F100\"; }\n\n.fa-angle-double-right:before {\n  content: \"\\F101\"; }\n\n.fa-angle-double-up:before {\n  content: \"\\F102\"; }\n\n.fa-angle-double-down:before {\n  content: \"\\F103\"; }\n\n.fa-angle-left:before {\n  content: \"\\F104\"; }\n\n.fa-angle-right:before {\n  content: \"\\F105\"; }\n\n.fa-angle-up:before {\n  content: \"\\F106\"; }\n\n.fa-angle-down:before {\n  content: \"\\F107\"; }\n\n.fa-desktop:before {\n  content: \"\\F108\"; }\n\n.fa-laptop:before {\n  content: \"\\F109\"; }\n\n.fa-tablet:before {\n  content: \"\\F10A\"; }\n\n.fa-mobile-phone:before,\n.fa-mobile:before {\n  content: \"\\F10B\"; }\n\n.fa-circle-o:before {\n  content: \"\\F10C\"; }\n\n.fa-quote-left:before {\n  content: \"\\F10D\"; }\n\n.fa-quote-right:before {\n  content: \"\\F10E\"; }\n\n.fa-spinner:before {\n  content: \"\\F110\"; }\n\n.fa-circle:before {\n  content: \"\\F111\"; }\n\n.fa-mail-reply:before,\n.fa-reply:before {\n  content: \"\\F112\"; }\n\n.fa-github-alt:before {\n  content: \"\\F113\"; }\n\n.fa-folder-o:before {\n  content: \"\\F114\"; }\n\n.fa-folder-open-o:before {\n  content: \"\\F115\"; }\n\n.fa-smile-o:before {\n  content: \"\\F118\"; }\n\n.fa-frown-o:before {\n  content: \"\\F119\"; }\n\n.fa-meh-o:before {\n  content: \"\\F11A\"; }\n\n.fa-gamepad:before {\n  content: \"\\F11B\"; }\n\n.fa-keyboard-o:before {\n  content: \"\\F11C\"; }\n\n.fa-flag-o:before {\n  content: \"\\F11D\"; }\n\n.fa-flag-checkered:before {\n  content: \"\\F11E\"; }\n\n.fa-terminal:before {\n  content: \"\\F120\"; }\n\n.fa-code:before {\n  content: \"\\F121\"; }\n\n.fa-mail-reply-all:before,\n.fa-reply-all:before {\n  content: \"\\F122\"; }\n\n.fa-star-half-empty:before,\n.fa-star-half-full:before,\n.fa-star-half-o:before {\n  content: \"\\F123\"; }\n\n.fa-location-arrow:before {\n  content: \"\\F124\"; }\n\n.fa-crop:before {\n  content: \"\\F125\"; }\n\n.fa-code-fork:before {\n  content: \"\\F126\"; }\n\n.fa-unlink:before,\n.fa-chain-broken:before {\n  content: \"\\F127\"; }\n\n.fa-question:before {\n  content: \"\\F128\"; }\n\n.fa-info:before {\n  content: \"\\F129\"; }\n\n.fa-exclamation:before {\n  content: \"\\F12A\"; }\n\n.fa-superscript:before {\n  content: \"\\F12B\"; }\n\n.fa-subscript:before {\n  content: \"\\F12C\"; }\n\n.fa-eraser:before {\n  content: \"\\F12D\"; }\n\n.fa-puzzle-piece:before {\n  content: \"\\F12E\"; }\n\n.fa-microphone:before {\n  content: \"\\F130\"; }\n\n.fa-microphone-slash:before {\n  content: \"\\F131\"; }\n\n.fa-shield:before {\n  content: \"\\F132\"; }\n\n.fa-calendar-o:before {\n  content: \"\\F133\"; }\n\n.fa-fire-extinguisher:before {\n  content: \"\\F134\"; }\n\n.fa-rocket:before {\n  content: \"\\F135\"; }\n\n.fa-maxcdn:before {\n  content: \"\\F136\"; }\n\n.fa-chevron-circle-left:before {\n  content: \"\\F137\"; }\n\n.fa-chevron-circle-right:before {\n  content: \"\\F138\"; }\n\n.fa-chevron-circle-up:before {\n  content: \"\\F139\"; }\n\n.fa-chevron-circle-down:before {\n  content: \"\\F13A\"; }\n\n.fa-html5:before {\n  content: \"\\F13B\"; }\n\n.fa-css3:before {\n  content: \"\\F13C\"; }\n\n.fa-anchor:before {\n  content: \"\\F13D\"; }\n\n.fa-unlock-alt:before {\n  content: \"\\F13E\"; }\n\n.fa-bullseye:before {\n  content: \"\\F140\"; }\n\n.fa-ellipsis-h:before {\n  content: \"\\F141\"; }\n\n.fa-ellipsis-v:before {\n  content: \"\\F142\"; }\n\n.fa-rss-square:before {\n  content: \"\\F143\"; }\n\n.fa-play-circle:before {\n  content: \"\\F144\"; }\n\n.fa-ticket:before {\n  content: \"\\F145\"; }\n\n.fa-minus-square:before {\n  content: \"\\F146\"; }\n\n.fa-minus-square-o:before {\n  content: \"\\F147\"; }\n\n.fa-level-up:before {\n  content: \"\\F148\"; }\n\n.fa-level-down:before {\n  content: \"\\F149\"; }\n\n.fa-check-square:before {\n  content: \"\\F14A\"; }\n\n.fa-pencil-square:before {\n  content: \"\\F14B\"; }\n\n.fa-external-link-square:before {\n  content: \"\\F14C\"; }\n\n.fa-share-square:before {\n  content: \"\\F14D\"; }\n\n.fa-compass:before {\n  content: \"\\F14E\"; }\n\n.fa-toggle-down:before,\n.fa-caret-square-o-down:before {\n  content: \"\\F150\"; }\n\n.fa-toggle-up:before,\n.fa-caret-square-o-up:before {\n  content: \"\\F151\"; }\n\n.fa-toggle-right:before,\n.fa-caret-square-o-right:before {\n  content: \"\\F152\"; }\n\n.fa-euro:before,\n.fa-eur:before {\n  content: \"\\F153\"; }\n\n.fa-gbp:before {\n  content: \"\\F154\"; }\n\n.fa-dollar:before,\n.fa-usd:before {\n  content: \"\\F155\"; }\n\n.fa-rupee:before,\n.fa-inr:before {\n  content: \"\\F156\"; }\n\n.fa-cny:before,\n.fa-rmb:before,\n.fa-yen:before,\n.fa-jpy:before {\n  content: \"\\F157\"; }\n\n.fa-ruble:before,\n.fa-rouble:before,\n.fa-rub:before {\n  content: \"\\F158\"; }\n\n.fa-won:before,\n.fa-krw:before {\n  content: \"\\F159\"; }\n\n.fa-bitcoin:before,\n.fa-btc:before {\n  content: \"\\F15A\"; }\n\n.fa-file:before {\n  content: \"\\F15B\"; }\n\n.fa-file-text:before {\n  content: \"\\F15C\"; }\n\n.fa-sort-alpha-asc:before {\n  content: \"\\F15D\"; }\n\n.fa-sort-alpha-desc:before {\n  content: \"\\F15E\"; }\n\n.fa-sort-amount-asc:before {\n  content: \"\\F160\"; }\n\n.fa-sort-amount-desc:before {\n  content: \"\\F161\"; }\n\n.fa-sort-numeric-asc:before {\n  content: \"\\F162\"; }\n\n.fa-sort-numeric-desc:before {\n  content: \"\\F163\"; }\n\n.fa-thumbs-up:before {\n  content: \"\\F164\"; }\n\n.fa-thumbs-down:before {\n  content: \"\\F165\"; }\n\n.fa-youtube-square:before {\n  content: \"\\F166\"; }\n\n.fa-youtube:before {\n  content: \"\\F167\"; }\n\n.fa-xing:before {\n  content: \"\\F168\"; }\n\n.fa-xing-square:before {\n  content: \"\\F169\"; }\n\n.fa-youtube-play:before {\n  content: \"\\F16A\"; }\n\n.fa-dropbox:before {\n  content: \"\\F16B\"; }\n\n.fa-stack-overflow:before {\n  content: \"\\F16C\"; }\n\n.fa-instagram:before {\n  content: \"\\F16D\"; }\n\n.fa-flickr:before {\n  content: \"\\F16E\"; }\n\n.fa-adn:before {\n  content: \"\\F170\"; }\n\n.fa-bitbucket:before {\n  content: \"\\F171\"; }\n\n.fa-bitbucket-square:before {\n  content: \"\\F172\"; }\n\n.fa-tumblr:before {\n  content: \"\\F173\"; }\n\n.fa-tumblr-square:before {\n  content: \"\\F174\"; }\n\n.fa-long-arrow-down:before {\n  content: \"\\F175\"; }\n\n.fa-long-arrow-up:before {\n  content: \"\\F176\"; }\n\n.fa-long-arrow-left:before {\n  content: \"\\F177\"; }\n\n.fa-long-arrow-right:before {\n  content: \"\\F178\"; }\n\n.fa-apple:before {\n  content: \"\\F179\"; }\n\n.fa-windows:before {\n  content: \"\\F17A\"; }\n\n.fa-android:before {\n  content: \"\\F17B\"; }\n\n.fa-linux:before {\n  content: \"\\F17C\"; }\n\n.fa-dribbble:before {\n  content: \"\\F17D\"; }\n\n.fa-skype:before {\n  content: \"\\F17E\"; }\n\n.fa-foursquare:before {\n  content: \"\\F180\"; }\n\n.fa-trello:before {\n  content: \"\\F181\"; }\n\n.fa-female:before {\n  content: \"\\F182\"; }\n\n.fa-male:before {\n  content: \"\\F183\"; }\n\n.fa-gittip:before,\n.fa-gratipay:before {\n  content: \"\\F184\"; }\n\n.fa-sun-o:before {\n  content: \"\\F185\"; }\n\n.fa-moon-o:before {\n  content: \"\\F186\"; }\n\n.fa-archive:before {\n  content: \"\\F187\"; }\n\n.fa-bug:before {\n  content: \"\\F188\"; }\n\n.fa-vk:before {\n  content: \"\\F189\"; }\n\n.fa-weibo:before {\n  content: \"\\F18A\"; }\n\n.fa-renren:before {\n  content: \"\\F18B\"; }\n\n.fa-pagelines:before {\n  content: \"\\F18C\"; }\n\n.fa-stack-exchange:before {\n  content: \"\\F18D\"; }\n\n.fa-arrow-circle-o-right:before {\n  content: \"\\F18E\"; }\n\n.fa-arrow-circle-o-left:before {\n  content: \"\\F190\"; }\n\n.fa-toggle-left:before,\n.fa-caret-square-o-left:before {\n  content: \"\\F191\"; }\n\n.fa-dot-circle-o:before {\n  content: \"\\F192\"; }\n\n.fa-wheelchair:before {\n  content: \"\\F193\"; }\n\n.fa-vimeo-square:before {\n  content: \"\\F194\"; }\n\n.fa-turkish-lira:before,\n.fa-try:before {\n  content: \"\\F195\"; }\n\n.fa-plus-square-o:before {\n  content: \"\\F196\"; }\n\n.fa-space-shuttle:before {\n  content: \"\\F197\"; }\n\n.fa-slack:before {\n  content: \"\\F198\"; }\n\n.fa-envelope-square:before {\n  content: \"\\F199\"; }\n\n.fa-wordpress:before {\n  content: \"\\F19A\"; }\n\n.fa-openid:before {\n  content: \"\\F19B\"; }\n\n.fa-institution:before,\n.fa-bank:before,\n.fa-university:before {\n  content: \"\\F19C\"; }\n\n.fa-mortar-board:before,\n.fa-graduation-cap:before {\n  content: \"\\F19D\"; }\n\n.fa-yahoo:before {\n  content: \"\\F19E\"; }\n\n.fa-google:before {\n  content: \"\\F1A0\"; }\n\n.fa-reddit:before {\n  content: \"\\F1A1\"; }\n\n.fa-reddit-square:before {\n  content: \"\\F1A2\"; }\n\n.fa-stumbleupon-circle:before {\n  content: \"\\F1A3\"; }\n\n.fa-stumbleupon:before {\n  content: \"\\F1A4\"; }\n\n.fa-delicious:before {\n  content: \"\\F1A5\"; }\n\n.fa-digg:before {\n  content: \"\\F1A6\"; }\n\n.fa-pied-piper-pp:before {\n  content: \"\\F1A7\"; }\n\n.fa-pied-piper-alt:before {\n  content: \"\\F1A8\"; }\n\n.fa-drupal:before {\n  content: \"\\F1A9\"; }\n\n.fa-joomla:before {\n  content: \"\\F1AA\"; }\n\n.fa-language:before {\n  content: \"\\F1AB\"; }\n\n.fa-fax:before {\n  content: \"\\F1AC\"; }\n\n.fa-building:before {\n  content: \"\\F1AD\"; }\n\n.fa-child:before {\n  content: \"\\F1AE\"; }\n\n.fa-paw:before {\n  content: \"\\F1B0\"; }\n\n.fa-spoon:before {\n  content: \"\\F1B1\"; }\n\n.fa-cube:before {\n  content: \"\\F1B2\"; }\n\n.fa-cubes:before {\n  content: \"\\F1B3\"; }\n\n.fa-behance:before {\n  content: \"\\F1B4\"; }\n\n.fa-behance-square:before {\n  content: \"\\F1B5\"; }\n\n.fa-steam:before {\n  content: \"\\F1B6\"; }\n\n.fa-steam-square:before {\n  content: \"\\F1B7\"; }\n\n.fa-recycle:before {\n  content: \"\\F1B8\"; }\n\n.fa-automobile:before,\n.fa-car:before {\n  content: \"\\F1B9\"; }\n\n.fa-cab:before,\n.fa-taxi:before {\n  content: \"\\F1BA\"; }\n\n.fa-tree:before {\n  content: \"\\F1BB\"; }\n\n.fa-spotify:before {\n  content: \"\\F1BC\"; }\n\n.fa-deviantart:before {\n  content: \"\\F1BD\"; }\n\n.fa-soundcloud:before {\n  content: \"\\F1BE\"; }\n\n.fa-database:before {\n  content: \"\\F1C0\"; }\n\n.fa-file-pdf-o:before {\n  content: \"\\F1C1\"; }\n\n.fa-file-word-o:before {\n  content: \"\\F1C2\"; }\n\n.fa-file-excel-o:before {\n  content: \"\\F1C3\"; }\n\n.fa-file-powerpoint-o:before {\n  content: \"\\F1C4\"; }\n\n.fa-file-photo-o:before,\n.fa-file-picture-o:before,\n.fa-file-image-o:before {\n  content: \"\\F1C5\"; }\n\n.fa-file-zip-o:before,\n.fa-file-archive-o:before {\n  content: \"\\F1C6\"; }\n\n.fa-file-sound-o:before,\n.fa-file-audio-o:before {\n  content: \"\\F1C7\"; }\n\n.fa-file-movie-o:before,\n.fa-file-video-o:before {\n  content: \"\\F1C8\"; }\n\n.fa-file-code-o:before {\n  content: \"\\F1C9\"; }\n\n.fa-vine:before {\n  content: \"\\F1CA\"; }\n\n.fa-codepen:before {\n  content: \"\\F1CB\"; }\n\n.fa-jsfiddle:before {\n  content: \"\\F1CC\"; }\n\n.fa-life-bouy:before,\n.fa-life-buoy:before,\n.fa-life-saver:before,\n.fa-support:before,\n.fa-life-ring:before {\n  content: \"\\F1CD\"; }\n\n.fa-circle-o-notch:before {\n  content: \"\\F1CE\"; }\n\n.fa-ra:before,\n.fa-resistance:before,\n.fa-rebel:before {\n  content: \"\\F1D0\"; }\n\n.fa-ge:before,\n.fa-empire:before {\n  content: \"\\F1D1\"; }\n\n.fa-git-square:before {\n  content: \"\\F1D2\"; }\n\n.fa-git:before {\n  content: \"\\F1D3\"; }\n\n.fa-y-combinator-square:before,\n.fa-yc-square:before,\n.fa-hacker-news:before {\n  content: \"\\F1D4\"; }\n\n.fa-tencent-weibo:before {\n  content: \"\\F1D5\"; }\n\n.fa-qq:before {\n  content: \"\\F1D6\"; }\n\n.fa-wechat:before,\n.fa-weixin:before {\n  content: \"\\F1D7\"; }\n\n.fa-send:before,\n.fa-paper-plane:before {\n  content: \"\\F1D8\"; }\n\n.fa-send-o:before,\n.fa-paper-plane-o:before {\n  content: \"\\F1D9\"; }\n\n.fa-history:before {\n  content: \"\\F1DA\"; }\n\n.fa-circle-thin:before {\n  content: \"\\F1DB\"; }\n\n.fa-header:before {\n  content: \"\\F1DC\"; }\n\n.fa-paragraph:before {\n  content: \"\\F1DD\"; }\n\n.fa-sliders:before {\n  content: \"\\F1DE\"; }\n\n.fa-share-alt:before {\n  content: \"\\F1E0\"; }\n\n.fa-share-alt-square:before {\n  content: \"\\F1E1\"; }\n\n.fa-bomb:before {\n  content: \"\\F1E2\"; }\n\n.fa-soccer-ball-o:before,\n.fa-futbol-o:before {\n  content: \"\\F1E3\"; }\n\n.fa-tty:before {\n  content: \"\\F1E4\"; }\n\n.fa-binoculars:before {\n  content: \"\\F1E5\"; }\n\n.fa-plug:before {\n  content: \"\\F1E6\"; }\n\n.fa-slideshare:before {\n  content: \"\\F1E7\"; }\n\n.fa-twitch:before {\n  content: \"\\F1E8\"; }\n\n.fa-yelp:before {\n  content: \"\\F1E9\"; }\n\n.fa-newspaper-o:before {\n  content: \"\\F1EA\"; }\n\n.fa-wifi:before {\n  content: \"\\F1EB\"; }\n\n.fa-calculator:before {\n  content: \"\\F1EC\"; }\n\n.fa-paypal:before {\n  content: \"\\F1ED\"; }\n\n.fa-google-wallet:before {\n  content: \"\\F1EE\"; }\n\n.fa-cc-visa:before {\n  content: \"\\F1F0\"; }\n\n.fa-cc-mastercard:before {\n  content: \"\\F1F1\"; }\n\n.fa-cc-discover:before {\n  content: \"\\F1F2\"; }\n\n.fa-cc-amex:before {\n  content: \"\\F1F3\"; }\n\n.fa-cc-paypal:before {\n  content: \"\\F1F4\"; }\n\n.fa-cc-stripe:before {\n  content: \"\\F1F5\"; }\n\n.fa-bell-slash:before {\n  content: \"\\F1F6\"; }\n\n.fa-bell-slash-o:before {\n  content: \"\\F1F7\"; }\n\n.fa-trash:before {\n  content: \"\\F1F8\"; }\n\n.fa-copyright:before {\n  content: \"\\F1F9\"; }\n\n.fa-at:before {\n  content: \"\\F1FA\"; }\n\n.fa-eyedropper:before {\n  content: \"\\F1FB\"; }\n\n.fa-paint-brush:before {\n  content: \"\\F1FC\"; }\n\n.fa-birthday-cake:before {\n  content: \"\\F1FD\"; }\n\n.fa-area-chart:before {\n  content: \"\\F1FE\"; }\n\n.fa-pie-chart:before {\n  content: \"\\F200\"; }\n\n.fa-line-chart:before {\n  content: \"\\F201\"; }\n\n.fa-lastfm:before {\n  content: \"\\F202\"; }\n\n.fa-lastfm-square:before {\n  content: \"\\F203\"; }\n\n.fa-toggle-off:before {\n  content: \"\\F204\"; }\n\n.fa-toggle-on:before {\n  content: \"\\F205\"; }\n\n.fa-bicycle:before {\n  content: \"\\F206\"; }\n\n.fa-bus:before {\n  content: \"\\F207\"; }\n\n.fa-ioxhost:before {\n  content: \"\\F208\"; }\n\n.fa-angellist:before {\n  content: \"\\F209\"; }\n\n.fa-cc:before {\n  content: \"\\F20A\"; }\n\n.fa-shekel:before,\n.fa-sheqel:before,\n.fa-ils:before {\n  content: \"\\F20B\"; }\n\n.fa-meanpath:before {\n  content: \"\\F20C\"; }\n\n.fa-buysellads:before {\n  content: \"\\F20D\"; }\n\n.fa-connectdevelop:before {\n  content: \"\\F20E\"; }\n\n.fa-dashcube:before {\n  content: \"\\F210\"; }\n\n.fa-forumbee:before {\n  content: \"\\F211\"; }\n\n.fa-leanpub:before {\n  content: \"\\F212\"; }\n\n.fa-sellsy:before {\n  content: \"\\F213\"; }\n\n.fa-shirtsinbulk:before {\n  content: \"\\F214\"; }\n\n.fa-simplybuilt:before {\n  content: \"\\F215\"; }\n\n.fa-skyatlas:before {\n  content: \"\\F216\"; }\n\n.fa-cart-plus:before {\n  content: \"\\F217\"; }\n\n.fa-cart-arrow-down:before {\n  content: \"\\F218\"; }\n\n.fa-diamond:before {\n  content: \"\\F219\"; }\n\n.fa-ship:before {\n  content: \"\\F21A\"; }\n\n.fa-user-secret:before {\n  content: \"\\F21B\"; }\n\n.fa-motorcycle:before {\n  content: \"\\F21C\"; }\n\n.fa-street-view:before {\n  content: \"\\F21D\"; }\n\n.fa-heartbeat:before {\n  content: \"\\F21E\"; }\n\n.fa-venus:before {\n  content: \"\\F221\"; }\n\n.fa-mars:before {\n  content: \"\\F222\"; }\n\n.fa-mercury:before {\n  content: \"\\F223\"; }\n\n.fa-intersex:before,\n.fa-transgender:before {\n  content: \"\\F224\"; }\n\n.fa-transgender-alt:before {\n  content: \"\\F225\"; }\n\n.fa-venus-double:before {\n  content: \"\\F226\"; }\n\n.fa-mars-double:before {\n  content: \"\\F227\"; }\n\n.fa-venus-mars:before {\n  content: \"\\F228\"; }\n\n.fa-mars-stroke:before {\n  content: \"\\F229\"; }\n\n.fa-mars-stroke-v:before {\n  content: \"\\F22A\"; }\n\n.fa-mars-stroke-h:before {\n  content: \"\\F22B\"; }\n\n.fa-neuter:before {\n  content: \"\\F22C\"; }\n\n.fa-genderless:before {\n  content: \"\\F22D\"; }\n\n.fa-facebook-official:before {\n  content: \"\\F230\"; }\n\n.fa-pinterest-p:before {\n  content: \"\\F231\"; }\n\n.fa-whatsapp:before {\n  content: \"\\F232\"; }\n\n.fa-server:before {\n  content: \"\\F233\"; }\n\n.fa-user-plus:before {\n  content: \"\\F234\"; }\n\n.fa-user-times:before {\n  content: \"\\F235\"; }\n\n.fa-hotel:before,\n.fa-bed:before {\n  content: \"\\F236\"; }\n\n.fa-viacoin:before {\n  content: \"\\F237\"; }\n\n.fa-train:before {\n  content: \"\\F238\"; }\n\n.fa-subway:before {\n  content: \"\\F239\"; }\n\n.fa-medium:before {\n  content: \"\\F23A\"; }\n\n.fa-yc:before,\n.fa-y-combinator:before {\n  content: \"\\F23B\"; }\n\n.fa-optin-monster:before {\n  content: \"\\F23C\"; }\n\n.fa-opencart:before {\n  content: \"\\F23D\"; }\n\n.fa-expeditedssl:before {\n  content: \"\\F23E\"; }\n\n.fa-battery-4:before,\n.fa-battery:before,\n.fa-battery-full:before {\n  content: \"\\F240\"; }\n\n.fa-battery-3:before,\n.fa-battery-three-quarters:before {\n  content: \"\\F241\"; }\n\n.fa-battery-2:before,\n.fa-battery-half:before {\n  content: \"\\F242\"; }\n\n.fa-battery-1:before,\n.fa-battery-quarter:before {\n  content: \"\\F243\"; }\n\n.fa-battery-0:before,\n.fa-battery-empty:before {\n  content: \"\\F244\"; }\n\n.fa-mouse-pointer:before {\n  content: \"\\F245\"; }\n\n.fa-i-cursor:before {\n  content: \"\\F246\"; }\n\n.fa-object-group:before {\n  content: \"\\F247\"; }\n\n.fa-object-ungroup:before {\n  content: \"\\F248\"; }\n\n.fa-sticky-note:before {\n  content: \"\\F249\"; }\n\n.fa-sticky-note-o:before {\n  content: \"\\F24A\"; }\n\n.fa-cc-jcb:before {\n  content: \"\\F24B\"; }\n\n.fa-cc-diners-club:before {\n  content: \"\\F24C\"; }\n\n.fa-clone:before {\n  content: \"\\F24D\"; }\n\n.fa-balance-scale:before {\n  content: \"\\F24E\"; }\n\n.fa-hourglass-o:before {\n  content: \"\\F250\"; }\n\n.fa-hourglass-1:before,\n.fa-hourglass-start:before {\n  content: \"\\F251\"; }\n\n.fa-hourglass-2:before,\n.fa-hourglass-half:before {\n  content: \"\\F252\"; }\n\n.fa-hourglass-3:before,\n.fa-hourglass-end:before {\n  content: \"\\F253\"; }\n\n.fa-hourglass:before {\n  content: \"\\F254\"; }\n\n.fa-hand-grab-o:before,\n.fa-hand-rock-o:before {\n  content: \"\\F255\"; }\n\n.fa-hand-stop-o:before,\n.fa-hand-paper-o:before {\n  content: \"\\F256\"; }\n\n.fa-hand-scissors-o:before {\n  content: \"\\F257\"; }\n\n.fa-hand-lizard-o:before {\n  content: \"\\F258\"; }\n\n.fa-hand-spock-o:before {\n  content: \"\\F259\"; }\n\n.fa-hand-pointer-o:before {\n  content: \"\\F25A\"; }\n\n.fa-hand-peace-o:before {\n  content: \"\\F25B\"; }\n\n.fa-trademark:before {\n  content: \"\\F25C\"; }\n\n.fa-registered:before {\n  content: \"\\F25D\"; }\n\n.fa-creative-commons:before {\n  content: \"\\F25E\"; }\n\n.fa-gg:before {\n  content: \"\\F260\"; }\n\n.fa-gg-circle:before {\n  content: \"\\F261\"; }\n\n.fa-tripadvisor:before {\n  content: \"\\F262\"; }\n\n.fa-odnoklassniki:before {\n  content: \"\\F263\"; }\n\n.fa-odnoklassniki-square:before {\n  content: \"\\F264\"; }\n\n.fa-get-pocket:before {\n  content: \"\\F265\"; }\n\n.fa-wikipedia-w:before {\n  content: \"\\F266\"; }\n\n.fa-safari:before {\n  content: \"\\F267\"; }\n\n.fa-chrome:before {\n  content: \"\\F268\"; }\n\n.fa-firefox:before {\n  content: \"\\F269\"; }\n\n.fa-opera:before {\n  content: \"\\F26A\"; }\n\n.fa-internet-explorer:before {\n  content: \"\\F26B\"; }\n\n.fa-tv:before,\n.fa-television:before {\n  content: \"\\F26C\"; }\n\n.fa-contao:before {\n  content: \"\\F26D\"; }\n\n.fa-500px:before {\n  content: \"\\F26E\"; }\n\n.fa-amazon:before {\n  content: \"\\F270\"; }\n\n.fa-calendar-plus-o:before {\n  content: \"\\F271\"; }\n\n.fa-calendar-minus-o:before {\n  content: \"\\F272\"; }\n\n.fa-calendar-times-o:before {\n  content: \"\\F273\"; }\n\n.fa-calendar-check-o:before {\n  content: \"\\F274\"; }\n\n.fa-industry:before {\n  content: \"\\F275\"; }\n\n.fa-map-pin:before {\n  content: \"\\F276\"; }\n\n.fa-map-signs:before {\n  content: \"\\F277\"; }\n\n.fa-map-o:before {\n  content: \"\\F278\"; }\n\n.fa-map:before {\n  content: \"\\F279\"; }\n\n.fa-commenting:before {\n  content: \"\\F27A\"; }\n\n.fa-commenting-o:before {\n  content: \"\\F27B\"; }\n\n.fa-houzz:before {\n  content: \"\\F27C\"; }\n\n.fa-vimeo:before {\n  content: \"\\F27D\"; }\n\n.fa-black-tie:before {\n  content: \"\\F27E\"; }\n\n.fa-fonticons:before {\n  content: \"\\F280\"; }\n\n.fa-reddit-alien:before {\n  content: \"\\F281\"; }\n\n.fa-edge:before {\n  content: \"\\F282\"; }\n\n.fa-credit-card-alt:before {\n  content: \"\\F283\"; }\n\n.fa-codiepie:before {\n  content: \"\\F284\"; }\n\n.fa-modx:before {\n  content: \"\\F285\"; }\n\n.fa-fort-awesome:before {\n  content: \"\\F286\"; }\n\n.fa-usb:before {\n  content: \"\\F287\"; }\n\n.fa-product-hunt:before {\n  content: \"\\F288\"; }\n\n.fa-mixcloud:before {\n  content: \"\\F289\"; }\n\n.fa-scribd:before {\n  content: \"\\F28A\"; }\n\n.fa-pause-circle:before {\n  content: \"\\F28B\"; }\n\n.fa-pause-circle-o:before {\n  content: \"\\F28C\"; }\n\n.fa-stop-circle:before {\n  content: \"\\F28D\"; }\n\n.fa-stop-circle-o:before {\n  content: \"\\F28E\"; }\n\n.fa-shopping-bag:before {\n  content: \"\\F290\"; }\n\n.fa-shopping-basket:before {\n  content: \"\\F291\"; }\n\n.fa-hashtag:before {\n  content: \"\\F292\"; }\n\n.fa-bluetooth:before {\n  content: \"\\F293\"; }\n\n.fa-bluetooth-b:before {\n  content: \"\\F294\"; }\n\n.fa-percent:before {\n  content: \"\\F295\"; }\n\n.fa-gitlab:before {\n  content: \"\\F296\"; }\n\n.fa-wpbeginner:before {\n  content: \"\\F297\"; }\n\n.fa-wpforms:before {\n  content: \"\\F298\"; }\n\n.fa-envira:before {\n  content: \"\\F299\"; }\n\n.fa-universal-access:before {\n  content: \"\\F29A\"; }\n\n.fa-wheelchair-alt:before {\n  content: \"\\F29B\"; }\n\n.fa-question-circle-o:before {\n  content: \"\\F29C\"; }\n\n.fa-blind:before {\n  content: \"\\F29D\"; }\n\n.fa-audio-description:before {\n  content: \"\\F29E\"; }\n\n.fa-volume-control-phone:before {\n  content: \"\\F2A0\"; }\n\n.fa-braille:before {\n  content: \"\\F2A1\"; }\n\n.fa-assistive-listening-systems:before {\n  content: \"\\F2A2\"; }\n\n.fa-asl-interpreting:before,\n.fa-american-sign-language-interpreting:before {\n  content: \"\\F2A3\"; }\n\n.fa-deafness:before,\n.fa-hard-of-hearing:before,\n.fa-deaf:before {\n  content: \"\\F2A4\"; }\n\n.fa-glide:before {\n  content: \"\\F2A5\"; }\n\n.fa-glide-g:before {\n  content: \"\\F2A6\"; }\n\n.fa-signing:before,\n.fa-sign-language:before {\n  content: \"\\F2A7\"; }\n\n.fa-low-vision:before {\n  content: \"\\F2A8\"; }\n\n.fa-viadeo:before {\n  content: \"\\F2A9\"; }\n\n.fa-viadeo-square:before {\n  content: \"\\F2AA\"; }\n\n.fa-snapchat:before {\n  content: \"\\F2AB\"; }\n\n.fa-snapchat-ghost:before {\n  content: \"\\F2AC\"; }\n\n.fa-snapchat-square:before {\n  content: \"\\F2AD\"; }\n\n.fa-pied-piper:before {\n  content: \"\\F2AE\"; }\n\n.fa-first-order:before {\n  content: \"\\F2B0\"; }\n\n.fa-yoast:before {\n  content: \"\\F2B1\"; }\n\n.fa-themeisle:before {\n  content: \"\\F2B2\"; }\n\n.fa-google-plus-circle:before,\n.fa-google-plus-official:before {\n  content: \"\\F2B3\"; }\n\n.fa-fa:before,\n.fa-font-awesome:before {\n  content: \"\\F2B4\"; }\n\n.fa-handshake-o:before {\n  content: \"\\F2B5\"; }\n\n.fa-envelope-open:before {\n  content: \"\\F2B6\"; }\n\n.fa-envelope-open-o:before {\n  content: \"\\F2B7\"; }\n\n.fa-linode:before {\n  content: \"\\F2B8\"; }\n\n.fa-address-book:before {\n  content: \"\\F2B9\"; }\n\n.fa-address-book-o:before {\n  content: \"\\F2BA\"; }\n\n.fa-vcard:before,\n.fa-address-card:before {\n  content: \"\\F2BB\"; }\n\n.fa-vcard-o:before,\n.fa-address-card-o:before {\n  content: \"\\F2BC\"; }\n\n.fa-user-circle:before {\n  content: \"\\F2BD\"; }\n\n.fa-user-circle-o:before {\n  content: \"\\F2BE\"; }\n\n.fa-user-o:before {\n  content: \"\\F2C0\"; }\n\n.fa-id-badge:before {\n  content: \"\\F2C1\"; }\n\n.fa-drivers-license:before,\n.fa-id-card:before {\n  content: \"\\F2C2\"; }\n\n.fa-drivers-license-o:before,\n.fa-id-card-o:before {\n  content: \"\\F2C3\"; }\n\n.fa-quora:before {\n  content: \"\\F2C4\"; }\n\n.fa-free-code-camp:before {\n  content: \"\\F2C5\"; }\n\n.fa-telegram:before {\n  content: \"\\F2C6\"; }\n\n.fa-thermometer-4:before,\n.fa-thermometer:before,\n.fa-thermometer-full:before {\n  content: \"\\F2C7\"; }\n\n.fa-thermometer-3:before,\n.fa-thermometer-three-quarters:before {\n  content: \"\\F2C8\"; }\n\n.fa-thermometer-2:before,\n.fa-thermometer-half:before {\n  content: \"\\F2C9\"; }\n\n.fa-thermometer-1:before,\n.fa-thermometer-quarter:before {\n  content: \"\\F2CA\"; }\n\n.fa-thermometer-0:before,\n.fa-thermometer-empty:before {\n  content: \"\\F2CB\"; }\n\n.fa-shower:before {\n  content: \"\\F2CC\"; }\n\n.fa-bathtub:before,\n.fa-s15:before,\n.fa-bath:before {\n  content: \"\\F2CD\"; }\n\n.fa-podcast:before {\n  content: \"\\F2CE\"; }\n\n.fa-window-maximize:before {\n  content: \"\\F2D0\"; }\n\n.fa-window-minimize:before {\n  content: \"\\F2D1\"; }\n\n.fa-window-restore:before {\n  content: \"\\F2D2\"; }\n\n.fa-times-rectangle:before,\n.fa-window-close:before {\n  content: \"\\F2D3\"; }\n\n.fa-times-rectangle-o:before,\n.fa-window-close-o:before {\n  content: \"\\F2D4\"; }\n\n.fa-bandcamp:before {\n  content: \"\\F2D5\"; }\n\n.fa-grav:before {\n  content: \"\\F2D6\"; }\n\n.fa-etsy:before {\n  content: \"\\F2D7\"; }\n\n.fa-imdb:before {\n  content: \"\\F2D8\"; }\n\n.fa-ravelry:before {\n  content: \"\\F2D9\"; }\n\n.fa-eercast:before {\n  content: \"\\F2DA\"; }\n\n.fa-microchip:before {\n  content: \"\\F2DB\"; }\n\n.fa-snowflake-o:before {\n  content: \"\\F2DC\"; }\n\n.fa-superpowers:before {\n  content: \"\\F2DD\"; }\n\n.fa-wpexplorer:before {\n  content: \"\\F2DE\"; }\n\n.fa-meetup:before {\n  content: \"\\F2E0\"; }\n\n.sr-only {\n  position: absolute;\n  width: 1px;\n  height: 1px;\n  padding: 0;\n  margin: -1px;\n  overflow: hidden;\n  clip: rect(0, 0, 0, 0);\n  border: 0; }\n\n.sr-only-focusable:active, .sr-only-focusable:focus {\n  position: static;\n  width: auto;\n  height: auto;\n  margin: 0;\n  overflow: visible;\n  clip: auto; }\n\n.paginate {\n  text-align: center; }\n\n.paginate ul {\n  list-style: none;\n  margin: 0;\n  padding: 0;\n  text-align: center; }\n\n.paginate li {\n  display: inline; }\n\n.paginate a {\n  border-radius: 3px;\n  box-shadow: rgba(0, 0, 0, 0.2) 0 0 0 1px;\n  margin: 1px 2px;\n  padding: 5px 10px;\n  display: inline-block;\n  border-top: 1px solid #fff;\n  text-decoration: none;\n  color: #717171;\n  font-size: smaller;\n  font-family: \"Helvetica Neueu\", Helvetica, Arial, sans-serif;\n  text-shadow: white 0 1px 0;\n  background-color: #f5f5f5;\n  background-image: -webkit-gradient(linear, left top, left bottom, from(#f9f9f9), to(#eaeaea));\n  background-image: -webkit-linear-gradient(top, #f9f9f9, #eaeaea);\n  background-image: -moz-linear-gradient(top, #f9f9f9, #eaeaea);\n  background-image: -ms-linear-gradient(top, #f9f9f9, #eaeaea);\n  background-image: -o-linear-gradient(top, #f9f9f9, #eaeaea);\n  background-image: linear-gradient(top, #f9f9f9, #eaeaea);\n  filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#f9f9f9', EndColorStr='#eaeaea'); }\n\n.paginate a:first-child, .paginate a.first {\n  margin-left: 0; }\n\n.paginate a:last-child, .paginate a.last {\n  margin-right: 0; }\n\n.paginate a:hover, .paginate a:focus {\n  border-color: #fff;\n  background-color: #fdfdfd;\n  background-image: -webkit-gradient(linear, left top, left bottom, from(#fefefe), to(#fafafa));\n  background-image: -webkit-linear-gradient(top, #fefefe, #fafafa);\n  background-image: -moz-linear-gradient(top, #fefefe, #fafafa);\n  background-image: -ms-linear-gradient(top, #fefefe, #fafafa);\n  background-image: -o-linear-gradient(top, #fefefe, #fafafa);\n  background-image: linear-gradient(top, #fefefe, #fafafa);\n  filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#fefefe', EndColorStr='#fafafa'); }\n\n.paginate a.more {\n  box-shadow: 0 0 0 0 transparent;\n  border: 0 none;\n  background: transparent;\n  margin-left: 0;\n  margin-right: 0; }\n\n.paginate a.active {\n  box-shadow: rgba(0, 0, 0, 0.75) 0 0 0 0 inset;\n  border-color: #505050;\n  color: #f2f2f2;\n  text-shadow: black 0 1px 0;\n  background-color: #676767;\n  background-image: -webkit-gradient(linear, left top, left bottom, from(#5f5f5f), to(#5c5c5c));\n  background-image: -webkit-linear-gradient(top, #5f5f5f, #5c5c5c);\n  background-image: -moz-linear-gradient(top, #5f5f5f, #5c5c5c);\n  background-image: -ms-linear-gradient(top, #5f5f5f, #5c5c5c);\n  background-image: -o-linear-gradient(top, #5f5f5f, #5c5c5c);\n  background-image: linear-gradient(top, #5f5f5f, #5c5c5c);\n  filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#5f5f5f', EndColorStr='#5c5c5c'); }\n\n.sweet-overlay {\n  background-color: #000;\n  -ms-filter: \"progid:DXImageTransform.Microsoft.Alpha(Opacity=40)\";\n  background-color: rgba(0, 0, 0, 0.4);\n  position: fixed;\n  left: 0;\n  right: 0;\n  top: 0;\n  bottom: 0;\n  display: none;\n  z-index: 10000; }\n\n.sweet-alert {\n  background-color: #fff;\n  font-family: 'Open Sans','Helvetica Neue',Helvetica,Arial,sans-serif;\n  width: 478px;\n  padding: 17px;\n  border-radius: 5px;\n  text-align: center;\n  position: fixed;\n  left: 50%;\n  top: 50%;\n  margin-left: -256px;\n  margin-top: -200px;\n  overflow: hidden;\n  display: none;\n  z-index: 99999; }\n\n@media all and (max-width: 540px) {\n  .sweet-alert {\n    width: auto;\n    margin-left: 0;\n    margin-right: 0;\n    left: 15px;\n    right: 15px; } }\n\n.sweet-alert h2 {\n  color: #575757;\n  font-size: 30px;\n  text-align: center;\n  font-weight: 600;\n  text-transform: none;\n  position: relative;\n  margin: 25px 0;\n  padding: 0;\n  line-height: 40px;\n  display: block; }\n\n.sweet-alert p {\n  color: #797979;\n  font-size: 16px;\n  font-weight: 300;\n  position: relative;\n  text-align: inherit;\n  float: none;\n  margin: 0;\n  padding: 0;\n  line-height: normal; }\n\n.sweet-alert button {\n  background-color: #AEDEF4;\n  color: #fff;\n  border: none;\n  box-shadow: none;\n  font-size: 17px;\n  font-weight: 500;\n  -webkit-border-radius: 4px;\n  border-radius: 5px;\n  padding: 10px 32px;\n  margin: 26px 5px 0;\n  cursor: pointer; }\n\n.sweet-alert button:focus {\n  outline: 0;\n  box-shadow: 0 0 2px rgba(128, 179, 235, 0.5), inset 0 0 0 1px rgba(0, 0, 0, 0.05); }\n\n.sweet-alert button:hover {\n  background-color: #a1d9f2; }\n\n.sweet-alert button:active {\n  background-color: #81ccee; }\n\n.sweet-alert button.cancel {\n  background-color: #D0D0D0; }\n\n.sweet-alert button.cancel:hover {\n  background-color: #c8c8c8; }\n\n.sweet-alert button.cancel:active {\n  background-color: #b6b6b6; }\n\n.sweet-alert button.cancel:focus {\n  box-shadow: rgba(197, 205, 211, 0.8) 0 0 2px, rgba(0, 0, 0, 0.0470588) 0 0 0 1px inset !important; }\n\n.sweet-alert button::-moz-focus-inner {\n  border: 0; }\n\n.sweet-alert[data-has-cancel-button=false] button {\n  box-shadow: none !important; }\n\n.sweet-alert[data-has-confirm-button=false][data-has-cancel-button=false] {\n  padding-bottom: 40px; }\n\n.sweet-alert .sa-icon {\n  width: 80px;\n  height: 80px;\n  border: 4px solid gray;\n  -webkit-border-radius: 40px;\n  border-radius: 50%;\n  margin: 20px auto;\n  padding: 0;\n  position: relative;\n  box-sizing: content-box; }\n\n.sweet-alert .sa-icon.sa-error {\n  border-color: #F27474; }\n\n.sweet-alert .sa-icon.sa-error .sa-x-mark {\n  position: relative;\n  display: block; }\n\n.sweet-alert .sa-icon.sa-error .sa-line {\n  position: absolute;\n  height: 5px;\n  width: 47px;\n  background-color: #F27474;\n  display: block;\n  top: 37px;\n  border-radius: 2px; }\n\n.sweet-alert .sa-icon.sa-error .sa-line.sa-left {\n  -webkit-transform: rotate(45deg);\n  transform: rotate(45deg);\n  left: 17px; }\n\n.sweet-alert .sa-icon.sa-error .sa-line.sa-right {\n  -webkit-transform: rotate(-45deg);\n  transform: rotate(-45deg);\n  right: 16px; }\n\n.sweet-alert .sa-icon.sa-warning {\n  border-color: #F8BB86; }\n\n.sweet-alert .sa-icon.sa-warning .sa-body {\n  position: absolute;\n  width: 5px;\n  height: 47px;\n  left: 50%;\n  top: 10px;\n  -webkit-border-radius: 2px;\n  border-radius: 2px;\n  margin-left: -2px;\n  background-color: #F8BB86; }\n\n.sweet-alert .sa-icon.sa-warning .sa-dot {\n  position: absolute;\n  width: 7px;\n  height: 7px;\n  -webkit-border-radius: 50%;\n  border-radius: 50%;\n  margin-left: -3px;\n  left: 50%;\n  bottom: 10px;\n  background-color: #F8BB86; }\n\n.sweet-alert .sa-icon.sa-info {\n  border-color: #C9DAE1; }\n\n.sweet-alert .sa-icon.sa-info::before {\n  content: \"\";\n  position: absolute;\n  width: 5px;\n  height: 29px;\n  left: 50%;\n  bottom: 17px;\n  border-radius: 2px;\n  margin-left: -2px;\n  background-color: #C9DAE1; }\n\n.sweet-alert .sa-icon.sa-info::after {\n  content: \"\";\n  position: absolute;\n  width: 7px;\n  height: 7px;\n  border-radius: 50%;\n  margin-left: -3px;\n  top: 19px;\n  background-color: #C9DAE1; }\n\n.sweet-alert .sa-icon.sa-success {\n  border-color: #A5DC86; }\n\n.sweet-alert .sa-icon.sa-success::after, .sweet-alert .sa-icon.sa-success::before {\n  content: '';\n  position: absolute;\n  width: 60px;\n  height: 120px;\n  background: #fff;\n  -webkit-transform: rotate(45deg);\n  transform: rotate(45deg); }\n\n.sweet-alert .sa-icon.sa-success::before {\n  -webkit-border-radius: 120px 0 0 120px;\n  border-radius: 120px 0 0 120px;\n  top: -7px;\n  left: -33px;\n  -webkit-transform: rotate(-45deg);\n  transform: rotate(-45deg);\n  -webkit-transform-origin: 60px 60px;\n  transform-origin: 60px 60px; }\n\n.sweet-alert .sa-icon.sa-success::after {\n  -webkit-border-radius: 0 120px 120px 0;\n  border-radius: 0 120px 120px 0;\n  top: -11px;\n  left: 30px;\n  -webkit-transform: rotate(-45deg);\n  transform: rotate(-45deg);\n  -webkit-transform-origin: 0 60px;\n  transform-origin: 0 60px; }\n\n.sweet-alert .sa-icon.sa-success .sa-placeholder {\n  width: 80px;\n  height: 80px;\n  border: 4px solid rgba(165, 220, 134, 0.2);\n  -webkit-border-radius: 40px;\n  border-radius: 50%;\n  box-sizing: content-box;\n  position: absolute;\n  left: -4px;\n  top: -4px;\n  z-index: 2; }\n\n.sweet-alert .sa-icon.sa-success .sa-fix {\n  width: 5px;\n  height: 90px;\n  background-color: #fff;\n  position: absolute;\n  left: 28px;\n  top: 8px;\n  z-index: 1;\n  -webkit-transform: rotate(-45deg);\n  transform: rotate(-45deg); }\n\n.sweet-alert .sa-icon.sa-success .sa-line {\n  height: 5px;\n  background-color: #A5DC86;\n  display: block;\n  border-radius: 2px;\n  position: absolute;\n  z-index: 2; }\n\n.sweet-alert .sa-icon.sa-success .sa-line.sa-tip {\n  width: 25px;\n  left: 14px;\n  top: 46px;\n  -webkit-transform: rotate(45deg);\n  transform: rotate(45deg); }\n\n.sweet-alert .sa-icon.sa-success .sa-line.sa-long {\n  width: 47px;\n  right: 8px;\n  top: 38px;\n  -webkit-transform: rotate(-45deg);\n  transform: rotate(-45deg); }\n\n.sweet-alert .sa-icon.sa-custom {\n  background-size: contain;\n  border-radius: 0;\n  border: none;\n  background-position: center center;\n  background-repeat: no-repeat; }\n\n@-webkit-keyframes showSweetAlert {\n  0% {\n    transform: scale(0.7);\n    -webkit-transform: scale(0.7); }\n  45% {\n    transform: scale(1.05);\n    -webkit-transform: scale(1.05); }\n  80% {\n    transform: scale(0.95);\n    -webkit-tranform: scale(0.95); }\n  100% {\n    transform: scale(1);\n    -webkit-transform: scale(1); } }\n\n@keyframes showSweetAlert {\n  0% {\n    transform: scale(0.7);\n    -webkit-transform: scale(0.7); }\n  45% {\n    transform: scale(1.05);\n    -webkit-transform: scale(1.05); }\n  80% {\n    transform: scale(0.95);\n    -webkit-tranform: scale(0.95); }\n  100% {\n    transform: scale(1);\n    -webkit-transform: scale(1); } }\n\n@-webkit-keyframes hideSweetAlert {\n  0% {\n    transform: scale(1);\n    -webkit-transform: scale(1); }\n  100% {\n    transform: scale(0.5);\n    -webkit-transform: scale(0.5); } }\n\n@keyframes hideSweetAlert {\n  0% {\n    transform: scale(1);\n    -webkit-transform: scale(1); }\n  100% {\n    transform: scale(0.5);\n    -webkit-transform: scale(0.5); } }\n\n.showSweetAlert {\n  -webkit-animation: showSweetAlert .3s;\n  animation: showSweetAlert .3s; }\n\n.showSweetAlert[data-animation=none] {\n  -webkit-animation: none;\n  animation: none; }\n\n.hideSweetAlert {\n  -webkit-animation: hideSweetAlert .2s;\n  animation: hideSweetAlert .2s; }\n\n.hideSweetAlert[data-animation=none] {\n  -webkit-animation: none;\n  animation: none; }\n\n@-webkit-keyframes animateSuccessTip {\n  0%, 54% {\n    width: 0;\n    left: 1px;\n    top: 19px; }\n  70% {\n    width: 50px;\n    left: -8px;\n    top: 37px; }\n  84% {\n    width: 17px;\n    left: 21px;\n    top: 48px; }\n  100% {\n    width: 25px;\n    left: 14px;\n    top: 45px; } }\n\n@keyframes animateSuccessTip {\n  0%, 54% {\n    width: 0;\n    left: 1px;\n    top: 19px; }\n  70% {\n    width: 50px;\n    left: -8px;\n    top: 37px; }\n  84% {\n    width: 17px;\n    left: 21px;\n    top: 48px; }\n  100% {\n    width: 25px;\n    left: 14px;\n    top: 45px; } }\n\n@-webkit-keyframes animateSuccessLong {\n  0%, 65% {\n    width: 0;\n    right: 46px;\n    top: 54px; }\n  84% {\n    width: 55px;\n    right: 0;\n    top: 35px; }\n  100% {\n    width: 47px;\n    right: 8px;\n    top: 38px; } }\n\n@keyframes animateSuccessLong {\n  0%, 65% {\n    width: 0;\n    right: 46px;\n    top: 54px; }\n  84% {\n    width: 55px;\n    right: 0;\n    top: 35px; }\n  100% {\n    width: 47px;\n    right: 8px;\n    top: 38px; } }\n\n@-webkit-keyframes rotatePlaceholder {\n  0%, 5% {\n    transform: rotate(-45deg);\n    -webkit-transform: rotate(-45deg); }\n  100%, 12% {\n    transform: rotate(-405deg);\n    -webkit-transform: rotate(-405deg); } }\n\n@keyframes rotatePlaceholder {\n  0%, 5% {\n    transform: rotate(-45deg);\n    -webkit-transform: rotate(-45deg); }\n  100%, 12% {\n    transform: rotate(-405deg);\n    -webkit-transform: rotate(-405deg); } }\n\n.animateSuccessTip {\n  -webkit-animation: animateSuccessTip .75s;\n  animation: animateSuccessTip .75s; }\n\n.animateSuccessLong {\n  -webkit-animation: animateSuccessLong .75s;\n  animation: animateSuccessLong .75s; }\n\n.sa-icon.sa-success.animate::after {\n  -webkit-animation: rotatePlaceholder 4.25s ease-in;\n  animation: rotatePlaceholder 4.25s ease-in; }\n\n@-webkit-keyframes animateErrorIcon {\n  0% {\n    transform: rotateX(100deg);\n    -webkit-transform: rotateX(100deg);\n    opacity: 0; }\n  100% {\n    transform: rotateX(0deg);\n    -webkit-transform: rotateX(0deg);\n    opacity: 1; } }\n\n@keyframes animateErrorIcon {\n  0% {\n    transform: rotateX(100deg);\n    -webkit-transform: rotateX(100deg);\n    opacity: 0; }\n  100% {\n    transform: rotateX(0deg);\n    -webkit-transform: rotateX(0deg);\n    opacity: 1; } }\n\n.animateErrorIcon {\n  -webkit-animation: animateErrorIcon .5s;\n  animation: animateErrorIcon .5s; }\n\n@-webkit-keyframes animateXMark {\n  0%, 50% {\n    transform: scale(0.4);\n    -webkit-transform: scale(0.4);\n    margin-top: 26px;\n    opacity: 0; }\n  80% {\n    transform: scale(1.15);\n    -webkit-transform: scale(1.15);\n    margin-top: -6px; }\n  100% {\n    transform: scale(1);\n    -webkit-transform: scale(1);\n    margin-top: 0;\n    opacity: 1; } }\n\n@keyframes animateXMark {\n  0%, 50% {\n    transform: scale(0.4);\n    -webkit-transform: scale(0.4);\n    margin-top: 26px;\n    opacity: 0; }\n  80% {\n    transform: scale(1.15);\n    -webkit-transform: scale(1.15);\n    margin-top: -6px; }\n  100% {\n    transform: scale(1);\n    -webkit-transform: scale(1);\n    margin-top: 0;\n    opacity: 1; } }\n\n.animateXMark {\n  -webkit-animation: animateXMark .5s;\n  animation: animateXMark .5s; }\n\n@-webkit-keyframes pulseWarning {\n  0% {\n    border-color: #F8D486; }\n  100% {\n    border-color: #F8BB86; } }\n\n@keyframes pulseWarning {\n  0% {\n    border-color: #F8D486; }\n  100% {\n    border-color: #F8BB86; } }\n\n.pulseWarning {\n  -webkit-animation: pulseWarning .75s infinite alternate;\n  animation: pulseWarning .75s infinite alternate; }\n\n@-webkit-keyframes pulseWarningIns {\n  0% {\n    background-color: #F8D486; }\n  100% {\n    background-color: #F8BB86; } }\n\n@keyframes pulseWarningIns {\n  0% {\n    background-color: #F8D486; }\n  100% {\n    background-color: #F8BB86; } }\n\n.pulseWarningIns {\n  -webkit-animation: pulseWarningIns .75s infinite alternate;\n  animation: pulseWarningIns .75s infinite alternate; }\n\nbody {\n  font-family: \"Fira Sans\", Helvetica, Arial, sans-serif;\n  font-size: 1.3em;\n  font-weight: 400;\n  -webkit-font-smoothing: antialiased !important;\n  -webkit-text-stroke: 0.1px; }\n\nh1 {\n  font-size: 3em;\n  font-weight: 700; }\n\n.subtitle {\n  display: inline-block;\n  font-size: 1.3em;\n  text-transform: uppercase; }\n\n.subtitle--variable {\n  font-style: italic;\n  text-transform: none; }\n\n.subtitle__value {\n  font-size: 1.5em;\n  font-weight: 500; }\n\n.match-padding, h1 {\n  padding: 0 15px; }\n\n.float-right {\n  float: right; }\n\n.float-left {\n  float: left; }\n\n.marginBottom {\n  margin-bottom: 20px; }\n\n.edit-button {\n  color: #fff !important;\n  background-color: #1a566f !important; }\n\n.delete-button {\n  color: #fff !important;\n  background-color: #8a0719 !important; }\n\nbody {\n  padding: 0px !important;\n  margin: 0px; }\n\n.delete__icon {\n  float: right;\n  color: #ab9393; }\n\n.delete_btn {\n  margin-left: 12px; }\n\ninput[type=text], input[type=password], textarea {\n  margin-top: 0.6em;\n  margin-bottom: 0.6em;\n  width: 100%;\n  padding: 0.6em;\n  font-family: \"Fira Sans\", Helvetica, Arial, sans-serif;\n  font-size: 1.3em;\n  color: #000;\n  border: 1.5px solid #000;\n  transition: 0.3s ease;\n  -webkit-font-smoothing: antialiased !important; }\n\ninput[type=text]:focus {\n  border: 1.5px solid #63ECB0;\n  transition: 0.3s ease; }\n\nselect {\n  margin-bottom: 0.6em;\n  width: 100%;\n  padding: 0.25em;\n  font-family: \"Fira Sans\", Helvetica, Arial, sans-serif;\n  font-size: 1.3em;\n  -webkit-font-smoothing: antialiased !important; }\n\noption {\n  width: 100%; }\n\ntextarea {\n  resize: none; }\n\nbutton {\n  padding: 0.6em;\n  font-family: \"Fira Sans\", Helvetica, Arial, sans-serif;\n  font-size: 1.3em;\n  color: #000 !important;\n  background-color: #78C5EB;\n  border: none;\n  transition: 0.2s ease; }\n\nbutton.outline {\n  padding: 0.6em 1em;\n  background-color: #EEE;\n  transition: 0.2s ease;\n  border: 1.5px solid #000; }\n\nbutton:hover {\n  background-color: #78C5EB;\n  transition: 0.2s ease; }\n\ninput, select, option {\n  outline: 0; }\n\n.navbar__btn.navbar__btn--selected a {\n  color: white !important;\n  text-decoration: none; }\n\n.sweet-alert button {\n  color: #fff !important; }\n\n.confirm {\n  background-color: #254d5e !important; }\n\ninput, button, a {\n  text-decoration: none !important; }\n\n.card__container {\n  height: 5.5em;\n  margin-bottom: 0.25em;\n  width: 100%;\n  padding: 1em;\n  background-color: #EEE;\n  cursor: pointer; }\n\n.card__title {\n  display: block;\n  font-size: 2em;\n  font-weight: 700; }\n\n.card__desc {\n  display: block;\n  font-size: 1.3em;\n  font-style: italic; }\n\n.detail__container {\n  margin-bottom: 0.25em;\n  width: 100%;\n  padding: 1em;\n  background-color: #EEE; }\n\n.detail__title {\n  display: block;\n  font-size: 1.5em;\n  font-weight: 700; }\n\n.detail__desc {\n  display: block;\n  font-size: 1.3em;\n  font-style: bold; }\n\n.detail__subtitle {\n  display: block;\n  font-size: 1.5em;\n  font-weight: 500; }\n\n.pagination__container {\n  float: right;\n  vertical-align: middle; }\n\n.pagination__page, .pagination__current {\n  display: inline-block;\n  height: 1.5em;\n  width: 1.5em;\n  padding-top: 0.25em;\n  font-size: 1.5em !important;\n  font-weight: 500;\n  text-align: center;\n  background-color: #EEE;\n  cursor: pointer; }\n\n.pagination__page:hover, .pagination__current:hover {\n  background-color: #78C5EB; }\n\n.pagination__current {\n  background-color: #3E809C;\n  color: #fff;\n  font-weight: 700; }\n\n.header__background {\n  height: 4em; }\n\n.header__app-text {\n  height: 4em;\n  font-size: 2em;\n  font-weight: 500;\n  line-height: 2em; }\n\n.header__user-container {\n  margin-top: 0.75em;\n  height: 4em;\n  text-align: right; }\n\n.header__user-name, .header__user-title {\n  display: block;\n  font-size: 1.3em;\n  font-weight: 500; }\n\n.header__user-title {\n  font-weight: 400; }\n\n.header__user-alignment {\n  display: inline-block;\n  padding: 0 0.25em;\n  vertical-align: top; }\n\nimg.header__logo {\n  height: 2em;\n  width: auto;\n  vertical-align: sub; }\n\n.navbar__background {\n  height: 4em;\n  background-color: #EEE; }\n\n.navbar__btn {\n  display: inline-block;\n  height: 2.7em;\n  margin-left: -0.15em;\n  padding: 0.6em 1em 0 1em;\n  width: auto;\n  font-size: 1.5em;\n  font-weight: 500;\n  line-height: 1.5em;\n  text-align: center;\n  cursor: auto;\n  transition: 0.1s ease; }\n\n.navbar__btn:hover, .navbar__btn--action:hover {\n  background-color: #78C5EB;\n  color: #000;\n  cursor: pointer;\n  transition: 0.1s ease; }\n\n.navbar__btn--selected {\n  background-color: #3E809C;\n  color: #fff; }\n\n.navbar__btn--action {\n  background-color: #63ECB0;\n  color: #000; }\n\n.navbar__btn--action:hover {\n  background-color: #009E60;\n  color: #fff; }\n\n.navbar__action-container {\n  text-align: right; }\n\n.navbar__btn a {\n  text-decoration: none !important; }\n\n.footer {\n  padding-top: 12px;\n  padding-right: 0;\n  padding-bottom: 20px;\n  padding-left: 0;\n  background: #f1f1f1;\n  margin-top: 30px; }\n\n.title-widget {\n  color: #3E809C;\n  font-size: 20px;\n  font-weight: 300;\n  line-height: 1;\n  position: relative;\n  text-transform: uppercase;\n  font-family: 'Fjalla One', sans-serif;\n  margin-top: 0;\n  margin-right: 0;\n  margin-bottom: 25px;\n  margin-left: 0;\n  padding-left: 28px; }\n\n.title-widget::before {\n  background-color: #3E809C;\n  content: \"\";\n  height: 22px;\n  left: 0px;\n  position: absolute;\n  top: -2px;\n  width: 5px; }\n\n.widget_nav_menu ul {\n  list-style: outside none none;\n  padding-left: 0; }\n\n.widget_archive ul li {\n  background-color: rgba(0, 0, 0, 0.3);\n  content: \"\";\n  height: 3px;\n  left: 0;\n  position: absolute;\n  top: 7px;\n  width: 3px; }\n\n.widget_nav_menu ul li {\n  font-size: 13px;\n  font-weight: 700;\n  line-height: 20px;\n  position: relative;\n  text-transform: uppercase;\n  border-bottom: 1px solid rgba(0, 0, 0, 0.05);\n  margin-bottom: 7px;\n  padding-bottom: 7px;\n  width: 95%; }\n\n.title-median {\n  color: #3E809C;\n  font-size: 20px;\n  line-height: 20px;\n  margin: 0 0 15px;\n  text-transform: uppercase;\n  font-family: 'Fjalla One', sans-serif; }\n\n.footerp p {\n  font-family: 'Gudea', sans-serif; }\n\n.footer-bottom {\n  background-color: #3E809C;\n  min-height: 30px;\n  width: 100%; }\n\n.copyright {\n  color: #fff;\n  line-height: 30px;\n  min-height: 30px;\n  padding: 7px 0; }\n\n.design {\n  color: #fff;\n  line-height: 30px;\n  min-height: 30px;\n  padding: 7px 0;\n  text-align: right; }\n\n.design a {\n  color: #fff; }\n\nbody {\n  padding-top: 15px;\n  font-size: 12px; }\n\n.main {\n  max-width: 320px;\n  margin: 0 auto; }\n\n.login-or {\n  position: relative;\n  font-size: 18px;\n  color: #aaa;\n  margin-top: 10px;\n  margin-bottom: 10px;\n  padding-top: 10px;\n  padding-bottom: 10px; }\n\n.span-or {\n  display: block;\n  position: absolute;\n  left: 50%;\n  top: -2px;\n  margin-left: -25px;\n  background-color: #fff;\n  width: 50px;\n  text-align: center; }\n\n.hr-or {\n  background-color: #cdcdcd;\n  height: 1px;\n  margin-top: 0px !important;\n  margin-bottom: 0px !important; }\n\nh3 {\n  text-align: center;\n  line-height: 300%; }\n", ""]);
+exports.push([module.i, "@charset \"UTF-8\";\n/*!\r\n * Bootstrap v3.3.7 (http://getbootstrap.com)\r\n * Copyright 2011-2016 Twitter, Inc.\r\n * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)\r\n * Modified by Joshua Velasco\r\n */\n/*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */\nhtml {\n  font-family: sans-serif;\n  -ms-text-size-adjust: 100%;\n  -webkit-text-size-adjust: 100%; }\n\narticle, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {\n  display: block; }\n\naudio, canvas, progress, video {\n  display: inline-block;\n  vertical-align: baseline; }\n\naudio:not([controls]) {\n  display: none;\n  height: 0; }\n\n[hidden], template {\n  display: none; }\n\na {\n  background-color: transparent; }\n\na:active, a:hover {\n  outline: 0; }\n\nabbr[title] {\n  border-bottom: 1px dotted; }\n\nb, strong {\n  font-weight: bold; }\n\ndfn {\n  font-style: italic; }\n\nmark {\n  background: #ff0;\n  color: #000; }\n\nsmall {\n  font-size: 80%; }\n\nsub, sup {\n  font-size: 75%;\n  line-height: 0;\n  position: relative;\n  vertical-align: baseline; }\n\nsup {\n  top: -0.5em; }\n\nsub {\n  bottom: -0.25em; }\n\nimg {\n  border: 0; }\n\nsvg:not(:root) {\n  overflow: hidden; }\n\nfigure {\n  margin: 1em 40px; }\n\nhr {\n  -webkit-box-sizing: content-box;\n  -moz-box-sizing: content-box;\n  box-sizing: content-box;\n  height: 0; }\n\npre {\n  overflow: auto; }\n\ncode, kbd, pre, samp {\n  font-family: monospace, monospace;\n  font-size: 1em; }\n\nbutton {\n  overflow: visible; }\n\nbutton, button, html input[type=\"button\"], input[type=\"reset\"], input[type=\"submit\"] {\n  -webkit-appearance: button;\n  cursor: pointer; }\n\nbutton[disabled], html input[disabled] {\n  cursor: default; }\n\nbutton::-moz-focus-inner, input::-moz-focus-inner {\n  border: 0;\n  padding: 0; }\n\ninput {\n  line-height: normal; }\n\ninput[type=\"checkbox\"], input[type=\"radio\"] {\n  -webkit-box-sizing: border-box;\n  -moz-box-sizing: border-box;\n  box-sizing: border-box;\n  padding: 0; }\n\ninput[type=\"number\"]::-webkit-inner-spin-button, input[type=\"number\"]::-webkit-outer-spin-button {\n  height: auto; }\n\ninput[type=\"search\"] {\n  -webkit-appearance: textfield;\n  -webkit-box-sizing: content-box;\n  -moz-box-sizing: content-box;\n  box-sizing: content-box; }\n\ninput[type=\"search\"]::-webkit-search-cancel-button, input[type=\"search\"]::-webkit-search-decoration {\n  -webkit-appearance: none; }\n\nfieldset {\n  border: 1px solid #c0c0c0;\n  margin: 0 2px;\n  padding: 0.35em 0.625em 0.75em; }\n\nlegend {\n  border: 0;\n  padding: 0; }\n\ntextarea {\n  overflow: auto; }\n\noptgroup {\n  font-weight: bold; }\n\ntable {\n  border-collapse: collapse;\n  border-spacing: 0; }\n\ntd, th {\n  padding: 0; }\n\n* {\n  -webkit-box-sizing: border-box;\n  -moz-box-sizing: border-box;\n  box-sizing: border-box; }\n\n*:before, *:after {\n  -webkit-box-sizing: border-box;\n  -moz-box-sizing: border-box;\n  box-sizing: border-box; }\n\nhtml {\n  font-size: 10px;\n  -webkit-tap-highlight-color: transparent; }\n\ninput, button, a {\n  color: #337ab7;\n  text-decoration: none; }\n\na:hover, a:focus {\n  color: #23527c;\n  text-decoration: underline; }\n\na:focus {\n  outline: 5px auto -webkit-focus-ring-color;\n  outline-offset: -2px; }\n\nfigure {\n  margin: 0; }\n\nimg {\n  vertical-align: middle; }\n\n.img-responsive {\n  display: block;\n  max-width: 100%;\n  height: auto; }\n\n.img-rounded {\n  border-radius: 6px; }\n\n.img-thumbnail {\n  padding: 4px;\n  line-height: 1.42857143;\n  background-color: #fff;\n  border: 1px solid #ddd;\n  border-radius: 4px;\n  -webkit-transition: all .2s ease-in-out;\n  -o-transition: all .2s ease-in-out;\n  transition: all .2s ease-in-out;\n  display: inline-block;\n  max-width: 100%;\n  height: auto; }\n\n.img-circle {\n  border-radius: 50%; }\n\nhr {\n  margin-top: 20px;\n  margin-bottom: 20px;\n  border: 0;\n  border-top: 1px solid #eee; }\n\n.sr-only {\n  position: absolute;\n  width: 1px;\n  height: 1px;\n  margin: -1px;\n  padding: 0;\n  overflow: hidden;\n  clip: rect(0, 0, 0, 0);\n  border: 0; }\n\n.sr-only-focusable:active, .sr-only-focusable:focus {\n  position: static;\n  width: auto;\n  height: auto;\n  margin: 0;\n  overflow: visible;\n  clip: auto; }\n\n[role=\"button\"] {\n  cursor: pointer; }\n\n.container {\n  margin-right: auto;\n  margin-left: auto;\n  padding-left: 15px;\n  padding-right: 15px; }\n\n@media (min-width: 768px) {\n  .container {\n    width: 750px; } }\n\n@media (min-width: 992px) {\n  .container {\n    width: 970px; } }\n\n@media (min-width: 1200px) {\n  .container {\n    width: 1170px; } }\n\n.container-fluid {\n  margin-right: auto;\n  margin-left: auto;\n  padding-left: 15px;\n  padding-right: 15px; }\n\n.col-xs-1, .col-sm-1, .col-md-1, .col-lg-1, .col-xs-2, .col-sm-2, .col-md-2, .col-lg-2, .col-xs-3, .col-sm-3, .col-md-3, .col-lg-3, .col-xs-4, .col-sm-4, .col-md-4, .col-lg-4, .col-xs-5, .col-sm-5, .col-md-5, .col-lg-5, .col-xs-6, .col-sm-6, .col-md-6, .col-lg-6, .col-xs-7, .col-sm-7, .col-md-7, .col-lg-7, .col-xs-8, .col-sm-8, .col-md-8, .col-lg-8, .col-xs-9, .col-sm-9, .col-md-9, .col-lg-9, .col-xs-10, .col-sm-10, .col-md-10, .col-lg-10, .col-xs-11, .col-sm-11, .col-md-11, .col-lg-11, .col-xs-12, .col-sm-12, .col-md-12, .col-lg-12 {\n  position: relative;\n  min-height: 1px;\n  padding-left: 15px;\n  padding-right: 15px; }\n\n.col-xs-1, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9, .col-xs-10, .col-xs-11, .col-xs-12 {\n  float: left; }\n\n.col-xs-12 {\n  width: 100%; }\n\n.col-xs-11 {\n  width: 91.66666667%; }\n\n.col-xs-10 {\n  width: 83.33333333%; }\n\n.col-xs-9 {\n  width: 75%; }\n\n.col-xs-8 {\n  width: 66.66666667%; }\n\n.col-xs-7 {\n  width: 58.33333333%; }\n\n.col-xs-6 {\n  width: 50%; }\n\n.col-xs-5 {\n  width: 41.66666667%; }\n\n.col-xs-4 {\n  width: 33.33333333%; }\n\n.col-xs-3 {\n  width: 25%; }\n\n.col-xs-2 {\n  width: 16.66666667%; }\n\n.col-xs-1 {\n  width: 8.33333333%; }\n\n.col-xs-pull-12 {\n  right: 100%; }\n\n.col-xs-pull-11 {\n  right: 91.66666667%; }\n\n.col-xs-pull-10 {\n  right: 83.33333333%; }\n\n.col-xs-pull-9 {\n  right: 75%; }\n\n.col-xs-pull-8 {\n  right: 66.66666667%; }\n\n.col-xs-pull-7 {\n  right: 58.33333333%; }\n\n.col-xs-pull-6 {\n  right: 50%; }\n\n.col-xs-pull-5 {\n  right: 41.66666667%; }\n\n.col-xs-pull-4 {\n  right: 33.33333333%; }\n\n.col-xs-pull-3 {\n  right: 25%; }\n\n.col-xs-pull-2 {\n  right: 16.66666667%; }\n\n.col-xs-pull-1 {\n  right: 8.33333333%; }\n\n.col-xs-pull-0 {\n  right: auto; }\n\n.col-xs-push-12 {\n  left: 100%; }\n\n.col-xs-push-11 {\n  left: 91.66666667%; }\n\n.col-xs-push-10 {\n  left: 83.33333333%; }\n\n.col-xs-push-9 {\n  left: 75%; }\n\n.col-xs-push-8 {\n  left: 66.66666667%; }\n\n.col-xs-push-7 {\n  left: 58.33333333%; }\n\n.col-xs-push-6 {\n  left: 50%; }\n\n.col-xs-push-5 {\n  left: 41.66666667%; }\n\n.col-xs-push-4 {\n  left: 33.33333333%; }\n\n.col-xs-push-3 {\n  left: 25%; }\n\n.col-xs-push-2 {\n  left: 16.66666667%; }\n\n.col-xs-push-1 {\n  left: 8.33333333%; }\n\n.col-xs-push-0 {\n  left: auto; }\n\n.col-xs-offset-12 {\n  margin-left: 100%; }\n\n.col-xs-offset-11 {\n  margin-left: 91.66666667%; }\n\n.col-xs-offset-10 {\n  margin-left: 83.33333333%; }\n\n.col-xs-offset-9 {\n  margin-left: 75%; }\n\n.col-xs-offset-8 {\n  margin-left: 66.66666667%; }\n\n.col-xs-offset-7 {\n  margin-left: 58.33333333%; }\n\n.col-xs-offset-6 {\n  margin-left: 50%; }\n\n.col-xs-offset-5 {\n  margin-left: 41.66666667%; }\n\n.col-xs-offset-4 {\n  margin-left: 33.33333333%; }\n\n.col-xs-offset-3 {\n  margin-left: 25%; }\n\n.col-xs-offset-2 {\n  margin-left: 16.66666667%; }\n\n.col-xs-offset-1 {\n  margin-left: 8.33333333%; }\n\n.col-xs-offset-0 {\n  margin-left: 0; }\n\n@media (min-width: 768px) {\n  .col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12 {\n    float: left; }\n  .col-sm-12 {\n    width: 100%; }\n  .col-sm-11 {\n    width: 91.66666667%; }\n  .col-sm-10 {\n    width: 83.33333333%; }\n  .col-sm-9 {\n    width: 75%; }\n  .col-sm-8 {\n    width: 66.66666667%; }\n  .col-sm-7 {\n    width: 58.33333333%; }\n  .col-sm-6 {\n    width: 50%; }\n  .col-sm-5 {\n    width: 41.66666667%; }\n  .col-sm-4 {\n    width: 33.33333333%; }\n  .col-sm-3 {\n    width: 25%; }\n  .col-sm-2 {\n    width: 16.66666667%; }\n  .col-sm-1 {\n    width: 8.33333333%; }\n  .col-sm-pull-12 {\n    right: 100%; }\n  .col-sm-pull-11 {\n    right: 91.66666667%; }\n  .col-sm-pull-10 {\n    right: 83.33333333%; }\n  .col-sm-pull-9 {\n    right: 75%; }\n  .col-sm-pull-8 {\n    right: 66.66666667%; }\n  .col-sm-pull-7 {\n    right: 58.33333333%; }\n  .col-sm-pull-6 {\n    right: 50%; }\n  .col-sm-pull-5 {\n    right: 41.66666667%; }\n  .col-sm-pull-4 {\n    right: 33.33333333%; }\n  .col-sm-pull-3 {\n    right: 25%; }\n  .col-sm-pull-2 {\n    right: 16.66666667%; }\n  .col-sm-pull-1 {\n    right: 8.33333333%; }\n  .col-sm-pull-0 {\n    right: auto; }\n  .col-sm-push-12 {\n    left: 100%; }\n  .col-sm-push-11 {\n    left: 91.66666667%; }\n  .col-sm-push-10 {\n    left: 83.33333333%; }\n  .col-sm-push-9 {\n    left: 75%; }\n  .col-sm-push-8 {\n    left: 66.66666667%; }\n  .col-sm-push-7 {\n    left: 58.33333333%; }\n  .col-sm-push-6 {\n    left: 50%; }\n  .col-sm-push-5 {\n    left: 41.66666667%; }\n  .col-sm-push-4 {\n    left: 33.33333333%; }\n  .col-sm-push-3 {\n    left: 25%; }\n  .col-sm-push-2 {\n    left: 16.66666667%; }\n  .col-sm-push-1 {\n    left: 8.33333333%; }\n  .col-sm-push-0 {\n    left: auto; }\n  .col-sm-offset-12 {\n    margin-left: 100%; }\n  .col-sm-offset-11 {\n    margin-left: 91.66666667%; }\n  .col-sm-offset-10 {\n    margin-left: 83.33333333%; }\n  .col-sm-offset-9 {\n    margin-left: 75%; }\n  .col-sm-offset-8 {\n    margin-left: 66.66666667%; }\n  .col-sm-offset-7 {\n    margin-left: 58.33333333%; }\n  .col-sm-offset-6 {\n    margin-left: 50%; }\n  .col-sm-offset-5 {\n    margin-left: 41.66666667%; }\n  .col-sm-offset-4 {\n    margin-left: 33.33333333%; }\n  .col-sm-offset-3 {\n    margin-left: 25%; }\n  .col-sm-offset-2 {\n    margin-left: 16.66666667%; }\n  .col-sm-offset-1 {\n    margin-left: 8.33333333%; }\n  .col-sm-offset-0 {\n    margin-left: 0; } }\n\n@media (min-width: 992px) {\n  .col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12 {\n    float: left; }\n  .col-md-12 {\n    width: 100%; }\n  .col-md-11 {\n    width: 91.66666667%; }\n  .col-md-10 {\n    width: 83.33333333%; }\n  .col-md-9 {\n    width: 75%; }\n  .col-md-8 {\n    width: 66.66666667%; }\n  .col-md-7 {\n    width: 58.33333333%; }\n  .col-md-6 {\n    width: 50%; }\n  .col-md-5 {\n    width: 41.66666667%; }\n  .col-md-4 {\n    width: 33.33333333%; }\n  .col-md-3 {\n    width: 25%; }\n  .col-md-2 {\n    width: 16.66666667%; }\n  .col-md-1 {\n    width: 8.33333333%; }\n  .col-md-pull-12 {\n    right: 100%; }\n  .col-md-pull-11 {\n    right: 91.66666667%; }\n  .col-md-pull-10 {\n    right: 83.33333333%; }\n  .col-md-pull-9 {\n    right: 75%; }\n  .col-md-pull-8 {\n    right: 66.66666667%; }\n  .col-md-pull-7 {\n    right: 58.33333333%; }\n  .col-md-pull-6 {\n    right: 50%; }\n  .col-md-pull-5 {\n    right: 41.66666667%; }\n  .col-md-pull-4 {\n    right: 33.33333333%; }\n  .col-md-pull-3 {\n    right: 25%; }\n  .col-md-pull-2 {\n    right: 16.66666667%; }\n  .col-md-pull-1 {\n    right: 8.33333333%; }\n  .col-md-pull-0 {\n    right: auto; }\n  .col-md-push-12 {\n    left: 100%; }\n  .col-md-push-11 {\n    left: 91.66666667%; }\n  .col-md-push-10 {\n    left: 83.33333333%; }\n  .col-md-push-9 {\n    left: 75%; }\n  .col-md-push-8 {\n    left: 66.66666667%; }\n  .col-md-push-7 {\n    left: 58.33333333%; }\n  .col-md-push-6 {\n    left: 50%; }\n  .col-md-push-5 {\n    left: 41.66666667%; }\n  .col-md-push-4 {\n    left: 33.33333333%; }\n  .col-md-push-3 {\n    left: 25%; }\n  .col-md-push-2 {\n    left: 16.66666667%; }\n  .col-md-push-1 {\n    left: 8.33333333%; }\n  .col-md-push-0 {\n    left: auto; }\n  .col-md-offset-12 {\n    margin-left: 100%; }\n  .col-md-offset-11 {\n    margin-left: 91.66666667%; }\n  .col-md-offset-10 {\n    margin-left: 83.33333333%; }\n  .col-md-offset-9 {\n    margin-left: 75%; }\n  .col-md-offset-8 {\n    margin-left: 66.66666667%; }\n  .col-md-offset-7 {\n    margin-left: 58.33333333%; }\n  .col-md-offset-6 {\n    margin-left: 50%; }\n  .col-md-offset-5 {\n    margin-left: 41.66666667%; }\n  .col-md-offset-4 {\n    margin-left: 33.33333333%; }\n  .col-md-offset-3 {\n    margin-left: 25%; }\n  .col-md-offset-2 {\n    margin-left: 16.66666667%; }\n  .col-md-offset-1 {\n    margin-left: 8.33333333%; }\n  .col-md-offset-0 {\n    margin-left: 0; } }\n\n@media (min-width: 1200px) {\n  .col-lg-1, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-10, .col-lg-11, .col-lg-12 {\n    float: left; }\n  .col-lg-12 {\n    width: 100%; }\n  .col-lg-11 {\n    width: 91.66666667%; }\n  .col-lg-10 {\n    width: 83.33333333%; }\n  .col-lg-9 {\n    width: 75%; }\n  .col-lg-8 {\n    width: 66.66666667%; }\n  .col-lg-7 {\n    width: 58.33333333%; }\n  .col-lg-6 {\n    width: 50%; }\n  .col-lg-5 {\n    width: 41.66666667%; }\n  .col-lg-4 {\n    width: 33.33333333%; }\n  .col-lg-3 {\n    width: 25%; }\n  .col-lg-2 {\n    width: 16.66666667%; }\n  .col-lg-1 {\n    width: 8.33333333%; }\n  .col-lg-pull-12 {\n    right: 100%; }\n  .col-lg-pull-11 {\n    right: 91.66666667%; }\n  .col-lg-pull-10 {\n    right: 83.33333333%; }\n  .col-lg-pull-9 {\n    right: 75%; }\n  .col-lg-pull-8 {\n    right: 66.66666667%; }\n  .col-lg-pull-7 {\n    right: 58.33333333%; }\n  .col-lg-pull-6 {\n    right: 50%; }\n  .col-lg-pull-5 {\n    right: 41.66666667%; }\n  .col-lg-pull-4 {\n    right: 33.33333333%; }\n  .col-lg-pull-3 {\n    right: 25%; }\n  .col-lg-pull-2 {\n    right: 16.66666667%; }\n  .col-lg-pull-1 {\n    right: 8.33333333%; }\n  .col-lg-pull-0 {\n    right: auto; }\n  .col-lg-push-12 {\n    left: 100%; }\n  .col-lg-push-11 {\n    left: 91.66666667%; }\n  .col-lg-push-10 {\n    left: 83.33333333%; }\n  .col-lg-push-9 {\n    left: 75%; }\n  .col-lg-push-8 {\n    left: 66.66666667%; }\n  .col-lg-push-7 {\n    left: 58.33333333%; }\n  .col-lg-push-6 {\n    left: 50%; }\n  .col-lg-push-5 {\n    left: 41.66666667%; }\n  .col-lg-push-4 {\n    left: 33.33333333%; }\n  .col-lg-push-3 {\n    left: 25%; }\n  .col-lg-push-2 {\n    left: 16.66666667%; }\n  .col-lg-push-1 {\n    left: 8.33333333%; }\n  .col-lg-push-0 {\n    left: auto; }\n  .col-lg-offset-12 {\n    margin-left: 100%; }\n  .col-lg-offset-11 {\n    margin-left: 91.66666667%; }\n  .col-lg-offset-10 {\n    margin-left: 83.33333333%; }\n  .col-lg-offset-9 {\n    margin-left: 75%; }\n  .col-lg-offset-8 {\n    margin-left: 66.66666667%; }\n  .col-lg-offset-7 {\n    margin-left: 58.33333333%; }\n  .col-lg-offset-6 {\n    margin-left: 50%; }\n  .col-lg-offset-5 {\n    margin-left: 41.66666667%; }\n  .col-lg-offset-4 {\n    margin-left: 33.33333333%; }\n  .col-lg-offset-3 {\n    margin-left: 25%; }\n  .col-lg-offset-2 {\n    margin-left: 16.66666667%; }\n  .col-lg-offset-1 {\n    margin-left: 8.33333333%; }\n  .col-lg-offset-0 {\n    margin-left: 0; } }\n\n.clearfix:before, .clearfix:after, .container:before, .container:after, .container-fluid:before, .container-fluid:after, .row:before, .row:after {\n  content: \" \";\n  display: table; }\n\n.clearfix:after, .container:after, .container-fluid:after, .row:after {\n  clear: both; }\n\n.center-block {\n  display: block;\n  margin-left: auto;\n  margin-right: auto; }\n\n.pull-right {\n  float: right !important; }\n\n.pull-left {\n  float: left !important; }\n\n.hide {\n  display: none !important; }\n\n.show {\n  display: block !important; }\n\n.invisible {\n  visibility: hidden; }\n\n.text-hide {\n  font: 0/0 a;\n  color: transparent;\n  text-shadow: none;\n  background-color: transparent;\n  border: 0; }\n\n.hidden {\n  display: none !important; }\n\n.affix {\n  position: fixed; }\n\n@-ms-viewport {\n  width: device-width; }\n\n.visible-xs, .visible-sm, .visible-md, .visible-lg {\n  display: none !important; }\n\n.visible-xs-block, .visible-xs-inline, .visible-xs-inline-block, .visible-sm-block, .visible-sm-inline, .visible-sm-inline-block, .visible-md-block, .visible-md-inline, .visible-md-inline-block, .visible-lg-block, .visible-lg-inline, .visible-lg-inline-block {\n  display: none !important; }\n\n@media (max-width: 767px) {\n  .visible-xs {\n    display: block !important; }\n  table.visible-xs {\n    display: table !important; }\n  tr.visible-xs {\n    display: table-row !important; }\n  th.visible-xs, td.visible-xs {\n    display: table-cell !important; } }\n\n@media (max-width: 767px) {\n  .visible-xs-block {\n    display: block !important; } }\n\n@media (max-width: 767px) {\n  .visible-xs-inline {\n    display: inline !important; } }\n\n@media (max-width: 767px) {\n  .visible-xs-inline-block {\n    display: inline-block !important; } }\n\n@media (min-width: 768px) and (max-width: 991px) {\n  .visible-sm {\n    display: block !important; }\n  table.visible-sm {\n    display: table !important; }\n  tr.visible-sm {\n    display: table-row !important; }\n  th.visible-sm, td.visible-sm {\n    display: table-cell !important; } }\n\n@media (min-width: 768px) and (max-width: 991px) {\n  .visible-sm-block {\n    display: block !important; } }\n\n@media (min-width: 768px) and (max-width: 991px) {\n  .visible-sm-inline {\n    display: inline !important; } }\n\n@media (min-width: 768px) and (max-width: 991px) {\n  .visible-sm-inline-block {\n    display: inline-block !important; } }\n\n@media (min-width: 992px) and (max-width: 1199px) {\n  .visible-md {\n    display: block !important; }\n  table.visible-md {\n    display: table !important; }\n  tr.visible-md {\n    display: table-row !important; }\n  th.visible-md, td.visible-md {\n    display: table-cell !important; } }\n\n@media (min-width: 992px) and (max-width: 1199px) {\n  .visible-md-block {\n    display: block !important; } }\n\n@media (min-width: 992px) and (max-width: 1199px) {\n  .visible-md-inline {\n    display: inline !important; } }\n\n@media (min-width: 992px) and (max-width: 1199px) {\n  .visible-md-inline-block {\n    display: inline-block !important; } }\n\n@media (min-width: 1200px) {\n  .visible-lg {\n    display: block !important; }\n  table.visible-lg {\n    display: table !important; }\n  tr.visible-lg {\n    display: table-row !important; }\n  th.visible-lg, td.visible-lg {\n    display: table-cell !important; } }\n\n@media (min-width: 1200px) {\n  .visible-lg-block {\n    display: block !important; } }\n\n@media (min-width: 1200px) {\n  .visible-lg-inline {\n    display: inline !important; } }\n\n@media (min-width: 1200px) {\n  .visible-lg-inline-block {\n    display: inline-block !important; } }\n\n@media (max-width: 767px) {\n  .hidden-xs {\n    display: none !important; } }\n\n@media (min-width: 768px) and (max-width: 991px) {\n  .hidden-sm {\n    display: none !important; } }\n\n@media (min-width: 992px) and (max-width: 1199px) {\n  .hidden-md {\n    display: none !important; } }\n\n@media (min-width: 1200px) {\n  .hidden-lg {\n    display: none !important; } }\n\n.visible-print {\n  display: none !important; }\n\n@media print {\n  .visible-print {\n    display: block !important; }\n  table.visible-print {\n    display: table !important; }\n  tr.visible-print {\n    display: table-row !important; }\n  th.visible-print, td.visible-print {\n    display: table-cell !important; } }\n\n.visible-print-block {\n  display: none !important; }\n\n@media print {\n  .visible-print-block {\n    display: block !important; } }\n\n.visible-print-inline {\n  display: none !important; }\n\n@media print {\n  .visible-print-inline {\n    display: inline !important; } }\n\n.visible-print-inline-block {\n  display: none !important; }\n\n@media print {\n  .visible-print-inline-block {\n    display: inline-block !important; } }\n\n@media print {\n  .hidden-print {\n    display: none !important; } }\n\n/*!\r\n *  Font Awesome 4.7.0 by @davegandy - http://fontawesome.io - @fontawesome\r\n *  License - http://fontawesome.io/license (Font: SIL OFL 1.1, CSS: MIT License)\r\n */\n/* FONT PATH\r\n * -------------------------- */\n@font-face {\n  font-family: 'FontAwesome';\n  src: url(" + __webpack_require__(15) + ");\n  src: url(" + __webpack_require__(16) + "?#iefix&v=4.7.0) format(\"embedded-opentype\"), url(" + __webpack_require__(17) + ") format(\"woff2\"), url(" + __webpack_require__(18) + ") format(\"woff\"), url(" + __webpack_require__(19) + ") format(\"truetype\"), url(" + __webpack_require__(20) + "#fontawesomeregular) format(\"svg\");\n  font-weight: normal;\n  font-style: normal; }\n\n.fa {\n  display: inline-block;\n  font: normal normal normal 14px/1 FontAwesome;\n  font-size: inherit;\n  text-rendering: auto;\n  -webkit-font-smoothing: antialiased;\n  -moz-osx-font-smoothing: grayscale; }\n\n/* makes the font 33% larger relative to the icon container */\n.fa-lg {\n  font-size: 1.33333em;\n  line-height: 0.75em;\n  vertical-align: -15%; }\n\n.fa-2x {\n  font-size: 2em; }\n\n.fa-3x {\n  font-size: 3em; }\n\n.fa-4x {\n  font-size: 4em; }\n\n.fa-5x {\n  font-size: 5em; }\n\n.fa-fw {\n  width: 1.28571em;\n  text-align: center; }\n\n.fa-ul {\n  padding-left: 0;\n  margin-left: 2.14286em;\n  list-style-type: none; }\n  .fa-ul > li {\n    position: relative; }\n\n.fa-li {\n  position: absolute;\n  left: -2.14286em;\n  width: 2.14286em;\n  top: 0.14286em;\n  text-align: center; }\n  .fa-li.fa-lg {\n    left: -1.85714em; }\n\n.fa-border {\n  padding: .2em .25em .15em;\n  border: solid 0.08em #eee;\n  border-radius: .1em; }\n\n.fa-pull-left {\n  float: left; }\n\n.fa-pull-right {\n  float: right; }\n\n.fa.fa-pull-left {\n  margin-right: .3em; }\n\n.fa.fa-pull-right {\n  margin-left: .3em; }\n\n/* Deprecated as of 4.4.0 */\n.pull-right {\n  float: right; }\n\n.pull-left {\n  float: left; }\n\n.fa.pull-left {\n  margin-right: .3em; }\n\n.fa.pull-right {\n  margin-left: .3em; }\n\n.fa-spin {\n  -webkit-animation: fa-spin 2s infinite linear;\n  animation: fa-spin 2s infinite linear; }\n\n.fa-pulse {\n  -webkit-animation: fa-spin 1s infinite steps(8);\n  animation: fa-spin 1s infinite steps(8); }\n\n@-webkit-keyframes fa-spin {\n  0% {\n    -webkit-transform: rotate(0deg);\n    transform: rotate(0deg); }\n  100% {\n    -webkit-transform: rotate(359deg);\n    transform: rotate(359deg); } }\n\n@keyframes fa-spin {\n  0% {\n    -webkit-transform: rotate(0deg);\n    transform: rotate(0deg); }\n  100% {\n    -webkit-transform: rotate(359deg);\n    transform: rotate(359deg); } }\n\n.fa-rotate-90 {\n  -ms-filter: \"progid:DXImageTransform.Microsoft.BasicImage(rotation=1)\";\n  -webkit-transform: rotate(90deg);\n  -ms-transform: rotate(90deg);\n  transform: rotate(90deg); }\n\n.fa-rotate-180 {\n  -ms-filter: \"progid:DXImageTransform.Microsoft.BasicImage(rotation=2)\";\n  -webkit-transform: rotate(180deg);\n  -ms-transform: rotate(180deg);\n  transform: rotate(180deg); }\n\n.fa-rotate-270 {\n  -ms-filter: \"progid:DXImageTransform.Microsoft.BasicImage(rotation=3)\";\n  -webkit-transform: rotate(270deg);\n  -ms-transform: rotate(270deg);\n  transform: rotate(270deg); }\n\n.fa-flip-horizontal {\n  -ms-filter: \"progid:DXImageTransform.Microsoft.BasicImage(rotation=0, mirror=1)\";\n  -webkit-transform: scale(-1, 1);\n  -ms-transform: scale(-1, 1);\n  transform: scale(-1, 1); }\n\n.fa-flip-vertical {\n  -ms-filter: \"progid:DXImageTransform.Microsoft.BasicImage(rotation=2, mirror=1)\";\n  -webkit-transform: scale(1, -1);\n  -ms-transform: scale(1, -1);\n  transform: scale(1, -1); }\n\n:root .fa-rotate-90,\n:root .fa-rotate-180,\n:root .fa-rotate-270,\n:root .fa-flip-horizontal,\n:root .fa-flip-vertical {\n  filter: none; }\n\n.fa-stack {\n  position: relative;\n  display: inline-block;\n  width: 2em;\n  height: 2em;\n  line-height: 2em;\n  vertical-align: middle; }\n\n.fa-stack-1x, .fa-stack-2x {\n  position: absolute;\n  left: 0;\n  width: 100%;\n  text-align: center; }\n\n.fa-stack-1x {\n  line-height: inherit; }\n\n.fa-stack-2x {\n  font-size: 2em; }\n\n.fa-inverse {\n  color: #fff; }\n\n/* Font Awesome uses the Unicode Private Use Area (PUA) to ensure screen\r\n   readers do not read off random characters that represent icons */\n.fa-glass:before {\n  content: \"\\F000\"; }\n\n.fa-music:before {\n  content: \"\\F001\"; }\n\n.fa-search:before {\n  content: \"\\F002\"; }\n\n.fa-envelope-o:before {\n  content: \"\\F003\"; }\n\n.fa-heart:before {\n  content: \"\\F004\"; }\n\n.fa-star:before {\n  content: \"\\F005\"; }\n\n.fa-star-o:before {\n  content: \"\\F006\"; }\n\n.fa-user:before {\n  content: \"\\F007\"; }\n\n.fa-film:before {\n  content: \"\\F008\"; }\n\n.fa-th-large:before {\n  content: \"\\F009\"; }\n\n.fa-th:before {\n  content: \"\\F00A\"; }\n\n.fa-th-list:before {\n  content: \"\\F00B\"; }\n\n.fa-check:before {\n  content: \"\\F00C\"; }\n\n.fa-remove:before,\n.fa-close:before,\n.fa-times:before {\n  content: \"\\F00D\"; }\n\n.fa-search-plus:before {\n  content: \"\\F00E\"; }\n\n.fa-search-minus:before {\n  content: \"\\F010\"; }\n\n.fa-power-off:before {\n  content: \"\\F011\"; }\n\n.fa-signal:before {\n  content: \"\\F012\"; }\n\n.fa-gear:before,\n.fa-cog:before {\n  content: \"\\F013\"; }\n\n.fa-trash-o:before {\n  content: \"\\F014\"; }\n\n.fa-home:before {\n  content: \"\\F015\"; }\n\n.fa-file-o:before {\n  content: \"\\F016\"; }\n\n.fa-clock-o:before {\n  content: \"\\F017\"; }\n\n.fa-road:before {\n  content: \"\\F018\"; }\n\n.fa-download:before {\n  content: \"\\F019\"; }\n\n.fa-arrow-circle-o-down:before {\n  content: \"\\F01A\"; }\n\n.fa-arrow-circle-o-up:before {\n  content: \"\\F01B\"; }\n\n.fa-inbox:before {\n  content: \"\\F01C\"; }\n\n.fa-play-circle-o:before {\n  content: \"\\F01D\"; }\n\n.fa-rotate-right:before,\n.fa-repeat:before {\n  content: \"\\F01E\"; }\n\n.fa-refresh:before {\n  content: \"\\F021\"; }\n\n.fa-list-alt:before {\n  content: \"\\F022\"; }\n\n.fa-lock:before {\n  content: \"\\F023\"; }\n\n.fa-flag:before {\n  content: \"\\F024\"; }\n\n.fa-headphones:before {\n  content: \"\\F025\"; }\n\n.fa-volume-off:before {\n  content: \"\\F026\"; }\n\n.fa-volume-down:before {\n  content: \"\\F027\"; }\n\n.fa-volume-up:before {\n  content: \"\\F028\"; }\n\n.fa-qrcode:before {\n  content: \"\\F029\"; }\n\n.fa-barcode:before {\n  content: \"\\F02A\"; }\n\n.fa-tag:before {\n  content: \"\\F02B\"; }\n\n.fa-tags:before {\n  content: \"\\F02C\"; }\n\n.fa-book:before {\n  content: \"\\F02D\"; }\n\n.fa-bookmark:before {\n  content: \"\\F02E\"; }\n\n.fa-print:before {\n  content: \"\\F02F\"; }\n\n.fa-camera:before {\n  content: \"\\F030\"; }\n\n.fa-font:before {\n  content: \"\\F031\"; }\n\n.fa-bold:before {\n  content: \"\\F032\"; }\n\n.fa-italic:before {\n  content: \"\\F033\"; }\n\n.fa-text-height:before {\n  content: \"\\F034\"; }\n\n.fa-text-width:before {\n  content: \"\\F035\"; }\n\n.fa-align-left:before {\n  content: \"\\F036\"; }\n\n.fa-align-center:before {\n  content: \"\\F037\"; }\n\n.fa-align-right:before {\n  content: \"\\F038\"; }\n\n.fa-align-justify:before {\n  content: \"\\F039\"; }\n\n.fa-list:before {\n  content: \"\\F03A\"; }\n\n.fa-dedent:before,\n.fa-outdent:before {\n  content: \"\\F03B\"; }\n\n.fa-indent:before {\n  content: \"\\F03C\"; }\n\n.fa-video-camera:before {\n  content: \"\\F03D\"; }\n\n.fa-photo:before,\n.fa-image:before,\n.fa-picture-o:before {\n  content: \"\\F03E\"; }\n\n.fa-pencil:before {\n  content: \"\\F040\"; }\n\n.fa-map-marker:before {\n  content: \"\\F041\"; }\n\n.fa-adjust:before {\n  content: \"\\F042\"; }\n\n.fa-tint:before {\n  content: \"\\F043\"; }\n\n.fa-edit:before,\n.fa-pencil-square-o:before {\n  content: \"\\F044\"; }\n\n.fa-share-square-o:before {\n  content: \"\\F045\"; }\n\n.fa-check-square-o:before {\n  content: \"\\F046\"; }\n\n.fa-arrows:before {\n  content: \"\\F047\"; }\n\n.fa-step-backward:before {\n  content: \"\\F048\"; }\n\n.fa-fast-backward:before {\n  content: \"\\F049\"; }\n\n.fa-backward:before {\n  content: \"\\F04A\"; }\n\n.fa-play:before {\n  content: \"\\F04B\"; }\n\n.fa-pause:before {\n  content: \"\\F04C\"; }\n\n.fa-stop:before {\n  content: \"\\F04D\"; }\n\n.fa-forward:before {\n  content: \"\\F04E\"; }\n\n.fa-fast-forward:before {\n  content: \"\\F050\"; }\n\n.fa-step-forward:before {\n  content: \"\\F051\"; }\n\n.fa-eject:before {\n  content: \"\\F052\"; }\n\n.fa-chevron-left:before {\n  content: \"\\F053\"; }\n\n.fa-chevron-right:before {\n  content: \"\\F054\"; }\n\n.fa-plus-circle:before {\n  content: \"\\F055\"; }\n\n.fa-minus-circle:before {\n  content: \"\\F056\"; }\n\n.fa-times-circle:before {\n  content: \"\\F057\"; }\n\n.fa-check-circle:before {\n  content: \"\\F058\"; }\n\n.fa-question-circle:before {\n  content: \"\\F059\"; }\n\n.fa-info-circle:before {\n  content: \"\\F05A\"; }\n\n.fa-crosshairs:before {\n  content: \"\\F05B\"; }\n\n.fa-times-circle-o:before {\n  content: \"\\F05C\"; }\n\n.fa-check-circle-o:before {\n  content: \"\\F05D\"; }\n\n.fa-ban:before {\n  content: \"\\F05E\"; }\n\n.fa-arrow-left:before {\n  content: \"\\F060\"; }\n\n.fa-arrow-right:before {\n  content: \"\\F061\"; }\n\n.fa-arrow-up:before {\n  content: \"\\F062\"; }\n\n.fa-arrow-down:before {\n  content: \"\\F063\"; }\n\n.fa-mail-forward:before,\n.fa-share:before {\n  content: \"\\F064\"; }\n\n.fa-expand:before {\n  content: \"\\F065\"; }\n\n.fa-compress:before {\n  content: \"\\F066\"; }\n\n.fa-plus:before {\n  content: \"\\F067\"; }\n\n.fa-minus:before {\n  content: \"\\F068\"; }\n\n.fa-asterisk:before {\n  content: \"\\F069\"; }\n\n.fa-exclamation-circle:before {\n  content: \"\\F06A\"; }\n\n.fa-gift:before {\n  content: \"\\F06B\"; }\n\n.fa-leaf:before {\n  content: \"\\F06C\"; }\n\n.fa-fire:before {\n  content: \"\\F06D\"; }\n\n.fa-eye:before {\n  content: \"\\F06E\"; }\n\n.fa-eye-slash:before {\n  content: \"\\F070\"; }\n\n.fa-warning:before,\n.fa-exclamation-triangle:before {\n  content: \"\\F071\"; }\n\n.fa-plane:before {\n  content: \"\\F072\"; }\n\n.fa-calendar:before {\n  content: \"\\F073\"; }\n\n.fa-random:before {\n  content: \"\\F074\"; }\n\n.fa-comment:before {\n  content: \"\\F075\"; }\n\n.fa-magnet:before {\n  content: \"\\F076\"; }\n\n.fa-chevron-up:before {\n  content: \"\\F077\"; }\n\n.fa-chevron-down:before {\n  content: \"\\F078\"; }\n\n.fa-retweet:before {\n  content: \"\\F079\"; }\n\n.fa-shopping-cart:before {\n  content: \"\\F07A\"; }\n\n.fa-folder:before {\n  content: \"\\F07B\"; }\n\n.fa-folder-open:before {\n  content: \"\\F07C\"; }\n\n.fa-arrows-v:before {\n  content: \"\\F07D\"; }\n\n.fa-arrows-h:before {\n  content: \"\\F07E\"; }\n\n.fa-bar-chart-o:before,\n.fa-bar-chart:before {\n  content: \"\\F080\"; }\n\n.fa-twitter-square:before {\n  content: \"\\F081\"; }\n\n.fa-facebook-square:before {\n  content: \"\\F082\"; }\n\n.fa-camera-retro:before {\n  content: \"\\F083\"; }\n\n.fa-key:before {\n  content: \"\\F084\"; }\n\n.fa-gears:before,\n.fa-cogs:before {\n  content: \"\\F085\"; }\n\n.fa-comments:before {\n  content: \"\\F086\"; }\n\n.fa-thumbs-o-up:before {\n  content: \"\\F087\"; }\n\n.fa-thumbs-o-down:before {\n  content: \"\\F088\"; }\n\n.fa-star-half:before {\n  content: \"\\F089\"; }\n\n.fa-heart-o:before {\n  content: \"\\F08A\"; }\n\n.fa-sign-out:before {\n  content: \"\\F08B\"; }\n\n.fa-linkedin-square:before {\n  content: \"\\F08C\"; }\n\n.fa-thumb-tack:before {\n  content: \"\\F08D\"; }\n\n.fa-external-link:before {\n  content: \"\\F08E\"; }\n\n.fa-sign-in:before {\n  content: \"\\F090\"; }\n\n.fa-trophy:before {\n  content: \"\\F091\"; }\n\n.fa-github-square:before {\n  content: \"\\F092\"; }\n\n.fa-upload:before {\n  content: \"\\F093\"; }\n\n.fa-lemon-o:before {\n  content: \"\\F094\"; }\n\n.fa-phone:before {\n  content: \"\\F095\"; }\n\n.fa-square-o:before {\n  content: \"\\F096\"; }\n\n.fa-bookmark-o:before {\n  content: \"\\F097\"; }\n\n.fa-phone-square:before {\n  content: \"\\F098\"; }\n\n.fa-twitter:before {\n  content: \"\\F099\"; }\n\n.fa-facebook-f:before,\n.fa-facebook:before {\n  content: \"\\F09A\"; }\n\n.fa-github:before {\n  content: \"\\F09B\"; }\n\n.fa-unlock:before {\n  content: \"\\F09C\"; }\n\n.fa-credit-card:before {\n  content: \"\\F09D\"; }\n\n.fa-feed:before,\n.fa-rss:before {\n  content: \"\\F09E\"; }\n\n.fa-hdd-o:before {\n  content: \"\\F0A0\"; }\n\n.fa-bullhorn:before {\n  content: \"\\F0A1\"; }\n\n.fa-bell:before {\n  content: \"\\F0F3\"; }\n\n.fa-certificate:before {\n  content: \"\\F0A3\"; }\n\n.fa-hand-o-right:before {\n  content: \"\\F0A4\"; }\n\n.fa-hand-o-left:before {\n  content: \"\\F0A5\"; }\n\n.fa-hand-o-up:before {\n  content: \"\\F0A6\"; }\n\n.fa-hand-o-down:before {\n  content: \"\\F0A7\"; }\n\n.fa-arrow-circle-left:before {\n  content: \"\\F0A8\"; }\n\n.fa-arrow-circle-right:before {\n  content: \"\\F0A9\"; }\n\n.fa-arrow-circle-up:before {\n  content: \"\\F0AA\"; }\n\n.fa-arrow-circle-down:before {\n  content: \"\\F0AB\"; }\n\n.fa-globe:before {\n  content: \"\\F0AC\"; }\n\n.fa-wrench:before {\n  content: \"\\F0AD\"; }\n\n.fa-tasks:before {\n  content: \"\\F0AE\"; }\n\n.fa-filter:before {\n  content: \"\\F0B0\"; }\n\n.fa-briefcase:before {\n  content: \"\\F0B1\"; }\n\n.fa-arrows-alt:before {\n  content: \"\\F0B2\"; }\n\n.fa-group:before,\n.fa-users:before {\n  content: \"\\F0C0\"; }\n\n.fa-chain:before,\n.fa-link:before {\n  content: \"\\F0C1\"; }\n\n.fa-cloud:before {\n  content: \"\\F0C2\"; }\n\n.fa-flask:before {\n  content: \"\\F0C3\"; }\n\n.fa-cut:before,\n.fa-scissors:before {\n  content: \"\\F0C4\"; }\n\n.fa-copy:before,\n.fa-files-o:before {\n  content: \"\\F0C5\"; }\n\n.fa-paperclip:before {\n  content: \"\\F0C6\"; }\n\n.fa-save:before,\n.fa-floppy-o:before {\n  content: \"\\F0C7\"; }\n\n.fa-square:before {\n  content: \"\\F0C8\"; }\n\n.fa-navicon:before,\n.fa-reorder:before,\n.fa-bars:before {\n  content: \"\\F0C9\"; }\n\n.fa-list-ul:before {\n  content: \"\\F0CA\"; }\n\n.fa-list-ol:before {\n  content: \"\\F0CB\"; }\n\n.fa-strikethrough:before {\n  content: \"\\F0CC\"; }\n\n.fa-underline:before {\n  content: \"\\F0CD\"; }\n\n.fa-table:before {\n  content: \"\\F0CE\"; }\n\n.fa-magic:before {\n  content: \"\\F0D0\"; }\n\n.fa-truck:before {\n  content: \"\\F0D1\"; }\n\n.fa-pinterest:before {\n  content: \"\\F0D2\"; }\n\n.fa-pinterest-square:before {\n  content: \"\\F0D3\"; }\n\n.fa-google-plus-square:before {\n  content: \"\\F0D4\"; }\n\n.fa-google-plus:before {\n  content: \"\\F0D5\"; }\n\n.fa-money:before {\n  content: \"\\F0D6\"; }\n\n.fa-caret-down:before {\n  content: \"\\F0D7\"; }\n\n.fa-caret-up:before {\n  content: \"\\F0D8\"; }\n\n.fa-caret-left:before {\n  content: \"\\F0D9\"; }\n\n.fa-caret-right:before {\n  content: \"\\F0DA\"; }\n\n.fa-columns:before {\n  content: \"\\F0DB\"; }\n\n.fa-unsorted:before,\n.fa-sort:before {\n  content: \"\\F0DC\"; }\n\n.fa-sort-down:before,\n.fa-sort-desc:before {\n  content: \"\\F0DD\"; }\n\n.fa-sort-up:before,\n.fa-sort-asc:before {\n  content: \"\\F0DE\"; }\n\n.fa-envelope:before {\n  content: \"\\F0E0\"; }\n\n.fa-linkedin:before {\n  content: \"\\F0E1\"; }\n\n.fa-rotate-left:before,\n.fa-undo:before {\n  content: \"\\F0E2\"; }\n\n.fa-legal:before,\n.fa-gavel:before {\n  content: \"\\F0E3\"; }\n\n.fa-dashboard:before,\n.fa-tachometer:before {\n  content: \"\\F0E4\"; }\n\n.fa-comment-o:before {\n  content: \"\\F0E5\"; }\n\n.fa-comments-o:before {\n  content: \"\\F0E6\"; }\n\n.fa-flash:before,\n.fa-bolt:before {\n  content: \"\\F0E7\"; }\n\n.fa-sitemap:before {\n  content: \"\\F0E8\"; }\n\n.fa-umbrella:before {\n  content: \"\\F0E9\"; }\n\n.fa-paste:before,\n.fa-clipboard:before {\n  content: \"\\F0EA\"; }\n\n.fa-lightbulb-o:before {\n  content: \"\\F0EB\"; }\n\n.fa-exchange:before {\n  content: \"\\F0EC\"; }\n\n.fa-cloud-download:before {\n  content: \"\\F0ED\"; }\n\n.fa-cloud-upload:before {\n  content: \"\\F0EE\"; }\n\n.fa-user-md:before {\n  content: \"\\F0F0\"; }\n\n.fa-stethoscope:before {\n  content: \"\\F0F1\"; }\n\n.fa-suitcase:before {\n  content: \"\\F0F2\"; }\n\n.fa-bell-o:before {\n  content: \"\\F0A2\"; }\n\n.fa-coffee:before {\n  content: \"\\F0F4\"; }\n\n.fa-cutlery:before {\n  content: \"\\F0F5\"; }\n\n.fa-file-text-o:before {\n  content: \"\\F0F6\"; }\n\n.fa-building-o:before {\n  content: \"\\F0F7\"; }\n\n.fa-hospital-o:before {\n  content: \"\\F0F8\"; }\n\n.fa-ambulance:before {\n  content: \"\\F0F9\"; }\n\n.fa-medkit:before {\n  content: \"\\F0FA\"; }\n\n.fa-fighter-jet:before {\n  content: \"\\F0FB\"; }\n\n.fa-beer:before {\n  content: \"\\F0FC\"; }\n\n.fa-h-square:before {\n  content: \"\\F0FD\"; }\n\n.fa-plus-square:before {\n  content: \"\\F0FE\"; }\n\n.fa-angle-double-left:before {\n  content: \"\\F100\"; }\n\n.fa-angle-double-right:before {\n  content: \"\\F101\"; }\n\n.fa-angle-double-up:before {\n  content: \"\\F102\"; }\n\n.fa-angle-double-down:before {\n  content: \"\\F103\"; }\n\n.fa-angle-left:before {\n  content: \"\\F104\"; }\n\n.fa-angle-right:before {\n  content: \"\\F105\"; }\n\n.fa-angle-up:before {\n  content: \"\\F106\"; }\n\n.fa-angle-down:before {\n  content: \"\\F107\"; }\n\n.fa-desktop:before {\n  content: \"\\F108\"; }\n\n.fa-laptop:before {\n  content: \"\\F109\"; }\n\n.fa-tablet:before {\n  content: \"\\F10A\"; }\n\n.fa-mobile-phone:before,\n.fa-mobile:before {\n  content: \"\\F10B\"; }\n\n.fa-circle-o:before {\n  content: \"\\F10C\"; }\n\n.fa-quote-left:before {\n  content: \"\\F10D\"; }\n\n.fa-quote-right:before {\n  content: \"\\F10E\"; }\n\n.fa-spinner:before {\n  content: \"\\F110\"; }\n\n.fa-circle:before {\n  content: \"\\F111\"; }\n\n.fa-mail-reply:before,\n.fa-reply:before {\n  content: \"\\F112\"; }\n\n.fa-github-alt:before {\n  content: \"\\F113\"; }\n\n.fa-folder-o:before {\n  content: \"\\F114\"; }\n\n.fa-folder-open-o:before {\n  content: \"\\F115\"; }\n\n.fa-smile-o:before {\n  content: \"\\F118\"; }\n\n.fa-frown-o:before {\n  content: \"\\F119\"; }\n\n.fa-meh-o:before {\n  content: \"\\F11A\"; }\n\n.fa-gamepad:before {\n  content: \"\\F11B\"; }\n\n.fa-keyboard-o:before {\n  content: \"\\F11C\"; }\n\n.fa-flag-o:before {\n  content: \"\\F11D\"; }\n\n.fa-flag-checkered:before {\n  content: \"\\F11E\"; }\n\n.fa-terminal:before {\n  content: \"\\F120\"; }\n\n.fa-code:before {\n  content: \"\\F121\"; }\n\n.fa-mail-reply-all:before,\n.fa-reply-all:before {\n  content: \"\\F122\"; }\n\n.fa-star-half-empty:before,\n.fa-star-half-full:before,\n.fa-star-half-o:before {\n  content: \"\\F123\"; }\n\n.fa-location-arrow:before {\n  content: \"\\F124\"; }\n\n.fa-crop:before {\n  content: \"\\F125\"; }\n\n.fa-code-fork:before {\n  content: \"\\F126\"; }\n\n.fa-unlink:before,\n.fa-chain-broken:before {\n  content: \"\\F127\"; }\n\n.fa-question:before {\n  content: \"\\F128\"; }\n\n.fa-info:before {\n  content: \"\\F129\"; }\n\n.fa-exclamation:before {\n  content: \"\\F12A\"; }\n\n.fa-superscript:before {\n  content: \"\\F12B\"; }\n\n.fa-subscript:before {\n  content: \"\\F12C\"; }\n\n.fa-eraser:before {\n  content: \"\\F12D\"; }\n\n.fa-puzzle-piece:before {\n  content: \"\\F12E\"; }\n\n.fa-microphone:before {\n  content: \"\\F130\"; }\n\n.fa-microphone-slash:before {\n  content: \"\\F131\"; }\n\n.fa-shield:before {\n  content: \"\\F132\"; }\n\n.fa-calendar-o:before {\n  content: \"\\F133\"; }\n\n.fa-fire-extinguisher:before {\n  content: \"\\F134\"; }\n\n.fa-rocket:before {\n  content: \"\\F135\"; }\n\n.fa-maxcdn:before {\n  content: \"\\F136\"; }\n\n.fa-chevron-circle-left:before {\n  content: \"\\F137\"; }\n\n.fa-chevron-circle-right:before {\n  content: \"\\F138\"; }\n\n.fa-chevron-circle-up:before {\n  content: \"\\F139\"; }\n\n.fa-chevron-circle-down:before {\n  content: \"\\F13A\"; }\n\n.fa-html5:before {\n  content: \"\\F13B\"; }\n\n.fa-css3:before {\n  content: \"\\F13C\"; }\n\n.fa-anchor:before {\n  content: \"\\F13D\"; }\n\n.fa-unlock-alt:before {\n  content: \"\\F13E\"; }\n\n.fa-bullseye:before {\n  content: \"\\F140\"; }\n\n.fa-ellipsis-h:before {\n  content: \"\\F141\"; }\n\n.fa-ellipsis-v:before {\n  content: \"\\F142\"; }\n\n.fa-rss-square:before {\n  content: \"\\F143\"; }\n\n.fa-play-circle:before {\n  content: \"\\F144\"; }\n\n.fa-ticket:before {\n  content: \"\\F145\"; }\n\n.fa-minus-square:before {\n  content: \"\\F146\"; }\n\n.fa-minus-square-o:before {\n  content: \"\\F147\"; }\n\n.fa-level-up:before {\n  content: \"\\F148\"; }\n\n.fa-level-down:before {\n  content: \"\\F149\"; }\n\n.fa-check-square:before {\n  content: \"\\F14A\"; }\n\n.fa-pencil-square:before {\n  content: \"\\F14B\"; }\n\n.fa-external-link-square:before {\n  content: \"\\F14C\"; }\n\n.fa-share-square:before {\n  content: \"\\F14D\"; }\n\n.fa-compass:before {\n  content: \"\\F14E\"; }\n\n.fa-toggle-down:before,\n.fa-caret-square-o-down:before {\n  content: \"\\F150\"; }\n\n.fa-toggle-up:before,\n.fa-caret-square-o-up:before {\n  content: \"\\F151\"; }\n\n.fa-toggle-right:before,\n.fa-caret-square-o-right:before {\n  content: \"\\F152\"; }\n\n.fa-euro:before,\n.fa-eur:before {\n  content: \"\\F153\"; }\n\n.fa-gbp:before {\n  content: \"\\F154\"; }\n\n.fa-dollar:before,\n.fa-usd:before {\n  content: \"\\F155\"; }\n\n.fa-rupee:before,\n.fa-inr:before {\n  content: \"\\F156\"; }\n\n.fa-cny:before,\n.fa-rmb:before,\n.fa-yen:before,\n.fa-jpy:before {\n  content: \"\\F157\"; }\n\n.fa-ruble:before,\n.fa-rouble:before,\n.fa-rub:before {\n  content: \"\\F158\"; }\n\n.fa-won:before,\n.fa-krw:before {\n  content: \"\\F159\"; }\n\n.fa-bitcoin:before,\n.fa-btc:before {\n  content: \"\\F15A\"; }\n\n.fa-file:before {\n  content: \"\\F15B\"; }\n\n.fa-file-text:before {\n  content: \"\\F15C\"; }\n\n.fa-sort-alpha-asc:before {\n  content: \"\\F15D\"; }\n\n.fa-sort-alpha-desc:before {\n  content: \"\\F15E\"; }\n\n.fa-sort-amount-asc:before {\n  content: \"\\F160\"; }\n\n.fa-sort-amount-desc:before {\n  content: \"\\F161\"; }\n\n.fa-sort-numeric-asc:before {\n  content: \"\\F162\"; }\n\n.fa-sort-numeric-desc:before {\n  content: \"\\F163\"; }\n\n.fa-thumbs-up:before {\n  content: \"\\F164\"; }\n\n.fa-thumbs-down:before {\n  content: \"\\F165\"; }\n\n.fa-youtube-square:before {\n  content: \"\\F166\"; }\n\n.fa-youtube:before {\n  content: \"\\F167\"; }\n\n.fa-xing:before {\n  content: \"\\F168\"; }\n\n.fa-xing-square:before {\n  content: \"\\F169\"; }\n\n.fa-youtube-play:before {\n  content: \"\\F16A\"; }\n\n.fa-dropbox:before {\n  content: \"\\F16B\"; }\n\n.fa-stack-overflow:before {\n  content: \"\\F16C\"; }\n\n.fa-instagram:before {\n  content: \"\\F16D\"; }\n\n.fa-flickr:before {\n  content: \"\\F16E\"; }\n\n.fa-adn:before {\n  content: \"\\F170\"; }\n\n.fa-bitbucket:before {\n  content: \"\\F171\"; }\n\n.fa-bitbucket-square:before {\n  content: \"\\F172\"; }\n\n.fa-tumblr:before {\n  content: \"\\F173\"; }\n\n.fa-tumblr-square:before {\n  content: \"\\F174\"; }\n\n.fa-long-arrow-down:before {\n  content: \"\\F175\"; }\n\n.fa-long-arrow-up:before {\n  content: \"\\F176\"; }\n\n.fa-long-arrow-left:before {\n  content: \"\\F177\"; }\n\n.fa-long-arrow-right:before {\n  content: \"\\F178\"; }\n\n.fa-apple:before {\n  content: \"\\F179\"; }\n\n.fa-windows:before {\n  content: \"\\F17A\"; }\n\n.fa-android:before {\n  content: \"\\F17B\"; }\n\n.fa-linux:before {\n  content: \"\\F17C\"; }\n\n.fa-dribbble:before {\n  content: \"\\F17D\"; }\n\n.fa-skype:before {\n  content: \"\\F17E\"; }\n\n.fa-foursquare:before {\n  content: \"\\F180\"; }\n\n.fa-trello:before {\n  content: \"\\F181\"; }\n\n.fa-female:before {\n  content: \"\\F182\"; }\n\n.fa-male:before {\n  content: \"\\F183\"; }\n\n.fa-gittip:before,\n.fa-gratipay:before {\n  content: \"\\F184\"; }\n\n.fa-sun-o:before {\n  content: \"\\F185\"; }\n\n.fa-moon-o:before {\n  content: \"\\F186\"; }\n\n.fa-archive:before {\n  content: \"\\F187\"; }\n\n.fa-bug:before {\n  content: \"\\F188\"; }\n\n.fa-vk:before {\n  content: \"\\F189\"; }\n\n.fa-weibo:before {\n  content: \"\\F18A\"; }\n\n.fa-renren:before {\n  content: \"\\F18B\"; }\n\n.fa-pagelines:before {\n  content: \"\\F18C\"; }\n\n.fa-stack-exchange:before {\n  content: \"\\F18D\"; }\n\n.fa-arrow-circle-o-right:before {\n  content: \"\\F18E\"; }\n\n.fa-arrow-circle-o-left:before {\n  content: \"\\F190\"; }\n\n.fa-toggle-left:before,\n.fa-caret-square-o-left:before {\n  content: \"\\F191\"; }\n\n.fa-dot-circle-o:before {\n  content: \"\\F192\"; }\n\n.fa-wheelchair:before {\n  content: \"\\F193\"; }\n\n.fa-vimeo-square:before {\n  content: \"\\F194\"; }\n\n.fa-turkish-lira:before,\n.fa-try:before {\n  content: \"\\F195\"; }\n\n.fa-plus-square-o:before {\n  content: \"\\F196\"; }\n\n.fa-space-shuttle:before {\n  content: \"\\F197\"; }\n\n.fa-slack:before {\n  content: \"\\F198\"; }\n\n.fa-envelope-square:before {\n  content: \"\\F199\"; }\n\n.fa-wordpress:before {\n  content: \"\\F19A\"; }\n\n.fa-openid:before {\n  content: \"\\F19B\"; }\n\n.fa-institution:before,\n.fa-bank:before,\n.fa-university:before {\n  content: \"\\F19C\"; }\n\n.fa-mortar-board:before,\n.fa-graduation-cap:before {\n  content: \"\\F19D\"; }\n\n.fa-yahoo:before {\n  content: \"\\F19E\"; }\n\n.fa-google:before {\n  content: \"\\F1A0\"; }\n\n.fa-reddit:before {\n  content: \"\\F1A1\"; }\n\n.fa-reddit-square:before {\n  content: \"\\F1A2\"; }\n\n.fa-stumbleupon-circle:before {\n  content: \"\\F1A3\"; }\n\n.fa-stumbleupon:before {\n  content: \"\\F1A4\"; }\n\n.fa-delicious:before {\n  content: \"\\F1A5\"; }\n\n.fa-digg:before {\n  content: \"\\F1A6\"; }\n\n.fa-pied-piper-pp:before {\n  content: \"\\F1A7\"; }\n\n.fa-pied-piper-alt:before {\n  content: \"\\F1A8\"; }\n\n.fa-drupal:before {\n  content: \"\\F1A9\"; }\n\n.fa-joomla:before {\n  content: \"\\F1AA\"; }\n\n.fa-language:before {\n  content: \"\\F1AB\"; }\n\n.fa-fax:before {\n  content: \"\\F1AC\"; }\n\n.fa-building:before {\n  content: \"\\F1AD\"; }\n\n.fa-child:before {\n  content: \"\\F1AE\"; }\n\n.fa-paw:before {\n  content: \"\\F1B0\"; }\n\n.fa-spoon:before {\n  content: \"\\F1B1\"; }\n\n.fa-cube:before {\n  content: \"\\F1B2\"; }\n\n.fa-cubes:before {\n  content: \"\\F1B3\"; }\n\n.fa-behance:before {\n  content: \"\\F1B4\"; }\n\n.fa-behance-square:before {\n  content: \"\\F1B5\"; }\n\n.fa-steam:before {\n  content: \"\\F1B6\"; }\n\n.fa-steam-square:before {\n  content: \"\\F1B7\"; }\n\n.fa-recycle:before {\n  content: \"\\F1B8\"; }\n\n.fa-automobile:before,\n.fa-car:before {\n  content: \"\\F1B9\"; }\n\n.fa-cab:before,\n.fa-taxi:before {\n  content: \"\\F1BA\"; }\n\n.fa-tree:before {\n  content: \"\\F1BB\"; }\n\n.fa-spotify:before {\n  content: \"\\F1BC\"; }\n\n.fa-deviantart:before {\n  content: \"\\F1BD\"; }\n\n.fa-soundcloud:before {\n  content: \"\\F1BE\"; }\n\n.fa-database:before {\n  content: \"\\F1C0\"; }\n\n.fa-file-pdf-o:before {\n  content: \"\\F1C1\"; }\n\n.fa-file-word-o:before {\n  content: \"\\F1C2\"; }\n\n.fa-file-excel-o:before {\n  content: \"\\F1C3\"; }\n\n.fa-file-powerpoint-o:before {\n  content: \"\\F1C4\"; }\n\n.fa-file-photo-o:before,\n.fa-file-picture-o:before,\n.fa-file-image-o:before {\n  content: \"\\F1C5\"; }\n\n.fa-file-zip-o:before,\n.fa-file-archive-o:before {\n  content: \"\\F1C6\"; }\n\n.fa-file-sound-o:before,\n.fa-file-audio-o:before {\n  content: \"\\F1C7\"; }\n\n.fa-file-movie-o:before,\n.fa-file-video-o:before {\n  content: \"\\F1C8\"; }\n\n.fa-file-code-o:before {\n  content: \"\\F1C9\"; }\n\n.fa-vine:before {\n  content: \"\\F1CA\"; }\n\n.fa-codepen:before {\n  content: \"\\F1CB\"; }\n\n.fa-jsfiddle:before {\n  content: \"\\F1CC\"; }\n\n.fa-life-bouy:before,\n.fa-life-buoy:before,\n.fa-life-saver:before,\n.fa-support:before,\n.fa-life-ring:before {\n  content: \"\\F1CD\"; }\n\n.fa-circle-o-notch:before {\n  content: \"\\F1CE\"; }\n\n.fa-ra:before,\n.fa-resistance:before,\n.fa-rebel:before {\n  content: \"\\F1D0\"; }\n\n.fa-ge:before,\n.fa-empire:before {\n  content: \"\\F1D1\"; }\n\n.fa-git-square:before {\n  content: \"\\F1D2\"; }\n\n.fa-git:before {\n  content: \"\\F1D3\"; }\n\n.fa-y-combinator-square:before,\n.fa-yc-square:before,\n.fa-hacker-news:before {\n  content: \"\\F1D4\"; }\n\n.fa-tencent-weibo:before {\n  content: \"\\F1D5\"; }\n\n.fa-qq:before {\n  content: \"\\F1D6\"; }\n\n.fa-wechat:before,\n.fa-weixin:before {\n  content: \"\\F1D7\"; }\n\n.fa-send:before,\n.fa-paper-plane:before {\n  content: \"\\F1D8\"; }\n\n.fa-send-o:before,\n.fa-paper-plane-o:before {\n  content: \"\\F1D9\"; }\n\n.fa-history:before {\n  content: \"\\F1DA\"; }\n\n.fa-circle-thin:before {\n  content: \"\\F1DB\"; }\n\n.fa-header:before {\n  content: \"\\F1DC\"; }\n\n.fa-paragraph:before {\n  content: \"\\F1DD\"; }\n\n.fa-sliders:before {\n  content: \"\\F1DE\"; }\n\n.fa-share-alt:before {\n  content: \"\\F1E0\"; }\n\n.fa-share-alt-square:before {\n  content: \"\\F1E1\"; }\n\n.fa-bomb:before {\n  content: \"\\F1E2\"; }\n\n.fa-soccer-ball-o:before,\n.fa-futbol-o:before {\n  content: \"\\F1E3\"; }\n\n.fa-tty:before {\n  content: \"\\F1E4\"; }\n\n.fa-binoculars:before {\n  content: \"\\F1E5\"; }\n\n.fa-plug:before {\n  content: \"\\F1E6\"; }\n\n.fa-slideshare:before {\n  content: \"\\F1E7\"; }\n\n.fa-twitch:before {\n  content: \"\\F1E8\"; }\n\n.fa-yelp:before {\n  content: \"\\F1E9\"; }\n\n.fa-newspaper-o:before {\n  content: \"\\F1EA\"; }\n\n.fa-wifi:before {\n  content: \"\\F1EB\"; }\n\n.fa-calculator:before {\n  content: \"\\F1EC\"; }\n\n.fa-paypal:before {\n  content: \"\\F1ED\"; }\n\n.fa-google-wallet:before {\n  content: \"\\F1EE\"; }\n\n.fa-cc-visa:before {\n  content: \"\\F1F0\"; }\n\n.fa-cc-mastercard:before {\n  content: \"\\F1F1\"; }\n\n.fa-cc-discover:before {\n  content: \"\\F1F2\"; }\n\n.fa-cc-amex:before {\n  content: \"\\F1F3\"; }\n\n.fa-cc-paypal:before {\n  content: \"\\F1F4\"; }\n\n.fa-cc-stripe:before {\n  content: \"\\F1F5\"; }\n\n.fa-bell-slash:before {\n  content: \"\\F1F6\"; }\n\n.fa-bell-slash-o:before {\n  content: \"\\F1F7\"; }\n\n.fa-trash:before {\n  content: \"\\F1F8\"; }\n\n.fa-copyright:before {\n  content: \"\\F1F9\"; }\n\n.fa-at:before {\n  content: \"\\F1FA\"; }\n\n.fa-eyedropper:before {\n  content: \"\\F1FB\"; }\n\n.fa-paint-brush:before {\n  content: \"\\F1FC\"; }\n\n.fa-birthday-cake:before {\n  content: \"\\F1FD\"; }\n\n.fa-area-chart:before {\n  content: \"\\F1FE\"; }\n\n.fa-pie-chart:before {\n  content: \"\\F200\"; }\n\n.fa-line-chart:before {\n  content: \"\\F201\"; }\n\n.fa-lastfm:before {\n  content: \"\\F202\"; }\n\n.fa-lastfm-square:before {\n  content: \"\\F203\"; }\n\n.fa-toggle-off:before {\n  content: \"\\F204\"; }\n\n.fa-toggle-on:before {\n  content: \"\\F205\"; }\n\n.fa-bicycle:before {\n  content: \"\\F206\"; }\n\n.fa-bus:before {\n  content: \"\\F207\"; }\n\n.fa-ioxhost:before {\n  content: \"\\F208\"; }\n\n.fa-angellist:before {\n  content: \"\\F209\"; }\n\n.fa-cc:before {\n  content: \"\\F20A\"; }\n\n.fa-shekel:before,\n.fa-sheqel:before,\n.fa-ils:before {\n  content: \"\\F20B\"; }\n\n.fa-meanpath:before {\n  content: \"\\F20C\"; }\n\n.fa-buysellads:before {\n  content: \"\\F20D\"; }\n\n.fa-connectdevelop:before {\n  content: \"\\F20E\"; }\n\n.fa-dashcube:before {\n  content: \"\\F210\"; }\n\n.fa-forumbee:before {\n  content: \"\\F211\"; }\n\n.fa-leanpub:before {\n  content: \"\\F212\"; }\n\n.fa-sellsy:before {\n  content: \"\\F213\"; }\n\n.fa-shirtsinbulk:before {\n  content: \"\\F214\"; }\n\n.fa-simplybuilt:before {\n  content: \"\\F215\"; }\n\n.fa-skyatlas:before {\n  content: \"\\F216\"; }\n\n.fa-cart-plus:before {\n  content: \"\\F217\"; }\n\n.fa-cart-arrow-down:before {\n  content: \"\\F218\"; }\n\n.fa-diamond:before {\n  content: \"\\F219\"; }\n\n.fa-ship:before {\n  content: \"\\F21A\"; }\n\n.fa-user-secret:before {\n  content: \"\\F21B\"; }\n\n.fa-motorcycle:before {\n  content: \"\\F21C\"; }\n\n.fa-street-view:before {\n  content: \"\\F21D\"; }\n\n.fa-heartbeat:before {\n  content: \"\\F21E\"; }\n\n.fa-venus:before {\n  content: \"\\F221\"; }\n\n.fa-mars:before {\n  content: \"\\F222\"; }\n\n.fa-mercury:before {\n  content: \"\\F223\"; }\n\n.fa-intersex:before,\n.fa-transgender:before {\n  content: \"\\F224\"; }\n\n.fa-transgender-alt:before {\n  content: \"\\F225\"; }\n\n.fa-venus-double:before {\n  content: \"\\F226\"; }\n\n.fa-mars-double:before {\n  content: \"\\F227\"; }\n\n.fa-venus-mars:before {\n  content: \"\\F228\"; }\n\n.fa-mars-stroke:before {\n  content: \"\\F229\"; }\n\n.fa-mars-stroke-v:before {\n  content: \"\\F22A\"; }\n\n.fa-mars-stroke-h:before {\n  content: \"\\F22B\"; }\n\n.fa-neuter:before {\n  content: \"\\F22C\"; }\n\n.fa-genderless:before {\n  content: \"\\F22D\"; }\n\n.fa-facebook-official:before {\n  content: \"\\F230\"; }\n\n.fa-pinterest-p:before {\n  content: \"\\F231\"; }\n\n.fa-whatsapp:before {\n  content: \"\\F232\"; }\n\n.fa-server:before {\n  content: \"\\F233\"; }\n\n.fa-user-plus:before {\n  content: \"\\F234\"; }\n\n.fa-user-times:before {\n  content: \"\\F235\"; }\n\n.fa-hotel:before,\n.fa-bed:before {\n  content: \"\\F236\"; }\n\n.fa-viacoin:before {\n  content: \"\\F237\"; }\n\n.fa-train:before {\n  content: \"\\F238\"; }\n\n.fa-subway:before {\n  content: \"\\F239\"; }\n\n.fa-medium:before {\n  content: \"\\F23A\"; }\n\n.fa-yc:before,\n.fa-y-combinator:before {\n  content: \"\\F23B\"; }\n\n.fa-optin-monster:before {\n  content: \"\\F23C\"; }\n\n.fa-opencart:before {\n  content: \"\\F23D\"; }\n\n.fa-expeditedssl:before {\n  content: \"\\F23E\"; }\n\n.fa-battery-4:before,\n.fa-battery:before,\n.fa-battery-full:before {\n  content: \"\\F240\"; }\n\n.fa-battery-3:before,\n.fa-battery-three-quarters:before {\n  content: \"\\F241\"; }\n\n.fa-battery-2:before,\n.fa-battery-half:before {\n  content: \"\\F242\"; }\n\n.fa-battery-1:before,\n.fa-battery-quarter:before {\n  content: \"\\F243\"; }\n\n.fa-battery-0:before,\n.fa-battery-empty:before {\n  content: \"\\F244\"; }\n\n.fa-mouse-pointer:before {\n  content: \"\\F245\"; }\n\n.fa-i-cursor:before {\n  content: \"\\F246\"; }\n\n.fa-object-group:before {\n  content: \"\\F247\"; }\n\n.fa-object-ungroup:before {\n  content: \"\\F248\"; }\n\n.fa-sticky-note:before {\n  content: \"\\F249\"; }\n\n.fa-sticky-note-o:before {\n  content: \"\\F24A\"; }\n\n.fa-cc-jcb:before {\n  content: \"\\F24B\"; }\n\n.fa-cc-diners-club:before {\n  content: \"\\F24C\"; }\n\n.fa-clone:before {\n  content: \"\\F24D\"; }\n\n.fa-balance-scale:before {\n  content: \"\\F24E\"; }\n\n.fa-hourglass-o:before {\n  content: \"\\F250\"; }\n\n.fa-hourglass-1:before,\n.fa-hourglass-start:before {\n  content: \"\\F251\"; }\n\n.fa-hourglass-2:before,\n.fa-hourglass-half:before {\n  content: \"\\F252\"; }\n\n.fa-hourglass-3:before,\n.fa-hourglass-end:before {\n  content: \"\\F253\"; }\n\n.fa-hourglass:before {\n  content: \"\\F254\"; }\n\n.fa-hand-grab-o:before,\n.fa-hand-rock-o:before {\n  content: \"\\F255\"; }\n\n.fa-hand-stop-o:before,\n.fa-hand-paper-o:before {\n  content: \"\\F256\"; }\n\n.fa-hand-scissors-o:before {\n  content: \"\\F257\"; }\n\n.fa-hand-lizard-o:before {\n  content: \"\\F258\"; }\n\n.fa-hand-spock-o:before {\n  content: \"\\F259\"; }\n\n.fa-hand-pointer-o:before {\n  content: \"\\F25A\"; }\n\n.fa-hand-peace-o:before {\n  content: \"\\F25B\"; }\n\n.fa-trademark:before {\n  content: \"\\F25C\"; }\n\n.fa-registered:before {\n  content: \"\\F25D\"; }\n\n.fa-creative-commons:before {\n  content: \"\\F25E\"; }\n\n.fa-gg:before {\n  content: \"\\F260\"; }\n\n.fa-gg-circle:before {\n  content: \"\\F261\"; }\n\n.fa-tripadvisor:before {\n  content: \"\\F262\"; }\n\n.fa-odnoklassniki:before {\n  content: \"\\F263\"; }\n\n.fa-odnoklassniki-square:before {\n  content: \"\\F264\"; }\n\n.fa-get-pocket:before {\n  content: \"\\F265\"; }\n\n.fa-wikipedia-w:before {\n  content: \"\\F266\"; }\n\n.fa-safari:before {\n  content: \"\\F267\"; }\n\n.fa-chrome:before {\n  content: \"\\F268\"; }\n\n.fa-firefox:before {\n  content: \"\\F269\"; }\n\n.fa-opera:before {\n  content: \"\\F26A\"; }\n\n.fa-internet-explorer:before {\n  content: \"\\F26B\"; }\n\n.fa-tv:before,\n.fa-television:before {\n  content: \"\\F26C\"; }\n\n.fa-contao:before {\n  content: \"\\F26D\"; }\n\n.fa-500px:before {\n  content: \"\\F26E\"; }\n\n.fa-amazon:before {\n  content: \"\\F270\"; }\n\n.fa-calendar-plus-o:before {\n  content: \"\\F271\"; }\n\n.fa-calendar-minus-o:before {\n  content: \"\\F272\"; }\n\n.fa-calendar-times-o:before {\n  content: \"\\F273\"; }\n\n.fa-calendar-check-o:before {\n  content: \"\\F274\"; }\n\n.fa-industry:before {\n  content: \"\\F275\"; }\n\n.fa-map-pin:before {\n  content: \"\\F276\"; }\n\n.fa-map-signs:before {\n  content: \"\\F277\"; }\n\n.fa-map-o:before {\n  content: \"\\F278\"; }\n\n.fa-map:before {\n  content: \"\\F279\"; }\n\n.fa-commenting:before {\n  content: \"\\F27A\"; }\n\n.fa-commenting-o:before {\n  content: \"\\F27B\"; }\n\n.fa-houzz:before {\n  content: \"\\F27C\"; }\n\n.fa-vimeo:before {\n  content: \"\\F27D\"; }\n\n.fa-black-tie:before {\n  content: \"\\F27E\"; }\n\n.fa-fonticons:before {\n  content: \"\\F280\"; }\n\n.fa-reddit-alien:before {\n  content: \"\\F281\"; }\n\n.fa-edge:before {\n  content: \"\\F282\"; }\n\n.fa-credit-card-alt:before {\n  content: \"\\F283\"; }\n\n.fa-codiepie:before {\n  content: \"\\F284\"; }\n\n.fa-modx:before {\n  content: \"\\F285\"; }\n\n.fa-fort-awesome:before {\n  content: \"\\F286\"; }\n\n.fa-usb:before {\n  content: \"\\F287\"; }\n\n.fa-product-hunt:before {\n  content: \"\\F288\"; }\n\n.fa-mixcloud:before {\n  content: \"\\F289\"; }\n\n.fa-scribd:before {\n  content: \"\\F28A\"; }\n\n.fa-pause-circle:before {\n  content: \"\\F28B\"; }\n\n.fa-pause-circle-o:before {\n  content: \"\\F28C\"; }\n\n.fa-stop-circle:before {\n  content: \"\\F28D\"; }\n\n.fa-stop-circle-o:before {\n  content: \"\\F28E\"; }\n\n.fa-shopping-bag:before {\n  content: \"\\F290\"; }\n\n.fa-shopping-basket:before {\n  content: \"\\F291\"; }\n\n.fa-hashtag:before {\n  content: \"\\F292\"; }\n\n.fa-bluetooth:before {\n  content: \"\\F293\"; }\n\n.fa-bluetooth-b:before {\n  content: \"\\F294\"; }\n\n.fa-percent:before {\n  content: \"\\F295\"; }\n\n.fa-gitlab:before {\n  content: \"\\F296\"; }\n\n.fa-wpbeginner:before {\n  content: \"\\F297\"; }\n\n.fa-wpforms:before {\n  content: \"\\F298\"; }\n\n.fa-envira:before {\n  content: \"\\F299\"; }\n\n.fa-universal-access:before {\n  content: \"\\F29A\"; }\n\n.fa-wheelchair-alt:before {\n  content: \"\\F29B\"; }\n\n.fa-question-circle-o:before {\n  content: \"\\F29C\"; }\n\n.fa-blind:before {\n  content: \"\\F29D\"; }\n\n.fa-audio-description:before {\n  content: \"\\F29E\"; }\n\n.fa-volume-control-phone:before {\n  content: \"\\F2A0\"; }\n\n.fa-braille:before {\n  content: \"\\F2A1\"; }\n\n.fa-assistive-listening-systems:before {\n  content: \"\\F2A2\"; }\n\n.fa-asl-interpreting:before,\n.fa-american-sign-language-interpreting:before {\n  content: \"\\F2A3\"; }\n\n.fa-deafness:before,\n.fa-hard-of-hearing:before,\n.fa-deaf:before {\n  content: \"\\F2A4\"; }\n\n.fa-glide:before {\n  content: \"\\F2A5\"; }\n\n.fa-glide-g:before {\n  content: \"\\F2A6\"; }\n\n.fa-signing:before,\n.fa-sign-language:before {\n  content: \"\\F2A7\"; }\n\n.fa-low-vision:before {\n  content: \"\\F2A8\"; }\n\n.fa-viadeo:before {\n  content: \"\\F2A9\"; }\n\n.fa-viadeo-square:before {\n  content: \"\\F2AA\"; }\n\n.fa-snapchat:before {\n  content: \"\\F2AB\"; }\n\n.fa-snapchat-ghost:before {\n  content: \"\\F2AC\"; }\n\n.fa-snapchat-square:before {\n  content: \"\\F2AD\"; }\n\n.fa-pied-piper:before {\n  content: \"\\F2AE\"; }\n\n.fa-first-order:before {\n  content: \"\\F2B0\"; }\n\n.fa-yoast:before {\n  content: \"\\F2B1\"; }\n\n.fa-themeisle:before {\n  content: \"\\F2B2\"; }\n\n.fa-google-plus-circle:before,\n.fa-google-plus-official:before {\n  content: \"\\F2B3\"; }\n\n.fa-fa:before,\n.fa-font-awesome:before {\n  content: \"\\F2B4\"; }\n\n.fa-handshake-o:before {\n  content: \"\\F2B5\"; }\n\n.fa-envelope-open:before {\n  content: \"\\F2B6\"; }\n\n.fa-envelope-open-o:before {\n  content: \"\\F2B7\"; }\n\n.fa-linode:before {\n  content: \"\\F2B8\"; }\n\n.fa-address-book:before {\n  content: \"\\F2B9\"; }\n\n.fa-address-book-o:before {\n  content: \"\\F2BA\"; }\n\n.fa-vcard:before,\n.fa-address-card:before {\n  content: \"\\F2BB\"; }\n\n.fa-vcard-o:before,\n.fa-address-card-o:before {\n  content: \"\\F2BC\"; }\n\n.fa-user-circle:before {\n  content: \"\\F2BD\"; }\n\n.fa-user-circle-o:before {\n  content: \"\\F2BE\"; }\n\n.fa-user-o:before {\n  content: \"\\F2C0\"; }\n\n.fa-id-badge:before {\n  content: \"\\F2C1\"; }\n\n.fa-drivers-license:before,\n.fa-id-card:before {\n  content: \"\\F2C2\"; }\n\n.fa-drivers-license-o:before,\n.fa-id-card-o:before {\n  content: \"\\F2C3\"; }\n\n.fa-quora:before {\n  content: \"\\F2C4\"; }\n\n.fa-free-code-camp:before {\n  content: \"\\F2C5\"; }\n\n.fa-telegram:before {\n  content: \"\\F2C6\"; }\n\n.fa-thermometer-4:before,\n.fa-thermometer:before,\n.fa-thermometer-full:before {\n  content: \"\\F2C7\"; }\n\n.fa-thermometer-3:before,\n.fa-thermometer-three-quarters:before {\n  content: \"\\F2C8\"; }\n\n.fa-thermometer-2:before,\n.fa-thermometer-half:before {\n  content: \"\\F2C9\"; }\n\n.fa-thermometer-1:before,\n.fa-thermometer-quarter:before {\n  content: \"\\F2CA\"; }\n\n.fa-thermometer-0:before,\n.fa-thermometer-empty:before {\n  content: \"\\F2CB\"; }\n\n.fa-shower:before {\n  content: \"\\F2CC\"; }\n\n.fa-bathtub:before,\n.fa-s15:before,\n.fa-bath:before {\n  content: \"\\F2CD\"; }\n\n.fa-podcast:before {\n  content: \"\\F2CE\"; }\n\n.fa-window-maximize:before {\n  content: \"\\F2D0\"; }\n\n.fa-window-minimize:before {\n  content: \"\\F2D1\"; }\n\n.fa-window-restore:before {\n  content: \"\\F2D2\"; }\n\n.fa-times-rectangle:before,\n.fa-window-close:before {\n  content: \"\\F2D3\"; }\n\n.fa-times-rectangle-o:before,\n.fa-window-close-o:before {\n  content: \"\\F2D4\"; }\n\n.fa-bandcamp:before {\n  content: \"\\F2D5\"; }\n\n.fa-grav:before {\n  content: \"\\F2D6\"; }\n\n.fa-etsy:before {\n  content: \"\\F2D7\"; }\n\n.fa-imdb:before {\n  content: \"\\F2D8\"; }\n\n.fa-ravelry:before {\n  content: \"\\F2D9\"; }\n\n.fa-eercast:before {\n  content: \"\\F2DA\"; }\n\n.fa-microchip:before {\n  content: \"\\F2DB\"; }\n\n.fa-snowflake-o:before {\n  content: \"\\F2DC\"; }\n\n.fa-superpowers:before {\n  content: \"\\F2DD\"; }\n\n.fa-wpexplorer:before {\n  content: \"\\F2DE\"; }\n\n.fa-meetup:before {\n  content: \"\\F2E0\"; }\n\n.sr-only {\n  position: absolute;\n  width: 1px;\n  height: 1px;\n  padding: 0;\n  margin: -1px;\n  overflow: hidden;\n  clip: rect(0, 0, 0, 0);\n  border: 0; }\n\n.sr-only-focusable:active, .sr-only-focusable:focus {\n  position: static;\n  width: auto;\n  height: auto;\n  margin: 0;\n  overflow: visible;\n  clip: auto; }\n\nbody {\n  font-family: \"Fira Sans\", Helvetica, Arial, sans-serif;\n  font-size: 1.3em;\n  font-weight: 400;\n  -webkit-font-smoothing: antialiased !important;\n  -webkit-text-stroke: 0.1px; }\n\nh1 {\n  font-size: 3em;\n  font-weight: 700; }\n\n.subtitle {\n  display: inline-block;\n  font-size: 1.3em;\n  text-transform: uppercase; }\n\n.subtitle--variable {\n  font-style: italic;\n  text-transform: none; }\n\n.subtitle__value {\n  font-size: 1.5em;\n  font-weight: 500; }\n\n.match-padding, h1 {\n  padding: 0 15px; }\n\n.float-right {\n  float: right; }\n\n.float-left {\n  float: left; }\n\n.marginBottom {\n  margin-bottom: 20px; }\n\n.edit-button {\n  color: #fff !important;\n  background-color: #1a566f !important; }\n\n.delete-button {\n  color: #fff !important;\n  background-color: #8a0719 !important; }\n\nbody {\n  padding: 0px !important;\n  margin: 0px; }\n\n.delete__icon {\n  float: right;\n  color: #ab9393; }\n\n.delete_btn {\n  margin-left: 12px; }\n\ninput[type=text], input[type=password], textarea {\n  margin-top: 0.6em;\n  margin-bottom: 0.6em;\n  width: 100%;\n  padding: 0.6em;\n  font-family: \"Fira Sans\", Helvetica, Arial, sans-serif;\n  font-size: 1.3em;\n  color: #000;\n  border: 1.5px solid #000;\n  transition: 0.3s ease;\n  -webkit-font-smoothing: antialiased !important; }\n\ninput[type=text]:focus {\n  border: 1.5px solid #63ECB0;\n  transition: 0.3s ease; }\n\nselect {\n  margin-bottom: 0.6em;\n  width: 100%;\n  padding: 0.25em;\n  font-family: \"Fira Sans\", Helvetica, Arial, sans-serif;\n  font-size: 1.3em;\n  -webkit-font-smoothing: antialiased !important; }\n\noption {\n  width: 100%; }\n\ntextarea {\n  resize: none; }\n\nbutton {\n  padding: 0.6em;\n  font-family: \"Fira Sans\", Helvetica, Arial, sans-serif;\n  font-size: 1.3em;\n  color: #000 !important;\n  background-color: #78C5EB;\n  border: none;\n  transition: 0.2s ease; }\n\nbutton.outline {\n  padding: 0.6em 1em;\n  background-color: #EEE;\n  transition: 0.2s ease;\n  border: 1.5px solid #000; }\n\nbutton:hover {\n  background-color: #78C5EB;\n  transition: 0.2s ease; }\n\ninput, select, option {\n  outline: 0; }\n\n.navbar__btn.navbar__btn--selected a {\n  color: white !important;\n  text-decoration: none; }\n\n.sweet-alert button {\n  color: #fff !important; }\n\n.confirm {\n  background-color: #254d5e !important; }\n\ninput, button, a {\n  text-decoration: none !important; }\n\n.card__container {\n  height: 5.5em;\n  margin-bottom: 0.25em;\n  width: 100%;\n  padding: 1em;\n  background-color: #EEE;\n  cursor: pointer; }\n\n.card__title {\n  display: block;\n  font-size: 2em;\n  font-weight: 700; }\n\n.card__desc {\n  display: block;\n  font-size: 1.3em;\n  font-style: italic; }\n\n.detail__container {\n  margin-bottom: 0.25em;\n  width: 100%;\n  padding: 1em;\n  background-color: #EEE; }\n\n.detail__title {\n  display: block;\n  font-size: 1.5em;\n  font-weight: 700; }\n\n.detail__desc {\n  display: block;\n  font-size: 1.3em;\n  font-style: bold; }\n\n.detail__subtitle {\n  display: block;\n  font-size: 1.5em;\n  font-weight: 500; }\n\n.pagination__container {\n  float: right;\n  vertical-align: middle; }\n\n.pagination__page, .pagination__current {\n  display: inline-block;\n  height: 1.5em;\n  width: 1.5em;\n  padding-top: 0.25em;\n  font-size: 1.5em !important;\n  font-weight: 500;\n  text-align: center;\n  background-color: #EEE;\n  cursor: pointer; }\n\n.pagination__page:hover, .pagination__current:hover {\n  background-color: #78C5EB; }\n\n.pagination__current {\n  background-color: #3E809C;\n  color: #fff;\n  font-weight: 700; }\n\n.sweet-overlay {\n  background-color: #000;\n  -ms-filter: \"progid:DXImageTransform.Microsoft.Alpha(Opacity=40)\";\n  background-color: rgba(0, 0, 0, 0.4);\n  position: fixed;\n  left: 0;\n  right: 0;\n  top: 0;\n  bottom: 0;\n  display: none;\n  z-index: 10000; }\n\n.sweet-alert {\n  background-color: #fff;\n  font-family: 'Open Sans','Helvetica Neue',Helvetica,Arial,sans-serif;\n  width: 478px;\n  padding: 17px;\n  border-radius: 5px;\n  text-align: center;\n  position: fixed;\n  left: 50%;\n  top: 50%;\n  margin-left: -256px;\n  margin-top: -200px;\n  overflow: hidden;\n  display: none;\n  z-index: 99999; }\n\n@media all and (max-width: 540px) {\n  .sweet-alert {\n    width: auto;\n    margin-left: 0;\n    margin-right: 0;\n    left: 15px;\n    right: 15px; } }\n\n.sweet-alert h2 {\n  color: #575757;\n  font-size: 30px;\n  text-align: center;\n  font-weight: 600;\n  text-transform: none;\n  position: relative;\n  margin: 25px 0;\n  padding: 0;\n  line-height: 40px;\n  display: block; }\n\n.sweet-alert p {\n  color: #797979;\n  font-size: 16px;\n  font-weight: 300;\n  position: relative;\n  text-align: inherit;\n  float: none;\n  margin: 0;\n  padding: 0;\n  line-height: normal; }\n\n.sweet-alert button {\n  background-color: #AEDEF4;\n  color: #fff;\n  border: none;\n  box-shadow: none;\n  font-size: 17px;\n  font-weight: 500;\n  -webkit-border-radius: 4px;\n  border-radius: 5px;\n  padding: 10px 32px;\n  margin: 26px 5px 0;\n  cursor: pointer; }\n\n.sweet-alert button:focus {\n  outline: 0;\n  box-shadow: 0 0 2px rgba(128, 179, 235, 0.5), inset 0 0 0 1px rgba(0, 0, 0, 0.05); }\n\n.sweet-alert button:hover {\n  background-color: #a1d9f2; }\n\n.sweet-alert button:active {\n  background-color: #81ccee; }\n\n.sweet-alert button.cancel {\n  background-color: #D0D0D0; }\n\n.sweet-alert button.cancel:hover {\n  background-color: #c8c8c8; }\n\n.sweet-alert button.cancel:active {\n  background-color: #b6b6b6; }\n\n.sweet-alert button.cancel:focus {\n  box-shadow: rgba(197, 205, 211, 0.8) 0 0 2px, rgba(0, 0, 0, 0.0470588) 0 0 0 1px inset !important; }\n\n.sweet-alert button::-moz-focus-inner {\n  border: 0; }\n\n.sweet-alert[data-has-cancel-button=false] button {\n  box-shadow: none !important; }\n\n.sweet-alert[data-has-confirm-button=false][data-has-cancel-button=false] {\n  padding-bottom: 40px; }\n\n.sweet-alert .sa-icon {\n  width: 80px;\n  height: 80px;\n  border: 4px solid gray;\n  -webkit-border-radius: 40px;\n  border-radius: 50%;\n  margin: 20px auto;\n  padding: 0;\n  position: relative;\n  box-sizing: content-box; }\n\n.sweet-alert .sa-icon.sa-error {\n  border-color: #F27474; }\n\n.sweet-alert .sa-icon.sa-error .sa-x-mark {\n  position: relative;\n  display: block; }\n\n.sweet-alert .sa-icon.sa-error .sa-line {\n  position: absolute;\n  height: 5px;\n  width: 47px;\n  background-color: #F27474;\n  display: block;\n  top: 37px;\n  border-radius: 2px; }\n\n.sweet-alert .sa-icon.sa-error .sa-line.sa-left {\n  -webkit-transform: rotate(45deg);\n  transform: rotate(45deg);\n  left: 17px; }\n\n.sweet-alert .sa-icon.sa-error .sa-line.sa-right {\n  -webkit-transform: rotate(-45deg);\n  transform: rotate(-45deg);\n  right: 16px; }\n\n.sweet-alert .sa-icon.sa-warning {\n  border-color: #F8BB86; }\n\n.sweet-alert .sa-icon.sa-warning .sa-body {\n  position: absolute;\n  width: 5px;\n  height: 47px;\n  left: 50%;\n  top: 10px;\n  -webkit-border-radius: 2px;\n  border-radius: 2px;\n  margin-left: -2px;\n  background-color: #F8BB86; }\n\n.sweet-alert .sa-icon.sa-warning .sa-dot {\n  position: absolute;\n  width: 7px;\n  height: 7px;\n  -webkit-border-radius: 50%;\n  border-radius: 50%;\n  margin-left: -3px;\n  left: 50%;\n  bottom: 10px;\n  background-color: #F8BB86; }\n\n.sweet-alert .sa-icon.sa-info {\n  border-color: #C9DAE1; }\n\n.sweet-alert .sa-icon.sa-info::before {\n  content: \"\";\n  position: absolute;\n  width: 5px;\n  height: 29px;\n  left: 50%;\n  bottom: 17px;\n  border-radius: 2px;\n  margin-left: -2px;\n  background-color: #C9DAE1; }\n\n.sweet-alert .sa-icon.sa-info::after {\n  content: \"\";\n  position: absolute;\n  width: 7px;\n  height: 7px;\n  border-radius: 50%;\n  margin-left: -3px;\n  top: 19px;\n  background-color: #C9DAE1; }\n\n.sweet-alert .sa-icon.sa-success {\n  border-color: #A5DC86; }\n\n.sweet-alert .sa-icon.sa-success::after, .sweet-alert .sa-icon.sa-success::before {\n  content: '';\n  position: absolute;\n  width: 60px;\n  height: 120px;\n  background: #fff;\n  -webkit-transform: rotate(45deg);\n  transform: rotate(45deg); }\n\n.sweet-alert .sa-icon.sa-success::before {\n  -webkit-border-radius: 120px 0 0 120px;\n  border-radius: 120px 0 0 120px;\n  top: -7px;\n  left: -33px;\n  -webkit-transform: rotate(-45deg);\n  transform: rotate(-45deg);\n  -webkit-transform-origin: 60px 60px;\n  transform-origin: 60px 60px; }\n\n.sweet-alert .sa-icon.sa-success::after {\n  -webkit-border-radius: 0 120px 120px 0;\n  border-radius: 0 120px 120px 0;\n  top: -11px;\n  left: 30px;\n  -webkit-transform: rotate(-45deg);\n  transform: rotate(-45deg);\n  -webkit-transform-origin: 0 60px;\n  transform-origin: 0 60px; }\n\n.sweet-alert .sa-icon.sa-success .sa-placeholder {\n  width: 80px;\n  height: 80px;\n  border: 4px solid rgba(165, 220, 134, 0.2);\n  -webkit-border-radius: 40px;\n  border-radius: 50%;\n  box-sizing: content-box;\n  position: absolute;\n  left: -4px;\n  top: -4px;\n  z-index: 2; }\n\n.sweet-alert .sa-icon.sa-success .sa-fix {\n  width: 5px;\n  height: 90px;\n  background-color: #fff;\n  position: absolute;\n  left: 28px;\n  top: 8px;\n  z-index: 1;\n  -webkit-transform: rotate(-45deg);\n  transform: rotate(-45deg); }\n\n.sweet-alert .sa-icon.sa-success .sa-line {\n  height: 5px;\n  background-color: #A5DC86;\n  display: block;\n  border-radius: 2px;\n  position: absolute;\n  z-index: 2; }\n\n.sweet-alert .sa-icon.sa-success .sa-line.sa-tip {\n  width: 25px;\n  left: 14px;\n  top: 46px;\n  -webkit-transform: rotate(45deg);\n  transform: rotate(45deg); }\n\n.sweet-alert .sa-icon.sa-success .sa-line.sa-long {\n  width: 47px;\n  right: 8px;\n  top: 38px;\n  -webkit-transform: rotate(-45deg);\n  transform: rotate(-45deg); }\n\n.sweet-alert .sa-icon.sa-custom {\n  background-size: contain;\n  border-radius: 0;\n  border: none;\n  background-position: center center;\n  background-repeat: no-repeat; }\n\n@-webkit-keyframes showSweetAlert {\n  0% {\n    transform: scale(0.7);\n    -webkit-transform: scale(0.7); }\n  45% {\n    transform: scale(1.05);\n    -webkit-transform: scale(1.05); }\n  80% {\n    transform: scale(0.95);\n    -webkit-tranform: scale(0.95); }\n  100% {\n    transform: scale(1);\n    -webkit-transform: scale(1); } }\n\n@keyframes showSweetAlert {\n  0% {\n    transform: scale(0.7);\n    -webkit-transform: scale(0.7); }\n  45% {\n    transform: scale(1.05);\n    -webkit-transform: scale(1.05); }\n  80% {\n    transform: scale(0.95);\n    -webkit-tranform: scale(0.95); }\n  100% {\n    transform: scale(1);\n    -webkit-transform: scale(1); } }\n\n@-webkit-keyframes hideSweetAlert {\n  0% {\n    transform: scale(1);\n    -webkit-transform: scale(1); }\n  100% {\n    transform: scale(0.5);\n    -webkit-transform: scale(0.5); } }\n\n@keyframes hideSweetAlert {\n  0% {\n    transform: scale(1);\n    -webkit-transform: scale(1); }\n  100% {\n    transform: scale(0.5);\n    -webkit-transform: scale(0.5); } }\n\n.showSweetAlert {\n  -webkit-animation: showSweetAlert .3s;\n  animation: showSweetAlert .3s; }\n\n.showSweetAlert[data-animation=none] {\n  -webkit-animation: none;\n  animation: none; }\n\n.hideSweetAlert {\n  -webkit-animation: hideSweetAlert .2s;\n  animation: hideSweetAlert .2s; }\n\n.hideSweetAlert[data-animation=none] {\n  -webkit-animation: none;\n  animation: none; }\n\n@-webkit-keyframes animateSuccessTip {\n  0%, 54% {\n    width: 0;\n    left: 1px;\n    top: 19px; }\n  70% {\n    width: 50px;\n    left: -8px;\n    top: 37px; }\n  84% {\n    width: 17px;\n    left: 21px;\n    top: 48px; }\n  100% {\n    width: 25px;\n    left: 14px;\n    top: 45px; } }\n\n@keyframes animateSuccessTip {\n  0%, 54% {\n    width: 0;\n    left: 1px;\n    top: 19px; }\n  70% {\n    width: 50px;\n    left: -8px;\n    top: 37px; }\n  84% {\n    width: 17px;\n    left: 21px;\n    top: 48px; }\n  100% {\n    width: 25px;\n    left: 14px;\n    top: 45px; } }\n\n@-webkit-keyframes animateSuccessLong {\n  0%, 65% {\n    width: 0;\n    right: 46px;\n    top: 54px; }\n  84% {\n    width: 55px;\n    right: 0;\n    top: 35px; }\n  100% {\n    width: 47px;\n    right: 8px;\n    top: 38px; } }\n\n@keyframes animateSuccessLong {\n  0%, 65% {\n    width: 0;\n    right: 46px;\n    top: 54px; }\n  84% {\n    width: 55px;\n    right: 0;\n    top: 35px; }\n  100% {\n    width: 47px;\n    right: 8px;\n    top: 38px; } }\n\n@-webkit-keyframes rotatePlaceholder {\n  0%, 5% {\n    transform: rotate(-45deg);\n    -webkit-transform: rotate(-45deg); }\n  100%, 12% {\n    transform: rotate(-405deg);\n    -webkit-transform: rotate(-405deg); } }\n\n@keyframes rotatePlaceholder {\n  0%, 5% {\n    transform: rotate(-45deg);\n    -webkit-transform: rotate(-45deg); }\n  100%, 12% {\n    transform: rotate(-405deg);\n    -webkit-transform: rotate(-405deg); } }\n\n.animateSuccessTip {\n  -webkit-animation: animateSuccessTip .75s;\n  animation: animateSuccessTip .75s; }\n\n.animateSuccessLong {\n  -webkit-animation: animateSuccessLong .75s;\n  animation: animateSuccessLong .75s; }\n\n.sa-icon.sa-success.animate::after {\n  -webkit-animation: rotatePlaceholder 4.25s ease-in;\n  animation: rotatePlaceholder 4.25s ease-in; }\n\n@-webkit-keyframes animateErrorIcon {\n  0% {\n    transform: rotateX(100deg);\n    -webkit-transform: rotateX(100deg);\n    opacity: 0; }\n  100% {\n    transform: rotateX(0deg);\n    -webkit-transform: rotateX(0deg);\n    opacity: 1; } }\n\n@keyframes animateErrorIcon {\n  0% {\n    transform: rotateX(100deg);\n    -webkit-transform: rotateX(100deg);\n    opacity: 0; }\n  100% {\n    transform: rotateX(0deg);\n    -webkit-transform: rotateX(0deg);\n    opacity: 1; } }\n\n.animateErrorIcon {\n  -webkit-animation: animateErrorIcon .5s;\n  animation: animateErrorIcon .5s; }\n\n@-webkit-keyframes animateXMark {\n  0%, 50% {\n    transform: scale(0.4);\n    -webkit-transform: scale(0.4);\n    margin-top: 26px;\n    opacity: 0; }\n  80% {\n    transform: scale(1.15);\n    -webkit-transform: scale(1.15);\n    margin-top: -6px; }\n  100% {\n    transform: scale(1);\n    -webkit-transform: scale(1);\n    margin-top: 0;\n    opacity: 1; } }\n\n@keyframes animateXMark {\n  0%, 50% {\n    transform: scale(0.4);\n    -webkit-transform: scale(0.4);\n    margin-top: 26px;\n    opacity: 0; }\n  80% {\n    transform: scale(1.15);\n    -webkit-transform: scale(1.15);\n    margin-top: -6px; }\n  100% {\n    transform: scale(1);\n    -webkit-transform: scale(1);\n    margin-top: 0;\n    opacity: 1; } }\n\n.animateXMark {\n  -webkit-animation: animateXMark .5s;\n  animation: animateXMark .5s; }\n\n@-webkit-keyframes pulseWarning {\n  0% {\n    border-color: #F8D486; }\n  100% {\n    border-color: #F8BB86; } }\n\n@keyframes pulseWarning {\n  0% {\n    border-color: #F8D486; }\n  100% {\n    border-color: #F8BB86; } }\n\n.pulseWarning {\n  -webkit-animation: pulseWarning .75s infinite alternate;\n  animation: pulseWarning .75s infinite alternate; }\n\n@-webkit-keyframes pulseWarningIns {\n  0% {\n    background-color: #F8D486; }\n  100% {\n    background-color: #F8BB86; } }\n\n@keyframes pulseWarningIns {\n  0% {\n    background-color: #F8D486; }\n  100% {\n    background-color: #F8BB86; } }\n\n.pulseWarningIns {\n  -webkit-animation: pulseWarningIns .75s infinite alternate;\n  animation: pulseWarningIns .75s infinite alternate; }\n\n.header__background {\n  height: 4em; }\n\n.header__app-text {\n  height: 4em;\n  font-size: 2em;\n  font-weight: 500;\n  line-height: 2em; }\n\n.header__user-container {\n  margin-top: 0.75em;\n  height: 4em;\n  text-align: right; }\n\n.header__user-name, .header__user-title {\n  display: block;\n  font-size: 1.3em;\n  font-weight: 500; }\n\n.header__user-title {\n  font-weight: 400; }\n\n.header__user-alignment {\n  display: inline-block;\n  padding: 0 0.25em;\n  vertical-align: top; }\n\nimg.header__logo {\n  height: 2em;\n  width: auto;\n  vertical-align: sub; }\n\n.navbar__background {\n  height: 4em;\n  background-color: #EEE; }\n\n.navbar__btn {\n  display: inline-block;\n  height: 2.7em;\n  margin-left: -0.15em;\n  padding: 0.6em 1em 0 1em;\n  width: auto;\n  font-size: 1.5em;\n  font-weight: 500;\n  line-height: 1.5em;\n  text-align: center;\n  cursor: auto;\n  transition: 0.1s ease; }\n\n.navbar__btn:hover, .navbar__btn--action:hover {\n  background-color: #78C5EB;\n  color: #000;\n  cursor: pointer;\n  transition: 0.1s ease; }\n\n.navbar__btn--selected {\n  background-color: #3E809C;\n  color: #fff; }\n\n.navbar__btn--action {\n  background-color: #63ECB0;\n  color: #000; }\n\n.navbar__btn--action:hover {\n  background-color: #009E60;\n  color: #fff; }\n\n.navbar__action-container {\n  text-align: right; }\n\n.navbar__btn a {\n  text-decoration: none !important; }\n\n.main {\n  max-width: 320px;\n  margin: 0 auto; }\n\n.login-or {\n  position: relative;\n  font-size: 18px;\n  color: #aaa;\n  margin-top: 10px;\n  margin-bottom: 10px;\n  padding-top: 10px;\n  padding-bottom: 10px; }\n\n.span-or {\n  display: block;\n  position: absolute;\n  left: 50%;\n  top: -2px;\n  margin-left: -25px;\n  background-color: #fff;\n  width: 50px;\n  text-align: center; }\n\n.hr-or {\n  background-color: #cdcdcd;\n  height: 1px;\n  margin-top: 0px !important;\n  margin-bottom: 0px !important; }\n\nh3 {\n  text-align: center;\n  line-height: 300%; }\n", ""]);
 
 // exports
 
@@ -225,7 +226,7 @@ exports = module.exports = __webpack_require__(0)(undefined);
 
 
 // module
-exports.push([module.i, "@font-face {\n    font-family: 'Fira Sans';\n    src: url(" + __webpack_require__(5) + ") format('woff2'),\n         url(" + __webpack_require__(6) + ") format('woff');\n    font-weight: 700;\n    font-style: normal;\n}\n\n@font-face {\n    font-family: 'Fira Sans';\n    src: url(" + __webpack_require__(7) + ") format('woff2'),\n         url(" + __webpack_require__(8) + ") format('woff');\n    font-weight: 400;\n    font-style: italic;\n}\n\n@font-face {\n    font-family: 'Fira Sans';\n    src: url(" + __webpack_require__(9) + ") format('woff2'),\n         url(" + __webpack_require__(10) + ") format('woff');\n    font-weight: 500;\n    font-style: normal;\n}\n\n@font-face {\n    font-family: 'Fira Sans';\n    src: url(" + __webpack_require__(11) + ") format('woff2'),\n         url(" + __webpack_require__(12) + ") format('woff');\n    font-weight: 500;\n    font-style: italic;\n}\n\n@font-face {\n    font-family: 'Fira Sans';\n    src: url(" + __webpack_require__(13) + ") format('woff2'),\n         url(" + __webpack_require__(14) + ") format('woff');\n    font-weight: 400;\n    font-style: normal;\n}", ""]);
+exports.push([module.i, "@font-face {\r\n    font-family: 'Fira Sans';\r\n    src: url(" + __webpack_require__(5) + ") format('woff2'),\r\n         url(" + __webpack_require__(6) + ") format('woff');\r\n    font-weight: 700;\r\n    font-style: normal;\r\n}\r\n\r\n@font-face {\r\n    font-family: 'Fira Sans';\r\n    src: url(" + __webpack_require__(7) + ") format('woff2'),\r\n         url(" + __webpack_require__(8) + ") format('woff');\r\n    font-weight: 400;\r\n    font-style: italic;\r\n}\r\n\r\n@font-face {\r\n    font-family: 'Fira Sans';\r\n    src: url(" + __webpack_require__(9) + ") format('woff2'),\r\n         url(" + __webpack_require__(10) + ") format('woff');\r\n    font-weight: 500;\r\n    font-style: normal;\r\n}\r\n\r\n@font-face {\r\n    font-family: 'Fira Sans';\r\n    src: url(" + __webpack_require__(11) + ") format('woff2'),\r\n         url(" + __webpack_require__(12) + ") format('woff');\r\n    font-weight: 500;\r\n    font-style: italic;\r\n}\r\n\r\n@font-face {\r\n    font-family: 'Fira Sans';\r\n    src: url(" + __webpack_require__(13) + ") format('woff2'),\r\n         url(" + __webpack_require__(14) + ") format('woff');\r\n    font-weight: 400;\r\n    font-style: normal;\r\n}", ""]);
 
 // exports
 
@@ -793,61 +794,11 @@ module.exports = angular;
 /***/ (function(module, exports) {
 
 /**
- * @license AngularJS v1.6.5
+ * @license AngularJS v1.6.4
  * (c) 2010-2017 Google, Inc. http://angularjs.org
  * License: MIT
  */
 (function(window) {'use strict';
-
-/* exported
-  minErrConfig,
-  errorHandlingConfig,
-  isValidObjectMaxDepth
-*/
-
-var minErrConfig = {
-  objectMaxDepth: 5
-};
-
-/**
- * @ngdoc function
- * @name angular.errorHandlingConfig
- * @module ng
- * @kind function
- *
- * @description
- * Configure several aspects of error handling in AngularJS if used as a setter or return the
- * current configuration if used as a getter. The following options are supported:
- *
- * - **objectMaxDepth**: The maximum depth to which objects are traversed when stringified for error messages.
- *
- * Omitted or undefined options will leave the corresponding configuration values unchanged.
- *
- * @param {Object=} config - The configuration object. May only contain the options that need to be
- *     updated. Supported keys:
- *
- * * `objectMaxDepth`  **{Number}** - The max depth for stringifying objects. Setting to a
- *   non-positive or non-numeric value, removes the max depth limit.
- *   Default: 5
- */
-function errorHandlingConfig(config) {
-  if (isObject(config)) {
-    if (isDefined(config.objectMaxDepth)) {
-      minErrConfig.objectMaxDepth = isValidObjectMaxDepth(config.objectMaxDepth) ? config.objectMaxDepth : NaN;
-    }
-  } else {
-    return minErrConfig;
-  }
-}
-
-/**
- * @private
- * @param {Number} maxDepth
- * @return {boolean}
- */
-function isValidObjectMaxDepth(maxDepth) {
-  return isNumber(maxDepth) && maxDepth > 0;
-}
 
 /**
  * @description
@@ -900,7 +851,7 @@ function minErr(module, ErrorConstructor) {
       return match;
     });
 
-    message += '\nhttp://errors.angularjs.org/1.6.5/' +
+    message += '\nhttp://errors.angularjs.org/1.6.4/' +
       (module ? module + '/' : '') + code;
 
     for (i = 0, paramPrefix = '?'; i < templateArgs.length; i++, paramPrefix = '&') {
@@ -956,7 +907,6 @@ function minErr(module, ErrorConstructor) {
   isNumber,
   isNumberNaN,
   isDate,
-  isError,
   isArray,
   isFunction,
   isRegExp,
@@ -1040,6 +990,50 @@ var VALIDITY_STATE_PROPERTY = 'validity';
 
 
 var hasOwnProperty = Object.prototype.hasOwnProperty;
+
+var minErrConfig = {
+  objectMaxDepth: 5
+};
+
+ /**
+ * @ngdoc function
+ * @name angular.errorHandlingConfig
+ * @module ng
+ * @kind function
+ *
+ * @description
+ * Configure several aspects of error handling in AngularJS if used as a setter or return the
+ * current configuration if used as a getter. The following options are supported:
+ *
+ * - **objectMaxDepth**: The maximum depth to which objects are traversed when stringified for error messages.
+ *
+ * Omitted or undefined options will leave the corresponding configuration values unchanged.
+ *
+ * @param {Object=} config - The configuration object. May only contain the options that need to be
+ *     updated. Supported keys:
+ *
+ * * `objectMaxDepth`  **{Number}** - The max depth for stringifying objects. Setting to a
+ *   non-positive or non-numeric value, removes the max depth limit.
+ *   Default: 5
+ */
+function errorHandlingConfig(config) {
+  if (isObject(config)) {
+    if (isDefined(config.objectMaxDepth)) {
+      minErrConfig.objectMaxDepth = isValidObjectMaxDepth(config.objectMaxDepth) ? config.objectMaxDepth : NaN;
+    }
+  } else {
+    return minErrConfig;
+  }
+}
+
+/**
+ * @private
+ * @param {Number} maxDepth
+ * @return {boolean}
+ */
+function isValidObjectMaxDepth(maxDepth) {
+  return isNumber(maxDepth) && maxDepth > 0;
+}
 
 /**
  * @ngdoc function
@@ -1348,20 +1342,6 @@ function extend(dst) {
 * Unlike {@link angular.extend extend()}, `merge()` recursively descends into object properties of source
 * objects, performing a deep copy.
 *
-* @deprecated
-* sinceVersion="1.6.5"
-* This function is deprecated, but will not be removed in the 1.x lifecycle.
-* There are edge cases (see {@link angular.merge#known-issues known issues}) that are not
-* supported by this function. We suggest
-* using [lodash's merge()](https://lodash.com/docs/4.17.4#merge) instead.
-*
-* @knownIssue
-* This is a list of (known) object types that are not handled correctly by this function:
-* - [`Blob`](https://developer.mozilla.org/docs/Web/API/Blob)
-* - [`MediaStream`](https://developer.mozilla.org/docs/Web/API/MediaStream)
-* - [`CanvasGradient`](https://developer.mozilla.org/docs/Web/API/CanvasGradient)
-* - AngularJS {@link $rootScope.Scope scopes};
-*
 * @param {Object} dst Destination object.
 * @param {...Object} src Source object(s).
 * @returns {Object} Reference to `dst`.
@@ -1570,24 +1550,6 @@ function isDate(value) {
  * @returns {boolean} True if `value` is an `Array`.
  */
 var isArray = Array.isArray;
-
-/**
- * @description
- * Determines if a reference is an `Error`.
- * Loosely based on https://www.npmjs.com/package/iserror
- *
- * @param {*} value Reference to check.
- * @returns {boolean} True if `value` is an `Error`.
- */
-function isError(value) {
-  var tag = toString.call(value);
-  switch (tag) {
-    case '[object Error]': return true;
-    case '[object Exception]': return true;
-    case '[object DOMException]': return true;
-    default: return value instanceof Error;
-  }
-}
 
 /**
  * @ngdoc function
@@ -2269,7 +2231,7 @@ function fromJson(json) {
 
 var ALL_COLONS = /:/g;
 function timezoneToOffset(timezone, fallback) {
-  // Support: IE 9-11 only, Edge 13-15+
+  // Support: IE 9-11 only, Edge 13-14+
   // IE/Edge do not "understand" colon (`:`) in timezone
   timezone = timezone.replace(ALL_COLONS, '');
   var requestedTimezoneOffset = Date.parse('Jan 01, 1970 00:00:00 ' + timezone) / 60000;
@@ -2296,7 +2258,12 @@ function convertTimezoneToLocal(date, timezone, reverse) {
  * @returns {string} Returns the string representation of the element.
  */
 function startingTag(element) {
-  element = jqLite(element).clone().empty();
+  element = jqLite(element).clone();
+  try {
+    // turns out IE does not let you set .html() on elements which
+    // are not allowed to have children. So we just ignore it.
+    element.empty();
+  } catch (e) { /* empty */ }
   var elemHtml = jqLite('<div>').append(element).html();
   try {
     return element[0].nodeType === NODE_TYPE_TEXT ? lowercase(elemHtml) :
@@ -2434,7 +2401,6 @@ function allowAutoBootstrap(document) {
   var script = document.currentScript;
 
   if (!script) {
-    // Support: IE 9-11 only
     // IE does not have `document.currentScript`
     return true;
   }
@@ -3426,7 +3392,7 @@ function shallowCopy(src, dst) {
   return dst || src;
 }
 
-/* exported toDebugString */
+/* global toDebugString: true */
 
 function serializeObject(obj, maxDepth) {
   var seen = [];
@@ -3435,9 +3401,7 @@ function serializeObject(obj, maxDepth) {
   // and a very deep object can cause a performance issue, so we copy the object
   // based on this specific depth and then stringify it.
   if (isValidObjectMaxDepth(maxDepth)) {
-    // This file is also included in `angular-loader`, so `copy()` might not always be available in
-    // the closure. Therefore, it is lazily retrieved as `angular.copy()` when needed.
-    obj = angular.copy(obj, null, maxDepth);
+    obj = copy(obj, null, maxDepth);
   }
   return JSON.stringify(obj, function(key, val) {
     val = toJsonReplacer(key, val);
@@ -3578,11 +3542,11 @@ function toDebugString(obj, maxDepth) {
 var version = {
   // These placeholder strings will be replaced by grunt's `build` task.
   // They need to be double- or single-quoted.
-  full: '1.6.5',
+  full: '1.6.4',
   major: 1,
   minor: 6,
-  dot: 5,
-  codeName: 'toffee-salinization'
+  dot: 4,
+  codeName: 'phenomenal-footnote'
 };
 
 
@@ -3728,7 +3692,7 @@ function publishExternalAPI(angular) {
       });
     }
   ])
-  .info({ angularVersion: '1.6.5' });
+  .info({ angularVersion: '1.6.4' });
 }
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -6317,7 +6281,6 @@ var $$CoreAnimateQueueProvider = /** @this */ function() {
 var $AnimateProvider = ['$provide', /** @this */ function($provide) {
   var provider = this;
   var classNameFilter = null;
-  var customFilter = null;
 
   this.$$registeredAnimations = Object.create(null);
 
@@ -6372,51 +6335,6 @@ var $AnimateProvider = ['$provide', /** @this */ function($provide) {
 
   /**
    * @ngdoc method
-   * @name $animateProvider#customFilter
-   *
-   * @description
-   * Sets and/or returns the custom filter function that is used to "filter" animations, i.e.
-   * determine if an animation is allowed or not. When no filter is specified (the default), no
-   * animation will be blocked. Setting the `customFilter` value will only allow animations for
-   * which the filter function's return value is truthy.
-   *
-   * This allows to easily create arbitrarily complex rules for filtering animations, such as
-   * allowing specific events only, or enabling animations on specific subtrees of the DOM, etc.
-   * Filtering animations can also boost performance for low-powered devices, as well as
-   * applications containing a lot of structural operations.
-   *
-   * <div class="alert alert-success">
-   *   **Best Practice:**
-   *   Keep the filtering function as lean as possible, because it will be called for each DOM
-   *   action (e.g. insertion, removal, class change) performed by "animation-aware" directives.
-   *   See {@link guide/animations#which-directives-support-animations- here} for a list of built-in
-   *   directives that support animations.
-   *   Performing computationally expensive or time-consuming operations on each call of the
-   *   filtering function can make your animations sluggish.
-   * </div>
-   *
-   * **Note:** If present, `customFilter` will be checked before
-   * {@link $animateProvider#classNameFilter classNameFilter}.
-   *
-   * @param {Function=} filterFn - The filter function which will be used to filter all animations.
-   *   If a falsy value is returned, no animation will be performed. The function will be called
-   *   with the following arguments:
-   *   - **node** `{DOMElement}` - The DOM element to be animated.
-   *   - **event** `{String}` - The name of the animation event (e.g. `enter`, `leave`, `addClass`
-   *     etc).
-   *   - **options** `{Object}` - A collection of options/styles used for the animation.
-   * @return {Function} The current filter function or `null` if there is none set.
-   */
-  this.customFilter = function(filterFn) {
-    if (arguments.length === 1) {
-      customFilter = isFunction(filterFn) ? filterFn : null;
-    }
-
-    return customFilter;
-  };
-
-  /**
-   * @ngdoc method
    * @name $animateProvider#classNameFilter
    *
    * @description
@@ -6426,11 +6344,6 @@ var $AnimateProvider = ['$provide', /** @this */ function($provide) {
    * When setting the `classNameFilter` value, animations will only be performed on elements
    * that successfully match the filter expression. This in turn can boost performance
    * for low-powered devices as well as applications containing a lot of structural operations.
-   *
-   * **Note:** If present, `classNameFilter` will be checked after
-   * {@link $animateProvider#customFilter customFilter}. If `customFilter` is present and returns
-   * false, `classNameFilter` will not be checked.
-   *
    * @param {RegExp=} expression The className expression which will be checked against all animations
    * @return {RegExp} The current CSS className expression value. If null then there is no expression value
    */
@@ -9020,8 +8933,7 @@ function $CompileProvider($provide, $$sanitizeUriProvider) {
    * @ngdoc method
    * @name $compileProvider#component
    * @module ng
-   * @param {string|Object} name Name of the component in camelCase (i.e. `myComp` which will match `<my-comp>`),
-   *    or an object map of components where the keys are the names and the values are the component definition objects.
+   * @param {string} name Name of the component in camelCase (i.e. `myComp` which will match `<my-comp>`)
    * @param {Object} options Component definition object (a simplified
    *    {@link ng.$compile#directive-definition-object directive definition object}),
    *    with the following properties (all optional):
@@ -9104,11 +9016,6 @@ function $CompileProvider($provide, $$sanitizeUriProvider) {
    * See also {@link ng.$compileProvider#directive $compileProvider.directive()}.
    */
   this.component = function registerComponent(name, options) {
-    if (!isString(name)) {
-      forEach(name, reverseParams(bind(this, registerComponent)));
-      return this;
-    }
-
     var controller = options.controller || function() {};
 
     function factory($injector) {
@@ -11044,7 +10951,7 @@ function $CompileProvider($provide, $$sanitizeUriProvider) {
           }
           linkQueue = null;
         }).catch(function(error) {
-          if (isError(error)) {
+          if (error instanceof Error) {
             $exceptionHandler(error);
           }
         });
@@ -12187,6 +12094,12 @@ function $HttpProvider() {
    * {@link ng.$cacheFactory `$cacheFactory`} to enable or disable caching of HTTP responses
    * by default. See {@link $http#caching $http Caching} for more information.
    *
+   * - **`defaults.xsrfCookieName`** - {string} - Name of cookie containing the XSRF token.
+   * Defaults value is `'XSRF-TOKEN'`.
+   *
+   * - **`defaults.xsrfHeaderName`** - {string} - Name of HTTP header to populate with the
+   * XSRF token. Defaults value is `'X-XSRF-TOKEN'`.
+   *
    * - **`defaults.headers`** - {Object} - Default headers for all $http requests.
    * Refer to {@link ng.$http#setting-http-headers $http} for documentation on
    * setting default headers.
@@ -12195,38 +12108,15 @@ function $HttpProvider() {
    *     - **`defaults.headers.put`**
    *     - **`defaults.headers.patch`**
    *
-   * - **`defaults.jsonpCallbackParam`** - `{string}` - the name of the query parameter that passes the name of the
-   * callback in a JSONP request. The value of this parameter will be replaced with the expression generated by the
-   * {@link $jsonpCallbacks} service. Defaults to `'callback'`.
    *
    * - **`defaults.paramSerializer`** - `{string|function(Object<string,string>):string}` - A function
    *  used to the prepare string representation of request parameters (specified as an object).
    *  If specified as string, it is interpreted as a function registered with the {@link auto.$injector $injector}.
    *  Defaults to {@link ng.$httpParamSerializer $httpParamSerializer}.
    *
-   * - **`defaults.transformRequest`** -
-   * `{Array<function(data, headersGetter)>|function(data, headersGetter)}` -
-   * An array of functions (or a single function) which are applied to the request data.
-   * By default, this is an array with one request transformation function:
-   *
-   *   - If the `data` property of the request configuration object contains an object, serialize it
-   *     into JSON format.
-   *
-   * - **`defaults.transformResponse`** -
-   * `{Array<function(data, headersGetter, status)>|function(data, headersGetter, status)}` -
-   * An array of functions (or a single function) which are applied to the response data. By default,
-   * this is an array which applies one response transformation function that does two things:
-   *
-   *  - If XSRF prefix is detected, strip it
-   *    (see {@link ng.$http#security-considerations Security Considerations in the $http docs}).
-   *  - If the `Content-Type` is `application/json` or the response looks like JSON,
-   *    deserialize it using a JSON parser.
-   *
-   * - **`defaults.xsrfCookieName`** - {string} - Name of cookie containing the XSRF token.
-   * Defaults value is `'XSRF-TOKEN'`.
-   *
-   * - **`defaults.xsrfHeaderName`** - {string} - Name of HTTP header to populate with the
-   * XSRF token. Defaults value is `'X-XSRF-TOKEN'`.
+   * - **`defaults.jsonpCallbackParam`** - `{string}` - the name of the query parameter that passes the name of the
+   * callback in a JSONP request. The value of this parameter will be replaced with the expression generated by the
+   * {@link $jsonpCallbacks} service. Defaults to `'callback'`.
    *
    **/
   var defaults = this.defaults = {
@@ -12490,18 +12380,15 @@ function $HttpProvider() {
      *
      * Angular provides the following default transformations:
      *
-     * Request transformations (`$httpProvider.defaults.transformRequest` and `$http.defaults.transformRequest`) is
-     * an array with one function that does the following:
+     * Request transformations (`$httpProvider.defaults.transformRequest` and `$http.defaults.transformRequest`):
      *
      * - If the `data` property of the request configuration object contains an object, serialize it
      *   into JSON format.
      *
-     * Response transformations (`$httpProvider.defaults.transformResponse` and `$http.defaults.transformResponse`) is
-     * an array with one function that does the following:
+     * Response transformations (`$httpProvider.defaults.transformResponse` and `$http.defaults.transformResponse`):
      *
      *  - If XSRF prefix is detected, strip it (see Security Considerations section below).
-     *  - If the `Content-Type` is `application/json` or the response looks like JSON,
-   *      deserialize it using a JSON parser.
+     *  - If JSON response is detected, deserialize it using a JSON parser.
      *
      *
      * ### Overriding the Default Transformations Per Request
@@ -14138,7 +14025,7 @@ function $IntervalProvider() {
     interval.cancel = function(promise) {
       if (promise && promise.$$intervalId in intervals) {
         // Interval cancels should not report as unhandled promise.
-        markQExceptionHandled(intervals[promise.$$intervalId].promise);
+        intervals[promise.$$intervalId].promise.catch(noop);
         intervals[promise.$$intervalId].reject('canceled');
         $window.clearInterval(promise.$$intervalId);
         delete intervals[promise.$$intervalId];
@@ -15280,14 +15167,6 @@ function $LocationProvider() {
  *
  * The main purpose of this service is to simplify debugging and troubleshooting.
  *
- * To reveal the location of the calls to `$log` in the JavaScript console,
- * you can "blackbox" the AngularJS source in your browser:
- *
- * [Mozilla description of blackboxing](https://developer.mozilla.org/en-US/docs/Tools/Debugger/How_to/Black_box_a_source).
- * [Chrome description of blackboxing](https://developer.chrome.com/devtools/docs/blackboxing).
- *
- * Note: Not all browsers support blackboxing.
- *
  * The default is to log `debug` messages. You can use
  * {@link ng.$logProvider ng.$logProvider#debugEnabled} to change this.
  *
@@ -15409,7 +15288,7 @@ function $LogProvider() {
     };
 
     function formatError(arg) {
-      if (isError(arg)) {
+      if (arg instanceof Error) {
         if (arg.stack && formatStackTrace) {
           arg = (arg.message && arg.stack.indexOf(arg.message) === -1)
               ? 'Error: ' + arg.message + '\n' + arg.stack
@@ -15423,17 +15302,29 @@ function $LogProvider() {
 
     function consoleLog(type) {
       var console = $window.console || {},
-          logFn = console[type] || console.log || noop;
+          logFn = console[type] || console.log || noop,
+          hasApply = false;
 
-      return function() {
-        var args = [];
-        forEach(arguments, function(arg) {
-          args.push(formatError(arg));
-        });
-        // Support: IE 9 only
-        // console methods don't inherit from Function.prototype in IE 9 so we can't
-        // call `logFn.apply(console, args)` directly.
-        return Function.prototype.apply.call(logFn, console, args);
+      // Note: reading logFn.apply throws an error in IE11 in IE8 document mode.
+      // The reason behind this is that console.log has type "object" in IE8...
+      try {
+        hasApply = !!logFn.apply;
+      } catch (e) { /* empty */ }
+
+      if (hasApply) {
+        return function() {
+          var args = [];
+          forEach(arguments, function(arg) {
+            args.push(formatError(arg));
+          });
+          return logFn.apply(console, args);
+        };
+      }
+
+      // we are IE which either doesn't have window.console => this is noop and we do nothing,
+      // or we are IE where console.log doesn't have apply so we log at least first 2 args
+      return function(arg1, arg2) {
+        logFn(arg1, arg2 == null ? '' : arg2);
       };
     }
   }];
@@ -16061,47 +15952,15 @@ function isStateless($filter, filterName) {
   return !fn.$stateful;
 }
 
-var PURITY_ABSOLUTE = 1;
-var PURITY_RELATIVE = 2;
-
-// Detect nodes which could depend on non-shallow state of objects
-function isPure(node, parentIsPure) {
-  switch (node.type) {
-    // Computed members might invoke a stateful toString()
-    case AST.MemberExpression:
-      if (node.computed) {
-        return false;
-      }
-      break;
-
-    // Unary always convert to primative
-    case AST.UnaryExpression:
-      return PURITY_ABSOLUTE;
-
-    // The binary + operator can invoke a stateful toString().
-    case AST.BinaryExpression:
-      return node.operator !== '+' ? PURITY_ABSOLUTE : false;
-
-    // Functions / filters probably read state from within objects
-    case AST.CallExpression:
-      return false;
-  }
-
-  return (undefined === parentIsPure) ? PURITY_RELATIVE : parentIsPure;
-}
-
-function findConstantAndWatchExpressions(ast, $filter, parentIsPure) {
+function findConstantAndWatchExpressions(ast, $filter) {
   var allConstants;
   var argsToWatch;
   var isStatelessFilter;
-
-  var astIsPure = ast.isPure = isPure(ast, parentIsPure);
-
   switch (ast.type) {
   case AST.Program:
     allConstants = true;
     forEach(ast.body, function(expr) {
-      findConstantAndWatchExpressions(expr.expression, $filter, astIsPure);
+      findConstantAndWatchExpressions(expr.expression, $filter);
       allConstants = allConstants && expr.expression.constant;
     });
     ast.constant = allConstants;
@@ -16111,26 +15970,26 @@ function findConstantAndWatchExpressions(ast, $filter, parentIsPure) {
     ast.toWatch = [];
     break;
   case AST.UnaryExpression:
-    findConstantAndWatchExpressions(ast.argument, $filter, astIsPure);
+    findConstantAndWatchExpressions(ast.argument, $filter);
     ast.constant = ast.argument.constant;
     ast.toWatch = ast.argument.toWatch;
     break;
   case AST.BinaryExpression:
-    findConstantAndWatchExpressions(ast.left, $filter, astIsPure);
-    findConstantAndWatchExpressions(ast.right, $filter, astIsPure);
+    findConstantAndWatchExpressions(ast.left, $filter);
+    findConstantAndWatchExpressions(ast.right, $filter);
     ast.constant = ast.left.constant && ast.right.constant;
     ast.toWatch = ast.left.toWatch.concat(ast.right.toWatch);
     break;
   case AST.LogicalExpression:
-    findConstantAndWatchExpressions(ast.left, $filter, astIsPure);
-    findConstantAndWatchExpressions(ast.right, $filter, astIsPure);
+    findConstantAndWatchExpressions(ast.left, $filter);
+    findConstantAndWatchExpressions(ast.right, $filter);
     ast.constant = ast.left.constant && ast.right.constant;
     ast.toWatch = ast.constant ? [] : [ast];
     break;
   case AST.ConditionalExpression:
-    findConstantAndWatchExpressions(ast.test, $filter, astIsPure);
-    findConstantAndWatchExpressions(ast.alternate, $filter, astIsPure);
-    findConstantAndWatchExpressions(ast.consequent, $filter, astIsPure);
+    findConstantAndWatchExpressions(ast.test, $filter);
+    findConstantAndWatchExpressions(ast.alternate, $filter);
+    findConstantAndWatchExpressions(ast.consequent, $filter);
     ast.constant = ast.test.constant && ast.alternate.constant && ast.consequent.constant;
     ast.toWatch = ast.constant ? [] : [ast];
     break;
@@ -16139,9 +15998,9 @@ function findConstantAndWatchExpressions(ast, $filter, parentIsPure) {
     ast.toWatch = [ast];
     break;
   case AST.MemberExpression:
-    findConstantAndWatchExpressions(ast.object, $filter, astIsPure);
+    findConstantAndWatchExpressions(ast.object, $filter);
     if (ast.computed) {
-      findConstantAndWatchExpressions(ast.property, $filter, astIsPure);
+      findConstantAndWatchExpressions(ast.property, $filter);
     }
     ast.constant = ast.object.constant && (!ast.computed || ast.property.constant);
     ast.toWatch = [ast];
@@ -16151,7 +16010,7 @@ function findConstantAndWatchExpressions(ast, $filter, parentIsPure) {
     allConstants = isStatelessFilter;
     argsToWatch = [];
     forEach(ast.arguments, function(expr) {
-      findConstantAndWatchExpressions(expr, $filter, astIsPure);
+      findConstantAndWatchExpressions(expr, $filter);
       allConstants = allConstants && expr.constant;
       if (!expr.constant) {
         argsToWatch.push.apply(argsToWatch, expr.toWatch);
@@ -16161,8 +16020,8 @@ function findConstantAndWatchExpressions(ast, $filter, parentIsPure) {
     ast.toWatch = isStatelessFilter ? argsToWatch : [ast];
     break;
   case AST.AssignmentExpression:
-    findConstantAndWatchExpressions(ast.left, $filter, astIsPure);
-    findConstantAndWatchExpressions(ast.right, $filter, astIsPure);
+    findConstantAndWatchExpressions(ast.left, $filter);
+    findConstantAndWatchExpressions(ast.right, $filter);
     ast.constant = ast.left.constant && ast.right.constant;
     ast.toWatch = [ast];
     break;
@@ -16170,7 +16029,7 @@ function findConstantAndWatchExpressions(ast, $filter, parentIsPure) {
     allConstants = true;
     argsToWatch = [];
     forEach(ast.elements, function(expr) {
-      findConstantAndWatchExpressions(expr, $filter, astIsPure);
+      findConstantAndWatchExpressions(expr, $filter);
       allConstants = allConstants && expr.constant;
       if (!expr.constant) {
         argsToWatch.push.apply(argsToWatch, expr.toWatch);
@@ -16183,13 +16042,13 @@ function findConstantAndWatchExpressions(ast, $filter, parentIsPure) {
     allConstants = true;
     argsToWatch = [];
     forEach(ast.properties, function(property) {
-      findConstantAndWatchExpressions(property.value, $filter, astIsPure);
+      findConstantAndWatchExpressions(property.value, $filter);
       allConstants = allConstants && property.value.constant && !property.computed;
       if (!property.value.constant) {
         argsToWatch.push.apply(argsToWatch, property.value.toWatch);
       }
       if (property.computed) {
-        findConstantAndWatchExpressions(property.key, $filter, astIsPure);
+        findConstantAndWatchExpressions(property.key, $filter);
         if (!property.key.constant) {
           argsToWatch.push.apply(argsToWatch, property.key.toWatch);
         }
@@ -16274,7 +16133,7 @@ ASTCompiler.prototype = {
       var intoId = self.nextId();
       self.recurse(watch, intoId);
       self.return_(intoId);
-      self.state.inputs.push({name: fnKey, isPure: watch.isPure});
+      self.state.inputs.push(fnKey);
       watch.watchId = key;
     });
     this.state.computing = 'fn';
@@ -16310,16 +16169,13 @@ ASTCompiler.prototype = {
 
   watchFns: function() {
     var result = [];
-    var inputs = this.state.inputs;
+    var fns = this.state.inputs;
     var self = this;
-    forEach(inputs, function(input) {
-      result.push('var ' + input.name + '=' + self.generateFunction(input.name, 's'));
-      if (input.isPure) {
-        result.push(input.name, '.isPure=' + JSON.stringify(input.isPure) + ';');
-      }
+    forEach(fns, function(name) {
+      result.push('var ' + name + '=' + self.generateFunction(name, 's'));
     });
-    if (inputs.length) {
-      result.push('fn.inputs=[' + inputs.map(function(i) { return i.name; }).join(',') + '];');
+    if (fns.length) {
+      result.push('fn.inputs=[' + fns.join(',') + '];');
     }
     return result.join('');
   },
@@ -16725,7 +16581,6 @@ ASTInterpreter.prototype = {
       inputs = [];
       forEach(toWatch, function(watch, key) {
         var input = self.recurse(watch);
-        input.isPure = watch.isPure;
         watch.input = input;
         inputs.push(input);
         watch.watchId = key;
@@ -17240,8 +17095,8 @@ function $ParseProvider() {
             if (parsedExpression.constant) {
               parsedExpression.$$watchDelegate = constantWatchDelegate;
             } else if (oneTime) {
-              parsedExpression.$$watchDelegate = parsedExpression.literal ?
-                  oneTimeLiteralWatchDelegate : oneTimeWatchDelegate;
+              parsedExpression.oneTime = true;
+              parsedExpression.$$watchDelegate = oneTimeWatchDelegate;
             } else if (parsedExpression.inputs) {
               parsedExpression.$$watchDelegate = inputsWatchDelegate;
             }
@@ -17292,7 +17147,7 @@ function $ParseProvider() {
         inputExpressions = inputExpressions[0];
         return scope.$watch(function expressionInputWatch(scope) {
           var newInputValue = inputExpressions(scope);
-          if (!expressionInputDirtyCheck(newInputValue, oldInputValueOf, inputExpressions.isPure)) {
+          if (!expressionInputDirtyCheck(newInputValue, oldInputValueOf, parsedExpression.literal)) {
             lastResult = parsedExpression(scope, undefined, undefined, [newInputValue]);
             oldInputValueOf = newInputValue && getValueOf(newInputValue);
           }
@@ -17312,7 +17167,7 @@ function $ParseProvider() {
 
         for (var i = 0, ii = inputExpressions.length; i < ii; i++) {
           var newInputValue = inputExpressions[i](scope);
-          if (changed || (changed = !expressionInputDirtyCheck(newInputValue, oldInputValueOfValues[i], inputExpressions[i].isPure))) {
+          if (changed || (changed = !expressionInputDirtyCheck(newInputValue, oldInputValueOfValues[i], parsedExpression.literal))) {
             oldInputValues[i] = newInputValue;
             oldInputValueOfValues[i] = newInputValue && getValueOf(newInputValue);
           }
@@ -17327,6 +17182,7 @@ function $ParseProvider() {
     }
 
     function oneTimeWatchDelegate(scope, listener, objectEquality, parsedExpression, prettyPrintExpression) {
+      var isDone = parsedExpression.literal ? isAllDefined : isDefined;
       var unwatch, lastValue;
       if (parsedExpression.inputs) {
         unwatch = inputsWatchDelegate(scope, oneTimeListener, objectEquality, parsedExpression, prettyPrintExpression);
@@ -17343,9 +17199,9 @@ function $ParseProvider() {
         if (isFunction(listener)) {
           listener(value, old, scope);
         }
-        if (isDefined(value)) {
+        if (isDone(value)) {
           scope.$$postDigest(function() {
-            if (isDefined(lastValue)) {
+            if (isDone(lastValue)) {
               unwatch();
             }
           });
@@ -17353,31 +17209,12 @@ function $ParseProvider() {
       }
     }
 
-    function oneTimeLiteralWatchDelegate(scope, listener, objectEquality, parsedExpression) {
-      var unwatch, lastValue;
-      unwatch = scope.$watch(function oneTimeWatch(scope) {
-        return parsedExpression(scope);
-      }, function oneTimeListener(value, old, scope) {
-        lastValue = value;
-        if (isFunction(listener)) {
-          listener(value, old, scope);
-        }
-        if (isAllDefined(value)) {
-          scope.$$postDigest(function() {
-            if (isAllDefined(lastValue)) unwatch();
-          });
-        }
-      }, objectEquality);
-
-      return unwatch;
-
-      function isAllDefined(value) {
-        var allDefined = true;
-        forEach(value, function(val) {
-          if (!isDefined(val)) allDefined = false;
-        });
-        return allDefined;
-      }
+    function isAllDefined(value) {
+      var allDefined = true;
+      forEach(value, function(val) {
+        if (!isDefined(val)) allDefined = false;
+      });
+      return allDefined;
     }
 
     function constantWatchDelegate(scope, listener, objectEquality, parsedExpression) {
@@ -17393,41 +17230,37 @@ function $ParseProvider() {
       var watchDelegate = parsedExpression.$$watchDelegate;
       var useInputs = false;
 
-      var regularWatch =
-          watchDelegate !== oneTimeLiteralWatchDelegate &&
-          watchDelegate !== oneTimeWatchDelegate;
+      var isDone = parsedExpression.literal ? isAllDefined : isDefined;
 
-      var fn = regularWatch ? function regularInterceptedExpression(scope, locals, assign, inputs) {
+      function regularInterceptedExpression(scope, locals, assign, inputs) {
         var value = useInputs && inputs ? inputs[0] : parsedExpression(scope, locals, assign, inputs);
         return interceptorFn(value, scope, locals);
-      } : function oneTimeInterceptedExpression(scope, locals, assign, inputs) {
-        var value = parsedExpression(scope, locals, assign, inputs);
+      }
+
+      function oneTimeInterceptedExpression(scope, locals, assign, inputs) {
+        var value = useInputs && inputs ? inputs[0] : parsedExpression(scope, locals, assign, inputs);
         var result = interceptorFn(value, scope, locals);
         // we only return the interceptor's result if the
         // initial value is defined (for bind-once)
-        return isDefined(value) ? result : value;
-      };
+        return isDone(value) ? result : value;
+      }
 
-      // Propagate $$watchDelegates other then inputsWatchDelegate
+      var fn = parsedExpression.oneTime ? oneTimeInterceptedExpression : regularInterceptedExpression;
+
+      // Propogate the literal/oneTime attributes
+      fn.literal = parsedExpression.literal;
+      fn.oneTime = parsedExpression.oneTime;
+
+      // Propagate or create inputs / $$watchDelegates
       useInputs = !parsedExpression.inputs;
       if (watchDelegate && watchDelegate !== inputsWatchDelegate) {
         fn.$$watchDelegate = watchDelegate;
         fn.inputs = parsedExpression.inputs;
       } else if (!interceptorFn.$stateful) {
-        // Treat interceptor like filters - assume non-stateful by default and use the inputsWatchDelegate
+        // If there is an interceptor, but no watchDelegate then treat the interceptor like
+        // we treat filters - it is assumed to be a pure function unless flagged with $stateful
         fn.$$watchDelegate = inputsWatchDelegate;
         fn.inputs = parsedExpression.inputs ? parsedExpression.inputs : [parsedExpression];
-      }
-
-      if (fn.inputs) {
-        fn.inputs = fn.inputs.map(function(e) {
-              // Remove the isPure flag of inputs when it is not absolute because they are now wrapped in a
-              // potentially non-pure interceptor function.
-              if (e.isPure === PURITY_RELATIVE) {
-                return function depurifier(s) { return e(s); };
-              }
-              return e;
-            });
       }
 
       return fn;
@@ -17715,7 +17548,7 @@ function $$QProvider() {
  * @param {function(function)} nextTick Function for executing functions in the next turn.
  * @param {function(...*)} exceptionHandler Function into which unexpected exceptions are passed for
  *     debugging purposes.
- * @param {boolean=} errorOnUnhandledRejections Whether an error should be generated on unhandled
+ @ param {=boolean} errorOnUnhandledRejections Whether an error should be generated on unhandled
  *     promises rejections.
  * @returns {object} Promise manager.
  */
@@ -17786,7 +17619,7 @@ function qFactory(nextTick, exceptionHandler, errorOnUnhandledRejections) {
     state.pending = undefined;
     try {
       for (var i = 0, ii = pending.length; i < ii; ++i) {
-        markQStateExceptionHandled(state);
+        state.pur = true;
         promise = pending[i][0];
         fn = pending[i][state.status];
         try {
@@ -17813,10 +17646,10 @@ function qFactory(nextTick, exceptionHandler, errorOnUnhandledRejections) {
     // eslint-disable-next-line no-unmodified-loop-condition
     while (!queueSize && checkQueue.length) {
       var toCheck = checkQueue.shift();
-      if (!isStateExceptionHandled(toCheck)) {
-        markQStateExceptionHandled(toCheck);
+      if (!toCheck.pur) {
+        toCheck.pur = true;
         var errorMessage = 'Possibly unhandled rejection: ' + toDebugString(toCheck.value);
-        if (isError(toCheck.value)) {
+        if (toCheck.value instanceof Error) {
           exceptionHandler(toCheck.value, errorMessage);
         } else {
           exceptionHandler(errorMessage);
@@ -17826,7 +17659,7 @@ function qFactory(nextTick, exceptionHandler, errorOnUnhandledRejections) {
   }
 
   function scheduleProcessQueue(state) {
-    if (errorOnUnhandledRejections && !state.pending && state.status === 2 && !isStateExceptionHandled(state)) {
+    if (errorOnUnhandledRejections && !state.pending && state.status === 2 && !state.pur) {
       if (queueSize === 0 && checkQueue.length === 0) {
         nextTick(processChecks);
       }
@@ -18105,16 +17938,6 @@ function qFactory(nextTick, exceptionHandler, errorOnUnhandledRejections) {
   $Q.race = race;
 
   return $Q;
-}
-
-function isStateExceptionHandled(state) {
-  return !!state.pur;
-}
-function markQStateExceptionHandled(state) {
-  state.pur = true;
-}
-function markQExceptionHandled(q) {
-  markQStateExceptionHandled(q.$$state);
 }
 
 /** @this */
@@ -18597,12 +18420,6 @@ function $RootScopeProvider() {
        *   values are examined for changes on every call to `$digest`.
        * - The `listener` is called whenever any expression in the `watchExpressions` array changes.
        *
-       * `$watchGroup` is more performant than watching each expression individually, and should be
-       * used when the listener does not need to know which expression has changed.
-       * If the listener needs to know which expression has changed,
-       * {@link ng.$rootScope.Scope#$watch $watch()} or
-       * {@link ng.$rootScope.Scope#$watchCollection $watchCollection()} should be used.
-       *
        * @param {Array.<string|Function(scope)>} watchExpressions Array of expressions that will be individually
        * watched using {@link ng.$rootScope.Scope#$watch $watch()}
        *
@@ -18611,34 +18428,7 @@ function $RootScopeProvider() {
        *    The `newValues` array contains the current values of the `watchExpressions`, with the indexes matching
        *    those of `watchExpression`
        *    and the `oldValues` array contains the previous values of the `watchExpressions`, with the indexes matching
-       *    those of `watchExpression`.
-       *
-       *    Note that `newValues` and `oldValues` reflect the differences in each **individual**
-       *    expression, and not the difference of the values between each call of the listener.
-       *    That means the difference between `newValues` and `oldValues` cannot be used to determine
-       *    which expression has changed / remained stable:
-       *
-       *    ```js
-       *
-       *    $scope.$watchGroup(['v1', 'v2'], function(newValues, oldValues) {
-       *      console.log(newValues, oldValues);
-       *    });
-       *
-       *    // newValues, oldValues initially
-       *    // [undefined, undefined], [undefined, undefined]
-       *
-       *    $scope.v1 = 'a';
-       *    $scope.v2 = 'a';
-       *
-       *    // ['a', 'a'], [undefined, undefined]
-       *
-       *    $scope.v2 = 'b'
-       *
-       *    // v1 hasn't changed since it became `'a'`, therefore its oldValue is still `undefined`
-       *    // ['a', 'b'], [undefined, 'a']
-       *
-       *    ```
-       *
+       *    those of `watchExpression`
        *    The `scope` refers to the current scope.
        * @returns {function()} Returns a de-registration function for all listeners.
        */
@@ -21213,7 +21003,7 @@ function $TimeoutProvider() {
     timeout.cancel = function(promise) {
       if (promise && promise.$$timeoutId in deferreds) {
         // Timeout cancels should not report an unhandled promise.
-        markQExceptionHandled(deferreds[promise.$$timeoutId].promise);
+        deferreds[promise.$$timeoutId].promise.catch(noop);
         deferreds[promise.$$timeoutId].reject('canceled');
         delete deferreds[promise.$$timeoutId];
         return $browser.defer.cancel(promise.$$timeoutId);
@@ -21648,7 +21438,7 @@ function $FilterProvider($provide) {
  *
  * @param {function(actual, expected)|true|false} [comparator] Comparator which is used in
  *     determining if values retrieved using `expression` (when it is not a function) should be
- *     considered a match based on the expected value (from the filter expression) and actual
+ *     considered a match based on the the expected value (from the filter expression) and actual
  *     value (from the object in the array).
  *
  *   Can be one of:
@@ -22567,9 +22357,6 @@ function jsonFilter() {
  * @kind function
  * @description
  * Converts string to lowercase.
- *
- * See the {@link ng.uppercase uppercase filter documentation} for a functionally identical example.
- *
  * @see angular.lowercase
  */
 var lowercaseFilter = valueFn(lowercase);
@@ -22581,23 +22368,7 @@ var lowercaseFilter = valueFn(lowercase);
  * @kind function
  * @description
  * Converts string to uppercase.
- * @example
-   <example module="uppercaseFilterExample" name="filter-uppercase">
-     <file name="index.html">
-       <script>
-         angular.module('uppercaseFilterExample', [])
-           .controller('ExampleController', ['$scope', function($scope) {
-             $scope.title = 'This is a title';
-           }]);
-       </script>
-       <div ng-controller="ExampleController">
-         <!-- This title should be formatted normally -->
-         <h1>{{title}}</h1>
-         <!-- This title should be capitalized -->
-         <h1>{{title | uppercase}}</h1>
-       </div>
-     </file>
-   </example>
+ * @see angular.uppercase
  */
 var uppercaseFilter = valueFn(uppercase);
 
@@ -22785,9 +22556,6 @@ function sliceFn(input, begin, end) {
  * specified predicates can distinguish between two items, `orderBy` will automatically introduce a
  * dummy predicate that returns the item's index as `value`.
  * (If you are using a custom comparator, make sure it can handle this predicate as well.)
- *
- * If a custom comparator still can't distinguish between two items, then they will be sorted based
- * on their index using the built-in comparator.
  *
  * Finally, in an attempt to simplify things, if a predicate returns an object as the extracted
  * value for an item, `orderBy` will try to convert that object to a primitive value, before passing
@@ -23335,7 +23103,7 @@ function orderByFilter($parse) {
         }
       }
 
-      return (compare(v1.tieBreaker, v2.tieBreaker) || defaultCompare(v1.tieBreaker, v2.tieBreaker)) * descending;
+      return compare(v1.tieBreaker, v2.tieBreaker) * descending;
     }
   };
 
@@ -23938,23 +23706,17 @@ function nullFormRenameControl(control, name) {
  * @property {boolean} $dirty True if user has already interacted with the form.
  * @property {boolean} $valid True if all of the containing forms and controls are valid.
  * @property {boolean} $invalid True if at least one containing control or form is invalid.
+ * @property {boolean} $pending True if at least one containing control or form is pending.
  * @property {boolean} $submitted True if user has submitted the form even if its invalid.
  *
- * @property {Object} $pending An object hash, containing references to controls or forms with
- *  pending validators, where:
- *
- *  - keys are validations tokens (error names).
- *  - values are arrays of controls or forms that have a pending validator for the given error name.
- *
- * See {@link form.FormController#$error $error} for a list of built-in validation tokens.
- *
- * @property {Object} $error An object hash, containing references to controls or forms with failing
- *  validators, where:
+ * @property {Object} $error Is an object hash, containing references to controls or
+ *  forms with failing validators, where:
  *
  *  - keys are validation tokens (error names),
- *  - values are arrays of controls or forms that have a failing validator for the given error name.
+ *  - values are arrays of controls or forms that have a failing validator for given error name.
  *
  *  Built-in validation tokens:
+ *
  *  - `email`
  *  - `max`
  *  - `maxlength`
@@ -24200,24 +23962,9 @@ FormController.prototype = {
  * @name form.FormController#$setValidity
  *
  * @description
- * Change the validity state of the form, and notify the parent form (if any).
+ * Sets the validity of a form control.
  *
- * Application developers will rarely need to call this method directly. It is used internally, by
- * {@link ngModel.NgModelController#$setValidity NgModelController.$setValidity()}, to propagate a
- * control's validity state to the parent `FormController`.
- *
- * @param {string} validationErrorKey Name of the validator. The `validationErrorKey` will be
- *        assigned to either `$error[validationErrorKey]` or `$pending[validationErrorKey]` (for
- *        unfulfilled `$asyncValidators`), so that it is available for data-binding. The
- *        `validationErrorKey` should be in camelCase and will get converted into dash-case for
- *        class name. Example: `myError` will result in `ng-valid-my-error` and
- *        `ng-invalid-my-error` classes and can be bound to as `{{ someForm.$error.myError }}`.
- * @param {boolean} isValid Whether the current state is valid (true), invalid (false), pending
- *        (undefined),  or skipped (null). Pending is used for unfulfilled `$asyncValidators`.
- *        Skipped is used by AngularJS when validators do not run because of parse errors and when
- *        `$asyncValidators` do not run because any of the `$validators` failed.
- * @param {NgModelController | FormController} controller - The controller whose validity state is
- *        triggering the change.
+ * This method will also propagate to parent forms.
  */
 addSetValidityMethod({
   clazz: FormController,
@@ -27062,13 +26809,6 @@ function classDirective(name, selector) {
     return {
       restrict: 'AC',
       link: function(scope, element, attr) {
-        var expression = attr[name].trim();
-        var isOneTime = (expression.charAt(0) === ':') && (expression.charAt(1) === ':');
-
-        var watchInterceptor = isOneTime ? toFlatValue : toClassString;
-        var watchExpression = $parse(expression, watchInterceptor);
-        var watchAction = isOneTime ? ngClassOneTimeWatchAction : ngClassWatchAction;
-
         var classCounts = element.data('$classCounts');
         var oldModulo = true;
         var oldClassString;
@@ -27091,7 +26831,7 @@ function classDirective(name, selector) {
           scope.$watch(indexWatchExpression, ngClassIndexWatchAction);
         }
 
-        scope.$watch(watchExpression, watchAction, isOneTime);
+        scope.$watch($parse(attr[name], toClassString), ngClassWatchAction);
 
         function addClasses(classString) {
           classString = digestClassCounts(split(classString), 1);
@@ -27133,9 +26873,9 @@ function classDirective(name, selector) {
         }
 
         function ngClassIndexWatchAction(newModulo) {
-          // This watch-action should run before the `ngClass[OneTime]WatchAction()`, thus it
+          // This watch-action should run before the `ngClassWatchAction()`, thus it
           // adds/removes `oldClassString`. If the `ngClass` expression has changed as well, the
-          // `ngClass[OneTime]WatchAction()` will update the classes.
+          // `ngClassWatchAction()` will update the classes.
           if (newModulo === selector) {
             addClasses(oldClassString);
           } else {
@@ -27145,15 +26885,13 @@ function classDirective(name, selector) {
           oldModulo = newModulo;
         }
 
-        function ngClassOneTimeWatchAction(newClassValue) {
-          var newClassString = toClassString(newClassValue);
-
-          if (newClassString !== oldClassString) {
-            ngClassWatchAction(newClassString);
-          }
-        }
-
         function ngClassWatchAction(newClassString) {
+          // When using a one-time binding the newClassString will return
+          // the pre-interceptor value until the one-time is complete
+          if (!isString(newClassString)) {
+            newClassString = toClassString(newClassString);
+          }
+
           if (oldModulo === selector) {
             updateClasses(oldClassString, newClassString);
           }
@@ -27199,34 +26937,6 @@ function classDirective(name, selector) {
     }
 
     return classString;
-  }
-
-  function toFlatValue(classValue) {
-    var flatValue = classValue;
-
-    if (isArray(classValue)) {
-      flatValue = classValue.map(toFlatValue);
-    } else if (isObject(classValue)) {
-      var hasUndefined = false;
-
-      flatValue = Object.keys(classValue).filter(function(key) {
-        var value = classValue[key];
-
-        if (!hasUndefined && isUndefined(value)) {
-          hasUndefined = true;
-        }
-
-        return value;
-      });
-
-      if (hasUndefined) {
-        // Prevent the `oneTimeLiteralWatchInterceptor` from unregistering
-        // the watcher, by including at least one `undefined` value.
-        flatValue.push(undefined);
-      }
-    }
-
-    return flatValue;
   }
 }
 
@@ -30068,7 +29778,7 @@ function setupModelWatcher(ctrl) {
  *        (for unfulfilled `$asyncValidators`), so that it is available for data-binding.
  *        The `validationErrorKey` should be in camelCase and will get converted into dash-case
  *        for class name. Example: `myError` will result in `ng-valid-my-error` and `ng-invalid-my-error`
- *        classes and can be bound to as `{{ someForm.someControl.$error.myError }}`.
+ *        class and can be bound to as  `{{someForm.someControl.$error.myError}}` .
  * @param {boolean} isValid Whether the current state is valid (true), invalid (false), pending (undefined),
  *                          or skipped (null). Pending is used for unfulfilled `$asyncValidators`.
  *                          Skipped is used by Angular when validators do not run because of parse errors and
@@ -31143,8 +30853,7 @@ var ngOptionsDirective = ['$compile', '$document', '$parse', function($compile, 
   }
 
 
-  // Support: IE 9 only
-  // We can't just jqLite('<option>') since jqLite is not smart enough
+  // we can't just jqLite('<option>') since jqLite is not smart enough
   // to create it in <select> and IE barfs otherwise.
   var optionTemplate = window.document.createElement('option'),
       optGroupTemplate = window.document.createElement('optgroup');
@@ -31164,9 +30873,6 @@ var ngOptionsDirective = ['$compile', '$document', '$parse', function($compile, 
           break;
         }
       }
-
-      // The empty option will be compiled and rendered before we first generate the options
-      selectElement.empty();
 
       var providedEmptyOption = !!selectCtrl.emptyOption;
 
@@ -31189,15 +30895,12 @@ var ngOptionsDirective = ['$compile', '$document', '$parse', function($compile, 
       if (!multiple) {
 
         selectCtrl.writeValue = function writeNgOptionsValue(value) {
-          // The options might not be defined yet when ngModel tries to render
-          if (!options) return;
-
-          var selectedOption = selectElement[0].options[selectElement[0].selectedIndex];
+          var selectedOption = options.selectValueMap[selectElement.val()];
           var option = options.getOptionFromViewValue(value);
 
           // Make sure to remove the selected attribute from the previously selected option
           // Otherwise, screen readers might get confused
-          if (selectedOption) selectedOption.removeAttribute('selected');
+          if (selectedOption) selectedOption.element.removeAttribute('selected');
 
           if (option) {
             // Don't update the option when it is already selected.
@@ -31207,6 +30910,7 @@ var ngOptionsDirective = ['$compile', '$document', '$parse', function($compile, 
 
             if (selectElement[0].value !== option.selectValue) {
               selectCtrl.removeUnknownOption();
+              selectCtrl.unselectEmptyOption();
 
               selectElement[0].value = option.selectValue;
               option.element.selected = true;
@@ -31214,7 +30918,14 @@ var ngOptionsDirective = ['$compile', '$document', '$parse', function($compile, 
 
             option.element.setAttribute('selected', 'selected');
           } else {
-            selectCtrl.selectUnknownOrEmptyOption(value);
+
+            if (providedEmptyOption) {
+              selectCtrl.selectEmptyOption();
+            } else if (selectCtrl.unknownOption.parent().length) {
+              selectCtrl.updateUnknownOption(value);
+            } else {
+              selectCtrl.renderUnknownOption(value);
+            }
           }
         };
 
@@ -31243,11 +30954,9 @@ var ngOptionsDirective = ['$compile', '$document', '$parse', function($compile, 
       } else {
 
         selectCtrl.writeValue = function writeNgOptionsMultiple(values) {
-          // The options might not be defined yet when ngModel tries to render
-          if (!options) return;
-
           // Only set `<option>.selected` if necessary, in order to prevent some browsers from
           // scrolling to `<option>` elements that are outside the `<select>` element's viewport.
+
           var selectedOptions = values && values.map(getAndUpdateSelectedOption) || [];
 
           options.items.forEach(function(option) {
@@ -31289,10 +30998,12 @@ var ngOptionsDirective = ['$compile', '$document', '$parse', function($compile, 
 
       if (providedEmptyOption) {
 
+        // we need to remove it before calling selectElement.empty() because otherwise IE will
+        // remove the label from the element. wtf?
+        selectCtrl.emptyOption.remove();
+
         // compile the element since there might be bindings in it
         $compile(selectCtrl.emptyOption)(scope);
-
-        selectElement.prepend(selectCtrl.emptyOption);
 
         if (selectCtrl.emptyOption[0].nodeType === NODE_TYPE_COMMENT) {
           // This means the empty option has currently no actual DOM node, probably because
@@ -31311,12 +31022,8 @@ var ngOptionsDirective = ['$compile', '$document', '$parse', function($compile, 
               ngModelCtrl.$render();
 
               optionEl.on('$destroy', function() {
-                var needsRerender = selectCtrl.$isEmptyOptionSelected();
-
                 selectCtrl.hasEmptyOption = false;
                 selectCtrl.emptyOption = undefined;
-
-                if (needsRerender) ngModelCtrl.$render();
               });
             }
           };
@@ -31328,6 +31035,12 @@ var ngOptionsDirective = ['$compile', '$document', '$parse', function($compile, 
         }
 
       }
+
+      selectElement.empty();
+
+      // We need to do this here to ensure that the options object is defined
+      // when we first hit it in writeNgOptionsValue
+      updateOptions();
 
       // We will re-render the option elements if the option values or labels change
       scope.$watchCollection(ngOptions.getWatchables, updateOptions);
@@ -31352,8 +31065,7 @@ var ngOptionsDirective = ['$compile', '$document', '$parse', function($compile, 
       function updateOptionElement(option, element) {
         option.element = element;
         element.disabled = option.disabled;
-        // Support: IE 11 only, Edge 12-13 only
-        // NOTE: The label must be set before the value, otherwise IE 11 & Edge create unresponsive
+        // NOTE: The label must be set before the value, otherwise IE10/11/EDGE create unresponsive
         // selects in certain circumstances when multiple selects are next to each other and display
         // the option list in listbox style, i.e. the select is [multiple], or specifies a [size].
         // See https://github.com/angular/angular.js/issues/11314 for more info.
@@ -31388,6 +31100,11 @@ var ngOptionsDirective = ['$compile', '$document', '$parse', function($compile, 
         options = ngOptions.getOptions();
 
         var groupElementMap = {};
+
+        // Ensure that the empty option is always there if it was explicitly provided
+        if (providedEmptyOption) {
+          selectElement.prepend(selectCtrl.emptyOption);
+        }
 
         options.items.forEach(function addOption(option) {
           var groupElement;
@@ -31433,6 +31150,7 @@ var ngOptionsDirective = ['$compile', '$document', '$parse', function($compile, 
             ngModelCtrl.$render();
           }
         }
+
       }
   }
 
@@ -32120,7 +31838,7 @@ var ngRepeatDirective = ['$parse', '$animate', '$compile', function($parse, $ani
         // Store a list of elements from previous run. This is a hash where key is the item from the
         // iterator, and the value is objects with following properties.
         //   - scope: bound scope
-        //   - clone: previous element.
+        //   - element: previous element.
         //   - index: position
         //
         // We are using no-proto object so that we don't need to guard against inherited props via
@@ -33223,7 +32941,7 @@ var scriptDirective = ['$templateCache', function($templateCache) {
 var noopNgModelController = { $setViewValue: noop, $render: noop };
 
 function setOptionSelectedStatus(optionEl, value) {
-  optionEl.prop('selected', value);
+  optionEl.prop('selected', value); // needed for IE
   /**
    * When unselecting an option, setting the property to null / false should be enough
    * However, screenreaders might react to the selected attribute instead, see
@@ -33237,120 +32955,10 @@ function setOptionSelectedStatus(optionEl, value) {
 /**
  * @ngdoc type
  * @name  select.SelectController
- *
  * @description
- * The controller for the {@link ng.select select} directive. The controller exposes
- * a few utility methods that can be used to augment the behavior of a regular or an
- * {@link ng.ngOptions ngOptions} select element.
- *
- * @example
- * ### Set a custom error when the unknown option is selected
- *
- * This example sets a custom error "unknownValue" on the ngModelController
- * when the select element's unknown option is selected, i.e. when the model is set to a value
- * that is not matched by any option.
- *
- * <example name="select-unknown-value-error" module="staticSelect">
- * <file name="index.html">
- * <div ng-controller="ExampleController">
- *   <form name="myForm">
- *     <label for="testSelect"> Single select: </label><br>
- *     <select name="testSelect" ng-model="selected" unknown-value-error>
- *       <option value="option-1">Option 1</option>
- *       <option value="option-2">Option 2</option>
- *     </select><br>
- *     <span ng-if="myForm.testSelect.$error.unknownValue">Error: The current model doesn't match any option</span>
- *
- *     <button ng-click="forceUnknownOption()">Force unknown option</button><br>
- *   </form>
- * </div>
- * </file>
- * <file name="app.js">
- *  angular.module('staticSelect', [])
- *    .controller('ExampleController', ['$scope', function($scope) {
- *      $scope.selected = null;
- *
- *      $scope.forceUnknownOption = function() {
- *        $scope.selected = 'nonsense';
- *      };
- *   }])
- *   .directive('unknownValueError', function() {
- *     return {
- *       require: ['ngModel', 'select'],
- *       link: function(scope, element, attrs, ctrls) {
- *         var ngModelCtrl = ctrls[0];
- *         var selectCtrl = ctrls[1];
- *
- *         ngModelCtrl.$validators.unknownValue = function(modelValue, viewValue) {
- *           if (selectCtrl.$isUnknownOptionSelected()) {
- *             return false;
- *           }
- *
- *           return true;
- *         };
- *       }
- *
- *     };
- *   });
- * </file>
- *</example>
- *
- *
- * @example
- * ### Set the "required" error when the unknown option is selected.
- *
- * By default, the "required" error on the ngModelController is only set on a required select
- * when the empty option is selected. This example adds a custom directive that also sets the
- * error when the unknown option is selected.
- *
- * <example name="select-unknown-value-required" module="staticSelect">
- * <file name="index.html">
- * <div ng-controller="ExampleController">
- *   <form name="myForm">
- *     <label for="testSelect"> Select: </label><br>
- *     <select name="testSelect" ng-model="selected" unknown-value-required>
- *       <option value="option-1">Option 1</option>
- *       <option value="option-2">Option 2</option>
- *     </select><br>
- *     <span ng-if="myForm.testSelect.$error.required">Error: Please select a value</span><br>
- *
- *     <button ng-click="forceUnknownOption()">Force unknown option</button><br>
- *   </form>
- * </div>
- * </file>
- * <file name="app.js">
- *  angular.module('staticSelect', [])
- *    .controller('ExampleController', ['$scope', function($scope) {
- *      $scope.selected = null;
- *
- *      $scope.forceUnknownOption = function() {
- *        $scope.selected = 'nonsense';
- *      };
- *   }])
- *   .directive('unknownValueRequired', function() {
- *     return {
- *       priority: 1, // This directive must run after the required directive has added its validator
- *       require: ['ngModel', 'select'],
- *       link: function(scope, element, attrs, ctrls) {
- *         var ngModelCtrl = ctrls[0];
- *         var selectCtrl = ctrls[1];
- *
- *         var originalRequiredValidator = ngModelCtrl.$validators.required;
- *
- *         ngModelCtrl.$validators.required = function() {
- *           if (attrs.required && selectCtrl.$isUnknownOptionSelected()) {
- *             return false;
- *           }
- *
- *           return originalRequiredValidator.apply(this, arguments);
- *         };
- *       }
- *     };
- *   });
- * </file>
- *</example>
- *
- *
+ * The controller for the `<select>` directive. This provides support for reading
+ * and writing the selected value(s) of the control and also coordinates dynamically
+ * added `<option>` elements, perhaps by an `ngRepeat` directive.
  */
 var SelectController =
         ['$element', '$scope', /** @this */ function($element, $scope) {
@@ -33368,18 +32976,15 @@ var SelectController =
   // does not match any of the options. When it is rendered the value of the unknown
   // option is '? XXX ?' where XXX is the hashKey of the value that is not known.
   //
-  // Support: IE 9 only
   // We can't just jqLite('<option>') since jqLite is not smart enough
   // to create it in <select> and IE barfs otherwise.
   self.unknownOption = jqLite(window.document.createElement('option'));
 
-  // The empty option is an option with the value '' that the application developer can
-  // provide inside the select. It is always selectable and indicates that a "null" selection has
-  // been made by the user.
-  // If the select has an empty option, and the model of the select is set to "undefined" or "null",
-  // the empty option is selected.
-  // If the model is set to a different unmatched value, the unknown option is rendered and
-  // selected, i.e both are present, because a "null" selection and an unknown value are different.
+  // The empty option is an option with the value '' that te application developer can
+  // provide inside the select. When the model changes to a value that doesn't match an option,
+  // it is selected - so if an empty option is provided, no unknown option is generated.
+  // However, the empty option is not removed when the model matches an option. It is always selectable
+  // and indicates that a "null" selection has been made.
   self.hasEmptyOption = false;
   self.emptyOption = undefined;
 
@@ -33415,7 +33020,7 @@ var SelectController =
 
   self.unselectEmptyOption = function() {
     if (self.hasEmptyOption) {
-      setOptionSelectedStatus(self.emptyOption, false);
+      self.emptyOption.removeAttr('selected');
     }
   };
 
@@ -33457,7 +33062,14 @@ var SelectController =
       var selectedOption = $element[0].options[$element[0].selectedIndex];
       setOptionSelectedStatus(jqLite(selectedOption), true);
     } else {
-      self.selectUnknownOrEmptyOption(value);
+      if (value == null && self.emptyOption) {
+        self.removeUnknownOption();
+        self.selectEmptyOption();
+      } else if (self.unknownOption.parent().length) {
+        self.updateUnknownOption(value);
+      } else {
+        self.renderUnknownOption(value);
+      }
     }
   };
 
@@ -33500,59 +33112,6 @@ var SelectController =
     return !!optionsMap.get(value);
   };
 
-  /**
-   * @ngdoc method
-   * @name select.SelectController#$hasEmptyOption
-   *
-   * @description
-   *
-   * Returns `true` if the select element currently has an empty option
-   * element, i.e. an option that signifies that the select is empty / the selection is null.
-   *
-   */
-  self.$hasEmptyOption = function() {
-    return self.hasEmptyOption;
-  };
-
-  /**
-   * @ngdoc method
-   * @name select.SelectController#$isUnknownOptionSelected
-   *
-   * @description
-   *
-   * Returns `true` if the select element's unknown option is selected. The unknown option is added
-   * and automatically selected whenever the select model doesn't match any option.
-   *
-   */
-  self.$isUnknownOptionSelected = function() {
-    // Presence of the unknown option means it is selected
-    return $element[0].options[0] === self.unknownOption[0];
-  };
-
-  /**
-   * @ngdoc method
-   * @name select.SelectController#$isEmptyOptionSelected
-   *
-   * @description
-   *
-   * Returns `true` if the select element has an empty option and this empty option is currently
-   * selected. Returns `false` if the select element has no empty option or it is not selected.
-   *
-   */
-  self.$isEmptyOptionSelected = function() {
-    return self.hasEmptyOption && $element[0].options[$element[0].selectedIndex] === self.emptyOption[0];
-  };
-
-  self.selectUnknownOrEmptyOption = function(value) {
-    if (value == null && self.emptyOption) {
-      self.removeUnknownOption();
-      self.selectEmptyOption();
-    } else if (self.unknownOption.parent().length) {
-      self.updateUnknownOption(value);
-    } else {
-      self.renderUnknownOption(value);
-    }
-  };
 
   var renderScheduled = false;
   function scheduleRender() {
@@ -33701,9 +33260,6 @@ var SelectController =
  * the content of the `value` attribute or the textContent of the `<option>`, if the value attribute is missing.
  * Value and textContent can be interpolated.
  *
- * The {@link select.SelectController select controller} exposes utility functions that can be used
- * to manipulate the select's behavior.
- *
  * ## Matching model and option values
  *
  * In general, the match between the model and an option is evaluated by strictly comparing the model
@@ -33755,19 +33311,6 @@ var SelectController =
  * set on the model on selection. See {@link ngOptions `ngOptions`}.
  * @param {string=} ngAttrSize sets the size of the select element dynamically. Uses the
  * {@link guide/interpolation#-ngattr-for-binding-to-arbitrary-attributes ngAttr} directive.
- *
- *
- * @knownIssue
- *
- * In Firefox, the select model is only updated when the select element is blurred. For example,
- * when switching between options with the keyboard, the select model is only set to the
- * currently selected option when the select is blurred, e.g via tab key or clicking the mouse
- * outside the select.
- *
- * This is due to an ambiguity in the select element specification. See the
- * [issue on the Firefox bug tracker](https://bugzilla.mozilla.org/show_bug.cgi?id=126379)
- * for more information, and this
- * [Github comment for a workaround](https://github.com/angular/angular.js/issues/9134#issuecomment-130800488)
  *
  * @example
  * ### Simple `select` elements with static options
@@ -34013,11 +33556,10 @@ var selectDirective = function() {
                                                includes(value, selectCtrl.selectValueMap[option.value]));
             var currentlySelected = option.selected;
 
-            // Support: IE 9-11 only, Edge 12-15+
-            // In IE and Edge adding options to the selection via shift+click/UP/DOWN
+            // IE and Edge, adding options to the selection via shift+click/UP/DOWN,
             // will de-select already selected options if "selected" on those options was set
             // more than once (i.e. when the options were already selected)
-            // So we only modify the selected property if necessary.
+            // So we only modify the selected property if neccessary.
             // Note: this behavior cannot be replicated via unit tests because it only shows in the
             // actual user interface.
             if (shouldBeSelected !== currentlySelected) {
@@ -34637,7 +34179,7 @@ module.exports = 'ngRoute';
 /***/ (function(module, exports) {
 
 /**
- * @license AngularJS v1.6.5
+ * @license AngularJS v1.6.4
  * (c) 2010-2017 Google, Inc. http://angularjs.org
  * License: MIT
  */
@@ -34697,7 +34239,7 @@ var noop;
 /* global -ngRouteModule */
 var ngRouteModule = angular.
   module('ngRoute', []).
-  info({ angularVersion: '1.6.5' }).
+  info({ angularVersion: '1.6.4' }).
   provider('$route', $RouteProvider).
   // Ensure `$route` will be instantiated in time to capture the initial `$locationChangeSuccess`
   // event (unless explicitly disabled). This is necessary in case `ngView` is included in an
@@ -35873,39 +35415,40 @@ function ngViewFillContentFactory($compile, $controller, $route) {
 
 __webpack_require__(28);
 __webpack_require__(31);
+
 __webpack_require__(34);
-__webpack_require__(36);
+
+__webpack_require__(35);
+__webpack_require__(37);
 __webpack_require__(39);
+
 __webpack_require__(41);
 __webpack_require__(43);
 __webpack_require__(45);
 __webpack_require__(47);
+
 __webpack_require__(49);
 __webpack_require__(51);
 __webpack_require__(53);
 __webpack_require__(55);
 __webpack_require__(57);
-__webpack_require__(59);
-__webpack_require__(60);
-__webpack_require__(62);
+
 angular.module('hplus.modules', [
   'hplus.modules.header',
   'hplus.modules.navbar',
-  'hplus.modules.explorediseases',
-  'hplus.modules.registerdoctor',
-  'hplus.modules.registerdiseases',
-  'hplus.modules.registermedicine',
-  'hplus.modules.footer',
-  'hplus.modules.viewdoctor',
+  'hplus.modules.editdisease',
   'hplus.modules.editdoctor',
   'hplus.modules.editmedicine',
-  'hplus.modules.editdisease',
+  'hplus.modules.explorediseases',
   'hplus.modules.exploredoctors',
   'hplus.modules.exploremedicines',
   'hplus.modules.exploremedicalrecords',
+  'hplus.modules.modal',
+  'hplus.modules.registerdiseases',
+  'hplus.modules.registerdoctor',
+  'hplus.modules.registermedicine',
   'hplus.modules.userLogin',
-  'hplus.modules.pagination', 
-  'hplus.modules.modal'
+  'hplus.modules.viewdoctor'
 ]);
 
 
@@ -35935,7 +35478,7 @@ angular.module('hplus.modules.header')
 /* 30 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\n  <div class=\"col col-md-10 col-md-offset-1 header__background\">\n\n    <div class=\"col col-md-8\">\n      <img class=\"header__logo\" src=\"/healthplus/assets/img/logo.png\">\n      <span class=\"header__app-text\">HealthPlus</span>\n    </div>\n\n    <div class=\"col col-md-4 header__user-container\">\n      <span class=\"header__user-alignment\">\n        <span class=\"header__user-name\">James Appleseed</span>\n        <span class=\"header__user-title\">Administrator</span>\n      </span>\n\n      <span class=\"fa-stack fa-lg header__user-alignment\">\n        <i class=\"fa fa-square fa-stack-2x\"></i>\n        <i class=\"fa fa-chevron-down fa-stack-1x fa-inverse\"></i>\n      </span>\n    </div>\n\n  </div>\n</div>";
+module.exports = "<div class=\"row\">\r\n  <div class=\"col col-md-10 col-md-offset-1 header__background\">\r\n\r\n    <div class=\"col col-md-8\">\r\n      <img class=\"header__logo\" src=\"/healthplus/assets/img/logo.png\">\r\n      <span class=\"header__app-text\">HealthPlus</span>\r\n    </div>\r\n\r\n    <div class=\"col col-md-4 header__user-container\">\r\n      <span class=\"header__user-alignment\">\r\n        <span class=\"header__user-name\">James Appleseed</span>\r\n        <span class=\"header__user-title\">Administrator</span>\r\n      </span>\r\n\r\n      <span class=\"fa-stack fa-lg header__user-alignment\">\r\n        <i class=\"fa fa-square fa-stack-2x\"></i>\r\n        <i class=\"fa fa-chevron-down fa-stack-1x fa-inverse\"></i>\r\n      </span>\r\n    </div>\r\n\r\n  </div>\r\n</div>";
 
 /***/ }),
 /* 31 */
@@ -35963,278 +35506,10 @@ angular.module('hplus.modules.navbar')
 /* 33 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row navbar__background\">        \n  <div class=\"col col-md-10 col-md-offset-1\">\n\n    <div class=\"col col-md-8\">\n      <div class=\"navbar__btn navbar__btn--selected\">\n       <a href=\"#!/\"> Diseases</a>\n      </div>\n      <div class=\"navbar__btn\">\n       <a href=\"#!/admin/list/medicine\">Medicines</a>\n      </div>\n      <div class=\"navbar__btn\">\n       <a href=\"#!/admin/list/doctor\">Doctors</a>\n      </div>\n      <div class=\"navbar__btn\">\n       <a href=\"#!/admin/register/doctor\">Add Doctor</a>\n      </div>\n      <div class=\"navbar__btn\">\n       <a href=\"#!/admin/register/medicine\">Add Medicine</a>\n      </div>\n    </div>\n\n    <div class=\"col col-md-4 navbar__action-container\">          \n      <div class=\"navbar__btn navbar__btn--action\">\n        <a href=\"#!/admin/register/disease\">  <i class=\"fa fa-plus-square\"></i> Register Disease </a>\n      </div>\n       <div class=\"navbar__btn navbar__btn--action\">\n         <a href=\"#!/user/login\"> <i class=\"fa fa-login\"></i> Login</a>\n        </div>\n    </div>\n\n  </div>\n</div>";
+module.exports = "<div class=\"row navbar__background\">        \r\n  <div class=\"col col-md-10 col-md-offset-1\">\r\n\r\n    <div class=\"col col-md-8\">\r\n      <div class=\"navbar__btn navbar__btn--selected\">\r\n       <a href=\"#!/\"> Diseases</a>\r\n      </div>\r\n      <div class=\"navbar__btn\">\r\n       <a href=\"#!/admin/list/medicine\">Medicines</a>\r\n      </div>\r\n      <div class=\"navbar__btn\">\r\n       <a href=\"#!/admin/list/doctor\">Doctors</a>\r\n      </div>\r\n      <div class=\"navbar__btn\">\r\n       <a href=\"#!/admin/register/doctor\">Add Doctor</a>\r\n      </div>\r\n      <div class=\"navbar__btn\">\r\n       <a href=\"#!/admin/register/medicine\">Add Medicine</a>\r\n      </div>\r\n    </div>\r\n\r\n    <div class=\"col col-md-4 navbar__action-container\">          \r\n      <div class=\"navbar__btn navbar__btn--action\">\r\n        <a href=\"#!/admin/register/disease\">  <i class=\"fa fa-plus-square\"></i> Register Disease </a>\r\n      </div>\r\n       <div class=\"navbar__btn navbar__btn--action\">\r\n         <a href=\"#!/user/login\"> <i class=\"fa fa-login\"></i> Login</a>\r\n        </div>\r\n    </div>\r\n\r\n  </div>\r\n</div>";
 
 /***/ }),
 /* 34 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var explorediseases = __webpack_require__(35);
-
-angular.module('hplus.modules.explorediseases', [])
-
-  .config(function ($routeProvider){  
-    $routeProvider
-      .when('/',{
-        template: explorediseases
-      })
-      
-      .when('/admin/list/disease',{
-        template: explorediseases
-      })
-  });
-
-
-/***/ }),
-/* 35 */
-/***/ (function(module, exports) {
-
-module.exports = "<div class=\"row\">\n  <div class=\"col col-md-8 col-md-offset-1\">\n    <h1>List of all diseases</h1>\n  </div>\n</div>\n\n<div class=\"row\">\n  <div class=\"col col-md-2 col-md-offset-1\">\n\n    <div class=\"row\">\n      <div class=\"col col-md-6\">\n        <span class=\"subtitle\">\n          Search\n        </span>\n      </div>\n      <br><br>\n    </div>\n    <div class=\"match-padding\">\n      <select>\n        <option>Disease</option>\n        <option>Medicine</option>\n      </select>\n\n      <input type=\"text\" placeholder=\"Enter a keyword\">\n\n      <button>Search</button>\n    </div>\n\n  </div>\n\n  <div class=\"col col-md-8\">\n  <div ng-controller=\"modalCtrl as alert\"> \n    <div class=\"col col-md-12 marginBottom\">\n      <span class=\"subtitle\">\n        69 Results Matching\n      </span>\n      \n      <span class=\"subtitle subtitle--variable\">\n        Pneumoultramicroscopicsilicovolcanoconiosis\n      </span>\n      <br><br>\n    \n      <div class=\"card__container\">\n        <div class=\"card__title\">\n          Tuberculosis<a href=\"#!/admin/edit/disease\"> <span class=\"delete__icon\"><i class=\"fa fa-pencil-square-o\" aria-hidden=\"true\"></i></span></a>\n        </div>\n        <div class=\"card__desc\">\n          Symptoms: Fever, chills, night sweats, loss of appetite, weight loss and fatigue.\n        </div>\n      </div>\n\n      <div class=\"card__container\">\n        <div class=\"card__title\">\n          Pneumonia <a href=\"#!/admin/edit/disease\"> <span class=\"delete__icon\"><i class=\"fa fa-pencil-square-o\" aria-hidden=\"true\"></i></span></a>\n        </div>\n        <div class=\"card__desc\">\n          Symptoms: Cough, fever, shaking chills, shortness of breath, chest pain, and 3 more...\n        </div>\n      </div>\n\n  </div>\n    </div>\n\n           <div>\n          \n            \n          </div>\n  </div>\n\n</div>\n<!-- Pagination Section -->\n  <div class=\"row\">\n  \n    <div class=\"col col-md-3 col-md-offset-8\">\n    \n      <div class=\"pagination__container\">\n      \n        <div class=\"pagination__page\">\n          <<\n        </div>\n        \n        <div class=\"pagination__page\">\n          <\n        </div>\n        \n        <div class=\"pagination__page \">\n          2\n        </div>\n        \n        <div class=\"pagination__page pagination__current\">\n          3\n        </div>\n        \n        <div class=\"pagination__page\">\n          4\n        </div>\n        \n        <div class=\"pagination__page\">\n          >\n        </div>\n        \n        <div class=\"pagination__page\">\n          >>\n        </div>\n        \n      </div>\n      \n  \t\t</div>\n  \t\t\n  </div>\n";
-
-/***/ }),
-/* 36 */
-/***/ (function(module, exports, __webpack_require__) {
-
-angular.module('hplus.modules.footer', []);
-
-__webpack_require__(37);
-
-/***/ }),
-/* 37 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var footer = __webpack_require__(38);
-angular.module('hplus.modules.footer')
-
-  .directive('hplusFooter', function(){
-    return{
-      restrict: 'EA',
-      template: footer
-    };
-  })
-
-/***/ }),
-/* 38 */
-/***/ (function(module, exports) {
-
-module.exports = "\n<!--footer-->\n<footer class=\"footer\">\n<div class=\"container\">\n\n<div class=\"row\"><!-- row -->\n            \n                <div class=\"col-lg-3 col-md-3\"><!-- widgets column left -->\n                <ul class=\"list-unstyled clear-margins\"><!-- widgets -->\n                        \n                        \t<li class=\"widget-container widget_nav_menu\"><!-- widgets list -->\n                    \n                                <h1 class=\"title-widget\">Get in Touch</h1>\n                                \n                                <ul>\n                                \t<li><a  href=\"#\"><i class=\"fa fa-angle-double-right\"></i> Contact Us</a></li>\n                                    <li><a  href=\"#\"><i class=\"fa fa-angle-double-right\"></i> About Us</a></li>\n                                                                  \n                                </ul>\n                    \n\t\t\t\t\t\t\t</li>\n                            \n                        </ul>\n                         \n                      \n                </div><!-- widgets column left end -->\n                \n                \n                \n                <div class=\"col-lg-3 col-md-3\"><!-- widgets column left -->\n            \n                <ul class=\"list-unstyled clear-margins\"><!-- widgets -->\n                        \n                        \t<li class=\"widget-container widget_nav_menu\"><!-- widgets list -->\n                    \n                                <h1 class=\"title-widget\">Useful links</h1>\n                                \n                                <ul>\n \t\t\t\t\t\t\t\t\t<li><a  href=\"#\"><i class=\"fa fa-angle-double-right\"></i>  Faqs</a></li>\n                                    <li><a  href=\"#\"><i class=\"fa fa-angle-double-right\"></i> User Manual</a></li>\n                                                                       \n                                </ul>\n                    \n\t\t\t\t\t\t\t</li>\n                            \n                        </ul>\n                         \n                      \n                </div><!-- widgets column left end -->\n                \n                \n                \n                <div class=\"col-lg-3 col-md-3\"><!-- widgets column left -->\n            \n                <ul class=\"list-unstyled clear-margins\"><!-- widgets -->\n                        \n                        \t<li class=\"widget-container widget_nav_menu\"><!-- widgets list -->\n                    \n                                <h1 class=\"title-widget\">Useful links</h1>\n                                \n                                <ul>\n\n\n                <li><a href=\"#\"><i class=\"fa fa-angle-double-right\"></i> Title 7</a></li>\n \t\t\t\t<li><a href=\"#\"><i class=\"fa fa-angle-double-right\"></i>Title 8</a></li>\n\t\t\t\t\t\t\t\n                                </ul>\n                    \n\t\t\t\t\t\t\t</li>\n                            \n                        </ul>\n                         \n                      \n                </div><!-- widgets column left end -->\n                \n                \n                <div class=\"col-lg-3 col-md-3\"><!-- widgets column center -->\n                \n                   \n                    \n                        <ul class=\"list-unstyled clear-margins\"><!-- widgets -->\n                        \n                        \t<li class=\"widget-container widget_recent_news\"><!-- widgets list -->\n                    \n                                <h1 class=\"title-widget\">Contact Detail </h1>\n                                \n                                <div class=\"footerp\"> \n                                \n                               \n                                <p><b>Email :</b> <a href=\"mailto:info@healthplus.com\">info@healthplus.com</a></p>\n                          \n\n    <p> 0927 888 3133, 0927 8883133</p>\n                                </div>\n                                \n                              \n                    \t\t</li>\n                          </ul>\n                       </div>\n                </div>\n</div>\n</footer>\n<!--header-->\n\n<div class=\"footer-bottom\">\n\n\t<div class=\"container\">\n\n\t\t<div class=\"row\">\n\n\t\t\t<div class=\"col-xs-12 col-sm-6 col-md-6 col-lg-6\">\n\n\t\t\t\t<div class=\"copyright\">\n\n\t\t\t\t\t© 2015, HealthPlus, All rights reserved\n\n\t\t\t\t</div>\n\n\t\t\t</div>\n\n\t\t\t<div class=\"col-xs-12 col-sm-6 col-md-6 col-lg-6\">\n\n\t\t\t\t<div class=\"design\">\n\n\t\t\t\t\t <a href=\"#\">Franchisee </a> |  <a target=\"_blank\" href=\"http://www.webenlance.com\"> by HealthPlus</a>\n\n\t\t\t\t</div>\n\n\t\t\t</div>\n\n\t\t</div>\n\n\t</div>\n\n</div>\n";
-
-/***/ }),
-/* 39 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var registerdoctor = __webpack_require__(40);
-
-angular.module('hplus.modules.registerdoctor', [])
-
-  .config(function ($routeProvider){  
-    $routeProvider
-      .when('/admin/register/doctor',{
-        template: registerdoctor
-      })
-  });
-
-
-/***/ }),
-/* 40 */
-/***/ (function(module, exports) {
-
-module.exports = "<div class=\"row\">\n  <div class=\"col col-md-8 col-md-offset-1\">\n    <h1>Register an Account</h1>\n  </div>\n</div>\n\n<div class=\"row\">\n  <div class=\"col col-md-2 col-md-offset-1\">\n    <div class=\"row\">\n      <div class=\"col col-md-12\">\n        <label>First Name</label>\n        <input type=\"text\">\n        <label>Address</label>\n        <input type=\"text\">\n        <label>Username</label>\n        <input type=\"text\">\n        <label>Password</label>\n        <input type=\"text\">\n        <label>Confirm Password</label>\n        <input type=\"text\">\n        <br><br><br><br>\n        <button>Sign up</button>\n      </div>\n    </div>\n  </div>\n  <div class=\"col col-md-2 col-md-offset-1\">\n    <div class=\"row\">\n      <div class=\"col col-md-12\">\n        <label>Last Name</label>\n        <input type=\"text\">\n        <label>Contact Number</label>\n        <input type=\"text\">\n        <label>Birthday</label>\n        <input type=\"text\">\n      </div>\n    </div>\n  </div>\n</div>";
-
-/***/ }),
-/* 41 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var registerdiseases = __webpack_require__(42);
-
-angular.module('hplus.modules.registerdiseases', [])
-
-  .config(function ($routeProvider){  
-    $routeProvider
-      .when('/admin/register/disease',{
-        template: registerdiseases
-      })
-  });
-
-
-/***/ }),
-/* 42 */
-/***/ (function(module, exports) {
-
-module.exports = "<div class=\"row\">\n  <div class=\"col col-md-8 col-md-offset-1\">\n    <h1>Register Diseases</h1>\n  </div>\n</div>\n\n<div class=\"row\">\n  <div class=\"col col-md-2 col-md-offset-1\">\n\n    <div class=\"row\">\n      <div class=\"col col-md-12\">\n        <label>\n          Name of Disease\n        </label>\n        <input type=\"text\" value=\"Diabetes Mellitus Type 2\">\n\t\t    <br><br>\n\t\t    <button>Save</button>\n      </div>\n    </div>\n    \n  </div>\n\n  <div class=\"col col-md-3 col-md-offset-1\">\n    <div class=\"row\">\n\t    <div class=\"col col-md-12\">\n\t        <label>\n\t\t        Symptoms\n\t\t      </label>\n\t\t      <textarea placeholder=\"Enter Symptoms\"></textarea>\n\t    </div>\n    </div>\n  </div>\n\n  <div class=\"col col-md-3 col-md-offset-1\">\n    <div class=\"row\">\n\t    <div class=\"col col-md-12\">\n\t      <label>\n\t       Medicines\n        </label>\n\t\t\t\t<input type=\"text\" placeholder=\"Search\">\n\t\t\t\t<div>\n\t\t\t\t\t<input type=\"checkbox\">Metformin<br>\n\t\t\t\t\t<input type=\"checkbox\">Methadone<br>\n\t\t\t\t\t<input type=\"checkbox\">Methamphetamine<br>\n\t\t\t\t\t<input type=\"checkbox\">Methazolamide<br>\n\t\t\t\t\t<input type=\"checkbox\">Methenamine<br>\n\t\t\t\t\t<input type=\"checkbox\">Methimazole<br>\n\t\t\t\t\t<input type=\"checkbox\">Meth\n\t\t\t\t</div>\n\t    </div>\n    </div>\n  </div>\n  \n</div>";
-
-/***/ }),
-/* 43 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var registermedicine = __webpack_require__(44);
-
-angular.module('hplus.modules.registermedicine', [])
-
-  .config(function ($routeProvider){  
-    $routeProvider
-      .when('/admin/register/medicine',{
-        template: registermedicine
-      })
-  });
-
-
-/***/ }),
-/* 44 */
-/***/ (function(module, exports) {
-
-module.exports = "<div class=\"row\">\n  <div class=\"col col-md-8 col-md-offset-1\">\n    <h1>Register Medicine</h1>\n  </div>\n</div>\n\n<div class=\"row\">\n  <div class=\"col col-md-2 col-md-offset-1\">\n    <div class=\"row\">\n      <div class=\"col col-md-12\">\n      Name of Medicine:\n      <input type = \"text\" value = \"RiteMed Metformin\">\n      </div>\n      <br><br>\n    </div>\n    <div class=\"row\">\n      <div class=\"col col-md-12\">\n       Price (PHP) : <input type = \"text\" id = \"priceInputField\" value = \"3.75\">\n      </div>\n      <br><br>\n    </div>\n    <div class=\"col col-md-1\" id = \"saveMed\">\n      <button>Save</button>\n    </div>\n  </div>\n\n  <div class=\"col col-md-8\">\n  <div class=\"col col-md-12\">\n    Description:\n  </div>\n  <div class=\"col col-md-12\">\n    <textarea id=\"descMed\" rows=\"8\" cols = \"50\" disabled>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent ut lorem quis dolor porttitor accumsan. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Integer vitae erat viverra, vestibulum enim id, pulvinar lectus. Sed volutpat tristique tristique. Vivamus turpis diam, consequat vel sagittis quis, convallis quis sem.</textarea>\n  </div>\n  </div>\n</div>";
-
-/***/ }),
-/* 45 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var viewdoctor = __webpack_require__(46);
-
-angular.module('hplus.modules.viewdoctor', [])
-
-  .config(function ($routeProvider){  
-    $routeProvider      
-      .when('/admin/view/details',{
-        template: viewdoctor
-      })
-  });
-
-
-/***/ }),
-/* 46 */
-/***/ (function(module, exports) {
-
-module.exports = "<div class=\"row\">\n  <div class=\"col col-md-8 col-md-offset-1\">\n    <h1><i class=\"fa fa-user-md\"></i> Dr. John Appleseed</h1>\n  </div>\n</div>\n\n<div class=\"row\">\n  <div class=\"col col-md-2 col-md-offset-1\">\n    <div class=\"match-padding\">\n      <span class=\"subtitle\">\n        Specialization\n      </span>\n      <div class=\"subtitle__value\">\n        Dentistry\n      </div>\n      <br>\n      <span class=\"subtitle\">\n        E-mail Address\n      </span>\n      <div class=\"subtitle__value\">\n        joappleseed@hplus.com\n      </div>\n      <br>\n      <button class=\"outline\">Edit</button>\n    </div>\n  </div>\n\n  <div class=\"col col-md-8\">\n\n    <div class=\"col col-md-12\">\n      <span class=\"subtitle\">\n        Medical Records Handled By\n      </span>\n      \n      <span class=\"subtitle subtitle--variable\">\n        Dr. John Appleseed\n      </span>\n      <br><br>\n    \n      <div class=\"card__container\">\n        <div class=\"card__title\">\n          Doe, Jane\n        </div>\n        <div class=\"card__desc\">\n          Admitted Feb. 20, 2016 for Wisdom Tooth Eruption\n        </div>\n      </div>\n\n      <div class=\"card__container\">\n        <div class=\"card__title\">\n          Phour, Mahn\n        </div>\n        <div class=\"card__desc\">\n          Admitted June 19, 2015 for Gingivitis,\n          Periodontitis, Dental Calculus, and\n          2 more...\n        </div>\n      </div>\n\n      <div class=\"card__container\">\n        <div class=\"card__title\">\n          Xing, Ah Mae\n        </div>\n        <div class=\"card__desc\">\n          Admitted Mar. 3, 2015 for Malocclusion\n        </div>\n      </div>\n\n      <div class=\"pagination__container\">\n        <div class=\"pagination__page\">\n          <i class=\"fa fa-angle-double-left\"></i>\n        </div>\n        <div class=\"pagination__page\">\n          <i class=\"fa fa-angle-left\"></i>\n        </div>\n        <div class=\"pagination__page\">\n          2\n        </div>\n        <div class=\"pagination__current\">\n          3\n        </div>\n        <div class=\"pagination__page\">\n          4\n        </div>\n        <div class=\"pagination__page\">\n          <i class=\"fa fa-angle-right\"></i>\n        </div>\n        <div class=\"pagination__page\">\n          <i class=\"fa fa-angle-double-right\"></i>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>";
-
-/***/ }),
-/* 47 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var editdoctor = __webpack_require__(48);
-
-angular.module('hplus.modules.editdoctor', [])
-
-  .config(function ($routeProvider){  
-    $routeProvider      
-      .when('/admin/edit/doctor',{
-        template: editdoctor
-      })
-  });
-
-
-/***/ }),
-/* 48 */
-/***/ (function(module, exports) {
-
-module.exports = "<div class=\"row\">\n  <div class=\"col col-md-8 col-md-offset-1\">\n    <h1><i class=\"fa fa-pencil-square-o\"></i> Editing Dr. John Appleseed</h1>\n  </div>\n</div>\n\n<div class=\"row\">\n  <div class=\"col col-md-3 col-md-offset-1\">\n    <div class=\"match-padding\">\n      <span class=\"subtitle\">\n        Specialization\n      </span>\n      <input type=\"text\" value=\"Dentistry\">\n      <br>\n      <span class=\"subtitle\">\n        E-mail Address\n      </span>\n      <input type=\"text\" value=\"joappleseed@hplus.com\">\n      <br>\n      \n      <br>\n       <div ng-controller=\"modalCtrl as alert\"> \n              \t<button ng-click=\"alert.alert()\">Update</button>\t\t<button class=\"outline delete_btn\" ng-click=\"alert.confirm()\">Delete</button>\n              \t\t\t</div>\n  \n    </div>\n  </div>\n</div>";
-
-/***/ }),
-/* 49 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var exploredoctors = __webpack_require__(50);
-
-angular.module('hplus.modules.exploredoctors', [])
-
-  .config(function ($routeProvider){  
-    $routeProvider
-      .when('/admin/list/doctor',{
-        template: exploredoctors
-      })
-  });
-
-
-/***/ }),
-/* 50 */
-/***/ (function(module, exports) {
-
-module.exports = "\n\t<div class=\"row\"><!-- Header Portion -->\n  \t\t<div class=\"col col-md-10 col-md-offset-1\">\n    \t\t<h1>List of All Doctors</h1><!-- Header Name for this Module -->\n  \t\t</div>\n\t</div>\n\n\t<div class=\"row\"><!-- Body Portion -->\n  \t\t<div class=\"col col-md-2 col-md-offset-1\"><!-- Section for search -->\n\n    \t\t<div class=\"row\">\n      \t\t\t<div class=\"col col-md-6\">\n        \t\t\t<label class=\"subtitle\">\n          \t\t\t\tSearch\n        \t\t\t</label>\n      \t\t\t</div>\n    \t\t\t<br><br>\n    \t\t</div>\n    \t\t\n    \t\t<div class=\"match-padding\">\n\n      \t\t\t<input type=\"text\" placeholder=\"Enter a name\">\n\n      \t\t\t<button>Search</button>\n    \t\t</div>\n\n  \t\t</div>\n       <div ng-controller=\"modalCtrl as alert\"> \n  \t\t<div class=\"col col-md-8\"><!-- Section containing the tabulated list of doctors -->\n\n    \t\t<div class=\"col col-md-12\">\n      \t\t\t<label class=\"subtitle\">\n        \t\t\tALL RESULTS\n      \t\t\t</label>\n      \t\t\t<br><br>\n      \t\t\t\n    \t\t\t<!-- List Section -->\n    \t\t\t\n      \t\t\t<div class=\"card__container\">\n        \t\t\t<div class=\"card__title\">\n          \t\t\t\tAplia, Kate MD <a href=\"#!/admin/edit/doctor\"> <span class=\"delete__icon\"><i class=\"fa fa-pencil-square-o\" aria-hidden=\"true\"></i></span></a>\n        \t\t\t</div>\n        \t\t\t<div class=\"card__desc\">\n          \t\t\t\tGeneral Practice\n        \t\t\t</div>\n      \t\t\t</div>\n\n      \t\t\t<div class=\"card__container\">\n        \t\t\t<div class=\"card__title\">\n          \t\t\t\tAppleseed, John DDS<a href=\"#!/admin/edit/doctor\"> <span class=\"delete__icon\"><i class=\"fa fa-pencil-square-o\" aria-hidden=\"true\"></i></span></a>        \t\t\t</div>\n        \t\t\t<div class=\"card__desc\">\n          \t\t\t\tDentistry\n        \t\t\t</div>\n      \t\t\t</div>\n      \t\t\t\n      \t\t\t<div class=\"card__container\">\n        \t\t\t<div class=\"card__title\">\n          \t\t\t\tSiewel, Nao Ng OD<a href=\"#!/admin/edit/doctore\"> <span class=\"delete__icon\"><i class=\"fa fa-pencil-square-o\" aria-hidden=\"true\"></i></span></a>        \t\t\t</div>\n        \t\t\t<div class=\"card__desc\">\n          \t\t\t\tOptometry\n        \t\t\t</div>\n      \t\t\t</div>\n      \t\t\t\n    \t\t</div>\n  \t\t</div>\n\t</div>\n\t\n\t<br><br><br><br><br><br>\n\t<br><br><br><br><br><br>\n\t<br><br><br>\n\t\n\t<!-- Pagination Section -->\n\t<div class=\"row\">\n\t\n\t\t<div class=\"col col-md-3 col-md-offset-8\">\n\t\t\n\t\t\t<div class=\"pagination__container\">\n\t\t\t\n\t\t\t\t<div class=\"pagination__page\">\n\t\t\t\t\t<<\n\t\t\t\t</div>\n\t\t\t\t\n\t\t\t\t<div class=\"pagination__page\">\n\t\t\t\t\t<\n\t\t\t\t</div>\n\t\t\t\t\n\t\t\t\t<div class=\"pagination__page \">\n\t\t\t\t\t2\n\t\t\t\t</div>\n\t\t\t\t\n\t\t\t\t<div class=\"pagination__page pagination__current\">\n\t\t\t\t\t3\n\t\t\t\t</div>\n\t\t\t\t\n\t\t\t\t<div class=\"pagination__page\">\n\t\t\t\t\t4\n\t\t\t\t</div>\n\t\t\t\t\n\t\t\t\t<div class=\"pagination__page\">\n\t\t\t\t\t>\n\t\t\t\t</div>\n\t\t\t\t\n\t\t\t\t<div class=\"pagination__page\">\n\t\t\t\t\t>>\n\t\t\t\t</div>\n\t\t\t\t\n\t\t\t</div>\n\t\t\t\n  \t\t</div>\n  \t\t\n\t</div>\n\n\n";
-
-/***/ }),
-/* 51 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var exploremedicines = __webpack_require__(52);
-
-angular.module('hplus.modules.exploremedicines', [])
-
-  .config(function ($routeProvider){  
-    $routeProvider
-      .when('/admin/list/medicine',{
-        template: exploremedicines
-      })
-  });
-
-
-/***/ }),
-/* 52 */
-/***/ (function(module, exports) {
-
-module.exports = "<!DOCTYPE html PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" \"http://www.w3.org/TR/html4/loose.dtd\">\n<html>\n<head>\n\t<meta http-equiv=\"Content-Type\" content=\"text/html; charset=ISO-8859-1\">\n\t<title>List of Medicines</title><!-- Module Name -->\n</head>\n<body>\n\t<div class=\"row\"><!-- Header Portion -->\n  \t\t<div class=\"col col-md-10 col-md-offset-1\">\n    \t\t<h1>List of All Medicines</h1><!-- Header Name for this Module -->\n  \t\t</div>\n\t</div>\n\n\t<div class=\"row\"><!-- Body Portion -->\n  \t\t<div class=\"col col-md-2 col-md-offset-1\"><!-- Section for search -->\n\n    \t\t<div class=\"row\">\n      \t\t\t<div class=\"col col-md-6\">\n        \t\t\t<label class=\"subtitle\">\n          \t\t\t\tSearch\n        \t\t\t</label>\n      \t\t\t</div>\n    \t\t\t<br><br>\n    \t\t</div>\n    \t\t\n    \t\t<div class=\"match-padding\">\n\n      \t\t\t<input type=\"text\" placeholder=\"Enter a name\">\n\n      \t\t\t<button>Search</button>\n    \t\t</div>\n\n  \t\t</div>\n\n  \t\t<div class=\"col col-md-8\"><!-- Section containing the list and detail of medicines -->\n\n    \t\t<div class=\"col col-md-6\"><!-- List sector -->\n      \t\t\t<label class=\"subtitle\">\n        \t\t\tALL RESULTS\n      \t\t\t</label>\n      \t\t\t<br><br>\n      \t\t\t\n    \t\t\t<!-- List Section -->\n    \t\t\t \n      \t\t\t<div class=\"card__container\">\n        \t\t\t<div class=\"card__title\">\n          \t\t\t\tMetformin\n        \t\t\t</div>\n        \t\t\t<div class=\"card__desc\">\n          \t\t\t\tDiabetes Mellitus\n        \t\t\t</div>\n      \t\t\t</div>\n\n      \t\t\t<div class=\"card__container\">\n        \t\t\t<div class=\"card__title\">\n          \t\t\t\tMethadone        \t\t\t</div>\n        \t\t\t<div class=\"card__desc\">\n          \t\t\t\tOpioid dependency, chronic pain\n        \t\t\t</div>\n      \t\t\t</div>\n      \t\t\t\n      \t\t\t<div class=\"card__container\">\n        \t\t\t<div class=\"card__title\">\n          \t\t\t\tMethamphetamine\n        \t\t\t</div>x\n        \t\t\t<div class=\"card__desc\">\n          \t\t\t\tAttention deficit hyperactivity disorder, obesity, and more...\n        \t\t\t</div>\n      \t\t\t</div>\n      \t\t\t\n      \t\t\t<div class=\"card__container\">\n        \t\t\t<div class=\"card__title\">\n          \t\t\t\tMethazolamide\n        \t\t\t</div>\n        \t\t\t<div class=\"card__desc\">\n          \t\t\t\tIntraocular pressure in glaucoma\n        \t\t\t</div>\n      \t\t\t</div>\n      \t\t\t</div>\n    \t\n    \t\t<br><br><br><br><br>\n    \t\t<div class=\"col col-md-5 col-md-offset-1\"><!-- Detail Sector -->\n      \t\t\t<label class=\"subtitle\">\n        \t\t\tDETAILS FOR Methampetamine\n      \t\t\t</label>\n      \t\t\t<br><br>\n      \t\t\t\n    \t\t\t<!-- Detail Section -->\n    \t\t\t\n      \t\t\t<div class=\"detail__container\">\n      \t\t\t\n      \t\t\t\t<br><br>\n      \t\t\t\t\n        \t\t\t<div class=\"card__title\">\n          \t\t\t\tMethampetamine \n        \t\t\t</div>\n        \t\n        \t\t\t<div class=\"detail__desc\">\n          \t\t\t\t<p>\n          \t\t\t\t\tMethamphetamine is a strong central nervous system stimulant that is\n          \t\t\t\t\tmainly used as a recreational drug and less commonly as a treatment\n          \t\t\t\t\tfor attention deficit hyperactivity disorder and obesity.\n          \t\t\t\t</p>\n        \t\t\t</div>\n        \t\t\t\n        \t\t\t<span class=\"detail__title\">PRICE (PHP)</span>\n        \t\t\t<span class=\"detail__subtitle\">24,990.00</span>\n        \t\t\t\n        \t\t\t<br><br>\n        \t\t\t\n        \t\t\t<span class=\"detail__title\">TREATMENT FOR</span>\n        \t\t\t<span class=\"detail__subtitle\">\n        \t\t\t\tAttention deficit hyperactivity disorder, obesity\n        \t\t\t</span>\n        \t\t\t\n        \t\t\t<br><br>\n        \t\t\t <div ng-controller=\"modalCtrl as alert\"> \n        \t\t\t<a href=\"#!/admin/edit/medicine\"><button >Edit</button></a><button class=\"delete_btn\" ng-click=\"alert.confirm()\">Delete</button>\n        \t\t\t</div>\n      \t\t\t</div>\n      \t\t</div>\n  \t\t</div>\n\t</div>\n\t\n\t<br><br><br><br>\n\t\n\t<!-- Pagination Section -->\n\t<div class=\"row\">\n\t\n\t\t<div class=\"col col-md-3 col-md-offset-5\">\n\t\t\n\t\t\t<div class=\"pagination__container\">\n\t\t\t\n\t\t\t\t<div class=\"pagination__page\">\n\t\t\t\t\t<<\n\t\t\t\t</div>\n\t\t\t\t\n\t\t\t\t<div class=\"pagination__page\">\n\t\t\t\t\t<\n\t\t\t\t</div>\n\t\t\t\t\n\t\t\t\t<div class=\"pagination__page \">\n\t\t\t\t\t2\n\t\t\t\t</div>\n\t\t\t\t\n\t\t\t\t<div class=\"pagination__page pagination__current\">\n\t\t\t\t\t3\n\t\t\t\t</div>\n\t\t\t\t\n\t\t\t\t<div class=\"pagination__page\">\n\t\t\t\t\t4\n\t\t\t\t</div>\n\t\t\t\t\n\t\t\t\t<div class=\"pagination__page\">\n\t\t\t\t\t>\n\t\t\t\t</div>\n\t\t\t\t\n\t\t\t\t<div class=\"pagination__page\">\n\t\t\t\t\t>>\n\t\t\t\t</div>\n\t\t\t\t\n\t\t\t</div>\n\t\t\t\n  \t\t</div>\n  \t</div>\n</body>\n</html>";
-
-/***/ }),
-/* 53 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var exploremedicalrecords = __webpack_require__(54);
-
-angular.module('hplus.modules.exploremedicalrecords', [])
-
-  .config(function ($routeProvider){  
-    $routeProvider
-      .when('/doctor/list/record',{
-        template: exploremedicalrecords
-      })
-  });
-
-
-/***/ }),
-/* 54 */
-/***/ (function(module, exports) {
-
-module.exports = "\n\t<div class=\"row\"><!-- Header Portion -->\n  \t\t<div class=\"col col-md-10 col-md-offset-1\">\n    \t\t<h1>List of All Medical Records</h1><!-- Header Name for this Module -->\n  \t\t</div>\n\t</div>\n\t\n\t<div class=\"row\"><!-- Body Portion -->\n  \t\t<div class=\"col col-md-2 col-md-offset-1\"><!-- Section for search -->\n\n    \t\t<div class=\"row\">\n      \t\t\t<div class=\"col col-md-6\">\n        \t\t\t<label class=\"subtitle\">\n          \t\t\t\tSearch\n        \t\t\t</label>\n      \t\t\t</div>\n    \t\t\t<br><br>\n    \t\t</div>\n    \t\t\n    \t\t<div class=\"match-padding\">\n\n      \t\t\t<input type=\"text\" placeholder=\"Enter a name\">\n\n      \t\t\t<button>Search</button>\n    \t\t</div>\n\n  \t\t</div>\n       <div ng-controller=\"modalCtrl as alert\"> \n  \t\t<div class=\"col col-md-8\"><!-- Section containing the tabulated list of doctors -->\n\n    \t\t<div class=\"col col-md-12\">\n      \t\t\t<label class=\"subtitle\">\n        \t\t\tALL RESULTS\n      \t\t\t</label>\n      \t\t\t<br><br>\n      \t\t\t\n    \t\t\t<!-- List Section -->\n    \t\t\t\n      \t\t\t<div class=\"card__container\">\n        \t\t\t<div class=\"card__title\">\n          \t\t\t\tAplia, Kate MD <span ng-click=\"alert.confirm()\" class=\"delete__icon\"><i class=\"fa fa-trash-o\" aria-hidden=\"true\"></i></span>\n        \t\t\t</div>\n        \t\t\t<div class=\"card__desc\">\n          \t\t\t\tSome medical information\n        \t\t\t</div>\n      \t\t\t</div>\n\n      \t\t\t<div class=\"card__container\">\n        \t\t\t<div class=\"card__title\">\n          \t\t\t\tAppleseed, John DDS<span ng-click=\"alert.confirm()\" class=\"delete__icon\"><i class=\"fa fa-trash-o\" aria-hidden=\"true\"></i></span>\n        \t\t\t</div>\n        \t\t\t<div class=\"card__desc\">\n          \t\t\t\tSome medical information\n        \t\t\t</div>\n      \t\t\t</div>\n      \t\t\t\n      \t\t\t<div class=\"card__container\">\n        \t\t\t<div class=\"card__title\">\n          \t\t\t\tSiewel, Nao Ng OD<span ng-click=\"alert.confirm()\" class=\"delete__icon\"><i class=\"fa fa-trash-o\" aria-hidden=\"true\"></i></span>\n        \t\t\t</div>\n        \t\t\t<div class=\"card__desc\">\n          \t\t\t\tSome medical information\n        \t\t\t</div>\n      \t\t\t</div>\n      \t\t\t\n    \t\t</div>\n  \t\t</div>\n\t</div>\n\t\n\t<br><br><br><br><br><br>\n\t<br><br><br><br><br><br>\n\t<br><br><br>\n\n\t<!-- Pagination Section -->\n\t<div class=\"row\">\n\t\n\t\t<div class=\"col col-md-3 col-md-offset-8\">\n\t\t\n\t\t\t<div class=\"pagination__container\">\n\t\t\t\n\t\t\t\t<div class=\"pagination__page\">\n\t\t\t\t\t<<\n\t\t\t\t</div>\n\t\t\t\t\n\t\t\t\t<div class=\"pagination__page\">\n\t\t\t\t\t<\n\t\t\t\t</div>\n\t\t\t\t\n\t\t\t\t<div class=\"pagination__page \">\n\t\t\t\t\t2\n\t\t\t\t</div>\n\t\t\t\t\n\t\t\t\t<div class=\"pagination__page pagination__current\">\n\t\t\t\t\t3\n\t\t\t\t</div>\n\t\t\t\t\n\t\t\t\t<div class=\"pagination__page\">\n\t\t\t\t\t4\n\t\t\t\t</div>\n\t\t\t\t\n\t\t\t\t<div class=\"pagination__page\">\n\t\t\t\t\t>\n\t\t\t\t</div>\n\t\t\t\t\n\t\t\t\t<div class=\"pagination__page\">\n\t\t\t\t\t>>\n\t\t\t\t</div>\n\t\t\t\t\n\t\t\t</div>\n\t\t\t\n  \t\t</div>\n  \t\t\n\t</div>\n\n\n";
-
-/***/ }),
-/* 55 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var userLogin = __webpack_require__(56);
-
-angular.module('hplus.modules.userLogin', [])
-
-  .config(function ($routeProvider){  
-    $routeProvider
-      .when('/user/login',{
-        template: userLogin
-      })
-  });
-
-
-/***/ }),
-/* 56 */
-/***/ (function(module, exports) {
-
-module.exports = "<div class=\"container\">\n  <div class=\"row\">\n<div class=\"col-md-7 \">\n</div>\n    <div class=\"col-md-4 text-center\">\n\n      <h3>Enter Your Credentials to Log In</h3>\n      \n     \n\n      <form role=\"form\">\n        <div class=\"form-group\">\n          <label for=\"inputUsernameEmail\">Username or email</label>\n          <input type=\"text\" class=\"form-control\" id=\"inputUsernameEmail\">\n        </div>\n        <div class=\"form-group\">\n          <a class=\"pull-right\" href=\"#\">Forgot password?</a>\n          <label for=\"inputPassword\">Password</label>\n          <input type=\"password\" class=\"form-control\" id=\"inputPassword\">\n        </div>\n        \n        <button type=\"submit\" class=\"btn btn btn-primary pull-right\">\n          Log In\n        </button>\n      </form>\n    \n    </div>\n    \n  </div>\n</div>\n";
-
-/***/ }),
-/* 57 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var pagination = __webpack_require__(58);
-
-angular.module('hplus.modules.pagination', [])
-
-
-
-/***/ }),
-/* 58 */
-/***/ (function(module, exports) {
-
-module.exports = " <div class=\"pagination\" style=\"\">\n\t\t\t\t<div class=\"paginate wrapper\">\n\t\t\t\t\t<ul>\n\t\t\t\t\t\t <li><a href=\"\">1</a></li>\n\t\t\t\t\t\t<li><a href=\"\" class=\"inactive\">2</a></li>\n\t\t\t\t\t\t<li><a href=\"\">3</a></li>\n\t\t\t\t\t\t<li><a href=\"\" class=\"active\">4</a></li>\n\t\t\t\t\t\t<li><a href=\"\">5</a></li>\n\t\t\t\t\t \n\t\t\t\t\t\t<li><a href=\"\">6</a></li>\n\t\t\t\t\t\t<li><a href=\"\">7</a></li>\n\t\t\t\t\t\t<li><a href=\"\">8</a></li>\n\t\t\t\t \n\t\t\t\t\t</ul>\n\t\t\t\t</div>\n</div>";
-
-/***/ }),
-/* 59 */
 /***/ (function(module, exports) {
 
 angular.module('hplus.modules.modal', [])
@@ -36270,10 +35545,10 @@ angular.module('hplus.modules.modal', [])
 	}]);
 
 /***/ }),
-/* 60 */
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var editdisease = __webpack_require__(61);
+var editdisease = __webpack_require__(36);
 
 angular.module('hplus.modules.editdisease', [])
 
@@ -36286,16 +35561,38 @@ angular.module('hplus.modules.editdisease', [])
 
 
 /***/ }),
-/* 61 */
+/* 36 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\n  <div class=\"col col-md-8 col-md-offset-1\">\n    <h1>Edit Disease</h1>\n  </div>\n</div>\n\n<div class=\"row\">\n  <div class=\"col col-md-3 col-md-offset-1\">\n\n    <div class=\"row\">\n      <div class=\"col col-md-12\">\n        <label>\n          Name of Disease\n        </label>\n        <input type=\"text\" value=\"Diabetes Mellitus Type 2\">\n\t\t    <br><br>\n\t\t            <div ng-controller=\"modalCtrl as alert\"> \n              \t\t\t<button  ng-click=\"alert.alert()\">Update</button><button class=\"outline delete_btn\" ng-click=\"alert.confirm()\">Delete</button>\n              \t\t\t</div>\n      </div>\n    </div>\n    \n  </div>\n\n  <div class=\"col col-md-3 col-md-offset-1\">\n    <div class=\"row\">\n\t    <div class=\"col col-md-12\">\n\t        <label>\n\t\t        Symptoms\n\t\t      </label>\n\t\t      <textarea placeholder=\"Enter Symptoms\"></textarea>\n\t    </div>\n    </div>\n  </div>\n\n  <div class=\"col col-md-3 col-md-offset-1\">\n    <div class=\"row\">\n\t    <div class=\"col col-md-12\">\n\t      <label>\n\t       Medicines\n        </label>\n\t\t\t\t<input type=\"text\" placeholder=\"Search\">\n\t\t\t\t<div>\n\t\t\t\t\t<input type=\"checkbox\">Metformin<br>\n\t\t\t\t\t<input type=\"checkbox\">Methadone<br>\n\t\t\t\t\t<input type=\"checkbox\">Methamphetamine<br>\n\t\t\t\t\t<input type=\"checkbox\">Methazolamide<br>\n\t\t\t\t\t<input type=\"checkbox\">Methenamine<br>\n\t\t\t\t\t<input type=\"checkbox\">Methimazole<br>\n\t\t\t\t\t<input type=\"checkbox\">Meth\n\t\t\t\t</div>\n\t    </div>\n    </div>\n  </div>\n  \n</div>";
+module.exports = "<div class=\"row\">\r\n  <div class=\"col col-md-8 col-md-offset-1\">\r\n    <h1>Edit Disease</h1>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row\">\r\n  <div class=\"col col-md-3 col-md-offset-1\">\r\n\r\n    <div class=\"row\">\r\n      <div class=\"col col-md-12\">\r\n        <label>\r\n          Name of Disease\r\n        </label>\r\n        <input type=\"text\" value=\"Diabetes Mellitus Type 2\">\r\n\t\t    <br><br>\r\n\t\t            <div ng-controller=\"modalCtrl as alert\"> \r\n              \t\t\t<button  ng-click=\"alert.alert()\">Update</button><button class=\"outline delete_btn\" ng-click=\"alert.confirm()\">Delete</button>\r\n              \t\t\t</div>\r\n      </div>\r\n    </div>\r\n    \r\n  </div>\r\n\r\n  <div class=\"col col-md-3 col-md-offset-1\">\r\n    <div class=\"row\">\r\n\t    <div class=\"col col-md-12\">\r\n\t        <label>\r\n\t\t        Symptoms\r\n\t\t      </label>\r\n\t\t      <textarea placeholder=\"Enter Symptoms\"></textarea>\r\n\t    </div>\r\n    </div>\r\n  </div>\r\n\r\n  <div class=\"col col-md-3 col-md-offset-1\">\r\n    <div class=\"row\">\r\n\t    <div class=\"col col-md-12\">\r\n\t      <label>\r\n\t       Medicines\r\n        </label>\r\n\t\t\t\t<input type=\"text\" placeholder=\"Search\">\r\n\t\t\t\t<div>\r\n\t\t\t\t\t<input type=\"checkbox\">Metformin<br>\r\n\t\t\t\t\t<input type=\"checkbox\">Methadone<br>\r\n\t\t\t\t\t<input type=\"checkbox\">Methamphetamine<br>\r\n\t\t\t\t\t<input type=\"checkbox\">Methazolamide<br>\r\n\t\t\t\t\t<input type=\"checkbox\">Methenamine<br>\r\n\t\t\t\t\t<input type=\"checkbox\">Methimazole<br>\r\n\t\t\t\t\t<input type=\"checkbox\">Meth\r\n\t\t\t\t</div>\r\n\t    </div>\r\n    </div>\r\n  </div>\r\n  \r\n</div>";
 
 /***/ }),
-/* 62 */
+/* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var editmedicine = __webpack_require__(63);
+var editdoctor = __webpack_require__(38);
+
+angular.module('hplus.modules.editdoctor', [])
+
+  .config(function ($routeProvider){  
+    $routeProvider      
+      .when('/admin/edit/doctor',{
+        template: editdoctor
+      })
+  });
+
+
+/***/ }),
+/* 38 */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"row\">\r\n  <div class=\"col col-md-8 col-md-offset-1\">\r\n    <h1><i class=\"fa fa-pencil-square-o\"></i> Editing Dr. John Appleseed</h1>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row\">\r\n  <div class=\"col col-md-3 col-md-offset-1\">\r\n    <div class=\"match-padding\">\r\n      <span class=\"subtitle\">\r\n        Specialization\r\n      </span>\r\n      <input type=\"text\" value=\"Dentistry\">\r\n      <br>\r\n      <span class=\"subtitle\">\r\n        E-mail Address\r\n      </span>\r\n      <input type=\"text\" value=\"joappleseed@hplus.com\">\r\n      <br>\r\n      \r\n      <br>\r\n       <div ng-controller=\"modalCtrl as alert\"> \r\n              \t<button ng-click=\"alert.alert()\">Update</button>\t\t<button class=\"outline delete_btn\" ng-click=\"alert.confirm()\">Delete</button>\r\n              \t\t\t</div>\r\n  \r\n    </div>\r\n  </div>\r\n</div>";
+
+/***/ }),
+/* 39 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var editmedicine = __webpack_require__(40);
 
 angular.module('hplus.modules.editmedicine', [])
 
@@ -36308,20 +35605,222 @@ angular.module('hplus.modules.editmedicine', [])
 
 
 /***/ }),
-/* 63 */
+/* 40 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\n  <div class=\"col col-md-8 col-md-offset-1\">\n    <h1>Edit Medicine</h1>\n  </div>\n</div>\n\n<div class=\"row\">\n  <div class=\"col col-md-3 col-md-offset-1\">\n    <div class=\"row\">\n      <div class=\"col col-md-12\">\n      Name of Medicine:\n      <input type = \"text\" value = \"RiteMed Metformin\">\n      </div>\n      <br><br>\n    </div>\n    <div class=\"row\">\n   \n      <div class=\"col col-md-12\">\n       Price (PHP) : <input type = \"text\" id = \"priceInputField\" value = \"3.75\">\n      </div>\n      <br><br>\n    </div>\n    <div class=\"col col-md-12\" id = \"saveMed\">\n     <div ng-controller=\"modalCtrl as alert\"> \n                  \t\t\t<button  ng-click=\"alert.alert()\" >Update</button><button class=\"outline delete_btn\" ng-click=\"alert.confirm()\">Delete</button>\n                  \t\t\t</div>\n    </div>\n  </div>\n\n  <div class=\"col col-md-8\">\n  <div class=\"col col-md-12\">\n    Description:\n  </div>\n  <div class=\"col col-md-12\">\n    <textarea id=\"descMed\" rows=\"8\" cols = \"50\" disabled>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent ut lorem quis dolor porttitor accumsan. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Integer vitae erat viverra, vestibulum enim id, pulvinar lectus. Sed volutpat tristique tristique. Vivamus turpis diam, consequat vel sagittis quis, convallis quis sem.</textarea>\n  </div>\n  </div>\n</div>";
+module.exports = "<div class=\"row\">\r\n  <div class=\"col col-md-8 col-md-offset-1\">\r\n    <h1>Edit Medicine</h1>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row\">\r\n  <div class=\"col col-md-3 col-md-offset-1\">\r\n    <div class=\"row\">\r\n      <div class=\"col col-md-12\">\r\n      Name of Medicine:\r\n      <input type = \"text\" value = \"RiteMed Metformin\">\r\n      </div>\r\n      <br><br>\r\n    </div>\r\n    <div class=\"row\">\r\n   \r\n      <div class=\"col col-md-12\">\r\n       Price (PHP) : <input type = \"text\" id = \"priceInputField\" value = \"3.75\">\r\n      </div>\r\n      <br><br>\r\n    </div>\r\n    <div class=\"col col-md-12\" id = \"saveMed\">\r\n     <div ng-controller=\"modalCtrl as alert\"> \r\n                  \t\t\t<button  ng-click=\"alert.alert()\" >Update</button><button class=\"outline delete_btn\" ng-click=\"alert.confirm()\">Delete</button>\r\n                  \t\t\t</div>\r\n    </div>\r\n  </div>\r\n\r\n  <div class=\"col col-md-8\">\r\n  <div class=\"col col-md-12\">\r\n    Description:\r\n  </div>\r\n  <div class=\"col col-md-12\">\r\n    <textarea id=\"descMed\" rows=\"8\" cols = \"50\">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent ut lorem quis dolor porttitor accumsan. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Integer vitae erat viverra, vestibulum enim id, pulvinar lectus. Sed volutpat tristique tristique. Vivamus turpis diam, consequat vel sagittis quis, convallis quis sem.</textarea>\r\n  </div>\r\n  </div>\r\n</div>";
 
 /***/ }),
-/* 64 */
+/* 41 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var explorediseases = __webpack_require__(42);
+
+angular.module('hplus.modules.explorediseases', [])
+
+  .config(function ($routeProvider){  
+    $routeProvider      
+      .when('/admin/list/disease',{
+        template: explorediseases
+      })
+  });
+
+
+/***/ }),
+/* 42 */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"row\">\r\n  <div class=\"col col-md-8 col-md-offset-1\">\r\n    <h1>List of All Diseases</h1>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row\">\r\n  <div class=\"col col-md-2 col-md-offset-1\">\r\n\r\n    <div class=\"row\">\r\n      <div class=\"col col-md-6\">\r\n        <span class=\"subtitle\">\r\n          Search\r\n        </span>\r\n      </div>\r\n      <br><br>\r\n    </div>\r\n    <div class=\"match-padding\">\r\n      <select>\r\n        <option>Disease</option>\r\n        <option>Medicine</option>\r\n      </select>\r\n\r\n      <input type=\"text\" placeholder=\"Enter a keyword\">\r\n\r\n      <button>Search</button>\r\n    </div>\r\n\r\n  </div>\r\n\r\n  <div class=\"col col-md-8\">\r\n  <div ng-controller=\"modalCtrl as alert\"> \r\n    <div class=\"col col-md-12 marginBottom\">\r\n      <span class=\"subtitle\">\r\n        69 Results Matching\r\n      </span>\r\n      \r\n      <span class=\"subtitle subtitle--variable\">\r\n        Pneumoultramicroscopicsilicovolcanoconiosis\r\n      </span>\r\n      <br><br>\r\n    \r\n      <div class=\"card__container\">\r\n        <div class=\"card__title\">\r\n          Tuberculosis<a href=\"#!/admin/edit/disease\"> <span class=\"delete__icon\"><i class=\"fa fa-pencil-square-o\" aria-hidden=\"true\"></i></span></a>\r\n        </div>\r\n        <div class=\"card__desc\">\r\n          Symptoms: Fever, chills, night sweats, loss of appetite, weight loss and fatigue.\r\n        </div>\r\n      </div>\r\n\r\n      <div class=\"card__container\">\r\n        <div class=\"card__title\">\r\n          Pneumonia <a href=\"#!/admin/edit/disease\"> <span class=\"delete__icon\"><i class=\"fa fa-pencil-square-o\" aria-hidden=\"true\"></i></span></a>\r\n        </div>\r\n        <div class=\"card__desc\">\r\n          Symptoms: Cough, fever, shaking chills, shortness of breath, chest pain, and 3 more...\r\n        </div>\r\n      </div>\r\n\r\n  </div>\r\n    </div>\r\n\r\n           <div>\r\n          \r\n            \r\n          </div>\r\n  </div>\r\n\r\n</div>\r\n<!-- Pagination Section -->\r\n  <div class=\"row\">\r\n  \r\n    <div class=\"col col-md-3 col-md-offset-8\">\r\n    \r\n      <div class=\"pagination__container\">\r\n      \r\n        <div class=\"pagination__page\">\r\n          <<\r\n        </div>\r\n        \r\n        <div class=\"pagination__page\">\r\n          <\r\n        </div>\r\n        \r\n        <div class=\"pagination__page \">\r\n          2\r\n        </div>\r\n        \r\n        <div class=\"pagination__page pagination__current\">\r\n          3\r\n        </div>\r\n        \r\n        <div class=\"pagination__page\">\r\n          4\r\n        </div>\r\n        \r\n        <div class=\"pagination__page\">\r\n          >\r\n        </div>\r\n        \r\n        <div class=\"pagination__page\">\r\n          >>\r\n        </div>\r\n        \r\n      </div>\r\n      \r\n  \t\t</div>\r\n  \t\t\r\n  </div>\r\n";
+
+/***/ }),
+/* 43 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var exploredoctors = __webpack_require__(44);
+
+angular.module('hplus.modules.exploredoctors', [])
+
+  .config(function ($routeProvider){  
+    $routeProvider
+      .when('/admin/list/doctor',{
+        template: exploredoctors
+      })
+  });
+
+
+/***/ }),
+/* 44 */
+/***/ (function(module, exports) {
+
+module.exports = "\r\n\t<div class=\"row\"><!-- Header Portion -->\r\n  \t\t<div class=\"col col-md-10 col-md-offset-1\">\r\n    \t\t<h1>List of All Doctors</h1><!-- Header Name for this Module -->\r\n  \t\t</div>\r\n\t</div>\r\n\r\n\t<div class=\"row\"><!-- Body Portion -->\r\n  \t\t<div class=\"col col-md-2 col-md-offset-1\"><!-- Section for search -->\r\n\r\n    \t\t<div class=\"row\">\r\n      \t\t\t<div class=\"col col-md-6\">\r\n        \t\t\t<label class=\"subtitle\">\r\n          \t\t\t\tSearch\r\n        \t\t\t</label>\r\n      \t\t\t</div>\r\n    \t\t\t<br><br>\r\n    \t\t</div>\r\n    \t\t\r\n    \t\t<div class=\"match-padding\">\r\n\r\n      \t\t\t<input type=\"text\" placeholder=\"Enter a name\">\r\n\r\n      \t\t\t<button>Search</button>\r\n    \t\t</div>\r\n\r\n  \t\t</div>\r\n       <div ng-controller=\"modalCtrl as alert\"> \r\n  \t\t<div class=\"col col-md-8\"><!-- Section containing the tabulated list of doctors -->\r\n\r\n    \t\t<div class=\"col col-md-12\">\r\n      \t\t\t<label class=\"subtitle\">\r\n        \t\t\tALL RESULTS\r\n      \t\t\t</label>\r\n      \t\t\t<br><br>\r\n      \t\t\t\r\n    \t\t\t<!-- List Section -->\r\n    \t\t\t\r\n      \t\t\t<div class=\"card__container\">\r\n        \t\t\t<div class=\"card__title\">\r\n          \t\t\t\tAplia, Kate MD <a href=\"#!/admin/edit/doctor\"> <span class=\"delete__icon\"><i class=\"fa fa-pencil-square-o\" aria-hidden=\"true\"></i></span></a>\r\n        \t\t\t</div>\r\n        \t\t\t<div class=\"card__desc\">\r\n          \t\t\t\tGeneral Practice\r\n        \t\t\t</div>\r\n      \t\t\t</div>\r\n\r\n      \t\t\t<div class=\"card__container\">\r\n        \t\t\t<div class=\"card__title\">\r\n          \t\t\t\tAppleseed, John DDS<a href=\"#!/admin/edit/doctor\"> <span class=\"delete__icon\"><i class=\"fa fa-pencil-square-o\" aria-hidden=\"true\"></i></span></a>        \t\t\t</div>\r\n        \t\t\t<div class=\"card__desc\">\r\n          \t\t\t\tDentistry\r\n        \t\t\t</div>\r\n      \t\t\t</div>\r\n      \t\t\t\r\n      \t\t\t<div class=\"card__container\">\r\n        \t\t\t<div class=\"card__title\">\r\n          \t\t\t\tSiewel, Nao Ng OD<a href=\"#!/admin/edit/doctore\"> <span class=\"delete__icon\"><i class=\"fa fa-pencil-square-o\" aria-hidden=\"true\"></i></span></a>        \t\t\t</div>\r\n        \t\t\t<div class=\"card__desc\">\r\n          \t\t\t\tOptometry\r\n        \t\t\t</div>\r\n      \t\t\t</div>\r\n      \t\t\t\r\n    \t\t</div>\r\n  \t\t</div>\r\n\t</div>\r\n\t\r\n\t<br><br><br><br><br><br>\r\n\t<br><br><br><br><br><br>\r\n\t<br><br><br>\r\n\t\r\n\t<!-- Pagination Section -->\r\n\t<div class=\"row\">\r\n\t\r\n\t\t<div class=\"col col-md-3 col-md-offset-8\">\r\n\t\t\r\n\t\t\t<div class=\"pagination__container\">\r\n\t\t\t\r\n\t\t\t\t<div class=\"pagination__page\">\r\n\t\t\t\t\t<<\r\n\t\t\t\t</div>\r\n\t\t\t\t\r\n\t\t\t\t<div class=\"pagination__page\">\r\n\t\t\t\t\t<\r\n\t\t\t\t</div>\r\n\t\t\t\t\r\n\t\t\t\t<div class=\"pagination__page \">\r\n\t\t\t\t\t2\r\n\t\t\t\t</div>\r\n\t\t\t\t\r\n\t\t\t\t<div class=\"pagination__page pagination__current\">\r\n\t\t\t\t\t3\r\n\t\t\t\t</div>\r\n\t\t\t\t\r\n\t\t\t\t<div class=\"pagination__page\">\r\n\t\t\t\t\t4\r\n\t\t\t\t</div>\r\n\t\t\t\t\r\n\t\t\t\t<div class=\"pagination__page\">\r\n\t\t\t\t\t>\r\n\t\t\t\t</div>\r\n\t\t\t\t\r\n\t\t\t\t<div class=\"pagination__page\">\r\n\t\t\t\t\t>>\r\n\t\t\t\t</div>\r\n\t\t\t\t\r\n\t\t\t</div>\r\n\t\t\t\r\n  \t\t</div>\r\n  \t\t\r\n\t</div>\r\n\r\n\r\n";
+
+/***/ }),
+/* 45 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var exploremedicines = __webpack_require__(46);
+
+angular.module('hplus.modules.exploremedicines', [])
+
+  .config(function ($routeProvider){  
+    $routeProvider
+      .when('/admin/list/medicine',{
+        template: exploremedicines
+      })
+  });
+
+
+/***/ }),
+/* 46 */
+/***/ (function(module, exports) {
+
+module.exports = "<!DOCTYPE html PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" \"http://www.w3.org/TR/html4/loose.dtd\">\r\n<html>\r\n<head>\r\n\t<meta http-equiv=\"Content-Type\" content=\"text/html; charset=ISO-8859-1\">\r\n\t<title>List of Medicines</title><!-- Module Name -->\r\n</head>\r\n<body>\r\n\t<div class=\"row\"><!-- Header Portion -->\r\n  \t\t<div class=\"col col-md-10 col-md-offset-1\">\r\n    \t\t<h1>List of All Medicines</h1><!-- Header Name for this Module -->\r\n  \t\t</div>\r\n\t</div>\r\n\r\n\t<div class=\"row\"><!-- Body Portion -->\r\n  \t\t<div class=\"col col-md-2 col-md-offset-1\"><!-- Section for search -->\r\n\r\n    \t\t<div class=\"row\">\r\n      \t\t\t<div class=\"col col-md-6\">\r\n        \t\t\t<label class=\"subtitle\">\r\n          \t\t\t\tSearch\r\n        \t\t\t</label>\r\n      \t\t\t</div>\r\n    \t\t\t<br><br>\r\n    \t\t</div>\r\n    \t\t\r\n    \t\t<div class=\"match-padding\">\r\n\r\n      \t\t\t<input type=\"text\" placeholder=\"Enter a name\">\r\n\r\n      \t\t\t<button>Search</button>\r\n    \t\t</div>\r\n\r\n  \t\t</div>\r\n\r\n  \t\t<div class=\"col col-md-8\"><!-- Section containing the list and detail of medicines -->\r\n\r\n    \t\t<div class=\"col col-md-6\"><!-- List sector -->\r\n      \t\t\t<label class=\"subtitle\">\r\n        \t\t\tALL RESULTS\r\n      \t\t\t</label>\r\n      \t\t\t<br><br>\r\n      \t\t\t\r\n    \t\t\t<!-- List Section -->\r\n    \t\t\t \r\n      \t\t\t<div class=\"card__container\">\r\n        \t\t\t<div class=\"card__title\">\r\n          \t\t\t\tMetformin\r\n        \t\t\t</div>\r\n        \t\t\t<div class=\"card__desc\">\r\n          \t\t\t\tDiabetes Mellitus\r\n        \t\t\t</div>\r\n      \t\t\t</div>\r\n\r\n      \t\t\t<div class=\"card__container\">\r\n        \t\t\t<div class=\"card__title\">\r\n          \t\t\t\tMethadone        \t\t\t</div>\r\n        \t\t\t<div class=\"card__desc\">\r\n          \t\t\t\tOpioid dependency, chronic pain\r\n        \t\t\t</div>\r\n      \t\t\t</div>\r\n      \t\t\t\r\n      \t\t\t<div class=\"card__container\">\r\n        \t\t\t<div class=\"card__title\">\r\n          \t\t\t\tMethamphetamine\r\n        \t\t\t</div>\r\n        \t\t\t<div class=\"card__desc\">\r\n          \t\t\t\tAttention deficit hyperactivity disorder, obesity, and more...\r\n        \t\t\t</div>\r\n      \t\t\t</div>\r\n      \t\t\t\r\n      \t\t\t<div class=\"card__container\">\r\n        \t\t\t<div class=\"card__title\">\r\n          \t\t\t\tMethazolamide\r\n        \t\t\t</div>\r\n        \t\t\t<div class=\"card__desc\">\r\n          \t\t\t\tIntraocular pressure in glaucoma\r\n        \t\t\t</div>\r\n      \t\t\t</div>\r\n      \t\t\t</div>\r\n    \t\r\n    \t\t<br><br><br><br><br>\r\n    \t\t<div class=\"col col-md-5 col-md-offset-1\"><!-- Detail Sector -->\r\n      \t\t\t<label class=\"subtitle\">\r\n        \t\t\tDETAILS FOR Methampetamine\r\n      \t\t\t</label>\r\n      \t\t\t<br><br>\r\n      \t\t\t\r\n    \t\t\t<!-- Detail Section -->\r\n    \t\t\t\r\n      \t\t\t<div class=\"detail__container\">\r\n      \t\t\t\r\n      \t\t\t\t<br><br>\r\n      \t\t\t\t\r\n        \t\t\t<div class=\"card__title\">\r\n          \t\t\t\tMethampetamine \r\n        \t\t\t</div>\r\n        \t\r\n        \t\t\t<div class=\"detail__desc\">\r\n          \t\t\t\t<p>\r\n          \t\t\t\t\tMethamphetamine is a strong central nervous system stimulant that is\r\n          \t\t\t\t\tmainly used as a recreational drug and less commonly as a treatment\r\n          \t\t\t\t\tfor attention deficit hyperactivity disorder and obesity.\r\n          \t\t\t\t</p>\r\n        \t\t\t</div>\r\n        \t\t\t\r\n        \t\t\t<span class=\"detail__title\">PRICE (PHP)</span>\r\n        \t\t\t<span class=\"detail__subtitle\">24,990.00</span>\r\n        \t\t\t\r\n        \t\t\t<br><br>\r\n        \t\t\t\r\n        \t\t\t<span class=\"detail__title\">TREATMENT FOR</span>\r\n        \t\t\t<span class=\"detail__subtitle\">\r\n        \t\t\t\tAttention deficit hyperactivity disorder, obesity\r\n        \t\t\t</span>\r\n        \t\t\t\r\n        \t\t\t<br><br>\r\n        \t\t\t <div ng-controller=\"modalCtrl as alert\"> \r\n        \t\t\t<a href=\"#!/admin/edit/medicine\"><button >Edit</button></a><button class=\"delete_btn\" ng-click=\"alert.confirm()\">Delete</button>\r\n        \t\t\t</div>\r\n      \t\t\t</div>\r\n      \t\t</div>\r\n  \t\t</div>\r\n\t</div>\r\n\t\r\n\t<br><br><br><br>\r\n\t\r\n\t<!-- Pagination Section -->\r\n\t<div class=\"row\">\r\n\t\r\n\t\t<div class=\"col col-md-3 col-md-offset-5\">\r\n\t\t\r\n\t\t\t<div class=\"pagination__container\">\r\n\t\t\t\r\n\t\t\t\t<div class=\"pagination__page\">\r\n\t\t\t\t\t<<\r\n\t\t\t\t</div>\r\n\t\t\t\t\r\n\t\t\t\t<div class=\"pagination__page\">\r\n\t\t\t\t\t<\r\n\t\t\t\t</div>\r\n\t\t\t\t\r\n\t\t\t\t<div class=\"pagination__page \">\r\n\t\t\t\t\t2\r\n\t\t\t\t</div>\r\n\t\t\t\t\r\n\t\t\t\t<div class=\"pagination__page pagination__current\">\r\n\t\t\t\t\t3\r\n\t\t\t\t</div>\r\n\t\t\t\t\r\n\t\t\t\t<div class=\"pagination__page\">\r\n\t\t\t\t\t4\r\n\t\t\t\t</div>\r\n\t\t\t\t\r\n\t\t\t\t<div class=\"pagination__page\">\r\n\t\t\t\t\t>\r\n\t\t\t\t</div>\r\n\t\t\t\t\r\n\t\t\t\t<div class=\"pagination__page\">\r\n\t\t\t\t\t>>\r\n\t\t\t\t</div>\r\n\t\t\t\t\r\n\t\t\t</div>\r\n\t\t\t\r\n  \t\t</div>\r\n  \t</div>\r\n</body>\r\n</html>";
+
+/***/ }),
+/* 47 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var exploremedicalrecords = __webpack_require__(48);
+
+angular.module('hplus.modules.exploremedicalrecords', [])
+
+  .config(function ($routeProvider){  
+    $routeProvider
+      .when('/doctor/list/record',{
+        template: exploremedicalrecords
+      })
+  });
+
+
+/***/ }),
+/* 48 */
+/***/ (function(module, exports) {
+
+module.exports = "\r\n\t<div class=\"row\"><!-- Header Portion -->\r\n  \t\t<div class=\"col col-md-10 col-md-offset-1\">\r\n    \t\t<h1>List of All Medical Records</h1><!-- Header Name for this Module -->\r\n  \t\t</div>\r\n\t</div>\r\n\t\r\n\t<div class=\"row\"><!-- Body Portion -->\r\n  \t\t<div class=\"col col-md-2 col-md-offset-1\"><!-- Section for search -->\r\n\r\n    \t\t<div class=\"row\">\r\n      \t\t\t<div class=\"col col-md-6\">\r\n        \t\t\t<label class=\"subtitle\">\r\n          \t\t\t\tSearch\r\n        \t\t\t</label>\r\n      \t\t\t</div>\r\n    \t\t\t<br><br>\r\n    \t\t</div>\r\n    \t\t\r\n    \t\t<div class=\"match-padding\">\r\n\r\n      \t\t\t<input type=\"text\" placeholder=\"Enter a name\">\r\n\r\n      \t\t\t<button>Search</button>\r\n    \t\t</div>\r\n\r\n  \t\t</div>\r\n       <div ng-controller=\"modalCtrl as alert\"> \r\n  \t\t<div class=\"col col-md-8\"><!-- Section containing the tabulated list of doctors -->\r\n\r\n    \t\t<div class=\"col col-md-12\">\r\n      \t\t\t<label class=\"subtitle\">\r\n        \t\t\tALL RESULTS\r\n      \t\t\t</label>\r\n      \t\t\t<br><br>\r\n      \t\t\t\r\n    \t\t\t<!-- List Section -->\r\n    \t\t\t\r\n      \t\t\t<div class=\"card__container\">\r\n        \t\t\t<div class=\"card__title\">\r\n          \t\t\t\tAplia, Kate MD <span ng-click=\"alert.confirm()\" class=\"delete__icon\"><i class=\"fa fa-trash-o\" aria-hidden=\"true\"></i></span>\r\n        \t\t\t</div>\r\n        \t\t\t<div class=\"card__desc\">\r\n          \t\t\t\tSome medical information\r\n        \t\t\t</div>\r\n      \t\t\t</div>\r\n\r\n      \t\t\t<div class=\"card__container\">\r\n        \t\t\t<div class=\"card__title\">\r\n          \t\t\t\tAppleseed, John DDS<span ng-click=\"alert.confirm()\" class=\"delete__icon\"><i class=\"fa fa-trash-o\" aria-hidden=\"true\"></i></span>\r\n        \t\t\t</div>\r\n        \t\t\t<div class=\"card__desc\">\r\n          \t\t\t\tSome medical information\r\n        \t\t\t</div>\r\n      \t\t\t</div>\r\n      \t\t\t\r\n      \t\t\t<div class=\"card__container\">\r\n        \t\t\t<div class=\"card__title\">\r\n          \t\t\t\tSiewel, Nao Ng OD<span ng-click=\"alert.confirm()\" class=\"delete__icon\"><i class=\"fa fa-trash-o\" aria-hidden=\"true\"></i></span>\r\n        \t\t\t</div>\r\n        \t\t\t<div class=\"card__desc\">\r\n          \t\t\t\tSome medical information\r\n        \t\t\t</div>\r\n      \t\t\t</div>\r\n      \t\t\t\r\n    \t\t</div>\r\n  \t\t</div>\r\n\t</div>\r\n\t\r\n\t<br><br><br><br><br><br>\r\n\t<br><br><br><br><br><br>\r\n\t<br><br><br>\r\n\r\n\t<!-- Pagination Section -->\r\n\t<div class=\"row\">\r\n\t\r\n\t\t<div class=\"col col-md-3 col-md-offset-8\">\r\n\t\t\r\n\t\t\t<div class=\"pagination__container\">\r\n\t\t\t\r\n\t\t\t\t<div class=\"pagination__page\">\r\n\t\t\t\t\t<<\r\n\t\t\t\t</div>\r\n\t\t\t\t\r\n\t\t\t\t<div class=\"pagination__page\">\r\n\t\t\t\t\t<\r\n\t\t\t\t</div>\r\n\t\t\t\t\r\n\t\t\t\t<div class=\"pagination__page \">\r\n\t\t\t\t\t2\r\n\t\t\t\t</div>\r\n\t\t\t\t\r\n\t\t\t\t<div class=\"pagination__page pagination__current\">\r\n\t\t\t\t\t3\r\n\t\t\t\t</div>\r\n\t\t\t\t\r\n\t\t\t\t<div class=\"pagination__page\">\r\n\t\t\t\t\t4\r\n\t\t\t\t</div>\r\n\t\t\t\t\r\n\t\t\t\t<div class=\"pagination__page\">\r\n\t\t\t\t\t>\r\n\t\t\t\t</div>\r\n\t\t\t\t\r\n\t\t\t\t<div class=\"pagination__page\">\r\n\t\t\t\t\t>>\r\n\t\t\t\t</div>\r\n\t\t\t\t\r\n\t\t\t</div>\r\n\t\t\t\r\n  \t\t</div>\r\n  \t\t\r\n\t</div>\r\n\r\n\r\n";
+
+/***/ }),
+/* 49 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var registerdiseases = __webpack_require__(50);
+
+angular.module('hplus.modules.registerdiseases', [])
+
+  .config(function ($routeProvider){  
+    $routeProvider
+      .when('/admin/register/disease',{
+        template: registerdiseases
+      })
+  });
+
+
+/***/ }),
+/* 50 */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"row\">\r\n  <div class=\"col col-md-8 col-md-offset-1\">\r\n    <h1>Register Diseases</h1>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row\">\r\n  <div class=\"col col-md-2 col-md-offset-1\">\r\n\r\n    <div class=\"row\">\r\n      <div class=\"col col-md-12\">\r\n        <label>\r\n          Name of Disease\r\n        </label>\r\n        <input type=\"text\" value=\"Diabetes Mellitus Type 2\">\r\n\t\t    <br><br>\r\n\t\t    <button>Save</button>\r\n      </div>\r\n    </div>\r\n    \r\n  </div>\r\n\r\n  <div class=\"col col-md-3 col-md-offset-1\">\r\n    <div class=\"row\">\r\n\t    <div class=\"col col-md-12\">\r\n\t        <label>\r\n\t\t        Symptoms\r\n\t\t      </label>\r\n\t\t      <textarea placeholder=\"Enter Symptoms\"></textarea>\r\n\t    </div>\r\n    </div>\r\n  </div>\r\n\r\n  <div class=\"col col-md-3 col-md-offset-1\">\r\n    <div class=\"row\">\r\n\t    <div class=\"col col-md-12\">\r\n\t      <label>\r\n\t       Medicines\r\n        </label>\r\n\t\t\t\t<input type=\"text\" placeholder=\"Search\">\r\n\t\t\t\t<div>\r\n\t\t\t\t\t<input type=\"checkbox\">Metformin<br>\r\n\t\t\t\t\t<input type=\"checkbox\">Methadone<br>\r\n\t\t\t\t\t<input type=\"checkbox\">Methamphetamine<br>\r\n\t\t\t\t\t<input type=\"checkbox\">Methazolamide<br>\r\n\t\t\t\t\t<input type=\"checkbox\">Methenamine<br>\r\n\t\t\t\t\t<input type=\"checkbox\">Methimazole<br>\r\n\t\t\t\t\t<input type=\"checkbox\">Meth\r\n\t\t\t\t</div>\r\n\t    </div>\r\n    </div>\r\n  </div>\r\n  \r\n</div>";
+
+/***/ }),
+/* 51 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var registerdoctor = __webpack_require__(52);
+
+angular.module('hplus.modules.registerdoctor', [])
+
+  .config(function ($routeProvider){  
+    $routeProvider
+      .when('/admin/register/doctor',{
+        template: registerdoctor
+      })
+  });
+
+
+/***/ }),
+/* 52 */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"row\">\r\n  <div class=\"col col-md-8 col-md-offset-1\">\r\n    <h1>Register an Account</h1>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row\">\r\n  <div class=\"col col-md-2 col-md-offset-1\">\r\n    <div class=\"row\">\r\n      <div class=\"col col-md-12\">\r\n        <label>First Name</label>\r\n        <input type=\"text\">\r\n        <label>Address</label>\r\n        <input type=\"text\">\r\n        <label>Username</label>\r\n        <input type=\"text\">\r\n        <label>Password</label>\r\n        <input type=\"text\">\r\n        <label>Confirm Password</label>\r\n        <input type=\"text\">\r\n        <br><br><br><br>\r\n        <button>Sign up</button>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <div class=\"col col-md-2 col-md-offset-1\">\r\n    <div class=\"row\">\r\n      <div class=\"col col-md-12\">\r\n        <label>Last Name</label>\r\n        <input type=\"text\">\r\n        <label>Contact Number</label>\r\n        <input type=\"text\">\r\n        <label>Birthday</label>\r\n        <input type=\"text\">\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>";
+
+/***/ }),
+/* 53 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var registermedicine = __webpack_require__(54);
+
+angular.module('hplus.modules.registermedicine', [])
+
+  .config(function ($routeProvider){  
+    $routeProvider
+      .when('/admin/register/medicine',{
+        template: registermedicine
+      })
+  });
+
+
+/***/ }),
+/* 54 */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"row\">\r\n  <div class=\"col col-md-8 col-md-offset-1\">\r\n    <h1>Register Medicine</h1>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row\">\r\n  <div class=\"col col-md-2 col-md-offset-1\">\r\n    <div class=\"row\">\r\n      <div class=\"col col-md-12\">\r\n      Name of Medicine:\r\n      <input type = \"text\" value = \"RiteMed Metformin\">\r\n      </div>\r\n      <br><br>\r\n    </div>\r\n    <div class=\"row\">\r\n      <div class=\"col col-md-12\">\r\n       Price (PHP) : <input type = \"text\" id = \"priceInputField\" value = \"3.75\">\r\n      </div>\r\n      <br><br>\r\n    </div>\r\n    <div class=\"col col-md-1\" id = \"saveMed\">\r\n      <button>Save</button>\r\n    </div>\r\n  </div>\r\n\r\n  <div class=\"col col-md-8\">\r\n  <div class=\"col col-md-12\">\r\n    Description:\r\n  </div>\r\n  <div class=\"col col-md-12\">\r\n    <textarea id=\"descMed\" rows=\"8\" cols = \"50\">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent ut lorem quis dolor porttitor accumsan. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Integer vitae erat viverra, vestibulum enim id, pulvinar lectus. Sed volutpat tristique tristique. Vivamus turpis diam, consequat vel sagittis quis, convallis quis sem.</textarea>\r\n  </div>\r\n  </div>\r\n</div>";
+
+/***/ }),
+/* 55 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var userLogin = __webpack_require__(56);
+
+angular.module('hplus.modules.userLogin', [])
+
+  .config(function ($routeProvider){  
+    $routeProvider
+      .when('/',{
+        template: userLogin
+      })
+
+      .when('/user/login',{
+        template: userLogin
+      })
+  });
+
+
+/***/ }),
+/* 56 */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"container\">\r\n  <div class=\"row\">\r\n    <div class=\"col-md-7\">\r\n      \r\n    </div>\r\n\r\n    <div class=\"col-md-4 text-center\">   \r\n     \r\n      <form role=\"form\">\r\n        <div class=\"form-group\">\r\n          <label for=\"inputUsernameEmail\">Username or email</label>\r\n          <input type=\"text\" class=\"form-control\" id=\"inputUsernameEmail\">\r\n        </div>\r\n        \r\n        <div class=\"form-group\">\r\n          <a class=\"pull-right\" href=\"#\">Forgot password?</a>\r\n          <label for=\"inputPassword\">Password</label>\r\n          <input type=\"password\" class=\"form-control\" id=\"inputPassword\">\r\n        </div>\r\n        \r\n        <button type=\"submit\" class=\"btn btn btn-primary pull-right\">\r\n          Log In\r\n        </button>\r\n      </form>\r\n    \r\n    </div>\r\n    \r\n  </div>\r\n</div>\r\n";
+
+/***/ }),
+/* 57 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var viewdoctor = __webpack_require__(58);
+
+angular.module('hplus.modules.viewdoctor', [])
+
+  .config(function ($routeProvider){  
+    $routeProvider      
+      .when('/admin/view/details',{
+        template: viewdoctor
+      })
+  });
+
+
+/***/ }),
+/* 58 */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"row\">\r\n  <div class=\"col col-md-8 col-md-offset-1\">\r\n    <h1><i class=\"fa fa-user-md\"></i> Dr. John Appleseed</h1>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row\">\r\n  <div class=\"col col-md-2 col-md-offset-1\">\r\n    <div class=\"match-padding\">\r\n      <span class=\"subtitle\">\r\n        Specialization\r\n      </span>\r\n      <div class=\"subtitle__value\">\r\n        Dentistry\r\n      </div>\r\n      <br>\r\n      <span class=\"subtitle\">\r\n        E-mail Address\r\n      </span>\r\n      <div class=\"subtitle__value\">\r\n        joappleseed@hplus.com\r\n      </div>\r\n      <br>\r\n      <button class=\"outline\">Edit</button>\r\n    </div>\r\n  </div>\r\n\r\n  <div class=\"col col-md-8\">\r\n\r\n    <div class=\"col col-md-12\">\r\n      <span class=\"subtitle\">\r\n        Medical Records Handled By\r\n      </span>\r\n      \r\n      <span class=\"subtitle subtitle--variable\">\r\n        Dr. John Appleseed\r\n      </span>\r\n      <br><br>\r\n    \r\n      <div class=\"card__container\">\r\n        <div class=\"card__title\">\r\n          Doe, Jane\r\n        </div>\r\n        <div class=\"card__desc\">\r\n          Admitted Feb. 20, 2016 for Wisdom Tooth Eruption\r\n        </div>\r\n      </div>\r\n\r\n      <div class=\"card__container\">\r\n        <div class=\"card__title\">\r\n          Phour, Mahn\r\n        </div>\r\n        <div class=\"card__desc\">\r\n          Admitted June 19, 2015 for Gingivitis,\r\n          Periodontitis, Dental Calculus, and\r\n          2 more...\r\n        </div>\r\n      </div>\r\n\r\n      <div class=\"card__container\">\r\n        <div class=\"card__title\">\r\n          Xing, Ah Mae\r\n        </div>\r\n        <div class=\"card__desc\">\r\n          Admitted Mar. 3, 2015 for Malocclusion\r\n        </div>\r\n      </div>\r\n\r\n      <div class=\"pagination__container\">\r\n        <div class=\"pagination__page\">\r\n          <i class=\"fa fa-angle-double-left\"></i>\r\n        </div>\r\n        <div class=\"pagination__page\">\r\n          <i class=\"fa fa-angle-left\"></i>\r\n        </div>\r\n        <div class=\"pagination__page\">\r\n          2\r\n        </div>\r\n        <div class=\"pagination__current\">\r\n          3\r\n        </div>\r\n        <div class=\"pagination__page\">\r\n          4\r\n        </div>\r\n        <div class=\"pagination__page\">\r\n          <i class=\"fa fa-angle-right\"></i>\r\n        </div>\r\n        <div class=\"pagination__page\">\r\n          <i class=\"fa fa-angle-double-right\"></i>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>";
+
+/***/ }),
+/* 59 */
 /***/ (function(module, exports) {
 
  !function (e, t) { function n() { var e = '<div class="sweet-overlay"  tabIndex="-1"></div><div class="sweet-alert" tabIndex="-1"><div class="icon error"><span class="x-mark"><span class="line left"></span><span class="line right"></span></span></div><div class="icon warning"> <span class="body"></span> <span class="dot"></span> </div> <div class="icon info"></div> <div class="icon success"> <span class="line tip"></span> <span class="line long"></span> <div class="placeholder"></div> <div class="fix"></div> </div> <div class="icon custom"></div> <h2>Title</h2><p>Text</p><button class="cancel" tabIndex="2">Cancel</button><button class="confirm" tabIndex="1">OK</button></div>', n = t.createElement("div"); n.innerHTML = e, t.body.appendChild(n) } function o(t) { var n = m(), o = n.querySelector("h2"), r = n.querySelector("p"), a = n.querySelector("button.cancel"), c = n.querySelector("button.confirm"); if (o.innerHTML = b(t.title).split("\n").join("<br>"), r.innerHTML = b(t.text || "").split("\n").join("<br>"), t.text && w(r), x(n.querySelectorAll(".icon")), t.type) { for (var l = !1, s = 0; s < d.length; s++) if (t.type === d[s]) { l = !0; break } if (!l) return e.console.error("Unknown alert type: " + t.type), !1; var u = n.querySelector(".icon." + t.type); switch (w(u), t.type) { case "success": p(u, "animate"), p(u.querySelector(".tip"), "animateSuccessTip"), p(u.querySelector(".long"), "animateSuccessLong"); break; case "error": p(u, "animateErrorIcon"), p(u.querySelector(".x-mark"), "animateXMark"); break; case "warning": p(u, "pulseWarning"), p(u.querySelector(".body"), "pulseWarningIns"), p(u.querySelector(".dot"), "pulseWarningIns") } } if (t.imageUrl) { var f = n.querySelector(".icon.custom"); f.style.backgroundImage = "url(" + t.imageUrl + ")", w(f); var g = 80, y = 80; if (t.imageSize) { var v = t.imageSize.split("x")[0], h = t.imageSize.split("x")[1]; v && h ? (g = v, y = h, f.css({ width: v + "px", height: h + "px" })) : e.console.error("Parameter imageSize expects value with format WIDTHxHEIGHT, got " + t.imageSize) } f.setAttribute("style", f.getAttribute("style") + "width:" + g + "px; height:" + y + "px") } n.setAttribute("data-has-cancel-button", t.showCancelButton), t.showCancelButton ? a.style.display = "inline-block" : x(a), t.cancelButtonText && (a.innerHTML = b(t.cancelButtonText)), t.confirmButtonText && (c.innerHTML = b(t.confirmButtonText)), c.style.backgroundColor = t.confirmButtonColor, i(c, t.confirmButtonColor), n.setAttribute("data-allow-ouside-click", t.allowOutsideClick); var S = t.doneFunction ? !0 : !1; n.setAttribute("data-has-done-function", S) } function r(e, t) { e = String(e).replace(/[^0-9a-f]/gi, ""), e.length < 6 && (e = e[0] + e[0] + e[1] + e[1] + e[2] + e[2]), t = t || 0; var n = "#", o, r; for (r = 0; 3 > r; r++) o = parseInt(e.substr(2 * r, 2), 16), o = Math.round(Math.min(Math.max(0, o + o * t), 255)).toString(16), n += ("00" + o).substr(o.length); return n } function a(e) { var t = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(e); return t ? parseInt(t[1], 16) + ", " + parseInt(t[2], 16) + ", " + parseInt(t[3], 16) : null } function i(e, t) { var n = a(t); e.style.boxShadow = "0 0 2px rgba(" + n + ", 0.8), inset 0 0 0 1px rgba(0, 0, 0, 0.05)" } function c() { var e = m(); B(g(), 10), w(e), p(e, "showSweetAlert"), v(e, "hideSweetAlert"), O = t.activeElement; var n = e.querySelector("button.confirm"); n.focus(), setTimeout(function () { p(e, "visible") }, 500) } function l() { var n = m(); T(g(), 5), T(n, 5), v(n, "showSweetAlert"), p(n, "hideSweetAlert"), v(n, "visible"); var o = n.querySelector(".icon.success"); v(o, "animate"), v(o.querySelector(".tip"), "animateSuccessTip"), v(o.querySelector(".long"), "animateSuccessLong"); var r = n.querySelector(".icon.error"); v(r, "animateErrorIcon"), v(r.querySelector(".x-mark"), "animateXMark"); var a = n.querySelector(".icon.warning"); v(a, "pulseWarning"), v(a.querySelector(".body"), "pulseWarningIns"), v(a.querySelector(".dot"), "pulseWarningIns"), e.onkeydown = A, t.onclick = I, O && O.focus(), M = void 0 } function s() { var e = m(); e.style.marginTop = k(m()) } var u = ".sweet-alert", f = ".sweet-overlay", d = ["error", "warning", "info", "success"], m = function () { return t.querySelector(u) }, g = function () { return t.querySelector(f) }, y = function (e, t) { return new RegExp(" " + t + " ").test(" " + e.className + " ") }, p = function (e, t) { y(e, t) || (e.className += " " + t) }, v = function (e, t) { var n = " " + e.className.replace(/[\t\r\n]/g, " ") + " "; if (y(e, t)) { for (; n.indexOf(" " + t + " ") >= 0;) n = n.replace(" " + t + " ", " "); e.className = n.replace(/^\s+|\s+$/g, "") } }, b = function (e) { var n = t.createElement("div"); return n.appendChild(t.createTextNode(e)), n.innerHTML }, h = function (e) { e.style.opacity = "", e.style.display = "block" }, w = function (e) { if (e && !e.length) return h(e); for (var t = 0; t < e.length; ++t) h(e[t]) }, S = function (e) { e.style.opacity = "", e.style.display = "none" }, x = function (e) { if (e && !e.length) return S(e); for (var t = 0; t < e.length; ++t) S(e[t]) }, C = function (e, t) { for (var n = t.parentNode; null !== n;) { if (n === e) return !0; n = n.parentNode } return !1 }, k = function (e) { e.style.left = "-9999px", e.style.display = "block"; var t = e.clientHeight, n = parseInt(getComputedStyle(e).getPropertyValue("padding"), 10); return e.style.left = "", e.style.display = "none", "-" + parseInt(t / 2 + n) + "px" }, B = function (e, t) { if (+e.style.opacity < 1) { t = t || 16, e.style.opacity = 0, e.style.display = "block"; var n = +new Date, o = function () { e.style.opacity = +e.style.opacity + (new Date - n) / 100, n = +new Date, +e.style.opacity < 1 && setTimeout(o, t) }; o() } }, T = function (e, t) { t = t || 16, e.style.opacity = 1; var n = +new Date, o = function () { e.style.opacity = +e.style.opacity - (new Date - n) / 100, n = +new Date, +e.style.opacity > 0 ? setTimeout(o, t) : e.style.display = "none" }; o() }, E = function (n) { if (MouseEvent) { var o = new MouseEvent("click", { view: e, bubbles: !1, cancelable: !0 }); n.dispatchEvent(o) } else if (t.createEvent) { var r = t.createEvent("MouseEvents"); r.initEvent("click", !1, !1), n.dispatchEvent(r) } else t.createEventObject ? n.fireEvent("onclick") : "function" == typeof n.onclick && n.onclick() }, q = function (t) { "function" == typeof t.stopPropagation ? (t.stopPropagation(), t.preventDefault()) : e.event && e.event.hasOwnProperty("cancelBubble") && (e.event.cancelBubble = !0) }, O, I, A, M; e.sweetAlert = e.swal = function () { function n(e) { var t = e.keyCode || e.which; if (-1 !== [9, 13, 32, 27].indexOf(t)) { for (var n = e.target || e.srcElement, o = -1, r = 0; r < h.length; r++) if (n === h[r]) { o = r; break } 9 === t ? (n = -1 === o ? v : o === h.length - 1 ? h[0] : h[o + 1], q(e), n.focus(), i(n, u.confirmButtonColor)) : (n = 13 === t || 32 === t ? -1 === o ? v : void 0 : 27 !== t || b.hidden || "none" === b.style.display ? void 0 : b, void 0 !== n && E(n, e)) } } function a(e) { var t = e.target || e.srcElement, n = e.relatedTarget, o = y(f, "visible"); if (o) { var r = -1; if (null !== n) { for (var a = 0; a < h.length; a++) if (n === h[a]) { r = a; break } -1 === r && t.focus() } else M = t } } var u = { title: "", text: "", type: null, allowOutsideClick: !1, showCancelButton: !1, closeOnConfirm: !0, closeOnCancel: !0, confirmButtonText: "OK", confirmButtonColor: "#AEDEF4", cancelButtonText: "Cancel", imageUrl: null, imageSize: null }; if (void 0 === arguments[0]) return e.console.error("sweetAlert expects at least 1 attribute!"), !1; switch (typeof arguments[0]) { case "string": u.title = arguments[0], u.text = arguments[1] || "", u.type = arguments[2] || ""; break; case "object": if (void 0 === arguments[0].title) return e.console.error('Missing "title" argument!'), !1; u.title = arguments[0].title, u.text = arguments[0].text || u.text, u.type = arguments[0].type || u.type, u.allowOutsideClick = arguments[0].allowOutsideClick || u.allowOutsideClick, u.showCancelButton = void 0 !== arguments[0].showCancelButton ? arguments[0].showCancelButton : u.showCancelButton, u.closeOnConfirm = void 0 !== arguments[0].closeOnConfirm ? arguments[0].closeOnConfirm : u.closeOnConfirm, u.closeOnCancel = void 0 !== arguments[0].closeOnCancel ? arguments[0].closeOnCancel : u.closeOnCancel, u.confirmButtonText = u.showCancelButton ? "Confirm" : u.confirmButtonText, u.confirmButtonText = arguments[0].confirmButtonText || u.confirmButtonText, u.confirmButtonColor = arguments[0].confirmButtonColor || u.confirmButtonColor, u.cancelButtonText = arguments[0].cancelButtonText || u.cancelButtonText, u.imageUrl = arguments[0].imageUrl || u.imageUrl, u.imageSize = arguments[0].imageSize || u.imageSize, u.doneFunction = arguments[1] || null; break; default: return e.console.error('Unexpected type of argument! Expected "string" or "object", got ' + typeof arguments[0]), !1 } o(u), s(), c(); for (var f = m(), d = function (e) { var t = e.target || e.srcElement, n = "confirm" === t.className, o = y(f, "visible"), a = u.doneFunction && "true" === f.getAttribute("data-has-done-function"); switch (e.type) { case "mouseover": n && (e.target.style.backgroundColor = r(u.confirmButtonColor, -.04)); break; case "mouseout": n && (e.target.style.backgroundColor = u.confirmButtonColor); break; case "mousedown": n && (e.target.style.backgroundColor = r(u.confirmButtonColor, -.14)); break; case "mouseup": n && (e.target.style.backgroundColor = r(u.confirmButtonColor, -.04)); break; case "focus": var i = f.querySelector("button.confirm"), c = f.querySelector("button.cancel"); n ? c.style.boxShadow = "none" : i.style.boxShadow = "none"; break; case "click": if (n && a && o) u.doneFunction(!0), u.closeOnConfirm && l(); else if (a && o) { var s = String(u.doneFunction).replace(/\s/g, ""), d = "function(" === s.substring(0, 9) && ")" !== s.substring(9, 10); d && u.doneFunction(!1), u.closeOnCancel && l() } else l() } }, g = f.querySelectorAll("button"), p = 0; p < g.length; p++) g[p].onclick = d, g[p].onmouseover = d, g[p].onmouseout = d, g[p].onmousedown = d, g[p].onfocus = d; I = t.onclick, t.onclick = function (e) { var t = e.target || e.srcElement, n = f === t, o = C(f, e.target), r = y(f, "visible"), a = "true" === f.getAttribute("data-allow-ouside-click"); !n && !o && r && a && l() }; var v = f.querySelector("button.confirm"), b = f.querySelector("button.cancel"), h = f.querySelectorAll("button:not([type=hidden])"); A = e.onkeydown, e.onkeydown = n, v.onblur = a, b.onblur = a, e.onfocus = function () { e.setTimeout(function () { void 0 !== M && (M.focus(), M = void 0) }, 0) } }, function () { "complete" === t.readyState || "interactive" === t.readyState ? n() : t.addEventListener ? t.addEventListener("DOMContentLoaded", function e() { t.removeEventListener("DOMContentLoaded", arguments.callee, !1), n() }, !1) : t.attachEvent && t.attachEvent("onreadystatechange", function () { "complete" === t.readyState && (t.detachEvent("onreadystatechange", arguments.callee), n()) }) }() }(window, document);
 
 
 /***/ }),
-/* 65 */
+/* 60 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
