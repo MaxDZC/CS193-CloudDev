@@ -1,4 +1,4 @@
-input[type=text], input[type=password],  textarea{
+input[type=text], textarea{
   margin-top: $sizePaddingHalf;
   margin-bottom: $sizePaddingHalf;
   width: 100%;
@@ -15,7 +15,9 @@ input[type=text]:focus{
   border: 1.5px solid $seafoamGreen;
   transition: 0.3s ease;
 }
-
+.shortinput{
+  width:50% !important;
+}
 select{
   margin-bottom: $sizePaddingHalf;
   width: 100%;
@@ -56,20 +58,3 @@ button:hover{
 }
 
 input, select, option { outline: 0 }
-
-.navbar__btn.navbar__btn--selected a {
-  color: white !important ;
-  text-decoration: none;
-}
-.sweet-alert button {
- 
-  color: #fff !important;
-  
-}
-.confirm  {
- background-color: #254d5e !important;
-}
-input, button, a {
- 
-  text-decoration: none !important;
-}

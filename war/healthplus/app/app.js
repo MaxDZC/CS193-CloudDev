@@ -13,6 +13,7 @@ var app = angular.module('hplus', [
                           ]
                         );
 
+
 app.config(function ($routeProvider){  
   $routeProvider   
     .otherwise({

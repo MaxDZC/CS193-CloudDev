@@ -5,9 +5,11 @@ require('./shared/factory/app.factory.js');
 require('./shared/parts/modal/modal.main.js');
 
 require('./components/editdisease/editdisease.main.js');
+
 require('./components/editdoctor/editdoctor.main.js');
 require('./components/editmedicine/editmedicine.main.js');
 
+require('./components/createmedicalrecord/createmedicalrecord.main.js');
 require('./components/explorediseases/explorediseases.main.js');
 require('./components/exploredoctors/exploredoctors.main.js');
 require('./components/exploremedicines/exploremedicines.main.js');
@@ -18,11 +20,14 @@ require('./components/registerdoctor/registerdoctor.main.js');
 require('./components/registermedicine/registermedicine.main.js');
 require('./components/login/login.main.js');
 require('./components/viewdoctor/viewdoctor.main.js');
+require('./components/viewdisease/viewdisease.main.js');
+require('./components/viewmedicine/viewmedicine.main.js');
 
 angular.module('hplus.modules', [
   'hplus.modules.header',
   'hplus.modules.navbar',
   'hplus.factory',
+  'hplus.modules.createmedicalrecord',
   'hplus.modules.editdisease',
   'hplus.modules.editdoctor',
   'hplus.modules.editmedicine',
@@ -35,5 +40,8 @@ angular.module('hplus.modules', [
   'hplus.modules.registerdiseases',
   'hplus.modules.registerdoctor',
   'hplus.modules.registermedicine',
-  'hplus.modules.viewdoctor'
+  'hplus.modules.viewdisease',
+  'hplus.modules.viewdoctor',
+  'hplus.modules.viewmedicine'
 ]);
+
