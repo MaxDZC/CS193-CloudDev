@@ -1,5 +1,6 @@
 require('./shared/header/header.main.js');
 require('./shared/navbar/navbar.main.js');
+require('./shared/factory/app.factory.js');
 
 require('./shared/parts/modal/modal.main.js');
 
@@ -15,12 +16,13 @@ require('./components/exploremedicalrecords/exploremedicalrecords.main.js');
 require('./components/registerdiseases/registerdiseases.main.js');
 require('./components/registerdoctor/registerdoctor.main.js');
 require('./components/registermedicine/registermedicine.main.js');
-require('./components/userLogin/loginForm.main.js');
+require('./components/login/login.main.js');
 require('./components/viewdoctor/viewdoctor.main.js');
 
 angular.module('hplus.modules', [
   'hplus.modules.header',
   'hplus.modules.navbar',
+  'hplus.factory',
   'hplus.modules.editdisease',
   'hplus.modules.editdoctor',
   'hplus.modules.editmedicine',
@@ -28,10 +30,10 @@ angular.module('hplus.modules', [
   'hplus.modules.exploredoctors',
   'hplus.modules.exploremedicines',
   'hplus.modules.exploremedicalrecords',
+  'hplus.modules.login',
   'hplus.modules.modal',
   'hplus.modules.registerdiseases',
   'hplus.modules.registerdoctor',
   'hplus.modules.registermedicine',
-  'hplus.modules.userLogin',
   'hplus.modules.viewdoctor'
 ]);

@@ -1,6 +1,6 @@
-var userLogin = require('html-loader!./loginForm.html');
+var userLogin = require('html-loader!./login.html');
 
-angular.module('hplus.modules.userLogin', [])
+angular.module('hplus.modules.login', [])
 
   .config(function ($routeProvider){  
     $routeProvider
@@ -12,3 +12,5 @@ angular.module('hplus.modules.userLogin', [])
         template: userLogin
       })
   });
+
+require('./login.controller.js');
