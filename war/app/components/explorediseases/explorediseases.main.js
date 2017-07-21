@@ -8,3 +8,5 @@ angular.module('hplus.modules.explorediseases', [])
         template: explorediseases
       })
   });
+
+  require('./explorediseases.controller.js');

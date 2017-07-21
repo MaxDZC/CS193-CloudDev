@@ -8,3 +8,5 @@ angular.module('hplus.modules.registerdiseases', [])
         template: registerdiseases
       })
   });
+
+  require('./registerdiseases.controller.js');

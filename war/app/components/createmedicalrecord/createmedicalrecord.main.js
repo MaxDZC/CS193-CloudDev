@@ -8,3 +8,5 @@ angular.module('hplus.modules.createmedicalrecord', [])
         template: createmedicalrecord
       })
   });
+  
+  require('./createmedicalrecord.controller.js');
