@@ -8,3 +8,5 @@ angular.module('hplus.modules.editmedicine', [])
         template: editmedicine
       })
   });
+
+  require('./editmedicine.controller.js');

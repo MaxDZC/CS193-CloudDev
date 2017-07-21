@@ -8,3 +8,5 @@ angular.module('hplus.modules.exploredoctors', [])
         template: exploredoctors
       })
   });
+  
+  require('./exploredoctors.controller.js');

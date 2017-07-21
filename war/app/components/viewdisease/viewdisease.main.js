@@ -8,3 +8,5 @@ angular.module('hplus.modules.viewdisease', [])
         template: viewdisease
       })
   });
+
+  require('./viewdisease.controller.js');

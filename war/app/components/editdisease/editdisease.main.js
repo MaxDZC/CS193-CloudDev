@@ -8,3 +8,5 @@ angular.module('hplus.modules.editdisease', [])
         template: editdisease
       })
   });
+  
+  require('./editdisease.controller.js');
