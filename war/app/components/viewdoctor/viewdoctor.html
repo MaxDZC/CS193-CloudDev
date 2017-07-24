@@ -7,90 +7,94 @@
 <div class="row">
   <div class="col col-md-2 col-md-offset-1">
     <div class="match-padding">
-      <span class="subtitle">
-        Specialization
-      </span>
+      <label class="subtitle">Specialization</label>
       <div class="subtitle__value">
         Dentistry
       </div>
-      <br>
-      <span class="subtitle">E-mail Address</span>
-      <div class="subtitle__value">
+      <label class="subtitle marginTop">E-mail Address</label>
+      <div class="subtitle__value marginBottom">
         joappleseed@hplus.com
       </div>
-      <br>
-      <button class="outline">Edit</button>
+      <button class="outline" ng-click="go('/admin/edit/doctor')">Edit</button>
     </div>
   </div>
 
   <div class="col col-md-8">
     <div class="col col-md-12">
-      <span class="subtitle">
-        Medical Records Handled By
-      </span>
+      <label class="subtitle">Medical Records Handled By</label>
       <span class="subtitle subtitle--variable">
         Dr. John Appleseed
       </span>
-      <br><br>
-      <div class="card__container">
-        <div class="card__title">
-          Doe, Jane
-        </div>
-
-        <div class="card__desc">
-          Admitted Feb. 20, 2016 for Wisdom Tooth Eruption
-        </div>
+      <div class="margins">
+	      <div class="card__container">
+	        <div class="card__title">
+	          Doe, Jane
+	        </div>
+	
+	        <div class="card__desc">
+	          Admitted Feb. 20, 2016 for Wisdom Tooth Eruption
+	        </div>
+	      </div>
+	
+	      <div class="card__container">
+	        <div class="card__title">
+	          Phour, Mahn
+	        </div>
+	
+	        <div class="card__desc">
+	          Admitted June 19, 2015 for Gingivitis,
+	          Periodontitis, Dental Calculus, and
+	          2 more...
+	        </div>
+	      </div>
+	
+	      <div class="card__container">
+	        <div class="card__title">
+	          Xing, Ah Mae
+	        </div>
+	
+	        <div class="card__desc">
+	          Admitted Mar. 3, 2015 for Malocclusion
+	        </div>
+	      </div>
       </div>
 
-      <div class="card__container">
-        <div class="card__title">
-          Phour, Mahn
-        </div>
+      
+    </div>
+  </div>
+</div>
 
-        <div class="card__desc">
-          Admitted June 19, 2015 for Gingivitis,
-          Periodontitis, Dental Calculus, and
-          2 more...
-        </div>
-      </div>
-
-      <div class="card__container">
-        <div class="card__title">
-          Xing, Ah Mae
-        </div>
-
-        <div class="card__desc">
-          Admitted Mar. 3, 2015 for Malocclusion
-        </div>
-      </div>
-
+<!-- Pagination Section -->
+<div class="row">
+  <div class="col-md-10 col-md-offset-1">
+    <div class="col col-md-3 col-md-offset-9">
       <div class="pagination__container">
         <div class="pagination__page">
-          <i class="fa fa-angle-double-left"></i>
+          <<
         </div>
-
+      
         <div class="pagination__page">
-          <i class="fa fa-angle-left"></i>
+          <
         </div>
-
-        <div class="pagination__page">
+      
+        <div class="pagination__page ">
           2
         </div>
-
-        <div class="pagination__current">
+      
+        <div class="pagination__page pagination__current">
           3
         </div>
-
+      
         <div class="pagination__page">
           4
         </div>
-
+      
         <div class="pagination__page">
-          <i class="fa fa-angle-right"></i>
+          >
         </div>
-        
+      
         <div class="pagination__page">
-          <i class="fa fa-angle-double-right"></i>
+          >>
         </div>
       </div>
     </div>
