@@ -5,45 +5,33 @@
 </div>
 
 <div class="row">
-  <div class="col col-md-3 col-md-offset-1">
-    <div class="row">
-      <div class="col col-md-12">
-        <label>Name of Disease</label>
-        <input type="text" value="Diabetes Mellitus Type 2">
-		  <br>
-		  <br>
-		<div ng-controller="modalCtrl as alert"> 
-		  <button ng-click="alert.alert()">Update</button>
-		  <button class="outline delete_btn" ng-click="alert.confirm()">Delete</button>
-		</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="col col-md-3 col-md-offset-1">
-    <div class="row">
-	  <div class="col col-md-12">
-	    <label>Symptoms</label>
-		<textarea placeholder="Enter Symptoms"></textarea>
+  <div class="col-md-10 col-md-offset-1">
+	  <div class="col col-md-4">
+	    <label class="subtitle">Name of Disease</label>
+      <input type="text" value="Diabetes Mellitus Type 2">
+			<div ng-controller="modalCtrl as alert"> 
+			  <button ng-click="alert.alert()">Update</button>
+			  <button class="outline delete_btn" ng-click="alert.confirm()">Delete</button>
+			</div>
 	  </div>
-    </div>
-  </div>
-
-  <div class="col col-md-3 col-md-offset-1">
-    <div class="row">
-	  <div class="col col-md-12">
-	    <label>Medicines</label>
+	
+	  <div class="col col-md-4">
+		  <label class="subtitle">Symptoms</label>
+			<textarea placeholder="Enter Symptoms"></textarea>
+		</div>
+	
+	  <div class="col col-md-4">
+	    <label class="subtitle">Medicines</label>
 	    <input type="text" placeholder="Search">
 	   	<div>
-		  <input type="checkbox">Metformin<br>
-		  <input type="checkbox">Methadone<br>
-		  <input type="checkbox">Methamphetamine<br>
-		  <input type="checkbox">Methazolamide<br>
-		  <input type="checkbox">Methenamine<br>
-		  <input type="checkbox">Methimazole<br>
-		  <input type="checkbox">Meth
-		</div>
-	  </div>
+			  <input type="checkbox">Metformin<br>
+			  <input type="checkbox">Methadone<br>
+			  <input type="checkbox">Methamphetamine<br>
+			  <input type="checkbox">Methazolamide<br>
+			  <input type="checkbox">Methenamine<br>
+			  <input type="checkbox">Methimazole<br>
+			  <input type="checkbox">Meth
+		  </div>
     </div>
   </div>
 </div>
