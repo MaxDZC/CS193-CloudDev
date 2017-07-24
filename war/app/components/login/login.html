@@ -1,50 +1,52 @@
-<div class="container"> 
+
   <div class="row">
-    <div class="col-md-7">
-      This is just for testing purposes. Add your page here.<br>
-      All pages:<br>
-      <div class="hyperlink" ng-click="go('/admin/update/disease')">Update Disease</div>
-
-      <div class="hyperlink" ng-click="go('/admin/edit/doctor')">Edit Doctor</div>
-
-      <div class="hyperlink" ng-click="go('/admin/update/medicine')">Update Medicine</div>
-
-      <div class="hyperlink" ng-click="go('/admin/list/disease')">Explore Diseases</div>
-
-      <div class="hyperlink" ng-click="go('/admin/list/doctor')">Explore Doctors</div>
-      
-      <div class="hyperlink" ng-click="go('/admin/list/record')">Explore Medical Records</div>
-
-      <div class="hyperlink" ng-click="go('/admin/list/medicine')">Explore Medicines</div>
-
-      <div class="hyperlink" ng-click="go('/admin/register/disease')">Register Diseases</div>
-
-      <div class="hyperlink" ng-click="go('/admin/register/doctor')">Register Doctor</div>
-
-      <div class="hyperlink" ng-click="go('/admin/register/medicine')">Register Medicines</div>
-
-      <div class="hyperlink" ng-click="go('/admin/view/details')">View Doctor</div>
-
-      <div class="hyperlink" ng-click="go('/doctor/create/record')">Create Medical Record</div>
-
-      <div class="hyperlink" ng-click="go('/admin/view/medicine')">View Medicine</div>
-    </div>
-
-    <div class="col-md-4 text-center">   
-      <form role="form">
-        <div class="form-group">
-          <label for="inputUsernameEmail">Username or email</label>
-          <input class="form-control" id="inputUsernameEmail" type="text">
-        </div>
-        <a class="pull-right" ng-click="go('admin/reset/password')" href="">Forgot password?</a>
-        <div class="form-group">
-          <label for="inputPassword">Password</label>
-          <input type="password" class="form-control" id="inputPassword">
-        </div>
-        <button type="submit" class="btn btn btn-primary pull-right">
-          Log In
-        </button>
-      </form>    
-    </div>
+    <div class="col-md-10 col-md-offset-1">
+	    <div class="col-md-8">
+	      This is just for testing purposes. Add your page here.<br>
+	      All pages:<br>
+	      <div class="hyperlink" ng-click="go('/admin/update/disease')">Update Disease</div>
+	
+	      <div class="hyperlink" ng-click="go('/admin/edit/doctor')">Edit Doctor</div>
+	
+	      <div class="hyperlink" ng-click="go('/admin/update/medicine')">Update Medicine</div>
+	
+	      <div class="hyperlink" ng-click="go('/admin/list/disease')">Explore Diseases</div>
+	
+	      <div class="hyperlink" ng-click="go('/admin/list/doctor')">Explore Doctors</div>
+	      
+	      <div class="hyperlink" ng-click="go('/admin/list/record')">Explore Medical Records</div>
+	
+	      <div class="hyperlink" ng-click="go('/admin/list/medicine')">Explore Medicines</div>
+	
+	      <div class="hyperlink" ng-click="go('/admin/register/disease')">Register Diseases</div>
+	
+	      <div class="hyperlink" ng-click="go('/admin/register/doctor')">Register Doctor</div>
+	
+	      <div class="hyperlink" ng-click="go('/admin/register/medicine')">Register Medicines</div>
+	
+	      <div class="hyperlink" ng-click="go('/admin/view/details')">View Doctor</div>
+	
+	      <div class="hyperlink" ng-click="go('/doctor/create/record')">Create Medical Record</div>
+	
+	      <div class="hyperlink" ng-click="go('/admin/view/medicine')">View Medicine</div>
+	    </div>
+	
+	    <div class="col-md-4">   
+	      <form role="form">
+	        <div class="form-group">
+	          <label for="inputUsernameEmail">Username or email</label>
+	          <input class="form-control" id="inputUsernameEmail" type="text">
+	        </div>
+	        <a class="pull-right" ng-click="go('admin/reset/password')" href="">Forgot password?</a>
+	        <div class="form-group">
+	          <label for="inputPassword">Password</label>
+	          <input type="password" class="form-control" id="inputPassword">
+	        </div>
+	        <button type="submit" class="btn pull-right" ng-click="go('/admin/list/record')">
+	          Log In
+	        </button>
+	      </form>    
+	    </div>
+	  </div>
   </div>
-</div>
+

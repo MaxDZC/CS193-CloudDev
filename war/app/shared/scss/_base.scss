@@ -40,8 +40,12 @@ h1{
 }
 
 .marginBottom {
-   margin-bottom:20px;
+  margin-bottom: $sizePaddingHalf;
 }	
+
+.marginTop {
+  margin-top: $sizePaddingHalf;
+} 
 
 .edit-button {
  
@@ -68,3 +72,7 @@ body {
 margin-left: 12px;  
 }
 
+.margins{
+  margin-top: $sizePaddingHalf;
+  margin-bottom: $sizePaddingHalf;
+}

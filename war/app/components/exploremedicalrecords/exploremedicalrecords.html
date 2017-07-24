@@ -10,94 +10,91 @@
 	  <div class="col col-md-6">
 	    <label class="subtitle">Search</label>
 	  </div>
-	  <br>
-	  <br>
 	</div>
 	
 	<div class="match-padding">
 	  <input type="text" placeholder="Enter a name">
 	  <button>Search</button>
+	  <button ng-click="go('/doctor/create/record')">New Record</button>
 	</div>
   </div>
   
   <div ng-controller="modalCtrl as alert"> 
     <div class="col col-md-8"><!-- Section containing the tabulated list of doctors -->
-	  <div class="col col-md-12">
-	    <label class="subtitle">ALL RESULTS</label>
-		<br>
-		<br>
-		
-		<!-- List Section -->
-		<div class="card__container">
-			<div class="card__title">
-				Doe, Jabe
-			</div>
+		  <div class="col col-md-12">
+		    <label class="subtitle">ALL RESULTS</label>
 			
-			<div class="card__desc">
-				Admitted July 20,2017 for Dying
-			</div>
-		</div>
-
-		<div class="card__container">
-			<div class="card__title">
-				Doe, John
-			</div>
+				<div class="margins">
+					<!-- List Section -->
+					<div class="card__container">
+						<div class="card__title">
+							Doe, Jabe
+						</div>
+						
+						<div class="card__desc">
+							Admitted July 20,2017 for Dying
+						</div>
+					</div>
 			
-			<div class="card__desc">
-				Admitted June 26,2017 for Genital Retraction Syndrome
-			</div>
+					<div class="card__container">
+						<div class="card__title">
+							Doe, John
+						</div>
+						
+						<div class="card__desc">
+							Admitted June 26,2017 for Genital Retraction Syndrome
+						</div>
+					</div>
+					
+					<div class="card__container">
+						<div class="card__title">
+							Doe, Ken
+						</div>
+						
+						<div class="card__desc">
+							Admitted July 4,2017 for Trichophagia
+						</div>
+					</div>
+				</div>
+		  </div>
 		</div>
-		
-		<div class="card__container">
-			<div class="card__title">
-				Doe, Ken
-			</div>
-			
-			<div class="card__desc">
-				Admitted July 4,2017 for Trichophagia
-			</div>
-		</div>
-	  </div>
-	</div>
   </div>
 </div>
 
-<br><br><br><br><br><br>
-<br><br><br><br><br><br>
-<br><br><br>
-
 <!-- Pagination Section -->
 <div class="row">
-  <div class="col col-md-3 col-md-offset-8">
-    <div class="pagination__container">
-	  <div class="pagination__page">
-	    <<
+  <div class="col-md-10 col-md-offset-1">
+	  <div class="col col-md-3 col-md-offset-9">
+	    <div class="pagination__container">
+			  <div class="pagination__page">
+			    <<
+			  </div>
+			
+			  <div class="pagination__page">
+			    <
+			  </div>
+			
+			  <div class="pagination__page ">
+			    2
+			  </div>
+			
+			  <div class="pagination__page pagination__current">
+			    3
+			  </div>
+			
+			  <div class="pagination__page">
+			    4
+			  </div>
+			
+			  <div class="pagination__page">
+			    >
+			  </div>
+			
+			  <div class="pagination__page">
+			    >>
+			  </div>
+			</div>
 	  </div>
-	
-	  <div class="pagination__page">
-	    <
-	  </div>
-	
-	  <div class="pagination__page ">
-	    2
-	  </div>
-	
-	  <div class="pagination__page pagination__current">
-	    3
-	  </div>
-	
-	  <div class="pagination__page">
-	    4
-	  </div>
-	
-	  <div class="pagination__page">
-	    >
-	  </div>
-	
-	  <div class="pagination__page">
-	    >>
-	  </div>
-	</div>
   </div>
 </div>
 
