@@ -6,5 +6,23 @@ angular.module('hplus.modules.registerdoctor')
       $scope.go = function(path){
         globalFactory.go(path);
       };
+
+      $scope.selectedSpecialization = "";
+
+      $scope.specialization = [
+        {
+          name: "Cardiology",
+          id: 1
+        },
+        {
+          name: "Dentistry",
+          id: 2
+        },
+        {
+          name: "Nephrology",
+          id: 3
+        }
+      ];
+
     }
   );

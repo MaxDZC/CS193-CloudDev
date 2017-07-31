@@ -4,14 +4,16 @@
   </div>
 </div>
 
-<div class="row">
+<div class="row" ng-controller="RegisterDoctorController">
   <div class="col col-md-3 col-md-offset-1">
     <div class="row">
       <div class="col col-md-12"> 
         <label class="subtitle">First Name</label>
         <input type="text">
-        <label class="subtitle">Address</label>
-        <input type="text">
+        <label class="subtitle">Specialization</label>
+        <select ng-model="selectedSpecialization">
+          <option ng-repeat="option in specialization" value="{{option.id}}">{{option.name}}</option>
+        </select>
         <label class="subtitle">Username</label>
         <input type="text">
         <label class="subtitle">Password</label>
@@ -27,6 +29,8 @@
     <div class="row">
       <div class="col col-md-12">
         <label class="subtitle">Last Name</label>
+        <input type="text">
+        <label class="subtitle">Address</label>
         <input type="text">
         <label class="subtitle">Contact Number</label>
         <input type="text">

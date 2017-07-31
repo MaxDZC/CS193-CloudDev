@@ -1,4 +1,4 @@
-input[type=text], input[type=password]{
+input[type=text], input[type=password], select{
   margin-top: $sizePaddingHalf;
   margin-bottom: $sizePaddingHalf;
   width: 100%;
@@ -27,21 +27,16 @@ textarea{
   
 }
 
-input[type=text]:focus, input[type=password]:focus, textarea:focus{
+input[type=text]:focus, input[type=password]:focus, textarea:focus, select:focus{
   border: 1.5px solid $seafoamGreen;
   transition: 0.3s ease;
 }
 .shortinput{
   width:50% !important;
 }
+
 select{
-  margin-top: $sizePaddingHalf;
-  margin-bottom: $sizePaddingHalf;
-  width: 100%;
-  padding: $sizePaddingThin;
-  font-family: $font;
-  font-size: $sizeText;
-  -webkit-font-smoothing: antialiased !important;
+  padding: $sizePaddingThin !important;
 }
 
 option{
