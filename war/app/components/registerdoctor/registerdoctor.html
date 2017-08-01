@@ -9,18 +9,18 @@
     <div class="row">
       <div class="col col-md-12"> 
         <label class="subtitle">First Name</label>
-        <input type="text">
+        <input type="text" ng-model="doctor.fname">
         <label class="subtitle">Specialization</label>
-        <select ng-model="selectedSpecialization">
+        <select ng-model="doctor.specialization">
           <option ng-repeat="option in specialization" value="{{option.id}}">{{option.name}}</option>
         </select>
         <label class="subtitle">Username</label>
-        <input type="text">
+        <input type="text" ng-model="doctor.username">
         <label class="subtitle">Password</label>
-        <input type="text">
+        <input type="text" ng-model="doctor.password">
         <label class="subtitle">Confirm Password</label>
-        <input type="text">
-        <button>Sign up</button>
+        <input type="text" ng-model="doctor.passwordAgain">
+        <button ng-click="displayData(doctor)">Sign up</button>
       </div>
     </div>
   </div>
@@ -29,13 +29,13 @@
     <div class="row">
       <div class="col col-md-12">
         <label class="subtitle">Last Name</label>
-        <input type="text">
+        <input type="text" ng-model="doctor.lname">
         <label class="subtitle">Address</label>
-        <input type="text">
+        <input type="text" ng-model="doctor.address">
         <label class="subtitle">Contact Number</label>
-        <input type="text">
+        <input type="text" ng-model="doctor.number">
         <label class="subtitle">Birthday</label>
-        <input type="text">
+        <input type="text" ng-model="doctor.birthday">
       </div>
     </div>
   </div>

@@ -1,13 +1,13 @@
 angular.module('hplus.modules.registerdoctor')
 
   .controller('RegisterDoctorController',
-    function($scope, globalFactory){
+    function($scope, globalFactory, doctorFactory){
 
       $scope.go = function(path){
         globalFactory.go(path);
       };
 
-      $scope.selectedSpecialization = "";
+      $scope.doctor = {};
 
       $scope.specialization = [
         {
@@ -23,6 +23,10 @@ angular.module('hplus.modules.registerdoctor')
           id: 3
         }
       ];
+
+      $scope.registerDoctor = function(){
+        doctorFactory.registerDoctor($scope.doctor);
+      };
 
     }
   );

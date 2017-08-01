@@ -154,8 +154,8 @@ __webpack_require__(2);
 __webpack_require__(23);
 __webpack_require__(25);
 __webpack_require__(27)
-__webpack_require__(87);
 __webpack_require__(88);
+__webpack_require__(89);
 
 var app = angular.module('hplus', [
                             'ngRoute',
@@ -801,11 +801,61 @@ module.exports = angular;
 /***/ (function(module, exports) {
 
 /**
- * @license AngularJS v1.6.4
+ * @license AngularJS v1.6.5
  * (c) 2010-2017 Google, Inc. http://angularjs.org
  * License: MIT
  */
 (function(window) {'use strict';
+
+/* exported
+  minErrConfig,
+  errorHandlingConfig,
+  isValidObjectMaxDepth
+*/
+
+var minErrConfig = {
+  objectMaxDepth: 5
+};
+
+/**
+ * @ngdoc function
+ * @name angular.errorHandlingConfig
+ * @module ng
+ * @kind function
+ *
+ * @description
+ * Configure several aspects of error handling in AngularJS if used as a setter or return the
+ * current configuration if used as a getter. The following options are supported:
+ *
+ * - **objectMaxDepth**: The maximum depth to which objects are traversed when stringified for error messages.
+ *
+ * Omitted or undefined options will leave the corresponding configuration values unchanged.
+ *
+ * @param {Object=} config - The configuration object. May only contain the options that need to be
+ *     updated. Supported keys:
+ *
+ * * `objectMaxDepth`  **{Number}** - The max depth for stringifying objects. Setting to a
+ *   non-positive or non-numeric value, removes the max depth limit.
+ *   Default: 5
+ */
+function errorHandlingConfig(config) {
+  if (isObject(config)) {
+    if (isDefined(config.objectMaxDepth)) {
+      minErrConfig.objectMaxDepth = isValidObjectMaxDepth(config.objectMaxDepth) ? config.objectMaxDepth : NaN;
+    }
+  } else {
+    return minErrConfig;
+  }
+}
+
+/**
+ * @private
+ * @param {Number} maxDepth
+ * @return {boolean}
+ */
+function isValidObjectMaxDepth(maxDepth) {
+  return isNumber(maxDepth) && maxDepth > 0;
+}
 
 /**
  * @description
@@ -858,7 +908,7 @@ function minErr(module, ErrorConstructor) {
       return match;
     });
 
-    message += '\nhttp://errors.angularjs.org/1.6.4/' +
+    message += '\nhttp://errors.angularjs.org/1.6.5/' +
       (module ? module + '/' : '') + code;
 
     for (i = 0, paramPrefix = '?'; i < templateArgs.length; i++, paramPrefix = '&') {
@@ -914,6 +964,7 @@ function minErr(module, ErrorConstructor) {
   isNumber,
   isNumberNaN,
   isDate,
+  isError,
   isArray,
   isFunction,
   isRegExp,
@@ -997,50 +1048,6 @@ var VALIDITY_STATE_PROPERTY = 'validity';
 
 
 var hasOwnProperty = Object.prototype.hasOwnProperty;
-
-var minErrConfig = {
-  objectMaxDepth: 5
-};
-
- /**
- * @ngdoc function
- * @name angular.errorHandlingConfig
- * @module ng
- * @kind function
- *
- * @description
- * Configure several aspects of error handling in AngularJS if used as a setter or return the
- * current configuration if used as a getter. The following options are supported:
- *
- * - **objectMaxDepth**: The maximum depth to which objects are traversed when stringified for error messages.
- *
- * Omitted or undefined options will leave the corresponding configuration values unchanged.
- *
- * @param {Object=} config - The configuration object. May only contain the options that need to be
- *     updated. Supported keys:
- *
- * * `objectMaxDepth`  **{Number}** - The max depth for stringifying objects. Setting to a
- *   non-positive or non-numeric value, removes the max depth limit.
- *   Default: 5
- */
-function errorHandlingConfig(config) {
-  if (isObject(config)) {
-    if (isDefined(config.objectMaxDepth)) {
-      minErrConfig.objectMaxDepth = isValidObjectMaxDepth(config.objectMaxDepth) ? config.objectMaxDepth : NaN;
-    }
-  } else {
-    return minErrConfig;
-  }
-}
-
-/**
- * @private
- * @param {Number} maxDepth
- * @return {boolean}
- */
-function isValidObjectMaxDepth(maxDepth) {
-  return isNumber(maxDepth) && maxDepth > 0;
-}
 
 /**
  * @ngdoc function
@@ -1349,6 +1356,20 @@ function extend(dst) {
 * Unlike {@link angular.extend extend()}, `merge()` recursively descends into object properties of source
 * objects, performing a deep copy.
 *
+* @deprecated
+* sinceVersion="1.6.5"
+* This function is deprecated, but will not be removed in the 1.x lifecycle.
+* There are edge cases (see {@link angular.merge#known-issues known issues}) that are not
+* supported by this function. We suggest
+* using [lodash's merge()](https://lodash.com/docs/4.17.4#merge) instead.
+*
+* @knownIssue
+* This is a list of (known) object types that are not handled correctly by this function:
+* - [`Blob`](https://developer.mozilla.org/docs/Web/API/Blob)
+* - [`MediaStream`](https://developer.mozilla.org/docs/Web/API/MediaStream)
+* - [`CanvasGradient`](https://developer.mozilla.org/docs/Web/API/CanvasGradient)
+* - AngularJS {@link $rootScope.Scope scopes};
+*
 * @param {Object} dst Destination object.
 * @param {...Object} src Source object(s).
 * @returns {Object} Reference to `dst`.
@@ -1557,6 +1578,24 @@ function isDate(value) {
  * @returns {boolean} True if `value` is an `Array`.
  */
 var isArray = Array.isArray;
+
+/**
+ * @description
+ * Determines if a reference is an `Error`.
+ * Loosely based on https://www.npmjs.com/package/iserror
+ *
+ * @param {*} value Reference to check.
+ * @returns {boolean} True if `value` is an `Error`.
+ */
+function isError(value) {
+  var tag = toString.call(value);
+  switch (tag) {
+    case '[object Error]': return true;
+    case '[object Exception]': return true;
+    case '[object DOMException]': return true;
+    default: return value instanceof Error;
+  }
+}
 
 /**
  * @ngdoc function
@@ -2238,7 +2277,7 @@ function fromJson(json) {
 
 var ALL_COLONS = /:/g;
 function timezoneToOffset(timezone, fallback) {
-  // Support: IE 9-11 only, Edge 13-14+
+  // Support: IE 9-11 only, Edge 13-15+
   // IE/Edge do not "understand" colon (`:`) in timezone
   timezone = timezone.replace(ALL_COLONS, '');
   var requestedTimezoneOffset = Date.parse('Jan 01, 1970 00:00:00 ' + timezone) / 60000;
@@ -2265,12 +2304,7 @@ function convertTimezoneToLocal(date, timezone, reverse) {
  * @returns {string} Returns the string representation of the element.
  */
 function startingTag(element) {
-  element = jqLite(element).clone();
-  try {
-    // turns out IE does not let you set .html() on elements which
-    // are not allowed to have children. So we just ignore it.
-    element.empty();
-  } catch (e) { /* empty */ }
+  element = jqLite(element).clone().empty();
   var elemHtml = jqLite('<div>').append(element).html();
   try {
     return element[0].nodeType === NODE_TYPE_TEXT ? lowercase(elemHtml) :
@@ -2408,6 +2442,7 @@ function allowAutoBootstrap(document) {
   var script = document.currentScript;
 
   if (!script) {
+    // Support: IE 9-11 only
     // IE does not have `document.currentScript`
     return true;
   }
@@ -3399,7 +3434,7 @@ function shallowCopy(src, dst) {
   return dst || src;
 }
 
-/* global toDebugString: true */
+/* exported toDebugString */
 
 function serializeObject(obj, maxDepth) {
   var seen = [];
@@ -3408,7 +3443,9 @@ function serializeObject(obj, maxDepth) {
   // and a very deep object can cause a performance issue, so we copy the object
   // based on this specific depth and then stringify it.
   if (isValidObjectMaxDepth(maxDepth)) {
-    obj = copy(obj, null, maxDepth);
+    // This file is also included in `angular-loader`, so `copy()` might not always be available in
+    // the closure. Therefore, it is lazily retrieved as `angular.copy()` when needed.
+    obj = angular.copy(obj, null, maxDepth);
   }
   return JSON.stringify(obj, function(key, val) {
     val = toJsonReplacer(key, val);
@@ -3549,11 +3586,11 @@ function toDebugString(obj, maxDepth) {
 var version = {
   // These placeholder strings will be replaced by grunt's `build` task.
   // They need to be double- or single-quoted.
-  full: '1.6.4',
+  full: '1.6.5',
   major: 1,
   minor: 6,
-  dot: 4,
-  codeName: 'phenomenal-footnote'
+  dot: 5,
+  codeName: 'toffee-salinization'
 };
 
 
@@ -3699,7 +3736,7 @@ function publishExternalAPI(angular) {
       });
     }
   ])
-  .info({ angularVersion: '1.6.4' });
+  .info({ angularVersion: '1.6.5' });
 }
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -6288,6 +6325,7 @@ var $$CoreAnimateQueueProvider = /** @this */ function() {
 var $AnimateProvider = ['$provide', /** @this */ function($provide) {
   var provider = this;
   var classNameFilter = null;
+  var customFilter = null;
 
   this.$$registeredAnimations = Object.create(null);
 
@@ -6342,6 +6380,51 @@ var $AnimateProvider = ['$provide', /** @this */ function($provide) {
 
   /**
    * @ngdoc method
+   * @name $animateProvider#customFilter
+   *
+   * @description
+   * Sets and/or returns the custom filter function that is used to "filter" animations, i.e.
+   * determine if an animation is allowed or not. When no filter is specified (the default), no
+   * animation will be blocked. Setting the `customFilter` value will only allow animations for
+   * which the filter function's return value is truthy.
+   *
+   * This allows to easily create arbitrarily complex rules for filtering animations, such as
+   * allowing specific events only, or enabling animations on specific subtrees of the DOM, etc.
+   * Filtering animations can also boost performance for low-powered devices, as well as
+   * applications containing a lot of structural operations.
+   *
+   * <div class="alert alert-success">
+   *   **Best Practice:**
+   *   Keep the filtering function as lean as possible, because it will be called for each DOM
+   *   action (e.g. insertion, removal, class change) performed by "animation-aware" directives.
+   *   See {@link guide/animations#which-directives-support-animations- here} for a list of built-in
+   *   directives that support animations.
+   *   Performing computationally expensive or time-consuming operations on each call of the
+   *   filtering function can make your animations sluggish.
+   * </div>
+   *
+   * **Note:** If present, `customFilter` will be checked before
+   * {@link $animateProvider#classNameFilter classNameFilter}.
+   *
+   * @param {Function=} filterFn - The filter function which will be used to filter all animations.
+   *   If a falsy value is returned, no animation will be performed. The function will be called
+   *   with the following arguments:
+   *   - **node** `{DOMElement}` - The DOM element to be animated.
+   *   - **event** `{String}` - The name of the animation event (e.g. `enter`, `leave`, `addClass`
+   *     etc).
+   *   - **options** `{Object}` - A collection of options/styles used for the animation.
+   * @return {Function} The current filter function or `null` if there is none set.
+   */
+  this.customFilter = function(filterFn) {
+    if (arguments.length === 1) {
+      customFilter = isFunction(filterFn) ? filterFn : null;
+    }
+
+    return customFilter;
+  };
+
+  /**
+   * @ngdoc method
    * @name $animateProvider#classNameFilter
    *
    * @description
@@ -6351,6 +6434,11 @@ var $AnimateProvider = ['$provide', /** @this */ function($provide) {
    * When setting the `classNameFilter` value, animations will only be performed on elements
    * that successfully match the filter expression. This in turn can boost performance
    * for low-powered devices as well as applications containing a lot of structural operations.
+   *
+   * **Note:** If present, `classNameFilter` will be checked after
+   * {@link $animateProvider#customFilter customFilter}. If `customFilter` is present and returns
+   * false, `classNameFilter` will not be checked.
+   *
    * @param {RegExp=} expression The className expression which will be checked against all animations
    * @return {RegExp} The current CSS className expression value. If null then there is no expression value
    */
@@ -8940,7 +9028,8 @@ function $CompileProvider($provide, $$sanitizeUriProvider) {
    * @ngdoc method
    * @name $compileProvider#component
    * @module ng
-   * @param {string} name Name of the component in camelCase (i.e. `myComp` which will match `<my-comp>`)
+   * @param {string|Object} name Name of the component in camelCase (i.e. `myComp` which will match `<my-comp>`),
+   *    or an object map of components where the keys are the names and the values are the component definition objects.
    * @param {Object} options Component definition object (a simplified
    *    {@link ng.$compile#directive-definition-object directive definition object}),
    *    with the following properties (all optional):
@@ -9023,6 +9112,11 @@ function $CompileProvider($provide, $$sanitizeUriProvider) {
    * See also {@link ng.$compileProvider#directive $compileProvider.directive()}.
    */
   this.component = function registerComponent(name, options) {
+    if (!isString(name)) {
+      forEach(name, reverseParams(bind(this, registerComponent)));
+      return this;
+    }
+
     var controller = options.controller || function() {};
 
     function factory($injector) {
@@ -10958,7 +11052,7 @@ function $CompileProvider($provide, $$sanitizeUriProvider) {
           }
           linkQueue = null;
         }).catch(function(error) {
-          if (error instanceof Error) {
+          if (isError(error)) {
             $exceptionHandler(error);
           }
         });
@@ -12101,12 +12195,6 @@ function $HttpProvider() {
    * {@link ng.$cacheFactory `$cacheFactory`} to enable or disable caching of HTTP responses
    * by default. See {@link $http#caching $http Caching} for more information.
    *
-   * - **`defaults.xsrfCookieName`** - {string} - Name of cookie containing the XSRF token.
-   * Defaults value is `'XSRF-TOKEN'`.
-   *
-   * - **`defaults.xsrfHeaderName`** - {string} - Name of HTTP header to populate with the
-   * XSRF token. Defaults value is `'X-XSRF-TOKEN'`.
-   *
    * - **`defaults.headers`** - {Object} - Default headers for all $http requests.
    * Refer to {@link ng.$http#setting-http-headers $http} for documentation on
    * setting default headers.
@@ -12115,15 +12203,38 @@ function $HttpProvider() {
    *     - **`defaults.headers.put`**
    *     - **`defaults.headers.patch`**
    *
+   * - **`defaults.jsonpCallbackParam`** - `{string}` - the name of the query parameter that passes the name of the
+   * callback in a JSONP request. The value of this parameter will be replaced with the expression generated by the
+   * {@link $jsonpCallbacks} service. Defaults to `'callback'`.
    *
    * - **`defaults.paramSerializer`** - `{string|function(Object<string,string>):string}` - A function
    *  used to the prepare string representation of request parameters (specified as an object).
    *  If specified as string, it is interpreted as a function registered with the {@link auto.$injector $injector}.
    *  Defaults to {@link ng.$httpParamSerializer $httpParamSerializer}.
    *
-   * - **`defaults.jsonpCallbackParam`** - `{string}` - the name of the query parameter that passes the name of the
-   * callback in a JSONP request. The value of this parameter will be replaced with the expression generated by the
-   * {@link $jsonpCallbacks} service. Defaults to `'callback'`.
+   * - **`defaults.transformRequest`** -
+   * `{Array<function(data, headersGetter)>|function(data, headersGetter)}` -
+   * An array of functions (or a single function) which are applied to the request data.
+   * By default, this is an array with one request transformation function:
+   *
+   *   - If the `data` property of the request configuration object contains an object, serialize it
+   *     into JSON format.
+   *
+   * - **`defaults.transformResponse`** -
+   * `{Array<function(data, headersGetter, status)>|function(data, headersGetter, status)}` -
+   * An array of functions (or a single function) which are applied to the response data. By default,
+   * this is an array which applies one response transformation function that does two things:
+   *
+   *  - If XSRF prefix is detected, strip it
+   *    (see {@link ng.$http#security-considerations Security Considerations in the $http docs}).
+   *  - If the `Content-Type` is `application/json` or the response looks like JSON,
+   *    deserialize it using a JSON parser.
+   *
+   * - **`defaults.xsrfCookieName`** - {string} - Name of cookie containing the XSRF token.
+   * Defaults value is `'XSRF-TOKEN'`.
+   *
+   * - **`defaults.xsrfHeaderName`** - {string} - Name of HTTP header to populate with the
+   * XSRF token. Defaults value is `'X-XSRF-TOKEN'`.
    *
    **/
   var defaults = this.defaults = {
@@ -12387,15 +12498,18 @@ function $HttpProvider() {
      *
      * Angular provides the following default transformations:
      *
-     * Request transformations (`$httpProvider.defaults.transformRequest` and `$http.defaults.transformRequest`):
+     * Request transformations (`$httpProvider.defaults.transformRequest` and `$http.defaults.transformRequest`) is
+     * an array with one function that does the following:
      *
      * - If the `data` property of the request configuration object contains an object, serialize it
      *   into JSON format.
      *
-     * Response transformations (`$httpProvider.defaults.transformResponse` and `$http.defaults.transformResponse`):
+     * Response transformations (`$httpProvider.defaults.transformResponse` and `$http.defaults.transformResponse`) is
+     * an array with one function that does the following:
      *
      *  - If XSRF prefix is detected, strip it (see Security Considerations section below).
-     *  - If JSON response is detected, deserialize it using a JSON parser.
+     *  - If the `Content-Type` is `application/json` or the response looks like JSON,
+   *      deserialize it using a JSON parser.
      *
      *
      * ### Overriding the Default Transformations Per Request
@@ -14032,7 +14146,7 @@ function $IntervalProvider() {
     interval.cancel = function(promise) {
       if (promise && promise.$$intervalId in intervals) {
         // Interval cancels should not report as unhandled promise.
-        intervals[promise.$$intervalId].promise.catch(noop);
+        markQExceptionHandled(intervals[promise.$$intervalId].promise);
         intervals[promise.$$intervalId].reject('canceled');
         $window.clearInterval(promise.$$intervalId);
         delete intervals[promise.$$intervalId];
@@ -15174,6 +15288,14 @@ function $LocationProvider() {
  *
  * The main purpose of this service is to simplify debugging and troubleshooting.
  *
+ * To reveal the location of the calls to `$log` in the JavaScript console,
+ * you can "blackbox" the AngularJS source in your browser:
+ *
+ * [Mozilla description of blackboxing](https://developer.mozilla.org/en-US/docs/Tools/Debugger/How_to/Black_box_a_source).
+ * [Chrome description of blackboxing](https://developer.chrome.com/devtools/docs/blackboxing).
+ *
+ * Note: Not all browsers support blackboxing.
+ *
  * The default is to log `debug` messages. You can use
  * {@link ng.$logProvider ng.$logProvider#debugEnabled} to change this.
  *
@@ -15295,7 +15417,7 @@ function $LogProvider() {
     };
 
     function formatError(arg) {
-      if (arg instanceof Error) {
+      if (isError(arg)) {
         if (arg.stack && formatStackTrace) {
           arg = (arg.message && arg.stack.indexOf(arg.message) === -1)
               ? 'Error: ' + arg.message + '\n' + arg.stack
@@ -15309,29 +15431,17 @@ function $LogProvider() {
 
     function consoleLog(type) {
       var console = $window.console || {},
-          logFn = console[type] || console.log || noop,
-          hasApply = false;
+          logFn = console[type] || console.log || noop;
 
-      // Note: reading logFn.apply throws an error in IE11 in IE8 document mode.
-      // The reason behind this is that console.log has type "object" in IE8...
-      try {
-        hasApply = !!logFn.apply;
-      } catch (e) { /* empty */ }
-
-      if (hasApply) {
-        return function() {
-          var args = [];
-          forEach(arguments, function(arg) {
-            args.push(formatError(arg));
-          });
-          return logFn.apply(console, args);
-        };
-      }
-
-      // we are IE which either doesn't have window.console => this is noop and we do nothing,
-      // or we are IE where console.log doesn't have apply so we log at least first 2 args
-      return function(arg1, arg2) {
-        logFn(arg1, arg2 == null ? '' : arg2);
+      return function() {
+        var args = [];
+        forEach(arguments, function(arg) {
+          args.push(formatError(arg));
+        });
+        // Support: IE 9 only
+        // console methods don't inherit from Function.prototype in IE 9 so we can't
+        // call `logFn.apply(console, args)` directly.
+        return Function.prototype.apply.call(logFn, console, args);
       };
     }
   }];
@@ -15959,15 +16069,47 @@ function isStateless($filter, filterName) {
   return !fn.$stateful;
 }
 
-function findConstantAndWatchExpressions(ast, $filter) {
+var PURITY_ABSOLUTE = 1;
+var PURITY_RELATIVE = 2;
+
+// Detect nodes which could depend on non-shallow state of objects
+function isPure(node, parentIsPure) {
+  switch (node.type) {
+    // Computed members might invoke a stateful toString()
+    case AST.MemberExpression:
+      if (node.computed) {
+        return false;
+      }
+      break;
+
+    // Unary always convert to primative
+    case AST.UnaryExpression:
+      return PURITY_ABSOLUTE;
+
+    // The binary + operator can invoke a stateful toString().
+    case AST.BinaryExpression:
+      return node.operator !== '+' ? PURITY_ABSOLUTE : false;
+
+    // Functions / filters probably read state from within objects
+    case AST.CallExpression:
+      return false;
+  }
+
+  return (undefined === parentIsPure) ? PURITY_RELATIVE : parentIsPure;
+}
+
+function findConstantAndWatchExpressions(ast, $filter, parentIsPure) {
   var allConstants;
   var argsToWatch;
   var isStatelessFilter;
+
+  var astIsPure = ast.isPure = isPure(ast, parentIsPure);
+
   switch (ast.type) {
   case AST.Program:
     allConstants = true;
     forEach(ast.body, function(expr) {
-      findConstantAndWatchExpressions(expr.expression, $filter);
+      findConstantAndWatchExpressions(expr.expression, $filter, astIsPure);
       allConstants = allConstants && expr.expression.constant;
     });
     ast.constant = allConstants;
@@ -15977,26 +16119,26 @@ function findConstantAndWatchExpressions(ast, $filter) {
     ast.toWatch = [];
     break;
   case AST.UnaryExpression:
-    findConstantAndWatchExpressions(ast.argument, $filter);
+    findConstantAndWatchExpressions(ast.argument, $filter, astIsPure);
     ast.constant = ast.argument.constant;
     ast.toWatch = ast.argument.toWatch;
     break;
   case AST.BinaryExpression:
-    findConstantAndWatchExpressions(ast.left, $filter);
-    findConstantAndWatchExpressions(ast.right, $filter);
+    findConstantAndWatchExpressions(ast.left, $filter, astIsPure);
+    findConstantAndWatchExpressions(ast.right, $filter, astIsPure);
     ast.constant = ast.left.constant && ast.right.constant;
     ast.toWatch = ast.left.toWatch.concat(ast.right.toWatch);
     break;
   case AST.LogicalExpression:
-    findConstantAndWatchExpressions(ast.left, $filter);
-    findConstantAndWatchExpressions(ast.right, $filter);
+    findConstantAndWatchExpressions(ast.left, $filter, astIsPure);
+    findConstantAndWatchExpressions(ast.right, $filter, astIsPure);
     ast.constant = ast.left.constant && ast.right.constant;
     ast.toWatch = ast.constant ? [] : [ast];
     break;
   case AST.ConditionalExpression:
-    findConstantAndWatchExpressions(ast.test, $filter);
-    findConstantAndWatchExpressions(ast.alternate, $filter);
-    findConstantAndWatchExpressions(ast.consequent, $filter);
+    findConstantAndWatchExpressions(ast.test, $filter, astIsPure);
+    findConstantAndWatchExpressions(ast.alternate, $filter, astIsPure);
+    findConstantAndWatchExpressions(ast.consequent, $filter, astIsPure);
     ast.constant = ast.test.constant && ast.alternate.constant && ast.consequent.constant;
     ast.toWatch = ast.constant ? [] : [ast];
     break;
@@ -16005,9 +16147,9 @@ function findConstantAndWatchExpressions(ast, $filter) {
     ast.toWatch = [ast];
     break;
   case AST.MemberExpression:
-    findConstantAndWatchExpressions(ast.object, $filter);
+    findConstantAndWatchExpressions(ast.object, $filter, astIsPure);
     if (ast.computed) {
-      findConstantAndWatchExpressions(ast.property, $filter);
+      findConstantAndWatchExpressions(ast.property, $filter, astIsPure);
     }
     ast.constant = ast.object.constant && (!ast.computed || ast.property.constant);
     ast.toWatch = [ast];
@@ -16017,7 +16159,7 @@ function findConstantAndWatchExpressions(ast, $filter) {
     allConstants = isStatelessFilter;
     argsToWatch = [];
     forEach(ast.arguments, function(expr) {
-      findConstantAndWatchExpressions(expr, $filter);
+      findConstantAndWatchExpressions(expr, $filter, astIsPure);
       allConstants = allConstants && expr.constant;
       if (!expr.constant) {
         argsToWatch.push.apply(argsToWatch, expr.toWatch);
@@ -16027,8 +16169,8 @@ function findConstantAndWatchExpressions(ast, $filter) {
     ast.toWatch = isStatelessFilter ? argsToWatch : [ast];
     break;
   case AST.AssignmentExpression:
-    findConstantAndWatchExpressions(ast.left, $filter);
-    findConstantAndWatchExpressions(ast.right, $filter);
+    findConstantAndWatchExpressions(ast.left, $filter, astIsPure);
+    findConstantAndWatchExpressions(ast.right, $filter, astIsPure);
     ast.constant = ast.left.constant && ast.right.constant;
     ast.toWatch = [ast];
     break;
@@ -16036,7 +16178,7 @@ function findConstantAndWatchExpressions(ast, $filter) {
     allConstants = true;
     argsToWatch = [];
     forEach(ast.elements, function(expr) {
-      findConstantAndWatchExpressions(expr, $filter);
+      findConstantAndWatchExpressions(expr, $filter, astIsPure);
       allConstants = allConstants && expr.constant;
       if (!expr.constant) {
         argsToWatch.push.apply(argsToWatch, expr.toWatch);
@@ -16049,13 +16191,13 @@ function findConstantAndWatchExpressions(ast, $filter) {
     allConstants = true;
     argsToWatch = [];
     forEach(ast.properties, function(property) {
-      findConstantAndWatchExpressions(property.value, $filter);
+      findConstantAndWatchExpressions(property.value, $filter, astIsPure);
       allConstants = allConstants && property.value.constant && !property.computed;
       if (!property.value.constant) {
         argsToWatch.push.apply(argsToWatch, property.value.toWatch);
       }
       if (property.computed) {
-        findConstantAndWatchExpressions(property.key, $filter);
+        findConstantAndWatchExpressions(property.key, $filter, astIsPure);
         if (!property.key.constant) {
           argsToWatch.push.apply(argsToWatch, property.key.toWatch);
         }
@@ -16140,7 +16282,7 @@ ASTCompiler.prototype = {
       var intoId = self.nextId();
       self.recurse(watch, intoId);
       self.return_(intoId);
-      self.state.inputs.push(fnKey);
+      self.state.inputs.push({name: fnKey, isPure: watch.isPure});
       watch.watchId = key;
     });
     this.state.computing = 'fn';
@@ -16176,13 +16318,16 @@ ASTCompiler.prototype = {
 
   watchFns: function() {
     var result = [];
-    var fns = this.state.inputs;
+    var inputs = this.state.inputs;
     var self = this;
-    forEach(fns, function(name) {
-      result.push('var ' + name + '=' + self.generateFunction(name, 's'));
+    forEach(inputs, function(input) {
+      result.push('var ' + input.name + '=' + self.generateFunction(input.name, 's'));
+      if (input.isPure) {
+        result.push(input.name, '.isPure=' + JSON.stringify(input.isPure) + ';');
+      }
     });
-    if (fns.length) {
-      result.push('fn.inputs=[' + fns.join(',') + '];');
+    if (inputs.length) {
+      result.push('fn.inputs=[' + inputs.map(function(i) { return i.name; }).join(',') + '];');
     }
     return result.join('');
   },
@@ -16588,6 +16733,7 @@ ASTInterpreter.prototype = {
       inputs = [];
       forEach(toWatch, function(watch, key) {
         var input = self.recurse(watch);
+        input.isPure = watch.isPure;
         watch.input = input;
         inputs.push(input);
         watch.watchId = key;
@@ -17102,8 +17248,8 @@ function $ParseProvider() {
             if (parsedExpression.constant) {
               parsedExpression.$$watchDelegate = constantWatchDelegate;
             } else if (oneTime) {
-              parsedExpression.oneTime = true;
-              parsedExpression.$$watchDelegate = oneTimeWatchDelegate;
+              parsedExpression.$$watchDelegate = parsedExpression.literal ?
+                  oneTimeLiteralWatchDelegate : oneTimeWatchDelegate;
             } else if (parsedExpression.inputs) {
               parsedExpression.$$watchDelegate = inputsWatchDelegate;
             }
@@ -17154,7 +17300,7 @@ function $ParseProvider() {
         inputExpressions = inputExpressions[0];
         return scope.$watch(function expressionInputWatch(scope) {
           var newInputValue = inputExpressions(scope);
-          if (!expressionInputDirtyCheck(newInputValue, oldInputValueOf, parsedExpression.literal)) {
+          if (!expressionInputDirtyCheck(newInputValue, oldInputValueOf, inputExpressions.isPure)) {
             lastResult = parsedExpression(scope, undefined, undefined, [newInputValue]);
             oldInputValueOf = newInputValue && getValueOf(newInputValue);
           }
@@ -17174,7 +17320,7 @@ function $ParseProvider() {
 
         for (var i = 0, ii = inputExpressions.length; i < ii; i++) {
           var newInputValue = inputExpressions[i](scope);
-          if (changed || (changed = !expressionInputDirtyCheck(newInputValue, oldInputValueOfValues[i], parsedExpression.literal))) {
+          if (changed || (changed = !expressionInputDirtyCheck(newInputValue, oldInputValueOfValues[i], inputExpressions[i].isPure))) {
             oldInputValues[i] = newInputValue;
             oldInputValueOfValues[i] = newInputValue && getValueOf(newInputValue);
           }
@@ -17189,7 +17335,6 @@ function $ParseProvider() {
     }
 
     function oneTimeWatchDelegate(scope, listener, objectEquality, parsedExpression, prettyPrintExpression) {
-      var isDone = parsedExpression.literal ? isAllDefined : isDefined;
       var unwatch, lastValue;
       if (parsedExpression.inputs) {
         unwatch = inputsWatchDelegate(scope, oneTimeListener, objectEquality, parsedExpression, prettyPrintExpression);
@@ -17206,9 +17351,9 @@ function $ParseProvider() {
         if (isFunction(listener)) {
           listener(value, old, scope);
         }
-        if (isDone(value)) {
+        if (isDefined(value)) {
           scope.$$postDigest(function() {
-            if (isDone(lastValue)) {
+            if (isDefined(lastValue)) {
               unwatch();
             }
           });
@@ -17216,12 +17361,31 @@ function $ParseProvider() {
       }
     }
 
-    function isAllDefined(value) {
-      var allDefined = true;
-      forEach(value, function(val) {
-        if (!isDefined(val)) allDefined = false;
-      });
-      return allDefined;
+    function oneTimeLiteralWatchDelegate(scope, listener, objectEquality, parsedExpression) {
+      var unwatch, lastValue;
+      unwatch = scope.$watch(function oneTimeWatch(scope) {
+        return parsedExpression(scope);
+      }, function oneTimeListener(value, old, scope) {
+        lastValue = value;
+        if (isFunction(listener)) {
+          listener(value, old, scope);
+        }
+        if (isAllDefined(value)) {
+          scope.$$postDigest(function() {
+            if (isAllDefined(lastValue)) unwatch();
+          });
+        }
+      }, objectEquality);
+
+      return unwatch;
+
+      function isAllDefined(value) {
+        var allDefined = true;
+        forEach(value, function(val) {
+          if (!isDefined(val)) allDefined = false;
+        });
+        return allDefined;
+      }
     }
 
     function constantWatchDelegate(scope, listener, objectEquality, parsedExpression) {
@@ -17237,37 +17401,41 @@ function $ParseProvider() {
       var watchDelegate = parsedExpression.$$watchDelegate;
       var useInputs = false;
 
-      var isDone = parsedExpression.literal ? isAllDefined : isDefined;
+      var regularWatch =
+          watchDelegate !== oneTimeLiteralWatchDelegate &&
+          watchDelegate !== oneTimeWatchDelegate;
 
-      function regularInterceptedExpression(scope, locals, assign, inputs) {
+      var fn = regularWatch ? function regularInterceptedExpression(scope, locals, assign, inputs) {
         var value = useInputs && inputs ? inputs[0] : parsedExpression(scope, locals, assign, inputs);
         return interceptorFn(value, scope, locals);
-      }
-
-      function oneTimeInterceptedExpression(scope, locals, assign, inputs) {
-        var value = useInputs && inputs ? inputs[0] : parsedExpression(scope, locals, assign, inputs);
+      } : function oneTimeInterceptedExpression(scope, locals, assign, inputs) {
+        var value = parsedExpression(scope, locals, assign, inputs);
         var result = interceptorFn(value, scope, locals);
         // we only return the interceptor's result if the
         // initial value is defined (for bind-once)
-        return isDone(value) ? result : value;
-      }
+        return isDefined(value) ? result : value;
+      };
 
-      var fn = parsedExpression.oneTime ? oneTimeInterceptedExpression : regularInterceptedExpression;
-
-      // Propogate the literal/oneTime attributes
-      fn.literal = parsedExpression.literal;
-      fn.oneTime = parsedExpression.oneTime;
-
-      // Propagate or create inputs / $$watchDelegates
+      // Propagate $$watchDelegates other then inputsWatchDelegate
       useInputs = !parsedExpression.inputs;
       if (watchDelegate && watchDelegate !== inputsWatchDelegate) {
         fn.$$watchDelegate = watchDelegate;
         fn.inputs = parsedExpression.inputs;
       } else if (!interceptorFn.$stateful) {
-        // If there is an interceptor, but no watchDelegate then treat the interceptor like
-        // we treat filters - it is assumed to be a pure function unless flagged with $stateful
+        // Treat interceptor like filters - assume non-stateful by default and use the inputsWatchDelegate
         fn.$$watchDelegate = inputsWatchDelegate;
         fn.inputs = parsedExpression.inputs ? parsedExpression.inputs : [parsedExpression];
+      }
+
+      if (fn.inputs) {
+        fn.inputs = fn.inputs.map(function(e) {
+              // Remove the isPure flag of inputs when it is not absolute because they are now wrapped in a
+              // potentially non-pure interceptor function.
+              if (e.isPure === PURITY_RELATIVE) {
+                return function depurifier(s) { return e(s); };
+              }
+              return e;
+            });
       }
 
       return fn;
@@ -17555,7 +17723,7 @@ function $$QProvider() {
  * @param {function(function)} nextTick Function for executing functions in the next turn.
  * @param {function(...*)} exceptionHandler Function into which unexpected exceptions are passed for
  *     debugging purposes.
- @ param {=boolean} errorOnUnhandledRejections Whether an error should be generated on unhandled
+ * @param {boolean=} errorOnUnhandledRejections Whether an error should be generated on unhandled
  *     promises rejections.
  * @returns {object} Promise manager.
  */
@@ -17626,7 +17794,7 @@ function qFactory(nextTick, exceptionHandler, errorOnUnhandledRejections) {
     state.pending = undefined;
     try {
       for (var i = 0, ii = pending.length; i < ii; ++i) {
-        state.pur = true;
+        markQStateExceptionHandled(state);
         promise = pending[i][0];
         fn = pending[i][state.status];
         try {
@@ -17653,10 +17821,10 @@ function qFactory(nextTick, exceptionHandler, errorOnUnhandledRejections) {
     // eslint-disable-next-line no-unmodified-loop-condition
     while (!queueSize && checkQueue.length) {
       var toCheck = checkQueue.shift();
-      if (!toCheck.pur) {
-        toCheck.pur = true;
+      if (!isStateExceptionHandled(toCheck)) {
+        markQStateExceptionHandled(toCheck);
         var errorMessage = 'Possibly unhandled rejection: ' + toDebugString(toCheck.value);
-        if (toCheck.value instanceof Error) {
+        if (isError(toCheck.value)) {
           exceptionHandler(toCheck.value, errorMessage);
         } else {
           exceptionHandler(errorMessage);
@@ -17666,7 +17834,7 @@ function qFactory(nextTick, exceptionHandler, errorOnUnhandledRejections) {
   }
 
   function scheduleProcessQueue(state) {
-    if (errorOnUnhandledRejections && !state.pending && state.status === 2 && !state.pur) {
+    if (errorOnUnhandledRejections && !state.pending && state.status === 2 && !isStateExceptionHandled(state)) {
       if (queueSize === 0 && checkQueue.length === 0) {
         nextTick(processChecks);
       }
@@ -17945,6 +18113,16 @@ function qFactory(nextTick, exceptionHandler, errorOnUnhandledRejections) {
   $Q.race = race;
 
   return $Q;
+}
+
+function isStateExceptionHandled(state) {
+  return !!state.pur;
+}
+function markQStateExceptionHandled(state) {
+  state.pur = true;
+}
+function markQExceptionHandled(q) {
+  markQStateExceptionHandled(q.$$state);
 }
 
 /** @this */
@@ -18427,6 +18605,12 @@ function $RootScopeProvider() {
        *   values are examined for changes on every call to `$digest`.
        * - The `listener` is called whenever any expression in the `watchExpressions` array changes.
        *
+       * `$watchGroup` is more performant than watching each expression individually, and should be
+       * used when the listener does not need to know which expression has changed.
+       * If the listener needs to know which expression has changed,
+       * {@link ng.$rootScope.Scope#$watch $watch()} or
+       * {@link ng.$rootScope.Scope#$watchCollection $watchCollection()} should be used.
+       *
        * @param {Array.<string|Function(scope)>} watchExpressions Array of expressions that will be individually
        * watched using {@link ng.$rootScope.Scope#$watch $watch()}
        *
@@ -18435,7 +18619,34 @@ function $RootScopeProvider() {
        *    The `newValues` array contains the current values of the `watchExpressions`, with the indexes matching
        *    those of `watchExpression`
        *    and the `oldValues` array contains the previous values of the `watchExpressions`, with the indexes matching
-       *    those of `watchExpression`
+       *    those of `watchExpression`.
+       *
+       *    Note that `newValues` and `oldValues` reflect the differences in each **individual**
+       *    expression, and not the difference of the values between each call of the listener.
+       *    That means the difference between `newValues` and `oldValues` cannot be used to determine
+       *    which expression has changed / remained stable:
+       *
+       *    ```js
+       *
+       *    $scope.$watchGroup(['v1', 'v2'], function(newValues, oldValues) {
+       *      console.log(newValues, oldValues);
+       *    });
+       *
+       *    // newValues, oldValues initially
+       *    // [undefined, undefined], [undefined, undefined]
+       *
+       *    $scope.v1 = 'a';
+       *    $scope.v2 = 'a';
+       *
+       *    // ['a', 'a'], [undefined, undefined]
+       *
+       *    $scope.v2 = 'b'
+       *
+       *    // v1 hasn't changed since it became `'a'`, therefore its oldValue is still `undefined`
+       *    // ['a', 'b'], [undefined, 'a']
+       *
+       *    ```
+       *
        *    The `scope` refers to the current scope.
        * @returns {function()} Returns a de-registration function for all listeners.
        */
@@ -21010,7 +21221,7 @@ function $TimeoutProvider() {
     timeout.cancel = function(promise) {
       if (promise && promise.$$timeoutId in deferreds) {
         // Timeout cancels should not report an unhandled promise.
-        deferreds[promise.$$timeoutId].promise.catch(noop);
+        markQExceptionHandled(deferreds[promise.$$timeoutId].promise);
         deferreds[promise.$$timeoutId].reject('canceled');
         delete deferreds[promise.$$timeoutId];
         return $browser.defer.cancel(promise.$$timeoutId);
@@ -21445,7 +21656,7 @@ function $FilterProvider($provide) {
  *
  * @param {function(actual, expected)|true|false} [comparator] Comparator which is used in
  *     determining if values retrieved using `expression` (when it is not a function) should be
- *     considered a match based on the the expected value (from the filter expression) and actual
+ *     considered a match based on the expected value (from the filter expression) and actual
  *     value (from the object in the array).
  *
  *   Can be one of:
@@ -22364,6 +22575,9 @@ function jsonFilter() {
  * @kind function
  * @description
  * Converts string to lowercase.
+ *
+ * See the {@link ng.uppercase uppercase filter documentation} for a functionally identical example.
+ *
  * @see angular.lowercase
  */
 var lowercaseFilter = valueFn(lowercase);
@@ -22375,7 +22589,23 @@ var lowercaseFilter = valueFn(lowercase);
  * @kind function
  * @description
  * Converts string to uppercase.
- * @see angular.uppercase
+ * @example
+   <example module="uppercaseFilterExample" name="filter-uppercase">
+     <file name="index.html">
+       <script>
+         angular.module('uppercaseFilterExample', [])
+           .controller('ExampleController', ['$scope', function($scope) {
+             $scope.title = 'This is a title';
+           }]);
+       </script>
+       <div ng-controller="ExampleController">
+         <!-- This title should be formatted normally -->
+         <h1>{{title}}</h1>
+         <!-- This title should be capitalized -->
+         <h1>{{title | uppercase}}</h1>
+       </div>
+     </file>
+   </example>
  */
 var uppercaseFilter = valueFn(uppercase);
 
@@ -22563,6 +22793,9 @@ function sliceFn(input, begin, end) {
  * specified predicates can distinguish between two items, `orderBy` will automatically introduce a
  * dummy predicate that returns the item's index as `value`.
  * (If you are using a custom comparator, make sure it can handle this predicate as well.)
+ *
+ * If a custom comparator still can't distinguish between two items, then they will be sorted based
+ * on their index using the built-in comparator.
  *
  * Finally, in an attempt to simplify things, if a predicate returns an object as the extracted
  * value for an item, `orderBy` will try to convert that object to a primitive value, before passing
@@ -23110,7 +23343,7 @@ function orderByFilter($parse) {
         }
       }
 
-      return compare(v1.tieBreaker, v2.tieBreaker) * descending;
+      return (compare(v1.tieBreaker, v2.tieBreaker) || defaultCompare(v1.tieBreaker, v2.tieBreaker)) * descending;
     }
   };
 
@@ -23713,17 +23946,23 @@ function nullFormRenameControl(control, name) {
  * @property {boolean} $dirty True if user has already interacted with the form.
  * @property {boolean} $valid True if all of the containing forms and controls are valid.
  * @property {boolean} $invalid True if at least one containing control or form is invalid.
- * @property {boolean} $pending True if at least one containing control or form is pending.
  * @property {boolean} $submitted True if user has submitted the form even if its invalid.
  *
- * @property {Object} $error Is an object hash, containing references to controls or
- *  forms with failing validators, where:
+ * @property {Object} $pending An object hash, containing references to controls or forms with
+ *  pending validators, where:
+ *
+ *  - keys are validations tokens (error names).
+ *  - values are arrays of controls or forms that have a pending validator for the given error name.
+ *
+ * See {@link form.FormController#$error $error} for a list of built-in validation tokens.
+ *
+ * @property {Object} $error An object hash, containing references to controls or forms with failing
+ *  validators, where:
  *
  *  - keys are validation tokens (error names),
- *  - values are arrays of controls or forms that have a failing validator for given error name.
+ *  - values are arrays of controls or forms that have a failing validator for the given error name.
  *
  *  Built-in validation tokens:
- *
  *  - `email`
  *  - `max`
  *  - `maxlength`
@@ -23969,9 +24208,24 @@ FormController.prototype = {
  * @name form.FormController#$setValidity
  *
  * @description
- * Sets the validity of a form control.
+ * Change the validity state of the form, and notify the parent form (if any).
  *
- * This method will also propagate to parent forms.
+ * Application developers will rarely need to call this method directly. It is used internally, by
+ * {@link ngModel.NgModelController#$setValidity NgModelController.$setValidity()}, to propagate a
+ * control's validity state to the parent `FormController`.
+ *
+ * @param {string} validationErrorKey Name of the validator. The `validationErrorKey` will be
+ *        assigned to either `$error[validationErrorKey]` or `$pending[validationErrorKey]` (for
+ *        unfulfilled `$asyncValidators`), so that it is available for data-binding. The
+ *        `validationErrorKey` should be in camelCase and will get converted into dash-case for
+ *        class name. Example: `myError` will result in `ng-valid-my-error` and
+ *        `ng-invalid-my-error` classes and can be bound to as `{{ someForm.$error.myError }}`.
+ * @param {boolean} isValid Whether the current state is valid (true), invalid (false), pending
+ *        (undefined),  or skipped (null). Pending is used for unfulfilled `$asyncValidators`.
+ *        Skipped is used by AngularJS when validators do not run because of parse errors and when
+ *        `$asyncValidators` do not run because any of the `$validators` failed.
+ * @param {NgModelController | FormController} controller - The controller whose validity state is
+ *        triggering the change.
  */
 addSetValidityMethod({
   clazz: FormController,
@@ -26816,6 +27070,13 @@ function classDirective(name, selector) {
     return {
       restrict: 'AC',
       link: function(scope, element, attr) {
+        var expression = attr[name].trim();
+        var isOneTime = (expression.charAt(0) === ':') && (expression.charAt(1) === ':');
+
+        var watchInterceptor = isOneTime ? toFlatValue : toClassString;
+        var watchExpression = $parse(expression, watchInterceptor);
+        var watchAction = isOneTime ? ngClassOneTimeWatchAction : ngClassWatchAction;
+
         var classCounts = element.data('$classCounts');
         var oldModulo = true;
         var oldClassString;
@@ -26838,7 +27099,7 @@ function classDirective(name, selector) {
           scope.$watch(indexWatchExpression, ngClassIndexWatchAction);
         }
 
-        scope.$watch($parse(attr[name], toClassString), ngClassWatchAction);
+        scope.$watch(watchExpression, watchAction, isOneTime);
 
         function addClasses(classString) {
           classString = digestClassCounts(split(classString), 1);
@@ -26880,9 +27141,9 @@ function classDirective(name, selector) {
         }
 
         function ngClassIndexWatchAction(newModulo) {
-          // This watch-action should run before the `ngClassWatchAction()`, thus it
+          // This watch-action should run before the `ngClass[OneTime]WatchAction()`, thus it
           // adds/removes `oldClassString`. If the `ngClass` expression has changed as well, the
-          // `ngClassWatchAction()` will update the classes.
+          // `ngClass[OneTime]WatchAction()` will update the classes.
           if (newModulo === selector) {
             addClasses(oldClassString);
           } else {
@@ -26892,13 +27153,15 @@ function classDirective(name, selector) {
           oldModulo = newModulo;
         }
 
-        function ngClassWatchAction(newClassString) {
-          // When using a one-time binding the newClassString will return
-          // the pre-interceptor value until the one-time is complete
-          if (!isString(newClassString)) {
-            newClassString = toClassString(newClassString);
-          }
+        function ngClassOneTimeWatchAction(newClassValue) {
+          var newClassString = toClassString(newClassValue);
 
+          if (newClassString !== oldClassString) {
+            ngClassWatchAction(newClassString);
+          }
+        }
+
+        function ngClassWatchAction(newClassString) {
           if (oldModulo === selector) {
             updateClasses(oldClassString, newClassString);
           }
@@ -26944,6 +27207,34 @@ function classDirective(name, selector) {
     }
 
     return classString;
+  }
+
+  function toFlatValue(classValue) {
+    var flatValue = classValue;
+
+    if (isArray(classValue)) {
+      flatValue = classValue.map(toFlatValue);
+    } else if (isObject(classValue)) {
+      var hasUndefined = false;
+
+      flatValue = Object.keys(classValue).filter(function(key) {
+        var value = classValue[key];
+
+        if (!hasUndefined && isUndefined(value)) {
+          hasUndefined = true;
+        }
+
+        return value;
+      });
+
+      if (hasUndefined) {
+        // Prevent the `oneTimeLiteralWatchInterceptor` from unregistering
+        // the watcher, by including at least one `undefined` value.
+        flatValue.push(undefined);
+      }
+    }
+
+    return flatValue;
   }
 }
 
@@ -29785,7 +30076,7 @@ function setupModelWatcher(ctrl) {
  *        (for unfulfilled `$asyncValidators`), so that it is available for data-binding.
  *        The `validationErrorKey` should be in camelCase and will get converted into dash-case
  *        for class name. Example: `myError` will result in `ng-valid-my-error` and `ng-invalid-my-error`
- *        class and can be bound to as  `{{someForm.someControl.$error.myError}}` .
+ *        classes and can be bound to as `{{ someForm.someControl.$error.myError }}`.
  * @param {boolean} isValid Whether the current state is valid (true), invalid (false), pending (undefined),
  *                          or skipped (null). Pending is used for unfulfilled `$asyncValidators`.
  *                          Skipped is used by Angular when validators do not run because of parse errors and
@@ -30860,7 +31151,8 @@ var ngOptionsDirective = ['$compile', '$document', '$parse', function($compile, 
   }
 
 
-  // we can't just jqLite('<option>') since jqLite is not smart enough
+  // Support: IE 9 only
+  // We can't just jqLite('<option>') since jqLite is not smart enough
   // to create it in <select> and IE barfs otherwise.
   var optionTemplate = window.document.createElement('option'),
       optGroupTemplate = window.document.createElement('optgroup');
@@ -30880,6 +31172,9 @@ var ngOptionsDirective = ['$compile', '$document', '$parse', function($compile, 
           break;
         }
       }
+
+      // The empty option will be compiled and rendered before we first generate the options
+      selectElement.empty();
 
       var providedEmptyOption = !!selectCtrl.emptyOption;
 
@@ -30902,12 +31197,15 @@ var ngOptionsDirective = ['$compile', '$document', '$parse', function($compile, 
       if (!multiple) {
 
         selectCtrl.writeValue = function writeNgOptionsValue(value) {
-          var selectedOption = options.selectValueMap[selectElement.val()];
+          // The options might not be defined yet when ngModel tries to render
+          if (!options) return;
+
+          var selectedOption = selectElement[0].options[selectElement[0].selectedIndex];
           var option = options.getOptionFromViewValue(value);
 
           // Make sure to remove the selected attribute from the previously selected option
           // Otherwise, screen readers might get confused
-          if (selectedOption) selectedOption.element.removeAttribute('selected');
+          if (selectedOption) selectedOption.removeAttribute('selected');
 
           if (option) {
             // Don't update the option when it is already selected.
@@ -30917,7 +31215,6 @@ var ngOptionsDirective = ['$compile', '$document', '$parse', function($compile, 
 
             if (selectElement[0].value !== option.selectValue) {
               selectCtrl.removeUnknownOption();
-              selectCtrl.unselectEmptyOption();
 
               selectElement[0].value = option.selectValue;
               option.element.selected = true;
@@ -30925,14 +31222,7 @@ var ngOptionsDirective = ['$compile', '$document', '$parse', function($compile, 
 
             option.element.setAttribute('selected', 'selected');
           } else {
-
-            if (providedEmptyOption) {
-              selectCtrl.selectEmptyOption();
-            } else if (selectCtrl.unknownOption.parent().length) {
-              selectCtrl.updateUnknownOption(value);
-            } else {
-              selectCtrl.renderUnknownOption(value);
-            }
+            selectCtrl.selectUnknownOrEmptyOption(value);
           }
         };
 
@@ -30961,9 +31251,11 @@ var ngOptionsDirective = ['$compile', '$document', '$parse', function($compile, 
       } else {
 
         selectCtrl.writeValue = function writeNgOptionsMultiple(values) {
+          // The options might not be defined yet when ngModel tries to render
+          if (!options) return;
+
           // Only set `<option>.selected` if necessary, in order to prevent some browsers from
           // scrolling to `<option>` elements that are outside the `<select>` element's viewport.
-
           var selectedOptions = values && values.map(getAndUpdateSelectedOption) || [];
 
           options.items.forEach(function(option) {
@@ -31005,12 +31297,10 @@ var ngOptionsDirective = ['$compile', '$document', '$parse', function($compile, 
 
       if (providedEmptyOption) {
 
-        // we need to remove it before calling selectElement.empty() because otherwise IE will
-        // remove the label from the element. wtf?
-        selectCtrl.emptyOption.remove();
-
         // compile the element since there might be bindings in it
         $compile(selectCtrl.emptyOption)(scope);
+
+        selectElement.prepend(selectCtrl.emptyOption);
 
         if (selectCtrl.emptyOption[0].nodeType === NODE_TYPE_COMMENT) {
           // This means the empty option has currently no actual DOM node, probably because
@@ -31029,8 +31319,12 @@ var ngOptionsDirective = ['$compile', '$document', '$parse', function($compile, 
               ngModelCtrl.$render();
 
               optionEl.on('$destroy', function() {
+                var needsRerender = selectCtrl.$isEmptyOptionSelected();
+
                 selectCtrl.hasEmptyOption = false;
                 selectCtrl.emptyOption = undefined;
+
+                if (needsRerender) ngModelCtrl.$render();
               });
             }
           };
@@ -31042,12 +31336,6 @@ var ngOptionsDirective = ['$compile', '$document', '$parse', function($compile, 
         }
 
       }
-
-      selectElement.empty();
-
-      // We need to do this here to ensure that the options object is defined
-      // when we first hit it in writeNgOptionsValue
-      updateOptions();
 
       // We will re-render the option elements if the option values or labels change
       scope.$watchCollection(ngOptions.getWatchables, updateOptions);
@@ -31072,7 +31360,8 @@ var ngOptionsDirective = ['$compile', '$document', '$parse', function($compile, 
       function updateOptionElement(option, element) {
         option.element = element;
         element.disabled = option.disabled;
-        // NOTE: The label must be set before the value, otherwise IE10/11/EDGE create unresponsive
+        // Support: IE 11 only, Edge 12-13 only
+        // NOTE: The label must be set before the value, otherwise IE 11 & Edge create unresponsive
         // selects in certain circumstances when multiple selects are next to each other and display
         // the option list in listbox style, i.e. the select is [multiple], or specifies a [size].
         // See https://github.com/angular/angular.js/issues/11314 for more info.
@@ -31107,11 +31396,6 @@ var ngOptionsDirective = ['$compile', '$document', '$parse', function($compile, 
         options = ngOptions.getOptions();
 
         var groupElementMap = {};
-
-        // Ensure that the empty option is always there if it was explicitly provided
-        if (providedEmptyOption) {
-          selectElement.prepend(selectCtrl.emptyOption);
-        }
 
         options.items.forEach(function addOption(option) {
           var groupElement;
@@ -31157,7 +31441,6 @@ var ngOptionsDirective = ['$compile', '$document', '$parse', function($compile, 
             ngModelCtrl.$render();
           }
         }
-
       }
   }
 
@@ -31845,7 +32128,7 @@ var ngRepeatDirective = ['$parse', '$animate', '$compile', function($parse, $ani
         // Store a list of elements from previous run. This is a hash where key is the item from the
         // iterator, and the value is objects with following properties.
         //   - scope: bound scope
-        //   - element: previous element.
+        //   - clone: previous element.
         //   - index: position
         //
         // We are using no-proto object so that we don't need to guard against inherited props via
@@ -32948,7 +33231,7 @@ var scriptDirective = ['$templateCache', function($templateCache) {
 var noopNgModelController = { $setViewValue: noop, $render: noop };
 
 function setOptionSelectedStatus(optionEl, value) {
-  optionEl.prop('selected', value); // needed for IE
+  optionEl.prop('selected', value);
   /**
    * When unselecting an option, setting the property to null / false should be enough
    * However, screenreaders might react to the selected attribute instead, see
@@ -32962,10 +33245,120 @@ function setOptionSelectedStatus(optionEl, value) {
 /**
  * @ngdoc type
  * @name  select.SelectController
+ *
  * @description
- * The controller for the `<select>` directive. This provides support for reading
- * and writing the selected value(s) of the control and also coordinates dynamically
- * added `<option>` elements, perhaps by an `ngRepeat` directive.
+ * The controller for the {@link ng.select select} directive. The controller exposes
+ * a few utility methods that can be used to augment the behavior of a regular or an
+ * {@link ng.ngOptions ngOptions} select element.
+ *
+ * @example
+ * ### Set a custom error when the unknown option is selected
+ *
+ * This example sets a custom error "unknownValue" on the ngModelController
+ * when the select element's unknown option is selected, i.e. when the model is set to a value
+ * that is not matched by any option.
+ *
+ * <example name="select-unknown-value-error" module="staticSelect">
+ * <file name="index.html">
+ * <div ng-controller="ExampleController">
+ *   <form name="myForm">
+ *     <label for="testSelect"> Single select: </label><br>
+ *     <select name="testSelect" ng-model="selected" unknown-value-error>
+ *       <option value="option-1">Option 1</option>
+ *       <option value="option-2">Option 2</option>
+ *     </select><br>
+ *     <span ng-if="myForm.testSelect.$error.unknownValue">Error: The current model doesn't match any option</span>
+ *
+ *     <button ng-click="forceUnknownOption()">Force unknown option</button><br>
+ *   </form>
+ * </div>
+ * </file>
+ * <file name="app.js">
+ *  angular.module('staticSelect', [])
+ *    .controller('ExampleController', ['$scope', function($scope) {
+ *      $scope.selected = null;
+ *
+ *      $scope.forceUnknownOption = function() {
+ *        $scope.selected = 'nonsense';
+ *      };
+ *   }])
+ *   .directive('unknownValueError', function() {
+ *     return {
+ *       require: ['ngModel', 'select'],
+ *       link: function(scope, element, attrs, ctrls) {
+ *         var ngModelCtrl = ctrls[0];
+ *         var selectCtrl = ctrls[1];
+ *
+ *         ngModelCtrl.$validators.unknownValue = function(modelValue, viewValue) {
+ *           if (selectCtrl.$isUnknownOptionSelected()) {
+ *             return false;
+ *           }
+ *
+ *           return true;
+ *         };
+ *       }
+ *
+ *     };
+ *   });
+ * </file>
+ *</example>
+ *
+ *
+ * @example
+ * ### Set the "required" error when the unknown option is selected.
+ *
+ * By default, the "required" error on the ngModelController is only set on a required select
+ * when the empty option is selected. This example adds a custom directive that also sets the
+ * error when the unknown option is selected.
+ *
+ * <example name="select-unknown-value-required" module="staticSelect">
+ * <file name="index.html">
+ * <div ng-controller="ExampleController">
+ *   <form name="myForm">
+ *     <label for="testSelect"> Select: </label><br>
+ *     <select name="testSelect" ng-model="selected" unknown-value-required>
+ *       <option value="option-1">Option 1</option>
+ *       <option value="option-2">Option 2</option>
+ *     </select><br>
+ *     <span ng-if="myForm.testSelect.$error.required">Error: Please select a value</span><br>
+ *
+ *     <button ng-click="forceUnknownOption()">Force unknown option</button><br>
+ *   </form>
+ * </div>
+ * </file>
+ * <file name="app.js">
+ *  angular.module('staticSelect', [])
+ *    .controller('ExampleController', ['$scope', function($scope) {
+ *      $scope.selected = null;
+ *
+ *      $scope.forceUnknownOption = function() {
+ *        $scope.selected = 'nonsense';
+ *      };
+ *   }])
+ *   .directive('unknownValueRequired', function() {
+ *     return {
+ *       priority: 1, // This directive must run after the required directive has added its validator
+ *       require: ['ngModel', 'select'],
+ *       link: function(scope, element, attrs, ctrls) {
+ *         var ngModelCtrl = ctrls[0];
+ *         var selectCtrl = ctrls[1];
+ *
+ *         var originalRequiredValidator = ngModelCtrl.$validators.required;
+ *
+ *         ngModelCtrl.$validators.required = function() {
+ *           if (attrs.required && selectCtrl.$isUnknownOptionSelected()) {
+ *             return false;
+ *           }
+ *
+ *           return originalRequiredValidator.apply(this, arguments);
+ *         };
+ *       }
+ *     };
+ *   });
+ * </file>
+ *</example>
+ *
+ *
  */
 var SelectController =
         ['$element', '$scope', /** @this */ function($element, $scope) {
@@ -32983,15 +33376,18 @@ var SelectController =
   // does not match any of the options. When it is rendered the value of the unknown
   // option is '? XXX ?' where XXX is the hashKey of the value that is not known.
   //
+  // Support: IE 9 only
   // We can't just jqLite('<option>') since jqLite is not smart enough
   // to create it in <select> and IE barfs otherwise.
   self.unknownOption = jqLite(window.document.createElement('option'));
 
-  // The empty option is an option with the value '' that te application developer can
-  // provide inside the select. When the model changes to a value that doesn't match an option,
-  // it is selected - so if an empty option is provided, no unknown option is generated.
-  // However, the empty option is not removed when the model matches an option. It is always selectable
-  // and indicates that a "null" selection has been made.
+  // The empty option is an option with the value '' that the application developer can
+  // provide inside the select. It is always selectable and indicates that a "null" selection has
+  // been made by the user.
+  // If the select has an empty option, and the model of the select is set to "undefined" or "null",
+  // the empty option is selected.
+  // If the model is set to a different unmatched value, the unknown option is rendered and
+  // selected, i.e both are present, because a "null" selection and an unknown value are different.
   self.hasEmptyOption = false;
   self.emptyOption = undefined;
 
@@ -33027,7 +33423,7 @@ var SelectController =
 
   self.unselectEmptyOption = function() {
     if (self.hasEmptyOption) {
-      self.emptyOption.removeAttr('selected');
+      setOptionSelectedStatus(self.emptyOption, false);
     }
   };
 
@@ -33069,14 +33465,7 @@ var SelectController =
       var selectedOption = $element[0].options[$element[0].selectedIndex];
       setOptionSelectedStatus(jqLite(selectedOption), true);
     } else {
-      if (value == null && self.emptyOption) {
-        self.removeUnknownOption();
-        self.selectEmptyOption();
-      } else if (self.unknownOption.parent().length) {
-        self.updateUnknownOption(value);
-      } else {
-        self.renderUnknownOption(value);
-      }
+      self.selectUnknownOrEmptyOption(value);
     }
   };
 
@@ -33119,6 +33508,59 @@ var SelectController =
     return !!optionsMap.get(value);
   };
 
+  /**
+   * @ngdoc method
+   * @name select.SelectController#$hasEmptyOption
+   *
+   * @description
+   *
+   * Returns `true` if the select element currently has an empty option
+   * element, i.e. an option that signifies that the select is empty / the selection is null.
+   *
+   */
+  self.$hasEmptyOption = function() {
+    return self.hasEmptyOption;
+  };
+
+  /**
+   * @ngdoc method
+   * @name select.SelectController#$isUnknownOptionSelected
+   *
+   * @description
+   *
+   * Returns `true` if the select element's unknown option is selected. The unknown option is added
+   * and automatically selected whenever the select model doesn't match any option.
+   *
+   */
+  self.$isUnknownOptionSelected = function() {
+    // Presence of the unknown option means it is selected
+    return $element[0].options[0] === self.unknownOption[0];
+  };
+
+  /**
+   * @ngdoc method
+   * @name select.SelectController#$isEmptyOptionSelected
+   *
+   * @description
+   *
+   * Returns `true` if the select element has an empty option and this empty option is currently
+   * selected. Returns `false` if the select element has no empty option or it is not selected.
+   *
+   */
+  self.$isEmptyOptionSelected = function() {
+    return self.hasEmptyOption && $element[0].options[$element[0].selectedIndex] === self.emptyOption[0];
+  };
+
+  self.selectUnknownOrEmptyOption = function(value) {
+    if (value == null && self.emptyOption) {
+      self.removeUnknownOption();
+      self.selectEmptyOption();
+    } else if (self.unknownOption.parent().length) {
+      self.updateUnknownOption(value);
+    } else {
+      self.renderUnknownOption(value);
+    }
+  };
 
   var renderScheduled = false;
   function scheduleRender() {
@@ -33267,6 +33709,9 @@ var SelectController =
  * the content of the `value` attribute or the textContent of the `<option>`, if the value attribute is missing.
  * Value and textContent can be interpolated.
  *
+ * The {@link select.SelectController select controller} exposes utility functions that can be used
+ * to manipulate the select's behavior.
+ *
  * ## Matching model and option values
  *
  * In general, the match between the model and an option is evaluated by strictly comparing the model
@@ -33318,6 +33763,19 @@ var SelectController =
  * set on the model on selection. See {@link ngOptions `ngOptions`}.
  * @param {string=} ngAttrSize sets the size of the select element dynamically. Uses the
  * {@link guide/interpolation#-ngattr-for-binding-to-arbitrary-attributes ngAttr} directive.
+ *
+ *
+ * @knownIssue
+ *
+ * In Firefox, the select model is only updated when the select element is blurred. For example,
+ * when switching between options with the keyboard, the select model is only set to the
+ * currently selected option when the select is blurred, e.g via tab key or clicking the mouse
+ * outside the select.
+ *
+ * This is due to an ambiguity in the select element specification. See the
+ * [issue on the Firefox bug tracker](https://bugzilla.mozilla.org/show_bug.cgi?id=126379)
+ * for more information, and this
+ * [Github comment for a workaround](https://github.com/angular/angular.js/issues/9134#issuecomment-130800488)
  *
  * @example
  * ### Simple `select` elements with static options
@@ -33563,10 +34021,11 @@ var selectDirective = function() {
                                                includes(value, selectCtrl.selectValueMap[option.value]));
             var currentlySelected = option.selected;
 
-            // IE and Edge, adding options to the selection via shift+click/UP/DOWN,
+            // Support: IE 9-11 only, Edge 12-15+
+            // In IE and Edge adding options to the selection via shift+click/UP/DOWN
             // will de-select already selected options if "selected" on those options was set
             // more than once (i.e. when the options were already selected)
-            // So we only modify the selected property if neccessary.
+            // So we only modify the selected property if necessary.
             // Note: this behavior cannot be replicated via unit tests because it only shows in the
             // actual user interface.
             if (shouldBeSelected !== currentlySelected) {
@@ -34186,7 +34645,7 @@ module.exports = 'ngRoute';
 /***/ (function(module, exports) {
 
 /**
- * @license AngularJS v1.6.4
+ * @license AngularJS v1.6.5
  * (c) 2010-2017 Google, Inc. http://angularjs.org
  * License: MIT
  */
@@ -34246,7 +34705,7 @@ var noop;
 /* global -ngRouteModule */
 var ngRouteModule = angular.
   module('ngRoute', []).
-  info({ angularVersion: '1.6.4' }).
+  info({ angularVersion: '1.6.5' }).
   provider('$route', $RouteProvider).
   // Ensure `$route` will be instantiated in time to capture the initial `$locationChangeSuccess`
   // event (unless explicitly disabled). This is necessary in case `ngView` is included in an
@@ -35423,29 +35882,30 @@ function ngViewFillContentFactory($compile, $controller, $route) {
 __webpack_require__(28);
 __webpack_require__(31);
 __webpack_require__(34);
-
 __webpack_require__(36);
 
 __webpack_require__(37);
 
-__webpack_require__(40);
-__webpack_require__(43);
+__webpack_require__(38);
 
-__webpack_require__(46);
-__webpack_require__(49);
-__webpack_require__(52);
-__webpack_require__(55);
-__webpack_require__(58);
+__webpack_require__(41);
+__webpack_require__(44);
 
-__webpack_require__(60);
-__webpack_require__(63);
-__webpack_require__(66);
-__webpack_require__(69);
-__webpack_require__(72);
-__webpack_require__(75);
-__webpack_require__(78);
-__webpack_require__(81);
-__webpack_require__(84);
+__webpack_require__(47);
+__webpack_require__(50);
+__webpack_require__(53);
+__webpack_require__(56);
+__webpack_require__(59);
+
+__webpack_require__(61);
+__webpack_require__(64);
+__webpack_require__(67);
+__webpack_require__(70);
+__webpack_require__(73);
+__webpack_require__(76);
+__webpack_require__(79);
+__webpack_require__(82);
+__webpack_require__(85);
 
 angular.module('hplus.modules', [
   'hplus.modules.header',
@@ -35560,6 +36020,35 @@ angular.module('hplus.factory', [])
 /* 36 */
 /***/ (function(module, exports) {
 
+angular.module('hplus.factory', [])
+
+  .factory('doctorFactory', 
+    function($http){
+
+      var registerDoctor = function(doctorObject){
+        $http({
+          method: 'POST',
+          url: '/someUrl', // Change URL here
+          data: doctorObject
+        }).then(function successCallback(response) {
+            // this callback will be called asynchronously
+            // when the response is available
+          }, function errorCallback(response) {
+            // called asynchronously if an error occurs
+            // or server returns response with an error status.
+          });
+      }
+      
+      return {
+        registerDoctor: registerDoctor
+      }
+    }
+  );
+
+/***/ }),
+/* 37 */
+/***/ (function(module, exports) {
+
 angular.module('hplus.modules.modal', [])
 	.controller('modalCtrl',['SweetAlert', function(SweetAlert){
 		var vm = this;
@@ -35591,10 +36080,10 @@ angular.module('hplus.modules.modal', [])
 	}]);
 
 /***/ }),
-/* 37 */
+/* 38 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var editdisease = __webpack_require__(38);
+var editdisease = __webpack_require__(39);
 
 angular.module('hplus.modules.editdisease', [])
 
@@ -35605,17 +36094,17 @@ angular.module('hplus.modules.editdisease', [])
       })
   });
   
-  __webpack_require__(39);
+  __webpack_require__(40);
 
 
 /***/ }),
-/* 38 */
+/* 39 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"row\">\r\n  <div class=\"col col-md-8 col-md-offset-1\">\r\n    <h1>Edit Disease</h1>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row\">\r\n  <div class=\"col-md-10 col-md-offset-1\">\r\n\t  <div class=\"col col-md-4\">\r\n\t    <label class=\"subtitle\">Name of Disease</label>\r\n      <input type=\"text\" value=\"Diabetes Mellitus Type 2\">\r\n\t\t\t<div ng-controller=\"modalCtrl as alert\"> \r\n\t\t\t  <button ng-click=\"alert.alert()\">Update</button>\r\n\t\t\t  <button class=\"outline delete_btn\" ng-click=\"alert.confirm()\">Delete</button>\r\n\t\t\t</div>\r\n\t  </div>\r\n\t\r\n\t  <div class=\"col col-md-4\">\r\n\t\t  <label class=\"subtitle\">Symptoms</label>\r\n\t\t\t<textarea placeholder=\"Enter Symptoms\"></textarea>\r\n\t\t</div>\r\n\t\r\n\t  <div class=\"col col-md-4\">\r\n\t    <label class=\"subtitle\">Medicines</label>\r\n\t    <input type=\"text\" placeholder=\"Search\">\r\n\t   \t<div>\r\n\t\t\t  <input type=\"checkbox\">Metformin<br>\r\n\t\t\t  <input type=\"checkbox\">Methadone<br>\r\n\t\t\t  <input type=\"checkbox\">Methamphetamine<br>\r\n\t\t\t  <input type=\"checkbox\">Methazolamide<br>\r\n\t\t\t  <input type=\"checkbox\">Methenamine<br>\r\n\t\t\t  <input type=\"checkbox\">Methimazole<br>\r\n\t\t\t  <input type=\"checkbox\">Meth\r\n\t\t  </div>\r\n    </div>\r\n  </div>\r\n</div>";
 
 /***/ }),
-/* 39 */
+/* 40 */
 /***/ (function(module, exports) {
 
 angular.module('hplus.modules.editdisease')
@@ -35631,10 +36120,10 @@ angular.module('hplus.modules.editdisease')
   
 
 /***/ }),
-/* 40 */
+/* 41 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var editdoctor = __webpack_require__(41);
+var editdoctor = __webpack_require__(42);
 
 angular.module('hplus.modules.editdoctor', [])
 
@@ -35645,16 +36134,16 @@ angular.module('hplus.modules.editdoctor', [])
       })
   });
 
-  __webpack_require__(42);
+  __webpack_require__(43);
 
 /***/ }),
-/* 41 */
+/* 42 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"row\">\r\n  <div class=\"col col-md-8 col-md-offset-1\">\r\n    <h1><i class=\"fa fa-pencil-square-o\"></i> Editing Dr. John Appleseed</h1>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row\">\r\n  <div class=\"col col-md-3 col-md-offset-1\">\r\n    <div class=\"match-padding\">\r\n      <label class=\"subtitle\">Specialization</label>\r\n      <input type=\"text\" value=\"Dentistry\">\r\n      <label class=\"subtitle\">E-mail Address</label>\r\n      <input type=\"text\" value=\"joappleseed@hplus.com\">\r\n      <div ng-controller=\"modalCtrl as alert\"> \r\n        <button ng-click=\"alert.alert()\">Update</button>\r\n\t\t    <button class=\"outline delete_btn\" ng-click=\"alert.confirm()\">Delete</button>\r\n\t    </div>\r\n    </div>\r\n  </div>\r\n</div>";
 
 /***/ }),
-/* 42 */
+/* 43 */
 /***/ (function(module, exports) {
 
 angular.module('hplus.modules.editdoctor')
@@ -35669,10 +36158,10 @@ angular.module('hplus.modules.editdoctor')
   );
 
 /***/ }),
-/* 43 */
+/* 44 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var editmedicine = __webpack_require__(44);
+var editmedicine = __webpack_require__(45);
 
 angular.module('hplus.modules.editmedicine', [])
 
@@ -35683,16 +36172,16 @@ angular.module('hplus.modules.editmedicine', [])
       })
   });
 
-  __webpack_require__(45);
+  __webpack_require__(46);
 
 /***/ }),
-/* 44 */
+/* 45 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"row\">\r\n  <div class=\"col col-md-8 col-md-offset-1\">\r\n    <h1>Edit Medicine</h1>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row\">\r\n  <div class=\"col col-md-10 col-md-offset-1\">\r\n    <div class=\"col-md-3\">\r\n      <label class=\"subtitle\">Name of Medicine:</label>\r\n\t    <input type=\"text\" value=\"RiteMed Metformin\">\r\n\t    <label class=\"subtitle\">Price (PHP) :</label> \r\n\t    <input id=\"priceInputField\" type=\"text\" value=\"3.75\">\r\n\t      \r\n\t    <div ng-controller=\"modalCtrl as alert\"> \r\n\t      <button  ng-click=\"alert.alert()\" >Update</button>\r\n\t      <button class=\"outline delete_btn\" ng-click=\"alert.confirm()\">Delete</button>\r\n\t    </div>\r\n    </div>\r\n    \r\n    <div class=\"col col-md-9\">\r\n      <label class=\"subtitle\">Description:</label>\r\n      <textarea id=\"descMed\" rows=\"8\" cols=\"50\">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent ut lorem quis dolor porttitor accumsan. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Integer vitae erat viverra, vestibulum enim id, pulvinar lectus. Sed volutpat tristique tristique. Vivamus turpis diam, consequat vel sagittis quis, convallis quis sem.</textarea>\r\n    </div>\r\n  </div>\r\n</div>";
 
 /***/ }),
-/* 45 */
+/* 46 */
 /***/ (function(module, exports) {
 
 angular.module('hplus.modules.editmedicine')
@@ -35707,10 +36196,10 @@ angular.module('hplus.modules.editmedicine')
   );
 
 /***/ }),
-/* 46 */
+/* 47 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var createmedicalrecord = __webpack_require__(47);
+var createmedicalrecord = __webpack_require__(48);
 
 angular.module('hplus.modules.createmedicalrecord', [])
 
@@ -35721,17 +36210,17 @@ angular.module('hplus.modules.createmedicalrecord', [])
       })
   });
   
-  __webpack_require__(48);
+  __webpack_require__(49);
 
 
 /***/ }),
-/* 47 */
+/* 48 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"row\">\r\n  <div class=\"col col-md-8 col-md-offset-1\">\r\n    <h1>Create Medical Record</h1>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row\">\r\n  <div class=\"col col-md-2 col-md-offset-1\">\r\n    <div class=\"row\">\r\n      <div class=\"col col-md-12\">\r\n        <label>Patient's First Name</label>\r\n        <input type=\"text\">\r\n        <label>Patient's Last Name</label>\r\n        <input type=\"text\">\r\n        <label>Birthday</label>\r\n        <input type=\"text\">\r\n        <label>Sex</label>\r\n        <input type=\"text\">\r\n        <label>Admission Date</label>\r\n        <input type=\"text\">\r\n        <button class=\"outline\">Create</button>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  \r\n  <div class=\"col col-md-8 col-md-offset-1\">\r\n    <div class=\"row\">\r\n      <button class=\"outline float-right\">Add 1 more disease</button>\r\n    </div>\r\n    </br>\r\n    </br>\r\n    </br>\r\n    <div class=\"row card__container--custom1\">\r\n      <br>\r\n      <div class=\"row\">\r\n        <div class=\"col col-md-12\">\r\n          <span class=\"subtitle\">Disease</span>\r\n          <br>\r\n          <input class=\"shortinput\" type=\"text\"></input>\r\n        </div>\r\n      </div>\r\n\t  \r\n      <div class=\"row\">\r\n        <div class=\"col col-md-6\">\r\n          <span class=\"subtitle\">Symptoms</span>\r\n          <div class=\"collapsediv\">\r\n            <table>\r\n              <br>\r\n              <tr>\r\n                <td><input name=\"\" type=\"checkbox\"><span>TextHere</span></td>\r\n              </tr>\r\n              <tr>\r\n                <td><input name=\"\" type=\"checkbox\"><span>TextHere</span></td>\r\n              </tr>\r\n               <tr>\r\n                <td><input name=\"\" type=\"checkbox\"><span>TextHere</span></td>\r\n              </tr>\r\n               <tr>\r\n                <td><input name=\"\" type=\"checkbox\"><span>TextHere</span></td>\r\n              </tr>\r\n               <tr>\r\n                <td><input name=\"\" type=\"checkbox\"><span>TextHere</span></td>\r\n              </tr>\r\n            </table>\r\n          </div>\r\n        </div>\r\n\t\t\r\n        <div class=\"col col-md-6\">.\r\n          <span class=\"subtitle\">Medicine</span>\r\n          <div class=\"collapsediv\">\r\n            <br>\r\n            <table>\r\n              <tr>\r\n                <td><input name=\"\" type=\"checkbox\"><span>TextHere</span></td>\r\n              </tr>\r\n              <tr>\r\n                <td><input name=\"\" type=\"checkbox\"><span>TextHere</span></td>\r\n              </tr>\r\n               <tr>\r\n                <td><input name=\"\" type=\"checkbox\"><span>TextHere</span></td>\r\n              </tr>\r\n               <tr>\r\n                <td><input name=\"\" type=\"checkbox\"><span>TextHere</span></td>\r\n              </tr>\r\n               <tr>\r\n                <td><input name=\"\" type=\"checkbox\"><span>TextHere</span></td>\r\n              </tr>\r\n            </table>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>  \r\n  </div>\r\n</div>";
 
 /***/ }),
-/* 48 */
+/* 49 */
 /***/ (function(module, exports) {
 
 angular.module('hplus.modules.createmedicalrecord')
@@ -35746,10 +36235,10 @@ angular.module('hplus.modules.createmedicalrecord')
   );
 
 /***/ }),
-/* 49 */
+/* 50 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var explorediseases = __webpack_require__(50);
+var explorediseases = __webpack_require__(51);
 
 angular.module('hplus.modules.explorediseases', [])
 
@@ -35760,16 +36249,16 @@ angular.module('hplus.modules.explorediseases', [])
       })
   });
 
-  __webpack_require__(51);
+  __webpack_require__(52);
 
 /***/ }),
-/* 50 */
+/* 51 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"row\">\r\n  <div class=\"col col-md-8 col-md-offset-1\">\r\n    <h1>List of All Diseases</h1>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row\">\r\n  <div class=\"col col-md-2 col-md-offset-1\">\r\n    <div class=\"row\">\r\n      <div class=\"col col-md-6\">\r\n        <span class=\"subtitle\">Search</span>\r\n      </div>\r\n    </div>\r\n\t\r\n    <div class=\"match-padding\">\r\n      <select>\r\n        <option>Disease</option>\r\n        <option>Medicine</option>\r\n      </select>\r\n      <input type=\"text\" placeholder=\"Enter a keyword\">\r\n      <button>Search</button>\r\n    </div>\r\n  </div>\r\n\r\n  <div class=\"col col-md-8\">\r\n    <div ng-controller=\"modalCtrl as alert\"> \r\n      <div class=\"col col-md-12 marginBottom\">\r\n        <span class=\"subtitle\">69 Results Matching</span>\r\n        <span class=\"subtitle subtitle--variable\">Pneumoultramicroscopicsilicovolcanoconiosis</span>\r\n        \r\n        <div class=\"margins\">\r\n\t        <div class=\"card__container\">\r\n\t          <div class=\"card__title\">\r\n\t            Tuberculosis<a ng-click=\"go('/admin/update/disease')\"><span class=\"delete__icon\"><i class=\"fa fa-pencil-square-o\" aria-hidden=\"true\"></i></span></a>\r\n\t          </div>\r\n\t\t\t  \r\n\t          <div class=\"card__desc\">\r\n\t            Symptoms: Fever, chills, night sweats, loss of appetite, weight loss and fatigue.\r\n\t          </div>\r\n\t        </div>\r\n\t\r\n\t        <div class=\"card__container\">\r\n\t          <div class=\"card__title\">\r\n\t            Pneumonia <a ng-click=\"go('/admin/update/disease')\"> <span class=\"delete__icon\"><i class=\"fa fa-pencil-square-o\" aria-hidden=\"true\"></i></span></a>\r\n\t          </div>\r\n\t\t\t  \r\n\t          <div class=\"card__desc\">\r\n\t            Symptoms: Cough, fever, shaking chills, shortness of breath, chest pain, and 3 more...\r\n\t          </div>\r\n\t        </div>\r\n\t      </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n </div>\r\n \r\n<!-- Pagination Section -->\r\n<div class=\"row\">\r\n  <div class=\"col-md-10 col-md-offset-1\">\r\n    <div class=\"col col-md-3 col-md-offset-9\">\r\n      <div class=\"pagination__container\">\r\n        <div class=\"pagination__page\">\r\n          <<\r\n        </div>\r\n      \r\n        <div class=\"pagination__page\">\r\n          <\r\n        </div>\r\n      \r\n        <div class=\"pagination__page \">\r\n          2\r\n        </div>\r\n      \r\n        <div class=\"pagination__page pagination__current\">\r\n          3\r\n        </div>\r\n      \r\n        <div class=\"pagination__page\">\r\n          4\r\n        </div>\r\n      \r\n        <div class=\"pagination__page\">\r\n          >\r\n        </div>\r\n      \r\n        <div class=\"pagination__page\">\r\n          >>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>";
 
 /***/ }),
-/* 51 */
+/* 52 */
 /***/ (function(module, exports) {
 
 angular.module('hplus.modules.explorediseases')
@@ -35784,10 +36273,10 @@ angular.module('hplus.modules.explorediseases')
   );
 
 /***/ }),
-/* 52 */
+/* 53 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var exploredoctors = __webpack_require__(53);
+var exploredoctors = __webpack_require__(54);
 
 angular.module('hplus.modules.exploredoctors', [])
 
@@ -35798,17 +36287,17 @@ angular.module('hplus.modules.exploredoctors', [])
       })
   });
   
-  __webpack_require__(54);
+  __webpack_require__(55);
 
 
 /***/ }),
-/* 53 */
+/* 54 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"row\"><!-- Header Portion -->\r\n  <div class=\"col col-md-10 col-md-offset-1\">\r\n    <h1>List of All Doctors</h1><!-- Header Name for this Module -->\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row\"><!-- Body Portion -->\r\n  <div class=\"col col-md-2 col-md-offset-1\"><!-- Section for search -->\r\n    <div class=\"row\">\r\n\t  <div class=\"col col-md-12\">\r\n\t    <label class=\"subtitle\">Search</label>\r\n\t    <input type=\"text\" placeholder=\"Enter a name\">\r\n      <button>Search</button>\r\n      <button ng-click=\"go('/admin/register/doctor')\">New Doctor</button>\r\n\t  </div>\r\n\t</div>\r\n\r\n  </div>\r\n  <div ng-controller=\"modalCtrl as alert\">\r\n    <div class=\"col col-md-8\"><!-- Section containing the tabulated list of doctors -->\r\n\t    <div class=\"col col-md-12\">\r\n\t\t\t\t<label class=\"subtitle\">ALL RESULTS</label>\r\n\t\t\t\t<div class=\"margins\">\r\n\t\t\t\t\t<!-- List Section -->\r\n\t\t\t\t\t<div class=\"card__container\">\r\n\t\t\t\t\t  <div class=\"card__title\">\r\n\t\t\t\t\t\tAplia, Kate MD \r\n\t\t\t\t\t\t<a ng-click=\"go('/admin/view/details')\"><span class=\"delete__icon\"><i class=\"fa fa-eye\" aria-hidden=\"true\"></i></span></a>\r\n\t\t\t\t\t\t<a ng-click=\"go('/admin/edit/doctor')\"><span class=\"delete__icon\"><i class=\"fa fa-pencil-square-o\" aria-hidden=\"true\"></i></span></a>\r\n\t\t\t\t\t  </div>\r\n\t\t\t\t\t  \r\n\t\t\t\t\t  <div class=\"card__desc\">\r\n\t\t\t\t\t\tGeneral Practice\r\n\t\t\t\t\t  </div>\r\n\t\t\t\t\t</div>\r\n\t\t\r\n\t\t\t\t\t<div class=\"card__container\">\r\n\t\t\t\t\t  <div class=\"card__title\">\r\n\t\t\t\t\t\tAppleseed, John DDS\r\n\t\t\t\t\t\t<a ng-click=\"go('/admin/view/details')\"><span class=\"delete__icon\"><i class=\"fa fa-eye\" aria-hidden=\"true\"></i></span></a>\r\n\t\t\t\t\t\t<a ng-click=\"go('/admin/edit/doctor')\"><span class=\"delete__icon\"><i class=\"fa fa-pencil-square-o\" aria-hidden=\"true\"></i></span></a>\r\n\t\t\t\t\t  </div>\r\n\t\t\t\t\t  \r\n\t\t\t\t\t  <div class=\"card__desc\">\r\n\t\t\t\t\t\tDentistry\r\n\t\t\t\t\t  </div>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\r\n\t\t\t\t\t<div class=\"card__container\">\r\n\t\t\t\t\t  <div class=\"card__title\">\r\n\t\t\t\t\t\t Siewel, Nao Ng OD\r\n\t\t\t\t\t\t <a ng-click=\"go('/admin/view/details')\"><span class=\"delete__icon\"><i class=\"fa fa-eye\" aria-hidden=\"true\"></i></span></a>\r\n\t\t\t\t\t\t <a ng-click=\"go('/admin/edit/doctor')\"> <span class=\"delete__icon\"><i class=\"fa fa-pencil-square-o\" aria-hidden=\"true\"></i></span></a>\r\n\t\t\t\t\t  </div>\r\n\t\t\t\t\t  \r\n\t\t\t\t\t  <div class=\"card__desc\">\r\n\t\t\t\t\t\t\tOptometry\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t  </div>\r\n\t\t\t  </div>\r\n\t    </div>\r\n\t  </div>\r\n  </div>\r\n</div>\r\n\r\n<!-- Pagination Section -->\r\n<div class=\"row\">\r\n  <div class=\"col-md-10 col-md-offset-1\">\r\n    <div class=\"col col-md-3 col-md-offset-9\">\r\n      <div class=\"pagination__container\">\r\n        <div class=\"pagination__page\">\r\n          <<\r\n        </div>\r\n      \r\n        <div class=\"pagination__page\">\r\n          <\r\n        </div>\r\n      \r\n        <div class=\"pagination__page \">\r\n          2\r\n        </div>\r\n      \r\n        <div class=\"pagination__page pagination__current\">\r\n          3\r\n        </div>\r\n      \r\n        <div class=\"pagination__page\">\r\n          4\r\n        </div>\r\n      \r\n        <div class=\"pagination__page\">\r\n          >\r\n        </div>\r\n      \r\n        <div class=\"pagination__page\">\r\n          >>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n";
 
 /***/ }),
-/* 54 */
+/* 55 */
 /***/ (function(module, exports) {
 
 angular.module('hplus.modules.exploredoctors')
@@ -35823,10 +36312,10 @@ angular.module('hplus.modules.exploredoctors')
   );
 
 /***/ }),
-/* 55 */
+/* 56 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var exploremedicines = __webpack_require__(56);
+var exploremedicines = __webpack_require__(57);
 
 angular.module('hplus.modules.exploremedicines', [])
 
@@ -35837,16 +36326,16 @@ angular.module('hplus.modules.exploremedicines', [])
       })
   });
 
-  __webpack_require__(57);
+  __webpack_require__(58);
 
 /***/ }),
-/* 56 */
+/* 57 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"row\"><!-- Header Portion -->\r\n  <div class=\"col col-md-10 col-md-offset-1\">\r\n    <h1>List of All Medicines</h1><!-- Header Name for this Module -->\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row\"><!-- Body Portion -->\r\n  <div class=\"col col-md-2 col-md-offset-1\"><!-- Section for search -->\r\n\t\t<div class=\"row\">\r\n\t\t  <div class=\"col col-md-6\">\r\n\t\t\t<label class=\"subtitle\">Search</label>\r\n\t\t  </div>\r\n\t\t</div>\r\n\t\r\n\t\t<div class=\"match-padding\">\r\n\t\t  <input type=\"text\" placeholder=\"Enter a name\">\r\n\t\t  <button>Search</button>\r\n\t\t  <button ng-click=\"go('/admin/register/medicine')\">New Medicine</button>\r\n\t\t</div>\r\n  </div>\r\n\r\n  <div class=\"col col-md-8\"><!-- Section containing the list and detail of medicines -->\r\n    <div class=\"col col-md-6\"><!-- List sector -->\r\n\t\t  <label class=\"subtitle\">ALL RESULTS</label>\r\n\t\t  \r\n\t\t  <div class=\"margins\">\r\n\t\t\t  <!-- List Section -->\r\n\t\t\t  <div class=\"card__container\">\r\n\t\t\t    <div class=\"card__title\">\r\n\t\t\t\t\t  Metformin\r\n\t\t\t\t\t</div>\r\n\t\t\t\t\r\n\t\t\t    <div class=\"card__desc\">\r\n\t\t\t\t\t  Diabetes Mellitus\r\n\t\t\t\t\t</div>\r\n\t\t\t  </div>\r\n\t\t\t  \r\n\t\t\t  <div class=\"card__container\">\r\n\t\t\t    <div class=\"card__title\">\r\n\t\t\t\t\t  Methadone\r\n\t\t\t\t\t</div>\r\n\t\t\t\t\r\n\t\t\t\t\t<div class=\"card__desc\">\r\n\t\t\t\t\t  Opioid dependency, chronic pain\r\n\t\t\t    </div>\r\n\t\t\t  </div>\r\n\t\t\t\t\r\n\t\t\t  <div class=\"card__container\">\r\n\t\t\t    <div class=\"card__title\">\r\n\t\t\t\t\t  Methamphetamine\r\n\t\t\t\t\t</div>\r\n\t\t\t\t\r\n\t\t\t\t\t<div class=\"card__desc\">\r\n\t\t\t\t\t  Attention deficit hyperactivity disorder, obesity, and more...\r\n\t\t\t\t\t</div>\r\n\t\t    </div>\r\n\t\t\t\r\n\t\t\t  <div class=\"card__container\">\r\n\t\t\t    <div class=\"card__title\">\r\n\t\t\t\t\t  Methazolamide\r\n\t\t\t\t\t</div>\r\n\t\t\t\t\t<div class=\"card__desc\">\r\n\t\t\t\t\t  Intraocular pressure in glaucoma\r\n\t\t\t\t\t</div>\r\n\t\t\t  </div>  \r\n\t\t  </div>    \t\t\t\r\n    </div>\r\n\t\r\n\t\t<div class=\"col col-md-6\"><!-- Detail Sector -->\r\n\t\t  <label class=\"subtitle\">DETAILS FOR Methampetamine</label>\r\n\t\t\t<div class=\"margins\">\r\n\t\t\t\t<!-- Detail Section -->\r\n\t\t\t  <div class=\"detail__container\">\r\n\t\t\t\t\t<div class=\"card__title\">\r\n\t\t\t\t\t  Methampetamine\r\n\t\t\t\t\t</div>\r\n\t\t\t\r\n\t\t\t\t\t<div class=\"detail__desc\">\r\n\t\t\t\t\t  <p>\r\n\t\t\t\t\t    Methamphetamine is a strong central nervous system stimulant that is\r\n\t\t\t\t\t\tmainly used as a recreational drug and less commonly as a treatment\r\n\t\t\t\t\t\tfor attention deficit hyperactivity disorder and obesity.\r\n\t\t\t\t\t  </p>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t\t<span class=\"detail__title\">PRICE (PHP)</span>\r\n\t\t\t\t\t<span class=\"detail__subtitle\">24,990.00</span>\r\n\t\t\t\t\t<br>\r\n\t\t\t\t\t<br>\r\n\t\t\t\t\t<span class=\"detail__title\">TREATMENT FOR</span>\r\n\t\t\t\t\t<span class=\"detail__subtitle\">Attention deficit hyperactivity disorder, obesity</span>\t\r\n\t\t\t\t\t<br>\r\n\t\t\t\t\t<br>\r\n\t\t\t\t  <div ng-controller=\"modalCtrl as alert\"> \r\n\t\t\t\t    <button class=\"outline\" ng-click=\"go('/admin/update/medicine')\">Edit</button>\r\n\t\t\t\t    <button class=\"outline\" ng-click=\"alert.confirm()\">Delete</button>\r\n\t\t\t\t    <button class=\"outline\" ng-click=\"go('/admin/view/medicine')\">View</button>\r\n\t\t\t\t  </div>\r\n\t\t    </div>\r\n\t    </div>\r\n\t  </div>\r\n  </div>\r\n</div>\r\n\r\n<!-- Pagination Section -->\r\n<div class=\"row\">\r\n  <div class=\"col-md-10 col-md-offset-1\">\r\n    <div class=\"col col-md-3 col-md-offset-9\">\r\n      <div class=\"pagination__container\">\r\n        <div class=\"pagination__page\">\r\n          <<\r\n        </div>\r\n      \r\n        <div class=\"pagination__page\">\r\n          <\r\n        </div>\r\n      \r\n        <div class=\"pagination__page \">\r\n          2\r\n        </div>\r\n      \r\n        <div class=\"pagination__page pagination__current\">\r\n          3\r\n        </div>\r\n      \r\n        <div class=\"pagination__page\">\r\n          4\r\n        </div>\r\n      \r\n        <div class=\"pagination__page\">\r\n          >\r\n        </div>\r\n      \r\n        <div class=\"pagination__page\">\r\n          >>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>";
 
 /***/ }),
-/* 57 */
+/* 58 */
 /***/ (function(module, exports) {
 
 angular.module('hplus.modules.exploremedicines')
@@ -35861,10 +36350,10 @@ angular.module('hplus.modules.exploremedicines')
   );
 
 /***/ }),
-/* 58 */
+/* 59 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var exploremedicalrecords = __webpack_require__(59);
+var exploremedicalrecords = __webpack_require__(60);
 
 angular.module('hplus.modules.exploremedicalrecords', [])
 
@@ -35877,16 +36366,16 @@ angular.module('hplus.modules.exploremedicalrecords', [])
 
 
 /***/ }),
-/* 59 */
+/* 60 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"row\"><!-- Header Portion -->\r\n  <div class=\"col col-md-10 col-md-offset-1\">\r\n    <h1>List of All Medical Records</h1><!-- Header Name for this Module -->\r\n  </div>\r\n</div>\r\n\t\r\n<div class=\"row\"><!-- Body Portion -->\r\n  <div class=\"col col-md-2 col-md-offset-1\"><!-- Section for search -->\r\n\t<div class=\"row\">\r\n\t  <div class=\"col col-md-6\">\r\n\t    <label class=\"subtitle\">Search</label>\r\n\t  </div>\r\n\t</div>\r\n\t\r\n\t<div class=\"match-padding\">\r\n\t  <input type=\"text\" placeholder=\"Enter a name\">\r\n\t  <button>Search</button>\r\n\t  <button ng-click=\"go('/doctor/create/record')\">New Record</button>\r\n\t</div>\r\n  </div>\r\n  \r\n  <div ng-controller=\"modalCtrl as alert\"> \r\n    <div class=\"col col-md-8\"><!-- Section containing the tabulated list of doctors -->\r\n\t\t  <div class=\"col col-md-12\">\r\n\t\t    <label class=\"subtitle\">ALL RESULTS</label>\r\n\t\t\t\r\n\t\t\t\t<div class=\"margins\">\r\n\t\t\t\t\t<!-- List Section -->\r\n\t\t\t\t\t<div class=\"card__container\">\r\n\t\t\t\t\t\t<div class=\"card__title\">\r\n\t\t\t\t\t\t\tDoe, Jabe\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\r\n\t\t\t\t\t\t<div class=\"card__desc\">\r\n\t\t\t\t\t\t\tAdmitted July 20,2017 for Dying\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t</div>\r\n\t\t\t\r\n\t\t\t\t\t<div class=\"card__container\">\r\n\t\t\t\t\t\t<div class=\"card__title\">\r\n\t\t\t\t\t\t\tDoe, John\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\r\n\t\t\t\t\t\t<div class=\"card__desc\">\r\n\t\t\t\t\t\t\tAdmitted June 26,2017 for Genital Retraction Syndrome\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t\t\r\n\t\t\t\t\t<div class=\"card__container\">\r\n\t\t\t\t\t\t<div class=\"card__title\">\r\n\t\t\t\t\t\t\tDoe, Ken\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\r\n\t\t\t\t\t\t<div class=\"card__desc\">\r\n\t\t\t\t\t\t\tAdmitted July 4,2017 for Trichophagia\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t</div>\r\n\t\t  </div>\r\n\t\t</div>\r\n  </div>\r\n</div>\r\n\r\n<!-- Pagination Section -->\r\n<div class=\"row\">\r\n  <div class=\"col-md-10 col-md-offset-1\">\r\n\t  <div class=\"col col-md-3 col-md-offset-9\">\r\n\t    <div class=\"pagination__container\">\r\n\t\t\t  <div class=\"pagination__page\">\r\n\t\t\t    <<\r\n\t\t\t  </div>\r\n\t\t\t\r\n\t\t\t  <div class=\"pagination__page\">\r\n\t\t\t    <\r\n\t\t\t  </div>\r\n\t\t\t\r\n\t\t\t  <div class=\"pagination__page \">\r\n\t\t\t    2\r\n\t\t\t  </div>\r\n\t\t\t\r\n\t\t\t  <div class=\"pagination__page pagination__current\">\r\n\t\t\t    3\r\n\t\t\t  </div>\r\n\t\t\t\r\n\t\t\t  <div class=\"pagination__page\">\r\n\t\t\t    4\r\n\t\t\t  </div>\r\n\t\t\t\r\n\t\t\t  <div class=\"pagination__page\">\r\n\t\t\t    >\r\n\t\t\t  </div>\r\n\t\t\t\r\n\t\t\t  <div class=\"pagination__page\">\r\n\t\t\t    >>\r\n\t\t\t  </div>\r\n\t\t\t</div>\r\n\t  </div>\r\n  </div>\r\n</div>";
 
 /***/ }),
-/* 60 */
+/* 61 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var registerdiseases = __webpack_require__(61);
+var registerdiseases = __webpack_require__(62);
 
 angular.module('hplus.modules.registerdiseases', [])
 
@@ -35897,16 +36386,16 @@ angular.module('hplus.modules.registerdiseases', [])
       })
   });
 
-  __webpack_require__(62);
+  __webpack_require__(63);
 
 /***/ }),
-/* 61 */
+/* 62 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"row\">\r\n  <div class=\"col col-md-8 col-md-offset-1\">\r\n    <h1>Register Diseases</h1>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row\">\r\n  <div class=\"col-md-10 col-md-offset-1\">\r\n    <div class=\"col col-md-4\">\r\n      <label class=\"subtitle\">Name of Disease</label>\r\n      <input type=\"text\" value=\"Diabetes Mellitus Type 2\">\r\n      <button ng-click=\"alert.alert()\">Save</button>\r\n    </div>\r\n  \r\n    <div class=\"col col-md-4\">\r\n      <label class=\"subtitle\">Symptoms</label>\r\n      <textarea placeholder=\"Enter Symptoms\"></textarea>\r\n    </div>\r\n  \r\n    <div class=\"col col-md-4\">\r\n      <label class=\"subtitle\">Medicines</label>\r\n      <input type=\"text\" placeholder=\"Search\">\r\n      <div>\r\n        <input type=\"checkbox\">Metformin<br>\r\n        <input type=\"checkbox\">Methadone<br>\r\n        <input type=\"checkbox\">Methamphetamine<br>\r\n        <input type=\"checkbox\">Methazolamide<br>\r\n        <input type=\"checkbox\">Methenamine<br>\r\n        <input type=\"checkbox\">Methimazole<br>\r\n        <input type=\"checkbox\">Meth\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>";
 
 /***/ }),
-/* 62 */
+/* 63 */
 /***/ (function(module, exports) {
 
 angular.module('hplus.modules.registerdiseases')
@@ -35921,10 +36410,10 @@ angular.module('hplus.modules.registerdiseases')
   );
 
 /***/ }),
-/* 63 */
+/* 64 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var registerdoctor = __webpack_require__(64);
+var registerdoctor = __webpack_require__(65);
 
 angular.module('hplus.modules.registerdoctor', [])
 
@@ -35935,28 +36424,28 @@ angular.module('hplus.modules.registerdoctor', [])
       })
   });
 
-  __webpack_require__(65);
-
-/***/ }),
-/* 64 */
-/***/ (function(module, exports) {
-
-module.exports = "<div class=\"row\">\r\n  <div class=\"col col-md-8 col-md-offset-1\">\r\n    <h1>Register an Account</h1>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row\" ng-controller=\"RegisterDoctorController\">\r\n  <div class=\"col col-md-3 col-md-offset-1\">\r\n    <div class=\"row\">\r\n      <div class=\"col col-md-12\"> \r\n        <label class=\"subtitle\">First Name</label>\r\n        <input type=\"text\">\r\n        <label class=\"subtitle\">Specialization</label>\r\n        <select ng-model=\"selectedSpecialization\">\r\n          <option ng-repeat=\"option in specialization\" value=\"{{option.id}}\">{{option.name}}</option>\r\n        </select>\r\n        <label class=\"subtitle\">Username</label>\r\n        <input type=\"text\">\r\n        <label class=\"subtitle\">Password</label>\r\n        <input type=\"text\">\r\n        <label class=\"subtitle\">Confirm Password</label>\r\n        <input type=\"text\">\r\n        <button>Sign up</button>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  \r\n  <div class=\"col col-md-3\">\r\n    <div class=\"row\">\r\n      <div class=\"col col-md-12\">\r\n        <label class=\"subtitle\">Last Name</label>\r\n        <input type=\"text\">\r\n        <label class=\"subtitle\">Address</label>\r\n        <input type=\"text\">\r\n        <label class=\"subtitle\">Contact Number</label>\r\n        <input type=\"text\">\r\n        <label class=\"subtitle\">Birthday</label>\r\n        <input type=\"text\">\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>";
+  __webpack_require__(66);
 
 /***/ }),
 /* 65 */
 /***/ (function(module, exports) {
 
+module.exports = "<div class=\"row\">\r\n  <div class=\"col col-md-8 col-md-offset-1\">\r\n    <h1>Register an Account</h1>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row\" ng-controller=\"RegisterDoctorController\">\r\n  <div class=\"col col-md-3 col-md-offset-1\">\r\n    <div class=\"row\">\r\n      <div class=\"col col-md-12\"> \r\n        <label class=\"subtitle\">First Name</label>\r\n        <input type=\"text\" ng-model=\"doctor.fname\">\r\n        <label class=\"subtitle\">Specialization</label>\r\n        <select ng-model=\"doctor.specialization\">\r\n          <option ng-repeat=\"option in specialization\" value=\"{{option.id}}\">{{option.name}}</option>\r\n        </select>\r\n        <label class=\"subtitle\">Username</label>\r\n        <input type=\"text\" ng-model=\"doctor.username\">\r\n        <label class=\"subtitle\">Password</label>\r\n        <input type=\"text\" ng-model=\"doctor.password\">\r\n        <label class=\"subtitle\">Confirm Password</label>\r\n        <input type=\"text\" ng-model=\"doctor.passwordAgain\">\r\n        <button ng-click=\"displayData(doctor)\">Sign up</button>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  \r\n  <div class=\"col col-md-3\">\r\n    <div class=\"row\">\r\n      <div class=\"col col-md-12\">\r\n        <label class=\"subtitle\">Last Name</label>\r\n        <input type=\"text\" ng-model=\"doctor.lname\">\r\n        <label class=\"subtitle\">Address</label>\r\n        <input type=\"text\" ng-model=\"doctor.address\">\r\n        <label class=\"subtitle\">Contact Number</label>\r\n        <input type=\"text\" ng-model=\"doctor.number\">\r\n        <label class=\"subtitle\">Birthday</label>\r\n        <input type=\"text\" ng-model=\"doctor.birthday\">\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>";
+
+/***/ }),
+/* 66 */
+/***/ (function(module, exports) {
+
 angular.module('hplus.modules.registerdoctor')
 
   .controller('RegisterDoctorController',
-    function($scope, globalFactory){
+    function($scope, globalFactory, doctorFactory){
 
       $scope.go = function(path){
         globalFactory.go(path);
       };
 
-      $scope.selectedSpecialization = "";
+      $scope.doctor = {};
 
       $scope.specialization = [
         {
@@ -35973,14 +36462,18 @@ angular.module('hplus.modules.registerdoctor')
         }
       ];
 
+      $scope.registerDoctor = function(){
+        doctorFactory.registerDoctor($scope.doctor);
+      };
+
     }
   );
 
 /***/ }),
-/* 66 */
+/* 67 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var registermedicine = __webpack_require__(67);
+var registermedicine = __webpack_require__(68);
 
 angular.module('hplus.modules.registermedicine', [])
 
@@ -35991,16 +36484,16 @@ angular.module('hplus.modules.registermedicine', [])
       })
   });
 
-  __webpack_require__(68);
+  __webpack_require__(69);
 
 /***/ }),
-/* 67 */
+/* 68 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"row\">\r\n  <div class=\"col col-md-8 col-md-offset-1\">\r\n    <h1>Register Medicine</h1>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row\">\r\n  <div class=\"col col-md-10 col-md-offset-1\">\r\n    <div class=\"col-md-3\">\r\n      <label class=\"subtitle\">Name of Medicine:</label>\r\n      <input type=\"text\" value=\"RiteMed Metformin\">\r\n      <label class=\"subtitle\">Price (PHP) :</label> \r\n      <input id=\"priceInputField\" type=\"text\" value=\"3.75\">\r\n      <button>Save</button>\r\n    </div>\r\n    \r\n    <div class=\"col col-md-9\">\r\n      <label class=\"subtitle\">Description:</label>\r\n      <textarea id=\"descMed\" rows=\"8\" cols=\"50\">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent ut lorem quis dolor porttitor accumsan. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Integer vitae erat viverra, vestibulum enim id, pulvinar lectus. Sed volutpat tristique tristique. Vivamus turpis diam, consequat vel sagittis quis, convallis quis sem.</textarea>\r\n    </div>\r\n  </div>\r\n</div>";
 
 /***/ }),
-/* 68 */
+/* 69 */
 /***/ (function(module, exports) {
 
 angular.module('hplus.modules.registermedicine')
@@ -36016,10 +36509,10 @@ angular.module('hplus.modules.registermedicine')
 
 
 /***/ }),
-/* 69 */
+/* 70 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var registerpatient = __webpack_require__(70);
+var registerpatient = __webpack_require__(71);
 
 angular.module('hplus.modules.registerpatient', [])
 
@@ -36030,16 +36523,16 @@ angular.module('hplus.modules.registerpatient', [])
       })
   });
 
-  __webpack_require__(71);
+  __webpack_require__(72);
 
 /***/ }),
-/* 70 */
+/* 71 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"row\">\r\n  <div class=\"col col-md-8 col-md-offset-1\">\r\n    <h1>Register Patient</h1>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row\">\r\n  <div class=\"col col-md-2 col-md-offset-1\">\r\n  \t<div class=\"col col-md-12\">\r\n  \t  <label for=\"pfname\">Patient's First Name</label>\r\n  \t  <input type=\"text\" id=\"pfname\">\r\n  \t</div>\r\n  \t<div class=\"col col-md-12\">\r\n  \t  <label for=\"plname\">Patient's Last Name</label>\r\n  \t  <input type=\"text\" id=\"plname\">\r\n  \t</div>\r\n  \t<div class=\"col col-md-12\">\r\n  \t  <label for=\"bday\">Birthday</label>\r\n  \t  <input type=\"text\" id=\"bday\">\r\n  \t</div>\r\n  \t<div class=\"col col-md-12\">\r\n  \t  <label for=\"sex\">Sex</label>\r\n  \t  <input type=\"text\" id=\"sex\">\r\n  \t</div>\r\n  \t<br>\r\n  \t<br>\r\n  \t<div class=\"col col-md-6\">\r\n  \t  <button type=\"button\">Create</button>\r\n  \t</div>\r\n  </div>\r\n</div>";
 
 /***/ }),
-/* 71 */
+/* 72 */
 /***/ (function(module, exports) {
 
 angular.module('hplus.modules.registerpatient')
@@ -36055,10 +36548,10 @@ angular.module('hplus.modules.registerpatient')
 
 
 /***/ }),
-/* 72 */
+/* 73 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var userLogin = __webpack_require__(73);
+var userLogin = __webpack_require__(74);
 
 angular.module('hplus.modules.login', [])
 
@@ -36073,16 +36566,16 @@ angular.module('hplus.modules.login', [])
       })
   });
 
-__webpack_require__(74);
+__webpack_require__(75);
 
 /***/ }),
-/* 73 */
+/* 74 */
 /***/ (function(module, exports) {
 
 module.exports = "\r\n  <div class=\"row\">\r\n    <div class=\"col-md-10 col-md-offset-1\">\r\n\t    <div class=\"col-md-8\">\r\n\t      This is just for testing purposes. Add your page here.<br>\r\n\t      All pages:<br>\r\n\t      <div class=\"hyperlink\" ng-click=\"go('/admin/update/disease')\">Update Disease</div>\r\n\t\r\n\t      <div class=\"hyperlink\" ng-click=\"go('/admin/edit/doctor')\">Edit Doctor</div>\r\n\t\r\n\t      <div class=\"hyperlink\" ng-click=\"go('/admin/update/medicine')\">Update Medicine</div>\r\n\t\r\n\t      <div class=\"hyperlink\" ng-click=\"go('/admin/list/disease')\">Explore Diseases</div>\r\n\t\r\n\t      <div class=\"hyperlink\" ng-click=\"go('/admin/list/doctor')\">Explore Doctors</div>\r\n\t      \r\n\t      <div class=\"hyperlink\" ng-click=\"go('/admin/list/record')\">Explore Medical Records</div>\r\n\t\r\n\t      <div class=\"hyperlink\" ng-click=\"go('/admin/list/medicine')\">Explore Medicines</div>\r\n\t\r\n\t      <div class=\"hyperlink\" ng-click=\"go('/admin/register/disease')\">Register Diseases</div>\r\n\t\r\n\t      <div class=\"hyperlink\" ng-click=\"go('/admin/register/doctor')\">Register Doctor</div>\r\n\t\r\n\t      <div class=\"hyperlink\" ng-click=\"go('/admin/register/medicine')\">Register Medicines</div>\r\n\t\r\n\t      <div class=\"hyperlink\" ng-click=\"go('/admin/view/details')\">View Doctor</div>\r\n\t\r\n\t      <div class=\"hyperlink\" ng-click=\"go('/doctor/create/record')\">Create Medical Record</div>\r\n\t\r\n\t      <div class=\"hyperlink\" ng-click=\"go('/admin/view/medicine')\">View Medicine</div>\r\n\t    </div>\r\n\t\r\n\t    <div class=\"col-md-4\">   \r\n\t      <form role=\"form\">\r\n\t        <div class=\"form-group\">\r\n\t          <label class=\"subtitle\" for=\"inputUsernameEmail\">Username or email</label>\r\n\t          <input class=\"form-control\" id=\"inputUsernameEmail\" type=\"text\">\r\n\t        </div>\r\n\t        <a class=\"pull-right\" ng-click=\"go('admin/reset/password')\" href=\"\">Forgot password?</a>\r\n\t        <div class=\"form-group\">\r\n\t          <label class=\"subtitle\" for=\"inputPassword\">Password</label>\r\n\t          <input type=\"password\" class=\"form-control\" id=\"inputPassword\">\r\n\t        </div>\r\n\t        <button type=\"submit\" class=\"btn pull-right\" ng-click=\"go('/admin/list/record')\">\r\n\t          Log In\r\n\t        </button>\r\n\t      </form>    \r\n\t    </div>\r\n\t  </div>\r\n  </div>\r\n\r\n";
 
 /***/ }),
-/* 74 */
+/* 75 */
 /***/ (function(module, exports) {
 
 angular.module('hplus.modules.login')
@@ -36097,10 +36590,10 @@ angular.module('hplus.modules.login')
   );
 
 /***/ }),
-/* 75 */
+/* 76 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var viewdoctor = __webpack_require__(76);
+var viewdoctor = __webpack_require__(77);
 
 angular.module('hplus.modules.viewdoctor', [])
 
@@ -36111,16 +36604,16 @@ angular.module('hplus.modules.viewdoctor', [])
       })
   });
 
-  __webpack_require__(77);
+  __webpack_require__(78);
 
 /***/ }),
-/* 76 */
+/* 77 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"row\">\r\n  <div class=\"col col-md-8 col-md-offset-1\">\r\n    <h1><i class=\"fa fa-user-md\"></i>Dr. John Appleseed</h1>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row\">\r\n  <div class=\"col col-md-2 col-md-offset-1\">\r\n    <div class=\"match-padding\">\r\n      <label class=\"subtitle\">Specialization</label>\r\n      <div class=\"subtitle__value\">\r\n        Dentistry\r\n      </div>\r\n      <label class=\"subtitle marginTop\">E-mail Address</label>\r\n      <div class=\"subtitle__value marginBottom\">\r\n        joappleseed@hplus.com\r\n      </div>\r\n      <button class=\"outline\" ng-click=\"go('/admin/edit/doctor')\">Edit</button>\r\n    </div>\r\n  </div>\r\n\r\n  <div class=\"col col-md-8\">\r\n    <div class=\"col col-md-12\">\r\n      <label class=\"subtitle\">Medical Records Handled By</label>\r\n      <span class=\"subtitle subtitle--variable\">\r\n        Dr. John Appleseed\r\n      </span>\r\n      <div class=\"margins\">\r\n\t      <div class=\"card__container\">\r\n\t        <div class=\"card__title\">\r\n\t          Doe, Jane\r\n\t        </div>\r\n\t\r\n\t        <div class=\"card__desc\">\r\n\t          Admitted Feb. 20, 2016 for Wisdom Tooth Eruption\r\n\t        </div>\r\n\t      </div>\r\n\t\r\n\t      <div class=\"card__container\">\r\n\t        <div class=\"card__title\">\r\n\t          Phour, Mahn\r\n\t        </div>\r\n\t\r\n\t        <div class=\"card__desc\">\r\n\t          Admitted June 19, 2015 for Gingivitis,\r\n\t          Periodontitis, Dental Calculus, and\r\n\t          2 more...\r\n\t        </div>\r\n\t      </div>\r\n\t\r\n\t      <div class=\"card__container\">\r\n\t        <div class=\"card__title\">\r\n\t          Xing, Ah Mae\r\n\t        </div>\r\n\t\r\n\t        <div class=\"card__desc\">\r\n\t          Admitted Mar. 3, 2015 for Malocclusion\r\n\t        </div>\r\n\t      </div>\r\n      </div>\r\n\r\n      \r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n<!-- Pagination Section -->\r\n<div class=\"row\">\r\n  <div class=\"col-md-10 col-md-offset-1\">\r\n    <div class=\"col col-md-3 col-md-offset-9\">\r\n      <div class=\"pagination__container\">\r\n        <div class=\"pagination__page\">\r\n          <<\r\n        </div>\r\n      \r\n        <div class=\"pagination__page\">\r\n          <\r\n        </div>\r\n      \r\n        <div class=\"pagination__page \">\r\n          2\r\n        </div>\r\n      \r\n        <div class=\"pagination__page pagination__current\">\r\n          3\r\n        </div>\r\n      \r\n        <div class=\"pagination__page\">\r\n          4\r\n        </div>\r\n      \r\n        <div class=\"pagination__page\">\r\n          >\r\n        </div>\r\n      \r\n        <div class=\"pagination__page\">\r\n          >>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>";
 
 /***/ }),
-/* 77 */
+/* 78 */
 /***/ (function(module, exports) {
 
 angular.module('hplus.modules.viewdoctor')
@@ -36135,10 +36628,10 @@ angular.module('hplus.modules.viewdoctor')
   );
 
 /***/ }),
-/* 78 */
+/* 79 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var viewdisease = __webpack_require__(79);
+var viewdisease = __webpack_require__(80);
 
 angular.module('hplus.modules.viewdisease', [])
 
@@ -36149,16 +36642,16 @@ angular.module('hplus.modules.viewdisease', [])
       })
   });
 
-  __webpack_require__(80);
+  __webpack_require__(81);
 
 /***/ }),
-/* 79 */
+/* 80 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"row\">\r\n  <div class=\"col col-md-8 col-md-offset-1\">\r\n    <h1>\r\n      <i class=\"fa fa-thermometer-full\"></i>\r\n      Gingivitis\r\n    </h1>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row\">\r\n  <div class=\"col col-md-2 col-md-offset-1\">\r\n    <div class=\"match-padding\">\r\n      <span class=\"subtitle\">\r\n        Symptoms\r\n      </span>\r\n      <div class=\"subtitle__value\">\r\n        <div class=\"row card__container--flex\">\r\n          <div class=\"card__container--tiny\">\r\n            <div class=\"card__desc--tiny\">\r\n              swollen gums\r\n            </div>\r\n          </div>\r\n\r\n          <div class=\"card__container--tiny\">\r\n            <div class=\"card__desc--tiny\">\r\n              bright red gums\r\n            </div>\r\n          </div>\r\n\r\n          <div class=\"card__container--tiny\">\r\n            <div class=\"card__desc--tiny\">\r\n              bright purple gums\r\n            </div>\r\n          </div>\r\n\r\n          <div class=\"card__container--tiny\">\r\n            <div class=\"card__desc--tiny\">\r\n              tender gums\r\n            </div>\r\n          </div>\r\n\r\n          <div class=\"card__container--tiny\">\r\n            <div class=\"card__desc--tiny\">\r\n             bleeding gums  \r\n            </div>\r\n          </div>\r\n\r\n          <div class=\"card__container--tiny\">\r\n            <div class=\"card__desc--tiny\">\r\n              bad breath\r\n            </div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n      <br>\r\n      <span class=\"subtitle\">\r\n        Medicine\r\n      </span>\r\n      <br>\r\n     <table>\r\n        <tr>\r\n          <td><span>Triclosan</span></td>\r\n        </tr>\r\n        <tr>\r\n          <td><span>Somethig</span></td>\r\n        </tr>\r\n        <tr>\r\n          <td><span>Somthing</span></td>\r\n        </tr>\r\n      </table>\r\n      <br>\r\n      <button class=\"outline\">Edit</button>\r\n    </div>\r\n  </div>\r\n\r\n  <div class=\"col col-md-8\">\r\n    <div class=\"col col-md-12\">\r\n      <div class=\"row\">\r\n        <div class=\"col col-md-4\">\r\n          <span class=\"subtitle\">\r\n            OCCURENCE FOR \r\n          </span>\r\n          <span class=\"subtitle subtitle--variable\">\r\n            June 2017\r\n          </span>\r\n          <div class=\"subtitle__value\">\r\n            1 Patients\r\n          </div>\r\n        </div>\r\n          \r\n        <div class=\"col col-md-4\">\r\n          <span class=\"subtitle\">\r\n            OCCURENCE IN YEAR\r\n          </span>\r\n          <span class=\"subtitle subtitle--variable\">\r\n            2017\r\n          </span>\r\n          <div class=\"subtitle__value\">\r\n            24 PATIENTS\r\n          </div>\r\n        </div>\r\n          \r\n        <div class=\"col col-md-4\">\r\n          <span class=\"subtitle\">\r\n            AMAZING NUMBERS\r\n          </span>\r\n          <div class=\"subtitle__value\">\r\n            HUGE VALUES\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n\r\n    <div class=\"col col-md-12\">\r\n      <br>\r\n      <br>\r\n      <span class=\"subtitle\">\r\n        RECENTLY DIAGNOSED IN THE FOLLOWING PATIENTS\r\n      </span>\r\n      <br><br>\r\n      <div class=\"card__container\">\r\n        <div class=\"card__title\">\r\n          Doe, Jane\r\n        </div>\r\n        <div class=\"card__desc\">\r\n          Diagnosed Feb. 20, 2016 as Demanded by Dr. John Appleseed\r\n        </div>\r\n      </div>\r\n\r\n      <div class=\"pagination__container\">\r\n        <div class=\"pagination__page\">\r\n          <i class=\"fa fa-angle-double-left\"></i>\r\n        </div>\r\n      \r\n        <div class=\"pagination__page\">\r\n          <i class=\"fa fa-angle-left\"></i>\r\n        </div>\r\n      \r\n        <div class=\"pagination__page\">\r\n          2\r\n        </div>\r\n      \r\n        <div class=\"pagination__current\">\r\n          3\r\n        </div>\r\n      \r\n        <div class=\"pagination__page\">\r\n          4\r\n        </div>\r\n      \r\n        <div class=\"pagination__page\">\r\n          <i class=\"fa fa-angle-right\"></i>\r\n        </div>\r\n      \r\n        <div class=\"pagination__page\">\r\n          <i class=\"fa fa-angle-double-right\"></i>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>";
 
 /***/ }),
-/* 80 */
+/* 81 */
 /***/ (function(module, exports) {
 
 angular.module('hplus.modules.viewdisease')
@@ -36173,10 +36666,10 @@ angular.module('hplus.modules.viewdisease')
   );
 
 /***/ }),
-/* 81 */
+/* 82 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var viewmedicine = __webpack_require__(82);
+var viewmedicine = __webpack_require__(83);
 
 angular.module('hplus.modules.viewmedicine', [])
 
@@ -36187,16 +36680,16 @@ angular.module('hplus.modules.viewmedicine', [])
       })
   });
 
-  __webpack_require__(83);
+  __webpack_require__(84);
 
 /***/ }),
-/* 82 */
+/* 83 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"row\">\r\n  <div class=\"col col-md-8 col-md-offset-1\">\r\n    <h1><i class=\"fa fa-heartbeat\"></i>Paracetamol</h1>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row\">\r\n  <div class=\"col col-md-10 col-md-offset-1\">\r\n    <div class=\"col-md-3\">\r\n      <span class=\"subtitle\">Price:</span>\r\n      <div class=\"subtitle__value\">\r\n        PHP 7.00\r\n      </div>\r\n    </div>\r\n    <div class=\"col-md-3\">\r\n      <label class=\"subtitle\">USAGE FOR</label>\r\n      <span class=\"subtitle subtitle--variable\">June 2017</span>\r\n      <div class=\"subtitle__value\">\r\n        15 Patients\r\n      </div>\r\n    </div>\r\n    <div class=\"col-md-3\">\r\n      <label class=\"subtitle\">USAGE FOR THE YEAR</label>\r\n      <span class=\"subtitle subtitle--variable\">2017</span>\r\n      <div class=\"subtitle__value\">\r\n        367 PATIENTS\r\n      </div>\r\n    </div>\r\n    <div class=\"col-md-3\">\r\n      <label class=\"subtitle\">AMAZING NUMBERS</label>\r\n      <div class=\"subtitle__value\">\r\n        HUGE VALUES\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row margins\">\r\n  <div class=\"col-md-10 col-md-offset-1 margins\">\r\n\t  <div class=\"col-md-3\">\r\n\t    <label class=\"subtitle\">Description:</label>\r\n\t    <div class=\"subtitle__value\">\r\n\t      Paracetamol also known as blabalbablabalbal\r\n\t    </div>\r\n\t    <button class=\"outline\" ng-click=\"go('/admin/update/medicine')\">Edit</button>\r\n\t  </div>\r\n\t  <div class=\"col-md-9\">\r\n\t    <label class=\"subtitle\">RECENTLY DISPENSED TO THE FOLLOWING PATIENTS</label>\r\n      <div class=\"margintop\">\r\n        <div class=\"card__container\">\r\n          <div class=\"card__title\">\r\n            Doe, Jane\r\n          </div>\r\n\r\n          <div class=\"card__desc\">\r\n            Dispensed Feb. 20, 2016 as Demanded by Dr. John Appleseed\r\n          </div>\r\n        </div>\r\n\r\n        <div class=\"card__container\">\r\n          <div class=\"card__title\">\r\n            Phour, Mahn\r\n          </div>\r\n  \r\n          <div class=\"card__desc\">\r\n            Dispensed June 19, 2015 as Demanded by Dr. John Appleseed\r\n          </div>\r\n        </div>\r\n\r\n        <div class=\"card__container\">\r\n          <div class=\"card__title\">\r\n            Xing, Ah Mae\r\n          </div>\r\n  \r\n          <div class=\"card__desc\">\r\n            Dispensed Mar. 3, 2015 as Demanded by Dr. John Appleseed\r\n          </div>\r\n        </div>\r\n      </div>\r\n\t  </div>\r\n  </div>\r\n</div>\r\n\r\n<!-- Pagination Section -->\r\n<div class=\"row\">\r\n  <div class=\"col-md-10 col-md-offset-1\">\r\n    <div class=\"col col-md-3 col-md-offset-9\">\r\n      <div class=\"pagination__container\">\r\n        <div class=\"pagination__page\">\r\n          <<\r\n        </div>\r\n      \r\n        <div class=\"pagination__page\">\r\n          <\r\n        </div>\r\n      \r\n        <div class=\"pagination__page \">\r\n          2\r\n        </div>\r\n      \r\n        <div class=\"pagination__page pagination__current\">\r\n          3\r\n        </div>\r\n      \r\n        <div class=\"pagination__page\">\r\n          4\r\n        </div>\r\n      \r\n        <div class=\"pagination__page\">\r\n          >\r\n        </div>\r\n      \r\n        <div class=\"pagination__page\">\r\n          >>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>";
 
 /***/ }),
-/* 83 */
+/* 84 */
 /***/ (function(module, exports) {
 
 angular.module('hplus.modules.viewmedicine')
@@ -36211,10 +36704,10 @@ angular.module('hplus.modules.viewmedicine')
   );
 
 /***/ }),
-/* 84 */
+/* 85 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var resetpassword = __webpack_require__(85);
+var resetpassword = __webpack_require__(86);
 
 angular.module('hplus.modules.resetpassword', [])
 
@@ -36225,16 +36718,16 @@ angular.module('hplus.modules.resetpassword', [])
       })
   });
 
-  __webpack_require__(86);
+  __webpack_require__(87);
 
 /***/ }),
-/* 85 */
+/* 86 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"row\">\r\n  <div class=\"col col-md-8 col-md-offset-1\">\r\n    <h1>Reset Your Password</h1>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row\">\r\n  <div class=\"col col-md-2 col-md-offset-1\">\r\n    <div class=\"row\">\r\n      <div class=\"col col-md-12\">\r\n        <label>New Password</label>\r\n        <input type=\"text\">\r\n        <label>Repeat your new password</label>\r\n        <input type=\"text\">\r\n        <br><br><br><br>\r\n        <button>Reset</button>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>";
 
 /***/ }),
-/* 86 */
+/* 87 */
 /***/ (function(module, exports) {
 
 angular.module('hplus.modules.resetpassword')
@@ -36249,14 +36742,14 @@ angular.module('hplus.modules.resetpassword')
   );
 
 /***/ }),
-/* 87 */
+/* 88 */
 /***/ (function(module, exports) {
 
  !function (e, t) { function n() { var e = '<div class="sweet-overlay"  tabIndex="-1"></div><div class="sweet-alert" tabIndex="-1"><div class="icon error"><span class="x-mark"><span class="line left"></span><span class="line right"></span></span></div><div class="icon warning"> <span class="body"></span> <span class="dot"></span> </div> <div class="icon info"></div> <div class="icon success"> <span class="line tip"></span> <span class="line long"></span> <div class="placeholder"></div> <div class="fix"></div> </div> <div class="icon custom"></div> <h2>Title</h2><p>Text</p><button class="cancel" tabIndex="2">Cancel</button><button class="confirm" tabIndex="1">OK</button></div>', n = t.createElement("div"); n.innerHTML = e, t.body.appendChild(n) } function o(t) { var n = m(), o = n.querySelector("h2"), r = n.querySelector("p"), a = n.querySelector("button.cancel"), c = n.querySelector("button.confirm"); if (o.innerHTML = b(t.title).split("\n").join("<br>"), r.innerHTML = b(t.text || "").split("\n").join("<br>"), t.text && w(r), x(n.querySelectorAll(".icon")), t.type) { for (var l = !1, s = 0; s < d.length; s++) if (t.type === d[s]) { l = !0; break } if (!l) return e.console.error("Unknown alert type: " + t.type), !1; var u = n.querySelector(".icon." + t.type); switch (w(u), t.type) { case "success": p(u, "animate"), p(u.querySelector(".tip"), "animateSuccessTip"), p(u.querySelector(".long"), "animateSuccessLong"); break; case "error": p(u, "animateErrorIcon"), p(u.querySelector(".x-mark"), "animateXMark"); break; case "warning": p(u, "pulseWarning"), p(u.querySelector(".body"), "pulseWarningIns"), p(u.querySelector(".dot"), "pulseWarningIns") } } if (t.imageUrl) { var f = n.querySelector(".icon.custom"); f.style.backgroundImage = "url(" + t.imageUrl + ")", w(f); var g = 80, y = 80; if (t.imageSize) { var v = t.imageSize.split("x")[0], h = t.imageSize.split("x")[1]; v && h ? (g = v, y = h, f.css({ width: v + "px", height: h + "px" })) : e.console.error("Parameter imageSize expects value with format WIDTHxHEIGHT, got " + t.imageSize) } f.setAttribute("style", f.getAttribute("style") + "width:" + g + "px; height:" + y + "px") } n.setAttribute("data-has-cancel-button", t.showCancelButton), t.showCancelButton ? a.style.display = "inline-block" : x(a), t.cancelButtonText && (a.innerHTML = b(t.cancelButtonText)), t.confirmButtonText && (c.innerHTML = b(t.confirmButtonText)), c.style.backgroundColor = t.confirmButtonColor, i(c, t.confirmButtonColor), n.setAttribute("data-allow-ouside-click", t.allowOutsideClick); var S = t.doneFunction ? !0 : !1; n.setAttribute("data-has-done-function", S) } function r(e, t) { e = String(e).replace(/[^0-9a-f]/gi, ""), e.length < 6 && (e = e[0] + e[0] + e[1] + e[1] + e[2] + e[2]), t = t || 0; var n = "#", o, r; for (r = 0; 3 > r; r++) o = parseInt(e.substr(2 * r, 2), 16), o = Math.round(Math.min(Math.max(0, o + o * t), 255)).toString(16), n += ("00" + o).substr(o.length); return n } function a(e) { var t = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(e); return t ? parseInt(t[1], 16) + ", " + parseInt(t[2], 16) + ", " + parseInt(t[3], 16) : null } function i(e, t) { var n = a(t); e.style.boxShadow = "0 0 2px rgba(" + n + ", 0.8), inset 0 0 0 1px rgba(0, 0, 0, 0.05)" } function c() { var e = m(); B(g(), 10), w(e), p(e, "showSweetAlert"), v(e, "hideSweetAlert"), O = t.activeElement; var n = e.querySelector("button.confirm"); n.focus(), setTimeout(function () { p(e, "visible") }, 500) } function l() { var n = m(); T(g(), 5), T(n, 5), v(n, "showSweetAlert"), p(n, "hideSweetAlert"), v(n, "visible"); var o = n.querySelector(".icon.success"); v(o, "animate"), v(o.querySelector(".tip"), "animateSuccessTip"), v(o.querySelector(".long"), "animateSuccessLong"); var r = n.querySelector(".icon.error"); v(r, "animateErrorIcon"), v(r.querySelector(".x-mark"), "animateXMark"); var a = n.querySelector(".icon.warning"); v(a, "pulseWarning"), v(a.querySelector(".body"), "pulseWarningIns"), v(a.querySelector(".dot"), "pulseWarningIns"), e.onkeydown = A, t.onclick = I, O && O.focus(), M = void 0 } function s() { var e = m(); e.style.marginTop = k(m()) } var u = ".sweet-alert", f = ".sweet-overlay", d = ["error", "warning", "info", "success"], m = function () { return t.querySelector(u) }, g = function () { return t.querySelector(f) }, y = function (e, t) { return new RegExp(" " + t + " ").test(" " + e.className + " ") }, p = function (e, t) { y(e, t) || (e.className += " " + t) }, v = function (e, t) { var n = " " + e.className.replace(/[\t\r\n]/g, " ") + " "; if (y(e, t)) { for (; n.indexOf(" " + t + " ") >= 0;) n = n.replace(" " + t + " ", " "); e.className = n.replace(/^\s+|\s+$/g, "") } }, b = function (e) { var n = t.createElement("div"); return n.appendChild(t.createTextNode(e)), n.innerHTML }, h = function (e) { e.style.opacity = "", e.style.display = "block" }, w = function (e) { if (e && !e.length) return h(e); for (var t = 0; t < e.length; ++t) h(e[t]) }, S = function (e) { e.style.opacity = "", e.style.display = "none" }, x = function (e) { if (e && !e.length) return S(e); for (var t = 0; t < e.length; ++t) S(e[t]) }, C = function (e, t) { for (var n = t.parentNode; null !== n;) { if (n === e) return !0; n = n.parentNode } return !1 }, k = function (e) { e.style.left = "-9999px", e.style.display = "block"; var t = e.clientHeight, n = parseInt(getComputedStyle(e).getPropertyValue("padding"), 10); return e.style.left = "", e.style.display = "none", "-" + parseInt(t / 2 + n) + "px" }, B = function (e, t) { if (+e.style.opacity < 1) { t = t || 16, e.style.opacity = 0, e.style.display = "block"; var n = +new Date, o = function () { e.style.opacity = +e.style.opacity + (new Date - n) / 100, n = +new Date, +e.style.opacity < 1 && setTimeout(o, t) }; o() } }, T = function (e, t) { t = t || 16, e.style.opacity = 1; var n = +new Date, o = function () { e.style.opacity = +e.style.opacity - (new Date - n) / 100, n = +new Date, +e.style.opacity > 0 ? setTimeout(o, t) : e.style.display = "none" }; o() }, E = function (n) { if (MouseEvent) { var o = new MouseEvent("click", { view: e, bubbles: !1, cancelable: !0 }); n.dispatchEvent(o) } else if (t.createEvent) { var r = t.createEvent("MouseEvents"); r.initEvent("click", !1, !1), n.dispatchEvent(r) } else t.createEventObject ? n.fireEvent("onclick") : "function" == typeof n.onclick && n.onclick() }, q = function (t) { "function" == typeof t.stopPropagation ? (t.stopPropagation(), t.preventDefault()) : e.event && e.event.hasOwnProperty("cancelBubble") && (e.event.cancelBubble = !0) }, O, I, A, M; e.sweetAlert = e.swal = function () { function n(e) { var t = e.keyCode || e.which; if (-1 !== [9, 13, 32, 27].indexOf(t)) { for (var n = e.target || e.srcElement, o = -1, r = 0; r < h.length; r++) if (n === h[r]) { o = r; break } 9 === t ? (n = -1 === o ? v : o === h.length - 1 ? h[0] : h[o + 1], q(e), n.focus(), i(n, u.confirmButtonColor)) : (n = 13 === t || 32 === t ? -1 === o ? v : void 0 : 27 !== t || b.hidden || "none" === b.style.display ? void 0 : b, void 0 !== n && E(n, e)) } } function a(e) { var t = e.target || e.srcElement, n = e.relatedTarget, o = y(f, "visible"); if (o) { var r = -1; if (null !== n) { for (var a = 0; a < h.length; a++) if (n === h[a]) { r = a; break } -1 === r && t.focus() } else M = t } } var u = { title: "", text: "", type: null, allowOutsideClick: !1, showCancelButton: !1, closeOnConfirm: !0, closeOnCancel: !0, confirmButtonText: "OK", confirmButtonColor: "#AEDEF4", cancelButtonText: "Cancel", imageUrl: null, imageSize: null }; if (void 0 === arguments[0]) return e.console.error("sweetAlert expects at least 1 attribute!"), !1; switch (typeof arguments[0]) { case "string": u.title = arguments[0], u.text = arguments[1] || "", u.type = arguments[2] || ""; break; case "object": if (void 0 === arguments[0].title) return e.console.error('Missing "title" argument!'), !1; u.title = arguments[0].title, u.text = arguments[0].text || u.text, u.type = arguments[0].type || u.type, u.allowOutsideClick = arguments[0].allowOutsideClick || u.allowOutsideClick, u.showCancelButton = void 0 !== arguments[0].showCancelButton ? arguments[0].showCancelButton : u.showCancelButton, u.closeOnConfirm = void 0 !== arguments[0].closeOnConfirm ? arguments[0].closeOnConfirm : u.closeOnConfirm, u.closeOnCancel = void 0 !== arguments[0].closeOnCancel ? arguments[0].closeOnCancel : u.closeOnCancel, u.confirmButtonText = u.showCancelButton ? "Confirm" : u.confirmButtonText, u.confirmButtonText = arguments[0].confirmButtonText || u.confirmButtonText, u.confirmButtonColor = arguments[0].confirmButtonColor || u.confirmButtonColor, u.cancelButtonText = arguments[0].cancelButtonText || u.cancelButtonText, u.imageUrl = arguments[0].imageUrl || u.imageUrl, u.imageSize = arguments[0].imageSize || u.imageSize, u.doneFunction = arguments[1] || null; break; default: return e.console.error('Unexpected type of argument! Expected "string" or "object", got ' + typeof arguments[0]), !1 } o(u), s(), c(); for (var f = m(), d = function (e) { var t = e.target || e.srcElement, n = "confirm" === t.className, o = y(f, "visible"), a = u.doneFunction && "true" === f.getAttribute("data-has-done-function"); switch (e.type) { case "mouseover": n && (e.target.style.backgroundColor = r(u.confirmButtonColor, -.04)); break; case "mouseout": n && (e.target.style.backgroundColor = u.confirmButtonColor); break; case "mousedown": n && (e.target.style.backgroundColor = r(u.confirmButtonColor, -.14)); break; case "mouseup": n && (e.target.style.backgroundColor = r(u.confirmButtonColor, -.04)); break; case "focus": var i = f.querySelector("button.confirm"), c = f.querySelector("button.cancel"); n ? c.style.boxShadow = "none" : i.style.boxShadow = "none"; break; case "click": if (n && a && o) u.doneFunction(!0), u.closeOnConfirm && l(); else if (a && o) { var s = String(u.doneFunction).replace(/\s/g, ""), d = "function(" === s.substring(0, 9) && ")" !== s.substring(9, 10); d && u.doneFunction(!1), u.closeOnCancel && l() } else l() } }, g = f.querySelectorAll("button"), p = 0; p < g.length; p++) g[p].onclick = d, g[p].onmouseover = d, g[p].onmouseout = d, g[p].onmousedown = d, g[p].onfocus = d; I = t.onclick, t.onclick = function (e) { var t = e.target || e.srcElement, n = f === t, o = C(f, e.target), r = y(f, "visible"), a = "true" === f.getAttribute("data-allow-ouside-click"); !n && !o && r && a && l() }; var v = f.querySelector("button.confirm"), b = f.querySelector("button.cancel"), h = f.querySelectorAll("button:not([type=hidden])"); A = e.onkeydown, e.onkeydown = n, v.onblur = a, b.onblur = a, e.onfocus = function () { e.setTimeout(function () { void 0 !== M && (M.focus(), M = void 0) }, 0) } }, function () { "complete" === t.readyState || "interactive" === t.readyState ? n() : t.addEventListener ? t.addEventListener("DOMContentLoaded", function e() { t.removeEventListener("DOMContentLoaded", arguments.callee, !1), n() }, !1) : t.attachEvent && t.attachEvent("onreadystatechange", function () { "complete" === t.readyState && (t.detachEvent("onreadystatechange", arguments.callee), n()) }) }() }(window, document);
 
 
 /***/ }),
-/* 88 */
+/* 89 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
