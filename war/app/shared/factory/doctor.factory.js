@@ -6,7 +6,7 @@ angular.module('hplus.factory', [])
       var registerDoctor = function(doctorObject){
         $http({
           method: 'POST',
-          url: '/someUrl', // Change URL here
+          url: '/registerDoctor', // Change URL here
           data: doctorObject
         }).then(function successCallback(response) {
             // this callback will be called asynchronously
