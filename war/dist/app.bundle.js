@@ -35423,7 +35423,6 @@ function ngViewFillContentFactory($compile, $controller, $route) {
 __webpack_require__(28);
 __webpack_require__(31);
 __webpack_require__(34);
-__webpack_require__(36);
 
 __webpack_require__(37);
 
@@ -35539,12 +35538,13 @@ module.exports = "<div class=\"row navbar__background\">        \r\n  <div class
 angular.module('hplus.factory', [])
 
 __webpack_require__(35);
+__webpack_require__(36);
 
 /***/ }),
 /* 35 */
 /***/ (function(module, exports) {
 
-angular.module('hplus.factory', [])
+angular.module('hplus.factory')
 
   .factory('globalFactory', 
     function($location){
@@ -35563,7 +35563,7 @@ angular.module('hplus.factory', [])
 /* 36 */
 /***/ (function(module, exports) {
 
-angular.module('hplus.factory', [])
+angular.module('hplus.factory')
 
   .factory('doctorFactory', 
     function($http){
@@ -36115,7 +36115,7 @@ __webpack_require__(75);
 /* 74 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\r\n  <div class=\"col-md-10 col-md-offset-1\">\r\n    <div class=\"col-md-8\">\r\n      This is just for testing purposes. Add your page here.<br>\r\n      All pages:<br>\r\n      <div class=\"hyperlink\" ng-click=\"go('/admin/update/disease')\">Update Disease</div>\r\n\r\n      <div class=\"hyperlink\" ng-click=\"go('/admin/edit/doctor')\">Edit Doctor</div>\r\n\r\n      <div class=\"hyperlink\" ng-click=\"go('/admin/update/medicine')\">Update Medicine</div>\r\n\r\n      <div class=\"hyperlink\" ng-click=\"go('/admin/list/disease')\">Explore Diseases</div>\r\n\r\n      <div class=\"hyperlink\" ng-click=\"go('/admin/list/doctor')\">Explore Doctors</div>\r\n      \r\n      <div class=\"hyperlink\" ng-click=\"go('/admin/list/record')\">Explore Medical Records</div>\r\n\r\n      <div class=\"hyperlink\" ng-click=\"go('/admin/list/medicine')\">Explore Medicines</div>\r\n\r\n      <div class=\"hyperlink\" ng-click=\"go('/admin/register/disease')\">Register Diseases</div>\r\n\r\n      <div class=\"hyperlink\" ng-click=\"go('/admin/register/doctor')\">Register Doctor</div>\r\n\r\n      <div class=\"hyperlink\" ng-click=\"go('/admin/register/medicine')\">Register Medicines</div>\r\n\r\n      <div class=\"hyperlink\" ng-click=\"go('/admin/view/details')\">View Doctor</div>\r\n\r\n      <div class=\"hyperlink\" ng-click=\"go('/doctor/create/record')\">Create Medical Record</div>\r\n\r\n      <div class=\"hyperlink\" ng-click=\"go('/admin/view/medicine')\">View Medicine</div>\r\n\r\n     <div class=\"hyperlink\" ng-click=\"go('/patient/view/details')\">View Patient</div>\r\n    </div>\r\n\r\n    <div class=\"col-md-4\">   \r\n      <form role=\"form\">\r\n        <div class=\"form-group\">\r\n          <label class=\"subtitle\" for=\"inputUsernameEmail\">Username or email</label>\r\n          <input class=\"form-control\" id=\"inputUsernameEmail\" type=\"text\">\r\n        </div>\r\n        <a class=\"pull-right\" ng-click=\"go('admin/reset/password')\" href=\"\">Forgot password?</a>\r\n        <div class=\"form-group\">\r\n          <label class=\"subtitle\" for=\"inputPassword\">Password</label>\r\n          <input type=\"password\" class=\"form-control\" id=\"inputPassword\">\r\n        </div>\r\n        <button type=\"submit\" class=\"btn pull-right\" ng-click=\"go('/admin/list/record')\">\r\n          Log In\r\n        </button>\r\n      </form>    \r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n";
+module.exports = "<div class=\"row\" ng-controller=\"LoginController\">\r\n  <div class=\"col-md-10 col-md-offset-1\">\r\n    <div class=\"col-md-8\">\r\n      This is just for testing purposes. Add your page here.<br>\r\n      All pages:<br>\r\n      <div class=\"hyperlink\" ng-click=\"go('/admin/update/disease')\">Update Disease</div>\r\n\r\n      <div class=\"hyperlink\" ng-click=\"go('/admin/edit/doctor')\">Edit Doctor</div>\r\n\r\n      <div class=\"hyperlink\" ng-click=\"go('/admin/update/medicine')\">Update Medicine</div>\r\n\r\n      <div class=\"hyperlink\" ng-click=\"go('/admin/list/disease')\">Explore Diseases</div>\r\n\r\n      <div class=\"hyperlink\" ng-click=\"go('/admin/list/doctor')\">Explore Doctors</div>\r\n      \r\n      <div class=\"hyperlink\" ng-click=\"go('/admin/list/record')\">Explore Medical Records</div>\r\n\r\n      <div class=\"hyperlink\" ng-click=\"go('/admin/list/medicine')\">Explore Medicines</div>\r\n\r\n      <div class=\"hyperlink\" ng-click=\"go('/admin/register/disease')\">Register Diseases</div>\r\n\r\n      <div class=\"hyperlink\" ng-click=\"go('/admin/register/doctor')\">Register Doctor</div>\r\n\r\n      <div class=\"hyperlink\" ng-click=\"go('/admin/register/medicine')\">Register Medicines</div>\r\n\r\n      <div class=\"hyperlink\" ng-click=\"go('/admin/view/details')\">View Doctor</div>\r\n\r\n      <div class=\"hyperlink\" ng-click=\"go('/doctor/create/record')\">Create Medical Record</div>\r\n\r\n      <div class=\"hyperlink\" ng-click=\"go('/admin/view/medicine')\">View Medicine</div>\r\n\r\n     <div class=\"hyperlink\" ng-click=\"go('/patient/view/details')\">View Patient</div>\r\n    </div>\r\n\r\n    <div class=\"col-md-4\">   \r\n      <form role=\"form\">\r\n        <div class=\"form-group\">\r\n          <label class=\"subtitle\" for=\"inputUsernameEmail\">Username or email</label>\r\n          <input class=\"form-control\" id=\"inputUsernameEmail\" type=\"text\">\r\n        </div>\r\n        <a class=\"pull-right\" ng-click=\"go('admin/reset/password')\" href=\"\">Forgot password?</a>\r\n        <div class=\"form-group\">\r\n          <label class=\"subtitle\" for=\"inputPassword\">Password</label>\r\n          <input type=\"password\" class=\"form-control\" id=\"inputPassword\">\r\n        </div>\r\n        <button type=\"submit\" class=\"btn pull-right\" ng-click=\"go('/admin/list/record')\">\r\n          Log In\r\n        </button>\r\n      </form>    \r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n";
 
 /***/ }),
 /* 75 */

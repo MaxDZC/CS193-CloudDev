@@ -1,4 +1,4 @@
-angular.module('hplus.factory', [])
+angular.module('hplus.factory')
 
   .factory('globalFactory', 
     function($location){
