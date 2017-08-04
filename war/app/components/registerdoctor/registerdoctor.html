@@ -5,38 +5,59 @@
 </div>
 
 <div class="row" ng-controller="RegisterDoctorController">
-  <div class="col col-md-3 col-md-offset-1">
-    <div class="row">
-      <div class="col col-md-12"> 
-        <label class="subtitle">First Name</label>
-        <input type="text" ng-model="doctor.fname">
-        <label class="subtitle">Specialization</label>
-        <select ng-model="doctor.specialization">
-          <option ng-repeat="option in specialization" value="{{option.id}}">{{option.name}}</option>
-        </select>
-        <label class="subtitle">Username</label>
-        <input type="text" ng-model="doctor.username">
-        <label class="subtitle">Password</label>
-        <input type="text" ng-model="doctor.password">
-        <label class="subtitle">Confirm Password</label>
-        <input type="text" ng-model="doctor.passwordAgain">
-        <button ng-click="displayData(doctor)">Sign up</button>
+  <ng-form name="registerDoctorForm">
+    <div class="row match-padding">
+      <div class="col col-md-3 col-md-offset-1">
+          <label class="subtitle">First Name</label>
+          <input type="text" ng-model="doctor.fname" ng-required="true">
+      </div>
+      <div class="col col-md-3">
+          <label class="subtitle">Last Name</label>
+          <input type="text" ng-model="doctor.lname" ng-required="true">
       </div>
     </div>
-  </div>
-  
-  <div class="col col-md-3">
-    <div class="row">
-      <div class="col col-md-12">
-        <label class="subtitle">Last Name</label>
-        <input type="text" ng-model="doctor.lname">
-        <label class="subtitle">Address</label>
-        <input type="text" ng-model="doctor.address">
-        <label class="subtitle">Contact Number</label>
-        <input type="text" ng-model="doctor.number">
-        <label class="subtitle">Birthday</label>
-        <input type="text" ng-model="doctor.birthday">
+
+    <div class="row match-padding">
+      <div class="col col-md-3 col-md-offset-1">
+          <label class="subtitle">Specialization</label>
+          <select ng-model="doctor.specialization" ng-required="true">
+            <option ng-repeat="option in specialization" value="{{option.id}}">{{option.name}}</option>
+          </select>
+      </div>
+      <div class="col col-md-3">
+          <label class="subtitle">Address</label>
+          <input type="text" ng-model="doctor.address" ng-required="true">
       </div>
     </div>
-  </div>
+    
+    <div class="row match-padding">
+      <div class="col col-md-3 col-md-offset-1">
+          <label class="subtitle">Contact Number</label>
+          <input type="number" ng-model="doctor.number" ng-required="true">
+      </div>
+      <div class="col col-md-3">
+          <label class="subtitle">Birthday</label>
+          <input type="text" ng-model="doctor.birthday" ng-required="true">
+      </div>
+    </div>
+    
+    <div class="row match-padding">
+      <div class="col col-md-3 col-md-offset-1">
+          <label class="subtitle">Username</label>
+          <input type="text" ng-model="doctor.username" ng-required="true">
+      </div>
+      <div class="col col-md-3">
+          <label class="subtitle">Password</label>
+          <input type="text" ng-model="doctor.password" ng-required="true">
+      </div>
+    </div>
+    
+    <div class="row match-padding">
+      <div class="col col-md-3 col-md-offset-1">
+          <label class="subtitle">Confirm Password</label>
+          <input type="text" ng-model="doctor.passwordAgain" ng-required="true">
+          <button ng-hide="registerDoctorForm.$invalid" ng-click="registerDoctor()">Sign up</button>
+      </div>
+    </div>
+  </ng-form>
 </div>
