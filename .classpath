@@ -4,7 +4,13 @@
 	<classpathentry kind="src" path="test"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/junit-4.7.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/slim3-1.0.16.jar" sourcepath="libsrc/slim3-1.0.16-sources.jar"/>
+	<classpathentry kind="lib" path="/Users/macuser/Downloads/smtp-maven-plugin-0.9.0.jar"/>
+	<classpathentry kind="lib" path="/Users/macuser/Downloads/mail.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="con" path="com.google.appengine.eclipse.core.GAE_CONTAINER"/>
+	<classpathentry kind="lib" path="/Users/macuser/Downloads/activation-2.2.1.jar"/>
+	<classpathentry kind="lib" path="/Users/macuser/Downloads/javamail-1.4.2/mail.jar"/>
+	<classpathentry kind="lib" path="/Users/macuser/Downloads/activation.jar"/>
+	<classpathentry kind="lib" path="/Users/macuser/Downloads/additionnal.jar"/>
 	<classpathentry kind="output" path="war/WEB-INF/classes"/>
 </classpath>

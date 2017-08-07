@@ -5,11 +5,13 @@ import sample.dto.DoctorDto;
 import sample.model.DoctorModel;
 
 
+
 public class DoctorService {
     /**
      * Used to access the DAO functions for the DoctorModel
      */
     DoctorDao doctorDao = new DoctorDao();
+    //
     
     /**
      * Used to insert an item to the datastore
@@ -27,9 +29,10 @@ public class DoctorService {
                                                   inputDoc.getUserName(),
                                                   inputDoc.getPassWord()
                                                  );
-        try{
+        try{ //SendMail.main("rr");
             if(doctorDao.getDoc(doctorModel) == null){
                 doctorDao.insertDoc(doctorModel);
+                
             }else{
                 System.out.println("Doctor Already Exists!");
             }

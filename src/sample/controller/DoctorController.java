@@ -22,7 +22,8 @@ public class DoctorController extends Controller {
     @Override
     protected Navigation run() throws Exception {
         System.out.println("DoctorController.run start");
-        
+     // SendMail.send();
+
         
         
         try{
