@@ -76,3 +76,17 @@ margin-left: 12px;
   margin-top: $sizePaddingHalf;
   margin-bottom: $sizePaddingHalf;
 }
+
+.marginBottomNone{
+  margin-bottom: 0;
+}
+
+.borders{
+  border: 1.5px solid $black;
+  height:150px;
+}
+
+.scrollable{
+  overflow: auto;
+  max-height: 140px;
+}

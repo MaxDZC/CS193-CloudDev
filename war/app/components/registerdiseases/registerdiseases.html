@@ -14,20 +14,33 @@
   
     <div class="col col-md-4">
       <label class="subtitle">Symptoms</label>
-      <textarea placeholder="Enter Symptoms"></textarea>
+      <input type="text" placeholder="Search" value="Some Symptom">
+      <div class="borders">
+        <div class="scrollable">
+          <input type="checkbox">Examples<br>
+          <input type="checkbox">of<br>
+          <input type="checkbox">Medicine<br>
+          <input type="checkbox">OhMyy<br>
+          <input type="checkbox" ng-repeat="option in symptoms">{{option.name}}<br>
+        </div>
+      </div>
     </div>
   
     <div class="col col-md-4">
-      <label class="subtitle">Medicines</label>
-      <input type="text" placeholder="Search">
-      <div>
-        <input type="checkbox">Metformin<br>
-        <input type="checkbox">Methadone<br>
-        <input type="checkbox">Methamphetamine<br>
-        <input type="checkbox">Methazolamide<br>
-        <input type="checkbox">Methenamine<br>
-        <input type="checkbox">Methimazole<br>
-        <input type="checkbox">Meth
+	    <label class="subtitle">Medicines</label>
+	    <input type="text" placeholder="Search" value="Some Drug">
+	    <div class="borders">
+	      <div class="scrollable">
+	        <input type="checkbox">Metformin<br>
+	        <input type="checkbox">Methadone<br>
+	        <input type="checkbox">Methamphetamine<br>
+	        <input type="checkbox">Methazolamide<br>
+	        <input type="checkbox">Methenamine<br>
+	        <input type="checkbox">Methimazole<br>
+	        <input type="checkbox">Meth<br>
+	        <input type="checkbox">Methimazole<br>
+          <input type="checkbox">Meth<br>
+	      </div>
       </div>
     </div>
   </div>
