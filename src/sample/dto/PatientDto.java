@@ -22,9 +22,9 @@ public class PatientDto {
     private String address;
     
     /**
-     * The specialization of the 'Patient'
+     * The email of the 'Patient'
      */
-    private String specialization;
+    private String email;
     
     /**
      * The contactNumber of the 'Patient'
@@ -56,13 +56,13 @@ public class PatientDto {
     /**
      * Creates an instance of 'Patient' with attribute initialization
      */
-    public PatientDto(String firstName, String lastName, String address, String specialization,
+    public PatientDto(String firstName, String lastName, String address, String email,
             String contactNumber, String birthDay, String userName, String passWord){
         
         this.setFirstName(firstName);
         this.setLastName(lastName);
         this.setAddress(address);
-        this.setSpecialization(specialization);
+        this.setEmail(email);
         this.setContactNumber(contactNumber);
         this.setBirthDay(birthDay);
         this.setUserName(userName);
@@ -134,19 +134,19 @@ public class PatientDto {
     }
     
     /**
-     * Retrieves the specialization of the 'Patient'.
-     * @return the specialization of the 'Patient'
+     * Retrieves the email of the 'Patient'.
+     * @return the email of the 'Patient'
      */
-    public String getSpecialization() {
-        return specialization;
+    public String getEmail() {
+        return email;
     }
     
     /**
-     * Sets the specialization of the 'Patient'.
-     * @param specialization - the value to be set
+     * Sets the email of the 'Patient'.
+     * @param email - the value to be set
      */
-    public void setSpecialization(String specialization) {
-        this.specialization = specialization;
+    public void setEmail(String email) {
+        this.email = email;
     }
     
     /**

@@ -44,7 +44,7 @@ public class PatientController extends Controller {
             PatientDto PatientDto = new PatientDto(jObj.getString("fname"),
                                                 jObj.getString("lname"),
                                                 jObj.getString("address"),
-                                                jObj.getString("specialization"),
+                                                jObj.getString("email"),
                                                 jObj.getString("number"),
                                                 jObj.getString("birthday"),
                                                 jObj.getString("username"),

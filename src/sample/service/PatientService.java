@@ -21,7 +21,7 @@ public class PatientService {
         PatientModel PatientModel = new PatientModel(inputPat.getFirstName(),
                                                   inputPat.getLastName(),
                                                   inputPat.getAddress(),
-                                                  inputPat.getSpecialization(),
+                                                  inputPat.getEmail(),
                                                   inputPat.getContactNumber(),
                                                   inputPat.getBirthDay(),
                                                   inputPat.getUserName(),

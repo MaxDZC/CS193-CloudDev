@@ -19,7 +19,7 @@ public final class PatientModelMeta extends org.slim3.datastore.ModelMeta<sample
     public final org.slim3.datastore.StringAttributeMeta<sample.model.PatientModel> address = new org.slim3.datastore.StringAttributeMeta<sample.model.PatientModel>(this, "address", "address");
     
     /** */
-    public final org.slim3.datastore.StringAttributeMeta<sample.model.PatientModel> specialization = new org.slim3.datastore.StringAttributeMeta<sample.model.PatientModel>(this, "specialization", "specialization");
+    public final org.slim3.datastore.StringAttributeMeta<sample.model.PatientModel> email = new org.slim3.datastore.StringAttributeMeta<sample.model.PatientModel>(this, "email", "email");
     
     /** */
     public final org.slim3.datastore.StringAttributeMeta<sample.model.PatientModel> contactNumber = new org.slim3.datastore.StringAttributeMeta<sample.model.PatientModel>(this, "contactNumber", "contactNumber");
@@ -58,7 +58,7 @@ public final class PatientModelMeta extends org.slim3.datastore.ModelMeta<sample
         model.setFirstName((java.lang.String) entity.getProperty("firstName"));
         model.setLastName((java.lang.String) entity.getProperty("lastName"));
         model.setAddress((java.lang.String) entity.getProperty("address"));
-        model.setSpecialization((java.lang.String) entity.getProperty("specialization"));
+        model.setSpecialization((java.lang.String) entity.getProperty("email"));
         model.setContactNumber((java.lang.String) entity.getProperty("contactNumber"));
         model.setBirthDay((java.lang.String) entity.getProperty("birthDay"));
         model.setUserName((java.lang.String) entity.getProperty("userName"));
@@ -80,7 +80,7 @@ public final class PatientModelMeta extends org.slim3.datastore.ModelMeta<sample
         entity.setProperty("firstName", m.getFirstName());
         entity.setProperty("lastName", m.getLastName());
         entity.setProperty("address", m.getAddress());
-        entity.setProperty("specialization", m.getSpecialization());
+        entity.setProperty("email", m.getSpecialization());
         entity.setProperty("contactNumber", m.getContactNumber());
         entity.setProperty("birthDay", m.getBirthDay());
         entity.setProperty("userName", m.getUserName());
@@ -170,7 +170,7 @@ public final class PatientModelMeta extends org.slim3.datastore.ModelMeta<sample
             encoder0.encode(writer, m.getAddress());
         }
         if(m.getSpecialization() != null){
-            writer.setNextPropertyName("specialization");
+            writer.setNextPropertyName("email");
             encoder0.encode(writer, m.getSpecialization());
         }
         if(m.getContactNumber() != null){
@@ -218,7 +218,7 @@ public final class PatientModelMeta extends org.slim3.datastore.ModelMeta<sample
         reader = rootReader.newObjectReader("address");
         m.setAddress(decoder0.decode(reader, m.getAddress()));
         m.setKey(decoder0.decode(reader, m.getKey()));
-        reader = rootReader.newObjectReader("specialization");
+        reader = rootReader.newObjectReader("email");
         m.setSpecialization(decoder0.decode(reader, m.getSpecialization()));
         reader = rootReader.newObjectReader("contactNumber");
         m.setContactNumber(decoder0.decode(reader, m.getContactNumber()));
