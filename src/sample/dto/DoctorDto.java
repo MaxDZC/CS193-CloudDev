@@ -47,6 +47,19 @@ public class DoctorDto {
     private String passWord;
     
     /**
+     * The Email of the 'Doctor'
+     */
+    private String email;
+    
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    /**
      * Creates an instance of 'Doctor'
      */
     public DoctorDto(){
@@ -57,7 +70,7 @@ public class DoctorDto {
      * Creates an instance of 'Doctor' with attribute initialization
      */
     public DoctorDto(String firstName, String lastName, String address, String specialization,
-            String contactNumber, String birthDay, String userName, String passWord){
+            String contactNumber, String birthDay, String userName, String passWord, String email){
         
         this.setFirstName(firstName);
         this.setLastName(lastName);
@@ -67,6 +80,7 @@ public class DoctorDto {
         this.setBirthDay(birthDay);
         this.setUserName(userName);
         this.setPassWord(passWord);
+        this.setEmail(email);
     }
     
     /**

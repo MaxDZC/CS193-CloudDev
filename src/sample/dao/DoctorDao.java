@@ -20,9 +20,9 @@ public class DoctorDao{
         System.out.println("DoctorDao.getDoc start");
         
         if(Datastore.query("DoctorModel")
-                .filter("firstName", 
+                .filter("email", 
                          FilterOperator.EQUAL, 
-                         inputDoc.getFirstName()
+                         inputDoc.getEmail()
                         ).asSingleEntity() == null){
             
             System.out.println("DoctorDao.getDoc end(success)");

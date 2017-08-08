@@ -49,7 +49,8 @@ public class DoctorController extends Controller {
                                                 jObj.getString("number"),
                                                 jObj.getString("birthday"),
                                                 jObj.getString("username"),
-                                                jObj.getString("password")
+                                                jObj.getString("password"),
+                                               "same@gmail.com"
                                                );
             
             

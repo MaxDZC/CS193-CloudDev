@@ -14,6 +14,9 @@ public final class DoctorModelMeta extends org.slim3.datastore.ModelMeta<sample.
 
     /** */
     public final org.slim3.datastore.StringAttributeMeta<sample.model.DoctorModel> lastName = new org.slim3.datastore.StringAttributeMeta<sample.model.DoctorModel>(this, "lastName", "lastName");
+    
+    /** */
+    public final org.slim3.datastore.StringAttributeMeta<sample.model.DoctorModel> email = new org.slim3.datastore.StringAttributeMeta<sample.model.DoctorModel>(this, "email", "email");
 
     /** */
     public final org.slim3.datastore.StringAttributeMeta<sample.model.DoctorModel> address = new org.slim3.datastore.StringAttributeMeta<sample.model.DoctorModel>(this, "address", "address");
@@ -63,6 +66,7 @@ public final class DoctorModelMeta extends org.slim3.datastore.ModelMeta<sample.
         model.setBirthDay((java.lang.String) entity.getProperty("birthDay"));
         model.setUserName((java.lang.String) entity.getProperty("userName"));
         model.setPassWord((java.lang.String) entity.getProperty("passWord"));
+        model.setEmail((java.lang.String) entity.getProperty("email"));
         model.setVersion((java.lang.Long) entity.getProperty("version"));
         return model;
     }
@@ -85,6 +89,7 @@ public final class DoctorModelMeta extends org.slim3.datastore.ModelMeta<sample.
         entity.setProperty("birthDay", m.getBirthDay());
         entity.setProperty("userName", m.getUserName());
         entity.setProperty("passWord", m.getPassWord());
+        entity.setProperty("email", m.getEmail());
         entity.setProperty("version", m.getVersion());
         entity.setProperty("slim3.schemaVersion", 1);
         
@@ -181,6 +186,10 @@ public final class DoctorModelMeta extends org.slim3.datastore.ModelMeta<sample.
             writer.setNextPropertyName("birthDay");
             encoder0.encode(writer, m.getBirthDay());
         }
+        if(m.getEmail() != null){
+            writer.setNextPropertyName("email");
+            encoder0.encode(writer, m.getEmail());
+        }
         if(m.getUserName() != null){
             writer.setNextPropertyName("userName");
             encoder0.encode(writer, m.getUserName());
@@ -215,6 +224,8 @@ public final class DoctorModelMeta extends org.slim3.datastore.ModelMeta<sample.
         m.setFirstName(decoder0.decode(reader, m.getFirstName()));
         reader = rootReader.newObjectReader("lastName");
         m.setLastName(decoder0.decode(reader, m.getLastName()));
+        reader = rootReader.newObjectReader("email");
+        m.setLastName(decoder0.decode(reader, m.getEmail()));
         reader = rootReader.newObjectReader("address");
         m.setAddress(decoder0.decode(reader, m.getAddress()));
         m.setKey(decoder0.decode(reader, m.getKey()));

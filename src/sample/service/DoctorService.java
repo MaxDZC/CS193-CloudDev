@@ -27,7 +27,8 @@ public class DoctorService {
                                                   inputDoc.getContactNumber(),
                                                   inputDoc.getBirthDay(),
                                                   inputDoc.getUserName(),
-                                                  inputDoc.getPassWord()
+                                                  inputDoc.getPassWord(),
+                                                  inputDoc.getEmail()
                                                  );
         try{ //SendMail.main("rr");
             if(doctorDao.getDoc(doctorModel) == null){

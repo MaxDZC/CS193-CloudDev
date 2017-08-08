@@ -27,7 +27,10 @@ public class DoctorModel implements Serializable {
     private String birthDay;
     private String userName;
     private String passWord;
+    private String email;
     
+ 
+
     /**
      * Creates an instance of 'Doctor'
      */
@@ -39,7 +42,7 @@ public class DoctorModel implements Serializable {
      * Creates an instance of 'Doctor' with attribute initialization
      */
     public DoctorModel(String firstName, String lastName, String address, String specialization,
-            String contactNumber, String birthDay, String userName, String passWord){
+            String contactNumber, String birthDay, String userName, String passWord,  String email){
         this.setFirstName(firstName);
         this.setLastName(lastName);
         this.setAddress(address);
@@ -48,6 +51,7 @@ public class DoctorModel implements Serializable {
         this.setBirthDay(birthDay);
         this.setUserName(userName);
         this.setPassWord(passWord);
+        this.setEmail(email);
     }
     
     /**
@@ -69,6 +73,24 @@ public class DoctorModel implements Serializable {
         this.key = key;
     }
 
+ 
+    /**
+     * get the email.
+     *
+     * @get the email
+     */
+    public String getEmail() {
+        return email;
+    }
+    /**
+     * Returns the email.
+     *
+     * @return the email
+     */
+    public void setEmail(String email) {
+        this.email = email;
+    }
+    
     /**
      * Returns the version.
      *
