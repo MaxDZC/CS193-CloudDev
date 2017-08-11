@@ -1,7 +1,20 @@
 package sample.meta;
 
+//@javax.annotation.Generated(value = { "slim3-gen", "@VERSION@" }, date = "2017-08-11 10:50:48")
 /** */
 public final class PatientModelMeta extends org.slim3.datastore.ModelMeta<sample.model.PatientModel> {
+
+    /** */
+    public final org.slim3.datastore.StringAttributeMeta<sample.model.PatientModel> address = new org.slim3.datastore.StringAttributeMeta<sample.model.PatientModel>(this, "address", "address");
+
+    /** */
+    public final org.slim3.datastore.StringAttributeMeta<sample.model.PatientModel> birthDay = new org.slim3.datastore.StringAttributeMeta<sample.model.PatientModel>(this, "birthDay", "birthDay");
+
+    /** */
+    public final org.slim3.datastore.StringAttributeMeta<sample.model.PatientModel> contactNumber = new org.slim3.datastore.StringAttributeMeta<sample.model.PatientModel>(this, "contactNumber", "contactNumber");
+
+    /** */
+    public final org.slim3.datastore.StringAttributeMeta<sample.model.PatientModel> firstName = new org.slim3.datastore.StringAttributeMeta<sample.model.PatientModel>(this, "firstName", "firstName");
 
     /** */
     public final org.slim3.datastore.CoreAttributeMeta<sample.model.PatientModel, java.lang.Long> id = new org.slim3.datastore.CoreAttributeMeta<sample.model.PatientModel, java.lang.Long>(this, "id", "id", java.lang.Long.class);
@@ -10,29 +23,17 @@ public final class PatientModelMeta extends org.slim3.datastore.ModelMeta<sample
     public final org.slim3.datastore.CoreAttributeMeta<sample.model.PatientModel, com.google.appengine.api.datastore.Key> key = new org.slim3.datastore.CoreAttributeMeta<sample.model.PatientModel, com.google.appengine.api.datastore.Key>(this, "__key__", "key", com.google.appengine.api.datastore.Key.class);
 
     /** */
-    public final org.slim3.datastore.StringAttributeMeta<sample.model.PatientModel> firstName = new org.slim3.datastore.StringAttributeMeta<sample.model.PatientModel>(this, "firstName", "firstName");
-
-    /** */
     public final org.slim3.datastore.StringAttributeMeta<sample.model.PatientModel> lastName = new org.slim3.datastore.StringAttributeMeta<sample.model.PatientModel>(this, "lastName", "lastName");
 
     /** */
-    public final org.slim3.datastore.StringAttributeMeta<sample.model.PatientModel> address = new org.slim3.datastore.StringAttributeMeta<sample.model.PatientModel>(this, "address", "address");
-    
+    public final org.slim3.datastore.StringAttributeMeta<sample.model.PatientModel> passWord = new org.slim3.datastore.StringAttributeMeta<sample.model.PatientModel>(this, "passWord", "passWord");
+
     /** */
-    public final org.slim3.datastore.StringAttributeMeta<sample.model.PatientModel> email = new org.slim3.datastore.StringAttributeMeta<sample.model.PatientModel>(this, "email", "email");
-    
-    /** */
-    public final org.slim3.datastore.StringAttributeMeta<sample.model.PatientModel> contactNumber = new org.slim3.datastore.StringAttributeMeta<sample.model.PatientModel>(this, "contactNumber", "contactNumber");
-    
-    /** */
-    public final org.slim3.datastore.StringAttributeMeta<sample.model.PatientModel> birthDay = new org.slim3.datastore.StringAttributeMeta<sample.model.PatientModel>(this, "birthDay", "birthDay");
-    
+    public final org.slim3.datastore.StringAttributeMeta<sample.model.PatientModel> specialization = new org.slim3.datastore.StringAttributeMeta<sample.model.PatientModel>(this, "specialization", "specialization");
+
     /** */
     public final org.slim3.datastore.StringAttributeMeta<sample.model.PatientModel> userName = new org.slim3.datastore.StringAttributeMeta<sample.model.PatientModel>(this, "userName", "userName");
-    
-    /** */
-    public final org.slim3.datastore.StringAttributeMeta<sample.model.PatientModel> passWord = new org.slim3.datastore.StringAttributeMeta<sample.model.PatientModel>(this, "passWord", "passWord");
-    
+
     /** */
     public final org.slim3.datastore.CoreAttributeMeta<sample.model.PatientModel, java.lang.Long> version = new org.slim3.datastore.CoreAttributeMeta<sample.model.PatientModel, java.lang.Long>(this, "version", "version", java.lang.Long.class);
 
@@ -53,16 +54,16 @@ public final class PatientModelMeta extends org.slim3.datastore.ModelMeta<sample
     @Override
     public sample.model.PatientModel entityToModel(com.google.appengine.api.datastore.Entity entity) {
         sample.model.PatientModel model = new sample.model.PatientModel();
+        model.setAddress((java.lang.String) entity.getProperty("address"));
+        model.setBirthDay((java.lang.String) entity.getProperty("birthDay"));
+        model.setContactNumber((java.lang.String) entity.getProperty("contactNumber"));
+        model.setFirstName((java.lang.String) entity.getProperty("firstName"));
         model.setId((java.lang.Long) entity.getProperty("id"));
         model.setKey(entity.getKey());
-        model.setFirstName((java.lang.String) entity.getProperty("firstName"));
         model.setLastName((java.lang.String) entity.getProperty("lastName"));
-        model.setAddress((java.lang.String) entity.getProperty("address"));
-        model.setSpecialization((java.lang.String) entity.getProperty("email"));
-        model.setContactNumber((java.lang.String) entity.getProperty("contactNumber"));
-        model.setBirthDay((java.lang.String) entity.getProperty("birthDay"));
-        model.setUserName((java.lang.String) entity.getProperty("userName"));
         model.setPassWord((java.lang.String) entity.getProperty("passWord"));
+        model.setSpecialization((java.lang.String) entity.getProperty("specialization"));
+        model.setUserName((java.lang.String) entity.getProperty("userName"));
         model.setVersion((java.lang.Long) entity.getProperty("version"));
         return model;
     }
@@ -76,18 +77,17 @@ public final class PatientModelMeta extends org.slim3.datastore.ModelMeta<sample
         } else {
             entity = new com.google.appengine.api.datastore.Entity(kind);
         }
-        entity.setProperty("id", m.getId());
-        entity.setProperty("firstName", m.getFirstName());
-        entity.setProperty("lastName", m.getLastName());
         entity.setProperty("address", m.getAddress());
-        entity.setProperty("email", m.getSpecialization());
-        entity.setProperty("contactNumber", m.getContactNumber());
         entity.setProperty("birthDay", m.getBirthDay());
-        entity.setProperty("userName", m.getUserName());
+        entity.setProperty("contactNumber", m.getContactNumber());
+        entity.setProperty("firstName", m.getFirstName());
+        entity.setProperty("id", m.getId());
+        entity.setProperty("lastName", m.getLastName());
         entity.setProperty("passWord", m.getPassWord());
+        entity.setProperty("specialization", m.getSpecialization());
+        entity.setProperty("userName", m.getUserName());
         entity.setProperty("version", m.getVersion());
         entity.setProperty("slim3.schemaVersion", 1);
-        
         return entity;
     }
 
@@ -149,6 +149,22 @@ public final class PatientModelMeta extends org.slim3.datastore.ModelMeta<sample
         sample.model.PatientModel m = (sample.model.PatientModel) model;
         writer.beginObject();
         org.slim3.datastore.json.Default encoder0 = new org.slim3.datastore.json.Default();
+        if(m.getAddress() != null){
+            writer.setNextPropertyName("address");
+            encoder0.encode(writer, m.getAddress());
+        }
+        if(m.getBirthDay() != null){
+            writer.setNextPropertyName("birthDay");
+            encoder0.encode(writer, m.getBirthDay());
+        }
+        if(m.getContactNumber() != null){
+            writer.setNextPropertyName("contactNumber");
+            encoder0.encode(writer, m.getContactNumber());
+        }
+        if(m.getFirstName() != null){
+            writer.setNextPropertyName("firstName");
+            encoder0.encode(writer, m.getFirstName());
+        }
         if(m.getId() != null){
             writer.setNextPropertyName("id");
             encoder0.encode(writer, m.getId());
@@ -157,37 +173,21 @@ public final class PatientModelMeta extends org.slim3.datastore.ModelMeta<sample
             writer.setNextPropertyName("key");
             encoder0.encode(writer, m.getKey());
         }
-        if(m.getFirstName() != null){
-            writer.setNextPropertyName("firstName");
-            encoder0.encode(writer, m.getFirstName());
-        }
         if(m.getLastName() != null){
             writer.setNextPropertyName("lastName");
             encoder0.encode(writer, m.getLastName());
         }
-        if(m.getAddress() != null){
-            writer.setNextPropertyName("address");
-            encoder0.encode(writer, m.getAddress());
+        if(m.getPassWord() != null){
+            writer.setNextPropertyName("passWord");
+            encoder0.encode(writer, m.getPassWord());
         }
         if(m.getSpecialization() != null){
-            writer.setNextPropertyName("email");
+            writer.setNextPropertyName("specialization");
             encoder0.encode(writer, m.getSpecialization());
-        }
-        if(m.getContactNumber() != null){
-            writer.setNextPropertyName("contactNumber");
-            encoder0.encode(writer, m.getContactNumber());
-        }
-        if(m.getBirthDay() != null){
-            writer.setNextPropertyName("birthDay");
-            encoder0.encode(writer, m.getBirthDay());
         }
         if(m.getUserName() != null){
             writer.setNextPropertyName("userName");
             encoder0.encode(writer, m.getUserName());
-        }
-        if(m.getPassWord() != null){
-            writer.setNextPropertyName("passWord");
-            encoder0.encode(writer, m.getPassWord());
         }
         if(m.getVersion() != null){
             writer.setNextPropertyName("version");
@@ -201,36 +201,27 @@ public final class PatientModelMeta extends org.slim3.datastore.ModelMeta<sample
         sample.model.PatientModel m = new sample.model.PatientModel();
         org.slim3.datastore.json.JsonReader reader = null;
         org.slim3.datastore.json.Default decoder0 = new org.slim3.datastore.json.Default();
+        reader = rootReader.newObjectReader("address");
+        m.setAddress(decoder0.decode(reader, m.getAddress()));
+        reader = rootReader.newObjectReader("birthDay");
+        m.setBirthDay(decoder0.decode(reader, m.getBirthDay()));
+        reader = rootReader.newObjectReader("contactNumber");
+        m.setContactNumber(decoder0.decode(reader, m.getContactNumber()));
+        reader = rootReader.newObjectReader("firstName");
+        m.setFirstName(decoder0.decode(reader, m.getFirstName()));
         reader = rootReader.newObjectReader("id");
         m.setId(decoder0.decode(reader, m.getId()));
         reader = rootReader.newObjectReader("key");
         m.setKey(decoder0.decode(reader, m.getKey()));
-        /*reader = rootReader.newObjectReader("name");
-        m.setName(decoder0.decode(reader, m.getName()));
-        reader = rootReader.newObjectReader("price");
-        m.setPrice(decoder0.decode(reader, m.getPrice()));
-        reader = rootReader.newObjectReader("type");
-        m.setType(decoder0.decode(reader, m.getType()));*/
-        reader = rootReader.newObjectReader("firstName");
-        m.setFirstName(decoder0.decode(reader, m.getFirstName()));
         reader = rootReader.newObjectReader("lastName");
         m.setLastName(decoder0.decode(reader, m.getLastName()));
-        reader = rootReader.newObjectReader("address");
-        m.setAddress(decoder0.decode(reader, m.getAddress()));
-        m.setKey(decoder0.decode(reader, m.getKey()));
-        reader = rootReader.newObjectReader("email");
-        m.setSpecialization(decoder0.decode(reader, m.getSpecialization()));
-        reader = rootReader.newObjectReader("contactNumber");
-        m.setContactNumber(decoder0.decode(reader, m.getContactNumber()));
-        reader = rootReader.newObjectReader("birthDay");
-        m.setBirthDay(decoder0.decode(reader, m.getBirthDay()));
-        m.setKey(decoder0.decode(reader, m.getKey()));
-        reader = rootReader.newObjectReader("userName");
-        m.setUserName(decoder0.decode(reader, m.getUserName()));
         reader = rootReader.newObjectReader("passWord");
         m.setPassWord(decoder0.decode(reader, m.getPassWord()));
+        reader = rootReader.newObjectReader("specialization");
+        m.setSpecialization(decoder0.decode(reader, m.getSpecialization()));
+        reader = rootReader.newObjectReader("userName");
+        m.setUserName(decoder0.decode(reader, m.getUserName()));
         reader = rootReader.newObjectReader("version");
-        
         m.setVersion(decoder0.decode(reader, m.getVersion()));
         return m;
     }

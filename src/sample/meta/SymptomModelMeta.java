@@ -1,5 +1,6 @@
 package sample.meta;
 
+//@javax.annotation.Generated(value = { "slim3-gen", "@VERSION@" }, date = "2017-08-11 10:50:48")
 /** */
 public final class SymptomModelMeta extends org.slim3.datastore.ModelMeta<sample.model.SymptomModel> {
 
@@ -11,7 +12,6 @@ public final class SymptomModelMeta extends org.slim3.datastore.ModelMeta<sample
 
     /** */
     public final org.slim3.datastore.StringAttributeMeta<sample.model.SymptomModel> name = new org.slim3.datastore.StringAttributeMeta<sample.model.SymptomModel>(this, "name", "name");
-
 
     /** */
     public final org.slim3.datastore.CoreAttributeMeta<sample.model.SymptomModel, java.lang.Long> version = new org.slim3.datastore.CoreAttributeMeta<sample.model.SymptomModel, java.lang.Long>(this, "version", "version", java.lang.Long.class);
@@ -36,7 +36,6 @@ public final class SymptomModelMeta extends org.slim3.datastore.ModelMeta<sample
         model.setId((java.lang.Long) entity.getProperty("id"));
         model.setKey(entity.getKey());
         model.setName((java.lang.String) entity.getProperty("name"));
-
         model.setVersion((java.lang.Long) entity.getProperty("version"));
         return model;
     }
@@ -52,8 +51,8 @@ public final class SymptomModelMeta extends org.slim3.datastore.ModelMeta<sample
         }
         entity.setProperty("id", m.getId());
         entity.setProperty("name", m.getName());
+        entity.setProperty("version", m.getVersion());
         entity.setProperty("slim3.schemaVersion", 1);
-        
         return entity;
     }
 
@@ -146,7 +145,7 @@ public final class SymptomModelMeta extends org.slim3.datastore.ModelMeta<sample
         reader = rootReader.newObjectReader("name");
         m.setName(decoder0.decode(reader, m.getName()));
         reader = rootReader.newObjectReader("version");
-         m.setVersion(decoder0.decode(reader, m.getVersion()));
+        m.setVersion(decoder0.decode(reader, m.getVersion()));
         return m;
     }
 }

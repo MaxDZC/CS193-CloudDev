@@ -36030,6 +36030,7 @@ angular.module('hplus.factory', [])
 
 __webpack_require__(37);
 __webpack_require__(38);
+__webpack_require__(94);
 
 /***/ }),
 /* 37 */
@@ -36544,7 +36545,7 @@ angular.module('hplus.modules.registermedicine', [])
 /* 70 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\r\n  <div class=\"col col-md-8 col-md-offset-1\">\r\n    <h1>Register Medicine</h1>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row\">\r\n  <div class=\"col col-md-10 col-md-offset-1\">\r\n    <div class=\"col-md-3\">\r\n      <label class=\"subtitle\">Name of Medicine:</label>\r\n      <input type=\"text\" value=\"RiteMed Metformin\">\r\n      <label class=\"subtitle\">Price (PHP) :</label> \r\n      <input id=\"priceInputField\" type=\"text\" value=\"3.75\">\r\n      <button>Save</button>\r\n    </div>\r\n    \r\n    <div class=\"col col-md-9\">\r\n      <label class=\"subtitle\">Description:</label>\r\n      <textarea id=\"descMed\" rows=\"8\" cols=\"50\">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent ut lorem quis dolor porttitor accumsan. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Integer vitae erat viverra, vestibulum enim id, pulvinar lectus. Sed volutpat tristique tristique. Vivamus turpis diam, consequat vel sagittis quis, convallis quis sem.</textarea>\r\n    </div>\r\n  </div>\r\n</div>";
+module.exports = "<div class=\"row\">\r\n  <div class=\"col col-md-8 col-md-offset-1\">\r\n    <h1>Register Medicine</h1>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row\" ng-controller=\"RegisterMedicineController\">\r\n  <div class=\"col col-md-10 col-md-offset-1\">\r\n    <div class=\"col-md-3\">\r\n      <label class=\"subtitle\">Name of Medicine:</label>\r\n      <input type=\"text\" ng-model=\"medicine.name\" value=\"RiteMed Metformin\">\r\n      <label class=\"subtitle\">Price (PHP) :</label> \r\n      <input id=\"priceInputField\" ng-model=\"medicine.price\" type=\"text\" value=\"3.75\">\r\n      <button ng-click=\"registerMedicine(medicine)\">Save</button>\r\n    </div>\r\n    \r\n    <div class=\"col col-md-9\">\r\n      <label class=\"subtitle\">Description:</label>\r\n      <textarea id=\"descMed\" ng-model=\"medicine.desc\" rows=\"8\" cols=\"50\">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent ut lorem quis dolor porttitor accumsan. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Integer vitae erat viverra, vestibulum enim id, pulvinar lectus. Sed volutpat tristique tristique. Vivamus turpis diam, consequat vel sagittis quis, convallis quis sem.</textarea>\r\n    </div>\r\n  </div>\r\n</div>";
 
 /***/ }),
 /* 71 */
@@ -36553,11 +36554,17 @@ module.exports = "<div class=\"row\">\r\n  <div class=\"col col-md-8 col-md-offs
 angular.module('hplus.modules.registermedicine')
 
   .controller('RegisterMedicineController',
-    function($scope, globalFactory){
+    function($scope, globalFactory, medicineFactory){
 
       $scope.go = function(path){
         globalFactory.go(path);
       };
+      
+      $scope.medicine = {};
+      
+      $scope.registerMedicine = function(){
+    	  medicineFactory.registerMedicine($scope.medicine);
+      }
     }
   );
 
@@ -36830,6 +36837,35 @@ angular.module('hplus.modules.resetpassword')
 
 "use strict";
 angular.module("oitozero.ngSweetAlert",[]).factory("SweetAlert",["$rootScope",function($rootScope){var swal=window.swal,self={swal:function(arg1,arg2,arg3){$rootScope.$evalAsync(function(){"function"==typeof arg2?swal(arg1,function(isConfirm){$rootScope.$evalAsync(function(){arg2(isConfirm)})},arg3):swal(arg1,arg2,arg3)})},success:function(title,message){$rootScope.$evalAsync(function(){swal(title,message,"success")})},error:function(title,message){$rootScope.$evalAsync(function(){swal(title,message,"error")})},warning:function(title,message){$rootScope.$evalAsync(function(){swal(title,message,"warning")})},info:function(title,message){$rootScope.$evalAsync(function(){swal(title,message,"info")})}};return self}]);
+
+/***/ }),
+/* 94 */
+/***/ (function(module, exports) {
+
+angular.module('hplus.factory')
+
+  .factory('medicineFactory', 
+    function($http){
+
+      var registerMedicine = function(medicineObject){
+        $http({
+          method: 'POST',
+          url: '/Medicine', // Change URL here
+          data: medicineObject
+        }).then(function successCallback(response) {
+            // this callback will be called asynchronously
+            // when the response is available
+          }, function errorCallback(response) {
+            // called asynchronously if an error occurs
+            // or server returns response with an error status.
+          });
+      }
+      
+      return {
+        registerMedicine: registerMedicine
+      }
+    }
+  );
 
 /***/ })
 /******/ ]);
