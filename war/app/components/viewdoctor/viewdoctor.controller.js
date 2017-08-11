@@ -2,7 +2,7 @@
 app = angular.module('hplus.modules.viewdoctor');
 
   app.controller('ViewDoctorController',
-    function($scope, globalFactory, doctorFactory){
+    function($scope, globalFactory){
 		
 		$scope.data = [];
 		$scope.currentPage = 0;
@@ -14,9 +14,7 @@ app = angular.module('hplus.modules.viewdoctor');
       $scope.go = function(path){
         globalFactory.go(path);
       };
-	  
-	  $scope.doctor = {};
-	  
+
       $scope.specialization = [
         {
           name: "Doe, Jane",
@@ -111,10 +109,6 @@ app = angular.module('hplus.modules.viewdoctor');
 	  
 	  var list = $scope.specialization[0];
 	  console.log("",list);*/
-	  
-      $scope.registerDoctor = function(){
-        doctorFactory.viewDoctor($scope.doctor);
-      };
 	  
     }
   );
