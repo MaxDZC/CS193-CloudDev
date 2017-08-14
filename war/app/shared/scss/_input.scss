@@ -1,4 +1,4 @@
-input[type=text], input[type=password], input[type=number], select{
+input[type=text], input[type=password], input[type=number], input[type=email], input[type=date], select{
   margin-top: $sizePaddingHalf;
   margin-bottom: $sizePaddingHalf;
   width: 100%;
@@ -31,6 +31,20 @@ input[type=text]:focus, input[type=password]:focus, textarea:focus, select:focus
   border: 1.5px solid $seafoamGreen;
   transition: 0.3s ease;
 }
+
+/* Overrides for removing spinner in number input fields */
+input[type=number] {
+    -moz-appearance:textfield;
+}
+
+input[type=date]::-webkit-inner-spin-button,
+input[type=date]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+}
+/* End overrides */
+
 .shortinput{
   width:50% !important;
 }
