@@ -15,7 +15,7 @@ app = angular.module('hplus.modules.viewdoctor');
         globalFactory.go(path);
       };
 
-      $scope.specialization = [
+      $scope.record = [
         {
           name: "Doe, Jane",
 		  date: "Feb. 20, 2016",
@@ -86,9 +86,9 @@ app = angular.module('hplus.modules.viewdoctor');
 		
 	  $scope.makeTodos = function() {
 			for (var i=0;i<11;i++) {
-				var n = $scope.specialization[i].name;
-				var da = $scope.specialization[i].date;
-				var di = $scope.specialization[i].disease;
+				var n = $scope.record[i].name;
+				var da = $scope.record[i].date;
+				var di = $scope.record[i].disease;
 				console.log("",n);
 				$scope.data.push({ 
 				name: n,

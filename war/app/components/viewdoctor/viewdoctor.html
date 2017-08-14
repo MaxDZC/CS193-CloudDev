@@ -33,9 +33,6 @@
         Dr. John Appleseed
       </span>
 	  <div class="margins">
-		<!--<select ng-model="doctor.specialization">
-          <option ng-repeat="option in specialization" value="{{option.id}}">{{option.name}}</option>
-        </select>-->
 		<ul>
 			<li ng-repeat="option in data | startFrom:currentPage*pageSize | limitTo:pageSize">
 				<div class="card__container">
@@ -49,7 +46,7 @@
 				</div>
 			</li>
 		</ul>
-		<div class="col col-md-5 col-md-offset-4">
+		<div class="col col-md-5 col-md-offset-5">
 		<div class="pagination__page" ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1"><</div>
 		 {{currentPage+1}}/{{numberOfPages()}}
         <div class="pagination__page" ng-disabled="currentPage >= data.length/pageSize - 1" ng-click="currentPage=currentPage+1">></div>
@@ -58,40 +55,3 @@
     </div>
   </div>
 </div>
-
-<!-- Pagination Section 
-<div class="row">
-  <div class="col-md-10 col-md-offset-1">
-    <div class="col col-md-3 col-md-offset-9">
-      <div class="pagination__container">
-        <!--<div class="pagination__page">
-          <<
-        </div>
-      
-        <div class="pagination__page"> 
-          <
-        </div>
-      
-        <div class="pagination__page ">
-          2
-        </div>
-      
-        <div class="pagination__page pagination__current">
-          3
-        </div>
-      
-        <div class="pagination__page">
-          4
-        </div>
-      
-        <div class="pagination__page">
-          >
-        </div>
-      
-        <div class="pagination__page">
-          >>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>-->
