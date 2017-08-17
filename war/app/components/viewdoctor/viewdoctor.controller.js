@@ -98,18 +98,7 @@ app = angular.module('hplus.modules.viewdoctor');
 			}
 		};
 		
-		$scope.makeTodos();
-	  
-	  /*$scope.$watch('currentPage + numPerPage', function() {
-      var begin = (($scope.currentPage - 1) * $scope.numPerPage)
-    , end = begin + $scope.numPerPage;
-   
-      $scope.filteredTodos = $scope.todos.slice(begin, end);
-      });
-	  
-	  var list = $scope.specialization[0];
-	  console.log("",list);*/
-	  
+		$scope.makeTodos();  
     }
   );
   
