@@ -8,7 +8,7 @@ import sample.model.MedicineModel;
 public class MedicineService {
     MedicineDao medicineDao = new MedicineDao();
     
-    public void insertMed(MedicineDto inputMed){
+    public Boolean insertMed(MedicineDto inputMed){
         System.out.println("MedicineService.insertMed start");
         
         MedicineModel medicineModel = new MedicineModel(inputMed.getName(),
@@ -21,11 +21,13 @@ public class MedicineService {
                 medicineDao.insertMed(medicineModel);
             }else{
                 System.out.println("Medicine Already Exists!");
+                return false ;
             }
         }catch(Exception e){
             System.out.println("Exception in inserting medicine: "+e.toString());
         }
         
         System.out.println("MedicineService.insertMed end");
+        return true ;
     }
 }

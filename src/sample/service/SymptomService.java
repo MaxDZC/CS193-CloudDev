@@ -15,7 +15,7 @@ public class SymptomService {
      * Used to insert an item to the datastore
      * @param inputSymp - the dto that contains the data to be stored in the model object
      */
-    public void insertSymp(SymptomDto inputSymp){
+    public Boolean insertSymp(SymptomDto inputSymp){
         System.out.println("SymptomService.insertSymp start");
         
         SymptomModel SymptomModel = new SymptomModel(inputSymp.getName()
@@ -26,11 +26,13 @@ public class SymptomService {
                 SymptomDao.insertSymp(SymptomModel);
             }else{
                 System.out.println("Symptom Already Exists!");
+                return false;
             }
         }catch (Exception e){
             System.out.println("Exception in inserting Symptom: "+e.toString());
         }
         
         System.out.println("SymptomService.insertSymp end");
+        return true;
     }
 }

@@ -1,6 +1,7 @@
 package sample.controller;
 
 import java.io.BufferedReader;
+import java.io.PrintWriter;
 
 import org.slim3.controller.Controller;
 import org.slim3.controller.Navigation;
@@ -22,7 +23,7 @@ public class PatientController extends Controller {
     @Override
     protected Navigation run() throws Exception {
         System.out.println("PatientController.run start");
-        
+        JSONObject json = new JSONObject();
         
         
         try{
@@ -52,13 +53,25 @@ public class PatientController extends Controller {
                                                );
             
             
-            PatientService.insertPat(PatientDto);
+           ;
+            
+            if( PatientService.insertPat(PatientDto) == false){
+                json.put("message", "duplicated");
+                  
+            } else {
+                json.put("message", true);
+            }
+            response.setContentType("application/json");
+            response.setCharacterEncoding("utf-8");
+            PrintWriter out = response.getWriter();     
+            //print JSon
+            out.print(json.toString());
         }catch(Exception e){
             System.out.println("PatientController.run.exception: "+e.toString());
         }
         
         System.out.println("PatientController.run end");
         //screen redirection.
-        return forward("/app/components/editPatient/editPatient.html/");
+        return null;
     }
 }

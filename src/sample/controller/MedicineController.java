@@ -1,6 +1,7 @@
 package sample.controller;
 
 import java.io.BufferedReader;
+import java.io.PrintWriter;
 
 import org.slim3.controller.Controller;
 import org.slim3.controller.Navigation;
@@ -16,7 +17,7 @@ public class MedicineController extends Controller {
     @Override
     protected Navigation run() throws Exception {
         System.out.println("MedicineController.run start");
-        
+        JSONObject json = new JSONObject();
         try{
             BufferedReader br = request.getReader();
             String str = null;
@@ -30,13 +31,24 @@ public class MedicineController extends Controller {
                                                       jObj.getString("desc"),
                                                       Double.parseDouble(jObj.getString("price"))
                                                      );
-            medicineService.insertMed(medicineDto);
+          
+            if(medicineService.insertMed(medicineDto) == false){
+                json.put("message", "duplicated");
+                  
+            } else {
+                json.put("message", true);
+            }
+            response.setContentType("application/json");
+            response.setCharacterEncoding("utf-8");
+            PrintWriter out = response.getWriter();     
+            //print JSon
+            out.print(json.toString());
         }catch(Exception e){
             System.out.println("MedicineController.run.exception: "+e.toString());
         }
         
         System.out.println("MedicineController.run end");
         
-        return forward("/app/components/exploremedicines/exploremedicines.html/");
+        return null;
     }
 }
