@@ -10,7 +10,7 @@ public class DoctorService {
     /**
      * Used to access the DAO functions for the DoctorModel
      */
-    DoctorDao doctorDao = new DoctorDao();
+    static DoctorDao doctorDao = new DoctorDao();
   
     //
     
@@ -46,5 +46,57 @@ public class DoctorService {
         
         System.out.println("DoctorService.insertDoc end");
         return true;
+    }
+    public Boolean updateDoctor(DoctorDto doctorDto) {
+        System.out.println("ReportCardService.updateRecord " + "start");
+        /**
+         * ReportCardModel that will be stored to the datastore. 
+         */
+        DoctorModel doctorModel = storeDtoToModel(doctorDto);
+        
+        try {
+            // checking if there is already the same item that exists in the datastore.
+            DoctorModel resultModel = doctorDao.getCardByEmail(doctorModel);
+            
+            if (resultModel != null) {
+                // setting the key in order to properly update the item
+                doctorModel.setKey(resultModel.getKey());
+                // update the entity to the datastore.
+                DoctorService.doctorDao.updateDoctor(doctorModel);
+                return true;
+                
+            }
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        }
+        return false;
+       
+    }
+    
+    private DoctorModel storeDtoToModel(DoctorDto doctorDto) {
+           
+        DoctorModel doctorModel = new DoctorModel();
+            
+            // Storing the data from the DTO.
+              doctorModel.setId(doctorDto.getId());
+            doctorModel.setFirstName(doctorDto.getFirstName());
+            doctorModel.setLastName(doctorDto.getLastName());
+            doctorModel.setAddress(doctorDto.getAddress());
+            doctorModel.setSpecialization(doctorDto.getSpecialization());
+            doctorModel.setContactNumber(doctorDto.getContactNumber());
+            doctorModel.setBirthDay(doctorDto.getBirthDay());
+            doctorModel.setUserName(doctorDto.getUserName());
+            doctorModel.setPassWord(doctorDto.getPassWord());
+            
+      
+            System.out.println("ReportCardService.storeDtoToModel " + "end");
+            
+            // returning the model
+            return doctorModel;
+        
+    }
+    public static Object getDoctors() {
+        // TODO Auto-generated method stub
+        return doctorDao.getDoctors();
     }
 }

@@ -8,6 +8,7 @@ import org.slim3.controller.Navigation;
 import org.slim3.repackaged.org.json.JSONObject;
 
 import sample.dto.DoctorDto;
+import sample.dao.DoctorDao;
 import sample.service.DoctorService;
 
 public class DoctorController extends Controller {
@@ -16,6 +17,7 @@ public class DoctorController extends Controller {
      * Service object that will be used to call CRUD functions to datastore
      */
     DoctorService doctorService = new DoctorService();
+ 
     
     /**
      * For now, used to insert a 'doctor' entity to the datastore
@@ -25,8 +27,7 @@ public class DoctorController extends Controller {
         System.out.println("DoctorController.run start");
      
         JSONObject json = new JSONObject();
-        
-        
+        String action = request.getParameter("action");
         
         try{
             /**
@@ -44,24 +45,36 @@ public class DoctorController extends Controller {
              * Used to store the information from the request and send to the
              * service class.
              */
-            DoctorDto doctorDto = new DoctorDto(jObj.getString("fname"),
-                                                jObj.getString("lname"),
-                                                jObj.getString("address"),
-                                                jObj.getString("specialization"),
-                                                ""+jObj.getInt("number")+"",
-                                                jObj.getString("birthday"),
-                                                jObj.getString("username"),
-                                                jObj.getString("password"),
-                                                jObj.getString("email")
-                                               );
-            
-            
-            if(doctorService.insertDoc(doctorDto) == false){
-                json.put("message", "duplicated");
-                  
-            } else {
-                json.put("message", true);
-            }
+          if(action == "register" ){
+              DoctorDto doctorDto = new DoctorDto(jObj.getString("fname"),
+                  jObj.getString("lname"),
+                  jObj.getString("address"),
+                  jObj.getString("specialization"),
+                  ""+jObj.getInt("number")+"",
+                  jObj.getString("birthday"),
+                  jObj.getString("username"),
+                  jObj.getString("password"),
+                  jObj.getString("email")
+                 );
+             if(doctorService.insertDoc(doctorDto) == false){
+                  json.put("message", "duplicated");
+
+                   } else {
+                        json.put("message", true);
+                   }
+              
+          } else if(action == "update") {
+              
+              
+          } else if(action == "delete") {
+              
+              
+          } else if(action == "getDoctor") {
+              json.put("doctors", DoctorService.getDoctors());
+          }  else if(action == "getDoctors") {
+              json.put("doctors", DoctorService.getDoctor());
+          }
+           
             response.setContentType("application/json");
             response.setCharacterEncoding("utf-8");
             PrintWriter out = response.getWriter();     

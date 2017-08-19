@@ -1,12 +1,14 @@
 package sample.dao;
 
+import java.util.ArrayList;
+
 import org.slim3.datastore.Datastore;
 
-import com.google.appengine.api.datastore.Key;
-import com.google.appengine.api.datastore.KeyFactory;
+import com.google.appengine.api.datastore.*;
 import com.google.appengine.api.datastore.Query.FilterOperator;
-import com.google.appengine.api.datastore.Transaction;
-
+import com.google.apphosting.client.datastoreservice.proto.DatastoreService;
+import com.sun.xml.internal.bind.v2.schemagen.xmlschema.List;
+import sample.meta.DoctorModelMeta;
 import sample.model.DoctorModel;
 
 public class DoctorDao{
@@ -33,6 +35,32 @@ public class DoctorDao{
         }
     }
     
+    public  Object getDoctors(){
+        com.google.appengine.api.datastore.DatastoreService datastore = DatastoreServiceFactory
+                .getDatastoreService();
+                ArrayList<DoctorModel> results =  new ArrayList<DoctorModel>();
+
+               Query query = new Query("DoctorModel");
+                java.util.List<Entity> entities = datastore.prepare(query).asList(
+                 FetchOptions.Builder.withDefaults());
+
+               for (Entity entity : entities) {
+                 results.add(DoctorModelMeta.get().entityToModel(entity));
+               }
+               
+            return results ;
+        
+    }
+    public void updateDoctor(DoctorModel inputDoctor) {
+        System.out.println("ReportCardDao.updateReportCard " + "start");
+        // TODO: Implement this function.
+        Transaction trans = Datastore.beginTransaction();
+        
+        Datastore.put(trans, inputDoctor);
+        
+        trans.commit();
+        System.out.println("ReportCardDao.updateReportCard " + "end");
+    }
     /**
      * Used to insert the 'Doctor' to the datastore
      * @param inputDoc - the item to be inserted
@@ -53,5 +81,18 @@ public class DoctorDao{
         Datastore.put(inputDoc);
         trans.commit();
         System.out.println("DoctorDao.insertDoc end");
+    }
+
+    public DoctorModel getCardByEmail(DoctorModel doctorModel) {
+        
+        if(DoctorModelMeta.get().entityToModel(
+            Datastore.query("DoctorModel")
+                     .filter("email", FilterOperator.EQUAL, doctorModel.getEmail())
+                     .asSingleEntity()) == null){
+            return null;
+        }else{
+          
+            return doctorModel;
+        }
     }
 }
