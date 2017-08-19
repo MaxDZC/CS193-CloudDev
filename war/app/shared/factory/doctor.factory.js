@@ -9,7 +9,10 @@ angular.module('hplus.factory')
           url: '/Doctor', // Change URL here
           data: doctorObject
         }).then(function successCallback(response) {
-            // this callback will be called asynchronously
+           //  {"message",true} -> Was inserted
+          // {"message",false} -> An error occured
+         // {"message","duplicated"} -> Email already exis
+        	console.log(response);
             // when the response is available
           }, function errorCallback(response) {
             // called asynchronously if an error occurs
