@@ -1,6 +1,8 @@
 package sample.controller;
 
 import java.io.BufferedReader;
+import java.io.PrintWriter;
+
 import org.slim3.controller.Controller;
 import org.slim3.controller.Navigation;
 import org.slim3.repackaged.org.json.JSONObject;
@@ -22,7 +24,8 @@ public class DoctorController extends Controller {
     protected Navigation run() throws Exception {
         System.out.println("DoctorController.run start");
      // SendMail.send();
-      boolean exist = false ; 
+        JSONObject json = new JSONObject();
+        
         
         
         try{
@@ -54,15 +57,23 @@ public class DoctorController extends Controller {
             
             
             if(doctorService.insertDoc(doctorDto) == false){
-                return forward("/app/shared/parts/actions/exist.html");
-            } 
+                json.put("message", "duplicated");
+                  
+            } else {
+                json.put("message", true);
+            }
+            response.setContentType("application/json");
+            response.setCharacterEncoding("utf-8");
+            PrintWriter out = response.getWriter();     
+            //print JSon
+            out.print(json.toString());
         }catch(Exception e){
-            System.out.println("DoctorController.run.exception: "+e.toString());
-            return forward("/app/shared/parts/actions/failed.html");
+           
+          
         }
         
         System.out.println("DoctorController.run end");
         //screen redirection.
-        return forward("/app/shared/parts/actions/success.html");
+        return null;
     }
 }
