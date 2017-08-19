@@ -1,61 +1,56 @@
 package sample.meta;
 
-//@javax.annotation.Generated(value = { "slim3-gen", "@VERSION@" }, date = "2017-08-20 00:52:26")
+//@javax.annotation.Generated(value = { "slim3-gen", "@VERSION@" }, date = "2017-08-20 01:24:51")
 /** */
-public final class TweetMeta extends org.slim3.datastore.ModelMeta<sample.model.Tweet> {
+public final class SymptomModelMeta extends org.slim3.datastore.ModelMeta<sample.model.SymptomModel> {
 
     /** */
-    public final org.slim3.datastore.StringAttributeMeta<sample.model.Tweet> content = new org.slim3.datastore.StringAttributeMeta<sample.model.Tweet>(this, "content", "content");
+    public final org.slim3.datastore.CoreAttributeMeta<sample.model.SymptomModel, java.lang.Long> id = new org.slim3.datastore.CoreAttributeMeta<sample.model.SymptomModel, java.lang.Long>(this, "id", "id", java.lang.Long.class);
 
     /** */
-    public final org.slim3.datastore.StringAttributeMeta<sample.model.Tweet> createdDate = new org.slim3.datastore.StringAttributeMeta<sample.model.Tweet>(this, "createdDate", "createdDate");
+    public final org.slim3.datastore.CoreAttributeMeta<sample.model.SymptomModel, com.google.appengine.api.datastore.Key> key = new org.slim3.datastore.CoreAttributeMeta<sample.model.SymptomModel, com.google.appengine.api.datastore.Key>(this, "__key__", "key", com.google.appengine.api.datastore.Key.class);
 
     /** */
-    public final org.slim3.datastore.CoreAttributeMeta<sample.model.Tweet, java.lang.Long> id = new org.slim3.datastore.CoreAttributeMeta<sample.model.Tweet, java.lang.Long>(this, "id", "id", long.class);
+    public final org.slim3.datastore.StringAttributeMeta<sample.model.SymptomModel> name = new org.slim3.datastore.StringAttributeMeta<sample.model.SymptomModel>(this, "name", "name");
 
     /** */
-    public final org.slim3.datastore.CoreAttributeMeta<sample.model.Tweet, com.google.appengine.api.datastore.Key> key = new org.slim3.datastore.CoreAttributeMeta<sample.model.Tweet, com.google.appengine.api.datastore.Key>(this, "__key__", "key", com.google.appengine.api.datastore.Key.class);
+    public final org.slim3.datastore.CoreAttributeMeta<sample.model.SymptomModel, java.lang.Long> version = new org.slim3.datastore.CoreAttributeMeta<sample.model.SymptomModel, java.lang.Long>(this, "version", "version", java.lang.Long.class);
 
-    /** */
-    public final org.slim3.datastore.CoreAttributeMeta<sample.model.Tweet, java.lang.Long> version = new org.slim3.datastore.CoreAttributeMeta<sample.model.Tweet, java.lang.Long>(this, "version", "version", java.lang.Long.class);
-
-    private static final TweetMeta slim3_singleton = new TweetMeta();
+    private static final SymptomModelMeta slim3_singleton = new SymptomModelMeta();
 
     /**
      * @return the singleton
      */
-    public static TweetMeta get() {
+    public static SymptomModelMeta get() {
        return slim3_singleton;
     }
 
     /** */
-    public TweetMeta() {
-        super("Tweet", sample.model.Tweet.class);
+    public SymptomModelMeta() {
+        super("SymptomModel", sample.model.SymptomModel.class);
     }
 
     @Override
-    public sample.model.Tweet entityToModel(com.google.appengine.api.datastore.Entity entity) {
-        sample.model.Tweet model = new sample.model.Tweet();
-        model.setContent((java.lang.String) entity.getProperty("content"));
-        model.setCreatedDate((java.lang.String) entity.getProperty("createdDate"));
-        model.setId(longToPrimitiveLong((java.lang.Long) entity.getProperty("id")));
+    public sample.model.SymptomModel entityToModel(com.google.appengine.api.datastore.Entity entity) {
+        sample.model.SymptomModel model = new sample.model.SymptomModel();
+        model.setId((java.lang.Long) entity.getProperty("id"));
         model.setKey(entity.getKey());
+        model.setName((java.lang.String) entity.getProperty("name"));
         model.setVersion((java.lang.Long) entity.getProperty("version"));
         return model;
     }
 
     @Override
     public com.google.appengine.api.datastore.Entity modelToEntity(java.lang.Object model) {
-        sample.model.Tweet m = (sample.model.Tweet) model;
+        sample.model.SymptomModel m = (sample.model.SymptomModel) model;
         com.google.appengine.api.datastore.Entity entity = null;
         if (m.getKey() != null) {
             entity = new com.google.appengine.api.datastore.Entity(m.getKey());
         } else {
             entity = new com.google.appengine.api.datastore.Entity(kind);
         }
-        entity.setProperty("content", m.getContent());
-        entity.setProperty("createdDate", m.getCreatedDate());
         entity.setProperty("id", m.getId());
+        entity.setProperty("name", m.getName());
         entity.setProperty("version", m.getVersion());
         entity.setProperty("slim3.schemaVersion", 1);
         return entity;
@@ -63,20 +58,20 @@ public final class TweetMeta extends org.slim3.datastore.ModelMeta<sample.model.
 
     @Override
     protected com.google.appengine.api.datastore.Key getKey(Object model) {
-        sample.model.Tweet m = (sample.model.Tweet) model;
+        sample.model.SymptomModel m = (sample.model.SymptomModel) model;
         return m.getKey();
     }
 
     @Override
     protected void setKey(Object model, com.google.appengine.api.datastore.Key key) {
         validateKey(key);
-        sample.model.Tweet m = (sample.model.Tweet) model;
+        sample.model.SymptomModel m = (sample.model.SymptomModel) model;
         m.setKey(key);
     }
 
     @Override
     protected long getVersion(Object model) {
-        sample.model.Tweet m = (sample.model.Tweet) model;
+        sample.model.SymptomModel m = (sample.model.SymptomModel) model;
         return m.getVersion() != null ? m.getVersion().longValue() : 0L;
     }
 
@@ -86,7 +81,7 @@ public final class TweetMeta extends org.slim3.datastore.ModelMeta<sample.model.
 
     @Override
     protected void incrementVersion(Object model) {
-        sample.model.Tweet m = (sample.model.Tweet) model;
+        sample.model.SymptomModel m = (sample.model.SymptomModel) model;
         long version = m.getVersion() != null ? m.getVersion().longValue() : 0L;
         m.setVersion(Long.valueOf(version + 1L));
     }
@@ -116,22 +111,20 @@ public final class TweetMeta extends org.slim3.datastore.ModelMeta<sample.model.
 
     @Override
     protected void modelToJson(org.slim3.datastore.json.JsonWriter writer, java.lang.Object model, int maxDepth, int currentDepth) {
-        sample.model.Tweet m = (sample.model.Tweet) model;
+        sample.model.SymptomModel m = (sample.model.SymptomModel) model;
         writer.beginObject();
         org.slim3.datastore.json.Default encoder0 = new org.slim3.datastore.json.Default();
-        if(m.getContent() != null){
-            writer.setNextPropertyName("content");
-            encoder0.encode(writer, m.getContent());
+        if(m.getId() != null){
+            writer.setNextPropertyName("id");
+            encoder0.encode(writer, m.getId());
         }
-        if(m.getCreatedDate() != null){
-            writer.setNextPropertyName("createdDate");
-            encoder0.encode(writer, m.getCreatedDate());
-        }
-        writer.setNextPropertyName("id");
-        encoder0.encode(writer, m.getId());
         if(m.getKey() != null){
             writer.setNextPropertyName("key");
             encoder0.encode(writer, m.getKey());
+        }
+        if(m.getName() != null){
+            writer.setNextPropertyName("name");
+            encoder0.encode(writer, m.getName());
         }
         if(m.getVersion() != null){
             writer.setNextPropertyName("version");
@@ -141,18 +134,16 @@ public final class TweetMeta extends org.slim3.datastore.ModelMeta<sample.model.
     }
 
     @Override
-    protected sample.model.Tweet jsonToModel(org.slim3.datastore.json.JsonRootReader rootReader, int maxDepth, int currentDepth) {
-        sample.model.Tweet m = new sample.model.Tweet();
+    protected sample.model.SymptomModel jsonToModel(org.slim3.datastore.json.JsonRootReader rootReader, int maxDepth, int currentDepth) {
+        sample.model.SymptomModel m = new sample.model.SymptomModel();
         org.slim3.datastore.json.JsonReader reader = null;
         org.slim3.datastore.json.Default decoder0 = new org.slim3.datastore.json.Default();
-        reader = rootReader.newObjectReader("content");
-        m.setContent(decoder0.decode(reader, m.getContent()));
-        reader = rootReader.newObjectReader("createdDate");
-        m.setCreatedDate(decoder0.decode(reader, m.getCreatedDate()));
         reader = rootReader.newObjectReader("id");
         m.setId(decoder0.decode(reader, m.getId()));
         reader = rootReader.newObjectReader("key");
         m.setKey(decoder0.decode(reader, m.getKey()));
+        reader = rootReader.newObjectReader("name");
+        m.setName(decoder0.decode(reader, m.getName()));
         reader = rootReader.newObjectReader("version");
         m.setVersion(decoder0.decode(reader, m.getVersion()));
         return m;

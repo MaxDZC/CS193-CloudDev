@@ -1,6 +1,7 @@
 package sample.controller;
 
 import java.io.BufferedReader;
+import java.io.PrintWriter;
 
 import org.slim3.controller.Controller;
 import org.slim3.controller.Navigation;
@@ -23,7 +24,8 @@ public class DoctorController extends Controller {
     protected Navigation run() throws Exception {
         System.out.println("DoctorController.run start");
      // SendMail.send();
-
+        JSONObject json = new JSONObject();
+        
         
         
         try{
@@ -46,7 +48,7 @@ public class DoctorController extends Controller {
                                                 jObj.getString("lname"),
                                                 jObj.getString("address"),
                                                 jObj.getString("specialization"),
-                                                jObj.getString("number"),
+                                                ""+jObj.getInt("number")+"",
                                                 jObj.getString("birthday"),
                                                 jObj.getString("username"),
                                                 jObj.getString("password"),
@@ -54,13 +56,24 @@ public class DoctorController extends Controller {
                                                );
             
             
-            doctorService.insertDoc(doctorDto);
+            if(doctorService.insertDoc(doctorDto) == false){
+                json.put("message", "duplicated");
+                  
+            } else {
+                json.put("message", true);
+            }
+            response.setContentType("application/json");
+            response.setCharacterEncoding("utf-8");
+            PrintWriter out = response.getWriter();     
+            //print JSon
+            out.print(json.toString());
         }catch(Exception e){
-            System.out.println("DoctorController.run.exception: "+e.toString());
+           
+          
         }
         
         System.out.println("DoctorController.run end");
         //screen redirection.
-        return forward("/app/components/editdoctor/editdoctor.html/");
+        return null;
     }
 }
