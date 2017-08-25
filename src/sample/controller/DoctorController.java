@@ -79,7 +79,7 @@ public class DoctorController extends Controller {
     }
    } else if (action == "deleteDoctor") {
     if (DoctorService.updateDoctor(doctorDto)) {
-     json.put("message", "The Profil of Dr " + jObj.getString("lname") + " was updated ");
+     json.put("message", "The Profil of Dr " + jObj.getString("lname") + " was deleted ");
     } else {
      json.put("message", false);
     }
