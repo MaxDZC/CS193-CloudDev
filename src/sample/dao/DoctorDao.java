@@ -2,12 +2,11 @@ package sample.dao;
 
 import java.util.ArrayList;
 
+
 import org.slim3.datastore.Datastore;
 
 import com.google.appengine.api.datastore.*;
 import com.google.appengine.api.datastore.Query.FilterOperator;
-import com.google.apphosting.client.datastoreservice.proto.DatastoreService;
-import com.sun.xml.internal.bind.v2.schemagen.xmlschema.List;
 import sample.meta.DoctorModelMeta;
 import sample.model.DoctorModel;
 
@@ -18,20 +17,19 @@ public class DoctorDao{
      * @param inputDoc - contains the information for verification
      * @return DoctorModel returned by the query
      */
-    public DoctorModel getDoc(DoctorModel inputDoc){
+    public DoctorModel getDoctor(Long id){
         System.out.println("DoctorDao.getDoc start");
-        
-        if(Datastore.query("DoctorModel")
-                .filter("email", 
-                         FilterOperator.EQUAL, 
-                         inputDoc.getEmail()
-                        ).asSingleEntity() == null){
-            
+        DoctorModel doctor =    DoctorModelMeta.get().entityToModel(
+            Datastore.query("DoctorModel")
+                     .filter("id", FilterOperator.EQUAL, id)
+                     .asSingleEntity()) ;
+        if(doctor != null){
+ 
             System.out.println("DoctorDao.getDoc end(success)");
-            return null;
+            return doctor;
         }else{
             System.out.println("DoctorDao.getDoc end(failed)");
-            return inputDoc;
+            return null;
         }
     }
     
@@ -52,14 +50,14 @@ public class DoctorDao{
         
     }
     public void updateDoctor(DoctorModel inputDoctor) {
-        System.out.println("ReportCardDao.updateReportCard " + "start");
+        System.out.println("DoctorDao.updateDoctor " + "start");
         // TODO: Implement this function.
         Transaction trans = Datastore.beginTransaction();
         
         Datastore.put(trans, inputDoctor);
         
         trans.commit();
-        System.out.println("ReportCardDao.updateReportCard " + "end");
+        System.out.println("DoctorDao.updateDoctor " + "end");
     }
     /**
      * Used to insert the 'Doctor' to the datastore
@@ -83,16 +81,23 @@ public class DoctorDao{
         System.out.println("DoctorDao.insertDoc end");
     }
 
-    public DoctorModel getCardByEmail(DoctorModel doctorModel) {
+
+    public void deleteDoctor(DoctorModel inputDoc) {
+        // TODO Auto-generated method stub
+
+            System.out.println("DoctorDao.deleteDoctor " + "start");
+            // TODO: Implement this function.
+            Transaction trans = Datastore.beginTransaction();
+            
+            Key parentKey = KeyFactory.createKey("Doctor", inputDoc.getFirstName()+inputDoc.getLastName());
+            Key key = Datastore.allocateId(parentKey, "DoctorModel");
+            
+            Datastore.delete(key);
+            
+            trans.commit();
+            System.out.println("DoctorDao.deleteDoctor " + "end");
         
-        if(DoctorModelMeta.get().entityToModel(
-            Datastore.query("DoctorModel")
-                     .filter("email", FilterOperator.EQUAL, doctorModel.getEmail())
-                     .asSingleEntity()) == null){
-            return null;
-        }else{
-          
-            return doctorModel;
-        }
+        
     }
+
 }
