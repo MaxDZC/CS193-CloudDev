@@ -93,7 +93,7 @@ public class DoctorController extends Controller {
 
    response.setContentType("application/json");
    response.setCharacterEncoding("utf-8");
-   PrintWriter out = response.getWriter();
+   PrintWriter out = response.getWriter(); 
    //print JSon
    out.print(json.toString());
   } catch (Exception e) {
