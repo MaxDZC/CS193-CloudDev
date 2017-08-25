@@ -32,7 +32,7 @@ public class DoctorService {
                                                   inputDoc.getEmail()
                                                  );
         try{ 
-            if(doctorDao.getDoc(doctorModel) == null){
+            if(doctorDao.getDoctor(doctorModel.getId()) == null){
                 doctorDao.insertDoc(doctorModel);
                 EmailService.send(inputDoc.getEmail(), "Your account is Created");
                     System.out.println(inputDoc.getEmail()+"Email sent!");                
@@ -47,16 +47,14 @@ public class DoctorService {
         System.out.println("DoctorService.insertDoc end");
         return true;
     }
-    public Boolean updateDoctor(DoctorDto doctorDto) {
-        System.out.println("ReportCardService.updateRecord " + "start");
-        /**
-         * ReportCardModel that will be stored to the datastore. 
-         */
+    public static  Boolean updateDoctor(DoctorDto doctorDto) {
+        System.out.println("DoctorService.updateRecord " + "start");
+    
         DoctorModel doctorModel = storeDtoToModel(doctorDto);
         
         try {
             // checking if there is already the same item that exists in the datastore.
-            DoctorModel resultModel = doctorDao.getCardByEmail(doctorModel);
+            DoctorModel resultModel = (DoctorModel) doctorDao.getDoctor(doctorModel.getId());
             
             if (resultModel != null) {
                 // setting the key in order to properly update the item
@@ -72,13 +70,41 @@ public class DoctorService {
         return false;
        
     }
-    
-    private DoctorModel storeDtoToModel(DoctorDto doctorDto) {
+    public Boolean deleteDoctor(DoctorDto doctorDto) {
+        System.out.println("DoctorService.deleteRecord " + "start");
+        /**
+         * DoctorModel that will be stored to the datastore. 
+         */
+        DoctorModel doctorModel = storeDtoToModel(doctorDto);
+        
+        try { 
+            // checking if there is already the same item that exists in the datastore.
+            DoctorModel resultModel = (DoctorModel) doctorDao.getDoctor(doctorDto.getId());
+            
+            if (resultModel != null) {
+                // setting the key in order to properly delete the item
+                doctorModel.setKey(resultModel.getKey());
+                // delete the entity to the datastore.
+                DoctorService.doctorDao.deleteDoctor(doctorModel);
+            
+                System.out.println("Deleted Doctor");
+                return true ;
+            } else {
+                // deleting was canceled.
+                System.out.println("There is no item with the same id.");
+            }
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        }
+        System.out.println("DoctorService.deleteRecord " + "end");
+        return false;
+    }
+    private static DoctorModel storeDtoToModel(DoctorDto doctorDto) {
            
         DoctorModel doctorModel = new DoctorModel();
             
             // Storing the data from the DTO.
-              doctorModel.setId(doctorDto.getId());
+            doctorModel.setId(doctorDto.getId());
             doctorModel.setFirstName(doctorDto.getFirstName());
             doctorModel.setLastName(doctorDto.getLastName());
             doctorModel.setAddress(doctorDto.getAddress());
@@ -86,10 +112,9 @@ public class DoctorService {
             doctorModel.setContactNumber(doctorDto.getContactNumber());
             doctorModel.setBirthDay(doctorDto.getBirthDay());
             doctorModel.setUserName(doctorDto.getUserName());
-            doctorModel.setPassWord(doctorDto.getPassWord());
-            
+            doctorModel.setPassWord(doctorDto.getPassWord());           
       
-            System.out.println("ReportCardService.storeDtoToModel " + "end");
+            System.out.println("DoctorService.storeDtoToModel " + "end");
             
             // returning the model
             return doctorModel;
@@ -98,5 +123,9 @@ public class DoctorService {
     public static Object getDoctors() {
         // TODO Auto-generated method stub
         return doctorDao.getDoctors();
+    }
+    public static Object getDoctor(Long id) {
+        // TODO Auto-generated method stub
+        return doctorDao.getDoctor(id);
     }
 }

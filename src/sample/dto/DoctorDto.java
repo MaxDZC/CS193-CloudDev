@@ -61,16 +61,23 @@ public class DoctorDto {
 
     /**
      * Creates an instance of 'Doctor'
+     * @param string10 
+     * @param string9 
+     * @param string8 
+     * @param string7 
+     * @param string6 
+     * @param string5 
+     * @param string4 
+     * @param string3 
+     * @param string2 
+     * @param string 
      */
-    public DoctorDto(){
-        
-    }
-    
+
     /**
      * Creates an instance of 'Doctor' with attribute initialization
      */
     public DoctorDto(String firstName, String lastName, String address, String specialization,
-            String contactNumber, String birthDay, String userName, String passWord, String email){
+            String contactNumber, String birthDay, String userName, String passWord, String email, Long id){
         
         this.setFirstName(firstName);
         this.setLastName(lastName);
@@ -81,6 +88,7 @@ public class DoctorDto {
         this.setUserName(userName);
         this.setPassWord(passWord);
         this.setEmail(email);
+        this.setId(id);
     }
     
     /**
