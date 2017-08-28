@@ -1,5 +1,6 @@
 package sample.dao;
 
+import java.util.Date;
 import java.util.ArrayList;
 
 
@@ -17,7 +18,7 @@ public class DoctorDao{
      * @param inputDoc - contains the information for verification
      * @return DoctorModel returned by the query
      */
-    public DoctorModel getDoctor(Long id){
+    public DoctorModel getDoctorById(Long id){
         System.out.println("DoctorDao.getDoc start");
         DoctorModel doctor =    DoctorModelMeta.get().entityToModel(
             Datastore.query("DoctorModel")
@@ -30,6 +31,22 @@ public class DoctorDao{
         }else{
             System.out.println("DoctorDao.getDoc end(failed)");
             return null;
+        }
+    }
+    
+    public boolean getDoctorByEmail(String email){
+        System.out.println("DoctorDao.getDoc start");
+      
+        if(
+            Datastore.query("DoctorModel")
+            .filter("email", FilterOperator.EQUAL, email)
+            .asSingleEntity() != null){
+ 
+            System.out.println("DoctorDao.getDoc end(success)");
+            return true;
+        }else{
+            System.out.println("DoctorDao.getDoc end(failed)");
+            return false;
         }
     }
     
@@ -66,7 +83,7 @@ public class DoctorDao{
     public void insertDoc(DoctorModel inputDoc){
         System.out.println("DoctorDao.insertDoc start");
         Transaction trans = Datastore.beginTransaction();
-        
+
         //creating key and ID for the new entity
         Key parentKey = KeyFactory.createKey("Doctor", inputDoc.getFirstName()+inputDoc.getLastName());
         Key key = Datastore.allocateId(parentKey, "DoctorModel");
@@ -74,6 +91,7 @@ public class DoctorDao{
         //Setting the 'key' and 'id' of the model
         inputDoc.setKey(key);
         inputDoc.setId(key.getId());
+        inputDoc.setCreatedaAt(new Date().toString());
         
         //inserting the item to the datastore
         Datastore.put(inputDoc);
@@ -88,12 +106,9 @@ public class DoctorDao{
             System.out.println("DoctorDao.deleteDoctor " + "start");
             // TODO: Implement this function.
             Transaction trans = Datastore.beginTransaction();
-            
-            Key parentKey = KeyFactory.createKey("Doctor", inputDoc.getFirstName()+inputDoc.getLastName());
-            Key key = Datastore.allocateId(parentKey, "DoctorModel");
-            
-            Datastore.delete(key);
-            
+
+         
+            Datastore.put(inputDoc);
             trans.commit();
             System.out.println("DoctorDao.deleteDoctor " + "end");
         

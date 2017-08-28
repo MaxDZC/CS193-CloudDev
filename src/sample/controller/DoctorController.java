@@ -27,8 +27,8 @@ public class DoctorController extends Controller {
 
   JSONObject json = new JSONObject();
   String action = request.getParameter("action");
-
-  try {
+ 
+  
    /**
     * Used to retrieve the JSON equivalent data
     */
@@ -53,10 +53,10 @@ public class DoctorController extends Controller {
     jObj.getString("username"),
     jObj.getString("password"),
     jObj.getString("email"),
-    Long.parseLong(jObj.getString("id"))
+Long.parseLong("600")
 
    );
-   if (action == "registerDoctor") {
+   if (action.equals("registerDoctor")) {
 
 
     if (doctorService.insertDoc(doctorDto) == false) {
@@ -69,7 +69,7 @@ public class DoctorController extends Controller {
 
     }
 
-   } else if (action == "updateDoctor") {
+   } else if (action.equals( "updateDoctor")) {
 
 
     if (DoctorService.updateDoctor(doctorDto)) {
@@ -77,30 +77,26 @@ public class DoctorController extends Controller {
     } else {
      json.put("message", false);
     }
-   } else if (action == "deleteDoctor") {
-    if (DoctorService.updateDoctor(doctorDto)) {
-     json.put("message", "The Profil of Dr " + jObj.getString("lname") + " was updated ");
+   } else if (action.equals("deleteDoctor")) {
+    if (DoctorService.deleteDoctor(doctorDto)) {
+     json.put("message", "The Profil of Dr " + jObj.getString("lname") + " was deleted ");
     } else {
      json.put("message", false);
     }
 
-   } else if (action == "getDoctor") {
+   } else if (action.equals("getDoctor")) {
 
     json.put("doctors", DoctorService.getDoctor(Long.parseLong(jObj.getString("id"))));
-   } else if (action == "getDoctors") {
+   } else if (action.equals("getDoctors")) {
     json.put("doctors", DoctorService.getDoctors());
    }
 
    response.setContentType("application/json");
    response.setCharacterEncoding("utf-8");
-   PrintWriter out = response.getWriter();
+   PrintWriter out = response.getWriter(); 
    //print JSon
    out.print(json.toString());
-  } catch (Exception e) {
-
-
-  }
-
+  
   System.out.println("DoctorController.run end");
   //screen redirection.
   return null;

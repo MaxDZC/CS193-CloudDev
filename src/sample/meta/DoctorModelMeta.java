@@ -1,6 +1,6 @@
 package sample.meta;
 
-//@javax.annotation.Generated(value = { "slim3-gen", "@VERSION@" }, date = "2017-08-20 03:28:55")
+//@javax.annotation.Generated(value = { "slim3-gen", "@VERSION@" }, date = "2017-08-28 18:03:25")
 /** */
 public final class DoctorModelMeta extends org.slim3.datastore.ModelMeta<sample.model.DoctorModel> {
 
@@ -12,6 +12,12 @@ public final class DoctorModelMeta extends org.slim3.datastore.ModelMeta<sample.
 
     /** */
     public final org.slim3.datastore.StringAttributeMeta<sample.model.DoctorModel> contactNumber = new org.slim3.datastore.StringAttributeMeta<sample.model.DoctorModel>(this, "contactNumber", "contactNumber");
+
+    /** */
+    public final org.slim3.datastore.StringAttributeMeta<sample.model.DoctorModel> createdaAt = new org.slim3.datastore.StringAttributeMeta<sample.model.DoctorModel>(this, "createdaAt", "createdaAt");
+
+    /** */
+    public final org.slim3.datastore.StringAttributeMeta<sample.model.DoctorModel> deletedAt = new org.slim3.datastore.StringAttributeMeta<sample.model.DoctorModel>(this, "deletedAt", "deletedAt");
 
     /** */
     public final org.slim3.datastore.StringAttributeMeta<sample.model.DoctorModel> email = new org.slim3.datastore.StringAttributeMeta<sample.model.DoctorModel>(this, "email", "email");
@@ -33,6 +39,9 @@ public final class DoctorModelMeta extends org.slim3.datastore.ModelMeta<sample.
 
     /** */
     public final org.slim3.datastore.StringAttributeMeta<sample.model.DoctorModel> specialization = new org.slim3.datastore.StringAttributeMeta<sample.model.DoctorModel>(this, "specialization", "specialization");
+
+    /** */
+    public final org.slim3.datastore.StringAttributeMeta<sample.model.DoctorModel> updatedAt = new org.slim3.datastore.StringAttributeMeta<sample.model.DoctorModel>(this, "updatedAt", "updatedAt");
 
     /** */
     public final org.slim3.datastore.StringAttributeMeta<sample.model.DoctorModel> userName = new org.slim3.datastore.StringAttributeMeta<sample.model.DoctorModel>(this, "userName", "userName");
@@ -60,6 +69,8 @@ public final class DoctorModelMeta extends org.slim3.datastore.ModelMeta<sample.
         model.setAddress((java.lang.String) entity.getProperty("address"));
         model.setBirthDay((java.lang.String) entity.getProperty("birthDay"));
         model.setContactNumber((java.lang.String) entity.getProperty("contactNumber"));
+        model.setCreatedaAt((java.lang.String) entity.getProperty("createdaAt"));
+        model.setDeletedAt((java.lang.String) entity.getProperty("deletedAt"));
         model.setEmail((java.lang.String) entity.getProperty("email"));
         model.setFirstName((java.lang.String) entity.getProperty("firstName"));
         model.setId((java.lang.Long) entity.getProperty("id"));
@@ -67,6 +78,7 @@ public final class DoctorModelMeta extends org.slim3.datastore.ModelMeta<sample.
         model.setLastName((java.lang.String) entity.getProperty("lastName"));
         model.setPassWord((java.lang.String) entity.getProperty("passWord"));
         model.setSpecialization((java.lang.String) entity.getProperty("specialization"));
+        model.setUpdatedAt((java.lang.String) entity.getProperty("updatedAt"));
         model.setUserName((java.lang.String) entity.getProperty("userName"));
         model.setVersion((java.lang.Long) entity.getProperty("version"));
         return model;
@@ -84,12 +96,16 @@ public final class DoctorModelMeta extends org.slim3.datastore.ModelMeta<sample.
         entity.setProperty("address", m.getAddress());
         entity.setProperty("birthDay", m.getBirthDay());
         entity.setProperty("contactNumber", m.getContactNumber());
+        entity.setProperty("createdaAt", m.getCreatedaAt());
+        entity.setProperty("deletedAt", m.getDeletedAt());
         entity.setProperty("email", m.getEmail());
         entity.setProperty("firstName", m.getFirstName());
         entity.setProperty("id", m.getId());
         entity.setProperty("lastName", m.getLastName());
         entity.setProperty("passWord", m.getPassWord());
         entity.setProperty("specialization", m.getSpecialization());
+        entity.setProperty("updatedAt", m.getUpdatedAt());
+        entity.setProperty("updatedAt", m.getUpdatedAt());
         entity.setProperty("userName", m.getUserName());
         entity.setProperty("version", m.getVersion());
         entity.setProperty("slim3.schemaVersion", 1);
@@ -166,6 +182,14 @@ public final class DoctorModelMeta extends org.slim3.datastore.ModelMeta<sample.
             writer.setNextPropertyName("contactNumber");
             encoder0.encode(writer, m.getContactNumber());
         }
+        if(m.getCreatedaAt() != null){
+            writer.setNextPropertyName("createdaAt");
+            encoder0.encode(writer, m.getCreatedaAt());
+        }
+        if(m.getDeletedAt() != null){
+            writer.setNextPropertyName("deletedAt");
+            encoder0.encode(writer, m.getDeletedAt());
+        }
         if(m.getEmail() != null){
             writer.setNextPropertyName("email");
             encoder0.encode(writer, m.getEmail());
@@ -194,6 +218,10 @@ public final class DoctorModelMeta extends org.slim3.datastore.ModelMeta<sample.
             writer.setNextPropertyName("specialization");
             encoder0.encode(writer, m.getSpecialization());
         }
+        if(m.getUpdatedAt() != null){
+            writer.setNextPropertyName("updatedAt");
+            encoder0.encode(writer, m.getUpdatedAt());
+        }
         if(m.getUserName() != null){
             writer.setNextPropertyName("userName");
             encoder0.encode(writer, m.getUserName());
@@ -216,6 +244,10 @@ public final class DoctorModelMeta extends org.slim3.datastore.ModelMeta<sample.
         m.setBirthDay(decoder0.decode(reader, m.getBirthDay()));
         reader = rootReader.newObjectReader("contactNumber");
         m.setContactNumber(decoder0.decode(reader, m.getContactNumber()));
+        reader = rootReader.newObjectReader("createdaAt");
+        m.setCreatedaAt(decoder0.decode(reader, m.getCreatedaAt()));
+        reader = rootReader.newObjectReader("deletedAt");
+        m.setDeletedAt(decoder0.decode(reader, m.getDeletedAt()));
         reader = rootReader.newObjectReader("email");
         m.setEmail(decoder0.decode(reader, m.getEmail()));
         reader = rootReader.newObjectReader("firstName");
@@ -230,6 +262,8 @@ public final class DoctorModelMeta extends org.slim3.datastore.ModelMeta<sample.
         m.setPassWord(decoder0.decode(reader, m.getPassWord()));
         reader = rootReader.newObjectReader("specialization");
         m.setSpecialization(decoder0.decode(reader, m.getSpecialization()));
+        reader = rootReader.newObjectReader("updatedAt");
+        m.setUpdatedAt(decoder0.decode(reader, m.getUpdatedAt()));
         reader = rootReader.newObjectReader("userName");
         m.setUserName(decoder0.decode(reader, m.getUserName()));
         reader = rootReader.newObjectReader("version");

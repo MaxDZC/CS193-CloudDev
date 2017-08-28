@@ -1,5 +1,8 @@
 package sample.service;
 import sample.service.EmailService;
+
+import java.util.Date;
+
 import sample.dao.DoctorDao;
 import sample.dto.DoctorDto;
 import sample.model.DoctorModel;
@@ -32,7 +35,7 @@ public class DoctorService {
                                                   inputDoc.getEmail()
                                                  );
         try{ 
-            if(doctorDao.getDoctor(doctorModel.getId()) == null){
+            if(doctorDao.getDoctorByEmail(doctorModel.getEmail()) == false){
                 doctorDao.insertDoc(doctorModel);
                 EmailService.send(inputDoc.getEmail(), "Your account is Created");
                     System.out.println(inputDoc.getEmail()+"Email sent!");                
@@ -54,11 +57,12 @@ public class DoctorService {
         
         try {
             // checking if there is already the same item that exists in the datastore.
-            DoctorModel resultModel = (DoctorModel) doctorDao.getDoctor(doctorModel.getId());
+            DoctorModel resultModel = (DoctorModel) doctorDao.getDoctorById(doctorModel.getId());
             
             if (resultModel != null) {
                 // setting the key in order to properly update the item
                 doctorModel.setKey(resultModel.getKey());
+                doctorModel.setUpdatedAt(new Date().toString());
                 // update the entity to the datastore.
                 DoctorService.doctorDao.updateDoctor(doctorModel);
                 return true;
@@ -70,7 +74,7 @@ public class DoctorService {
         return false;
        
     }
-    public Boolean deleteDoctor(DoctorDto doctorDto) {
+    public static Boolean deleteDoctor(DoctorDto doctorDto) {
         System.out.println("DoctorService.deleteRecord " + "start");
         /**
          * DoctorModel that will be stored to the datastore. 
@@ -79,11 +83,12 @@ public class DoctorService {
         
         try { 
             // checking if there is already the same item that exists in the datastore.
-            DoctorModel resultModel = (DoctorModel) doctorDao.getDoctor(doctorDto.getId());
+            DoctorModel resultModel = (DoctorModel) doctorDao.getDoctorById(doctorDto.getId());
             
             if (resultModel != null) {
                 // setting the key in order to properly delete the item
                 doctorModel.setKey(resultModel.getKey());
+                doctorModel.setDeletedAt(new Date().toString());
                 // delete the entity to the datastore.
                 DoctorService.doctorDao.deleteDoctor(doctorModel);
             
@@ -126,6 +131,6 @@ public class DoctorService {
     }
     public static Object getDoctor(Long id) {
         // TODO Auto-generated method stub
-        return doctorDao.getDoctor(id);
+        return doctorDao.getDoctorById(id);
     }
 }

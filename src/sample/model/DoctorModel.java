@@ -2,6 +2,7 @@ package sample.model;
 
 import java.io.Serializable;
 
+
 import com.google.appengine.api.datastore.Key;
 
 import org.slim3.datastore.Attribute;
@@ -28,6 +29,37 @@ public class DoctorModel implements Serializable {
     private String userName;
     private String passWord;
     private String email;
+    private String createdaAt;
+    private String deletedAt;
+    private String updatedAt;
+    
+    public String getCreatedaAt() {
+        return createdaAt;
+    }
+
+    public void setCreatedaAt(String string) {
+        this.createdaAt = string;
+    }
+
+    public String getDeletedAt() {
+        return deletedAt;
+    }
+
+    public void setDeletedAt(String string) {
+        this.deletedAt = string;
+    }
+
+    public String getUpdatedAt() {
+        
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(String string) {
+        this.updatedAt = string;
+    }
+
+   
+
     
  
 
@@ -52,6 +84,7 @@ public class DoctorModel implements Serializable {
         this.setUserName(userName);
         this.setPassWord(passWord);
         this.setEmail(email);
+ 
     }
     
     /**
