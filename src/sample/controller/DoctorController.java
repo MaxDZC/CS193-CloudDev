@@ -53,7 +53,7 @@ public class DoctorController extends Controller {
     jObj.getString("username"),
     jObj.getString("password"),
     jObj.getString("email"),
-Long.parseLong("600")
+Long.parseLong(jObj.getString("id"))
 
    );
    if (action.equals("registerDoctor")) {
