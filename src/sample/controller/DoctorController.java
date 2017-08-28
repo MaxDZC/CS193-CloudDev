@@ -29,7 +29,7 @@ public class DoctorController extends Controller {
   String action = request.getParameter("action");
  
   
-   /**
+   /** 
     * Used to retrieve the JSON equivalent data
     */
    BufferedReader br = request.getReader();
