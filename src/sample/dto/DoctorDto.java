@@ -1,5 +1,7 @@
 package sample.dto;
 
+import java.util.Date;
+
 public class DoctorDto {
     /**
      * The id of the 'Doctor'
@@ -50,7 +52,34 @@ public class DoctorDto {
      * The Email of the 'Doctor'
      */
     private String email;
+    private Date createdaAt;
+    private Date deletedAt;
+    private Date updatedAt;
     
+    public Date getCreatedaAt() {
+        return createdaAt;
+    }
+
+    public void setCreatedaAt(Date createdaAt) {
+        this.createdaAt = createdaAt;
+    }
+
+    public Date getDeletedAt() {
+        return deletedAt;
+    }
+
+    public void setDeletedAt(Date deletedAt) {
+        this.deletedAt = deletedAt;
+    }
+
+    public Date getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(Date updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
     public String getEmail() {
         return email;
     }

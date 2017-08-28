@@ -37,7 +37,7 @@ angular.module('hplus.modules.registerdoctor')
           doctorFactory.registerDoctor($scope.doctor);
         } else {
           // Temporary for now. Should be in a modal soon.
-          alert("Your passwords do not match.");
+        	SweetAlert.swal("Your passwords do not match.");
         }
       };
 
