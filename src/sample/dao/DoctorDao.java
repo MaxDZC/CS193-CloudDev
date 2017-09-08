@@ -106,8 +106,6 @@ public class DoctorDao{
             System.out.println("DoctorDao.deleteDoctor " + "start");
             // TODO: Implement this function.
             Transaction trans = Datastore.beginTransaction();
-
-         
             Datastore.put(inputDoc);
             trans.commit();
             System.out.println("DoctorDao.deleteDoctor " + "end");
