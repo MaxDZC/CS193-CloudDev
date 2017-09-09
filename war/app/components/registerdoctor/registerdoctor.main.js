@@ -8,3 +8,5 @@ angular.module('hplus.modules.registerdoctor', [])
         template: registerdoctor
       })
   });
+
+  require('./registerdoctor.controller.js');

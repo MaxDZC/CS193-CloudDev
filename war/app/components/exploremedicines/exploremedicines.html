@@ -1,157 +1,139 @@
-	<div class="row"><!-- Header Portion -->
-  		<div class="col col-md-10 col-md-offset-1">
-    		<h1>List of All Medicines</h1><!-- Header Name for this Module -->
-  		</div>
-	</div>
+<div class="row"><!-- Header Portion -->
+  <div class="col col-md-10 col-md-offset-1">
+    <h1>List of All Medicines</h1><!-- Header Name for this Module -->
+  </div>
+</div>
 
-	<div class="row"><!-- Body Portion -->
-  		<div class="col col-md-2 col-md-offset-1"><!-- Section for search -->
-
-    		<div class="row">
-      			<div class="col col-md-6">
-        			<label class="subtitle">
-          				Search
-        			</label>
-      			</div>
-    			<br><br>
-    		</div>
-    		
-    		<div class="match-padding">
-
-      			<input type="text" placeholder="Enter a name">
-
-      			<button>Search</button>
-    		</div>
-
-  		</div>
-
-  		<div class="col col-md-8"><!-- Section containing the list and detail of medicines -->
-
-    		<div class="col col-md-6"><!-- List sector -->
-      			<label class="subtitle">
-        			ALL RESULTS
-      			</label>
-      			<br><br>
-      			
-    			<!-- List Section -->
-      			<div class="card__container">
-        			<div class="card__title">
-          				Metformin
-        			</div>
-        			<div class="card__desc">
-          				Diabetes Mellitus
-        			</div>
-      			</div>
-
-      			<div class="card__container">
-        			<div class="card__title">
-          				Methadone
-        			</div>
-        			<div class="card__desc">
-          				Opioid dependency, chronic pain
-        			</div>
-      			</div>
-      			
-      			<div class="card__container">
-        			<div class="card__title">
-          				Methamphetamine
-        			</div>
-        			<div class="card__desc">
-          				Attention deficit hyperactivity disorder, obesity, and more...
-        			</div>
-      			</div>
-      			
-      			<div class="card__container">
-        			<div class="card__title">
-          				Methazolamide
-        			</div>
-        			<div class="card__desc">
-          				Intraocular pressure in glaucoma
-        			</div>
-      			</div>      			
-    		</div>
-    		<br><br><br><br><br>
-    		<div class="col col-md-5 col-md-offset-1"><!-- Detail Sector -->
-      			<label class="subtitle">
-        			DETAILS FOR Methampetamine
-      			</label>
-      			<br><br>
-      			
-    			<!-- Detail Section -->
-    			
-      			<div class="detail__container">
-      			
-      				<br><br>
-      				
-        			<div class="card__title">
-          				Methampetamine
-        			</div>
-        	
-        			<div class="detail__desc">
-          				<p>
-          					Methamphetamine is a strong central nervous system stimulant that is
-          					mainly used as a recreational drug and less commonly as a treatment
-          					for attention deficit hyperactivity disorder and obesity.
-          				</p>
-        			</div>
-        			
-        			<span class="detail__title">PRICE (PHP)</span>
-        			<span class="detail__subtitle">24,990.00</span>
-        			
-        			<br><br>
-        			
-        			<span class="detail__title">TREATMENT FOR</span>
-        			<span class="detail__subtitle">
-        				Attention deficit hyperactivity disorder, obesity
-        			</span>
-        			
-        			<br><br>
-        			 <div ng-controller="modalCtrl as alert"> 
-        			<a href="#!/admin/edit/medicine"><button >Edit</button></a><button class="delete_btn" ng-click="alert.confirm()">Delete</button>
-        			</div>
-      			</div>
-      		</div>
-  		</div>
-	</div>
+<div class="row"><!-- Body Portion -->
+  <div class="col col-md-2 col-md-offset-1"><!-- Section for search -->
+		<div class="row">
+		  <div class="col col-md-6">
+			<label class="subtitle">Search</label>
+		  </div>
+		</div>
 	
-	<br><br><br><br>
-	
-	<!-- Pagination Section -->
-	<div class="row">
-	
-		<div class="col col-md-3 col-md-offset-5">
-		
-			<div class="pagination__container">
+		<div class="match-padding">
+		  <input type="text" placeholder="Enter a name">
+		  <button>Search</button>
+		  <button ng-click="go('/admin/register/medicine')">New Medicine</button>
+		</div>
+  </div>
+
+  <div class="col col-md-8"><!-- Section containing the list and detail of medicines -->
+    <div class="col col-md-6"><!-- List sector -->
+		  <label class="subtitle">ALL RESULTS</label>
+		  
+		  <div class="margins">
+			  <!-- List Section -->
+			  <div class="card__container">
+			    <div class="card__title">
+					  Metformin
+					</div>
+				
+			    <div class="card__desc">
+					  Diabetes Mellitus
+					</div>
+			  </div>
+			  
+			  <div class="card__container">
+			    <div class="card__title">
+					  Methadone
+					</div>
+				
+					<div class="card__desc">
+					  Opioid dependency, chronic pain
+			    </div>
+			  </div>
+				
+			  <div class="card__container">
+			    <div class="card__title">
+					  Methamphetamine
+					</div>
+				
+					<div class="card__desc">
+					  Attention deficit hyperactivity disorder, obesity, and more...
+					</div>
+		    </div>
 			
-				<div class="pagination__page">
-					<<
-				</div>
-				
-				<div class="pagination__page">
-					<
-				</div>
-				
-				<div class="pagination__page ">
-					2
-				</div>
-				
-				<div class="pagination__page pagination__current">
-					3
-				</div>
-				
-				<div class="pagination__page">
-					4
-				</div>
-				
-				<div class="pagination__page">
-					>
-				</div>
-				
-				<div class="pagination__page">
-					>>
-				</div>
-				
-			</div>
+			  <div class="card__container">
+			    <div class="card__title">
+					  Methazolamide
+					</div>
+					<div class="card__desc">
+					  Intraocular pressure in glaucoma
+					</div>
+			  </div>  
+		  </div>    			
+    </div>
+	
+		<div class="col col-md-6"><!-- Detail Sector -->
+		  <label class="subtitle">DETAILS FOR Methampetamine</label>
+			<div class="margins">
+				<!-- Detail Section -->
+			  <div class="detail__container">
+					<div class="card__title">
+					  Methampetamine
+					</div>
 			
-  		</div>
-  	</div>
+					<div class="detail__desc">
+					  <p>
+					    Methamphetamine is a strong central nervous system stimulant that is
+						mainly used as a recreational drug and less commonly as a treatment
+						for attention deficit hyperactivity disorder and obesity.
+					  </p>
+					</div>
+					<span class="detail__title">PRICE (PHP)</span>
+					<span class="detail__subtitle">24,990.00</span>
+					<br>
+					<br>
+					<span class="detail__title">TREATMENT FOR</span>
+					<span class="detail__subtitle">Attention deficit hyperactivity disorder, obesity</span>	
+					<br>
+					<br>
+				  <div ng-controller="modalCtrl as alert"> 
+				    <button class="outline" ng-click="go('/admin/update/medicine')">Edit</button>
+				    <button class="outline" ng-click="alert.confirm()">Delete</button>
+				    <button class="outline" ng-click="go('/admin/view/medicine')">View</button>
+				  </div>
+		    </div>
+	    </div>
+	  </div>
+  </div>
+</div>
+
+<!-- Pagination Section -->
+<div class="row">
+  <div class="col-md-10 col-md-offset-1">
+    <div class="col col-md-3 col-md-offset-9">
+      <div class="pagination__container">
+        <div class="pagination__page">
+          <<
+        </div>
+      
+        <div class="pagination__page">
+          <
+        </div>
+      
+        <div class="pagination__page ">
+          2
+        </div>
+      
+        <div class="pagination__page pagination__current">
+          3
+        </div>
+      
+        <div class="pagination__page">
+          4
+        </div>
+      
+        <div class="pagination__page">
+          >
+        </div>
+      
+        <div class="pagination__page">
+          >>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

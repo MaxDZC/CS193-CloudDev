@@ -1,41 +1,53 @@
   .main {
-    max-width: 320px;
+
     margin: 0 auto;
+    max-width: 320px;
   }
+
   .login-or {
+
     position: relative;
-    font-size: 18px;
-    color: #aaa;
     margin-top: 10px;
-            margin-bottom: 10px;
+    margin-bottom: 10px;
     padding-top: 10px;
     padding-bottom: 10px;
+    font-size: 18px;
+    color: #aaa;
   }
+
   .span-or {
-    display: block;
+
     position: absolute;
     left: 50%;
     top: -2px;
     margin-left: -25px;
-    background-color: #fff;
+    display: block;
     width: 50px;
     text-align: center;
+    background-color: #fff;
+    
+    
   }
+
   .hr-or {
-    background-color: #cdcdcd;
+
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
     height: 1px;
-    margin-top: 0px !important;
-    margin-bottom: 0px !important;
+    background-color: #cdcdcd;
   }
   
   h3 {
-    text-align: center;
+
     line-height: 300%;
+    text-align: center;
   }
-input[type=password] {
-    margin-bottom: 0.6em;
-    width: 100%;
-    padding: 0.25em;
+
+input[type="password"] {
+
+    margin-bottom: .6em;
+    padding: .25em;
+    width: 100%; 
     font-family: "Fira Sans", Helvetica, Arial, sans-serif;
     font-size: 1.3em;
     color: #000;

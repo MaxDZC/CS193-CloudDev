@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row" ng-controller="HeaderController">
   <div class="col col-md-10 col-md-offset-1 header__background">
 
     <div class="col col-md-8" ng-click="go('/')">
@@ -13,11 +13,13 @@
         <span class="header__user-name">James Appleseed</span>
         <span class="header__user-title">Administrator</span>
       </span>
-
-      <span class="fa-stack fa-lg header__user-alignment">
-        <i class="fa fa-square fa-stack-2x"></i>
-        <i class="fa fa-chevron-down fa-stack-1x fa-inverse"></i>
-      </span>
+      
+      <div class="dropdown header__user-alignment">
+        <button class="dropbtn"><span class="fa fa-caret-down"></span></button>
+        <div class="dropdown-content">
+          <a href="#">View Profile</a>
+        </div>
+      </div>
     </div>
 
   </div>

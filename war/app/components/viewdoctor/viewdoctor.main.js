@@ -8,3 +8,5 @@ angular.module('hplus.modules.viewdoctor', [])
         template: viewdoctor
       })
   });
+
+  require('./viewdoctor.controller.js');

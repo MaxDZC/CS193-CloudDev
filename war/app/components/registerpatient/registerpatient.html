@@ -1,0 +1,33 @@
+<div class="row">
+  <div class="col col-md-8 col-md-offset-1">
+    <h1>Register Patient</h1>
+  </div>
+</div>
+
+<div class="row" ng-controller="RegisterPatientController">
+  <ng-form name="registerPatientForm">
+    <div class="col col-md-2 col-md-offset-1">
+  	  <div class="col col-md-12">
+  	    <label class="subtitle">Patient's First Name</label>
+  	    <input type="text" ng-model="patient.fname" ng-required="true">
+   	  </div>
+  	  <div class="col col-md-12">
+  	    <label class="subtitle">Patient's Last Name</label>
+  	    <input type="text" ng-model="patient.lname" ng-required="true">
+  	  </div>
+  	  <div class="col col-md-12">
+  	    <label class="subtitle">Birthday</label>
+  	    <input type="text" ng-model="patient.bday" ng-required="true">
+  	  </div>
+  	  <div class="col col-md-12">
+  	    <label class="subtitle">Sex</label>
+  	    <input type="text" ng-model="patient.sex" ng-required="true">
+  	  </div>
+  	  <br>
+  	  <br>
+  	  <div class="col col-md-6">
+  	    <button ng-hide="registerPatientForm.$invalid" ng-click="registerPatient()">Create</button>
+  	  </div>
+    </div>
+  </ng-form>
+</div>

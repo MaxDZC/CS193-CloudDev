@@ -8,3 +8,5 @@ angular.module('hplus.modules.editdoctor', [])
         template: editdoctor
       })
   });
+
+  require('./editdoctor.controller.js');

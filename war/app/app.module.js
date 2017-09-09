@@ -18,10 +18,12 @@ require('./components/exploremedicalrecords/exploremedicalrecords.main.js');
 require('./components/registerdiseases/registerdiseases.main.js');
 require('./components/registerdoctor/registerdoctor.main.js');
 require('./components/registermedicine/registermedicine.main.js');
+require('./components/registerpatient/registerpatient.main.js');
 require('./components/login/login.main.js');
 require('./components/viewdoctor/viewdoctor.main.js');
 require('./components/viewdisease/viewdisease.main.js');
 require('./components/viewmedicine/viewmedicine.main.js');
+require('./components/viewpatient/viewpatient.main.js');
 require('./components/resetpassword/resetpassword.main.js');
 
 angular.module('hplus.modules', [
@@ -41,9 +43,11 @@ angular.module('hplus.modules', [
   'hplus.modules.registerdiseases',
   'hplus.modules.registerdoctor',
   'hplus.modules.registermedicine',
+  'hplus.modules.registerpatient',
   'hplus.modules.viewdisease',
   'hplus.modules.viewdoctor',
   'hplus.modules.viewmedicine',
+  'hplus.modules.viewpatient',
   'hplus.modules.resetpassword'
 ]);
 

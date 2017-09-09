@@ -1,6 +1,6 @@
 angular.module('hplus.modules.navbar')
 
-  .controller('NavBarController',
+  .controller('NavbarController',
     function($scope, globalFactory){
 
       $scope.go = function(path){
