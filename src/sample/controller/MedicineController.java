@@ -88,7 +88,7 @@ public class MedicineController extends Controller {
         response.setContentType("application/json");
         response.setCharacterEncoding("utf-8");
         PrintWriter out = response.getWriter();
-        //print JSon
+        //print JSon 
         out.print(json.toString());
 
         System.out.println("MedicineController.run end");
