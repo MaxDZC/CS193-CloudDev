@@ -1,8 +1,14 @@
 package sample.meta;
 
-//@javax.annotation.Generated(value = { "slim3-gen", "@VERSION@" }, date = "2017-08-20 03:28:56")
+//@javax.annotation.Generated(value = { "slim3-gen", "@VERSION@" }, date = "2017-09-09 19:40:46")
 /** */
 public final class MedicineModelMeta extends org.slim3.datastore.ModelMeta<sample.model.MedicineModel> {
+
+    /** */
+    public final org.slim3.datastore.StringAttributeMeta<sample.model.MedicineModel> createdaAt = new org.slim3.datastore.StringAttributeMeta<sample.model.MedicineModel>(this, "createdaAt", "createdaAt");
+
+    /** */
+    public final org.slim3.datastore.StringAttributeMeta<sample.model.MedicineModel> deletedAt = new org.slim3.datastore.StringAttributeMeta<sample.model.MedicineModel>(this, "deletedAt", "deletedAt");
 
     /** */
     public final org.slim3.datastore.StringAttributeMeta<sample.model.MedicineModel> description = new org.slim3.datastore.StringAttributeMeta<sample.model.MedicineModel>(this, "description", "description");
@@ -18,6 +24,9 @@ public final class MedicineModelMeta extends org.slim3.datastore.ModelMeta<sampl
 
     /** */
     public final org.slim3.datastore.CoreAttributeMeta<sample.model.MedicineModel, java.lang.Double> price = new org.slim3.datastore.CoreAttributeMeta<sample.model.MedicineModel, java.lang.Double>(this, "price", "price", java.lang.Double.class);
+
+    /** */
+    public final org.slim3.datastore.StringAttributeMeta<sample.model.MedicineModel> updatedAt = new org.slim3.datastore.StringAttributeMeta<sample.model.MedicineModel>(this, "updatedAt", "updatedAt");
 
     /** */
     public final org.slim3.datastore.CoreAttributeMeta<sample.model.MedicineModel, java.lang.Long> version = new org.slim3.datastore.CoreAttributeMeta<sample.model.MedicineModel, java.lang.Long>(this, "version", "version", java.lang.Long.class);
@@ -39,11 +48,14 @@ public final class MedicineModelMeta extends org.slim3.datastore.ModelMeta<sampl
     @Override
     public sample.model.MedicineModel entityToModel(com.google.appengine.api.datastore.Entity entity) {
         sample.model.MedicineModel model = new sample.model.MedicineModel();
+        model.setCreatedaAt((java.lang.String) entity.getProperty("createdaAt"));
+        model.setDeletedAt((java.lang.String) entity.getProperty("deletedAt"));
         model.setDescription((java.lang.String) entity.getProperty("description"));
         model.setId((java.lang.Long) entity.getProperty("id"));
         model.setKey(entity.getKey());
         model.setName((java.lang.String) entity.getProperty("name"));
         model.setPrice((java.lang.Double) entity.getProperty("price"));
+        model.setUpdatedAt((java.lang.String) entity.getProperty("updatedAt"));
         model.setVersion((java.lang.Long) entity.getProperty("version"));
         return model;
     }
@@ -57,10 +69,13 @@ public final class MedicineModelMeta extends org.slim3.datastore.ModelMeta<sampl
         } else {
             entity = new com.google.appengine.api.datastore.Entity(kind);
         }
+        entity.setProperty("createdaAt", m.getCreatedaAt());
+        entity.setProperty("deletedAt", m.getDeletedAt());
         entity.setProperty("description", m.getDescription());
         entity.setProperty("id", m.getId());
         entity.setProperty("name", m.getName());
         entity.setProperty("price", m.getPrice());
+        entity.setProperty("updatedAt", m.getUpdatedAt());
         entity.setProperty("version", m.getVersion());
         entity.setProperty("slim3.schemaVersion", 1);
         return entity;
@@ -124,6 +139,14 @@ public final class MedicineModelMeta extends org.slim3.datastore.ModelMeta<sampl
         sample.model.MedicineModel m = (sample.model.MedicineModel) model;
         writer.beginObject();
         org.slim3.datastore.json.Default encoder0 = new org.slim3.datastore.json.Default();
+        if(m.getCreatedaAt() != null){
+            writer.setNextPropertyName("createdaAt");
+            encoder0.encode(writer, m.getCreatedaAt());
+        }
+        if(m.getDeletedAt() != null){
+            writer.setNextPropertyName("deletedAt");
+            encoder0.encode(writer, m.getDeletedAt());
+        }
         if(m.getDescription() != null){
             writer.setNextPropertyName("description");
             encoder0.encode(writer, m.getDescription());
@@ -144,6 +167,10 @@ public final class MedicineModelMeta extends org.slim3.datastore.ModelMeta<sampl
             writer.setNextPropertyName("price");
             encoder0.encode(writer, m.getPrice());
         }
+        if(m.getUpdatedAt() != null){
+            writer.setNextPropertyName("updatedAt");
+            encoder0.encode(writer, m.getUpdatedAt());
+        }
         if(m.getVersion() != null){
             writer.setNextPropertyName("version");
             encoder0.encode(writer, m.getVersion());
@@ -156,6 +183,10 @@ public final class MedicineModelMeta extends org.slim3.datastore.ModelMeta<sampl
         sample.model.MedicineModel m = new sample.model.MedicineModel();
         org.slim3.datastore.json.JsonReader reader = null;
         org.slim3.datastore.json.Default decoder0 = new org.slim3.datastore.json.Default();
+        reader = rootReader.newObjectReader("createdaAt");
+        m.setCreatedaAt(decoder0.decode(reader, m.getCreatedaAt()));
+        reader = rootReader.newObjectReader("deletedAt");
+        m.setDeletedAt(decoder0.decode(reader, m.getDeletedAt()));
         reader = rootReader.newObjectReader("description");
         m.setDescription(decoder0.decode(reader, m.getDescription()));
         reader = rootReader.newObjectReader("id");
@@ -166,6 +197,8 @@ public final class MedicineModelMeta extends org.slim3.datastore.ModelMeta<sampl
         m.setName(decoder0.decode(reader, m.getName()));
         reader = rootReader.newObjectReader("price");
         m.setPrice(decoder0.decode(reader, m.getPrice()));
+        reader = rootReader.newObjectReader("updatedAt");
+        m.setUpdatedAt(decoder0.decode(reader, m.getUpdatedAt()));
         reader = rootReader.newObjectReader("version");
         m.setVersion(decoder0.decode(reader, m.getVersion()));
         return m;
