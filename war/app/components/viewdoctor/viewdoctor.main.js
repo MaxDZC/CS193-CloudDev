@@ -9,4 +9,5 @@ angular.module('hplus.modules.viewdoctor', [])
       })
   });
 
+  require('./viewdoctor.directive.js');
   require('./viewdoctor.controller.js');

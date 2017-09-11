@@ -13,6 +13,7 @@ h1{
 }
 
 .subtitle{
+  margin-top: $sizePaddingHalf;
   display: inline-block;
   font-size: $sizeText;
   text-transform: uppercase;
@@ -54,45 +55,22 @@ a{
             user-select: none;
 }
 
-.marginBottom{
-  margin-bottom: $sizePaddingHalf;
-}	
-
-.marginTop{
-  margin-top: $sizePaddingHalf;
-} 
-
 .edit-button{
- 
-    color: #fff !important;
-    background-color: #1a566f !important;
+  color: #fff !important;
+  background-color: #1a566f !important;
 }
 .delete-button{ 
-    color: #fff !important;
-    background-color: #8a0719 !important;
+  color: #fff !important;
+  background-color: #8a0719 !important;
 }
 
 .delete__icon{
-   float: right;
-   color: #ab9393;
+  float: right;
+  color: #ab9393;
 }
 
 .delete_btn{
-margin-left: 12px;  
-}
-
-.margins{
-  margin-top: $sizePaddingHalf;
-  margin-bottom: $sizePaddingHalf;
-}
-
-.marginBottomNone{
-  margin-bottom: 0;
-}
-
-.borders{
-  border: 1.5px solid $black;
-  height:150px;
+  margin-left: 12px;  
 }
 
 .scrollable{
