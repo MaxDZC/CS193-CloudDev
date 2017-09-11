@@ -9,4 +9,5 @@ angular.module('hplus.modules.exploredoctors', [])
       })
   });
   
+  require('./exploredoctors.directive.js');
   require('./exploredoctors.controller.js');
