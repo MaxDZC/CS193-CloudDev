@@ -1,8 +1,7 @@
 require('./shared/header/header.main.js');
 require('./shared/navbar/navbar.main.js');
 require('./shared/factory/app.factory.js');
-
-require('./shared/parts/modal/modal.main.js');
+require('./shared/modal/modal.main.js');
 
 require('./components/editdisease/editdisease.main.js');
 
