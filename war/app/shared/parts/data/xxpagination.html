@@ -1,0 +1,22 @@
+<div class="row">
+  <div class="col-md-10 col-md-offset-1">
+    <div class="col col-md-3 col-md-offset-9">
+      <div class="pagination__container" ng-if="1 < pages.length || !autoHide">
+      <div ng-if="boundaryLinks"  class="pagination__page" ng-click="setCurrent(1)">
+        &laquo;
+      </div> 
+      <div ng-if="directionLinks" class="pagination__page" ng-click="setCurrent(pagination.current - 1)">
+        &lsaquo;
+      </div>
+      <div ng-repeat="pageNumber in pages track by tracker(pageNumber, $index)" class="pagination__page" ng-class="{ pagination__current : pagination.current == pageNumber, pagination__page : pageNumber == '...' }" ng-click="setCurrent(pageNumber)">
+        {{ pageNumber }}
+      </div>
+      <div ng-if="directionLinks" class="pagination__page" ng-click="setCurrent(pagination.current + 1)">
+        &rsaquo;
+      </div>
+      <div ng-if="boundaryLinks"  class="pagination__page" ng-click="setCurrent(pagination.last)">
+        &raquo;
+      </div>
+    </div>
+  </div>
+</div>
