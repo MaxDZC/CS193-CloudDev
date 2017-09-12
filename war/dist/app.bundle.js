@@ -36068,7 +36068,7 @@ angular.module('hplus.modules.navbar')
 /* 34 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row navbar__background\" ng-controller=\"NavbarController\">        \r\n  <div class=\"col col-md-10 col-md-offset-1\">\r\n\r\n    <div class=\"col col-md-8\">\r\n      <div class=\"navbar__btn\" ng-click=\"go('/admin/list/disease')\">\r\n        Diseases\r\n      </div>\r\n      <div class=\"navbar__btn\" ng-click=\"go('/admin/list/medicine')\">\r\n        Medicines\r\n      </div>\r\n      <div class=\"navbar__btn\" ng-click=\"go('/admin/list/doctor')\">\r\n        Doctors\r\n      </div>\r\n    </div>\r\n\r\n    <div class=\"col col-md-4 navbar__action-container\">          \r\n      <div class=\"navbar__btn navbar__btn--action\">\r\n        <a href=\"#!/admin/register/disease\"> \r\n          <i class=\"fa fa-plus-square\"></i> Register Disease\r\n        </a>\r\n      </div>\r\n    </div>\r\n\r\n  </div>\r\n</div>";
+module.exports = "<div class=\"row navbar__background\" ng-controller=\"NavbarController\">        \r\n  <div class=\"col col-md-10 col-md-offset-1\">\r\n\r\n    <div class=\"col col-md-8\">\r\n      <div class=\"navbar__btn\" ng-click=\"go('/admin/list/disease')\">\r\n        Diseases\r\n      </div>\r\n      <div class=\"navbar__btn\" ng-click=\"go('/admin/list/medicine')\">\r\n        Medicines\r\n      </div>\r\n      <div class=\"navbar__btn\" ng-click=\"go('/admin/list/doctor')\">\r\n        Doctors\r\n      </div>\r\n      <div class=\"navbar__btn\" ng-click=\"\">\r\n        Patient\r\n      </div>\r\n    </div>\r\n\r\n    <div class=\"col col-md-4 navbar__action-container\">          \r\n      <div class=\"navbar__btn navbar__btn--action\">\r\n        <a href=\"#!/admin/register/disease\"> \r\n          <i class=\"fa fa-plus-square\"></i> Register Disease\r\n        </a>\r\n      </div>\r\n    </div>\r\n\r\n  </div>\r\n</div>";
 
 /***/ }),
 /* 35 */
@@ -36356,7 +36356,7 @@ angular.module('hplus.modules.editmedicine', [])
 /* 49 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\r\n  <div class=\"col col-md-8 col-md-offset-1\">\r\n    <h1>Edit Medicine</h1>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row\">\r\n  <div class=\"col col-md-10 col-md-offset-1\">\r\n    <div class=\"col-md-3\">\r\n      <label class=\"subtitle\">Name of Medicine:</label>\r\n\t    <input type=\"text\" value=\"RiteMed Metformin\">\r\n\t    <label class=\"subtitle\">Price (PHP) :</label> \r\n\t    <input id=\"priceInputField\" type=\"text\" value=\"3.75\">\r\n\t      \r\n\t    <div ng-controller=\"modalCtrl as alert\"> \r\n\t      <button  ng-click=\"alert.alert()\" >Update</button>\r\n\t      <button class=\"outline delete_btn\" ng-click=\"alert.confirm()\">Delete</button>\r\n\t    </div>\r\n    </div>\r\n    \r\n    <div class=\"col col-md-9\">\r\n      <label class=\"subtitle\">Description:</label>\r\n      <textarea id=\"descMed\" rows=\"8\" cols=\"50\">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent ut lorem quis dolor porttitor accumsan. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Integer vitae erat viverra, vestibulum enim id, pulvinar lectus. Sed volutpat tristique tristique. Vivamus turpis diam, consequat vel sagittis quis, convallis quis sem.</textarea>\r\n    </div>\r\n  </div>\r\n</div>";
+module.exports = "<div class=\"row\">\r\n  <div class=\"col col-md-8 col-md-offset-1\">\r\n    <h1>Edit Medicine</h1>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row\" ng-controller=\"EditMedicineController\">\r\n  <div class=\"col col-md-10 col-md-offset-1\">\r\n    <div class=\"col-md-3\">\r\n      <label class=\"subtitle\">Name of Medicine:</label>\r\n\t    <input type=\"text\" value=\"RiteMed Metformin\">\r\n\t    <label class=\"subtitle\">Medicine Type:</label>\r\n      <select value=\"\">\r\n        <option ng-repeat=\"type in medicineTypes\" value=\"type.id\">{{type.name}}</option>\r\n      </select>\r\n\t    <label class=\"subtitle\">Price (PHP) :</label> \r\n\t    <input id=\"priceInputField\" type=\"text\" value=\"3.75\">\r\n\t      \r\n\t    <div ng-controller=\"modalCtrl as alert\"> \r\n\t      <button  ng-click=\"alert.alert()\">Update</button>\r\n\t    </div>\r\n    </div>\r\n    \r\n    <div class=\"col col-md-9\">\r\n      <label class=\"subtitle\">Description:</label>\r\n      <textarea id=\"descMed\" rows=\"8\" cols=\"50\">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent ut lorem quis dolor porttitor accumsan. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Integer vitae erat viverra, vestibulum enim id, pulvinar lectus. Sed volutpat tristique tristique. Vivamus turpis diam, consequat vel sagittis quis, convallis quis sem.</textarea>\r\n    </div>\r\n  </div>\r\n</div>";
 
 /***/ }),
 /* 50 */
@@ -36370,6 +36370,17 @@ angular.module('hplus.modules.editmedicine')
       $scope.go = function(path){
         globalFactory.go(path);
       };
+      
+      $scope.medicineTypes = [
+        { name : "Suppository",
+          id : 1 },
+        { name : "Tablet",
+          id : 2 },
+        { name : "Syrup",
+          id : 3 },
+        { name : "Poison",
+          id : 4 }
+      ];
     }
   );
 
@@ -36548,7 +36559,7 @@ angular.module('hplus.modules.exploremedicines', [])
 /* 63 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\"><!-- Header Portion -->\r\n  <div class=\"col col-md-10 col-md-offset-1\">\r\n    <h1>List of All Medicines</h1><!-- Header Name for this Module -->\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row\"><!-- Body Portion -->\r\n  <div class=\"col col-md-2 col-md-offset-1\"><!-- Section for search -->\r\n\t\t<div class=\"row\">\r\n\t\t  <div class=\"col col-md-6\">\r\n\t\t\t<label class=\"subtitle\">Search</label>\r\n\t\t  </div>\r\n\t\t</div>\r\n\t\r\n\t\t<div class=\"match-padding\">\r\n\t\t  <input type=\"text\" placeholder=\"Enter a name\">\r\n\t\t  <button>Search</button>\r\n\t\t  <button ng-click=\"go('/admin/register/medicine')\">New Medicine</button>\r\n\t\t</div>\r\n  </div>\r\n\r\n  <div class=\"col col-md-8\"><!-- Section containing the list and detail of medicines -->\r\n    <div class=\"col col-md-6\"><!-- List sector -->\r\n\t\t  <label class=\"subtitle\">ALL RESULTS</label>\r\n\t\t  \r\n\t\t  <div class=\"margins\">\r\n\t\t\t  <!-- List Section -->\r\n\t\t\t  <div class=\"card__container\">\r\n\t\t\t    <div class=\"card__title\">\r\n\t\t\t\t\t  Metformin\r\n\t\t\t\t\t</div>\r\n\t\t\t\t\r\n\t\t\t    <div class=\"card__desc\">\r\n\t\t\t\t\t  Diabetes Mellitus\r\n\t\t\t\t\t</div>\r\n\t\t\t  </div>\r\n\t\t\t  \r\n\t\t\t  <div class=\"card__container\">\r\n\t\t\t    <div class=\"card__title\">\r\n\t\t\t\t\t  Methadone\r\n\t\t\t\t\t</div>\r\n\t\t\t\t\r\n\t\t\t\t\t<div class=\"card__desc\">\r\n\t\t\t\t\t  Opioid dependency, chronic pain\r\n\t\t\t    </div>\r\n\t\t\t  </div>\r\n\t\t\t\t\r\n\t\t\t  <div class=\"card__container\">\r\n\t\t\t    <div class=\"card__title\">\r\n\t\t\t\t\t  Methamphetamine\r\n\t\t\t\t\t</div>\r\n\t\t\t\t\r\n\t\t\t\t\t<div class=\"card__desc\">\r\n\t\t\t\t\t  Attention deficit hyperactivity disorder, obesity, and more...\r\n\t\t\t\t\t</div>\r\n\t\t    </div>\r\n\t\t\t\r\n\t\t\t  <div class=\"card__container\">\r\n\t\t\t    <div class=\"card__title\">\r\n\t\t\t\t\t  Methazolamide\r\n\t\t\t\t\t</div>\r\n\t\t\t\t\t<div class=\"card__desc\">\r\n\t\t\t\t\t  Intraocular pressure in glaucoma\r\n\t\t\t\t\t</div>\r\n\t\t\t  </div>  \r\n\t\t  </div>    \t\t\t\r\n    </div>\r\n\t\r\n\t\t<div class=\"col col-md-6\"><!-- Detail Sector -->\r\n\t\t  <label class=\"subtitle\">DETAILS FOR Methampetamine</label>\r\n\t\t\t<div class=\"margins\">\r\n\t\t\t\t<!-- Detail Section -->\r\n\t\t\t  <div class=\"detail__container\">\r\n\t\t\t\t\t<div class=\"card__title\">\r\n\t\t\t\t\t  Methampetamine\r\n\t\t\t\t\t</div>\r\n\t\t\t\r\n\t\t\t\t\t<div class=\"detail__desc\">\r\n\t\t\t\t\t  <p>\r\n\t\t\t\t\t    Methamphetamine is a strong central nervous system stimulant that is\r\n\t\t\t\t\t\tmainly used as a recreational drug and less commonly as a treatment\r\n\t\t\t\t\t\tfor attention deficit hyperactivity disorder and obesity.\r\n\t\t\t\t\t  </p>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t\t<span class=\"detail__title\">PRICE (PHP)</span>\r\n\t\t\t\t\t<span class=\"detail__subtitle\">24,990.00</span>\r\n\t\t\t\t\t<br>\r\n\t\t\t\t\t<br>\r\n\t\t\t\t\t<span class=\"detail__title\">TREATMENT FOR</span>\r\n\t\t\t\t\t<span class=\"detail__subtitle\">Attention deficit hyperactivity disorder, obesity</span>\t\r\n\t\t\t\t\t<br>\r\n\t\t\t\t\t<br>\r\n\t\t\t\t  <div ng-controller=\"modalCtrl as alert\"> \r\n\t\t\t\t    <button class=\"outline\" ng-click=\"go('/admin/update/medicine')\">Edit</button>\r\n\t\t\t\t    <button class=\"outline\" ng-click=\"alert.confirm()\">Delete</button>\r\n\t\t\t\t    <button class=\"outline\" ng-click=\"go('/admin/view/medicine')\">View</button>\r\n\t\t\t\t  </div>\r\n\t\t    </div>\r\n\t    </div>\r\n\t  </div>\r\n  </div>\r\n</div>\r\n\r\n<!-- Pagination Section -->\r\n<div class=\"row\">\r\n  <div class=\"col-md-10 col-md-offset-1\">\r\n    <div class=\"col col-md-3 col-md-offset-9\">\r\n      <div class=\"pagination__container\">\r\n        <div class=\"pagination__page\">\r\n          <<\r\n        </div>\r\n      \r\n        <div class=\"pagination__page\">\r\n          <\r\n        </div>\r\n      \r\n        <div class=\"pagination__page \">\r\n          2\r\n        </div>\r\n      \r\n        <div class=\"pagination__page pagination__current\">\r\n          3\r\n        </div>\r\n      \r\n        <div class=\"pagination__page\">\r\n          4\r\n        </div>\r\n      \r\n        <div class=\"pagination__page\">\r\n          >\r\n        </div>\r\n      \r\n        <div class=\"pagination__page\">\r\n          >>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>";
+module.exports = "<div class=\"row\"><!-- Header Portion -->\r\n  <div class=\"col col-md-10 col-md-offset-1\">\r\n    <h1>List of All Medicines</h1><!-- Header Name for this Module -->\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row\" ng-controller=\"ExploreMedicinesController\"><!-- Body Portion -->\r\n  <div class=\"col col-md-2 col-md-offset-1\"><!-- Section for search -->\r\n\t\t<div class=\"row\">\r\n\t\t  <div class=\"col col-md-6\">\r\n\t\t\t<label class=\"subtitle\">Search</label>\r\n\t\t  </div>\r\n\t\t</div>\r\n\t\r\n\t\t<div class=\"match-padding\">\r\n\t\t  <input type=\"text\" placeholder=\"Enter a name\" ng-model=\"searchFilter\">\r\n\t\t  <button ng-click=\"go('/admin/register/medicine')\">New Medicine</button>\r\n\t\t</div>\r\n  </div>\r\n\r\n  <div class=\"col col-md-8\"><!-- Section containing the list and detail of medicines -->\r\n    <div class=\"col col-md-6\"><!-- List sector -->\r\n\t\t  <label class=\"subtitle\">ALL RESULTS</label>\r\n\t\t  \r\n\t\t  <div class=\"margins\" ng-repeat=\"med in medicines | filter:{name : searchFilter}\">\r\n\t\t\t  <!-- List Section -->\r\n\t\t\t  <div class=\"card__container\" ng-click=\"setSelected(med)\">\r\n\t\t\t    <div class=\"card__title\">\r\n\t\t\t\t\t  {{med.name}}\r\n\t\t\t\t\t</div>\r\n\t\t\t\t\r\n\t\t\t    <div class=\"card__desc\">\r\n\t\t\t\t\t  <span ng-repeat=\"treats in med.treats | limitTo: 3\"><span ng-hide=\"$first\">,&nbsp;</span>{{treats}}</span>\r\n\t\t\t\t\t</div>\r\n\t\t\t  </div>\r\n\t\t\t  \r\n\t\t\t   \r\n\t\t  </div>    \t\t\t\r\n    </div>\r\n\t\r\n\t\t<div class=\"col col-md-6\" ng-show=\"selectedMedicine\"><!-- Detail Sector -->\r\n\t\t  <label class=\"subtitle\">DETAILS FOR {{selectedMedicine.name}}</label>\r\n\t\t\t<div class=\"margins\">\r\n\t\t\t\t<!-- Detail Section -->\r\n\t\t\t  <div class=\"detail__container\">\r\n\t\t\t\t\t<div class=\"card__title\">\r\n\t\t\t\t\t  {{selectedMedicine.name}}\r\n\t\t\t\t\t</div>\r\n\t\t\t\r\n\t\t\t\t\t<div class=\"detail__desc\">\r\n\t\t\t\t\t  <p>\r\n\t\t\t\t\t  {{selectedMedicine.desc}}\r\n\t\t\t\t\t  </p>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t\t<span class=\"detail__title\">PRICE (PHP)</span>\r\n\t\t\t\t\t<span class=\"detail__subtitle\">{{selectedMedicine.price | currency : 'P '}}</span>\r\n\t\t\t\t\t<br>\r\n\t\t\t\t\t<br>\r\n\t\t\t\t\t<span class=\"detail__title\">TREATMENT FOR</span>\r\n\t\t\t\t\t<span class=\"detail__subtitle\"><span ng-repeat=\"treats in selectedMedicine.treats | limitTo: 3\"><span ng-hide=\"$first\">,&nbsp;</span>{{treats}}</span></span>\t\r\n\t\t\t\t\t<br>\r\n\t\t\t\t\t<br>\r\n\t\t\t\t  <div ng-controller=\"modalCtrl as alert\"> \r\n\t\t\t\t    <button class=\"outline\" ng-click=\"go('/admin/update/medicine')\">Edit</button>\r\n\t\t\t\t    <button class=\"outline\" ng-click=\"alert.confirm()\">Delete</button>\r\n\t\t\t\t    <button class=\"outline\" ng-click=\"go('/admin/view/medicine')\">View</button>\r\n\t\t\t\t  </div>\r\n\t\t    </div>\r\n\t    </div>\r\n\t  </div>\r\n  </div>\r\n</div>\r\n\r\n<!-- Pagination Section -->\r\n<div class=\"row\">\r\n  <div class=\"col-md-10 col-md-offset-1\">\r\n    <div class=\"col col-md-3 col-md-offset-9\">\r\n      <div class=\"pagination__container\">\r\n        <div class=\"pagination__page\">\r\n          <<\r\n        </div>\r\n      \r\n        <div class=\"pagination__page\">\r\n          <\r\n        </div>\r\n      \r\n        <div class=\"pagination__page \">\r\n          2\r\n        </div>\r\n      \r\n        <div class=\"pagination__page pagination__current\">\r\n          3\r\n        </div>\r\n      \r\n        <div class=\"pagination__page\">\r\n          4\r\n        </div>\r\n      \r\n        <div class=\"pagination__page\">\r\n          >\r\n        </div>\r\n      \r\n        <div class=\"pagination__page\">\r\n          >>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>";
 
 /***/ }),
 /* 64 */
@@ -36562,6 +36573,43 @@ angular.module('hplus.modules.exploremedicines')
       $scope.go = function(path){
         globalFactory.go(path);
       };
+      
+      $scope.selectedMedicine = null;
+      
+      $scope.setSelected = function(med){
+    	  $scope.selectedMedicine = med;
+      };
+      
+      $scope.medicines=[
+        {
+          name : "Metformin",
+          desc : "Insert super long desc wooo amazing woawhe",
+          price : 40000,
+          treats :["Diabetes Mellitus"],
+          id : 1
+        },
+        {
+          name : "Methadone",
+          desc : "Insert super long desc wooo amazing woawhe",
+          price : 30000,
+          treats :["Opioid dependency","chronic pain"],
+          id : 2
+        },
+        {
+          name : "Methampetamine",
+          desc : "Methamphetamine is a strong central nervous system stimulant that is mainly used as a recreational drug and less commonly as a treatment for attention deficit hyperactivity disorder and obesity.",
+          price : 24990,
+          treats :["Attention deficit hyperactivity disorder","obesity"],
+          id : 3
+        },
+        {
+          name : "Methazolamide",
+          desc : "For the sake of variety",
+          price : 30000,
+          treats :["Intraocular pressure in glaucoma"],
+          id : 4
+        },
+      ];
     }
   );
 
