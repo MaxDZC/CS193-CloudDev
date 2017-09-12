@@ -36608,7 +36608,7 @@ angular.module('hplus.modules.registerdiseases', [])
 /* 68 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\r\n  <div class=\"col col-md-8 col-md-offset-1\">\r\n    <h1>Register Diseases</h1>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row\">\r\n  <div class=\"col-md-10 col-md-offset-1\">\r\n    <div class=\"col col-md-4\">\r\n      <label class=\"subtitle\">Name of Disease</label>\r\n      <input type=\"text\" value=\"Diabetes Mellitus Type 2\">\r\n      <button ng-click=\"alert.alert()\">Save</button>\r\n    </div>\r\n  \r\n    <div class=\"col col-md-4\">\r\n      <label class=\"subtitle\">Symptoms</label>\r\n      <input type=\"text\" placeholder=\"Search\" value=\"Some Symptom\">\r\n      <div class=\"borders\">\r\n        <div class=\"scrollable\">\r\n          <input type=\"checkbox\">Examples<br>\r\n          <input type=\"checkbox\">of<br>\r\n          <input type=\"checkbox\">Medicine<br>\r\n          <input type=\"checkbox\">OhMyy<br>\r\n          <input type=\"checkbox\" ng-repeat=\"option in symptoms\">{{option.name}}<br>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  \r\n    <div class=\"col col-md-4\">\r\n\t    <label class=\"subtitle\">Medicines</label>\r\n\t    <input type=\"text\" placeholder=\"Search\" value=\"Some Drug\">\r\n\t    <div class=\"borders\">\r\n\t      <div class=\"scrollable\">\r\n\t        <input type=\"checkbox\">Metformin<br>\r\n\t        <input type=\"checkbox\">Methadone<br>\r\n\t        <input type=\"checkbox\">Methamphetamine<br>\r\n\t        <input type=\"checkbox\">Methazolamide<br>\r\n\t        <input type=\"checkbox\">Methenamine<br>\r\n\t        <input type=\"checkbox\">Methimazole<br>\r\n\t        <input type=\"checkbox\">Meth<br>\r\n\t        <input type=\"checkbox\">Methimazole<br>\r\n          <input type=\"checkbox\">Meth<br>\r\n\t      </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>";
+module.exports = "<div class=\"row\">\r\n  <div class=\"col col-md-8 col-md-offset-1\">\r\n    <h1>Register Diseases</h1>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row\" ng-controller=\"RegisterDiseasesController\">\r\n  <div class=\"col-md-10 col-md-offset-1\">\r\n    <div class=\"col col-md-4\">\r\n      <label class=\"subtitle\">Name of Disease</label>\r\n      <input type=\"text\" value=\"Diabetes Mellitus Type 2\">\r\n      <button ng-click=\"checkSelected()\">Save</button>\r\n    </div>\r\n  \r\n    <div class=\"col col-md-4\">\r\n      <label class=\"subtitle\">Symptoms</label>\r\n      <input type=\"text\" placeholder=\"Search Symptom\">\r\n      <div class=\"borders\">\r\n        <div class=\"scrollable\">\r\n          <div ng-repeat=\"option in symptomsSelected | orderBy:'name'\">\r\n            <input type=\"checkbox\" ng-model=\"option.val\" ng-true-value =\"true\" ng-false-value =\"false\" ng-change=\"removeSymptom(option)\" ng-checked=\"true\">{{option.name}}<br>\r\n          </div>\r\n          <div ng-repeat=\"option in symptomsSearch | orderBy:'name'\">\r\n            <input type=\"checkbox\" ng-model=\"option.val\" ng-true-value =\"true\" ng-false-value =\"false\" ng-change=\"addSymptom(option)\">{{option.name}}<br>\r\n          </div>\r\n        </div>\r\n      </div>\r\n      <button ng-click=\"\">Add New Symptom</button>\r\n    </div>\r\n  \r\n    <div class=\"col col-md-4\">\r\n\t    <label class=\"subtitle\">Medicines</label>\r\n\t    <input type=\"text\" placeholder=\"Search Medicine\">\r\n\t    <div class=\"borders\">\r\n\t      <div class=\"scrollable\">\r\n\t        <div ng-repeat=\"option in medicinesSelected | orderBy:'name'\">\r\n\t          <input type=\"checkbox\" ng-model=\"option.val\" ng-true-value =\"true\" ng-false-value =\"false\" ng-change=\"removeMedicine(option)\" ng-checked=\"true\">{{option.name}}<br>\r\n\t        </div>\r\n\t        <div ng-repeat=\"option in medicinesSearch | orderBy:'name'\">\r\n\t          <input type=\"checkbox\" ng-model=\"option.val\" ng-true-value =\"true\" ng-false-value =\"false\" ng-change=\"addMedicine(option)\">{{option.name}}<br>\r\n\t        </div>\r\n\t      </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>";
 
 /***/ }),
 /* 69 */
@@ -36623,24 +36623,112 @@ angular.module('hplus.modules.registerdiseases')
         globalFactory.go(path);
       };
       
-      $scope.symptoms = [
+      $scope.checkSelected= function(){
+    	  if($scope.symptomsSelected.length && $scope.medicinesSelected.length){
+    		  //alert.alert
+    		  alert("There is Selected!");
+    	  }else{
+    		  alert("Select at least one Symptom or Medicine");
+    	  }
+      };
+      
+      $scope.symptomsSelected = [
+      ];
+      
+      $scope.addSymptom = function(hold){
+    	  $scope.symptomsSelected.push(hold);
+    	  $scope.symptomsSearch.splice($scope.symptomsSearch.indexOf(hold),1);
+      };
+      
+      $scope.removeSymptom = function(hold){
+    	  $scope.symptomsSearch.push(hold);
+    	  $scope.symptomsSelected.splice($scope.symptomsSelected.indexOf(hold),1);
+      };
+      
+      $scope.symptomsSearch = [
         {
           name: "Examples",
-          id: 1
+          id: 1,
+          val:false
         },
         {
           name: "of",
-          id: 2
+          id: 2,
+          val:false
         },
         {
           name: "Symptoms",
-          id: 3
+          id: 3,
+          val:false
         },
         {
           name: "wooh",
-          id: 4
+          id: 4,
+          val:false
+        },
+        {
+          name: "hahaha",
+          id: 5,
+          val:false
+        },
+        {
+          name: "BoBurnham",
+          id: 6,
+          val:false
         }
       ];
+      
+      $scope.medicinesSelected = [
+                                 ];
+                                 
+      $scope.addMedicine = function(hold){
+        $scope.medicinesSelected.push(hold);
+        $scope.medicinesSearch.splice($scope.medicinesSearch.indexOf(hold),1);
+      };
+                                 
+      $scope.removeMedicine = function(hold){
+        $scope.medicinesSearch.push(hold);
+        $scope.medicinesSelected.splice($scope.medicinesSelected.indexOf(hold),1);
+      };
+      
+      $scope.medicinesSearch = [
+                         {
+                           name: "Metformin",
+                           id: 1
+                         },
+                         {
+                           name: "Meth",
+                           id: 2
+                         },
+                         {
+                           name: "Methamphetamine",
+                           id: 3
+                         },
+                         {
+                           name: "Methazolamide",
+                           id: 4
+                         },
+                         {
+                           name: "Methazolamide",
+                           id: 5
+                         },
+                         {
+                           name: "Meth",
+                           id: 6
+                         },
+                         {
+                           name: "Methenamine",
+                           id: 7
+                         },
+                         {
+                           name: "Methimazole",
+                           id: 8
+                         },
+                         {
+                           name: "Meth",
+                           id: 9
+                         }
+                       ];
 
     }
   );
