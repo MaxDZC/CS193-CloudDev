@@ -806,11 +806,7 @@ module.exports = angular;
 /***/ (function(module, exports) {
 
 /**
-<<<<<<< HEAD
- * @license AngularJS v1.6.5
-=======
  * @license AngularJS v1.6.6
->>>>>>> develop
  * (c) 2010-2017 Google, Inc. http://angularjs.org
  * License: MIT
  */
@@ -917,11 +913,7 @@ function minErr(module, ErrorConstructor) {
       return match;
     });
 
-<<<<<<< HEAD
-    message += '\nhttp://errors.angularjs.org/1.6.5/' +
-=======
     message += '\nhttp://errors.angularjs.org/1.6.6/' +
->>>>>>> develop
       (module ? module + '/' : '') + code;
 
     for (i = 0, paramPrefix = '?'; i < templateArgs.length; i++, paramPrefix = '&') {
@@ -3599,19 +3591,11 @@ function toDebugString(obj, maxDepth) {
 var version = {
   // These placeholder strings will be replaced by grunt's `build` task.
   // They need to be double- or single-quoted.
-<<<<<<< HEAD
-  full: '1.6.5',
-  major: 1,
-  minor: 6,
-  dot: 5,
-  codeName: 'toffee-salinization'
-=======
   full: '1.6.6',
   major: 1,
   minor: 6,
   dot: 6,
   codeName: 'interdimensional-cable'
->>>>>>> develop
 };
 
 
@@ -3757,11 +3741,7 @@ function publishExternalAPI(angular) {
       });
     }
   ])
-<<<<<<< HEAD
-  .info({ angularVersion: '1.6.5' });
-=======
   .info({ angularVersion: '1.6.6' });
->>>>>>> develop
 }
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -16271,17 +16251,6 @@ function findConstantAndWatchExpressions(ast, $filter, parentIsPure) {
     argsToWatch = [];
     forEach(ast.properties, function(property) {
       findConstantAndWatchExpressions(property.value, $filter, astIsPure);
-<<<<<<< HEAD
-      allConstants = allConstants && property.value.constant && !property.computed;
-      if (!property.value.constant) {
-        argsToWatch.push.apply(argsToWatch, property.value.toWatch);
-      }
-      if (property.computed) {
-        findConstantAndWatchExpressions(property.key, $filter, astIsPure);
-        if (!property.key.constant) {
-          argsToWatch.push.apply(argsToWatch, property.key.toWatch);
-        }
-=======
       allConstants = allConstants && property.value.constant;
       argsToWatch.push.apply(argsToWatch, property.value.toWatch);
       if (property.computed) {
@@ -16289,7 +16258,6 @@ function findConstantAndWatchExpressions(ast, $filter, parentIsPure) {
         findConstantAndWatchExpressions(property.key, $filter, /*parentIsPure=*/false);
         allConstants = allConstants && property.key.constant;
         argsToWatch.push.apply(argsToWatch, property.key.toWatch);
->>>>>>> develop
       }
     });
     ast.constant = allConstants;
@@ -34740,11 +34708,7 @@ module.exports = 'ngRoute';
 /***/ (function(module, exports) {
 
 /**
-<<<<<<< HEAD
- * @license AngularJS v1.6.5
-=======
  * @license AngularJS v1.6.6
->>>>>>> develop
  * (c) 2010-2017 Google, Inc. http://angularjs.org
  * License: MIT
  */
@@ -34804,11 +34768,7 @@ var noop;
 /* global -ngRouteModule */
 var ngRouteModule = angular.
   module('ngRoute', []).
-<<<<<<< HEAD
-  info({ angularVersion: '1.6.5' }).
-=======
   info({ angularVersion: '1.6.6' }).
->>>>>>> develop
   provider('$route', $RouteProvider).
   // Ensure `$route` will be instantiated in time to capture the initial `$locationChangeSuccess`
   // event (unless explicitly disabled). This is necessary in case `ngView` is included in an
