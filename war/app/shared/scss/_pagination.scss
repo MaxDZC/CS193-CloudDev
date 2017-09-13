@@ -1,9 +1,11 @@
 .pagination__container{
+  @extend .unselectable;
   float: right;
   vertical-align: middle;
 }
 
 .pagination__page{
+  @extend .unselectable;
   display: inline-block;
   height: 1.5em;
   width: 1.5em;
@@ -16,10 +18,12 @@
 }
 
 .pagination__page:hover{
+  @extend .unselectable;
   background-color: $babyBlue;
 }
 
 .pagination__current{
+  @extend .unselectable;
   @extend .pagination__page;
   background-color: $teal;
   color: $white;

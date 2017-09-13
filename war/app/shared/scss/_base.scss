@@ -13,6 +13,7 @@ h1{
 }
 
 .subtitle{
+  margin-top: $sizePaddingHalf;
   display: inline-block;
   font-size: $sizeText;
   text-transform: uppercase;
@@ -39,51 +40,37 @@ h1{
   cursor: pointer;
 }
 
-.marginBottom {
-  margin-bottom: $sizePaddingHalf;
-}	
-
-.marginTop {
-  margin-top: $sizePaddingHalf;
-} 
-
-.edit-button {
- 
-    color: #fff !important;
-    background-color: #1a566f !important;
-}
-.delete-button {
- 
-    color: #fff !important;
-    background-color: #8a0719 !important;
-  
+a{
+  text-decoration: none;
+  color: $white;
 }
 
-body {
-  padding: 0px !important;
-  margin: 0px;
-}
-.delete__icon {
-   float: right;
-   color: #ab9393;
-}
-
-.delete_btn {
-margin-left: 12px;  
+.unselectable {
+  -webkit-touch-callout: none;
+    -webkit-user-select: none;
+     -khtml-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+         -o-user-select: none;
+            user-select: none;
 }
 
-.margins{
-  margin-top: $sizePaddingHalf;
-  margin-bottom: $sizePaddingHalf;
+.edit-button{
+  color: #fff !important;
+  background-color: #1a566f !important;
+}
+.delete-button{ 
+  color: #fff !important;
+  background-color: #8a0719 !important;
 }
 
-.marginBottomNone{
-  margin-bottom: 0;
+.delete__icon{
+  float: right;
+  color: #ab9393;
 }
 
-.borders{
-  border: 1.5px solid $black;
-  height:150px;
+.delete_btn{
+  margin-left: 12px;  
 }
 
 .scrollable{

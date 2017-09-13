@@ -1,5 +1,7 @@
 package sample.dto;
 
+import java.util.Date;
+
 public class DoctorDto {
     /**
      * The id of the 'Doctor'
@@ -50,7 +52,34 @@ public class DoctorDto {
      * The Email of the 'Doctor'
      */
     private String email;
+    private Date createdaAt;
+    private Date deletedAt;
+    private Date updatedAt;
     
+    public Date getCreatedaAt() {
+        return createdaAt;
+    }
+
+    public void setCreatedaAt(Date createdaAt) {
+        this.createdaAt = createdaAt;
+    }
+
+    public Date getDeletedAt() {
+        return deletedAt;
+    }
+
+    public void setDeletedAt(Date deletedAt) {
+        this.deletedAt = deletedAt;
+    }
+
+    public Date getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(Date updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
     public String getEmail() {
         return email;
     }
@@ -61,16 +90,23 @@ public class DoctorDto {
 
     /**
      * Creates an instance of 'Doctor'
+     * @param string10 
+     * @param string9 
+     * @param string8 
+     * @param string7 
+     * @param string6 
+     * @param string5 
+     * @param string4 
+     * @param string3 
+     * @param string2 
+     * @param string 
      */
-    public DoctorDto(){
-        
-    }
-    
+
     /**
      * Creates an instance of 'Doctor' with attribute initialization
      */
     public DoctorDto(String firstName, String lastName, String address, String specialization,
-            String contactNumber, String birthDay, String userName, String passWord, String email){
+            String contactNumber, String birthDay, String userName, String passWord, String email, Long id){
         
         this.setFirstName(firstName);
         this.setLastName(lastName);
@@ -81,6 +117,7 @@ public class DoctorDto {
         this.setUserName(userName);
         this.setPassWord(passWord);
         this.setEmail(email);
+        this.setId(id);
     }
     
     /**

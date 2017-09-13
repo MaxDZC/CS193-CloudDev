@@ -49,6 +49,33 @@ public class PatientDto {
     /**
      * Creates an instance of 'Patient'
      */
+    private String createdaAt;
+    private String deletedAt;
+    private String updatedAt;
+    public String getCreatedaAt() {
+        return createdaAt;
+    }
+
+    public void setCreatedaAt(String createdaAt) {
+        this.createdaAt = createdaAt;
+    }
+
+    public String getDeletedAt() {
+        return deletedAt;
+    }
+
+    public void setDeletedAt(String deletedAt) {
+        this.deletedAt = deletedAt;
+    }
+
+    public String getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(String updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
     public PatientDto(){
         
     }

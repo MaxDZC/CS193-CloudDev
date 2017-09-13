@@ -1,18 +1,15 @@
 angular.module('hplus.factory')
 
-  .factory('doctorFactory', 
+  .factory('patientFactory', 
     function($http){
 
-      var registerDoctor = function(doctorObject){
+      var registerPatient = function(patientObject){
         $http({
           method: 'POST',
-          url: '/Doctor', // Change URL here
-          data: doctorObject
+          url: '/registerPatient', // Change URL here
+          data: patientObject
         }).then(function successCallback(response) {
-           //  {"message",true} -> Was inserted
-          // {"message",false} -> An error occured
-         // {"message","duplicated"} -> Email already exis
-        	console.log(response);
+            // this callback will be called asynchronously
             // when the response is available
           }, function errorCallback(response) {
             // called asynchronously if an error occurs
@@ -21,7 +18,7 @@ angular.module('hplus.factory')
       }
       
       return {
-        registerDoctor: registerDoctor
+        registerPatient: registerPatient
       }
     }
   );
