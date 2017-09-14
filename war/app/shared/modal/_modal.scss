@@ -1,0 +1,46 @@
+.modal__background{
+  position: fixed;
+  z-index: 9999;
+  margin: 0 auto;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  text-align: center;
+  background: rgba(0,0,0,0.8);
+}
+
+.modal__box{
+  margin-top: 10%;
+  background: $softWhite;
+}
+
+.modal__title{
+  padding-top: $sizePaddingRow;
+  font-size: $sizeCardTitle;
+  font-weight: 700;
+}
+
+hr.modal__divider{
+  margin-left: -15px;
+  margin-right: -15px;
+  border: 2px solid $seafoamGreen;
+}
+
+.modal__description{
+  padding-bottom: $sizePaddingHalf;
+  font-size: $sizeText;
+  text-align: center;
+}
+
+.modal__btn{
+  @extend .unselectable;
+  width: $heightRow;
+}
+
+.modal__btn--bad{
+  background-color: $lightGray;
+}
+
+.modal__btn--good{
+  background-color: $seafoamGreen;
+}
