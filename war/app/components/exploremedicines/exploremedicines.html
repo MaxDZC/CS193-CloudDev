@@ -4,7 +4,7 @@
   </div>
 </div>
 
-<div class="row"><!-- Body Portion -->
+<div class="row" ng-controller="ExploreMedicinesController"><!-- Body Portion -->
   <div class="col col-md-2 col-md-offset-1"><!-- Section for search -->
 		<div class="row">
 		  <div class="col col-md-6">
@@ -13,8 +13,7 @@
 		</div>
 	
 		<div class="match-padding">
-		  <input type="text" placeholder="Enter a name">
-		  <button>Search</button>
+		  <input type="text" placeholder="Enter a name" ng-model="searchFilter">
 		  <button ng-click="go('/admin/register/medicine')">New Medicine</button>
 		</div>
   </div>
@@ -23,71 +22,42 @@
     <div class="col col-md-6"><!-- List sector -->
 		  <label class="subtitle">ALL RESULTS</label>
 		  
-		  <div class="margins">
+		  <div class="margins" ng-repeat="med in medicines | filter:{name : searchFilter}">
 			  <!-- List Section -->
-			  <div class="card__container">
+			  <div class="card__container" ng-click="setSelected(med)">
 			    <div class="card__title">
-					  Metformin
+					  {{med.name}}
 					</div>
 				
 			    <div class="card__desc">
-					  Diabetes Mellitus
+					  <span ng-repeat="treats in med.treats | limitTo: 3"><span ng-hide="$first">,&nbsp;</span>{{treats}}</span>
 					</div>
 			  </div>
 			  
-			  <div class="card__container">
-			    <div class="card__title">
-					  Methadone
-					</div>
-				
-					<div class="card__desc">
-					  Opioid dependency, chronic pain
-			    </div>
-			  </div>
-				
-			  <div class="card__container">
-			    <div class="card__title">
-					  Methamphetamine
-					</div>
-				
-					<div class="card__desc">
-					  Attention deficit hyperactivity disorder, obesity, and more...
-					</div>
-		    </div>
-			
-			  <div class="card__container">
-			    <div class="card__title">
-					  Methazolamide
-					</div>
-					<div class="card__desc">
-					  Intraocular pressure in glaucoma
-					</div>
-			  </div>  
+			   
 		  </div>    			
     </div>
 	
-		<div class="col col-md-6"><!-- Detail Sector -->
-		  <label class="subtitle">DETAILS FOR Methampetamine</label>
+		<div class="col col-md-6" ng-show="selectedMedicine"><!-- Detail Sector -->
+		  <label class="subtitle">DETAILS FOR {{selectedMedicine.name}}</label>
 			<div class="margins">
 				<!-- Detail Section -->
 			  <div class="detail__container">
 					<div class="card__title">
-					  Methampetamine
+					  {{selectedMedicine.name}}
 					</div>
 			
 					<div class="detail__desc">
 					  <p>
-					    Methamphetamine is a strong central nervous system stimulant that is
-						mainly used as a recreational drug and less commonly as a treatment
-						for attention deficit hyperactivity disorder and obesity.
+					  {{selectedMedicine.desc}}
 					  </p>
 					</div>
 					<span class="detail__title">PRICE (PHP)</span>
-					<span class="detail__subtitle">24,990.00</span>
+					<span class="detail__subtitle">{{selectedMedicine.price | currency : 'P '}}</span>
 					<br>
 					<br>
 					<span class="detail__title">TREATMENT FOR</span>
-					<span class="detail__subtitle">Attention deficit hyperactivity disorder, obesity</span>	
+					<span class="detail__subtitle"><span ng-repeat="treats in selectedMedicine.treats | limitTo: 3"><span ng-hide="$first">,&nbsp;</span>{{treats}}</span></span>	
 					<br>
 					<br>
 				  <div ng-controller="modalCtrl as alert"> 
