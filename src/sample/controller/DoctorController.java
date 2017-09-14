@@ -27,8 +27,10 @@ public class DoctorController extends Controller {
 
   JSONObject json = new JSONObject();
   String action = request.getParameter("action");
- 
+  String method = request.getMethod();
+  JSONObject jObj = null;
   
+  if(method == "POST"){
         /** 
          * Used to retrieve the JSON equivalent data
          */
@@ -38,15 +40,17 @@ public class DoctorController extends Controller {
         while ((str = br.readLine()) != null) {
             sb.append(str);
         }
-        JSONObject jObj = new JSONObject(sb.toString());
+
+        jObj = new JSONObject(sb.toString());
         DoctorDto doctorDto = null;
+
 
         /**
          * Used to store the information from the request and send to the
          * service class.
          */
        
-        if(!action.toLowerCase().contains("getDoctor")){
+   
          doctorDto = new DoctorDto(jObj.getString("fname"),
             jObj.getString("lname"),
             jObj.getString("address"),
@@ -59,7 +63,7 @@ public class DoctorController extends Controller {
             Long.parseLong(jObj.getString("id"))
 
         );
-        }
+
         if (action.equals("registerDoctor")) {
 
 
@@ -90,12 +94,14 @@ public class DoctorController extends Controller {
                 json.put("message", false);
             }
 
-        } else if (action.equals("getDoctor")) {
-
-            json.put("doctors", DoctorService.getDoctor(Long.parseLong(jObj.getString("id"))));
-        } else if (action.equals("getDoctors")) {
-            json.put("doctors", DoctorService.getDoctors());
         }
+  } else if (method == "GET") {
+      if(this.request.getParameter("id") != null){
+        json.put("doctors", DoctorService.getDoctor(Long.parseLong(this.request.getParameter("id"))));
+     } else {
+        json.put("doctors", DoctorService.getDoctors());
+     }
+  }
 
         response.setContentType("application/json");
         response.setCharacterEncoding("utf-8");

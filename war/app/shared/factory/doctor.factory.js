@@ -19,9 +19,19 @@ angular.module('hplus.factory')
             // or server returns response with an error status.
           });
       }
+
+      var getListOfDoctors = function(){
+        return $http({
+          method: "GET",
+          url: "/Doctor"
+        });
+      }
+        
+
       
       return {
-        registerDoctor: registerDoctor
+        registerDoctor: registerDoctor,
+        getListOfDoctors: getListOfDoctors
       }
     }
   );
