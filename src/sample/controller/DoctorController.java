@@ -12,52 +12,48 @@ import sample.service.DoctorService;
 
 public class DoctorController extends Controller {
 
- /**
-  * Service object that will be used to call CRUD functions to datastore
-  */
- DoctorService doctorService = new DoctorService();
+    /**
+    * Service object that will be used to call CRUD functions to datastore
+    */
+    DoctorService doctorService = new DoctorService();
 
+    @Override
+    protected Navigation run() throws Exception {
+        System.out.println("DoctorController.run start");
 
- /**
-  * For now, used to insert a 'doctor' entity to the datastore
-  */
- @Override
- protected Navigation run() throws Exception {
-  System.out.println("DoctorController.run start");
+        JSONObject json = new JSONObject();
+        String action = request.getParameter("action");
+        String method = request.getMethod();
+        JSONObject jObj = null;
 
-  JSONObject json = new JSONObject();
-  String action = request.getParameter("action");
-  String method = request.getMethod();
-  JSONObject jObj = null;
-  
-  if(method == "POST"){
-        /** 
-         * Used to retrieve the JSON equivalent data
-         */
-        BufferedReader br = request.getReader();
-        String str = null;
-        StringBuilder sb = new StringBuilder();
-        while ((str = br.readLine()) != null) {
-            sb.append(str);
-        }
-        jObj = new JSONObject(sb.toString());
+        if(method == "POST"){
+            /** 
+            * Used to retrieve the JSON equivalent data
+            */
+            BufferedReader br = request.getReader();
+            String str = null;
+            StringBuilder sb = new StringBuilder();
+            while ((str = br.readLine()) != null) {
+                sb.append(str);
+            }
+            jObj = new JSONObject(sb.toString());
 
-        /**
-         * Used to store the information from the request and send to the
-         * service class.
-         */
-        DoctorDto doctorDto = new DoctorDto(jObj.getString("fname"),
-            jObj.getString("lname"),
-            jObj.getString("address"),
-            jObj.getString("specialization"),
-            "" + jObj.getInt("number") + "",
-            jObj.getString("birthday"),
-            jObj.getString("username"),
-            jObj.getString("password"),
-            jObj.getString("email"),
-            Long.parseLong(jObj.getString("id"))
+            /**
+            * Used to store the information from the request and send to the
+            * service class.
+            */
+            DoctorDto doctorDto = new DoctorDto(jObj.getString("fname"),
+                jObj.getString("lname"),
+                jObj.getString("address"),
+                jObj.getString("specialization"),
+                "" + jObj.getInt("number") + "",
+                jObj.getString("birthday"),
+                jObj.getString("username"),
+                jObj.getString("password"),
+                jObj.getString("email"),
+                Long.parseLong(jObj.getString("id"))
 
-        );
+            );
         
         if (action.equals("registerDoctor")) {
 
