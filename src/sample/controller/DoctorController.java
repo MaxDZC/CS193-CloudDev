@@ -40,18 +40,13 @@ public class DoctorController extends Controller {
         while ((str = br.readLine()) != null) {
             sb.append(str);
         }
-
         jObj = new JSONObject(sb.toString());
-        DoctorDto doctorDto = null;
-
 
         /**
          * Used to store the information from the request and send to the
          * service class.
          */
-       
-   
-         doctorDto = new DoctorDto(jObj.getString("fname"),
+        DoctorDto doctorDto = new DoctorDto(jObj.getString("fname"),
             jObj.getString("lname"),
             jObj.getString("address"),
             jObj.getString("specialization"),
@@ -63,7 +58,7 @@ public class DoctorController extends Controller {
             Long.parseLong(jObj.getString("id"))
 
         );
-
+        
         if (action.equals("registerDoctor")) {
 
 
