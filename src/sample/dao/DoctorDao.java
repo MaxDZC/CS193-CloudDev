@@ -38,8 +38,8 @@ public class DoctorDao{
         System.out.println("DoctorDao.getDoc start");
       
         if(
-            Datastore.query("DoctorModel")
-            .filter("email", FilterOperator.EQUAL, email)
+            Datastore.query(DoctorModel.class)
+            .filter("email", FilterOperator.EQUAL, email.toLowerCase())
             .asSingleEntity() != null){
  
             System.out.println("DoctorDao.getDoc end(success)");
@@ -83,10 +83,10 @@ public class DoctorDao{
     public void insertDoc(DoctorModel inputDoc){
         System.out.println("DoctorDao.insertDoc start");
         Transaction trans = Datastore.beginTransaction();
-
+        
         //creating key and ID for the new entity
         Key parentKey = KeyFactory.createKey("Doctor", inputDoc.getFirstName()+inputDoc.getLastName());
-        Key key = Datastore.allocateId(parentKey, "DoctorModel");
+        Key key = Datastore.allocateId(parentKey, DoctorModel.class);
         
         //Setting the 'key' and 'id' of the model
         inputDoc.setKey(key);

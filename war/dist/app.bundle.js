@@ -36124,8 +36124,8 @@ angular.module('hplus.factory')
 
   .factory('doctorFactory', 
     function($http){
-
-      var registerDoctor = function(doctorObject){
+	  
+      var registerDoctor = function(doctorObject, clear){
         $http({
           method: 'POST',
           url: '/Doctor', // Change URL here
@@ -36135,11 +36135,27 @@ angular.module('hplus.factory')
           // {"message",false} -> An error occured
          // {"message","duplicated"} -> Email already exis
         	console.log(response);
+        	clear();
             // when the response is available
           }, function errorCallback(response) {
             // called asynchronously if an error occurs
             // or server returns response with an error status.
           });
+      }
+
+      var deleteDoctor = function(deleteObject){
+        $http({
+          method: "POST",
+          url: "/Doctor",
+        }).then(function successCallback(response){
+          alert("You have successfully deleted!!!");
+        }, function errorCallback(response){
+          var errorMessage = "";
+          for(var i = 0; i < response.data.errorList.length; i++){
+            errorMessage += response.data.errorList[i];
+          }
+          alert(errorMessage);
+        });
       }
       
       return {
@@ -36301,7 +36317,7 @@ angular.module('hplus.modules.editdoctor', [])
 /* 46 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\r\n  <div class=\"col col-md-8 col-md-offset-1\">\r\n    <h1><i class=\"fa fa-pencil-square-o\"></i> Editing Dr. John Appleseed</h1>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row\" ng-controller=\"EditDoctorController\">\r\n  <div class=\"col col-md-3 col-md-offset-1\">\r\n    <div class=\"match-padding\">\r\n      <label class=\"subtitle\">Specialization</label>\r\n      <select ng-model=\"doctor.specialization\">\r\n        <option ng-repeat=\"option in specialization\" value=\"{{option.id}}\">{{option.name}}</option>\r\n      </select>\r\n      <label class=\"subtitle\">Contact Number</label>\r\n      <input type=\"text\" value=\"+69XX-XXX-XXXX\">\r\n      <div ng-controller=\"modalCtrl as alert\"> \r\n        <button ng-click=\"alert.alert()\">Update</button>\r\n\t\t<!--<button class=\"outline delete_btn\" ng-click=\"alert.confirm()\">Delete</button>-->\r\n\t  </div>\r\n    </div>\r\n  </div>\r\n</div>";
+module.exports = "<div class=\"row\">\r\n  <div class=\"col col-md-8 col-md-offset-1\">\r\n    <h1><i class=\"fa fa-pencil-square-o\"></i> Editing Dr. John Appleseed</h1>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row\" ng-controller=\"EditDoctorController\">\r\n  <div class=\"col col-md-3 col-md-offset-1\">\r\n    <div class=\"match-padding\">\r\n      <label class=\"subtitle\">Specialization</label>\r\n      <select ng-model=\"doctor.specialization\">\r\n        <option ng-repeat=\"option in specialization\" value=\"{{option.id}}\">{{option.name}}</option>\r\n      </select>\r\n      <label class=\"subtitle\">Contact Number</label>\r\n      <input type=\"text\" value=\"+69XX-XXX-XXXX\">\r\n      <div ng-controller=\"modalCtrl as alert\"> \r\n        <button ng-click=\"alert.alert()\">Update</button>\r\n\t\t    <button class=\"outline delete_btn\" ng-click=\"deleteDoctor()\">Delete</button>\r\n\t  </div>\r\n    </div>\r\n  </div>\r\n</div>";
 
 /***/ }),
 /* 47 */
@@ -36802,7 +36818,7 @@ angular.module('hplus.modules.registerdoctor', [])
 /* 71 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\r\n  <div class=\"col col-md-8 col-md-offset-1\">\r\n    <h1>Register an Account</h1>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row\" ng-controller=\"RegisterDoctorController\">\r\n  <ng-form name=\"registerDoctorForm\">\r\n    <div class=\"row match-padding\">\r\n      <div class=\"col col-md-3 col-md-offset-1\">\r\n          <label class=\"subtitle\">First Name</label>\r\n          <input type=\"text\" ng-model=\"doctor.fname\" ng-required=\"true\">\r\n      </div>\r\n      <div class=\"col col-md-3\">\r\n          <label class=\"subtitle\">Last Name</label>\r\n          <input type=\"text\" ng-model=\"doctor.lname\" ng-required=\"true\">\r\n      </div>\r\n    </div>\r\n\r\n    <div class=\"row match-padding\">\r\n      <div class=\"col col-md-3 col-md-offset-1\">\r\n          <label class=\"subtitle\">Specialization</label>\r\n          <select ng-model=\"doctor.specialization\" ng-required=\"true\">\r\n            <option ng-repeat=\"option in specialization\" value=\"{{option.id}}\">{{option.name}}</option>\r\n          </select>\r\n      </div>\r\n      <div class=\"col col-md-3\">\r\n          <label class=\"subtitle\">Address</label>\r\n          <input type=\"text\" ng-model=\"doctor.address\" ng-required=\"true\">\r\n      </div>\r\n    </div>\r\n    \r\n    <div class=\"row match-padding\">\r\n      <div class=\"col col-md-3 col-md-offset-1\">\r\n          <label class=\"subtitle\">Contact Number</label>\r\n          <input type=\"number\" ng-model=\"doctor.number\" ng-required=\"true\">\r\n      </div>\r\n      <div class=\"col col-md-3\">\r\n          <label class=\"subtitle\">Birthday</label>\r\n          <input type=\"date\" ng-model=\"doctor.birthday\" ng-required=\"true\">\r\n      </div>\r\n    </div>\r\n    \r\n    <div class=\"row match-padding\">\r\n      <div class=\"col col-md-3 col-md-offset-1\">\r\n          <label class=\"subtitle\">Username</label>\r\n          <input type=\"text\" ng-model=\"doctor.username\" ng-required=\"true\">\r\n      </div>\r\n      <div class=\"col col-md-3\">\r\n          <label class=\"subtitle\">Password</label>\r\n          <input type=\"text\" ng-model=\"doctor.password\" ng-required=\"true\">\r\n      </div>\r\n    </div>\r\n    \r\n    <div class=\"row match-padding\">\r\n      <div class=\"col col-md-3 col-md-offset-1\">\r\n          <label class=\"subtitle\">Confirm Password</label>\r\n          <input type=\"text\" ng-model=\"doctor.passwordAgain\" ng-required=\"true\">\r\n          <button ng-hide=\"registerDoctorForm.$invalid\" ng-click=\"registerDoctor()\">Sign up</button>\r\n      </div>\r\n      <div class=\"col col-md-3\">\r\n          <label class=\"subtitle\">Email Address</label>\r\n          <input type=\"email\" ng-model=\"doctor.email\" ng-required=\"true\">\r\n      </div>\r\n    </div>\r\n  </ng-form>\r\n</div>";
+module.exports = "<div class=\"row\">\r\n  <div class=\"col col-md-8 col-md-offset-1\">\r\n    <h1>Register an Account</h1>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row\" ng-controller=\"RegisterDoctorController\">\r\n  <ng-form name=\"registerDoctorForm\">\r\n    <div class=\"row match-padding\">\r\n      <div class=\"col col-md-3 col-md-offset-1\">\r\n          <label class=\"subtitle\">First Name</label>\r\n          <input type=\"text\" ng-model=\"doctor.fname\" ng-required=\"true\">\r\n      </div>\r\n      <div class=\"col col-md-3\">\r\n          <label class=\"subtitle\">Last Name</label>\r\n          <input type=\"text\" ng-model=\"doctor.lname\" ng-required=\"true\">\r\n      </div>\r\n    </div>\r\n\r\n    <div class=\"row match-padding\">\r\n      <div class=\"col col-md-3 col-md-offset-1\">\r\n          <label class=\"subtitle\">Specialization</label>\r\n          <select ng-model=\"doctor.specialization\" ng-required=\"true\">\r\n            <option ng-repeat=\"option in specialization\" value=\"{{option.id}}\">{{option.name}}</option>\r\n          </select>\r\n      </div>\r\n      <div class=\"col col-md-3\">\r\n          <label class=\"subtitle\">Address</label>\r\n          <input type=\"text\" ng-model=\"doctor.address\" ng-required=\"true\">\r\n      </div>\r\n    </div>\r\n    \r\n    <div class=\"row match-padding\">\r\n      <div class=\"col col-md-3 col-md-offset-1\">\r\n          <label class=\"subtitle\">Contact Number</label>\r\n          <input type=\"text\" ng-model=\"doctor.number\" ng-pattern=\"regex\" ng-required=\"true\">\r\n      </div>\r\n      <div class=\"col col-md-3\">\r\n          <label class=\"subtitle\">Birthday</label>\r\n          <input type=\"date\" ng-model=\"doctor.birthday\" ng-required=\"true\">\r\n      </div>\r\n    </div>\r\n    \r\n    <div class=\"row match-padding\">\r\n      <div class=\"col col-md-3 col-md-offset-1\">\r\n          <label class=\"subtitle\">Username</label>\r\n          <input type=\"text\" ng-model=\"doctor.username\" ng-required=\"true\">\r\n      </div>\r\n      <div class=\"col col-md-3\">\r\n          <label class=\"subtitle\">Password</label>\r\n          <input type=\"password\" ng-model=\"doctor.password\" ng-required=\"true\">\r\n      </div>\r\n    </div>\r\n    \r\n    <div class=\"row match-padding\">\r\n      <div class=\"col col-md-3 col-md-offset-1\">\r\n          <label class=\"subtitle\">Confirm Password</label>\r\n          <input type=\"password\" ng-model=\"doctor.passwordAgain\" ng-required=\"true\">\r\n          <button ng-hide=\"registerDoctorForm.$invalid\" ng-click=\"registerDoctor()\">Sign up</button>\r\n      </div>\r\n      <div class=\"col col-md-3\">\r\n          <label class=\"subtitle\">Email Address</label>\r\n          <input type=\"email\" ng-model=\"doctor.email\" ng-required=\"true\">\r\n      </div>\r\n    </div>\r\n  </ng-form>\r\n</div>";
 
 /***/ }),
 /* 72 */
@@ -36813,6 +36829,7 @@ angular.module('hplus.modules.registerdoctor')
   .controller('RegisterDoctorController',
     function($scope, globalFactory, doctorFactory){
 
+	  $scope.regex = "\\d{7,}";
       $scope.go = function(path){
         globalFactory.go(path);
       };
@@ -36844,12 +36861,26 @@ angular.module('hplus.modules.registerdoctor')
 
       $scope.registerDoctor = function(){
         if (isPasswordValid() == true){
-          doctorFactory.registerDoctor($scope.doctor);
+          doctorFactory.registerDoctor($scope.doctor, $scope.initComponents);
+       //   $scope.initComponents();
         } else {
           // Temporary for now. Should be in a modal soon.
         	SweetAlert.swal("Your passwords do not match.");
         }
       };
+      
+      $scope.initComponents = function(){
+    	  $scope.doctor.fname = "";
+    	  $scope.doctor.lname = "";
+    	  $scope.doctor.specialization = "";
+    	  $scope.doctor.address = "";
+    	  $scope.doctor.number = "";
+    	  $scope.doctor.birthday = "";
+    	  $scope.doctor.username = "";
+    	  $scope.doctor.password = "";
+    	  $scope.doctor.passwordAgain = "";
+    	  $scope.doctor.email = "";
+      }
 
     }
   );

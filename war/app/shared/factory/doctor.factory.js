@@ -2,8 +2,8 @@ angular.module('hplus.factory')
 
   .factory('doctorFactory', 
     function($http){
-
-      var registerDoctor = function(doctorObject){
+	  
+      var registerDoctor = function(doctorObject, clear){
         $http({
           method: 'POST',
           url: '/Doctor', // Change URL here
@@ -13,11 +13,27 @@ angular.module('hplus.factory')
           // {"message",false} -> An error occured
          // {"message","duplicated"} -> Email already exis
         	console.log(response);
+        	clear();
             // when the response is available
           }, function errorCallback(response) {
             // called asynchronously if an error occurs
             // or server returns response with an error status.
           });
+      }
+
+      var deleteDoctor = function(deleteObject){
+        $http({
+          method: "POST",
+          url: "/Doctor",
+        }).then(function successCallback(response){
+          alert("You have successfully deleted!!!");
+        }, function errorCallback(response){
+          var errorMessage = "";
+          for(var i = 0; i < response.data.errorList.length; i++){
+            errorMessage += response.data.errorList[i];
+          }
+          alert(errorMessage);
+        });
       }
       
       return {
