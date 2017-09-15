@@ -2,7 +2,7 @@ package sample.dto;
 
 import java.util.Date;
 
-public class DoctorDto {
+public class DoctorDto extends ErrorsDto{
     /**
      * The id of the 'Doctor'
      */
@@ -86,6 +86,10 @@ public class DoctorDto {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+    
+    public DoctorDto(){
+        
     }
 
     /**
