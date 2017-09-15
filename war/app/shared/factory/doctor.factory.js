@@ -4,9 +4,12 @@ angular.module('hplus.factory')
     function($http){
 
       var registerDoctor = function(doctorObject){
+
+        doctorObject.push(action, "registerDoctor");
+
         $http({
-          method: 'POST',
-          url: '/Doctor', // Change URL here
+          method: "POST",
+          url: "/Doctor", // Change URL here
           data: doctorObject
         }).then(function successCallback(response) {
            //  {"message",true} -> Was inserted
@@ -26,12 +29,36 @@ angular.module('hplus.factory')
           url: "/Doctor"
         });
       }
+
+      var updateDoctor = function(doctorObject){
+
+        doctorObject.push(action, "updateDoctor");
+
+        return $http({
+          method: "POST",
+          url: "/Doctor",
+          data: doctorObject
+        });
+      }
+
+      var deleteDoctor = function(doctorObject){
+
+        doctorObject.push(action, "deleteDoctor");
+
+        return $http({
+          method: "POST",
+          url: "/Doctor",
+          data: doctorObject
+        });
+      }
         
 
       
       return {
         registerDoctor: registerDoctor,
-        getListOfDoctors: getListOfDoctors
+        getListOfDoctors: getListOfDoctors,
+        updateDoctor: updateDoctor,
+        deleteDoctor: deleteDoctor
       }
     }
   );
