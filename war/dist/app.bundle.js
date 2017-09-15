@@ -154,9 +154,9 @@ __webpack_require__(2);
 __webpack_require__(23);
 __webpack_require__(25);
 __webpack_require__(27);
-__webpack_require__(98);
 __webpack_require__(100);
-__webpack_require__(101);
+__webpack_require__(102);
+__webpack_require__(103);
 
 var app = angular.module('hplus', [
                             'ngRoute',
@@ -180,7 +180,7 @@ app.config(function ($routeProvider, $locationProvider, paginationTemplateProvid
     // });
   
   // Stylizes the pagination
-  paginationTemplateProvider.setString(__webpack_require__(102));
+  paginationTemplateProvider.setString(__webpack_require__(104));
 });
 
 
@@ -35967,8 +35967,8 @@ __webpack_require__(79);
 __webpack_require__(82);
 __webpack_require__(87);
 __webpack_require__(90);
-__webpack_require__(93);
 __webpack_require__(95);
+__webpack_require__(97);
 
 angular.module('hplus.modules', [
   'hplus.modules.header',
@@ -37038,132 +37038,133 @@ angular.module('hplus.modules.viewmedicine', [])
         template: viewmedicine
       })
   });
-
   __webpack_require__(92);
+  __webpack_require__(94);
 
 /***/ }),
 /* 91 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\r\n  <div class=\"col col-md-8 col-md-offset-1\">\r\n    <h1><i class=\"fa fa-heartbeat\"></i>Paracetamol</h1>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row\" ng-controller=\"ViewMedicineController\">\r\n  <div class=\"col col-md-10 col-md-offset-1\">\r\n    <div class=\"col-md-3\">\r\n      <span class=\"subtitle\">Price:</span>\r\n      <div class=\"subtitle__value\">\r\n        PHP 7.00\r\n      </div>\r\n    </div>\r\n    <div class=\"col-md-3\">\r\n      <label class=\"subtitle\">USAGE FOR</label>\r\n      <span class=\"subtitle subtitle--variable\">June 2017</span>\r\n      <div class=\"subtitle__value\">\r\n        15 Patients\r\n      </div>\r\n    </div>\r\n    <div class=\"col-md-3\">\r\n      <label class=\"subtitle\">USAGE FOR THE YEAR</label>\r\n      <span class=\"subtitle subtitle--variable\">2017</span>\r\n      <div class=\"subtitle__value\">\r\n        367 PATIENTS\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row margins\" ng-controller=\"ViewMedicineController\">\r\n  <div class=\"col-md-10 col-md-offset-1 margins\">\r\n\t  <div class=\"col-md-3\">\r\n      <label class=\"subtitle\">Generic Name</label>\r\n      <div class=\"subtitle__value\">\r\n        Chlorphenamine Maleate \r\n      </div>\r\n      <label class=\"subtitle marginTop\">Type of Medicine</label>\r\n      <div class=\"subtitle__value\">\r\n        Capsule\r\n      </div>\r\n\t    <label class=\"subtitle marginTop\">Description:</label>\r\n\t    <div class=\"subtitle__value\">\r\n\t      Paracetamol also known as blabalbablabalbal\r\n\t    </div>\r\n\t    <button class=\"outline\" ng-click=\"go('/admin/update/medicine')\">Edit</button>\r\n\t  </div>\r\n\t  <div class=\"col-md-9\">\r\n\t    <label class=\"subtitle\">RECENTLY DISPENSED TO THE FOLLOWING PATIENTS</label>\r\n      <div class=\"margintop\">\r\n       <ul>\r\n         <li ng-repeat=\"option in data | startFrom:currentPage*pageSize | limitTo:pageSize\">\r\n\t <div class=\"card__container\">\r\n\t   <div class=\"card__title\">\r\n\t     {{option.name}}\r\n\t     <a ng-click=\"go('#')\"><span class=\"delete__icon\"><i class=\"fa fa-eye\" aria-hidden=\"true\"></i></span></a>\r\n\t   </div>\r\n\t   <div class=\"card__desc\">\r\n\t     Dispensed {{option.date}} as Demanded by {{option.doctor}}\r\n\t    </div>\r\n\t </div>\r\n\t </li>\r\n       </ul>\r\n       <div class=\"col col-md-5 col-md-offset-5\">\r\n\t <div class=\"pagination__page\" ng-disabled=\"currentPage == 0\" ng-click=\"currentPage=currentPage-1\"><</div>\r\n\t {{currentPage+1}}/{{numberOfPages()}}\r\n         <div class=\"pagination__page\" ng-disabled=\"currentPage >= data.length/pageSize - 1\" ng-click=\"currentPage=currentPage+1\">></div>\r\n       </div>\r\n      </div>\r\n\t  </div>\r\n  </div>\r\n</div>";
+module.exports = "<ng-controller ng-controller=\"ViewMedicineController\">\r\n\t<div class=\"row\">\r\n\t  <div class=\"col col-md-8 col-md-offset-1\">\r\n\t    <h1><i class=\"fa fa-heartbeat\"></i>Paracetamol</h1>\r\n\t  </div>\r\n\t</div>\r\n\t\r\n\t<div class=\"row\">\r\n\t  <div class=\"col col-md-10 col-md-offset-1\">\r\n\t    <div class=\"col-md-3\">\r\n\t      <span class=\"subtitle\">Price:</span>\r\n\t      <div class=\"subtitle__value\">\r\n\t        PHP {{ medicineData.price }}\r\n\t      </div>\r\n\t    </div>\r\n\t    <div class=\"col-md-3\">\r\n\t      <label class=\"subtitle\">USAGE FOR</label>\r\n\t      <span class=\"subtitle subtitle--variable\">June 2017</span>\r\n\t      <div class=\"subtitle__value\">\r\n\t        15 Patients\r\n\t      </div>\r\n\t    </div>\r\n\t    <div class=\"col-md-3\">\r\n\t      <label class=\"subtitle\">USAGE FOR THE YEAR</label>\r\n\t      <span class=\"subtitle subtitle--variable\">2017</span>\r\n\t      <div class=\"subtitle__value\">\r\n\t        367 PATIENTS\r\n\t      </div>\r\n\t    </div>\r\n\t  </div>\r\n\t</div>\r\n\t\r\n\t<div class=\"row margins\">\r\n\t  <div class=\"col-md-10 col-md-offset-1 margins\">\r\n\t\t  <div class=\"col-md-3\">\r\n\t      <label class=\"subtitle\">Generic Name</label>\r\n\t      <div class=\"subtitle__value\">\r\n\t        {{ medicineData.name }}\r\n\t      </div>\r\n\t      <label class=\"subtitle marginTop\">Type of Medicine</label>\r\n\t      <div class=\"subtitle__value\">\r\n\t        {{ medicineData.type }}\r\n\t      </div>\r\n\t\t    <label class=\"subtitle marginTop\">Description:</label>\r\n\t\t    <div class=\"subtitle__value\">\r\n\t\t      {{ medicineData.description }}\r\n\t\t    </div>\r\n\t\t    <button class=\"outline\" ng-click=\"go('/admin/update/medicine')\">Edit</button>\r\n\t\t  </div>\r\n\t\t  <div class=\"col-md-9\">\r\n\t\t    <label class=\"subtitle\">RECENTLY DISPENSED TO THE FOLLOWING PATIENTS</label>\r\n\t        <hplus-view-medicine-card dir-paginate=\"record in recordList | itemsPerPage:10\" data=\"record\"></hplus-view-doctors-card>\r\n\t\t  </div>\r\n\t  </div>\r\n\t</div>\r\n\t<dir-pagination-controls max-size=\"5\"></dir-pagination-controls>\r\n</ng-controller>";
 
 /***/ }),
 /* 92 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var card = __webpack_require__(93);
+angular.module('hplus.modules.viewmedicine')
+
+  .directive('hplusViewMedicineCard', function(){
+    return{
+      restrict: 'EA',
+      scope: {
+        data: '='
+      },
+      template: card
+    };
+  })
+
+/***/ }),
+/* 93 */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"card__container\">\r\n  <div class=\"card__title\">\r\n    {{ data.name }} \r\n  </div>\r\n  \r\n  <div class=\"card__desc\">\r\n    Dispensed  {{ data.date }} as Demanded by Dr. John Appleseed\r\n  </div>\r\n</div>";
+
+/***/ }),
+/* 94 */
 /***/ (function(module, exports) {
 
 app = angular.module('hplus.modules.viewmedicine');
 
   app.controller('ViewMedicineController',
     function($scope, globalFactory){
-	    
-	$scope.data = [];
-	$scope.currentPage = 0;
-	$scope.pageSize = 10;
-	$scope.numberOfPages = function(){
-          return Math.ceil($scope.data.length/$scope.pageSize);                
-        }
-
+	  
       $scope.go = function(path){
         globalFactory.go(path);
       };
+       
+      $scope.medicineData = {
+        name: "Xavier Ford",
+        type: "09171234567",
+        description: "Cosmetic Surgery",
+        price: "7.00"
+      };
       
-       $scope.record = [
+       $scope.recordList = [
         {
           name: "Doe, Jane",
-	  date: "Feb. 20, 2016",
-	  doctor: "Dr. John Appleseed",
+          date: "Feb. 20, 2016",
+          disease: "Heart Attack",
           id: 1
         },
         {
           name: "Rizal, Jose",
-	  date: "Apr. 10, 2013",
-	  doctor: "Dr. John Appleseed",
+          date: "Apr. 10, 2013",
+          disease: "Heart Attack",
           id: 2
         },
         {
           name: "Lietzkirg, Jaiyra",
-	  date: "May. 19, 2011",
-	  doctor: "Dr. John Appleseed",
+          date: "May. 19, 2011",
+          disease: "Heart Attack",
           id: 3
         },
-	{
+        {
           name: "Doe, Jane",
-	  date: "Feb. 20, 2016",
-	  doctor: "Dr. John Appleseed",
+          date: "Feb. 20, 2016",
+          disease: "Heart Attack",
           id: 4
         },
-	{
+        {
           name: "Doe, Jane",
-	  date: "Feb. 20, 2016",
-	  doctor: "Dr. John Appleseed",
+          date: "Feb. 20, 2016",
+          disease: "Heart Attack",
           id: 5
         },
-	{
+        {
           name: "Doe, Jane",
-	  date: "Feb. 20, 2016",
-	  doctor: "Dr. John Appleseed",
+          date: "Feb. 20, 2016",
+          disease: "Heart Attack",
           id: 6
         },
-	{
+        {
           name: "Doe, Jane",
-	  date: "Feb. 20, 2016",
-	  doctor: "Dr. John Appleseed",
+          date: "Feb. 20, 2016",
+          disease: "Heart Attack",
           id: 7
         },
-	{
+        {
           name: "Doe, Jane",
-	  date: "Feb. 20, 2016",
-	  doctor: "Dr. John Appleseed",
+          date: "Feb. 20, 2016",
+          disease: "Heart Attack",
           id: 8
         },
-	{
+        {
           name: "Doe, Jane",
-	  date: "Feb. 20, 2016",
-	  doctor: "Dr. John Appleseed",
+          date: "Feb. 20, 2016",
+          disease: "Heart Attack",
           id: 9
         },
-	{
+        {
           name: "Doe, Jane",
-	  date: "Feb. 20, 2016",
-	  doctor: "Dr. John Appleseed",
+          date: "Feb. 20, 2016",
+          disease: "Heart Attack",
           id: 10
         },
-	{
+        {
           name: "Doe, Jane",
-	  date: "Feb. 20, 2016",
-	  doctor: "Dr. John Appleseed",
+          date: "Feb. 20, 2016",
+          disease: "Heart Attack",
           id: 11
         }
       ];
-      $scope.makeTodos = function() {
-        for (var i=0;i<11;i++) {
-	  var n = $scope.record[i].name;
-	  var da = $scope.record[i].date;
-	  var di = $scope.record[i].doctor;
-	  console.log("",n);
-	  $scope.data.push({ 
-	  name: n,
-	  date: da,
-	  doctor: di	
-	  });
-	}
-      };
-      $scope.makeTodos();
-    }
-  );
-  
-  app.filter('startFrom', function() {
-      return function(input, start) {
-        start = +start; //parse to int
-        return input.slice(start);
-      }
   });
 
 /***/ }),
-/* 93 */
+/* 95 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var viewdoctor = __webpack_require__(94);
+var viewdoctor = __webpack_require__(96);
 
 angular.module('hplus.modules.viewpatient', [])
 
@@ -37176,16 +37177,16 @@ angular.module('hplus.modules.viewpatient', [])
 
 
 /***/ }),
-/* 94 */
+/* 96 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"row\">\r\n  <div class=\"col col-md-8 col-md-offset-1\">\r\n    <h1><i class=\"fa fa-user-o\"></i> Doe, Jane</h1>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row\">\r\n  <div class=\"col col-md-2 col-md-offset-1\">\r\n    <div class=\"match-padding\">\r\n      <span class=\"subtitle\">\r\n        Date of Birth\r\n      </span>\r\n      <div class=\"subtitle__value\">\r\n        January 1, 1970\r\n      </div>\r\n      <br>\r\n      <span class=\"subtitle\">Sex</span>\r\n      <div class=\"subtitle__value\">\r\n        Female\r\n      </div>\r\n      <br>\r\n      <button class=\"outline\">Edit</button>\r\n    </div>\r\n  </div>\r\n\r\n  <div class=\"col col-md-8\">\r\n    <div class=\"col col-md-12\">\r\n      <span class=\"subtitle\">\r\n        Medical Records of this patient\r\n      </span>\r\n      <br><br>\r\n      <div class=\"card__container match-padding\">\r\n        <div class=\"card__title match-padding\">\r\n          Hyperacidity\r\n        </div>\r\n\r\n        <br>\r\n        <span class=\"subtitle match-padding\">Symptoms</span>\r\n        <div class=\"subtitle__value match-padding\">\r\n          Lack of appetite, Constipation, Indigestion, Sour belching, Vomiting\r\n        </div>\r\n\r\n        <br>\r\n        <span class=\"subtitle match-padding\">Medications</span>\r\n        <div class=\"subtitle__value match-padding\">\r\n          Omeprazole 20mg &times; 7\r\n        </div>\r\n\r\n        <div class=\"row\">\r\n          <div class=\"col col-md-4 \">\r\n            <br>\r\n            <span class=\"subtitle\">Admission Date</span>\r\n            <div class=\"subtitle__value\">\r\n              February 20, 2016\r\n            </div>\r\n          </div>\r\n          <div class=\"col col-md-4\">\r\n            <br>\r\n            <span class=\"subtitle\">Discharge Date</span>\r\n            <div class=\"subtitle__value\">\r\n              February 21, 2016\r\n            </div>\r\n          </div>\r\n          <div class=\"col col-md-4\">\r\n            <br>\r\n            <span class=\"subtitle\">Bill for this disease</span>\r\n            <div class=\"subtitle__value\">\r\n              PHP 308.00\r\n            </div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n\r\n      <div class=\"pagination__container\">\r\n        <div class=\"pagination__page\">\r\n          <i class=\"fa fa-angle-double-left\"></i>\r\n        </div>\r\n\r\n        <div class=\"pagination__page\">\r\n          <i class=\"fa fa-angle-left\"></i>\r\n        </div>\r\n\r\n        <div class=\"pagination__page\">\r\n          2\r\n        </div>\r\n\r\n        <div class=\"pagination__current\">\r\n          3\r\n        </div>\r\n\r\n        <div class=\"pagination__page\">\r\n          4\r\n        </div>\r\n\r\n        <div class=\"pagination__page\">\r\n          <i class=\"fa fa-angle-right\"></i>\r\n        </div>\r\n        \r\n        <div class=\"pagination__page\">\r\n          <i class=\"fa fa-angle-double-right\"></i>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>";
 
 /***/ }),
-/* 95 */
+/* 97 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var resetpassword = __webpack_require__(96);
+var resetpassword = __webpack_require__(98);
 
 angular.module('hplus.modules.resetpassword', [])
 
@@ -37196,16 +37197,16 @@ angular.module('hplus.modules.resetpassword', [])
       })
   });
 
-  __webpack_require__(97);
+  __webpack_require__(99);
 
 /***/ }),
-/* 96 */
+/* 98 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"row\">\r\n  <div class=\"col col-md-8 col-md-offset-1\">\r\n    <h1>Reset Your Password</h1>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row\">\r\n  <div class=\"col col-md-2 col-md-offset-1\">\r\n    <div class=\"row\">\r\n      <div class=\"col col-md-12\">\r\n        <label>New Password</label>\r\n        <input type=\"text\">\r\n        <label>Repeat your new password</label>\r\n        <input type=\"text\">\r\n        <br><br><br><br>\r\n        <button>Reset</button>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>";
 
 /***/ }),
-/* 97 */
+/* 99 */
 /***/ (function(module, exports) {
 
 angular.module('hplus.modules.resetpassword')
@@ -37220,15 +37221,15 @@ angular.module('hplus.modules.resetpassword')
   );
 
 /***/ }),
-/* 98 */
+/* 100 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(99);
+__webpack_require__(101);
 module.exports = 'angularUtils.directives.dirPagination';
 
 
 /***/ }),
-/* 99 */
+/* 101 */
 /***/ (function(module, exports) {
 
 /**
@@ -37873,21 +37874,21 @@ module.exports = 'angularUtils.directives.dirPagination';
 
 
 /***/ }),
-/* 100 */
+/* 102 */
 /***/ (function(module, exports) {
 
  !function (e, t) { function n() { var e = '<div class="sweet-overlay"  tabIndex="-1"></div><div class="sweet-alert" tabIndex="-1"><div class="icon error"><span class="x-mark"><span class="line left"></span><span class="line right"></span></span></div><div class="icon warning"> <span class="body"></span> <span class="dot"></span> </div> <div class="icon info"></div> <div class="icon success"> <span class="line tip"></span> <span class="line long"></span> <div class="placeholder"></div> <div class="fix"></div> </div> <div class="icon custom"></div> <h2>Title</h2><p>Text</p><button class="cancel" tabIndex="2">Cancel</button><button class="confirm" tabIndex="1">OK</button></div>', n = t.createElement("div"); n.innerHTML = e, t.body.appendChild(n) } function o(t) { var n = m(), o = n.querySelector("h2"), r = n.querySelector("p"), a = n.querySelector("button.cancel"), c = n.querySelector("button.confirm"); if (o.innerHTML = b(t.title).split("\n").join("<br>"), r.innerHTML = b(t.text || "").split("\n").join("<br>"), t.text && w(r), x(n.querySelectorAll(".icon")), t.type) { for (var l = !1, s = 0; s < d.length; s++) if (t.type === d[s]) { l = !0; break } if (!l) return e.console.error("Unknown alert type: " + t.type), !1; var u = n.querySelector(".icon." + t.type); switch (w(u), t.type) { case "success": p(u, "animate"), p(u.querySelector(".tip"), "animateSuccessTip"), p(u.querySelector(".long"), "animateSuccessLong"); break; case "error": p(u, "animateErrorIcon"), p(u.querySelector(".x-mark"), "animateXMark"); break; case "warning": p(u, "pulseWarning"), p(u.querySelector(".body"), "pulseWarningIns"), p(u.querySelector(".dot"), "pulseWarningIns") } } if (t.imageUrl) { var f = n.querySelector(".icon.custom"); f.style.backgroundImage = "url(" + t.imageUrl + ")", w(f); var g = 80, y = 80; if (t.imageSize) { var v = t.imageSize.split("x")[0], h = t.imageSize.split("x")[1]; v && h ? (g = v, y = h, f.css({ width: v + "px", height: h + "px" })) : e.console.error("Parameter imageSize expects value with format WIDTHxHEIGHT, got " + t.imageSize) } f.setAttribute("style", f.getAttribute("style") + "width:" + g + "px; height:" + y + "px") } n.setAttribute("data-has-cancel-button", t.showCancelButton), t.showCancelButton ? a.style.display = "inline-block" : x(a), t.cancelButtonText && (a.innerHTML = b(t.cancelButtonText)), t.confirmButtonText && (c.innerHTML = b(t.confirmButtonText)), c.style.backgroundColor = t.confirmButtonColor, i(c, t.confirmButtonColor), n.setAttribute("data-allow-ouside-click", t.allowOutsideClick); var S = t.doneFunction ? !0 : !1; n.setAttribute("data-has-done-function", S) } function r(e, t) { e = String(e).replace(/[^0-9a-f]/gi, ""), e.length < 6 && (e = e[0] + e[0] + e[1] + e[1] + e[2] + e[2]), t = t || 0; var n = "#", o, r; for (r = 0; 3 > r; r++) o = parseInt(e.substr(2 * r, 2), 16), o = Math.round(Math.min(Math.max(0, o + o * t), 255)).toString(16), n += ("00" + o).substr(o.length); return n } function a(e) { var t = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(e); return t ? parseInt(t[1], 16) + ", " + parseInt(t[2], 16) + ", " + parseInt(t[3], 16) : null } function i(e, t) { var n = a(t); e.style.boxShadow = "0 0 2px rgba(" + n + ", 0.8), inset 0 0 0 1px rgba(0, 0, 0, 0.05)" } function c() { var e = m(); B(g(), 10), w(e), p(e, "showSweetAlert"), v(e, "hideSweetAlert"), O = t.activeElement; var n = e.querySelector("button.confirm"); n.focus(), setTimeout(function () { p(e, "visible") }, 500) } function l() { var n = m(); T(g(), 5), T(n, 5), v(n, "showSweetAlert"), p(n, "hideSweetAlert"), v(n, "visible"); var o = n.querySelector(".icon.success"); v(o, "animate"), v(o.querySelector(".tip"), "animateSuccessTip"), v(o.querySelector(".long"), "animateSuccessLong"); var r = n.querySelector(".icon.error"); v(r, "animateErrorIcon"), v(r.querySelector(".x-mark"), "animateXMark"); var a = n.querySelector(".icon.warning"); v(a, "pulseWarning"), v(a.querySelector(".body"), "pulseWarningIns"), v(a.querySelector(".dot"), "pulseWarningIns"), e.onkeydown = A, t.onclick = I, O && O.focus(), M = void 0 } function s() { var e = m(); e.style.marginTop = k(m()) } var u = ".sweet-alert", f = ".sweet-overlay", d = ["error", "warning", "info", "success"], m = function () { return t.querySelector(u) }, g = function () { return t.querySelector(f) }, y = function (e, t) { return new RegExp(" " + t + " ").test(" " + e.className + " ") }, p = function (e, t) { y(e, t) || (e.className += " " + t) }, v = function (e, t) { var n = " " + e.className.replace(/[\t\r\n]/g, " ") + " "; if (y(e, t)) { for (; n.indexOf(" " + t + " ") >= 0;) n = n.replace(" " + t + " ", " "); e.className = n.replace(/^\s+|\s+$/g, "") } }, b = function (e) { var n = t.createElement("div"); return n.appendChild(t.createTextNode(e)), n.innerHTML }, h = function (e) { e.style.opacity = "", e.style.display = "block" }, w = function (e) { if (e && !e.length) return h(e); for (var t = 0; t < e.length; ++t) h(e[t]) }, S = function (e) { e.style.opacity = "", e.style.display = "none" }, x = function (e) { if (e && !e.length) return S(e); for (var t = 0; t < e.length; ++t) S(e[t]) }, C = function (e, t) { for (var n = t.parentNode; null !== n;) { if (n === e) return !0; n = n.parentNode } return !1 }, k = function (e) { e.style.left = "-9999px", e.style.display = "block"; var t = e.clientHeight, n = parseInt(getComputedStyle(e).getPropertyValue("padding"), 10); return e.style.left = "", e.style.display = "none", "-" + parseInt(t / 2 + n) + "px" }, B = function (e, t) { if (+e.style.opacity < 1) { t = t || 16, e.style.opacity = 0, e.style.display = "block"; var n = +new Date, o = function () { e.style.opacity = +e.style.opacity + (new Date - n) / 100, n = +new Date, +e.style.opacity < 1 && setTimeout(o, t) }; o() } }, T = function (e, t) { t = t || 16, e.style.opacity = 1; var n = +new Date, o = function () { e.style.opacity = +e.style.opacity - (new Date - n) / 100, n = +new Date, +e.style.opacity > 0 ? setTimeout(o, t) : e.style.display = "none" }; o() }, E = function (n) { if (MouseEvent) { var o = new MouseEvent("click", { view: e, bubbles: !1, cancelable: !0 }); n.dispatchEvent(o) } else if (t.createEvent) { var r = t.createEvent("MouseEvents"); r.initEvent("click", !1, !1), n.dispatchEvent(r) } else t.createEventObject ? n.fireEvent("onclick") : "function" == typeof n.onclick && n.onclick() }, q = function (t) { "function" == typeof t.stopPropagation ? (t.stopPropagation(), t.preventDefault()) : e.event && e.event.hasOwnProperty("cancelBubble") && (e.event.cancelBubble = !0) }, O, I, A, M; e.sweetAlert = e.swal = function () { function n(e) { var t = e.keyCode || e.which; if (-1 !== [9, 13, 32, 27].indexOf(t)) { for (var n = e.target || e.srcElement, o = -1, r = 0; r < h.length; r++) if (n === h[r]) { o = r; break } 9 === t ? (n = -1 === o ? v : o === h.length - 1 ? h[0] : h[o + 1], q(e), n.focus(), i(n, u.confirmButtonColor)) : (n = 13 === t || 32 === t ? -1 === o ? v : void 0 : 27 !== t || b.hidden || "none" === b.style.display ? void 0 : b, void 0 !== n && E(n, e)) } } function a(e) { var t = e.target || e.srcElement, n = e.relatedTarget, o = y(f, "visible"); if (o) { var r = -1; if (null !== n) { for (var a = 0; a < h.length; a++) if (n === h[a]) { r = a; break } -1 === r && t.focus() } else M = t } } var u = { title: "", text: "", type: null, allowOutsideClick: !1, showCancelButton: !1, closeOnConfirm: !0, closeOnCancel: !0, confirmButtonText: "OK", confirmButtonColor: "#AEDEF4", cancelButtonText: "Cancel", imageUrl: null, imageSize: null }; if (void 0 === arguments[0]) return e.console.error("sweetAlert expects at least 1 attribute!"), !1; switch (typeof arguments[0]) { case "string": u.title = arguments[0], u.text = arguments[1] || "", u.type = arguments[2] || ""; break; case "object": if (void 0 === arguments[0].title) return e.console.error('Missing "title" argument!'), !1; u.title = arguments[0].title, u.text = arguments[0].text || u.text, u.type = arguments[0].type || u.type, u.allowOutsideClick = arguments[0].allowOutsideClick || u.allowOutsideClick, u.showCancelButton = void 0 !== arguments[0].showCancelButton ? arguments[0].showCancelButton : u.showCancelButton, u.closeOnConfirm = void 0 !== arguments[0].closeOnConfirm ? arguments[0].closeOnConfirm : u.closeOnConfirm, u.closeOnCancel = void 0 !== arguments[0].closeOnCancel ? arguments[0].closeOnCancel : u.closeOnCancel, u.confirmButtonText = u.showCancelButton ? "Confirm" : u.confirmButtonText, u.confirmButtonText = arguments[0].confirmButtonText || u.confirmButtonText, u.confirmButtonColor = arguments[0].confirmButtonColor || u.confirmButtonColor, u.cancelButtonText = arguments[0].cancelButtonText || u.cancelButtonText, u.imageUrl = arguments[0].imageUrl || u.imageUrl, u.imageSize = arguments[0].imageSize || u.imageSize, u.doneFunction = arguments[1] || null; break; default: return e.console.error('Unexpected type of argument! Expected "string" or "object", got ' + typeof arguments[0]), !1 } o(u), s(), c(); for (var f = m(), d = function (e) { var t = e.target || e.srcElement, n = "confirm" === t.className, o = y(f, "visible"), a = u.doneFunction && "true" === f.getAttribute("data-has-done-function"); switch (e.type) { case "mouseover": n && (e.target.style.backgroundColor = r(u.confirmButtonColor, -.04)); break; case "mouseout": n && (e.target.style.backgroundColor = u.confirmButtonColor); break; case "mousedown": n && (e.target.style.backgroundColor = r(u.confirmButtonColor, -.14)); break; case "mouseup": n && (e.target.style.backgroundColor = r(u.confirmButtonColor, -.04)); break; case "focus": var i = f.querySelector("button.confirm"), c = f.querySelector("button.cancel"); n ? c.style.boxShadow = "none" : i.style.boxShadow = "none"; break; case "click": if (n && a && o) u.doneFunction(!0), u.closeOnConfirm && l(); else if (a && o) { var s = String(u.doneFunction).replace(/\s/g, ""), d = "function(" === s.substring(0, 9) && ")" !== s.substring(9, 10); d && u.doneFunction(!1), u.closeOnCancel && l() } else l() } }, g = f.querySelectorAll("button"), p = 0; p < g.length; p++) g[p].onclick = d, g[p].onmouseover = d, g[p].onmouseout = d, g[p].onmousedown = d, g[p].onfocus = d; I = t.onclick, t.onclick = function (e) { var t = e.target || e.srcElement, n = f === t, o = C(f, e.target), r = y(f, "visible"), a = "true" === f.getAttribute("data-allow-ouside-click"); !n && !o && r && a && l() }; var v = f.querySelector("button.confirm"), b = f.querySelector("button.cancel"), h = f.querySelectorAll("button:not([type=hidden])"); A = e.onkeydown, e.onkeydown = n, v.onblur = a, b.onblur = a, e.onfocus = function () { e.setTimeout(function () { void 0 !== M && (M.focus(), M = void 0) }, 0) } }, function () { "complete" === t.readyState || "interactive" === t.readyState ? n() : t.addEventListener ? t.addEventListener("DOMContentLoaded", function e() { t.removeEventListener("DOMContentLoaded", arguments.callee, !1), n() }, !1) : t.attachEvent && t.attachEvent("onreadystatechange", function () { "complete" === t.readyState && (t.detachEvent("onreadystatechange", arguments.callee), n()) }) }() }(window, document);
 
 
 /***/ }),
-/* 101 */
+/* 103 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 angular.module("oitozero.ngSweetAlert",[]).factory("SweetAlert",["$rootScope",function($rootScope){var swal=window.swal,self={swal:function(arg1,arg2,arg3){$rootScope.$evalAsync(function(){"function"==typeof arg2?swal(arg1,function(isConfirm){$rootScope.$evalAsync(function(){arg2(isConfirm)})},arg3):swal(arg1,arg2,arg3)})},success:function(title,message){$rootScope.$evalAsync(function(){swal(title,message,"success")})},error:function(title,message){$rootScope.$evalAsync(function(){swal(title,message,"error")})},warning:function(title,message){$rootScope.$evalAsync(function(){swal(title,message,"warning")})},info:function(title,message){$rootScope.$evalAsync(function(){swal(title,message,"info")})}};return self}]);
 
 /***/ }),
-/* 102 */
+/* 104 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"row\">\r\n  <div class=\"col-md-10 col-md-offset-1\">\r\n    <div class=\"col col-md-3 col-md-offset-9\">\r\n      <div class=\"pagination__container\" ng-if=\"1 < pages.length || !autoHide\">\r\n      <div ng-if=\"boundaryLinks\"  class=\"pagination__page\" ng-click=\"setCurrent(1)\">\r\n        &laquo;\r\n      </div> \r\n      <div ng-if=\"directionLinks\" class=\"pagination__page\" ng-click=\"setCurrent(pagination.current - 1)\">\r\n        &lsaquo;\r\n      </div>\r\n      <div ng-repeat=\"pageNumber in pages track by tracker(pageNumber, $index)\" class=\"pagination__page\" ng-class=\"{ pagination__current : pagination.current == pageNumber, pagination__page : pageNumber == '...' }\" ng-click=\"setCurrent(pageNumber)\">\r\n        {{ pageNumber }}\r\n      </div>\r\n      <div ng-if=\"directionLinks\" class=\"pagination__page\" ng-click=\"setCurrent(pagination.current + 1)\">\r\n        &rsaquo;\r\n      </div>\r\n      <div ng-if=\"boundaryLinks\"  class=\"pagination__page\" ng-click=\"setCurrent(pagination.last)\">\r\n        &raquo;\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>";
