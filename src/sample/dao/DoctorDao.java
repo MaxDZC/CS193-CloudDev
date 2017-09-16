@@ -25,7 +25,6 @@ public class DoctorDao{
                      .filter("id", FilterOperator.EQUAL, id)
                      .asSingleEntity()) ;
         if(doctor != null){
- 
             System.out.println("DoctorDao.getDoc end(success)");
             return doctor;
         }else{

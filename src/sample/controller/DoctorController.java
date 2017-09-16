@@ -68,8 +68,8 @@ public class DoctorController extends Controller {
                     if (message.equals("")) {
                         jsonObject.put("success", true);
                     } else {
+                        jsonObject.put("errors", message);
                         response.setStatus(400);
-                        jsonObject.put("errorList", message);
                     }
                 
                 }
