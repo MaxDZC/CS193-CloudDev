@@ -3,7 +3,7 @@ angular.module('hplus.factory')
   .factory('doctorFactory', 
     function($http, modalFactory){
 
-      var savedDoctor = {};
+      var savedDoctor = null;
 	  
       var registerDoctor = function(doctorObject, clear){
         $http({

@@ -36091,7 +36091,8 @@ angular.module('hplus.modules.navbar')
 
         if($location.path() == "/admin/register/doctor"){
           state = false;
-        } else if($location.path() == "/admin/list/doctor"){
+        } else if($location.path() == "/admin/list/doctor"
+                  || $location.path() == "/admin/view/doctordetails"){
           $scope.registerButton = "Register Doctor";
           $scope.link = "#!/admin/register/doctor";
         }
@@ -36136,7 +36137,7 @@ angular.module('hplus.factory')
 
   .factory('globalFactory', 
     function($location){
-
+      
       var go = function(path){
         $location.path(path);
       };
@@ -36183,7 +36184,7 @@ angular.module('hplus.factory')
   .factory('doctorFactory', 
     function($http, modalFactory){
 
-      var savedDoctor = {};
+      var savedDoctor = null;
 	  
       var registerDoctor = function(doctorObject, clear){
         $http({
@@ -37264,12 +37265,13 @@ angular.module('hplus.modules.viewdoctor', [])
 
   __webpack_require__(96);
   __webpack_require__(98);
+  __webpack_require__(114);
 
 /***/ }),
 /* 95 */
 /***/ (function(module, exports) {
 
-module.exports = "<ng-controller ng-controller=\"ViewDoctorController\">\r\n  <div class=\"row\">\r\n    <div class=\"col col-md-8 col-md-offset-1\">\r\n      <h1><i class=\"fa fa-user-md\"></i>Dr. {{ doctorData.name }}</h1>\r\n    </div>\r\n  </div>\r\n\r\n  <div class=\"row\">\r\n    <div class=\"col col-md-3 col-md-offset-1\">\r\n      <div class=\"match-padding\">\r\n        <label class=\"subtitle\">Specialization</label>\r\n        <div class=\"subtitle__value\">\r\n          {{ doctorData.specialization }}\r\n        </div>\r\n\r\n        <label class=\"subtitle\">Contact #</label>\r\n        <div class=\"subtitle__value\">\r\n          {{ doctorData.contactNumber }}\r\n        </div>\r\n\r\n        <label class=\"subtitle\">E-mail Address</label>\r\n        <div class=\"subtitle__value\">\r\n          {{ doctorData.email }}\r\n        </div>\r\n  \t  <div ng-controller=\"modalController\">\r\n  \t\t<button class=\"outline\" ng-click=\"go('/admin/edit/doctor')\">Edit</button>\r\n  \t\t<button class=\"outline\" ng-click=\"alert.confirm()\">Delete</button>\r\n  \t  </div>\r\n      </div>\r\n    </div>\r\n\r\n    <div class=\"col col-md-7\">\r\n      <div class=\"col col-md-12\">\r\n        <label class=\"subtitle\">Medical Records Handled By</label>\r\n\r\n        <span class=\"subtitle subtitle--variable\">\r\n          Dr. {{ doctorData.name }}\r\n        </span>\r\n\r\n  \t\t  <hplus-view-doctors-card dir-paginate=\"record in recordList | itemsPerPage:10\" data=\"record\"></hplus-view-doctors-card>\r\n      </div>\r\n    </div>\r\n  </div>\r\n\r\n  <dir-pagination-controls max-size=\"5\"></dir-pagination-controls>\r\n</ng-controller>";
+module.exports = "<ng-controller ng-controller=\"ViewDoctorController\">\r\n  <div class=\"row\">\r\n    <div class=\"col col-md-8 col-md-offset-1\">\r\n      <h1><i class=\"fa fa-user-md\"></i>Dr. {{ doctorData.firstname + \" \" + doctorData.lastname }}</h1>\r\n    </div>\r\n  </div>\r\n\r\n  <div class=\"row\">\r\n    <div class=\"col col-md-3 col-md-offset-1\">\r\n      <div class=\"match-padding\">\r\n        <label class=\"subtitle\">Specialization</label>\r\n        <div class=\"subtitle__value\">\r\n          {{ doctorData.specialization }}\r\n        </div>\r\n\r\n        <label class=\"subtitle\">Contact #</label>\r\n        <div class=\"subtitle__value\">\r\n          {{ doctorData.contactNo }}\r\n        </div>\r\n\r\n        <label class=\"subtitle\">E-mail Address</label>\r\n        <div class=\"subtitle__value\">\r\n          {{ doctorData.email }}\r\n        </div>\r\n  \t  <div>\r\n  \t\t  <button class=\"outline\" ng-click=\"go('/admin/edit/doctor')\">Edit</button>\r\n  \t\t  <button class=\"outline\" ng-click=\"confirmDelete()\">Delete</button>\r\n  \t  </div>\r\n      </div>\r\n    </div>\r\n\r\n    <div class=\"col col-md-7\">\r\n      <div class=\"col col-md-12\">\r\n        <label class=\"subtitle\">Medical Records Handled By</label>\r\n\r\n        <span class=\"subtitle subtitle--variable\">\r\n          Dr. {{ doctorData.firstname + \" \" + doctorData.lastname }} - Total: {{ recordList.length }}\r\n        </span>\r\n\r\n        <div ng-hide=\"recordList.length\">\r\n          <span class=\"subtitle\">This doctor isn't handling any medical records</span>\r\n        </div>\r\n\r\n  \t\t  <hplus-view-doctors-card ng-show=\"recordList.length\" dir-paginate=\"record in recordList | itemsPerPage:10\" data=\"record\"></hplus-view-doctors-card>\r\n      </div>\r\n    </div>\r\n  </div>\r\n\r\n  <dir-pagination-controls max-size=\"5\"></dir-pagination-controls>\r\n</ng-controller>";
 
 /***/ }),
 /* 96 */
@@ -37292,7 +37294,7 @@ angular.module('hplus.modules.viewdoctor')
 /* 97 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"card__container\">\r\n  <div class=\"card__title\">\r\n    {{ data.name }} \r\n    <!-- <a ng-click=\"go('/admin/view/details')\"><span class=\"delete__icon\"><i class=\"fa fa-eye\" aria-hidden=\"true\"></i></span></a>\r\n    <a ng-click=\"go('/admin/edit/doctor')\"><span class=\"delete__icon\"><i class=\"fa fa-pencil-square-o\" aria-hidden=\"true\"></i></span></a> -->\r\n  </div>\r\n  \r\n  <div class=\"card__desc\">\r\n    Admitted {{ data.date }} for {{ data.disease }}\r\n  </div>\r\n</div>";
+module.exports = "<div class=\"card__container\" ng-controller=\"RecordCardController\">\r\n  <div class=\"card__title\">\r\n    {{ data.name }} \r\n    <a ng-click=\"go('/admin/view/doctordetails'); $event.stopPropagation()\"><span class=\"delete__icon\"><i class=\"fa fa-eye\" aria-hidden=\"true\"></i></span></a>\r\n    <a ng-click=\"go('/admin/edit/doctor'); $event.stopPropagation()\"><span class=\"delete__icon\"><i class=\"fa fa-pencil-square-o\" aria-hidden=\"true\"></i></span></a>\r\n  </div>\r\n  \r\n  <div class=\"card__desc\">\r\n    Admitted {{ data.date }} for {{ data.disease }}\r\n  </div>\r\n</div>";
 
 /***/ }),
 /* 98 */
@@ -37301,18 +37303,51 @@ module.exports = "<div class=\"card__container\">\r\n  <div class=\"card__title\
 angular.module('hplus.modules.viewdoctor')
 
   .controller('ViewDoctorController',
-    function($scope, globalFactory){
-		
+    function($scope, $location, globalFactory, doctorFactory, modalFactory){
+    
+      $scope.doctorData = doctorFactory.getDoctor();
+      var modalObject;
+
+      if($scope.doctorData == null){
+        $location.path('/admin/list/doctor');
+      }
+
       $scope.go = function(path){
+        doctorFactory.saveDoctor($scope.doctorData);
         globalFactory.go(path);
       };
 
-      $scope.doctorData = {
-        name: "Xavier Ford",
-        contactNumber: "09171234567",
-        specialization: "Cosmetic Surgery",
-        email: "marlou@hplus.com"
-      };
+      var confirmDeleteDoctor = function(){
+        console.log("deleted!" + $scope.doctorData.id);
+      }
+
+      $scope.confirmDelete = function(){
+        if($scope.recordList.length == 0){
+          modalObject = {
+            type: "confirm",
+            title: "Confirm Deleting",
+            description: "Are you sure you want to delete " + $scope.doctorData.firstname + " " + $scope.doctorData.lastname + "?",
+            negativeButton: "No",
+            positiveButton: "Yes",
+            isVisible: true,
+            data: confirmDeleteDoctor,
+            object: $scope.doctorData,
+            clean: '/admin/list/doctor'
+          };
+      
+          modalFactory.setContents(modalObject);
+        } else {
+          modalObject = {
+            type: "notify",
+            title: "Unable to Delete",
+            description: "Dr. " + $scope.doctorData.firstname + " " + $scope.doctorData.lastname + " has pending medical records!",
+            positiveButton: "Ok",
+            isVisible: true
+          };
+
+          modalFactory.setContents(modalObject);
+        }
+      }
 
       $scope.recordList = [
         {
@@ -37382,6 +37417,8 @@ angular.module('hplus.modules.viewdoctor')
           id: 11
         }
       ];
+
+      $scope.recordList = [];
   });
 
 /***/ }),
@@ -38194,6 +38231,20 @@ angular.module('hplus.modules.exploredoctors')
       };
     }
   );
+
+/***/ }),
+/* 114 */
+/***/ (function(module, exports) {
+
+angular.module('hplus.modules.viewdoctor')
+
+  .controller('RecordCardController',
+    function($scope, $location, globalFactory){
+      $scope.go = function(path, medicalRecord){
+        globalFactory.go(path);
+      };
+
+  });
 
 /***/ })
 /******/ ]);

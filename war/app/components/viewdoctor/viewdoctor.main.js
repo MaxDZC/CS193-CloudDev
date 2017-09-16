@@ -11,3 +11,4 @@ angular.module('hplus.modules.viewdoctor', [])
 
   require('./viewdoctor.directive.js');
   require('./viewdoctor.controller.js');
+  require('./xxrecordcard.controller.js');

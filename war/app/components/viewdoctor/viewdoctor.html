@@ -1,7 +1,7 @@
 <ng-controller ng-controller="ViewDoctorController">
   <div class="row">
     <div class="col col-md-8 col-md-offset-1">
-      <h1><i class="fa fa-user-md"></i>Dr. {{ doctorData.name }}</h1>
+      <h1><i class="fa fa-user-md"></i>Dr. {{ doctorData.firstname + " " + doctorData.lastname }}</h1>
     </div>
   </div>
 
@@ -15,16 +15,16 @@
 
         <label class="subtitle">Contact #</label>
         <div class="subtitle__value">
-          {{ doctorData.contactNumber }}
+          {{ doctorData.contactNo }}
         </div>
 
         <label class="subtitle">E-mail Address</label>
         <div class="subtitle__value">
           {{ doctorData.email }}
         </div>
-  	  <div ng-controller="modalController">
-  		<button class="outline" ng-click="go('/admin/edit/doctor')">Edit</button>
-  		<button class="outline" ng-click="alert.confirm()">Delete</button>
+  	  <div>
+  		  <button class="outline" ng-click="go('/admin/edit/doctor')">Edit</button>
+  		  <button class="outline" ng-click="confirmDelete()">Delete</button>
   	  </div>
       </div>
     </div>
@@ -34,10 +34,14 @@
         <label class="subtitle">Medical Records Handled By</label>
 
         <span class="subtitle subtitle--variable">
-          Dr. {{ doctorData.name }}
+          Dr. {{ doctorData.firstname + " " + doctorData.lastname }} - Total: {{ recordList.length }}
         </span>
 
-  		  <hplus-view-doctors-card dir-paginate="record in recordList | itemsPerPage:10" data="record"></hplus-view-doctors-card>
+        <div ng-hide="recordList.length">
+          <span class="subtitle">This doctor isn't handling any medical records</span>
+        </div>
+
+  		  <hplus-view-doctors-card ng-show="recordList.length" dir-paginate="record in recordList | itemsPerPage:10" data="record"></hplus-view-doctors-card>
       </div>
     </div>
   </div>
