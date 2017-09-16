@@ -1,7 +1,7 @@
 angular.module('hplus.factory')
 
   .factory('doctorFactory', 
-    function($http){
+    function($http, modalFactory){
 	  
       var registerDoctor = function(doctorObject, clear){
         $http({
@@ -9,16 +9,40 @@ angular.module('hplus.factory')
           url: '/Doctor', // Change URL here
           data: doctorObject
         }).then(function successCallback(response) {
-           //  {"message",true} -> Was inserted
-          // {"message",false} -> An error occured
-         // {"message","duplicated"} -> Email already exis
         	console.log(response);
-        	clear();
-            // when the response is available
-          }, function errorCallback(response) {
-            // called asynchronously if an error occurs
-            // or server returns response with an error status.
-          });
+          var modalObject = {
+            type: "notify",
+            title: "Registration Successful!",
+            description: "Dr. " + doctorObject.firstname + " " + doctorObject.lastname + " is successfully registered!",
+            positiveButton: "Ok",
+            isVisible: true
+          };
+          modalFactory.setContents(modalObject);
+          clear();
+        }, function errorCallback(response) {
+          var errorMessage = "";
+          console.log(response);
+
+          if(response.data.errors.indexOf("email") != -1){
+            errorMessage = "The email "+ doctorObject.email +" already exists!";
+          }
+
+          if(response.data.errors.indexOf("username") != -1){
+            if(errorMessage != ""){
+              errorMessage += "\n";
+            }
+            errorMessage += "The username " + doctorObject.username + " already exists!";
+          }
+
+          var modalObject = {
+            type: "notify",
+            title: "Registration Failure!",
+            description: errorMessage,
+            positiveButton: "Ok",
+            isVisible: true
+          };
+          modalFactory.setContents(modalObject);
+        });
       }
 
       var getListOfDoctors = function(){

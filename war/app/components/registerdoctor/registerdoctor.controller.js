@@ -4,6 +4,8 @@ angular.module('hplus.modules.registerdoctor')
     function($scope, globalFactory, doctorFactory, modalFactory){
 
       $scope.contactNoRegex = "\\d{7,}";
+      $scope.passwordRegex = ".{6,}";
+
       var errorMessage = "";
 
       $scope.go = function(path){
@@ -28,7 +30,7 @@ angular.module('hplus.modules.registerdoctor')
       $scope.checkStatus = function(status){
         var retType;
 
-        if(status){
+        if(status) {
           $scope.button = "Register Doctor";
           retType = "edit-button";
         } else {
@@ -43,15 +45,14 @@ angular.module('hplus.modules.registerdoctor')
         var state;
         var yearDiff;
 
-        if(parseInt($scope.doctor.birthday.getFullYear()) < 1970){
+        if(Date.now() - $scope.doctor.birthday.getTime < 0){
           yearDiff = Date.now() + $scope.doctor.birthday.getTime();
         } else {
           yearDiff = Date.now() - $scope.doctor.birthday.getTime();
         }
-        
+
         yearDiff = new Date(yearDiff);
         yearDiff = parseInt(Math.abs(yearDiff.getUTCFullYear() - 1970));
-
         errorMessage = "";
 
         if($scope.doctor.password == $scope.doctor.passwordAgain){
@@ -72,11 +73,27 @@ angular.module('hplus.modules.registerdoctor')
         return state;
       }
 
+      var confirmRegisterDoctor = function(doctor, initComponents){
+        doctorFactory.registerDoctor(doctor, initComponents);
+      }
+
       $scope.registerDoctor = function(){
         var modalObject = {};
 
         if(validity()){
-          doctorFactory.registerDoctor($scope.doctor, $scope.initComponents);
+          modalObject = {
+            type: "confirm",
+            title: "Confirm Registration",
+            description: "Are you sure you want to register " + $scope.doctor.firstname + "?",
+            negativeButton: "No",
+            positiveButton: "Yes",
+            isVisible: true,
+            data: confirmRegisterDoctor,
+            object: $scope.doctor,
+            clean: $scope.initComponents
+          };
+        
+          modalFactory.setContents(modalObject);
         } else {
           modalObject = {
             type: "notify",
@@ -90,16 +107,16 @@ angular.module('hplus.modules.registerdoctor')
       };
       
       $scope.initComponents = function(){
-    	  $scope.doctor.firstname = "Max";
-    	  $scope.doctor.lastname = "Max";
+    	  $scope.doctor.firstname = "";
+    	  $scope.doctor.lastname = "";
     	  $scope.doctor.specialization = "";
-    	  $scope.doctor.address = "jdadsd";
-    	  $scope.doctor.number = "08987894";
+    	  $scope.doctor.address = "";
+    	  $scope.doctor.contactNo = "";
     	  $scope.doctor.birthday = "";
-    	  $scope.doctor.username = "smds";
-    	  $scope.doctor.password = "asd";
-    	  $scope.doctor.passwordAgain = "asd";
-    	  $scope.doctor.email = "maxtimeout@gmail.com";
+    	  $scope.doctor.username = "";
+    	  $scope.doctor.password = "";
+    	  $scope.doctor.passwordAgain = "";
+    	  $scope.doctor.email = "";
       };
 
     }
