@@ -21,7 +21,7 @@ angular.module('hplus.factory')
           });
       }
 
-<<<<<<< HEAD
+
       var getListOfDoctors = function(){
         return $http({
           method: "GET",
@@ -30,7 +30,6 @@ angular.module('hplus.factory')
       }
         
 
-=======
       var deleteDoctor = function(deleteObject){
         $http({
           method: "POST",
@@ -45,8 +44,7 @@ angular.module('hplus.factory')
           alert(errorMessage);
         });
       }
->>>>>>> bd23c30cb055acc9ae5da50c441a79e0cd721c3d
-      
+  
       return {
         registerDoctor: registerDoctor,
         getListOfDoctors: getListOfDoctors
