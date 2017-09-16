@@ -43,15 +43,15 @@ angular.module('hplus.modules.registerdoctor')
         var state;
         var yearDiff;
 
-        if($scope.doctor.birthday.getFullYear() < 1970){
+        if(parseInt($scope.doctor.birthday.getFullYear()) < 1970){
           yearDiff = Date.now() + $scope.doctor.birthday.getTime();
         } else {
           yearDiff = Date.now() - $scope.doctor.birthday.getTime();
         }
         
         yearDiff = new Date(yearDiff);
-        yearDiff = parseInt(Math.abs(yearDiff.getUTCDate() - 1970));
-        
+        yearDiff = parseInt(Math.abs(yearDiff.getUTCFullYear() - 1970));
+
         errorMessage = "";
 
         if($scope.doctor.password == $scope.doctor.passwordAgain){
@@ -61,9 +61,7 @@ angular.module('hplus.modules.registerdoctor')
           errorMessage += "Passwords don't match!";
         }
 
-        if(yearDiff > 24 && yearDiff < 66){
-          state = true;
-        } else {
+        if(yearDiff <= 24 || yearDiff >= 66) {
           state = false;
           if(errorMessage != ""){
             errorMessage += "\n";
@@ -75,11 +73,19 @@ angular.module('hplus.modules.registerdoctor')
       }
 
       $scope.registerDoctor = function(){
-        if (validity()){
+        var modalObject = {};
+
+        if(validity()){
           doctorFactory.registerDoctor($scope.doctor, $scope.initComponents);
-       //   $scope.initComponents();
         } else {
-          modalFactory.setContents(errorMessage);
+          modalObject = {
+            type: "notify",
+            title: "Unable to register doctor!",
+            description: errorMessage,
+            positiveButton: "Ok",
+            isVisible: true
+          };
+          modalFactory.setContents(modalObject);
         }
       };
       
@@ -89,7 +95,7 @@ angular.module('hplus.modules.registerdoctor')
     	  $scope.doctor.specialization = "";
     	  $scope.doctor.address = "jdadsd";
     	  $scope.doctor.number = "08987894";
-    	  $scope.doctor.birthday = "08/12/1992";
+    	  $scope.doctor.birthday = "";
     	  $scope.doctor.username = "smds";
     	  $scope.doctor.password = "asd";
     	  $scope.doctor.passwordAgain = "asd";

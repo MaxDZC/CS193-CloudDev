@@ -38,14 +38,14 @@ public class DoctorDao{
         System.out.println("DoctorDao.getDoc start");
         String msg= "";
         
-        if(!checkDoctorExistsByEmail(inputs.getEmail())){
+        if(checkDoctorExistsByEmail(inputs.getEmail())){
             
             System.out.println("DoctorDao.getDoc end(success)");
             msg += "email";
            
         }
         
-        if(!checkDoctorExistsByUsername(inputs.getUsername())){
+        if(checkDoctorExistsByUsername(inputs.getUsername())){
             
             System.out.println("DoctorDao.getDoc end(success)");
             if(!msg.equals("")){
@@ -145,9 +145,14 @@ public class DoctorDao{
         
         Transaction trans = Datastore.beginTransaction();
         
+        System.out.println(inputDoc.getUsername());
+        
         //creating key and ID for the new entity
         Key parentKey = KeyFactory.createKey("Doctor", inputDoc.getUsername());
         Key key = Datastore.allocateId(parentKey, DoctorModel.class);
+        
+        System.out.println("After key");
+        System.out.println(inputDoc.getFirstName());
         
         //Setting the 'key' and 'id' of the model
         inputDoc.setKey(key);
@@ -156,6 +161,8 @@ public class DoctorDao{
         inputDoc.setUsername(inputDoc.getUsername().toLowerCase());
         inputDoc.setFirstName(processName(inputDoc.getFirstName()));
         inputDoc.setLastName(processName(inputDoc.getLastName()));
+        
+        System.out.println(inputDoc.getFirstName() + " " + inputDoc.getLastName());
         
         //inserting the item to the datastore
         Datastore.put(inputDoc);

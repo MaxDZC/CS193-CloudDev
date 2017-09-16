@@ -26,6 +26,7 @@ public class DoctorController extends Controller {
         DoctorDto doctorDto = new DoctorDto();
         JSONObject jsonObject = null;
         JSONValidators validator;
+        String birthday;
 
         String action = request.getParameter("action");
         String method = request.getMethod();
@@ -46,16 +47,17 @@ public class DoctorController extends Controller {
                 */
                 if(validator.validate()){
                     
+                    birthday = jsonObject.getString("birthday").split("T")[0];
+                    
                     doctorDto.setFirstName(jsonObject.getString("firstname"));
                     doctorDto.setLastName(jsonObject.getString("lastname"));
                     doctorDto.setEmail(jsonObject.getString("email"));
                     doctorDto.setAddress(jsonObject.getString("address"));
                     doctorDto.setSpecialization(jsonObject.getString("specialization"));
                     doctorDto.setContactNo(jsonObject.getString("contactNo"));
-                    doctorDto.setBirthday(new SimpleDateFormat("dd/MM/yyyy").parse(jsonObject.getString("birthday")));
+                    doctorDto.setBirthday(new SimpleDateFormat("yyyy-MM-dd").parse(birthday));
                     doctorDto.setUsername(jsonObject.getString("username"));
-                    doctorDto.setPassword(jsonObject.getString("username"));
-                    doctorDto.setToken(jsonObject.getString("username"));
+                    doctorDto.setPassword(jsonObject.getString("password"));
                     doctorDto.setAdmin(false);
                     doctorDto.setCreatedAt(new Date());
                     doctorDto.setUpdatedAt(new Date());
@@ -72,8 +74,8 @@ public class DoctorController extends Controller {
                 
                 }
             
-
-                    if (action.equals("updateDoctor")) {
+                
+                if (action != null && action.equals("updateDoctor")) {
 
 
                     if (DoctorService.updateDoctor(doctorDto)) {
@@ -82,7 +84,7 @@ public class DoctorController extends Controller {
                         jsonObject.put("message", false);
                     }
 
-                } else if (action.equals("deleteDoctor")) {
+                } else if (action != null && action.equals("deleteDoctor")) {
                     if (DoctorService.deleteDoctor(doctorDto)) {
 
                         jsonObject.put("message", "The Profil of Dr " + jsonObject.getString("lname") + " was deleted ");
@@ -112,8 +114,9 @@ public class DoctorController extends Controller {
             
         }
         
+        
         jsonObject.put("errorList", doctorDto.getErrorList());
-
+        
         response.setContentType("application/json");
         response.setCharacterEncoding("utf-8");
         response.getWriter().write(jsonObject.toString());
