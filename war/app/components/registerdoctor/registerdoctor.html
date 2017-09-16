@@ -33,7 +33,7 @@
     <div class="row match-padding">
       <div class="col col-md-3 col-md-offset-1">
           <label class="subtitle">Contact Number</label>
-          <input type="number" ng-model="doctor.number" ng-required="true">
+          <input type="text" ng-model="doctor.number" ng-pattern="regex" ng-required="true">
       </div>
       <div class="col col-md-3">
           <label class="subtitle">Birthday</label>
@@ -48,14 +48,14 @@
       </div>
       <div class="col col-md-3">
           <label class="subtitle">Password</label>
-          <input type="text" ng-model="doctor.password" ng-required="true">
+          <input type="password" ng-model="doctor.password" ng-required="true">
       </div>
     </div>
     
     <div class="row match-padding">
       <div class="col col-md-3 col-md-offset-1">
           <label class="subtitle">Confirm Password</label>
-          <input type="text" ng-model="doctor.passwordAgain" ng-required="true">
+          <input type="password" ng-model="doctor.passwordAgain" ng-required="true">
           <button ng-hide="registerDoctorForm.$invalid" ng-click="registerDoctor()">Sign up</button>
       </div>
       <div class="col col-md-3">

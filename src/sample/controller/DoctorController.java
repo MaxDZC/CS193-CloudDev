@@ -27,8 +27,10 @@ public class DoctorController extends Controller {
 
   JSONObject json = new JSONObject();
   String action = request.getParameter("action");
- 
+  String method = request.getMethod();
+  JSONObject jObj = null;
   
+  if(method == "POST"){
         /** 
          * Used to retrieve the JSON equivalent data
          */
@@ -38,24 +40,25 @@ public class DoctorController extends Controller {
         while ((str = br.readLine()) != null) {
             sb.append(str);
         }
-        JSONObject jObj = new JSONObject(sb.toString());
+        jObj = new JSONObject(sb.toString());
 
         /**
          * Used to store the information from the request and send to the
          * service class.
          */
-        DoctorDto doctorDto = new DoctorDto(jObj.getString("fname"),
-            jObj.getString("lname"),
+        DoctorDto doctorDto = new DoctorDto(jObj.getString("firstName"),
+            jObj.getString("lastName"),
             jObj.getString("address"),
             jObj.getString("specialization"),
             "" + jObj.getInt("number") + "",
             jObj.getString("birthday"),
-            jObj.getString("username"),
-            jObj.getString("password"),
+            jObj.getString("userName"),
+            jObj.getString("passWord"),
             jObj.getString("email"),
             Long.parseLong(jObj.getString("id"))
 
         );
+        
         if (action.equals("registerDoctor")) {
 
 
@@ -73,7 +76,7 @@ public class DoctorController extends Controller {
 
 
             if (DoctorService.updateDoctor(doctorDto)) {
-                json.put("message", "The Profil of Dr " + jObj.getString("lname") + " was updated ");
+                json.put("message", "The Profil of Dr " + jObj.getString("lastName") + " was updated ");
             } else {
                 json.put("message", false);
             }
@@ -81,17 +84,19 @@ public class DoctorController extends Controller {
         } else if (action.equals("deleteDoctor")) {
             if (DoctorService.deleteDoctor(doctorDto)) {
 
-                json.put("message", "The Profil of Dr " + jObj.getString("lname") + " was deleted ");
+                json.put("message", "The Profil of Dr " + jObj.getString("lastName") + " was deleted ");
             } else {
                 json.put("message", false);
             }
 
-        } else if (action.equals("getDoctor")) {
-
-            json.put("doctors", DoctorService.getDoctor(Long.parseLong(jObj.getString("id"))));
-        } else if (action.equals("getDoctors")) {
-            json.put("doctors", DoctorService.getDoctors());
         }
+  } else if (method == "GET") {
+      if(this.request.getParameter("id") != null){ 
+        json.put("doctors", DoctorService.getDoctor(Long.parseLong(this.request.getParameter("id"))));
+     } else {
+        json.put("doctors", DoctorService.getDoctors());
+     }
+  }
 
         response.setContentType("application/json");
         response.setCharacterEncoding("utf-8");

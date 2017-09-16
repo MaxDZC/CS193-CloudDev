@@ -37,8 +37,9 @@ public class DoctorService {
         try{ 
             if(doctorDao.getDoctorByEmail(doctorModel.getEmail()) == false){
                 doctorDao.insertDoc(doctorModel);
+                
                 EmailService.send(inputDoc.getEmail(), "Your account is Created");
-                    System.out.println(inputDoc.getEmail()+"Email sent!");                
+                    System.out.println(inputDoc.getEmail()+"Email sent!");              
             }else{
                 System.out.println("Doctor Already Exists!");
                 return false ;

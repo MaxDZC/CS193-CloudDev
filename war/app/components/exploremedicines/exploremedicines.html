@@ -30,9 +30,43 @@
 		    <hplus-explore-medicines-card dir-paginate="med in medicines | filter: searchFilter | itemsPerPage:10" data="med" selectedMed="selectedMedicine" ng-click="setSelected(med)" ></hplus-explore-medicines-card>       
       </div>    			
     </div>
+<<<<<<< HEAD
 	  <div class="col col-md-6"><!-- Detail Sector -->
 		  <hplus-selected-medicine-card data="selectedMedicine" ng-show="selectedMedicine"></hplus-selected-medicine-card>
 		</div>
+=======
+	
+		<div class="col col-md-6" ng-show="selectedMedicine"><!-- Detail Sector -->
+		  <label class="subtitle">DETAILS FOR {{selectedMedicine.name}}</label>
+			<div class="margins">
+				<!-- Detail Section -->
+			  <div class="detail__container">
+					<div class="card__title">
+					  {{selectedMedicine.name}}
+					</div>
+			
+					<div class="detail__desc">
+					  <p>
+					  {{selectedMedicine.desc}}
+					  </p>
+					</div>
+					<span class="detail__title">PRICE (PHP)</span>
+					<span class="detail__subtitle">{{selectedMedicine.price | currency : 'P '}}</span>
+					<br>
+					<br>
+					<span class="detail__title">TREATMENT FOR</span>
+					<span class="detail__subtitle"><span ng-repeat="treats in selectedMedicine.treats | limitTo: 3"><span ng-hide="$first">,&nbsp;</span>{{treats}}</span></span>	
+					<br>
+					<br>
+				  <div ng-controller="modalController"> 
+				    <button class="outline" ng-click="go('/admin/update/medicine')">Edit</button>
+				    <button class="outline" ng-click="alert.confirm()">Delete</button>
+				    <button class="outline" ng-click="go('/admin/view/medicine')">View</button>
+				  </div>
+		    </div>
+	    </div>
+	  </div>
+>>>>>>> 8a00afd2f581d24899e3a80e972e08d04f6e2602
   </div>
 </div>
 
