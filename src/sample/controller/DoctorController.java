@@ -91,7 +91,7 @@ public class DoctorController extends Controller {
 
         }
   } else if (method == "GET") {
-      if(this.request.getParameter("id") != null){
+      if(this.request.getParameter("id") != null){ 
         json.put("doctors", DoctorService.getDoctor(Long.parseLong(this.request.getParameter("id"))));
      } else {
         json.put("doctors", DoctorService.getDoctors());
