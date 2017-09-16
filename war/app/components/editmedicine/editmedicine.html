@@ -4,17 +4,26 @@
   </div>
 </div>
 
-<div class="row">
+<div class="row" ng-controller="EditMedicineController">
   <div class="col col-md-10 col-md-offset-1">
     <div class="col-md-3">
       <label class="subtitle">Name of Medicine:</label>
 	    <input type="text" value="RiteMed Metformin">
+	    <label class="subtitle">Medicine Type:</label>
+      <select value="">
+        <option ng-repeat="type in medicineTypes" value="type.id">{{type.name}}</option>
+      </select>
 	    <label class="subtitle">Price (PHP) :</label> 
 	    <input id="priceInputField" type="text" value="3.75">
 	      
+<<<<<<< HEAD
 	    <div ng-controller="modalCtrl as alert"> 
+	      <button  ng-click="alert.alert()">Update</button>
+=======
+	    <div ng-controller="modalController"> 
 	      <button  ng-click="alert.alert()" >Update</button>
 	      <button class="outline delete_btn" ng-click="alert.confirm()">Delete</button>
+>>>>>>> 6934571148ca5eb4a1572bfb82e90d8aaf053cee
 	    </div>
     </div>
     
