@@ -17,7 +17,6 @@ angular.module('hplus.modules.modal')
         $scope.modalContents = modalContents;
       });
 
-
       $scope.isType = function(type){
         if (typeof(type) == "string" && type == $scope.modalContents.type){
           return true;

@@ -36064,7 +36064,7 @@ angular.module('hplus.modules.navbar')
 /* 34 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row navbar__background\" ng-controller=\"NavbarController\">        \r\n  <div class=\"col col-md-10 col-md-offset-1\">\r\n\r\n    <div class=\"col col-md-8\">\r\n      <div class=\"navbar__btn\" ng-click=\"go('/admin/list/disease')\">\r\n        Diseases\r\n      </div>\r\n      <div class=\"navbar__btn\" ng-click=\"go('/admin/list/medicine')\">\r\n        Medicines\r\n      </div>\r\n      <div class=\"navbar__btn\" ng-click=\"go('/admin/list/doctor')\">\r\n        Doctors\r\n      </div>\r\n      <div class=\"navbar__btn\" ng-click=\"\">\r\n        Patient\r\n      </div>\r\n    </div>\r\n\r\n    <div class=\"col col-md-4 navbar__action-container\">          \r\n      <div class=\"navbar__btn navbar__btn--action\">\r\n        <a href=\"#!/admin/register/disease\"> \r\n          <i class=\"fa fa-plus-square\"></i> Register Disease\r\n        </a>\r\n      </div>\r\n    </div>\r\n\r\n  </div>\r\n</div>";
+module.exports = "<div class=\"row navbar__background\" ng-controller=\"NavbarController\">        \r\n  <div class=\"col col-md-10 col-md-offset-1\">\r\n\r\n    <div class=\"col col-md-8\">\r\n      <div class=\"navbar__btn\" ng-click=\"go('/admin/list/disease')\">\r\n        Diseases\r\n      </div>\r\n      <div class=\"navbar__btn\" ng-click=\"go('/admin/list/medicine')\">\r\n        Medicines\r\n      </div>\r\n      <div class=\"navbar__btn\" ng-click=\"go('/admin/list/doctor')\">\r\n        Doctors\r\n      </div>\r\n      <div class=\"navbar__btn\" ng-click=\"\">\r\n        Patient\r\n      </div>\r\n    </div>\r\n\r\n    <div ng-show=\"checkPage()\" class=\"col col-md-4 navbar__action-container\">          \r\n      <div class=\"navbar__btn navbar__btn--action\">\r\n        <a href=\"#!/admin/register/disease\"> \r\n          <i class=\"fa fa-plus-square\"></i> {{ registerButton }}\r\n        </a>\r\n      </div>\r\n    </div>\r\n\r\n  </div>\r\n</div>";
 
 /***/ }),
 /* 35 */
@@ -36073,7 +36073,19 @@ module.exports = "<div class=\"row navbar__background\" ng-controller=\"NavbarCo
 angular.module('hplus.modules.navbar')
 
   .controller('NavbarController',
-    function($scope, globalFactory){
+    function($scope, $location, globalFactory){
+
+      $scope.registerButton = "Register Disease";
+
+      $scope.checkPage = function(){
+        var state = true;
+
+        if($location.path() == "/admin/register/doctor"){
+          state = false;
+        }
+
+        return state;
+      }
 
       $scope.go = function(path){
         globalFactory.go(path);
@@ -36124,7 +36136,7 @@ angular.module('hplus.factory')
       var modalContents = {}
 
       var setContents = function(passedObject){
-        modalContents = passedObject;      
+        modalContents = passedObject;
         $rootScope.$broadcast('modalReceived', modalContents);
       }
 
@@ -36305,7 +36317,6 @@ angular.module('hplus.modules.modal')
       $scope.$on('modalReceived', function(event, modalContents) {
         $scope.modalContents = modalContents;
       });
-
 
       $scope.isType = function(type){
         if (typeof(type) == "string" && type == $scope.modalContents.type){
@@ -36891,7 +36902,7 @@ angular.module('hplus.modules.registerdoctor', [])
 /* 75 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\r\n  <div class=\"col col-md-8 col-md-offset-1\">\r\n    <h1>Register an Account</h1>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row\" ng-controller=\"RegisterDoctorController\">\r\n  <ng-form name=\"registerDoctorForm\">\r\n    <div class=\"row match-padding\">\r\n      <div class=\"col col-md-3 col-md-offset-1\">\r\n          <label class=\"subtitle\">First Name</label>\r\n          <input type=\"text\" ng-model=\"doctor.fname\" ng-required=\"true\">\r\n      </div>\r\n      <div class=\"col col-md-3\">\r\n          <label class=\"subtitle\">Last Name</label>\r\n          <input type=\"text\" ng-model=\"doctor.lname\" ng-required=\"true\">\r\n      </div>\r\n    </div>\r\n\r\n    <div class=\"row match-padding\">\r\n      <div class=\"col col-md-3 col-md-offset-1\">\r\n          <label class=\"subtitle\">Specialization</label>\r\n          <select ng-model=\"doctor.specialization\" ng-required=\"true\">\r\n            <option ng-repeat=\"option in specialization\" value=\"{{option.id}}\">{{option.name}}</option>\r\n          </select>\r\n      </div>\r\n      <div class=\"col col-md-3\">\r\n          <label class=\"subtitle\">Address</label>\r\n          <input type=\"text\" ng-model=\"doctor.address\" ng-required=\"true\">\r\n      </div>\r\n    </div>\r\n    \r\n    <div class=\"row match-padding\">\r\n      <div class=\"col col-md-3 col-md-offset-1\">\r\n          <label class=\"subtitle\">Contact Number</label>\r\n          <input type=\"text\" ng-model=\"doctor.number\" ng-pattern=\"regex\" ng-required=\"true\">\r\n      </div>\r\n      <div class=\"col col-md-3\">\r\n          <label class=\"subtitle\">Birthday</label>\r\n          <input type=\"date\" ng-model=\"doctor.birthday\" ng-required=\"true\">\r\n      </div>\r\n    </div>\r\n    \r\n    <div class=\"row match-padding\">\r\n      <div class=\"col col-md-3 col-md-offset-1\">\r\n          <label class=\"subtitle\">Username</label>\r\n          <input type=\"text\" ng-model=\"doctor.username\" ng-required=\"true\">\r\n      </div>\r\n      <div class=\"col col-md-3\">\r\n          <label class=\"subtitle\">Password</label>\r\n          <input type=\"password\" ng-model=\"doctor.password\" ng-required=\"true\">\r\n      </div>\r\n    </div>\r\n    \r\n    <div class=\"row match-padding\">\r\n      <div class=\"col col-md-3 col-md-offset-1\">\r\n          <label class=\"subtitle\">Confirm Password</label>\r\n          <input type=\"password\" ng-model=\"doctor.passwordAgain\" ng-required=\"true\">\r\n          <button ng-hide=\"registerDoctorForm.$invalid\" ng-click=\"registerDoctor()\">Sign up</button>\r\n      </div>\r\n      <div class=\"col col-md-3\">\r\n          <label class=\"subtitle\">Email Address</label>\r\n          <input type=\"email\" ng-model=\"doctor.email\" ng-required=\"true\">\r\n      </div>\r\n    </div>\r\n  </ng-form>\r\n</div>";
+module.exports = "<div class=\"row\">\r\n  <div class=\"col col-md-8 col-md-offset-1\">\r\n    <h1>Register an Account</h1>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row\" ng-controller=\"RegisterDoctorController\">\r\n  <ng-form name=\"registerDoctorForm\">\r\n\r\n    <div class=\"row match-padding\">\r\n      <div class=\"col col-md-3 col-md-offset-1\">\r\n        <label class=\"subtitle\">First Name</label>\r\n        <input type=\"text\" ng-model=\"doctor.firstname\" ng-required=\"true\">\r\n      </div>\r\n      <div class=\"col col-md-3\">\r\n        <label class=\"subtitle\">Last Name</label>\r\n        <input type=\"text\" ng-model=\"doctor.lastname\" ng-required=\"true\">\r\n      </div>\r\n    </div>\r\n\r\n    <div class=\"row match-padding\">\r\n      <div class=\"col col-md-3 col-md-offset-1\">\r\n        <label class=\"subtitle\">Email Address</label>\r\n        <input type=\"email\" ng-model=\"doctor.email\" ng-required=\"true\">\r\n      </div>\r\n      <div class=\"col col-md-3\">\r\n        <label class=\"subtitle\">Address</label>\r\n        <input type=\"text\" ng-model=\"doctor.address\" ng-required=\"true\">\r\n      </div>\r\n    </div>\r\n    \r\n    <div class=\"row match-padding\">\r\n      <div class=\"col col-md-3 col-md-offset-1\">\r\n        <label class=\"subtitle\">Specialization</label>\r\n          <select ng-model=\"doctor.specialization\" ng-required=\"true\">\r\n            <option ng-repeat=\"option in specialization\" value=\"{{option.name}}\">{{option.name}}</option>\r\n          </select>\r\n      </div>\r\n      <div class=\"col col-md-3\">\r\n        <label class=\"subtitle\">Contact Number</label>\r\n        <input type=\"text\" ng-model=\"doctor.contactNo\" ng-pattern=\"contactNoRegex\" ng-required=\"true\">\r\n      </div>\r\n    </div>\r\n    \r\n    <div class=\"row match-padding\">\r\n      <div class=\"col col-md-3 col-md-offset-1\">\r\n        <label class=\"subtitle\">Username</label>\r\n        <input type=\"text\" ng-model=\"doctor.username\" ng-required=\"true\">\r\n      </div>\r\n      <div class=\"col col-md-3\">\r\n        <label class=\"subtitle\">Birthday</label>\r\n        <input type=\"date\" ng-model=\"doctor.birthday\" ng-required=\"true\">\r\n      </div>\r\n    </div>\r\n    \r\n    <div class=\"row match-padding\">\r\n      <div class=\"col col-md-3 col-md-offset-1\">\r\n        <label class=\"subtitle\">Password</label>\r\n        <input type=\"password\" ng-model=\"doctor.password\" ng-required=\"true\">\r\n      </div>\r\n      <div class=\"col col-md-3\">\r\n        <label class=\"subtitle\">Confirm Password</label>\r\n        <input type=\"password\" ng-model=\"doctor.passwordAgain\" ng-required=\"true\">\r\n      </div>\r\n    </div>\r\n    <div class=\"row match-padding\">\r\n      <div class=\"col col-md-3 col-md-offset-1\">\r\n      <button ng-class=\"checkStatus(registerDoctorForm.$valid)\" ng-disabled=\"registerDoctorForm.$invalid\" ng-click=\"registerDoctor()\">{{ button }}</button>\r\n      </div>\r\n    </div>\r\n  </ng-form>\r\n</div>";
 
 /***/ }),
 /* 76 */
@@ -36900,14 +36911,14 @@ module.exports = "<div class=\"row\">\r\n  <div class=\"col col-md-8 col-md-offs
 angular.module('hplus.modules.registerdoctor')
 
   .controller('RegisterDoctorController',
-    function($scope, globalFactory, doctorFactory){
+    function($scope, globalFactory, doctorFactory, modalFactory){
 
-	  $scope.regex = "\\d{7,}";
+      $scope.contactNoRegex = "\\d{7,}";
+      var errorMessage = "";
+
       $scope.go = function(path){
         globalFactory.go(path);
       };
-
-      $scope.doctor = {};
 
       $scope.specialization = [
         {
@@ -36924,36 +36935,76 @@ angular.module('hplus.modules.registerdoctor')
         }
       ];
 
-      var isPasswordValid = function(){
-        if($scope.doctor.password != $scope.doctor.passwordAgain){
-          return false;
+      $scope.checkStatus = function(status){
+        var retType;
+
+        if(status){
+          $scope.button = "Register Doctor";
+          retType = "edit-button";
         } else {
-          return true;
+          $scope.button = "Please fill out all of the fields correctly";
+          retType = "delete-button";
         }
+
+        return retType;
+      }
+
+      var validity = function(){
+        var state;
+        var yearDiff;
+
+        if($scope.doctor.birthday.getFullYear() < 1970){
+          yearDiff = Date.now() + $scope.doctor.birthday.getTime();
+        } else {
+          yearDiff = Date.now() - $scope.doctor.birthday.getTime();
+        }
+        
+        yearDiff = new Date(yearDiff);
+        yearDiff = parseInt(Math.abs(yearDiff.getUTCDate() - 1970));
+        
+        errorMessage = "";
+
+        if($scope.doctor.password == $scope.doctor.passwordAgain){
+          state = true;
+        } else {
+          state = false;
+          errorMessage += "Passwords don't match!";
+        }
+
+        if(yearDiff > 24 && yearDiff < 66){
+          state = true;
+        } else {
+          state = false;
+          if(errorMessage != ""){
+            errorMessage += "\n";
+          }
+          errorMessage += "Invalid age! You can't be " + yearDiff + " years old!";
+        }
+
+        return state;
       }
 
       $scope.registerDoctor = function(){
-        if (isPasswordValid() == true){
+        if (validity()){
           doctorFactory.registerDoctor($scope.doctor, $scope.initComponents);
        //   $scope.initComponents();
         } else {
-          // Temporary for now. Should be in a modal soon.
-        	SweetAlert.swal("Your passwords do not match.");
+          modalFactory.setContents(errorMessage);
         }
       };
       
       $scope.initComponents = function(){
-    	  $scope.doctor.fname = "";
-    	  $scope.doctor.lname = "";
+    	  $scope.doctor.firstname = "Max";
+    	  $scope.doctor.lastname = "Max";
     	  $scope.doctor.specialization = "";
-    	  $scope.doctor.address = "";
-    	  $scope.doctor.number = "";
-    	  $scope.doctor.birthday = "";
-    	  $scope.doctor.username = "";
-    	  $scope.doctor.password = "";
-    	  $scope.doctor.passwordAgain = "";
-    	  $scope.doctor.email = "";
-      }
+    	  $scope.doctor.address = "jdadsd";
+    	  $scope.doctor.number = "08987894";
+    	  $scope.doctor.birthday = "08/12/1992";
+    	  $scope.doctor.username = "smds";
+    	  $scope.doctor.password = "asd";
+    	  $scope.doctor.passwordAgain = "asd";
+    	  $scope.doctor.email = "maxtimeout@gmail.com";
+      };
 
     }
   );
