@@ -24,8 +24,22 @@ public class DoctorService {
         String status;
         DoctorModel doctorModel;
         
-        
         doctorModel = new DoctorModel();
+        doctorModel.setFirstName(inputDoc.getFirstName());
+        doctorModel.setLastName(inputDoc.getLastName());
+        doctorModel.setEmail(inputDoc.getEmail());
+        doctorModel.setAddress(inputDoc.getAddress());
+        doctorModel.setSpecialization(inputDoc.getSpecialization());
+        doctorModel.setContactNo(inputDoc.getContactNo());
+        doctorModel.setBirthday(inputDoc.getBirthday());
+        doctorModel.setUsername(inputDoc.getUsername());
+        doctorModel.setPassword(inputDoc.getPassword());
+        doctorModel.setToken(null);
+        doctorModel.setAdmin(inputDoc.isAdmin());
+        doctorModel.setCreatedAt(inputDoc.getCreatedAt());
+        doctorModel.setUpdatedAt(inputDoc.getUpdatedAt());
+        doctorModel.setDeletedAt(inputDoc.getDeletedAt());
+        
         status = doctorDao.validateDoctor(inputDoc);
         
         try { 
