@@ -1,6 +1,7 @@
 package sample.model;
 
 import java.io.Serializable;
+import java.util.Date;
 
 
 import com.google.appengine.api.datastore.Key;
@@ -22,126 +23,212 @@ public class DoctorModel implements Serializable {
     private Long id;
     private String firstName;
     private String lastName;
+    private String email;
     private String address;
     private String specialization;
-    private String contactNumber;
-    private String birthDay;
-    private String userName;
-    private String passWord;
-    private String email;
-    private String createdaAt;
-    private String deletedAt;
-    private String updatedAt;
-    
-    public String getCreatedaAt() {
-        return createdaAt;
-    }
+    private String contactNo;
+    private Date birthday;
+    private String username;
+    private String password;
+    private String token;
+    private boolean isAdmin;
+    private Date createdAt;
+    private Date deletedAt;
+    private Date updatedAt;
 
-    public void setCreatedaAt(String string) {
-        this.createdaAt = string;
-    }
-
-    public String getDeletedAt() {
-        return deletedAt;
-    }
-
-    public void setDeletedAt(String string) {
-        this.deletedAt = string;
-    }
-
-    public String getUpdatedAt() {
-        
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(String string) {
-        this.updatedAt = string;
-    }
-
-   
-
-    
- 
-
-    /**
-     * Creates an instance of 'Doctor'
-     */
-    public DoctorModel(){
-        
-    }
-    
-    /**
-     * Creates an instance of 'Doctor' with attribute initialization
-     */
-    public DoctorModel(String firstName, String lastName, String address, String specialization,
-            String contactNumber, String birthDay, String userName, String passWord,  String email){
-        this.setFirstName(firstName);
-        this.setLastName(lastName);
-        this.setAddress(address);
-        this.setSpecialization(specialization);
-        this.setContactNumber(contactNumber);
-        this.setBirthDay(birthDay);
-        this.setUserName(userName);
-        this.setPassWord(passWord);
-        this.setEmail(email);
- 
-    }
-    
-    /**
-     * Returns the key.
-     *
-     * @return the key
-     */
     public Key getKey() {
         return key;
     }
 
-    /**
-     * Sets the key.
-     *
-     * @param key
-     *            the key
-     */
     public void setKey(Key key) {
         this.key = key;
     }
 
- 
-    /**
-     * get the email.
-     *
-     * @get the email
-     */
-    public String getEmail() {
-        return email;
-    }
-    /**
-     * Returns the email.
-     *
-     * @return the email
-     */
-    public void setEmail(String email) {
-        this.email = email;
-    }
-    
-    /**
-     * Returns the version.
-     *
-     * @return the version
-     */
     public Long getVersion() {
         return version;
     }
 
-    /**
-     * Sets the version.
-     *
-     * @param version
-     *            the version
-     */
     public void setVersion(Long version) {
         this.version = version;
     }
+
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+
+    public String getLastName() {
+        return lastName;
+    }
+
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+
+    public String getEmail() {
+        return email;
+    }
+    
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+
+
+    public String getAddress() {
+        return address;
+    }
+
+
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+
+
+    public String getSpecialization() {
+        return specialization;
+    }
+
+
+
+    public void setSpecialization(String specialization) {
+        this.specialization = specialization;
+    }
+
+
+
+    public String getContactNo() {
+        return contactNo;
+    }
+
+
+
+    public void setContactNo(String contactNo) {
+        this.contactNo = contactNo;
+    }
+
+
+
+    public Date getBirthday() {
+        return birthday;
+    }
+
+
+
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
+    }
+
+
+
+    public String getUsername() {
+        return username;
+    }
+
+
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+
+
+    public String getPassword() {
+        return password;
+    }
+
+
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+
+
+    public String getToken() {
+        return token;
+    }
+
+
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+
+
+
+    public boolean isAdmin() {
+        return isAdmin;
+    }
+
+
+
+    public void setAdmin(boolean isAdmin) {
+        this.isAdmin = isAdmin;
+    }
+
+
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
+
+
+
+    public Date getDeletedAt() {
+        return deletedAt;
+    }
+
+
+
+    public void setDeletedAt(Date deletedAt) {
+        this.deletedAt = deletedAt;
+    }
+
+
+
+    public Date getUpdatedAt() {
+        return updatedAt;
+    }
+
+
+
+    public void setUpdatedAt(Date updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
+
+
+    public static long getSerialversionuid() {
+        return serialVersionUID;
+    }
+
+
 
     @Override
     public int hashCode() {
@@ -171,185 +258,5 @@ public class DoctorModel implements Serializable {
             return false;
         }
         return true;
-    }
-    
-    /**
-     * Returns the id.
-     *
-     * @return the id
-     */
-    public Long getId() {
-        return id;
-    }
-    
-    /**
-     * Sets the id.
-     *
-     * @param id
-     *            the id
-     */
-    public void setId(Long id) {
-        this.id = id;
-    }
-    
-    /**
-     * Returns the firstName.
-     *
-     * @return the firstName
-     */
-    public String getFirstName() {
-        return firstName;
-    }
-    
-    /**
-     * Sets the firstName.
-     *
-     * @param firstName
-     *            the firstName
-     */
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-    
-    /**
-     * Returns the lastName.
-     *
-     * @return the lastName
-     */
-    public String getLastName() {
-        return lastName;
-    }
-    
-    /**
-     * Sets the lastName.
-     *
-     * @param lastName
-     *            the lastName
-     */
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-    
-    /**
-     * Returns the address.
-     *
-     * @return the address
-     */
-    public String getAddress() {
-        return address;
-    }
-    
-    /**
-     * Sets the address.
-     *
-     * @param address
-     *            the address
-     */
-    public void setAddress(String address) {
-        this.address = address;
-    }
-    
-    /**
-     * Returns the specialization.
-     *
-     * @return the specialization
-     */
-    public String getSpecialization() {
-        return specialization;
-    }
-    
-    /**
-     * Sets the specialization.
-     *
-     * @param specialization
-     *            the specialization
-     */
-    public void setSpecialization(String specialization) {
-        this.specialization = specialization;
-    }
-    
-    /**
-     * Returns the contactNumber.
-     *
-     * @return the contactNumber
-     */
-    public String getContactNumber() {
-        return contactNumber;
-    }
-    
-    /**
-     * Sets the contactNumber.
-     *
-     * @param contactNumber
-     *            the contactNumber
-     */
-    public void setContactNumber(String contactNumber) {
-        this.contactNumber = contactNumber;
-    }
-    
-    /**
-     * Returns the birthDay.
-     *
-     * @return the birthDay
-     */
-    public String getBirthDay() {
-        return birthDay;
-    }
-    
-    /**
-     * Sets the birthDay.
-     *
-     * @param birthDay
-     *            the birthDay
-     */
-    public void setBirthDay(String birthDay) {
-        this.birthDay = birthDay;
-    }
-    
-    /**
-     * Returns the serialVersionUID.
-     *
-     * @return the serivalVersionUID
-     */
-    public static long getSerialversionuid() {
-        return serialVersionUID;
-    }
-    
-    /**
-     * Returns the userName.
-     *
-     * @return the userName
-     */
-    public String getUserName() {
-        return userName;
-    }
-    
-    /**
-     * Sets the userName.
-     *
-     * @param userName
-     *            the userName
-     */
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-    
-    /**
-     * Returns the passWord.
-     *
-     * @return the passWord
-     */
-    public String getPassWord() {
-        return passWord;
-    }
-    
-    /**
-     * Sets the passWord.
-     *
-     * @param passWord
-     *            the passWord
-     */
-    public void setPassWord(String passWord) {
-        this.passWord = passWord;
     }
 }

@@ -1,7 +1,6 @@
 package sample.service;
-import sample.service.EmailService;
 
-import java.util.Date;
+import sample.service.EmailService;
 
 import sample.dao.DoctorDao;
 import sample.dto.DoctorDto;
@@ -14,43 +13,39 @@ public class DoctorService {
      * Used to access the DAO functions for the DoctorModel
      */
     static DoctorDao doctorDao = new DoctorDao();
-  
-    //
     
     /**
      * Used to insert an item to the datastore
      * @param inputDoc - the dto that contains the data to be stored in the model object
      */
-    public Boolean insertDoc(DoctorDto inputDoc){
+    public String insertDoc(DoctorDto inputDoc){
         System.out.println("DoctorService.insertDoc start");
         
-        DoctorModel doctorModel = new DoctorModel(inputDoc.getFirstName(),
-                                                  inputDoc.getLastName(),
-                                                  inputDoc.getAddress(),
-                                                  inputDoc.getSpecialization(),
-                                                  inputDoc.getContactNumber(),
-                                                  inputDoc.getBirthDay(),
-                                                  inputDoc.getUserName(),
-                                                  inputDoc.getPassWord(),
-                                                  inputDoc.getEmail()
-                                                 );
-        try{ 
-            if(doctorDao.getDoctorByEmail(doctorModel.getEmail()) == false){
+        String status;
+        DoctorModel doctorModel;
+        
+        
+        doctorModel = new DoctorModel();
+        status = doctorDao.validateDoctor(inputDoc);
+        
+        try { 
+            if(status.equals("")){
                 doctorDao.insertDoc(doctorModel);
                 
                 EmailService.send(inputDoc.getEmail(), "Your account is Created");
                     System.out.println(inputDoc.getEmail()+"Email sent!");              
-            }else{
+            } else {
                 System.out.println("Doctor Already Exists!");
-                return false ;
             }
         }catch (Exception e){
             System.out.println("Exception in inserting doctor: "+e.toString());
         }
         
         System.out.println("DoctorService.insertDoc end");
-        return true;
+        
+        return status;
     }
+    
     public static  Boolean updateDoctor(DoctorDto doctorDto) {
         System.out.println("DoctorService.updateRecord " + "start");
     
@@ -63,7 +58,7 @@ public class DoctorService {
             if (resultModel != null) {
                 // setting the key in order to properly update the item
                 doctorModel.setKey(resultModel.getKey());
-                doctorModel.setUpdatedAt(new Date().toString());
+               // doctorModel.setUpdatedAt(new Date().toString());
                 // update the entity to the datastore.
                 DoctorService.doctorDao.updateDoctor(doctorModel);
                 return true;
@@ -89,7 +84,7 @@ public class DoctorService {
             if (resultModel != null) {
                 // setting the key in order to properly delete the item
                 doctorModel.setKey(resultModel.getKey());
-                doctorModel.setDeletedAt(new Date().toString());
+               // doctorModel.setDeletedAt(new Date().toString());
                 // delete the entity to the datastore.
                 DoctorService.doctorDao.deleteDoctor(doctorModel);
             
@@ -115,10 +110,10 @@ public class DoctorService {
             doctorModel.setLastName(doctorDto.getLastName());
             doctorModel.setAddress(doctorDto.getAddress());
             doctorModel.setSpecialization(doctorDto.getSpecialization());
-            doctorModel.setContactNumber(doctorDto.getContactNumber());
-            doctorModel.setBirthDay(doctorDto.getBirthDay());
-            doctorModel.setUserName(doctorDto.getUserName());
-            doctorModel.setPassWord(doctorDto.getPassWord());           
+           // doctorModel.setContactNumber(doctorDto.getContactNumber());
+           // doctorModel.setBirthDay(doctorDto.getBirthDay());
+           // doctorModel.setUserName(doctorDto.getUserName());
+           // doctorModel.setPassWord(doctorDto.getPassWord());           
       
             System.out.println("DoctorService.storeDtoToModel " + "end");
             

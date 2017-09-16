@@ -11,13 +11,7 @@ import org.slim3.controller.validator.Validators;
 import org.slim3.repackaged.org.json.JSONException;
 import org.slim3.repackaged.org.json.JSONObject;
 
-/**
- * Validators that accepts JSONObject instead of a Map or HttpServletRequest.
- * @author Lehmar Cabrillos
- * @version 0.01
- * Version History
- * [03/02/2016] 0.01 – Lehmar Cabrillos  – Initial codes.
- */
+
 public class JSONValidators extends Validators {
     
     /**
