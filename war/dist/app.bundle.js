@@ -36072,7 +36072,7 @@ angular.module('hplus.modules.navbar')
 /* 42 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row navbar__background\" ng-controller=\"NavbarController\">        \r\n  <div class=\"col col-md-10 col-md-offset-1\">\r\n\r\n    <div class=\"col col-md-8\">\r\n      <div class=\"navbar__btn\" ng-click=\"go('/admin/list/disease')\">\r\n        Diseases\r\n      </div>\r\n      <div class=\"navbar__btn\" ng-click=\"go('/admin/list/medicine')\">\r\n        Medicines\r\n      </div>\r\n      <div class=\"navbar__btn\" ng-click=\"go('/admin/list/doctor')\">\r\n        Doctors\r\n      </div>\r\n      <div class=\"navbar__btn\" ng-click=\"\">\r\n        Patient\r\n      </div>\r\n    </div>\r\n\r\n    <div ng-show=\"checkPage()\" class=\"col col-md-4 navbar__action-container\">          \r\n      <div class=\"navbar__btn navbar__btn--action\">\r\n        <a href=\"#!/admin/register/disease\"> \r\n          <i class=\"fa fa-plus-square\"></i> {{ registerButton }}\r\n        </a>\r\n      </div>\r\n    </div>\r\n\r\n  </div>\r\n</div>";
+module.exports = "<div class=\"row navbar__background\" ng-controller=\"NavbarController\">        \r\n  <div class=\"col col-md-10 col-md-offset-1\">\r\n\r\n    <div class=\"col col-md-8\">\r\n      <div ng-class=\"selected('disease')\" ng-click=\"go('/admin/list/disease')\">\r\n        Diseases\r\n      </div>\r\n      <div ng-class=\"selected('medicine')\" ng-click=\"go('/admin/list/medicine')\">\r\n        Medicines\r\n      </div>\r\n      <div ng-class=\"selected('doctor')\" ng-click=\"go('/admin/list/doctor')\">\r\n        Doctors\r\n      </div>\r\n      <div ng-class=\"selected('patient')\" ng-click=\"\">\r\n        Patient\r\n      </div>\r\n    </div>\r\n\r\n    <div ng-show=\"checkPage()\" class=\"col col-md-4 navbar__action-container\">          \r\n      <div class=\"navbar__btn navbar__btn--action\">\r\n        <a href=\"{{ link }}\"> \r\n          <i class=\"fa fa-plus-square\"></i> {{ registerButton }}\r\n        </a>\r\n      </div>\r\n    </div>\r\n\r\n  </div>\r\n</div>";
 
 /***/ }),
 /* 43 */
@@ -36084,15 +36084,30 @@ angular.module('hplus.modules.navbar')
     function($scope, $location, globalFactory){
 
       $scope.registerButton = "Register Disease";
+      $scope.link = "#!/admin/register/disease";
 
       $scope.checkPage = function(){
         var state = true;
 
         if($location.path() == "/admin/register/doctor"){
           state = false;
+        } else if($location.path() == "/admin/list/doctor"){
+          $scope.registerButton = "Register Doctor";
+          $scope.link = "#!/admin/register/doctor";
         }
 
         return state;
+      }
+
+      $scope.selected = function(page){
+        var currLoc = $location.path();
+        var btnClass = "navbar__btn";
+
+        if(currLoc.indexOf(page) != -1){
+          btnClass += " navbar__btn--selected";
+        }
+
+        return btnClass;
       }
 
       $scope.go = function(path){
@@ -36167,6 +36182,8 @@ angular.module('hplus.factory')
 
   .factory('doctorFactory', 
     function($http, modalFactory){
+
+      var savedDoctor = {};
 	  
       var registerDoctor = function(doctorObject, clear){
         $http({
@@ -36232,10 +36249,20 @@ angular.module('hplus.factory')
           alert(errorMessage);
         });
       }
+
+      var saveDoctor = function(doctor){
+        savedDoctor = doctor;
+      };
+
+      var getDoctor = function(){
+        return savedDoctor;
+      }
       
       return {
         registerDoctor: registerDoctor,
-        getListOfDoctors: getListOfDoctors
+        getListOfDoctors: getListOfDoctors,
+        saveDoctor: saveDoctor,
+        getDoctor: getDoctor
       }
     }
   );
@@ -36604,25 +36631,27 @@ angular.module('hplus.modules.exploredoctors', [])
   .config(function ($routeProvider){  
     $routeProvider
       .when('/admin/list/doctor',{
-        template: exploredoctors
+        template: exploredoctors,
       })
   });
   
   __webpack_require__(71);
   __webpack_require__(73);
+  __webpack_require__(113);
 
 
 /***/ }),
 /* 70 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\"><!-- Header Portion -->\r\n  <div class=\"col col-md-10 col-md-offset-1\">\r\n    <h1>List of All Doctors</h1><!-- Header Name for this Module -->\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row\" ng-controller=\"ExploreDoctorsController\"><!-- Body Portion -->\r\n  <div class=\"col col-md-2 col-md-offset-1\"><!-- Section for search -->\r\n    <div class=\"row\">\r\n\t  <div class=\"col col-md-12\">\r\n\t    <label class=\"subtitle\">Search</label>\r\n\t    <input type=\"text\" placeholder=\"Enter a name or specialty\" ng-model=\"searchfilter\">\r\n      <button ng-click=\"go('/admin/register/doctor')\">New Doctor</button>\r\n\t  </div>\r\n\t</div>\r\n\r\n  </div>\r\n  \r\n  <div class=\"col col-md-8\"><!-- Section containing the tabulated list of doctors -->\r\n    <div class=\"col col-md-12\">\r\n\t\t\t<label class=\"subtitle\">ALL RESULTS</label>\r\n\t\t\t<div class=\"margins\">\r\n\t\t\t\t<!-- List Section -->\r\n\t\t\t\t<hplus-explore-doctors-card dir-paginate=\"doctor in doctorList | filter:searchfilter | itemsPerPage:10\" data=\"doctor\"></hplus-explore-doctors-card>\r\n\t\t  </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n\r\n<dir-pagination-controls max-size=\"5\"></dir-pagination-controls>";
+module.exports = "<div class=\"row\"><!-- Header Portion -->\r\n  <div class=\"col col-md-10 col-md-offset-1\">\r\n    <h1>List of All Doctors</h1><!-- Header Name for this Module -->\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row\" ng-controller=\"ExploreDoctorsController\"><!-- Body Portion -->\r\n  <div class=\"col col-md-2 col-md-offset-1\"><!-- Section for search -->\r\n    <div class=\"row\">\r\n\t  <div class=\"col col-md-12\">\r\n\t    <label class=\"subtitle\">Search</label>\r\n\t    <input type=\"text\" placeholder=\"Enter a name or specialty\" ng-model=\"query\">\r\n      <button ng-click=\"go('/admin/register/doctor')\">New Doctor</button>\r\n\t  </div>\r\n\t</div>\r\n\r\n  </div>\r\n  \r\n  <div class=\"col col-md-8\"><!-- Section containing the tabulated list of doctors -->\r\n    <div class=\"col col-md-12\">\r\n\t\t\t<label class=\"subtitle\">ALL RESULTS - {{ doctorList.length }}</label>\r\n\t\t\t<div class=\"margins\">\r\n        <!-- List Section -->\r\n        <label class=\"subtitle\" ng-hide=\"doctorList.length\">There are no doctors to display</label>\r\n\t\t\t\t<hplus-explore-doctors-card ng-show=\"doctorList.length\" dir-paginate=\"doctor in filtered = (doctorList | filter:searchFilter | itemsPerPage:5)\" data=\"doctor\"></hplus-explore-doctors-card>\r\n\t\t  </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n\r\n<dir-pagination-controls max-size=\"5\"></dir-pagination-controls>";
 
 /***/ }),
 /* 71 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var card = __webpack_require__(72);
+
 angular.module('hplus.modules.exploredoctors')
 
   .directive('hplusExploreDoctorsCard', function(){
@@ -36639,7 +36668,7 @@ angular.module('hplus.modules.exploredoctors')
 /* 72 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"card__container\">\r\n  <div class=\"card__title\">\r\n    {{ data.firstName }} {{ data.lastName }}\r\n    <!-- <a ng-click=\"go('/admin/view/details')\"><span class=\"delete__icon\"><i class=\"fa fa-eye\" aria-hidden=\"true\"></i></span></a>\r\n    <a ng-click=\"go('/admin/edit/doctor')\"><span class=\"delete__icon\"><i class=\"fa fa-pencil-square-o\" aria-hidden=\"true\"></i></span></a> -->\r\n  </div>\r\n  \r\n  <div class=\"card__desc\">\r\n    {{ data.specialization }}\r\n  </div>\r\n</div>";
+module.exports = "<div class=\"card__container\" ng-controller=\"DoctorCardController\">\r\n  <div class=\"card__title\">\r\n    {{ data.firstname }} {{ data.lastname }}\r\n    <a ng-click=\"go('/admin/view/doctordetails', data); $event.stopPropagation();\">\r\n      <span class=\"delete__icon\">\r\n        <i class=\"fa fa-eye\" aria-hidden=\"true\">\r\n        </i>\r\n      </span>\r\n    </a>\r\n    <a ng-click=\"go('/admin/edit/doctor', data); $event.stopPropagation();\">\r\n      <span class=\"delete__icon\">\r\n        <i class=\"fa fa-pencil-square-o\" aria-hidden=\"true\"></i>\r\n      </span>\r\n    </a>\r\n  </div>\r\n  \r\n  <div class=\"card__desc\">\r\n    {{ data.specialization }}\r\n  </div>\r\n</div>";
 
 /***/ }),
 /* 73 */
@@ -36650,6 +36679,8 @@ angular.module('hplus.modules.exploredoctors')
   .controller('ExploreDoctorsController',
     function($scope, globalFactory, modalFactory, doctorFactory){
 
+      $scope.length;
+
       $scope.go = function(path){
         globalFactory.go(path);
       };
@@ -36658,13 +36689,26 @@ angular.module('hplus.modules.exploredoctors')
 
       var populate = function(){
         doctorFactory.getListOfDoctors().then(function(response){
+          console.log(response);
           $scope.doctorList = response.data.doctors;
+          $scope.length = $scope.doctorList.length;
         }, function(response){
           console.log(response.statusText);
         });
       }
 
       populate();
+
+      $scope.searchFilter = function(doctor){
+        if(!$scope.query 
+        || (doctor.firstname.toLowerCase().indexOf($scope.query) != -1) 
+        || (doctor.lastname.toLowerCase().indexOf($scope.query) != -1)
+        || (doctor.specialization.toLowerCase().indexOf($scope.query) != -1)){
+          return true;
+        } else {
+          return false;
+        }
+      }
 
       // modalFactory.setContents({
       //   type: "confirm",
@@ -37186,7 +37230,7 @@ __webpack_require__(93);
 /* 92 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\" ng-controller=\"LoginController\">\r\n  <div class=\"col-md-10 col-md-offset-1\">\r\n    <div class=\"col-md-8\">\r\n      This is just for testing purposes. Add your page here.<br>\r\n      All pages:<br>\r\n      <div class=\"hyperlink\" ng-click=\"go('/admin/update/disease')\">Update Disease</div>\r\n\r\n      <div class=\"hyperlink\" ng-click=\"go('/admin/edit/doctor')\">Edit Doctor</div>\r\n\r\n      <div class=\"hyperlink\" ng-click=\"go('/admin/update/medicine')\">Update Medicine</div>\r\n\r\n      <div class=\"hyperlink\" ng-click=\"go('/admin/list/disease')\">Explore Diseases</div>\r\n\r\n      <div class=\"hyperlink\" ng-click=\"go('/admin/list/doctor')\">Explore Doctors</div>\r\n      \r\n      <div class=\"hyperlink\" ng-click=\"go('/admin/list/record')\">Explore Medical Records</div>\r\n\r\n      <div class=\"hyperlink\" ng-click=\"go('/admin/list/medicine')\">Explore Medicines</div>\r\n\r\n      <div class=\"hyperlink\" ng-click=\"go('/admin/register/disease')\">Register Diseases</div>\r\n\r\n      <div class=\"hyperlink\" ng-click=\"go('/admin/register/doctor')\">Register Doctor</div>\r\n\r\n      <div class=\"hyperlink\" ng-click=\"go('/admin/register/medicine')\">Register Medicines</div>\r\n\r\n      <div class=\"hyperlink\" ng-click=\"go('/admin/view/details')\">View Doctor</div>\r\n\r\n      <div class=\"hyperlink\" ng-click=\"go('/doctor/create/record')\">Create Medical Record</div>\r\n\r\n      <div class=\"hyperlink\" ng-click=\"go('/admin/view/medicine')\">View Medicine</div>\r\n\r\n     <div class=\"hyperlink\" ng-click=\"go('/patient/view/details')\">View Patient</div>\r\n    </div>\r\n\r\n    <div class=\"col-md-4\">   \r\n      <form role=\"form\">\r\n        <div class=\"form-group\">\r\n          <label class=\"subtitle\" for=\"inputUsernameEmail\">Username or email</label>\r\n          <input class=\"form-control\" id=\"inputUsernameEmail\" type=\"text\">\r\n        </div>\r\n        <a class=\"pull-right\" ng-click=\"go('admin/reset/password')\" href=\"\">Forgot password?</a>\r\n        <div class=\"form-group\">\r\n          <label class=\"subtitle\" for=\"inputPassword\">Password</label>\r\n          <input type=\"password\" class=\"form-control\" id=\"inputPassword\">\r\n        </div>\r\n        <button type=\"submit\" class=\"btn pull-right\" ng-click=\"go('/admin/list/record')\">\r\n          Log In\r\n        </button>\r\n      </form>    \r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n";
+module.exports = "<div class=\"row\" ng-controller=\"LoginController\">\r\n  <div class=\"col-md-10 col-md-offset-1\">\r\n    <div class=\"col-md-8\">\r\n      This is just for testing purposes. Add your page here.<br>\r\n      All pages:<br>\r\n      <div class=\"hyperlink\" ng-click=\"go('/admin/update/disease')\">Update Disease</div>\r\n\r\n      <div class=\"hyperlink\" ng-click=\"go('/admin/edit/doctor')\">Edit Doctor</div>\r\n\r\n      <div class=\"hyperlink\" ng-click=\"go('/admin/update/medicine')\">Update Medicine</div>\r\n\r\n      <div class=\"hyperlink\" ng-click=\"go('/admin/list/disease')\">Explore Diseases</div>\r\n\r\n      <div class=\"hyperlink\" ng-click=\"go('/admin/list/doctor')\">Explore Doctors</div>\r\n      \r\n      <div class=\"hyperlink\" ng-click=\"go('/admin/list/record')\">Explore Medical Records</div>\r\n\r\n      <div class=\"hyperlink\" ng-click=\"go('/admin/list/medicine')\">Explore Medicines</div>\r\n\r\n      <div class=\"hyperlink\" ng-click=\"go('/admin/register/disease')\">Register Diseases</div>\r\n\r\n      <div class=\"hyperlink\" ng-click=\"go('/admin/register/doctor')\">Register Doctor</div>\r\n\r\n      <div class=\"hyperlink\" ng-click=\"go('/admin/register/medicine')\">Register Medicines</div>\r\n\r\n      <div class=\"hyperlink\" ng-click=\"go('/admin/view/doctordetails')\">View Doctor</div>\r\n\r\n      <div class=\"hyperlink\" ng-click=\"go('/doctor/create/record')\">Create Medical Record</div>\r\n\r\n      <div class=\"hyperlink\" ng-click=\"go('/admin/view/medicine')\">View Medicine</div>\r\n\r\n     <div class=\"hyperlink\" ng-click=\"go('/patient/view/details')\">View Patient</div>\r\n    </div>\r\n\r\n    <div class=\"col-md-4\">   \r\n      <form role=\"form\">\r\n        <div class=\"form-group\">\r\n          <label class=\"subtitle\" for=\"inputUsernameEmail\">Username or email</label>\r\n          <input class=\"form-control\" id=\"inputUsernameEmail\" type=\"text\">\r\n        </div>\r\n        <a class=\"pull-right\" ng-click=\"go('admin/reset/password')\" href=\"\">Forgot password?</a>\r\n        <div class=\"form-group\">\r\n          <label class=\"subtitle\" for=\"inputPassword\">Password</label>\r\n          <input type=\"password\" class=\"form-control\" id=\"inputPassword\">\r\n        </div>\r\n        <button type=\"submit\" class=\"btn pull-right\" ng-click=\"go('/admin/list/record')\">\r\n          Log In\r\n        </button>\r\n      </form>    \r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n";
 
 /***/ }),
 /* 93 */
@@ -37213,7 +37257,7 @@ angular.module('hplus.modules.viewdoctor', [])
 
   .config(function ($routeProvider){  
     $routeProvider      
-      .when('/admin/view/details',{
+      .when('/admin/view/doctordetails',{
         template: viewdoctor
       })
   });
@@ -38134,6 +38178,22 @@ module.exports = 'angularUtils.directives.dirPagination';
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"row\">\r\n  <div class=\"col-md-10 col-md-offset-1\">\r\n    <div class=\"col col-md-3 col-md-offset-9\">\r\n      <div class=\"pagination__container\" ng-if=\"1 < pages.length || !autoHide\">\r\n      <div ng-if=\"boundaryLinks\"  class=\"pagination__page\" ng-click=\"setCurrent(1)\">\r\n        &laquo;\r\n      </div> \r\n      <div ng-if=\"directionLinks\" class=\"pagination__page\" ng-click=\"setCurrent(pagination.current - 1)\">\r\n        &lsaquo;\r\n      </div>\r\n      <div ng-repeat=\"pageNumber in pages track by tracker(pageNumber, $index)\" class=\"pagination__page\" ng-class=\"{ pagination__current : pagination.current == pageNumber, pagination__page : pageNumber == '...' }\" ng-click=\"setCurrent(pageNumber)\">\r\n        {{ pageNumber }}\r\n      </div>\r\n      <div ng-if=\"directionLinks\" class=\"pagination__page\" ng-click=\"setCurrent(pagination.current + 1)\">\r\n        &rsaquo;\r\n      </div>\r\n      <div ng-if=\"boundaryLinks\"  class=\"pagination__page\" ng-click=\"setCurrent(pagination.last)\">\r\n        &raquo;\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>";
+
+/***/ }),
+/* 113 */
+/***/ (function(module, exports) {
+
+angular.module('hplus.modules.exploredoctors')
+
+  .controller('DoctorCardController',
+    function($scope, globalFactory, doctorFactory){
+
+      $scope.go = function(path, doctor){
+        doctorFactory.saveDoctor(doctor);
+        globalFactory.go(path);
+      };
+    }
+  );
 
 /***/ })
 /******/ ]);

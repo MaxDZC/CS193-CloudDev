@@ -2,6 +2,8 @@ angular.module('hplus.factory')
 
   .factory('doctorFactory', 
     function($http, modalFactory){
+
+      var savedDoctor = {};
 	  
       var registerDoctor = function(doctorObject, clear){
         $http({
@@ -67,10 +69,20 @@ angular.module('hplus.factory')
           alert(errorMessage);
         });
       }
+
+      var saveDoctor = function(doctor){
+        savedDoctor = doctor;
+      };
+
+      var getDoctor = function(){
+        return savedDoctor;
+      }
       
       return {
         registerDoctor: registerDoctor,
-        getListOfDoctors: getListOfDoctors
+        getListOfDoctors: getListOfDoctors,
+        saveDoctor: saveDoctor,
+        getDoctor: getDoctor
       }
     }
   );
