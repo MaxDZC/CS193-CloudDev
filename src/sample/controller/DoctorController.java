@@ -7,6 +7,7 @@ import java.util.Date;
 import org.slim3.controller.Controller;
 import org.slim3.controller.Navigation;
 import org.slim3.repackaged.org.json.JSONObject;
+import org.slim3.util.RequestMap;
 
 import sample.dto.DoctorDto;
 import sample.service.DoctorService;
@@ -30,14 +31,17 @@ public class DoctorController extends Controller {
         String action = request.getParameter("action");
         String method = request.getMethod();
         String message;
-
+        
         try{
-
-            if(method == "POST"){
+            //System.out.println(this.request.getReader().readLine());
+            
+            
+            if(method.equalsIgnoreCase("POST")){
+                jsonObject = new JSONObject(this.request.getReader().readLine());
                 /** 
                 * Used to retrieve the JSON equivalent data
                 */
-                jsonObject = new JSONObject(this.request.getReader().readLine());
+                
 
                 validator = new JSONValidators(jsonObject);
                 /**
@@ -91,11 +95,15 @@ public class DoctorController extends Controller {
                     }
 
                 }
-            } else if (method == "GET") {
-                
-                jsonObject = new JSONObject(this.request.getReader().readLine());
-                
-                if(this.request.getParameter("id") != null){
+            } else if (method.equalsIgnoreCase("GET")) {
+                jsonObject = new JSONObject(new RequestMap(this.request));
+                System.out.println("loginsad here");
+                if(jsonObject.getString("action").equals("login")){
+                    JSONObject returnval = new JSONObject(DoctorService.loginDoctor(jsonObject.getString("username"), jsonObject.getString("password")));
+                    System.out.println(returnval);
+                    jsonObject.put("doctors", returnval);
+                }
+                else if(this.request.getParameter("id") != null){
                     jsonObject.put("doctors", DoctorService.getDoctor(Long.parseLong(this.request.getParameter("id"))));
                 } else {
                     jsonObject.put("doctors", DoctorService.getDoctors());

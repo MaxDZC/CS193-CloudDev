@@ -95,16 +95,28 @@ public class DoctorDao{
     
     
     public DoctorModel getDoctorByEmailandPassword(String email,String password){
-        System.out.println("DoctorDao.getDoc start");
         
+        System.out.println("DoctorDao.getDoc start");
+       
         DoctorModel doctor = DoctorModelMeta.get().entityToModel(Datastore.query(DoctorModel.class)
-                .filter(CompositeFilterOperator.and(new FilterPredicate("email", FilterOperator.EQUAL, email.toLowerCase()),
-                    new FilterPredicate("password", FilterOperator.EQUAL, password.toLowerCase())))
-                .asSingleEntity());
+            .filter(CompositeFilterOperator.and(new FilterPredicate("userName", FilterOperator.EQUAL, email.toLowerCase()),
+                new FilterPredicate("password", FilterOperator.EQUAL, password.toLowerCase())))
+            .asSingleEntity());
+        
         if(doctor!=null){
             System.out.println("DoctorDao.getDoc end(success)");
         }else{
-            System.out.println("DoctorDao.getDoc end(failed)");   
+            DoctorModel doctorUser = DoctorModelMeta.get().entityToModel(Datastore.query(DoctorModel.class)
+                .filter(CompositeFilterOperator.and(new FilterPredicate("userName", FilterOperator.EQUAL, email.toLowerCase()),
+                    new FilterPredicate("password", FilterOperator.EQUAL, password.toLowerCase())))
+                .asSingleEntity());
+            if(doctorUser==null){
+                System.out.println("DoctorDao.getDoc end(failed)");  
+            } else {
+                doctor = doctorUser;
+                System.out.println("DoctorDao.getDoc end(success)");
+            }
+           // System.out.println("DoctorDao.getDoc end(failed)");   
         }
         return doctor;
         

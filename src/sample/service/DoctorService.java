@@ -121,6 +121,11 @@ public class DoctorService {
             return doctorModel;
         
     }
+    public static DoctorModel loginDoctor(String username, String password){
+        System.out.println("SERVICEE");
+        DoctorModel  doctor = doctorDao.getDoctorByEmailandPassword(username, password);
+        return doctor;
+    }
     public static Object getDoctors() {
         // TODO Auto-generated method stub
         return doctorDao.getDoctors();
