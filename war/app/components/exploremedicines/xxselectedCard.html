@@ -1,0 +1,30 @@
+<div>
+      <label class="subtitle">DETAILS FOR {{data.name}}</label>
+      <div class="margins">
+        <!-- Detail Section -->
+        <div class="detail__container">
+          <div class="card__title">
+            {{data.name}}
+          </div>
+      
+          <div class="detail__desc">
+            <p>
+            {{data.desc}}
+            </p>
+          </div>
+          <span class="detail__title">PRICE (PHP)</span>
+          <span class="detail__subtitle">{{data.price | currency : 'P '}}</span>
+          <br>
+          <br>
+          <span class="detail__title">TREATMENT FOR</span>
+          <span class="detail__subtitle"><span ng-repeat="treats in data.treats | limitTo: 3"><span ng-hide="$first">,&nbsp;</span>{{treats}}</span></span> 
+          <br>
+          <br>
+          <div ng-controller="modalCtrl as alert"> 
+            <button class="outline" ng-click="go('/admin/update/medicine')">Edit</button>
+            <button class="outline" ng-click="alert.confirm()">Delete</button>
+            <button class="outline" ng-click="go('/admin/view/medicine')">View</button>
+          </div>
+        </div>
+      </div>
+</div>
