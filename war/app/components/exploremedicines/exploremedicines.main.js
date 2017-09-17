@@ -8,5 +8,5 @@ angular.module('hplus.modules.exploremedicines', [])
         template: exploremedicines
       })
   });
-
+  require('./exploremedicines.directive.js');
   require('./exploremedicines.controller.js');
