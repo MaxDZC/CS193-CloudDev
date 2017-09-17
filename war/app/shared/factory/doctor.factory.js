@@ -1,7 +1,7 @@
 angular.module('hplus.factory')
 
   .factory('doctorFactory', 
-    function($http, modalFactory, $window){
+    function($http, modalFactory, $window, $location){
 
       var registerDoctor = function(doctorObject, clear){
         $http({
@@ -69,6 +69,7 @@ angular.module('hplus.factory')
         
           modalFactory.setContents(modalObject);
           saveDoctor(response.data);
+          $location.path('/admin/view/doctordetails');
         }, function(response){
           console.log(response);
           var modalObject = {
@@ -91,10 +92,11 @@ angular.module('hplus.factory')
           data: deleteObject
         }).then(function successCallback(response){
           console.log(response);
+          $location.path('/admin/list/doctor');
         }, function errorCallback(response){
           console.log(response);
         });
-      }
+      };
 
       var saveDoctor = function(doctor){
         $window.localStorage.setItem("doctor", angular.toJson(doctor));

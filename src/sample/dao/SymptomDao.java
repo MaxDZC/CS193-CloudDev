@@ -11,7 +11,6 @@ import com.google.appengine.api.datastore.KeyFactory;
 import com.google.appengine.api.datastore.Query.FilterOperator;
 import com.google.appengine.api.datastore.Transaction;
 
-import sample.meta.DoctorModelMeta;
 import sample.meta.SymptomModelMeta;
 import sample.model.SymptomModel;
 

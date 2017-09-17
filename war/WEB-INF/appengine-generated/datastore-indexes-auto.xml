@@ -1,8 +1,8 @@
-<!-- Indices written at Sun, 17 Sep 2017 11:53:49 SGT -->
+<!-- Indices written at Sun, 17 Sep 2017 13:56:08 SGT -->
 
 <datastore-indexes>
 
-    <!-- Used 12 times in query history -->
+    <!-- Used 8 times in query history -->
     <datastore-index kind="DoctorModel" ancestor="false" source="auto">
         <property name="email" direction="asc"/>
         <property name="id" direction="asc"/>
