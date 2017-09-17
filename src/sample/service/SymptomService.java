@@ -1,5 +1,7 @@
 package sample.service;
 
+import java.util.ArrayList;
+
 import sample.dao.SymptomDao;
 import sample.dto.SymptomDto;
 import sample.model.SymptomModel;
@@ -18,9 +20,8 @@ public class SymptomService {
     public Boolean insertSymp(SymptomDto inputSymp){
         System.out.println("SymptomService.insertSymp start");
         
-        SymptomModel SymptomModel = new SymptomModel(inputSymp.getName()
-                                                  
-                                                 );
+        SymptomModel SymptomModel = new SymptomModel();
+        SymptomModel.setName(inputSymp.getName());
         try{
             if(SymptomDao.getSymp(SymptomModel) == null){
                 SymptomDao.insertSymp(SymptomModel);
@@ -34,5 +35,8 @@ public class SymptomService {
         
         System.out.println("SymptomService.insertSymp end");
         return true;
+    }
+    public ArrayList<SymptomModel> getAllSymp(){
+        return SymptomDao.getAllSymp();
     }
 }

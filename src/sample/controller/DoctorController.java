@@ -7,6 +7,7 @@ import java.util.Date;
 import org.slim3.controller.Controller;
 import org.slim3.controller.Navigation;
 import org.slim3.repackaged.org.json.JSONObject;
+import org.slim3.util.RequestMap;
 
 import sample.dto.DoctorDto;
 import sample.service.DoctorService;
@@ -36,11 +37,18 @@ public class DoctorController extends Controller {
 
         String method = request.getMethod();
         String message;
-
+        
         try{
-
-            if(method == "POST"){
+            //System.out.println(this.request.getReader().readLine());
+            
+            
+            if(method.equalsIgnoreCase("POST")){
                 jsonObject = new JSONObject(this.request.getReader().readLine());
+                /** 
+                * Used to retrieve the JSON equivalent data
+                */
+                
+
                 validator = new JSONValidators(jsonObject);
                 
                 if(validator.validate()){

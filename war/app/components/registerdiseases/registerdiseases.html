@@ -8,8 +8,8 @@
   <div class="col-md-10 col-md-offset-1">
     <div class="col col-md-4">
       <label class="subtitle">Name of Disease</label>
-      <input type="text" value="Diabetes Mellitus Type 2">
-      <button ng-click="checkSelected()">Save</button>
+      <input type="text" value="Diabetes Mellitus Type 2" ng-model="diseaseName">
+      <button ng-click="saveDisease()">Save</button>
     </div>
   
     <div class="col col-md-4">
@@ -25,7 +25,12 @@
           </div>
         </div>
       </div>
-      <button ng-click="">Add New Symptom</button>
+      <div class = "row" ng-show="bool">
+        <div class="col-md-8" ><input type="text" ng-model="addSymptom"></div>
+        <div class="col-md-4"><button ng-click="">Add</button></div>  
+      </div>
+      <button ng-click="showAdd()">Add New Symptom</button>
+      
     </div>
   
     <div class="col col-md-4">
@@ -33,11 +38,11 @@
 	    <input type="text" placeholder="Search Medicine">
 	    <div class="borders">
 	      <div class="scrollable">
-	        <div ng-repeat="option in medicinesSelected | orderBy:'name'">
-	          <input type="checkbox" ng-model="option.val" ng-true-value ="true" ng-false-value ="false" ng-change="removeMedicine(option)" ng-checked="true">{{option.name}}<br>
+	        <div ng-repeat="optionmed in medicinesSelected | orderBy:'name'">
+	          <input type="checkbox" ng-model="optionmed.val" ng-true-value ="true" ng-false-value ="false" ng-change="removeMedicine(optionmed)" ng-checked="true">{{optionmed.name}}<br>
 	        </div>
-	        <div ng-repeat="option in medicinesSearch | orderBy:'name'">
-	          <input type="checkbox" ng-model="option.val" ng-true-value ="true" ng-false-value ="false" ng-change="addMedicine(option)">{{option.name}}<br>
+	        <div ng-repeat="optionmed in medicinesSearch | orderBy:'name'">
+	          <input type="checkbox" ng-model="optionmed.val" ng-true-value ="true" ng-false-value ="false" ng-change="addMedicine(optionmed)">{{optionmed.name}}<br>
 	        </div>
 	      </div>
       </div>
