@@ -79,4 +79,13 @@ a{
 .scrollable{
   overflow: auto;
   max-height: 140px;
+  margin: $sizePaddingHalf;
+}
+
+.borders{
+  border: 1.5px solid $black;
+}
+
+.nobttmpdng{
+  padding-bottom: $sizePaddingHalf;
 }
