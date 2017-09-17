@@ -84,7 +84,7 @@ public class PatientDto {
      * Creates an instance of 'Patient' with attribute initialization
      */
     public PatientDto(String firstName, String lastName, String address, String email,
-            String contactNumber, String birthDay, String userName, String passWord){
+            String contactNumber, String birthDay){
         
         this.setFirstName(firstName);
         this.setLastName(lastName);
@@ -92,8 +92,7 @@ public class PatientDto {
         this.setEmail(email);
         this.setContactNumber(contactNumber);
         this.setBirthDay(birthDay);
-        this.setUserName(userName);
-        this.setPassWord(passWord);
+     
     }
     
     /**

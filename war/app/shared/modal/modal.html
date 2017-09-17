@@ -11,8 +11,8 @@
       {{ modalContents.description }}
     </div>
 
-    <button class="modal__btn modal__btn--bad" ng-if="isType('confirm')" ng-click="close()">{{ modalContents.negativeButton }}</button>
-    <button class="modal__btn modal__btn--good" ng-click="close()">{{ modalContents.positiveButton }}</button>
+    <button class="modal__btn modal__btn--bad" ng-if="isType('confirm')" ng-click="ret(false);close()">{{ modalContents.negativeButton }}</button>
+    <button class="modal__btn modal__btn--good" ng-click="ret(true);close()">{{ modalContents.positiveButton }}</button>
 
   </div>
 </div>

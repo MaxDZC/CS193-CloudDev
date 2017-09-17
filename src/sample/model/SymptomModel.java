@@ -19,7 +19,7 @@ public class SymptomModel implements Serializable {
     private Long version;
     
     private Long id;
-    private String name;
+    private String name; 
 
     /**
      * Creates an instance of 'Symptom'

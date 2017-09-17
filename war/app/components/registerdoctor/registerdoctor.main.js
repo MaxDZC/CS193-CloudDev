@@ -9,4 +9,4 @@ angular.module('hplus.modules.registerdoctor', [])
       })
   });
 
-  require('./registerdoctor.controller.js');
+require('./registerdoctor.controller.js');

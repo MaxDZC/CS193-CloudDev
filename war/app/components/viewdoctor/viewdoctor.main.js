@@ -4,10 +4,11 @@ angular.module('hplus.modules.viewdoctor', [])
 
   .config(function ($routeProvider){  
     $routeProvider      
-      .when('/admin/view/details',{
+      .when('/admin/view/doctordetails',{
         template: viewdoctor
       })
   });
 
   require('./viewdoctor.directive.js');
   require('./viewdoctor.controller.js');
+  require('./xxrecordcard.controller.js');
