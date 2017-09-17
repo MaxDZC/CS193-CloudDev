@@ -7,9 +7,14 @@ angular.module('hplus.modules.exploremedicines')
         globalFactory.go(path);
       };
       
-      $scope.selectedMedicine = null;
+      $scope.selectedMedicine = {name : "Metformin",
+              desc : "Insert super long desc wooo amazing woawhe",
+              price : 40000,
+              treats :["Diabetes Mellitus"],
+              id : 1};
       
       $scope.setSelected = function(med){
+    	  
     	  $scope.selectedMedicine = med;
       };
       
@@ -42,6 +47,55 @@ angular.module('hplus.modules.exploremedicines')
           treats :["Intraocular pressure in glaucoma"],
           id : 4
         },
+        {
+          name : "Shit",
+          desc : "New York can i shit, i got lots of shit to sa i got lots of shit to say oooohhhhhhhh, i cant fir mt hand inside a pringle can, i have a huge amount of trouble",
+          price : 30000,
+          treats :["Intraocular pressure in glaucoma"],
+          id : 5
+        },
+        {
+          name : "LookATALllthishands",
+          desc : "Pringle Cans. you hink you can i know u can PRINGLES listen to the people im sure 80% of your complaint letters are about the width of your cans.just. make them wider. Thatis priority numero uno. i dont go to the gym because im self conscious about my body. but im self conscious about my body cuz i dont go the gym. irony can be so painful",
+          price : 30000,
+          treats :["Chicken Burrito, BRAH"],
+          id : 6
+        },
+        {
+          name : "ItWouldntFIt",
+          desc : "Half of it half of it. i think its time that we break it down.... WAoooww. waooowwwwwwww. waaaaaooooooowwwwwwwww. buluulululul. I can sit here and preend that my biggest ropblems are pringle cans and burritos. but my bbiggetsp roblem is you. but i wanna ",
+          price : 30000,
+          treats :["Chicken Burrito, BRAH"],
+          id : 7
+        },
+        {
+          name : "Shit",
+          desc : "New York can i shit, i got lots of shit to sa i got lots of shit to say oooohhhhhhhh, i cant fir mt hand inside a pringle can, i have a huge amount of trouble",
+          price : 30000,
+          treats :["Intraocular pressure in glaucoma"],
+          id : 8
+        },
+        {
+          name : "LookATALllthishands",
+          desc : "Pringle Cans. you hink you can i know u can PRINGLES listen to the people im sure 80% of your complaint letters are about the width of your cans.just. make them wider. Thatis priority numero uno. i dont go to the gym because im self conscious about my body. but im self conscious about my body cuz i dont go the gym. irony can be so painful",
+          price : 30000,
+          treats :["Chicken Burrito, BRAH"],
+          id : 9
+        },
+        {
+          name : "ItWouldntFIt",
+          desc : "Half of it half of it. i think its time that we break it down.... WAoooww. waooowwwwwwww. waaaaaooooooowwwwwwwww. buluulululul. I can sit here and preend that my biggest ropblems are pringle cans and burritos. but my bbiggetsp roblem is you. but i wanna ",
+          price : 30000,
+          treats :["Chicken Burrito, BRAH"],
+          id : 10
+        },
+        {
+          name : "Wouldntagotthelettuce",
+          desc : "They dont need to know the half of this right now. If they still dont understand you thenee yourun it one more time AAAH",
+          price : 30000,
+          treats :["RIGHT NOW"],
+          id : 11
+        }
       ];
     }
   );

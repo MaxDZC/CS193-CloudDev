@@ -18,25 +18,23 @@
 		</div>
   </div>
 
+
+
   <div class="col col-md-8"><!-- Section containing the list and detail of medicines -->
     <div class="col col-md-6"><!-- List sector -->
 		  <label class="subtitle">ALL RESULTS</label>
 		  
-		  <div class="margins" ng-repeat="med in medicines | filter:{name : searchFilter}">
-			  <!-- List Section -->
-			  <div class="card__container" ng-click="setSelected(med)">
-			    <div class="card__title">
-					  {{med.name}}
-					</div>
-				
-			    <div class="card__desc">
-					  <span ng-repeat="treats in med.treats | limitTo: 3"><span ng-hide="$first">,&nbsp;</span>{{treats}}</span>
-					</div>
-			  </div>
-			  
-			   
-		  </div>    			
+		  
+		  
+		  <div class="margins" >
+		    <hplus-explore-medicines-card dir-paginate="med in medicines | filter: searchFilter | itemsPerPage:10" data="med" selectedMed="selectedMedicine" ng-click="setSelected(med)" ></hplus-explore-medicines-card>       
+      </div>    			
     </div>
+<<<<<<< HEAD
+	  <div class="col col-md-6"><!-- Detail Sector -->
+		  <hplus-selected-medicine-card data="selectedMedicine" ng-show="selectedMedicine"></hplus-selected-medicine-card>
+		</div>
+=======
 	
 		<div class="col col-md-6" ng-show="selectedMedicine"><!-- Detail Sector -->
 		  <label class="subtitle">DETAILS FOR {{selectedMedicine.name}}</label>
@@ -68,42 +66,9 @@
 		    </div>
 	    </div>
 	  </div>
+>>>>>>> 8a00afd2f581d24899e3a80e972e08d04f6e2602
   </div>
 </div>
 
 <!-- Pagination Section -->
-<div class="row">
-  <div class="col-md-10 col-md-offset-1">
-    <div class="col col-md-3 col-md-offset-9">
-      <div class="pagination__container">
-        <div class="pagination__page">
-          <<
-        </div>
-      
-        <div class="pagination__page">
-          <
-        </div>
-      
-        <div class="pagination__page ">
-          2
-        </div>
-      
-        <div class="pagination__page pagination__current">
-          3
-        </div>
-      
-        <div class="pagination__page">
-          4
-        </div>
-      
-        <div class="pagination__page">
-          >
-        </div>
-      
-        <div class="pagination__page">
-          >>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+<dir-pagination-controls max-size="5"></dir-pagination-controls>

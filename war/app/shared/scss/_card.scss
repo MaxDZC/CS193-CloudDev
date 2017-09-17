@@ -6,6 +6,10 @@
   background-color: $softWhite;
   cursor: pointer;
 }
+.selectedCard__container{
+  color: $white !important;
+ 
+}
 .card__container--custom1{
   @extend  .card__container;
   height: 25em !important;
