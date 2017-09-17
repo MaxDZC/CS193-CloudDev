@@ -1,29 +1,31 @@
-<div class="row">
-  <div class="col col-md-8 col-md-offset-1">
-    <h1><i class="fa fa-pencil-square-o"></i> Editing Dr. John Appleseed</h1>
-  </div>
-</div>
-
-<div class="row" ng-controller="EditDoctorController">
-  <div class="col col-md-3 col-md-offset-1">
-    <div class="match-padding">
-      <label class="subtitle">Specialization</label>
-<<<<<<< HEAD
-      <select ng-model="doctor.specialization">
-        <option ng-repeat="option in specialization" value="{{option.id}}">{{option.name}}</option>
-      </select>
-      <label class="subtitle">Contact Number</label>
-      <input type="text" value="+69XX-XXX-XXXX">
-      <div ng-controller="modalCtrl as alert"> 
-=======
-      <input type="text" value="Dentistry">
-      <label class="subtitle">E-mail Address</label>
-      <input type="text" value="joappleseed@hplus.com">
-      <div ng-controller="modalController"> 
->>>>>>> 6934571148ca5eb4a1572bfb82e90d8aaf053cee
-        <button ng-click="alert.alert()">Update</button>
-		    <button class="outline delete_btn" ng-click="deleteDoctor()">Delete</button>
-	  </div>
+<div ng-controller="EditDoctorController">
+  <div class="row">
+    <div class="col col-md-8 col-md-offset-1">
+      <h1><i class="fa fa-pencil-square-o"></i> Editing Dr. {{ doctorData.firstname + " " + doctorData.lastname }}</h1>
     </div>
   </div>
+
+  <div class="row">
+    <ng-form name="EditDoctorForm">
+      <div class="col col-md-3 col-md-offset-1">
+        <div class="match-padding">
+          <label class="subtitle">Specialization</label>
+          <select ng-model="doctorData.specialization" ng-required="true">
+            <option ng-repeat="option in specialization" value="{{ option.name }}">{{option.name}}</option>
+          </select>
+          <label class="subtitle">Contact Number</label>
+          <input type="text" ng-model="doctorData.contactNo" ng-pattern="contactNoRegex" ng-required="true">
+          <label class="subtitle">Address</label>
+          <input type="text" ng-model="doctorData.address" ng-required="true">
+          <label class="subtitle">E-mail Address</label>
+          <input type="email" ng-model="doctorData.email" ng-required="true">
+          <div> 
+            <button ng-click="update()">Update</button>
+            <button class="outline delete_btn" ng-click="deleteDoctor()">Archive</button>
+          </div>
+        </div>
+      </div>
+    </ng-form>
+  </div>
+
 </div>

@@ -6,7 +6,7 @@ angular.module('hplus.factory')
       var modalContents = {}
 
       var setContents = function(passedObject){
-        modalContents = passedObject;      
+        modalContents = passedObject;
         $rootScope.$broadcast('modalReceived', modalContents);
       }
 

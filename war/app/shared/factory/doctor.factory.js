@@ -1,53 +1,115 @@
 angular.module('hplus.factory')
 
   .factory('doctorFactory', 
-    function($http){
-	  
+    function($http, modalFactory, $window){
+
       var registerDoctor = function(doctorObject, clear){
         $http({
           method: 'POST',
           url: '/Doctor', // Change URL here
           data: doctorObject
         }).then(function successCallback(response) {
-           //  {"message",true} -> Was inserted
-          // {"message",false} -> An error occured
-         // {"message","duplicated"} -> Email already exis
         	console.log(response);
-        	clear();
-            // when the response is available
-          }, function errorCallback(response) {
-            // called asynchronously if an error occurs
-            // or server returns response with an error status.
-          });
-      }
+          var modalObject = {
+            type: "notify",
+            title: "Registration Successful!",
+            description: "Dr. " + doctorObject.firstname + " " + doctorObject.lastname + " is successfully registered!",
+            positiveButton: "Ok",
+            isVisible: true
+          };
+          modalFactory.setContents(modalObject);
+          clear();
+        }, function errorCallback(response) {
+          var errorMessage = "";
+          console.log(response);
 
+          if(response.data.errors.indexOf("email") != -1){
+            errorMessage = "The email "+ doctorObject.email +" already exists!";
+          }
+
+          if(response.data.errors.indexOf("username") != -1){
+            if(errorMessage != ""){
+              errorMessage += "\n";
+            }
+            errorMessage += "The username " + doctorObject.username + " already exists!";
+          }
+
+          var modalObject = {
+            type: "notify",
+            title: "Registration Failure!",
+            description: errorMessage,
+            positiveButton: "Ok",
+            isVisible: true
+          };
+          modalFactory.setContents(modalObject);
+        });
+      }
 
       var getListOfDoctors = function(){
         return $http({
           method: "GET",
-          url: "/Doctor"
+          url: "/Doctor",
         });
-      }
+      };
+
+      var updateDoctor = function(doctor){
+        $http({
+          method: "PUT",
+          url: "/Doctor",
+          data: doctor
+        }).then(function(response){
+          console.log(response);
+          var modalObject = {
+            type: "notify",
+            title: "Successfully Updated!",
+            description: "Successfully updated Dr. " + doctor.lastname + "'s profile!",
+            positiveButton: "Ok",
+            isVisible: true
+          };
+        
+          modalFactory.setContents(modalObject);
+          saveDoctor(response.data);
+        }, function(response){
+          console.log(response);
+          var modalObject = {
+            type: "notify",
+            title: "Update Failure!",
+            description: "The email you have chosen already exists!",
+            positiveButton: "Ok",
+            isVisible: true
+          };
+        
+          modalFactory.setContents(modalObject);
+        });
+      };
         
 
       var deleteDoctor = function(deleteObject){
         $http({
-          method: "POST",
+          method: "DELETE",
           url: "/Doctor",
+          data: deleteObject
         }).then(function successCallback(response){
-          alert("You have successfully deleted!!!");
+          console.log(response);
         }, function errorCallback(response){
-          var errorMessage = "";
-          for(var i = 0; i < response.data.errorList.length; i++){
-            errorMessage += response.data.errorList[i];
-          }
-          alert(errorMessage);
+          console.log(response);
         });
       }
-  
+
+      var saveDoctor = function(doctor){
+        $window.localStorage.setItem("doctor", angular.toJson(doctor));
+      };
+
+      var getDoctor = function(){
+        return angular.fromJson($window.localStorage.getItem("doctor"));
+      }
+      
       return {
         registerDoctor: registerDoctor,
-        getListOfDoctors: getListOfDoctors
+        getListOfDoctors: getListOfDoctors,
+        saveDoctor: saveDoctor,
+        getDoctor: getDoctor,
+        updateDoctor: updateDoctor
       }
     }
   );

@@ -1,18 +1,51 @@
 angular.module('hplus.modules.viewdoctor')
 
   .controller('ViewDoctorController',
-    function($scope, globalFactory){
-		
+    function($scope, $location, globalFactory, doctorFactory, modalFactory){
+    
+      $scope.doctorData = doctorFactory.getDoctor();
+      var modalObject;
+
+      if($scope.doctorData == null){
+        $location.path('/admin/list/doctor');
+      }
+
       $scope.go = function(path){
+        doctorFactory.saveDoctor($scope.doctorData);
         globalFactory.go(path);
       };
 
-      $scope.doctorData = {
-        name: "Xavier Ford",
-        contactNumber: "09171234567",
-        specialization: "Cosmetic Surgery",
-        email: "marlou@hplus.com"
-      };
+      var confirmDeleteDoctor = function(){
+        console.log("deleted!" + $scope.doctorData.id);
+      }
+
+      $scope.confirmDelete = function(){
+        if($scope.recordList.length == 0){
+          modalObject = {
+            type: "confirm",
+            title: "Confirm Deleting",
+            description: "Are you sure you want to delete " + $scope.doctorData.firstname + " " + $scope.doctorData.lastname + "?",
+            negativeButton: "No",
+            positiveButton: "Yes",
+            isVisible: true,
+            data: confirmDeleteDoctor,
+            object: $scope.doctorData,
+            clean: '/admin/list/doctor'
+          };
+      
+          modalFactory.setContents(modalObject);
+        } else {
+          modalObject = {
+            type: "notify",
+            title: "Unable to Delete",
+            description: "Dr. " + $scope.doctorData.firstname + " " + $scope.doctorData.lastname + " has pending medical records!",
+            positiveButton: "Ok",
+            isVisible: true
+          };
+
+          modalFactory.setContents(modalObject);
+        }
+      }
 
       $scope.recordList = [
         {
@@ -82,4 +115,6 @@ angular.module('hplus.modules.viewdoctor')
           id: 11
         }
       ];
+
+      $scope.recordList = [];
   });

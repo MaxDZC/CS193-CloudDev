@@ -6,61 +6,67 @@
 
 <div class="row" ng-controller="RegisterDoctorController">
   <ng-form name="registerDoctorForm">
+
     <div class="row match-padding">
       <div class="col col-md-3 col-md-offset-1">
-          <label class="subtitle">First Name</label>
-          <input type="text" ng-model="doctor.fname" ng-required="true">
+        <label class="subtitle">First Name</label>
+        <input type="text" ng-model="doctor.firstname" ng-required="true">
       </div>
       <div class="col col-md-3">
-          <label class="subtitle">Last Name</label>
-          <input type="text" ng-model="doctor.lname" ng-required="true">
+        <label class="subtitle">Last Name</label>
+        <input type="text" ng-model="doctor.lastname" ng-required="true">
       </div>
     </div>
 
     <div class="row match-padding">
       <div class="col col-md-3 col-md-offset-1">
-          <label class="subtitle">Specialization</label>
+        <label class="subtitle">Email Address</label>
+        <input type="email" ng-model="doctor.email" ng-required="true">
+      </div>
+      <div class="col col-md-3">
+        <label class="subtitle">Address</label>
+        <input type="text" ng-model="doctor.address" ng-required="true">
+      </div>
+    </div>
+    
+    <div class="row match-padding">
+      <div class="col col-md-3 col-md-offset-1">
+        <label class="subtitle">Specialization</label>
           <select ng-model="doctor.specialization" ng-required="true">
-            <option ng-repeat="option in specialization" value="{{option.id}}">{{option.name}}</option>
+            <option value="">Choose a specialization</option>
+            <option ng-repeat="option in specialization" value="{{option.name}}">{{option.name}}</option>
           </select>
       </div>
       <div class="col col-md-3">
-          <label class="subtitle">Address</label>
-          <input type="text" ng-model="doctor.address" ng-required="true">
+        <label class="subtitle">Contact Number</label>
+        <input type="text" ng-model="doctor.contactNo" ng-pattern="contactNoRegex" ng-required="true">
       </div>
     </div>
     
     <div class="row match-padding">
       <div class="col col-md-3 col-md-offset-1">
-          <label class="subtitle">Contact Number</label>
-          <input type="text" ng-model="doctor.number" ng-pattern="regex" ng-required="true">
+        <label class="subtitle">Username</label>
+        <input type="text" ng-model="doctor.username" ng-required="true">
       </div>
       <div class="col col-md-3">
-          <label class="subtitle">Birthday</label>
-          <input type="date" ng-model="doctor.birthday" ng-required="true">
+        <label class="subtitle">Birthday</label>
+        <input type="date" ng-model="doctor.birthday" ng-required="true">
       </div>
     </div>
     
     <div class="row match-padding">
       <div class="col col-md-3 col-md-offset-1">
-          <label class="subtitle">Username</label>
-          <input type="text" ng-model="doctor.username" ng-required="true">
+        <label class="subtitle">Password (At least 6 characters)</label>
+        <input type="password" ng-model="doctor.password" ng-pattern="passwordRegex" ng-required="true">
       </div>
       <div class="col col-md-3">
-          <label class="subtitle">Password</label>
-          <input type="password" ng-model="doctor.password" ng-required="true">
+        <label class="subtitle">Confirm Password</label>
+        <input type="password" ng-model="doctor.passwordAgain" ng-required="true">
       </div>
     </div>
-    
     <div class="row match-padding">
       <div class="col col-md-3 col-md-offset-1">
-          <label class="subtitle">Confirm Password</label>
-          <input type="password" ng-model="doctor.passwordAgain" ng-required="true">
-          <button ng-hide="registerDoctorForm.$invalid" ng-click="registerDoctor()">Sign up</button>
-      </div>
-      <div class="col col-md-3">
-          <label class="subtitle">Email Address</label>
-          <input type="email" ng-model="doctor.email" ng-required="true">
+      <button ng-class="checkStatus(registerDoctorForm.$valid)" ng-disabled="registerDoctorForm.$invalid" ng-click="registerDoctor()">{{ button }}</button>
       </div>
     </div>
   </ng-form>

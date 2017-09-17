@@ -1,8 +1,17 @@
-<div class="card__container">
+<div class="card__container" ng-controller="DoctorCardController">
   <div class="card__title">
-    {{ data.firstName }} {{ data.lastName }}
-    <!-- <a ng-click="go('/admin/view/details')"><span class="delete__icon"><i class="fa fa-eye" aria-hidden="true"></i></span></a>
-    <a ng-click="go('/admin/edit/doctor')"><span class="delete__icon"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></span></a> -->
+    {{ data.firstname }} {{ data.lastname }}
+    <a ng-click="go('/admin/view/doctordetails', data); $event.stopPropagation();">
+      <span class="delete__icon">
+        <i class="fa fa-eye" aria-hidden="true">
+        </i>
+      </span>
+    </a>
+    <a ng-click="go('/admin/edit/doctor', data); $event.stopPropagation();">
+      <span class="delete__icon">
+        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+      </span>
+    </a>
   </div>
   
   <div class="card__desc">
