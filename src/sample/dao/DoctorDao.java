@@ -99,7 +99,7 @@ public class DoctorDao{
         System.out.println("DoctorDao.getDoc start");
        
         DoctorModel doctor = DoctorModelMeta.get().entityToModel(Datastore.query(DoctorModel.class)
-            .filter(CompositeFilterOperator.and(new FilterPredicate("userName", FilterOperator.EQUAL, email.toLowerCase()),
+            .filter(CompositeFilterOperator.and(new FilterPredicate("username", FilterOperator.EQUAL, email.toLowerCase()),
                 new FilterPredicate("password", FilterOperator.EQUAL, password.toLowerCase())))
             .asSingleEntity());
         
@@ -107,7 +107,7 @@ public class DoctorDao{
             System.out.println("DoctorDao.getDoc end(success)");
         }else{
             DoctorModel doctorUser = DoctorModelMeta.get().entityToModel(Datastore.query(DoctorModel.class)
-                .filter(CompositeFilterOperator.and(new FilterPredicate("userName", FilterOperator.EQUAL, email.toLowerCase()),
+                .filter(CompositeFilterOperator.and(new FilterPredicate("email", FilterOperator.EQUAL, email.toLowerCase()),
                     new FilterPredicate("password", FilterOperator.EQUAL, password.toLowerCase())))
                 .asSingleEntity());
             if(doctorUser==null){

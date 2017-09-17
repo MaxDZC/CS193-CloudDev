@@ -1,10 +1,11 @@
 angular.module('hplus.modules.exploremedicalrecords')
 
   .controller('ExploreMedicalRecordsController',
-    function($scope, globalFactory){
+	function($scope, globalFactory){
 
-      $scope.go = function(path){
-        globalFactory.go(path);
-      };
-    }
+		
+	  $scope.go = function(path){
+		globalFactory.go(path);
+	  };
+	}
   );

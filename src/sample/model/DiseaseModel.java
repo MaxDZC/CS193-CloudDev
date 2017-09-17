@@ -1,6 +1,9 @@
 package sample.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 import com.google.appengine.api.datastore.Key;
 
@@ -8,7 +11,7 @@ import org.slim3.datastore.Attribute;
 import org.slim3.datastore.Model;
 
 @Model(schemaVersion = 1)
-public class SymptomModel implements Serializable {
+public class DiseaseModel implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -19,23 +22,28 @@ public class SymptomModel implements Serializable {
     private Long version;
     
     private Long id;
-    private String name; 
-
+    private String name;
+    private List<Long> symptomId;
+    private List<Long> medicineId;
+    private Date deletedAt;
+    private Date updatedAt;
     /**
-     * Creates an instance of 'Symptom'
+     * Returns the key.
+     *
+     * @return the key
      */
-    public SymptomModel(){
+    public DiseaseModel(){
         
     }
-    
-    /**
-     * Creates an instance of 'Symptom' with attribute initialization
-     */
-    public SymptomModel(String name){
-        this.setName(name);
- 
+    public DiseaseModel(List<Long> symps,List<Long> meds, String diseasename){
+        name = diseasename;
+        symptomId = symps;
+        medicineId = meds;
     }
-    
+    public Key getKey() {
+        return key;
+    }
+
     public String getName() {
         return name;
     }
@@ -44,13 +52,20 @@ public class SymptomModel implements Serializable {
         this.name = name;
     }
 
-    /**
-     * Returns the key.
-     *
-     * @return the key
-     */
-    public Key getKey() {
-        return key;
+    public List<Long> getSymptomId() {
+        return symptomId;
+    }
+
+    public void setSymptomId(List<Long> symptomId) {
+        this.symptomId = symptomId;
+    }
+
+    public List<Long> getMedicineId() {
+        return medicineId;
+    }
+
+    public void setMedicineId(List<Long> medicineId) {
+        this.medicineId = medicineId;
     }
 
     /**
@@ -101,7 +116,7 @@ public class SymptomModel implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        SymptomModel other = (SymptomModel) obj;
+        DiseaseModel other = (DiseaseModel) obj;
         if (key == null) {
             if (other.key != null) {
                 return false;
@@ -111,24 +126,22 @@ public class SymptomModel implements Serializable {
         }
         return true;
     }
-    
-    /**
-     * Returns the id.
-     *
-     * @return the id
-     */
     public Long getId() {
         return id;
     }
-    
-    /**
-     * Sets the id.
-     *
-     * @param id
-     *            the id
-     */
     public void setId(Long id) {
         this.id = id;
     }
- 
+    public Date getDeletedAt() {
+        return deletedAt;
+    }
+    public void setDeletedAt(Date deletedAt) {
+        this.deletedAt = deletedAt;
+    }
+    public Date getUpdatedAt() {
+        return updatedAt;
+    }
+    public void setUpdatedAt(Date updatedAt) {
+        this.updatedAt = updatedAt;
+    }
 }
