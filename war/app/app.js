@@ -2,10 +2,13 @@ require("../assets/main.scss");
 
 require('angular');
 require('angular-route');
-require('zxcvbn');
+var zxcvbn = require('zxcvbn');
+window.zxcvbn = zxcvbn;
 require('angular-zxcvbn');
-require('./app.module.js');
 require('angular-utils-pagination');
+
+require('./app.module.js');
+
 
 var app = angular.module('hplus', [
                             'ngRoute',

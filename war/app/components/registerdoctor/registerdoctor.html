@@ -57,7 +57,7 @@
     <div class="row match-padding">
       <div class="col col-md-3 col-md-offset-1">
         <label class="subtitle">Password (At least 6 characters)</label>
-        <input type="password" ng-model="doctor.password" ng-pattern="passwordRegex" ng-required="true">
+        <input type="password" ng-model="doctor.password" ng-pattern="passwordRegex" zxcvbn="passwordStrength" ng-required="true">
       </div>
       <div class="col col-md-3">
         <label class="subtitle">Confirm Password</label>
