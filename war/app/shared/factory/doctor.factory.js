@@ -1,10 +1,8 @@
 angular.module('hplus.factory')
 
   .factory('doctorFactory', 
-    function($http, modalFactory){
+    function($http, modalFactory, $window){
 
-      var savedDoctor = null;
-	  
       var registerDoctor = function(doctorObject, clear){
         $http({
           method: 'POST',
@@ -50,9 +48,40 @@ angular.module('hplus.factory')
       var getListOfDoctors = function(){
         return $http({
           method: "GET",
-          url: "/Doctor"
+          url: "/Doctor",
         });
-      }
+      };
+
+      var updateDoctor = function(doctor){
+        $http({
+          method: "PUT",
+          url: "/Doctor",
+          data: doctor
+        }).then(function(response){
+          console.log(response);
+          var modalObject = {
+            type: "notify",
+            title: "Successfully Updated!",
+            description: "Successfully updated Dr. " + doctor.lastname + "'s profile!",
+            positiveButton: "Ok",
+            isVisible: true
+          };
+        
+          modalFactory.setContents(modalObject);
+          saveDoctor(response.data);
+        }, function(response){
+          console.log(response);
+          var modalObject = {
+            type: "notify",
+            title: "Update Failure!",
+            description: "The email you have chosen already exists!",
+            positiveButton: "Ok",
+            isVisible: true
+          };
+        
+          modalFactory.setContents(modalObject);
+        });
+      };
         
 
       var deleteDoctor = function(deleteObject){
@@ -71,18 +100,19 @@ angular.module('hplus.factory')
       }
 
       var saveDoctor = function(doctor){
-        savedDoctor = doctor;
+        $window.localStorage.setItem("doctor", angular.toJson(doctor));
       };
 
       var getDoctor = function(){
-        return savedDoctor;
+        return angular.fromJson($window.localStorage.getItem("doctor"));
       }
       
       return {
         registerDoctor: registerDoctor,
         getListOfDoctors: getListOfDoctors,
         saveDoctor: saveDoctor,
-        getDoctor: getDoctor
+        getDoctor: getDoctor,
+        updateDoctor: updateDoctor
       }
     }
   );

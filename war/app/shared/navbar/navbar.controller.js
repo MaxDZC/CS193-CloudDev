@@ -11,8 +11,7 @@ angular.module('hplus.modules.navbar')
 
         if($location.path() == "/admin/register/doctor"){
           state = false;
-        } else if($location.path() == "/admin/list/doctor"
-                  || $location.path() == "/admin/view/doctordetails"){
+        } else if($location.path().indexOf("doctor")){
           $scope.registerButton = "Register Doctor";
           $scope.link = "#!/admin/register/doctor";
         }
