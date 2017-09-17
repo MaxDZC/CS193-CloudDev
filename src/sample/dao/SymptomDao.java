@@ -1,12 +1,18 @@
 package sample.dao;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.slim3.datastore.Datastore;
 
+import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.KeyFactory;
 import com.google.appengine.api.datastore.Query.FilterOperator;
 import com.google.appengine.api.datastore.Transaction;
 
+import sample.meta.DoctorModelMeta;
+import sample.meta.SymptomModelMeta;
 import sample.model.SymptomModel;
 
 public class SymptomDao{
@@ -32,11 +38,19 @@ public class SymptomDao{
             return inputSymp;
         }
     }
-    
+    public ArrayList<SymptomModel> getAllSymp(){
+        ArrayList<SymptomModel> symp = new ArrayList<SymptomModel>();
+        List<Entity> getSymp = Datastore.query("SymptomModel").asList();
+        for(int i =0;i<getSymp.size();i++){
+            symp.add(SymptomModelMeta.get().entityToModel(getSymp.get(i)));
+        }
+        return symp;
+    }
     /**
      * Used to insert the 'Symptom' to the datastore
      * @param inputSymp - the item to be inserted
      */
+    
     public void insertSymp(SymptomModel inputSymp){
         System.out.println("SymptomDao.insertSymp start");
         Transaction trans = Datastore.beginTransaction();

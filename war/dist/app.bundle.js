@@ -890,7 +890,12 @@ __webpack_require__(27);
 var zxcvbn = __webpack_require__(29);
 window.zxcvbn = zxcvbn;
 __webpack_require__(34);
+<<<<<<< HEAD
 __webpack_require__(110);
+=======
+__webpack_require__(35);
+__webpack_require__(115);
+>>>>>>> 11e5f02e563f11cf5aed308d2cfda7325edf90a0
 
 __webpack_require__(35);
 
@@ -917,7 +922,7 @@ app.config(function ($routeProvider, $locationProvider, paginationTemplateProvid
     // });
   
   // Stylizes the pagination
-  paginationTemplateProvider.setString(__webpack_require__(112));
+  paginationTemplateProvider.setString(__webpack_require__(117));
 });
 
 
@@ -37818,19 +37823,19 @@ __webpack_require__(60);
 __webpack_require__(63);
 __webpack_require__(66);
 __webpack_require__(69);
-__webpack_require__(74);
-__webpack_require__(77);
+__webpack_require__(75);
+__webpack_require__(81);
 
-__webpack_require__(79);
-__webpack_require__(82);
-__webpack_require__(85);
-__webpack_require__(88);
-__webpack_require__(91);
-__webpack_require__(94);
-__webpack_require__(99);
-__webpack_require__(102);
-__webpack_require__(105);
+__webpack_require__(83);
+__webpack_require__(86);
+__webpack_require__(89);
+__webpack_require__(92);
+__webpack_require__(95);
+__webpack_require__(98);
+__webpack_require__(104);
 __webpack_require__(107);
+__webpack_require__(110);
+__webpack_require__(112);
 
 angular.module('hplus.modules', [
   'hplus.modules.header',
@@ -37886,7 +37891,7 @@ angular.module('hplus.modules.header')
 /* 38 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\" ng-controller=\"HeaderController\">\r\n  <div class=\"col col-md-10 col-md-offset-1 header__background\">\r\n\r\n    <div class=\"col col-md-8\" ng-click=\"go('/')\">\r\n      <a href=\"\">\r\n        <img class=\"header__logo\" src=\"/assets/img/logo.png\">\r\n      </a>\r\n        <span class=\"header__app-text\">HealthPlus</span>\r\n    </div>\r\n\r\n    <div class=\"col col-md-4 header__user-container\">\r\n      <span class=\"header__user-alignment\">\r\n        <span class=\"header__user-name\">James Appleseed</span>\r\n        <span class=\"header__user-title\">Administrator</span>\r\n      </span>\r\n      \r\n      <div class=\"dropdown header__user-alignment\">\r\n        <button class=\"dropbtn\"><span class=\"fa fa-caret-down\"></span></button>\r\n        <div class=\"dropdown-content\">\r\n          <a href=\"#\">View Profile</a>\r\n        </div>\r\n      </div>\r\n    </div>\r\n\r\n  </div>\r\n</div>";
+module.exports = "<div class=\"row\" ng-controller=\"HeaderController\">\r\n  <div class=\"col col-md-10 col-md-offset-1 header__background\">\r\n\r\n    <div class=\"col col-md-8\" ng-click=\"go('/')\">\r\n      <a href=\"\">\r\n        <img class=\"header__logo\" src=\"/assets/img/logo.png\">\r\n      </a>\r\n        <span class=\"header__app-text\">HealthPlus</span>\r\n    </div>\r\n\r\n    <div class=\"col col-md-4 header__user-container\">\r\n      <span class=\"header__user-alignment\">\r\n        <span class=\"header__user-name\">{{currUser.firstname+\" \"+currUser.lastname}}</span>\r\n        <span class=\"header__user-title\">Administrator</span>\r\n      </span>\r\n      \r\n      <div class=\"dropdown header__user-alignment\">\r\n        <button class=\"dropbtn\"><span class=\"fa fa-caret-down\"></span></button>\r\n        <div class=\"dropdown-content\">\r\n          <a href=\"#\">View Profile</a>\r\n        </div>\r\n      </div>\r\n    </div>\r\n\r\n  </div>\r\n</div>";
 
 /***/ }),
 /* 39 */
@@ -37895,8 +37900,13 @@ module.exports = "<div class=\"row\" ng-controller=\"HeaderController\">\r\n  <d
 angular.module('hplus.modules.header')
 
   .controller('HeaderController',
-    function($scope, globalFactory){
-
+    function($scope, globalFactory,$rootScope){
+    	 $scope.currUser = {};
+    	$scope.$on('loginUserContents', function(event, users) {
+	      $scope.currUser = users;
+	    });
+    	    	
+    	console.log($scope.currUser);
       $scope.go = function(path){
         globalFactory.go(path);
       };
@@ -37992,15 +38002,77 @@ __webpack_require__(49);
 
 angular.module('hplus.factory')
 
-  .factory('globalFactory', 
-    function($location){
+  .factory('globalFactory', function($location,$http,$rootScope){
+      var user;
+      var insertDisease = function(name,symptoms,medicine){
+        var dataDisease = {
+          diseasename:name,
+          symptomsid:symptoms,
+          medicineid:medicine
+        }
+        console.log("here" + dataDisease.medicineid[0].name);
+         $http({
+          method:"POST",
+          url:"/Disease",
+          data:dataDisease
+         }).then(function successCallback(response) {
+           //  {"message",true} -> Was inserted
+          // {"message",false} -> An error occured
+         // {"message","duplicated"} -> Email already exis
+        
+              console.log(response);
+              go("/admin/list/disease");
+            // when the response is available
+          }, function errorCallback(response) {
+            // called asynchronously if an error occurs
+            // or server returns response with an error status.
+          });
+      }
       
       var go = function(path){
         $location.path(path);
       };
 
+      var login = function(user,pass){
+          var actionl = "login";
+          var data = {
+                        username:user,
+                        password:pass,
+                        action: actionl
+                     };
+          $http({
+              method:"GET",
+              url:"/Doctor",
+              params:data
+          })
+          .then(function successCallback(response) {
+           //  {"message",true} -> Was inserted
+          // {"message",false} -> An error occured
+         // {"message","duplicated"} -> Email already exis
+              console.log(response);
+              var users = {
+                        username:response.data.doctors.username,
+                        firstname:response.data.doctors.firstName,
+                        lastname:response.data.doctors.lastName,
+                        birthday:response.data.doctors.birthday,
+                        contactNo:response.data.doctors.contactNo,
+                        specialization:response.data.doctors.specialization,
+                        address:response.data.doctors.address
+                     };
+              $rootScope.$broadcast('loginUserContents', users);
+              console.log("user:" + user.username);
+              go("/admin/list/record");
+            // when the response is available
+          }, function errorCallback(response) {
+            // called asynchronously if an error occurs
+            // or server returns response with an error status.
+          });
+      }
+   
       return{
-        go: go
+        go: go,
+        login:login,
+        insertDisease:insertDisease
       };
     }
   );
@@ -38306,7 +38378,7 @@ angular.module('hplus.modules.editdisease', [])
 /* 55 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\r\n  <div class=\"col col-md-8 col-md-offset-1\">\r\n    <h1>Edit Disease</h1>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row\">\r\n  <div class=\"col-md-10 col-md-offset-1\">\r\n\t  <div class=\"col col-md-4\">\r\n\t    <label class=\"subtitle\">Name of Disease</label>\r\n      <input type=\"text\" value=\"Diabetes Mellitus Type 2\">\r\n\t\t\t<div ng-controller=\"modalController\"> \r\n\t\t\t  <button ng-click=\"alert.alert()\">Update</button>\r\n\t\t\t  <button class=\"outline delete_btn\" ng-click=\"alert.confirm()\">Delete</button>\r\n\t\t\t</div>\r\n\t  </div>\r\n\t\r\n\t  <div class=\"col col-md-4\">\r\n\t\t  <label class=\"subtitle\">Symptoms</label>\r\n\t\t\t<textarea placeholder=\"Enter Symptoms\"></textarea>\r\n\t\t</div>\r\n\t\r\n\t  <div class=\"col col-md-4\">\r\n\t    <label class=\"subtitle\">Medicines</label>\r\n\t    <input type=\"text\" placeholder=\"Search\">\r\n\t   \t<div>\r\n\t\t\t  <input type=\"checkbox\">Metformin<br>\r\n\t\t\t  <input type=\"checkbox\">Methadone<br>\r\n\t\t\t  <input type=\"checkbox\">Methamphetamine<br>\r\n\t\t\t  <input type=\"checkbox\">Methazolamide<br>\r\n\t\t\t  <input type=\"checkbox\">Methenamine<br>\r\n\t\t\t  <input type=\"checkbox\">Methimazole<br>\r\n\t\t\t  <input type=\"checkbox\">Meth\r\n\t\t  </div>\r\n    </div>\r\n  </div>\r\n</div>";
+module.exports = "<div class=\"row\">\r\n  <div class=\"col col-md-8 col-md-offset-1\">\r\n    <h1>Edit Disease</h1>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row\">\r\n  <div class=\"col-md-10 col-md-offset-1\">\r\n\t  <div class=\"col col-md-4\">\r\n\t    <label class=\"subtitle\">Name of Disease</label>\r\n      <input type=\"text\" value=\"Diabetes Mellitus Type 2\">\r\n\t\t\t<div> \r\n\t\t\t  <button ng-click=\"alert.alert()\">Update</button>\r\n\t\t\t  <button class=\"outline delete_btn\" ng-click=\"alert.confirm()\">Delete</button>\r\n\t\t\t</div>\r\n\t  </div>\r\n\t\r\n\t  <div class=\"col col-md-4\">\r\n\t\t  <label class=\"subtitle\">Symptoms</label>\r\n\t\t\t<textarea placeholder=\"Enter Symptoms\"></textarea>\r\n\t\t</div>\r\n\t\r\n\t  <div class=\"col col-md-4\">\r\n\t    <label class=\"subtitle\">Medicines</label>\r\n\t    <input type=\"text\" placeholder=\"Search\">\r\n\t   \t<div>\r\n\t\t\t  <input type=\"checkbox\">Metformin<br>\r\n\t\t\t  <input type=\"checkbox\">Methadone<br>\r\n\t\t\t  <input type=\"checkbox\">Methamphetamine<br>\r\n\t\t\t  <input type=\"checkbox\">Methazolamide<br>\r\n\t\t\t  <input type=\"checkbox\">Methenamine<br>\r\n\t\t\t  <input type=\"checkbox\">Methimazole<br>\r\n\t\t\t  <input type=\"checkbox\">Meth\r\n\t\t  </div>\r\n    </div>\r\n  </div>\r\n</div>";
 
 /***/ }),
 /* 56 */
@@ -38451,7 +38523,7 @@ angular.module('hplus.modules.editmedicine', [])
 /* 61 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\r\n  <div class=\"col col-md-8 col-md-offset-1\">\r\n    <h1>Edit Medicine</h1>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row\" ng-controller=\"EditMedicineController\">\r\n  <div class=\"col col-md-10 col-md-offset-1\">\r\n    <div class=\"col-md-3\">\r\n      <label class=\"subtitle\">Name of Medicine:</label>\r\n\t    <input type=\"text\" value=\"RiteMed Metformin\">\r\n\t    <label class=\"subtitle\">Generic Name:</label>\r\n      <input type=\"text\" value=\"Generic Name\">\r\n\t    <label class=\"subtitle\">Medicine Type:</label>\r\n      <select value=\"\">\r\n        <option ng-repeat=\"type in medicineTypes\" value=\"type.id\">{{type.name}}</option>\r\n      </select>\r\n\t    <label class=\"subtitle\">Price (PHP) :</label> \r\n\t    <input id=\"priceInputField\" type=\"text\" value=\"3.75\">\r\n\t      \r\n<<<<<<< HEAD\r\n\t    <div ng-controller=\"modalCtrl as alert\"> \r\n\t      <button  ng-click=\"alert.alert()\">Update</button>\r\n=======\r\n\t    <div ng-controller=\"modalController\"> \r\n\t      <button  ng-click=\"alert.alert()\" >Update</button>\r\n\t      <button class=\"outline delete_btn\" ng-click=\"alert.confirm()\">Delete</button>\r\n>>>>>>> 6934571148ca5eb4a1572bfb82e90d8aaf053cee\r\n\t    </div>\r\n    </div>\r\n    \r\n    <div class=\"col col-md-9\">\r\n      <label class=\"subtitle\">Description:</label>\r\n      <textarea id=\"descMed\" rows=\"8\" cols=\"50\">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent ut lorem quis dolor porttitor accumsan. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Integer vitae erat viverra, vestibulum enim id, pulvinar lectus. Sed volutpat tristique tristique. Vivamus turpis diam, consequat vel sagittis quis, convallis quis sem.</textarea>\r\n    </div>\r\n  </div>\r\n</div>";
+module.exports = "<div class=\"row\">\r\n  <div class=\"col col-md-8 col-md-offset-1\">\r\n    <h1>Edit Medicine</h1>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row\" ng-controller=\"EditMedicineController\">\r\n  <div class=\"col col-md-10 col-md-offset-1\">\r\n    <div class=\"col-md-3\">\r\n      <label class=\"subtitle\">Name of Medicine:</label>\r\n\t    <input type=\"text\" value=\"RiteMed Metformin\">\r\n\t    <label class=\"subtitle\">Generic Name:</label>\r\n      <input type=\"text\" value=\"Generic Name\">\r\n\t    <label class=\"subtitle\">Medicine Type:</label>\r\n      <select value=\"\">\r\n        <option ng-repeat=\"type in medicineTypes\" value=\"type.id\">{{type.name}}</option>\r\n      </select>\r\n\t    <label class=\"subtitle\">Price (PHP) :</label> \r\n\t    <input id=\"priceInputField\" type=\"text\" value=\"3.75\">\r\n\r\n\t    <div ng-controller=\"modalController\"> \r\n\t      <button  ng-click=\"alert.alert()\" >Update</button>\r\n\t      <button class=\"outline delete_btn\" ng-click=\"alert.confirm()\">Delete</button>\r\n\r\n\t    </div>\r\n    </div>\r\n    \r\n    <div class=\"col col-md-9\">\r\n      <label class=\"subtitle\">Description:</label>\r\n      <textarea id=\"descMed\" rows=\"8\" cols=\"50\">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent ut lorem quis dolor porttitor accumsan. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Integer vitae erat viverra, vestibulum enim id, pulvinar lectus. Sed volutpat tristique tristique. Vivamus turpis diam, consequat vel sagittis quis, convallis quis sem.</textarea>\r\n    </div>\r\n  </div>\r\n</div>";
 
 /***/ }),
 /* 62 */
@@ -38539,7 +38611,7 @@ angular.module('hplus.modules.explorediseases', [])
 /* 67 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\r\n  <div class=\"col col-md-8 col-md-offset-1\">\r\n    <h1>List of All Diseases</h1>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row\">\r\n  <div class=\"col col-md-2 col-md-offset-1\">\r\n    <div class=\"row\">\r\n      <div class=\"col col-md-6\">\r\n        <span class=\"subtitle\">Search</span>\r\n      </div>\r\n    </div>\r\n\t\r\n    <div class=\"match-padding\">\r\n      <select>\r\n        <option>Disease</option>\r\n        <option>Medicine</option>\r\n      </select>\r\n      <input type=\"text\" placeholder=\"Enter a keyword\">\r\n      <button>Search</button>\r\n    </div>\r\n  </div>\r\n\r\n  <div class=\"col col-md-8\">\r\n    <div ng-controller=\"modalController\"> \r\n      <div class=\"col col-md-12 marginBottom\">\r\n        <span class=\"subtitle\">69 Results Matching</span>\r\n        <span class=\"subtitle subtitle--variable\">Pneumoultramicroscopicsilicovolcanoconiosis</span>\r\n        \r\n        <div class=\"margins\">\r\n\t        <div class=\"card__container\">\r\n\t          <div class=\"card__title\">\r\n\t            Tuberculosis<a ng-click=\"go('/admin/update/disease')\"><span class=\"delete__icon\"><i class=\"fa fa-pencil-square-o\" aria-hidden=\"true\"></i></span></a>\r\n\t          </div>\r\n\t\t\t  \r\n\t          <div class=\"card__desc\">\r\n\t            Symptoms: Fever, chills, night sweats, loss of appetite, weight loss and fatigue.\r\n\t          </div>\r\n\t        </div>\r\n\t\r\n\t        <div class=\"card__container\">\r\n\t          <div class=\"card__title\">\r\n\t            Pneumonia <a ng-click=\"go('/admin/update/disease')\"> <span class=\"delete__icon\"><i class=\"fa fa-pencil-square-o\" aria-hidden=\"true\"></i></span></a>\r\n\t          </div>\r\n\t\t\t  \r\n\t          <div class=\"card__desc\">\r\n\t            Symptoms: Cough, fever, shaking chills, shortness of breath, chest pain, and 3 more...\r\n\t          </div>\r\n\t        </div>\r\n\t      </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n </div>\r\n \r\n<!-- Pagination Section -->\r\n<div class=\"row\">\r\n  <div class=\"col-md-10 col-md-offset-1\">\r\n    <div class=\"col col-md-3 col-md-offset-9\">\r\n      <div class=\"pagination__container\">\r\n        <div class=\"pagination__page\">\r\n          <<\r\n        </div>\r\n      \r\n        <div class=\"pagination__page\">\r\n          <\r\n        </div>\r\n      \r\n        <div class=\"pagination__page \">\r\n          2\r\n        </div>\r\n      \r\n        <div class=\"pagination__page pagination__current\">\r\n          3\r\n        </div>\r\n      \r\n        <div class=\"pagination__page\">\r\n          4\r\n        </div>\r\n      \r\n        <div class=\"pagination__page\">\r\n          >\r\n        </div>\r\n      \r\n        <div class=\"pagination__page\">\r\n          >>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>";
+module.exports = "<div class=\"row\">\r\n  <div class=\"col col-md-8 col-md-offset-1\">\r\n    <h1>List of All Diseases</h1>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row\">\r\n  <div class=\"col col-md-2 col-md-offset-1\">\r\n    <div class=\"row\">\r\n      <div class=\"col col-md-6\">\r\n        <span class=\"subtitle\">Search</span>\r\n      </div>\r\n    </div>\r\n\t\r\n    <div class=\"match-padding\">\r\n      <select>\r\n        <option>Disease</option>\r\n        <option>Medicine</option>\r\n      </select>\r\n      <input type=\"text\" placeholder=\"Enter a keyword\">\r\n      <button>Search</button>\r\n    </div>\r\n  </div>\r\n\r\n  <div class=\"col col-md-8\" ng-controller=\"ExploreDiseasesController\">\r\n    <div> \r\n      <div class=\"col col-md-12 marginBottom\">\r\n        <span class=\"subtitle\">69 Results Matching</span>\r\n        <span class=\"subtitle subtitle--variable\">Pneumoultramicroscopicsilicovolcanoconiosis</span>\r\n        <div ng-repeat=\"disease in diseaseArray\">\r\n          <div class=\"margins\">\r\n    \t        <div class=\"card__container\">\r\n    \t          <div class=\"card__title\">\r\n    \t            Tuberculosis<a ng-click=\"go('/admin/update/disease')\"><span class=\"delete__icon\"><i class=\"fa fa-pencil-square-o\" aria-hidden=\"true\"></i></span></a>\r\n    \t          </div>\r\n    \t\t\t  \r\n    \t          <div class=\"card__desc\">\r\n    \t            Symptoms: Fever, chills, night sweats, loss of appetite, weight loss and fatigue.\r\n    \t          </div>\r\n    \t        </div>\r\n  \t       </div>\r\n        </div>\r\n\t        <div class=\"card__container\">\r\n\t          <div class=\"card__title\">\r\n\t            Pneumonia <a ng-click=\"go('/admin/update/disease')\"> <span class=\"delete__icon\"><i class=\"fa fa-pencil-square-o\" aria-hidden=\"true\"></i></span></a>\r\n\t          </div>\r\n\t\t\t  \r\n\t          <div class=\"card__desc\">\r\n\t            Symptoms: Cough, fever, shaking chills, shortness of breath, chest pain, and 3 more...\r\n\t          </div>\r\n\t        </div>\r\n\t      </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n </div>\r\n \r\n<!-- Pagination Section -->\r\n<div class=\"row\">\r\n  <div class=\"col-md-10 col-md-offset-1\">\r\n    <div class=\"col col-md-3 col-md-offset-9\">\r\n      <div class=\"pagination__container\">\r\n        <div class=\"pagination__page\">\r\n          <<\r\n        </div>\r\n      \r\n        <div class=\"pagination__page\">\r\n          <\r\n        </div>\r\n      \r\n        <div class=\"pagination__page \">\r\n          2\r\n        </div>\r\n      \r\n        <div class=\"pagination__page pagination__current\">\r\n          3\r\n        </div>\r\n      \r\n        <div class=\"pagination__page\">\r\n          4\r\n        </div>\r\n      \r\n        <div class=\"pagination__page\">\r\n          >\r\n        </div>\r\n      \r\n        <div class=\"pagination__page\">\r\n          >>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>";
 
 /***/ }),
 /* 68 */
@@ -38573,7 +38645,7 @@ angular.module('hplus.modules.exploredoctors', [])
   
   __webpack_require__(71);
   __webpack_require__(73);
-  __webpack_require__(113);
+  __webpack_require__(74);
 
 
 /***/ }),
@@ -38660,9 +38732,25 @@ angular.module('hplus.modules.exploredoctors')
 
 /***/ }),
 /* 74 */
+/***/ (function(module, exports) {
+
+angular.module('hplus.modules.exploredoctors')
+
+  .controller('DoctorCardController',
+    function($scope, globalFactory, doctorFactory){
+
+      $scope.go = function(path, doctor){
+        doctorFactory.saveDoctor(doctor);
+        globalFactory.go(path);
+      };
+    }
+  );
+
+/***/ }),
+/* 75 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var exploremedicines = __webpack_require__(75);
+var exploremedicines = __webpack_require__(76);
 
 angular.module('hplus.modules.exploremedicines', [])
 
@@ -38672,17 +38760,58 @@ angular.module('hplus.modules.exploremedicines', [])
         template: exploremedicines
       })
   });
-  __webpack_require__(115);
-  __webpack_require__(76);
-
-/***/ }),
-/* 75 */
-/***/ (function(module, exports) {
-
-module.exports = "<div class=\"row\"><!-- Header Portion -->\r\n  <div class=\"col col-md-10 col-md-offset-1\">\r\n    <h1>List of All Medicines</h1><!-- Header Name for this Module -->\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row\" ng-controller=\"ExploreMedicinesController\"><!-- Body Portion -->\r\n  <div class=\"col col-md-2 col-md-offset-1\"><!-- Section for search -->\r\n\t\t<div class=\"row\">\r\n\t\t  <div class=\"col col-md-6\">\r\n\t\t\t<label class=\"subtitle\">Search</label>\r\n\t\t  </div>\r\n\t\t</div>\r\n\t\r\n\t\t<div class=\"match-padding\">\r\n\t\t  <input type=\"text\" placeholder=\"Enter a name\" ng-model=\"searchFilter\">\r\n\t\t  <button ng-click=\"go('/admin/register/medicine')\">New Medicine</button>\r\n\t\t</div>\r\n  </div>\r\n\r\n\r\n\r\n  <div class=\"col col-md-8\"><!-- Section containing the list and detail of medicines -->\r\n    <div class=\"col col-md-6\"><!-- List sector -->\r\n\t\t  <label class=\"subtitle\">ALL RESULTS</label>\r\n\t\t  \r\n\t\t  \r\n\t\t  \r\n\t\t  <div class=\"margins\" >\r\n\t\t    <hplus-explore-medicines-card dir-paginate=\"med in medicines | filter: searchFilter | itemsPerPage:10\" data=\"med\" selectedMed=\"selectedMedicine\" ng-click=\"setSelected(med)\" ></hplus-explore-medicines-card>       \r\n      </div>    \t\t\t\r\n    </div>\r\n<<<<<<< HEAD\r\n\t  <div class=\"col col-md-6\"><!-- Detail Sector -->\r\n\t\t  <hplus-selected-medicine-card data=\"selectedMedicine\" ng-show=\"selectedMedicine\"></hplus-selected-medicine-card>\r\n\t\t</div>\r\n=======\r\n\t\r\n\t\t<div class=\"col col-md-6\" ng-show=\"selectedMedicine\"><!-- Detail Sector -->\r\n\t\t  <label class=\"subtitle\">DETAILS FOR {{selectedMedicine.name}}</label>\r\n\t\t\t<div class=\"margins\">\r\n\t\t\t\t<!-- Detail Section -->\r\n\t\t\t  <div class=\"detail__container\">\r\n\t\t\t\t\t<div class=\"card__title\">\r\n\t\t\t\t\t  {{selectedMedicine.name}}\r\n\t\t\t\t\t</div>\r\n\t\t\t\r\n\t\t\t\t\t<div class=\"detail__desc\">\r\n\t\t\t\t\t  <p>\r\n\t\t\t\t\t  {{selectedMedicine.desc}}\r\n\t\t\t\t\t  </p>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t\t<span class=\"detail__title\">PRICE (PHP)</span>\r\n\t\t\t\t\t<span class=\"detail__subtitle\">{{selectedMedicine.price | currency : 'P '}}</span>\r\n\t\t\t\t\t<br>\r\n\t\t\t\t\t<br>\r\n\t\t\t\t\t<span class=\"detail__title\">TREATMENT FOR</span>\r\n\t\t\t\t\t<span class=\"detail__subtitle\"><span ng-repeat=\"treats in selectedMedicine.treats | limitTo: 3\"><span ng-hide=\"$first\">,&nbsp;</span>{{treats}}</span></span>\t\r\n\t\t\t\t\t<br>\r\n\t\t\t\t\t<br>\r\n\t\t\t\t  <div ng-controller=\"modalController\"> \r\n\t\t\t\t    <button class=\"outline\" ng-click=\"go('/admin/update/medicine')\">Edit</button>\r\n\t\t\t\t    <button class=\"outline\" ng-click=\"alert.confirm()\">Delete</button>\r\n\t\t\t\t    <button class=\"outline\" ng-click=\"go('/admin/view/medicine')\">View</button>\r\n\t\t\t\t  </div>\r\n\t\t    </div>\r\n\t    </div>\r\n\t  </div>\r\n>>>>>>> 8a00afd2f581d24899e3a80e972e08d04f6e2602\r\n  </div>\r\n</div>\r\n\r\n<!-- Pagination Section -->\r\n<dir-pagination-controls max-size=\"5\"></dir-pagination-controls>";
+  __webpack_require__(77);
+  __webpack_require__(80);
 
 /***/ }),
 /* 76 */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"row\"><!-- Header Portion -->\r\n  <div class=\"col col-md-10 col-md-offset-1\">\r\n    <h1>List of All Medicines</h1><!-- Header Name for this Module -->\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row\" ng-controller=\"ExploreMedicinesController\"><!-- Body Portion -->\r\n  <div class=\"col col-md-2 col-md-offset-1\"><!-- Section for search -->\r\n\t\t<div class=\"row\">\r\n\t\t  <div class=\"col col-md-6\">\r\n\t\t\t<label class=\"subtitle\">Search</label>\r\n\t\t  </div>\r\n\t\t</div>\r\n\t\r\n\t\t<div class=\"match-padding\">\r\n\t\t  <input type=\"text\" placeholder=\"Enter a name\" ng-model=\"searchFilter\">\r\n\t\t  <button ng-click=\"go('/admin/register/medicine')\">New Medicine</button>\r\n\t\t</div>\r\n  </div>\r\n\r\n\r\n\r\n  <div class=\"col col-md-8\"><!-- Section containing the list and detail of medicines -->\r\n    <div class=\"col col-md-6\"><!-- List sector -->\r\n\t\t  <label class=\"subtitle\">ALL RESULTS</label>\r\n\t\t  \r\n\t\t  \r\n\t\t  \r\n\t\t  <div class=\"margins\" >\r\n\t\t    <hplus-explore-medicines-card dir-paginate=\"med in medicines | filter: searchFilter | itemsPerPage:10\" data=\"med\" selectedMed=\"selectedMedicine\" ng-click=\"setSelected(med)\" ></hplus-explore-medicines-card>       \r\n      </div>    \t\t\t\r\n    </div>\r\n   \t<div class=\"col col-md-6\"><!-- Detail Sector -->\r\n\t\t  <hplus-selected-medicine-card data=\"selectedMedicine\" ng-show=\"selectedMedicine\"></hplus-selected-medicine-card>\r\n\t\t</div>\r\n  </div>\r\n</div>\r\n\r\n<!-- Pagination Section -->\r\n<dir-pagination-controls max-size=\"5\"></dir-pagination-controls>";
+
+/***/ }),
+/* 77 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var card = __webpack_require__(78);
+var scard = __webpack_require__(79);
+angular.module('hplus.modules.exploremedicines')
+
+  .directive('hplusExploreMedicinesCard', function(){
+    return{
+      restrict: 'EA',
+      scope: {
+        data: '=',
+        selectedMed: '='
+      },
+      template: card
+    };
+  })
+  
+  .directive('hplusSelectedMedicineCard', function(){
+    return{
+      restrict: 'EA',
+      scope: {
+        data: '='
+      },
+      template: scard
+    };
+  })
+
+/***/ }),
+/* 78 */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"card__container\" ng-class=\"{'selectedCard__container': data == selectedMed}\">\r\n  <div class=\"card__title\">\r\n    {{selectedMed.name}}\r\n    {{data.name}}\r\n  </div>\r\n      \r\n  <div class=\"card__desc\">\r\n    <span ng-repeat=\"treats in data.treats\"><span ng-hide=\"$first\">,&nbsp;</span>{{treats}}</span>\r\n  </div>\r\n</div>";
+
+/***/ }),
+/* 79 */
+/***/ (function(module, exports) {
+
+module.exports = "<div>\r\n      <label class=\"subtitle\">DETAILS FOR {{data.name}}</label>\r\n      <div class=\"margins\">\r\n        <!-- Detail Section -->\r\n        <div class=\"detail__container\">\r\n          <div class=\"card__title\">\r\n            {{data.name}}\r\n          </div>\r\n      \r\n          <div class=\"detail__desc\">\r\n            <p>\r\n            {{data.desc}}\r\n            </p>\r\n          </div>\r\n          <span class=\"detail__title\">PRICE (PHP)</span>\r\n          <span class=\"detail__subtitle\">{{data.price | currency : 'P '}}</span>\r\n          <br>\r\n          <br>\r\n          <span class=\"detail__title\">TREATMENT FOR</span>\r\n          <span class=\"detail__subtitle\"><span ng-repeat=\"treats in data.treats | limitTo: 3\"><span ng-hide=\"$first\">,&nbsp;</span>{{treats}}</span></span> \r\n          <br>\r\n          <br>\r\n          <div ng-controller=\"modalCtrl as alert\"> \r\n            <button class=\"outline\" ng-click=\"go('/admin/update/medicine')\">Edit</button>\r\n            <button class=\"outline\" ng-click=\"alert.confirm()\">Delete</button>\r\n            <button class=\"outline\" ng-click=\"go('/admin/view/medicine')\">View</button>\r\n          </div>\r\n        </div>\r\n      </div>\r\n</div>";
+
+/***/ }),
+/* 80 */
 /***/ (function(module, exports) {
 
 angular.module('hplus.modules.exploremedicines')
@@ -38788,10 +38917,10 @@ angular.module('hplus.modules.exploremedicines')
   );
 
 /***/ }),
-/* 77 */
+/* 81 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var exploremedicalrecords = __webpack_require__(78);
+var exploremedicalrecords = __webpack_require__(82);
 
 angular.module('hplus.modules.exploremedicalrecords', [])
 
@@ -38804,16 +38933,16 @@ angular.module('hplus.modules.exploremedicalrecords', [])
 
 
 /***/ }),
-/* 78 */
+/* 82 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\"><!-- Header Portion -->\r\n  <div class=\"col col-md-10 col-md-offset-1\">\r\n    <h1>List of All Medical Records</h1><!-- Header Name for this Module -->\r\n  </div>\r\n</div>\r\n\t\r\n<div class=\"row\"><!-- Body Portion -->\r\n  <div class=\"col col-md-2 col-md-offset-1\"><!-- Section for search -->\r\n\t<div class=\"row\">\r\n\t  <div class=\"col col-md-6\">\r\n\t    <label class=\"subtitle\">Search</label>\r\n\t  </div>\r\n\t</div>\r\n\t\r\n\t<div class=\"match-padding\">\r\n\t  <input type=\"text\" placeholder=\"Enter a name\">\r\n\t  <button>Search</button>\r\n\t  <button ng-click=\"go('/doctor/create/record')\">New Record</button>\r\n\t</div>\r\n  </div>\r\n  \r\n  <div ng-controller=\"modalController\"> \r\n    <div class=\"col col-md-8\"><!-- Section containing the tabulated list of doctors -->\r\n\t\t  <div class=\"col col-md-12\">\r\n\t\t    <label class=\"subtitle\">ALL RESULTS</label>\r\n\t\t\t\r\n\t\t\t\t<div class=\"margins\">\r\n\t\t\t\t\t<!-- List Section -->\r\n\t\t\t\t\t<div class=\"card__container\">\r\n\t\t\t\t\t\t<div class=\"card__title\">\r\n\t\t\t\t\t\t\tDoe, Jabe\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\r\n\t\t\t\t\t\t<div class=\"card__desc\">\r\n\t\t\t\t\t\t\tAdmitted July 20,2017 for Dying\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t</div>\r\n\t\t\t\r\n\t\t\t\t\t<div class=\"card__container\">\r\n\t\t\t\t\t\t<div class=\"card__title\">\r\n\t\t\t\t\t\t\tDoe, John\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\r\n\t\t\t\t\t\t<div class=\"card__desc\">\r\n\t\t\t\t\t\t\tAdmitted June 26,2017 for Genital Retraction Syndrome\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t\t\r\n\t\t\t\t\t<div class=\"card__container\">\r\n\t\t\t\t\t\t<div class=\"card__title\">\r\n\t\t\t\t\t\t\tDoe, Ken\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\r\n\t\t\t\t\t\t<div class=\"card__desc\">\r\n\t\t\t\t\t\t\tAdmitted July 4,2017 for Trichophagia\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t</div>\r\n\t\t  </div>\r\n\t\t</div>\r\n  </div>\r\n</div>\r\n\r\n<!-- Pagination Section -->\r\n<div class=\"row\">\r\n  <div class=\"col-md-10 col-md-offset-1\">\r\n\t  <div class=\"col col-md-3 col-md-offset-9\">\r\n\t    <div class=\"pagination__container\">\r\n\t\t\t  <div class=\"pagination__page\">\r\n\t\t\t    <<\r\n\t\t\t  </div>\r\n\t\t\t\r\n\t\t\t  <div class=\"pagination__page\">\r\n\t\t\t    <\r\n\t\t\t  </div>\r\n\t\t\t\r\n\t\t\t  <div class=\"pagination__page \">\r\n\t\t\t    2\r\n\t\t\t  </div>\r\n\t\t\t\r\n\t\t\t  <div class=\"pagination__page pagination__current\">\r\n\t\t\t    3\r\n\t\t\t  </div>\r\n\t\t\t\r\n\t\t\t  <div class=\"pagination__page\">\r\n\t\t\t    4\r\n\t\t\t  </div>\r\n\t\t\t\r\n\t\t\t  <div class=\"pagination__page\">\r\n\t\t\t    >\r\n\t\t\t  </div>\r\n\t\t\t\r\n\t\t\t  <div class=\"pagination__page\">\r\n\t\t\t    >>\r\n\t\t\t  </div>\r\n\t\t\t</div>\r\n\t  </div>\r\n  </div>\r\n</div>";
+module.exports = "<div class=\"row\"><!-- Header Portion -->\r\n  <div class=\"col col-md-10 col-md-offset-1\">\r\n    <h1>List of All Medical Records</h1><!-- Header Name for this Module -->\r\n  </div>\r\n</div>\r\n\t\r\n<div class=\"row\"><!-- Body Portion -->\r\n  <div class=\"col col-md-2 col-md-offset-1\"><!-- Section for search -->\r\n\t<div class=\"row\">\r\n\t  <div class=\"col col-md-6\">\r\n\t    <label class=\"subtitle\">Search</label>\r\n\t  </div>\r\n\t</div>\r\n\t\r\n\t<div class=\"match-padding\">\r\n\t  <input type=\"text\" placeholder=\"Enter a name\">\r\n\t  <button>Search</button>\r\n\t  <button ng-click=\"go('/doctor/create/record')\">New Record</button>\r\n\t</div>\r\n  </div>\r\n  \r\n  <div > \r\n    <div class=\"col col-md-8\"><!-- Section containing the tabulated list of doctors -->\r\n\t\t  <div class=\"col col-md-12\">\r\n\t\t    <label class=\"subtitle\">ALL RESULTS</label>\r\n\t\t\t\r\n\t\t\t\t<div class=\"margins\">\r\n\t\t\t\t\t<!-- List Section -->\r\n\t\t\t\t\t<div class=\"card__container\">\r\n\t\t\t\t\t\t<div class=\"card__title\">\r\n\t\t\t\t\t\t\tDoe, Jabe\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\r\n\t\t\t\t\t\t<div class=\"card__desc\">\r\n\t\t\t\t\t\t\tAdmitted July 20,2017 for Dying\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t</div>\r\n\t\t\t\r\n\t\t\t\t\t<div class=\"card__container\">\r\n\t\t\t\t\t\t<div class=\"card__title\">\r\n\t\t\t\t\t\t\tDoe, John\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\r\n\t\t\t\t\t\t<div class=\"card__desc\">\r\n\t\t\t\t\t\t\tAdmitted June 26,2017 for Genital Retraction Syndrome\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t\t\r\n\t\t\t\t\t<div class=\"card__container\">\r\n\t\t\t\t\t\t<div class=\"card__title\">\r\n\t\t\t\t\t\t\tDoe, Ken\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\r\n\t\t\t\t\t\t<div class=\"card__desc\">\r\n\t\t\t\t\t\t\tAdmitted July 4,2017 for Trichophagia\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t</div>\r\n\t\t  </div>\r\n\t\t</div>\r\n  </div>\r\n</div>\r\n\r\n<!-- Pagination Section -->\r\n<div class=\"row\">\r\n  <div class=\"col-md-10 col-md-offset-1\">\r\n\t  <div class=\"col col-md-3 col-md-offset-9\">\r\n\t    <div class=\"pagination__container\">\r\n\t\t\t  <div class=\"pagination__page\">\r\n\t\t\t    <<\r\n\t\t\t  </div>\r\n\t\t\t\r\n\t\t\t  <div class=\"pagination__page\">\r\n\t\t\t    <\r\n\t\t\t  </div>\r\n\t\t\t\r\n\t\t\t  <div class=\"pagination__page \">\r\n\t\t\t    2\r\n\t\t\t  </div>\r\n\t\t\t\r\n\t\t\t  <div class=\"pagination__page pagination__current\">\r\n\t\t\t    3\r\n\t\t\t  </div>\r\n\t\t\t\r\n\t\t\t  <div class=\"pagination__page\">\r\n\t\t\t    4\r\n\t\t\t  </div>\r\n\t\t\t\r\n\t\t\t  <div class=\"pagination__page\">\r\n\t\t\t    >\r\n\t\t\t  </div>\r\n\t\t\t\r\n\t\t\t  <div class=\"pagination__page\">\r\n\t\t\t    >>\r\n\t\t\t  </div>\r\n\t\t\t</div>\r\n\t  </div>\r\n  </div>\r\n</div>";
 
 /***/ }),
-/* 79 */
+/* 83 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var registerdiseases = __webpack_require__(80);
+var registerdiseases = __webpack_require__(84);
 
 angular.module('hplus.modules.registerdiseases', [])
 
@@ -38824,27 +38953,30 @@ angular.module('hplus.modules.registerdiseases', [])
       })
   });
 
-  __webpack_require__(81);
+  __webpack_require__(85);
 
 /***/ }),
-/* 80 */
+/* 84 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\r\n  <div class=\"col col-md-8 col-md-offset-1\">\r\n    <h1>Register Diseases</h1>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row\" ng-controller=\"RegisterDiseasesController\">\r\n  <div class=\"col-md-10 col-md-offset-1\">\r\n    <div class=\"col col-md-4\">\r\n      <label class=\"subtitle\">Name of Disease</label>\r\n      <input type=\"text\" value=\"Diabetes Mellitus Type 2\">\r\n      <button ng-click=\"checkSelected()\">Save</button>\r\n    </div>\r\n  \r\n    <div class=\"col col-md-4\">\r\n      <label class=\"subtitle\">Symptoms</label>\r\n      <input type=\"text\" placeholder=\"Search Symptom\">\r\n      <div class=\"borders\">\r\n        <div class=\"scrollable\">\r\n          <div ng-repeat=\"option in symptomsSelected | orderBy:'name'\">\r\n            <input type=\"checkbox\" ng-model=\"option.val\" ng-true-value =\"true\" ng-false-value =\"false\" ng-change=\"removeSymptom(option)\" ng-checked=\"true\">{{option.name}}<br>\r\n          </div>\r\n          <div ng-repeat=\"option in symptomsSearch | orderBy:'name'\">\r\n            <input type=\"checkbox\" ng-model=\"option.val\" ng-true-value =\"true\" ng-false-value =\"false\" ng-change=\"addSymptom(option)\">{{option.name}}<br>\r\n          </div>\r\n        </div>\r\n      </div>\r\n      <button ng-click=\"\">Add New Symptom</button>\r\n    </div>\r\n  \r\n    <div class=\"col col-md-4\">\r\n\t    <label class=\"subtitle\">Medicines</label>\r\n\t    <input type=\"text\" placeholder=\"Search Medicine\">\r\n\t    <div class=\"borders\">\r\n\t      <div class=\"scrollable\">\r\n\t        <div ng-repeat=\"option in medicinesSelected | orderBy:'name'\">\r\n\t          <input type=\"checkbox\" ng-model=\"option.val\" ng-true-value =\"true\" ng-false-value =\"false\" ng-change=\"removeMedicine(option)\" ng-checked=\"true\">{{option.name}}<br>\r\n\t        </div>\r\n\t        <div ng-repeat=\"option in medicinesSearch | orderBy:'name'\">\r\n\t          <input type=\"checkbox\" ng-model=\"option.val\" ng-true-value =\"true\" ng-false-value =\"false\" ng-change=\"addMedicine(option)\">{{option.name}}<br>\r\n\t        </div>\r\n\t      </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>";
+module.exports = "<div class=\"row\">\r\n  <div class=\"col col-md-8 col-md-offset-1\">\r\n    <h1>Register Diseases</h1>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row\" ng-controller=\"RegisterDiseasesController\">\r\n  <div class=\"col-md-10 col-md-offset-1\">\r\n    <div class=\"col col-md-4\">\r\n      <label class=\"subtitle\">Name of Disease</label>\r\n      <input type=\"text\" value=\"Diabetes Mellitus Type 2\" ng-model=\"diseaseName\">\r\n      <button ng-click=\"saveDisease()\">Save</button>\r\n    </div>\r\n  \r\n    <div class=\"col col-md-4\">\r\n      <label class=\"subtitle\">Symptoms</label>\r\n      <input type=\"text\" placeholder=\"Search Symptom\">\r\n      <div class=\"borders\">\r\n        <div class=\"scrollable\">\r\n          <div ng-repeat=\"option in symptomsSelected | orderBy:'name'\">\r\n            <input type=\"checkbox\" ng-model=\"option.val\" ng-true-value =\"true\" ng-false-value =\"false\" ng-change=\"removeSymptom(option)\" ng-checked=\"true\">{{option.name}}<br>\r\n          </div>\r\n          <div ng-repeat=\"option in symptomsSearch | orderBy:'name'\">\r\n            <input type=\"checkbox\" ng-model=\"option.val\" ng-true-value =\"true\" ng-false-value =\"false\" ng-change=\"addSymptom(option)\">{{option.name}}<br>\r\n          </div>\r\n        </div>\r\n      </div>\r\n      <div class = \"row\" ng-show=\"bool\">\r\n        <div class=\"col-md-8\" ><input type=\"text\" ng-model=\"addSymptom\"></div>\r\n        <div class=\"col-md-4\"><button ng-click=\"\">Add</button></div>  \r\n      </div>\r\n      <button ng-click=\"showAdd()\">Add New Symptom</button>\r\n      \r\n    </div>\r\n  \r\n    <div class=\"col col-md-4\">\r\n\t    <label class=\"subtitle\">Medicines</label>\r\n\t    <input type=\"text\" placeholder=\"Search Medicine\">\r\n\t    <div class=\"borders\">\r\n\t      <div class=\"scrollable\">\r\n\t        <div ng-repeat=\"optionmed in medicinesSelected | orderBy:'name'\">\r\n\t          <input type=\"checkbox\" ng-model=\"optionmed.val\" ng-true-value =\"true\" ng-false-value =\"false\" ng-change=\"removeMedicine(optionmed)\" ng-checked=\"true\">{{optionmed.name}}<br>\r\n\t        </div>\r\n\t        <div ng-repeat=\"optionmed in medicinesSearch | orderBy:'name'\">\r\n\t          <input type=\"checkbox\" ng-model=\"optionmed.val\" ng-true-value =\"true\" ng-false-value =\"false\" ng-change=\"addMedicine(optionmed)\">{{optionmed.name}}<br>\r\n\t        </div>\r\n\t      </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>";
 
 /***/ }),
-/* 81 */
+/* 85 */
 /***/ (function(module, exports) {
 
 angular.module('hplus.modules.registerdiseases')
 
   .controller('RegisterDiseasesController',
-    function($scope, globalFactory){
-
+    function($scope, globalFactory,$location){
+      $scope.symptomsSelected = [];
+      $scope.medicinesSelected = [];
       $scope.go = function(path){
         globalFactory.go(path);
       };
-      
+     
+    //  $scope.symptomList = globalFactory.getSymptomList();
+      $scope.bool =false;
       $scope.checkSelected= function(){
     	  if($scope.symptomsSelected.length && $scope.medicinesSelected.length){
     		  //alert.alert
@@ -38854,9 +38986,42 @@ angular.module('hplus.modules.registerdiseases')
     	  }
       };
       
-      $scope.symptomsSelected = [
-      ];
+     
+      $scope.showAdd = function(){
+        $scope.bool = !$scope.bool;
+      }
+      $scope.saveArraySymp = function(){
       
+        angular.forEach($scope.option, function(option){
+          if (option.val){
+            var data= {
+                id: option.id,
+                sympname: option.name
+            }
+            $scope.symptomsSelected .push(data);
+          } 
+        });
+        console.log($scope.symptomsSelected);
+      }
+      $scope.saveArrayMedicine = function(){
+      
+        angular.forEach($scope.optionmed, function(option){
+          if (option.val) {
+             var data1= {
+                id: option.id,
+                medname: option.name
+            }
+            $scope.medicineSelected .push(data1);
+          }
+        });
+        console.log($scope.medicineSelected);
+      }
+      $scope.saveDisease = function(){
+        console.log($scope.medicinesSelected);
+        console.log($scope.symptomsSelected);
+        console.log($scope.diseaseName);
+        globalFactory.insertDisease($scope.diseaseName,$scope.symptomsSelected,$scope.medicinesSelected);
+      }
       $scope.addSymptom = function(hold){
     	  $scope.symptomsSelected.push(hold);
     	  $scope.symptomsSearch.splice($scope.symptomsSearch.indexOf(hold),1);
@@ -38900,8 +39065,6 @@ angular.module('hplus.modules.registerdiseases')
         }
       ];
       
-      $scope.medicinesSelected = [
-                                 ];
                                  
       $scope.addMedicine = function(hold){
         $scope.medicinesSelected.push(hold);
@@ -38916,39 +39079,48 @@ angular.module('hplus.modules.registerdiseases')
       $scope.medicinesSearch = [
                          {
                            name: "Metformin",
-                           id: 1
+                           id: 1,
+                           val:false
                          },
                          {
                            name: "Meth",
-                           id: 2
+                           id: 2,
+                           val:false
                          },
                          {
                            name: "Methamphetamine",
-                           id: 3
+                           id: 3,
+                           val:false
                          },
                          {
                            name: "Methazolamide",
-                           id: 4
+                           id: 4,
+                           val:false
                          },
                          {
                            name: "Methazolamide",
-                           id: 5
+                           id: 5,
+                           val:false
                          },
                          {
                            name: "Meth",
-                           id: 6
+                           id: 6,
+                           val:false
                          },
                          {
                            name: "Methenamine",
-                           id: 7
+                           id: 7,
+                           val:false
                          },
                          {
                            name: "Methimazole",
-                           id: 8
+                           id: 8,
+                           val:false
                          },
                          {
                            name: "Meth",
-                           id: 9
+                           id: 9,
+                           val:false
                          }
                        ];
 
@@ -38956,10 +39128,10 @@ angular.module('hplus.modules.registerdiseases')
   );
 
 /***/ }),
-/* 82 */
+/* 86 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var registerdoctor = __webpack_require__(83);
+var registerdoctor = __webpack_require__(87);
 
 angular.module('hplus.modules.registerdoctor', [])
 
@@ -38970,16 +39142,16 @@ angular.module('hplus.modules.registerdoctor', [])
       })
   });
 
-__webpack_require__(84);
+__webpack_require__(88);
 
 /***/ }),
-/* 83 */
+/* 87 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"row\">\r\n  <div class=\"col col-md-8 col-md-offset-1\">\r\n    <h1>Register an Account</h1>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row\" ng-controller=\"RegisterDoctorController\">\r\n  <ng-form name=\"registerDoctorForm\">\r\n\r\n    <div class=\"row match-padding\">\r\n      <div class=\"col col-md-3 col-md-offset-1\">\r\n        <label class=\"subtitle\">First Name</label>\r\n        <input type=\"text\" ng-model=\"doctor.firstname\" ng-required=\"true\">\r\n      </div>\r\n      <div class=\"col col-md-3\">\r\n        <label class=\"subtitle\">Last Name</label>\r\n        <input type=\"text\" ng-model=\"doctor.lastname\" ng-required=\"true\">\r\n      </div>\r\n    </div>\r\n\r\n    <div class=\"row match-padding\">\r\n      <div class=\"col col-md-3 col-md-offset-1\">\r\n        <label class=\"subtitle\">Email Address</label>\r\n        <input type=\"email\" ng-model=\"doctor.email\" ng-required=\"true\">\r\n      </div>\r\n      <div class=\"col col-md-3\">\r\n        <label class=\"subtitle\">Address</label>\r\n        <input type=\"text\" ng-model=\"doctor.address\" ng-required=\"true\">\r\n      </div>\r\n    </div>\r\n    \r\n    <div class=\"row match-padding\">\r\n      <div class=\"col col-md-3 col-md-offset-1\">\r\n        <label class=\"subtitle\">Specialization</label>\r\n          <select ng-model=\"doctor.specialization\" ng-required=\"true\">\r\n            <option value=\"\">Choose a specialization</option>\r\n            <option ng-repeat=\"option in specialization\" value=\"{{option.name}}\">{{option.name}}</option>\r\n          </select>\r\n      </div>\r\n      <div class=\"col col-md-3\">\r\n        <label class=\"subtitle\">Contact Number</label>\r\n        <input type=\"text\" ng-model=\"doctor.contactNo\" ng-pattern=\"contactNoRegex\" ng-required=\"true\">\r\n      </div>\r\n    </div>\r\n    \r\n    <div class=\"row match-padding\">\r\n      <div class=\"col col-md-3 col-md-offset-1\">\r\n        <label class=\"subtitle\">Username</label>\r\n        <input type=\"text\" ng-model=\"doctor.username\" ng-required=\"true\">\r\n      </div>\r\n      <div class=\"col col-md-3\">\r\n        <label class=\"subtitle\">Birthday</label>\r\n        <input type=\"date\" ng-model=\"doctor.birthday\" ng-required=\"true\">\r\n      </div>\r\n    </div>\r\n    \r\n    <div class=\"row match-padding\">\r\n      <div class=\"col col-md-3 col-md-offset-1\">\r\n        <label class=\"subtitle\">Password (At least 6 characters)</label>\r\n        <input type=\"password\" ng-model=\"doctor.password\" ng-pattern=\"passwordRegex\" zxcvbn=\"passwordStrength\" ng-required=\"true\">\r\n      </div>\r\n      <div class=\"col col-md-3\">\r\n        <label class=\"subtitle\">Confirm Password</label>\r\n        <input type=\"password\" ng-model=\"doctor.passwordAgain\" ng-required=\"true\">\r\n      </div>\r\n    </div>\r\n    <div class=\"row match-padding\">\r\n      <div class=\"col col-md-3 col-md-offset-1\">\r\n      <button ng-class=\"checkStatus(registerDoctorForm.$valid)\" ng-disabled=\"registerDoctorForm.$invalid\" ng-click=\"registerDoctor()\">{{ button }}</button>\r\n      </div>\r\n    </div>\r\n  </ng-form>\r\n</div>";
 
 /***/ }),
-/* 84 */
+/* 88 */
 /***/ (function(module, exports) {
 
 angular.module('hplus.modules.registerdoctor')
@@ -39117,10 +39289,10 @@ angular.module('hplus.modules.registerdoctor')
   );
 
 /***/ }),
-/* 85 */
+/* 89 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var registermedicine = __webpack_require__(86);
+var registermedicine = __webpack_require__(90);
 
 angular.module('hplus.modules.registermedicine', [])
 
@@ -39131,16 +39303,16 @@ angular.module('hplus.modules.registermedicine', [])
       })
   });
 
-  __webpack_require__(87);
+  __webpack_require__(91);
 
 /***/ }),
-/* 86 */
+/* 90 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"row\">\r\n  <div class=\"col col-md-8 col-md-offset-1\">\r\n    <h1>Register Medicine</h1>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row\" ng-controller=\"RegisterMedicineController\">\r\n  <div class=\"col col-md-10 col-md-offset-1\">\r\n    <div class=\"col-md-3\">\r\n      <label class=\"subtitle\">Name of Medicine:</label>\r\n      <input type=\"text\" ng-model=\"medicine.name\" value=\"RiteMed Metformin\">\r\n      <label class=\"subtitle\">Price (PHP) :</label> \r\n      <input id=\"priceInputField\" ng-model=\"medicine.price\" type=\"text\" value=\"3.75\">\r\n      <button ng-click=\"registerMedicine(medicine)\">Save</button>\r\n    </div>\r\n    \r\n    <div class=\"col col-md-9\">\r\n      <label class=\"subtitle\">Description:</label>\r\n      <textarea id=\"descMed\" ng-model=\"medicine.desc\" rows=\"8\" cols=\"50\">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent ut lorem quis dolor porttitor accumsan. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Integer vitae erat viverra, vestibulum enim id, pulvinar lectus. Sed volutpat tristique tristique. Vivamus turpis diam, consequat vel sagittis quis, convallis quis sem.</textarea>\r\n    </div>\r\n  </div>\r\n</div>";
 
 /***/ }),
-/* 87 */
+/* 91 */
 /***/ (function(module, exports) {
 
 angular.module('hplus.modules.registermedicine')
@@ -39162,10 +39334,10 @@ angular.module('hplus.modules.registermedicine')
 
 
 /***/ }),
-/* 88 */
+/* 92 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var registerpatient = __webpack_require__(89);
+var registerpatient = __webpack_require__(93);
 
 angular.module('hplus.modules.registerpatient', [])
 
@@ -39176,16 +39348,16 @@ angular.module('hplus.modules.registerpatient', [])
       })
   });
 
-  __webpack_require__(90);
+  __webpack_require__(94);
 
 /***/ }),
-/* 89 */
+/* 93 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"row\">\r\n  <div class=\"col col-md-8 col-md-offset-1\">\r\n    <h1>Register Patient</h1>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row\" ng-controller=\"RegisterPatientController\">\r\n  <ng-form name=\"registerPatientForm\">\r\n    <div class=\"col col-md-2 col-md-offset-1\">\r\n  \t  <div class=\"col col-md-12\">\r\n  \t    <label class=\"subtitle\">Patient's First Name</label>\r\n  \t    <input type=\"text\" ng-model=\"patient.fname\" ng-required=\"true\">\r\n   \t  </div>\r\n  \t  <div class=\"col col-md-12\">\r\n  \t    <label class=\"subtitle\">Patient's Last Name</label>\r\n  \t    <input type=\"text\" ng-model=\"patient.lname\" ng-required=\"true\">\r\n  \t  </div>\r\n  \t  <div class=\"col col-md-12\">\r\n  \t    <label class=\"subtitle\">Birthday</label>\r\n  \t    <input type=\"text\" ng-model=\"patient.bday\" ng-required=\"true\">\r\n  \t  </div>\r\n  \t  <div class=\"col col-md-12\">\r\n  \t    <label class=\"subtitle\">Sex</label>\r\n  \t    <input type=\"text\" ng-model=\"patient.sex\" ng-required=\"true\">\r\n  \t  </div>\r\n  \t  <br>\r\n  \t  <br>\r\n  \t  <div class=\"col col-md-6\">\r\n  \t    <button ng-hide=\"registerPatientForm.$invalid\" ng-click=\"registerPatient()\">Create</button>\r\n  \t  </div>\r\n    </div>\r\n  </ng-form>\r\n</div>";
 
 /***/ }),
-/* 90 */
+/* 94 */
 /***/ (function(module, exports) {
 
 angular.module('hplus.modules.registerpatient')
@@ -39206,10 +39378,10 @@ angular.module('hplus.modules.registerpatient')
 
 
 /***/ }),
-/* 91 */
+/* 95 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var userLogin = __webpack_require__(92);
+var userLogin = __webpack_require__(96);
 
 angular.module('hplus.modules.login', [])
 
@@ -39224,16 +39396,16 @@ angular.module('hplus.modules.login', [])
       })
   });
 
-__webpack_require__(93);
+__webpack_require__(97);
 
 /***/ }),
-/* 92 */
+/* 96 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\" ng-controller=\"LoginController\">\r\n  <div class=\"col-md-10 col-md-offset-1\">\r\n    <div class=\"col-md-8\">\r\n      This is just for testing purposes. Add your page here.<br>\r\n      All pages:<br>\r\n      <div class=\"hyperlink\" ng-click=\"go('/admin/update/disease')\">Update Disease</div>\r\n\r\n      <div class=\"hyperlink\" ng-click=\"go('/admin/edit/doctor')\">Edit Doctor</div>\r\n\r\n      <div class=\"hyperlink\" ng-click=\"go('/admin/update/medicine')\">Update Medicine</div>\r\n\r\n      <div class=\"hyperlink\" ng-click=\"go('/admin/list/disease')\">Explore Diseases</div>\r\n\r\n      <div class=\"hyperlink\" ng-click=\"go('/admin/list/doctor')\">Explore Doctors</div>\r\n      \r\n      <div class=\"hyperlink\" ng-click=\"go('/admin/list/record')\">Explore Medical Records</div>\r\n\r\n      <div class=\"hyperlink\" ng-click=\"go('/admin/list/medicine')\">Explore Medicines</div>\r\n\r\n      <div class=\"hyperlink\" ng-click=\"go('/admin/register/disease')\">Register Diseases</div>\r\n\r\n      <div class=\"hyperlink\" ng-click=\"go('/admin/register/doctor')\">Register Doctor</div>\r\n\r\n      <div class=\"hyperlink\" ng-click=\"go('/admin/register/medicine')\">Register Medicines</div>\r\n\r\n      <div class=\"hyperlink\" ng-click=\"go('/admin/view/doctordetails')\">View Doctor</div>\r\n\r\n      <div class=\"hyperlink\" ng-click=\"go('/doctor/create/record')\">Create Medical Record</div>\r\n\r\n      <div class=\"hyperlink\" ng-click=\"go('/admin/view/medicine')\">View Medicine</div>\r\n\r\n     <div class=\"hyperlink\" ng-click=\"go('/patient/view/details')\">View Patient</div>\r\n    </div>\r\n\r\n    <div class=\"col-md-4\">   \r\n      <form role=\"form\">\r\n        <div class=\"form-group\">\r\n          <label class=\"subtitle\" for=\"inputUsernameEmail\">Username or email</label>\r\n          <input class=\"form-control\" id=\"inputUsernameEmail\" type=\"text\">\r\n        </div>\r\n        <a class=\"pull-right\" ng-click=\"go('admin/reset/password')\" href=\"\">Forgot password?</a>\r\n        <div class=\"form-group\">\r\n          <label class=\"subtitle\" for=\"inputPassword\">Password</label>\r\n          <input type=\"password\" class=\"form-control\" id=\"inputPassword\">\r\n        </div>\r\n        <button type=\"submit\" class=\"btn pull-right\" ng-click=\"go('/admin/list/record')\">\r\n          Log In\r\n        </button>\r\n      </form>    \r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n";
+module.exports = "<div class=\"row\" ng-controller=\"LoginController\">\r\n  <div class=\"col-md-10 col-md-offset-1\">\r\n    <div class=\"col-md-8\">\r\n      This is just for testing purposes. Add your page here.<br>\r\n      All pages:<br>\r\n      <div class=\"hyperlink\" ng-click=\"go('/admin/update/disease')\">Update Disease</div>\r\n\r\n      <div class=\"hyperlink\" ng-click=\"go('/admin/edit/doctor')\">Edit Doctor</div>\r\n\r\n      <div class=\"hyperlink\" ng-click=\"go('/admin/update/medicine')\">Update Medicine</div>\r\n\r\n      <div class=\"hyperlink\" ng-click=\"go('/admin/list/disease')\">Explore Diseases</div>\r\n\r\n      <div class=\"hyperlink\" ng-click=\"go('/admin/list/doctor')\">Explore Doctors</div>\r\n      \r\n      <div class=\"hyperlink\" ng-click=\"go('/admin/list/record')\">Explore Medical Records</div>\r\n\r\n      <div class=\"hyperlink\" ng-click=\"go('/admin/list/medicine')\">Explore Medicines</div>\r\n\r\n      <div class=\"hyperlink\" ng-click=\"go('/admin/register/disease')\">Register Diseases</div>\r\n\r\n      <div class=\"hyperlink\" ng-click=\"go('/admin/register/doctor')\">Register Doctor</div>\r\n\r\n      <div class=\"hyperlink\" ng-click=\"go('/admin/register/medicine')\">Register Medicines</div>\r\n\r\n      <div class=\"hyperlink\" ng-click=\"go('/admin/view/doctordetails')\">View Doctor</div>\r\n\r\n      <div class=\"hyperlink\" ng-click=\"go('/doctor/create/record')\">Create Medical Record</div>\r\n\r\n      <div class=\"hyperlink\" ng-click=\"go('/admin/view/medicine')\">View Medicine</div>\r\n\r\n     <div class=\"hyperlink\" ng-click=\"go('/patient/view/details')\">View Patient</div>\r\n    </div>\r\n\r\n    <div class=\"col-md-4\">   \r\n      <form role=\"form\">\r\n        <div class=\"form-group\">\r\n          <label class=\"subtitle\" for=\"inputUsernameEmail\">Username or email</label>\r\n          <input class=\"form-control\" id=\"inputUsernameEmail\" type=\"text\" ng-model='username'>\r\n        </div>\r\n        <a class=\"pull-right\" ng-click=\"go('admin/reset/password')\" href=\"\">Forgot password?</a>\r\n        <div class=\"form-group\">\r\n          <label class=\"subtitle\" for=\"inputPassword\">Password</label>\r\n          <input type=\"password\" class=\"form-control\" id=\"inputPassword\" ng-model='password'>\r\n        </div>\r\n        <button type=\"submit\" class=\"btn pull-right\" ng-click=\"loginDoctor();\">\r\n          Log In\r\n        </button>\r\n      </form>    \r\n    </div>\r\n  </div>\r\n</div>";
 
 /***/ }),
-/* 93 */
+/* 97 */
 /***/ (function(module, exports) {
 
 angular.module('hplus.modules.login')
@@ -39244,14 +39416,17 @@ angular.module('hplus.modules.login')
       $scope.go = function(path){
         globalFactory.go(path);
       };
+       $scope.loginDoctor = function(){
+        globalFactory.login($scope.username, $scope.password);
+      }
     }
   );
 
 /***/ }),
-/* 94 */
+/* 98 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var viewdoctor = __webpack_require__(95);
+var viewdoctor = __webpack_require__(99);
 
 angular.module('hplus.modules.viewdoctor', [])
 
@@ -39262,21 +39437,21 @@ angular.module('hplus.modules.viewdoctor', [])
       })
   });
 
-  __webpack_require__(96);
-  __webpack_require__(98);
-  __webpack_require__(114);
+  __webpack_require__(100);
+  __webpack_require__(102);
+  __webpack_require__(103);
 
 /***/ }),
-/* 95 */
+/* 99 */
 /***/ (function(module, exports) {
 
 module.exports = "<ng-controller ng-controller=\"ViewDoctorController\">\r\n  <div class=\"row\">\r\n    <div class=\"col col-md-8 col-md-offset-1\">\r\n      <h1><i class=\"fa fa-user-md\"></i>Dr. {{ doctorData.firstname + \" \" + doctorData.lastname }}</h1>\r\n    </div>\r\n  </div>\r\n\r\n  <div class=\"row\">\r\n    <div class=\"col col-md-3 col-md-offset-1\">\r\n      <div class=\"match-padding\">\r\n        <label class=\"subtitle\">Specialization</label>\r\n        <div class=\"subtitle__value\">\r\n          {{ doctorData.specialization }}\r\n        </div>\r\n\r\n        <label class=\"subtitle\">Contact #</label>\r\n        <div class=\"subtitle__value\">\r\n          {{ doctorData.contactNo }}\r\n        </div>\r\n\r\n        <label class=\"subtitle\">E-mail Address</label>\r\n        <div class=\"subtitle__value\">\r\n          {{ doctorData.email }}\r\n        </div>\r\n  \t  <div>\r\n  \t\t  <button class=\"outline\" ng-click=\"go('/admin/edit/doctor')\">Edit</button>\r\n  \t\t  <button class=\"outline\" ng-click=\"confirmDelete()\">Archive</button>\r\n  \t  </div>\r\n      </div>\r\n    </div>\r\n\r\n    <div class=\"col col-md-7\">\r\n      <div class=\"col col-md-12\">\r\n        <label class=\"subtitle\">Medical Records Handled By</label>\r\n\r\n        <span class=\"subtitle subtitle--variable\">\r\n          Dr. {{ doctorData.firstname + \" \" + doctorData.lastname }} - Total: {{ recordList.length }}\r\n        </span>\r\n\r\n        <div ng-hide=\"recordList.length\">\r\n          <span class=\"subtitle\">This doctor isn't handling any medical records</span>\r\n        </div>\r\n\r\n  \t\t  <hplus-view-doctors-card ng-show=\"recordList.length\" dir-paginate=\"record in recordList | itemsPerPage:10\" data=\"record\"></hplus-view-doctors-card>\r\n      </div>\r\n    </div>\r\n  </div>\r\n\r\n  <dir-pagination-controls max-size=\"5\"></dir-pagination-controls>\r\n</ng-controller>";
 
 /***/ }),
-/* 96 */
+/* 100 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var card = __webpack_require__(97);
+var card = __webpack_require__(101);
 angular.module('hplus.modules.viewdoctor')
 
   .directive('hplusViewDoctorsCard', function(){
@@ -39290,13 +39465,13 @@ angular.module('hplus.modules.viewdoctor')
   })
 
 /***/ }),
-/* 97 */
+/* 101 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"card__container\" ng-controller=\"RecordCardController\">\r\n  <div class=\"card__title\">\r\n    {{ data.name }} \r\n    <a ng-click=\"go('/admin/view/doctordetails'); $event.stopPropagation()\"><span class=\"delete__icon\"><i class=\"fa fa-eye\" aria-hidden=\"true\"></i></span></a>\r\n    <a ng-click=\"go('/admin/edit/doctor'); $event.stopPropagation()\"><span class=\"delete__icon\"><i class=\"fa fa-pencil-square-o\" aria-hidden=\"true\"></i></span></a>\r\n  </div>\r\n  \r\n  <div class=\"card__desc\">\r\n    Admitted {{ data.date }} for {{ data.disease }}\r\n  </div>\r\n</div>";
 
 /***/ }),
-/* 98 */
+/* 102 */
 /***/ (function(module, exports) {
 
 angular.module('hplus.modules.viewdoctor')
@@ -39421,10 +39596,24 @@ angular.module('hplus.modules.viewdoctor')
   });
 
 /***/ }),
-/* 99 */
+/* 103 */
+/***/ (function(module, exports) {
+
+angular.module('hplus.modules.viewdoctor')
+
+  .controller('RecordCardController',
+    function($scope, $location, globalFactory){
+      $scope.go = function(path, medicalRecord){
+        globalFactory.go(path);
+      };
+
+  });
+
+/***/ }),
+/* 104 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var viewdisease = __webpack_require__(100);
+var viewdisease = __webpack_require__(105);
 
 angular.module('hplus.modules.viewdisease', [])
 
@@ -39435,16 +39624,16 @@ angular.module('hplus.modules.viewdisease', [])
       })
   });
 
-  __webpack_require__(101);
+  __webpack_require__(106);
 
 /***/ }),
-/* 100 */
+/* 105 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"row\">\r\n  <div class=\"col col-md-8 col-md-offset-1\">\r\n    <h1>\r\n      <i class=\"fa fa-thermometer-full\"></i>\r\n      Gingivitis\r\n    </h1>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row\">\r\n  <div class=\"col col-md-2 col-md-offset-1\">\r\n    <div class=\"match-padding\">\r\n      <span class=\"subtitle\">\r\n        Symptoms\r\n      </span>\r\n      <div class=\"subtitle__value\">\r\n        <div class=\"row card__container--flex\">\r\n          <div class=\"card__container--tiny\">\r\n            <div class=\"card__desc--tiny\">\r\n              swollen gums\r\n            </div>\r\n          </div>\r\n\r\n          <div class=\"card__container--tiny\">\r\n            <div class=\"card__desc--tiny\">\r\n              bright red gums\r\n            </div>\r\n          </div>\r\n\r\n          <div class=\"card__container--tiny\">\r\n            <div class=\"card__desc--tiny\">\r\n              bright purple gums\r\n            </div>\r\n          </div>\r\n\r\n          <div class=\"card__container--tiny\">\r\n            <div class=\"card__desc--tiny\">\r\n              tender gums\r\n            </div>\r\n          </div>\r\n\r\n          <div class=\"card__container--tiny\">\r\n            <div class=\"card__desc--tiny\">\r\n             bleeding gums  \r\n            </div>\r\n          </div>\r\n\r\n          <div class=\"card__container--tiny\">\r\n            <div class=\"card__desc--tiny\">\r\n              bad breath\r\n            </div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n      <br>\r\n      <span class=\"subtitle\">\r\n        Medicine\r\n      </span>\r\n      <br>\r\n     <table>\r\n        <tr>\r\n          <td><span>Triclosan</span></td>\r\n        </tr>\r\n        <tr>\r\n          <td><span>Somethig</span></td>\r\n        </tr>\r\n        <tr>\r\n          <td><span>Somthing</span></td>\r\n        </tr>\r\n      </table>\r\n      <br>\r\n      <button class=\"outline\">Edit</button>\r\n    </div>\r\n  </div>\r\n\r\n  <div class=\"col col-md-8\">\r\n    <div class=\"col col-md-12\">\r\n      <div class=\"row\">\r\n        <div class=\"col col-md-4\">\r\n          <span class=\"subtitle\">\r\n            OCCURENCE FOR \r\n          </span>\r\n          <span class=\"subtitle subtitle--variable\">\r\n            June 2017\r\n          </span>\r\n          <div class=\"subtitle__value\">\r\n            1 Patients\r\n          </div>\r\n        </div>\r\n          \r\n        <div class=\"col col-md-4\">\r\n          <span class=\"subtitle\">\r\n            OCCURENCE IN YEAR\r\n          </span>\r\n          <span class=\"subtitle subtitle--variable\">\r\n            2017\r\n          </span>\r\n          <div class=\"subtitle__value\">\r\n            24 PATIENTS\r\n          </div>\r\n        </div>\r\n          \r\n        <div class=\"col col-md-4\">\r\n          <span class=\"subtitle\">\r\n            AMAZING NUMBERS\r\n          </span>\r\n          <div class=\"subtitle__value\">\r\n            HUGE VALUES\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n\r\n    <div class=\"col col-md-12\">\r\n      <br>\r\n      <br>\r\n      <span class=\"subtitle\">\r\n        RECENTLY DIAGNOSED IN THE FOLLOWING PATIENTS\r\n      </span>\r\n      <br><br>\r\n      <div class=\"card__container\">\r\n        <div class=\"card__title\">\r\n          Doe, Jane\r\n        </div>\r\n        <div class=\"card__desc\">\r\n          Diagnosed Feb. 20, 2016 as Demanded by Dr. John Appleseed\r\n        </div>\r\n      </div>\r\n\r\n      <div class=\"pagination__container\">\r\n        <div class=\"pagination__page\">\r\n          <i class=\"fa fa-angle-double-left\"></i>\r\n        </div>\r\n      \r\n        <div class=\"pagination__page\">\r\n          <i class=\"fa fa-angle-left\"></i>\r\n        </div>\r\n      \r\n        <div class=\"pagination__page\">\r\n          2\r\n        </div>\r\n      \r\n        <div class=\"pagination__current\">\r\n          3\r\n        </div>\r\n      \r\n        <div class=\"pagination__page\">\r\n          4\r\n        </div>\r\n      \r\n        <div class=\"pagination__page\">\r\n          <i class=\"fa fa-angle-right\"></i>\r\n        </div>\r\n      \r\n        <div class=\"pagination__page\">\r\n          <i class=\"fa fa-angle-double-right\"></i>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>";
 
 /***/ }),
-/* 101 */
+/* 106 */
 /***/ (function(module, exports) {
 
 angular.module('hplus.modules.viewdisease')
@@ -39459,10 +39648,10 @@ angular.module('hplus.modules.viewdisease')
   );
 
 /***/ }),
-/* 102 */
+/* 107 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var viewmedicine = __webpack_require__(103);
+var viewmedicine = __webpack_require__(108);
 
 angular.module('hplus.modules.viewmedicine', [])
 
@@ -39473,16 +39662,16 @@ angular.module('hplus.modules.viewmedicine', [])
       })
   });
 
-  __webpack_require__(104);
+  __webpack_require__(109);
 
 /***/ }),
-/* 103 */
+/* 108 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"row\">\r\n  <div class=\"col col-md-8 col-md-offset-1\">\r\n    <h1><i class=\"fa fa-heartbeat\"></i>Paracetamol</h1>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row\">\r\n  <div class=\"col col-md-10 col-md-offset-1\">\r\n    <div class=\"col-md-3\">\r\n      <span class=\"subtitle\">Price:</span>\r\n      <div class=\"subtitle__value\">\r\n        PHP 7.00\r\n      </div>\r\n    </div>\r\n    <div class=\"col-md-3\">\r\n      <label class=\"subtitle\">USAGE FOR</label>\r\n      <span class=\"subtitle subtitle--variable\">June 2017</span>\r\n      <div class=\"subtitle__value\">\r\n        15 Patients\r\n      </div>\r\n    </div>\r\n    <div class=\"col-md-3\">\r\n      <label class=\"subtitle\">USAGE FOR THE YEAR</label>\r\n      <span class=\"subtitle subtitle--variable\">2017</span>\r\n      <div class=\"subtitle__value\">\r\n        367 PATIENTS\r\n      </div>\r\n    </div>\r\n    <div class=\"col-md-3\">\r\n      <label class=\"subtitle\">AMAZING NUMBERS</label>\r\n      <div class=\"subtitle__value\">\r\n        HUGE VALUES\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row margins\">\r\n  <div class=\"col-md-10 col-md-offset-1 margins\">\r\n\t  <div class=\"col-md-3\">\r\n\t    <label class=\"subtitle\">Description:</label>\r\n\t    <div class=\"subtitle__value\">\r\n\t      Paracetamol also known as blabalbablabalbal\r\n\t    </div>\r\n\t    <button class=\"outline\" ng-click=\"go('/admin/update/medicine')\">Edit</button>\r\n\t  </div>\r\n\t  <div class=\"col-md-9\">\r\n\t    <label class=\"subtitle\">RECENTLY DISPENSED TO THE FOLLOWING PATIENTS</label>\r\n      <div class=\"margintop\">\r\n        <div class=\"card__container\">\r\n          <div class=\"card__title\">\r\n            Doe, Jane\r\n          </div>\r\n\r\n          <div class=\"card__desc\">\r\n            Dispensed Feb. 20, 2016 as Demanded by Dr. John Appleseed\r\n          </div>\r\n        </div>\r\n\r\n        <div class=\"card__container\">\r\n          <div class=\"card__title\">\r\n            Phour, Mahn\r\n          </div>\r\n  \r\n          <div class=\"card__desc\">\r\n            Dispensed June 19, 2015 as Demanded by Dr. John Appleseed\r\n          </div>\r\n        </div>\r\n\r\n        <div class=\"card__container\">\r\n          <div class=\"card__title\">\r\n            Xing, Ah Mae\r\n          </div>\r\n  \r\n          <div class=\"card__desc\">\r\n            Dispensed Mar. 3, 2015 as Demanded by Dr. John Appleseed\r\n          </div>\r\n        </div>\r\n      </div>\r\n\t  </div>\r\n  </div>\r\n</div>\r\n\r\n<!-- Pagination Section -->\r\n<div class=\"row\">\r\n  <div class=\"col-md-10 col-md-offset-1\">\r\n    <div class=\"col col-md-3 col-md-offset-9\">\r\n      <div class=\"pagination__container\">\r\n        <div class=\"pagination__page\">\r\n          <<\r\n        </div>\r\n      \r\n        <div class=\"pagination__page\">\r\n          <\r\n        </div>\r\n      \r\n        <div class=\"pagination__page \">\r\n          2\r\n        </div>\r\n      \r\n        <div class=\"pagination__page pagination__current\">\r\n          3\r\n        </div>\r\n      \r\n        <div class=\"pagination__page\">\r\n          4\r\n        </div>\r\n      \r\n        <div class=\"pagination__page\">\r\n          >\r\n        </div>\r\n      \r\n        <div class=\"pagination__page\">\r\n          >>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>";
 
 /***/ }),
-/* 104 */
+/* 109 */
 /***/ (function(module, exports) {
 
 angular.module('hplus.modules.viewmedicine')
@@ -39497,10 +39686,10 @@ angular.module('hplus.modules.viewmedicine')
   );
 
 /***/ }),
-/* 105 */
+/* 110 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var viewdoctor = __webpack_require__(106);
+var viewdoctor = __webpack_require__(111);
 
 angular.module('hplus.modules.viewpatient', [])
 
@@ -39513,16 +39702,16 @@ angular.module('hplus.modules.viewpatient', [])
 
 
 /***/ }),
-/* 106 */
+/* 111 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"row\">\r\n  <div class=\"col col-md-8 col-md-offset-1\">\r\n    <h1><i class=\"fa fa-user-o\"></i> Doe, Jane</h1>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row\">\r\n  <div class=\"col col-md-2 col-md-offset-1\">\r\n    <div class=\"match-padding\">\r\n      <span class=\"subtitle\">\r\n        Date of Birth\r\n      </span>\r\n      <div class=\"subtitle__value\">\r\n        January 1, 1970\r\n      </div>\r\n      <br>\r\n      <span class=\"subtitle\">Sex</span>\r\n      <div class=\"subtitle__value\">\r\n        Female\r\n      </div>\r\n      <br>\r\n      <button class=\"outline\">Edit</button>\r\n    </div>\r\n  </div>\r\n\r\n  <div class=\"col col-md-8\">\r\n    <div class=\"col col-md-12\">\r\n      <span class=\"subtitle\">\r\n        Medical Records of this patient\r\n      </span>\r\n      <br><br>\r\n      <div class=\"card__container match-padding\">\r\n        <div class=\"card__title match-padding\">\r\n          Hyperacidity\r\n        </div>\r\n\r\n        <br>\r\n        <span class=\"subtitle match-padding\">Symptoms</span>\r\n        <div class=\"subtitle__value match-padding\">\r\n          Lack of appetite, Constipation, Indigestion, Sour belching, Vomiting\r\n        </div>\r\n\r\n        <br>\r\n        <span class=\"subtitle match-padding\">Medications</span>\r\n        <div class=\"subtitle__value match-padding\">\r\n          Omeprazole 20mg &times; 7\r\n        </div>\r\n\r\n        <div class=\"row\">\r\n          <div class=\"col col-md-4 \">\r\n            <br>\r\n            <span class=\"subtitle\">Admission Date</span>\r\n            <div class=\"subtitle__value\">\r\n              February 20, 2016\r\n            </div>\r\n          </div>\r\n          <div class=\"col col-md-4\">\r\n            <br>\r\n            <span class=\"subtitle\">Discharge Date</span>\r\n            <div class=\"subtitle__value\">\r\n              February 21, 2016\r\n            </div>\r\n          </div>\r\n          <div class=\"col col-md-4\">\r\n            <br>\r\n            <span class=\"subtitle\">Bill for this disease</span>\r\n            <div class=\"subtitle__value\">\r\n              PHP 308.00\r\n            </div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n\r\n      <div class=\"pagination__container\">\r\n        <div class=\"pagination__page\">\r\n          <i class=\"fa fa-angle-double-left\"></i>\r\n        </div>\r\n\r\n        <div class=\"pagination__page\">\r\n          <i class=\"fa fa-angle-left\"></i>\r\n        </div>\r\n\r\n        <div class=\"pagination__page\">\r\n          2\r\n        </div>\r\n\r\n        <div class=\"pagination__current\">\r\n          3\r\n        </div>\r\n\r\n        <div class=\"pagination__page\">\r\n          4\r\n        </div>\r\n\r\n        <div class=\"pagination__page\">\r\n          <i class=\"fa fa-angle-right\"></i>\r\n        </div>\r\n        \r\n        <div class=\"pagination__page\">\r\n          <i class=\"fa fa-angle-double-right\"></i>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>";
 
 /***/ }),
-/* 107 */
+/* 112 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var resetpassword = __webpack_require__(108);
+var resetpassword = __webpack_require__(113);
 
 angular.module('hplus.modules.resetpassword', [])
 
@@ -39533,16 +39722,16 @@ angular.module('hplus.modules.resetpassword', [])
       })
   });
 
-  __webpack_require__(109);
+  __webpack_require__(114);
 
 /***/ }),
-/* 108 */
+/* 113 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"row\">\r\n  <div class=\"col col-md-8 col-md-offset-1\">\r\n    <h1>Reset Your Password</h1>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row\">\r\n  <div class=\"col col-md-2 col-md-offset-1\">\r\n    <div class=\"row\">\r\n      <div class=\"col col-md-12\">\r\n        <label>New Password</label>\r\n        <input type=\"text\">\r\n        <label>Repeat your new password</label>\r\n        <input type=\"text\">\r\n        <br><br><br><br>\r\n        <button>Reset</button>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>";
 
 /***/ }),
-/* 109 */
+/* 114 */
 /***/ (function(module, exports) {
 
 angular.module('hplus.modules.resetpassword')
@@ -39557,15 +39746,15 @@ angular.module('hplus.modules.resetpassword')
   );
 
 /***/ }),
-/* 110 */
+/* 115 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(111);
+__webpack_require__(116);
 module.exports = 'angularUtils.directives.dirPagination';
 
 
 /***/ }),
-/* 111 */
+/* 116 */
 /***/ (function(module, exports) {
 
 /**
@@ -40210,81 +40399,10 @@ module.exports = 'angularUtils.directives.dirPagination';
 
 
 /***/ }),
-/* 112 */
-/***/ (function(module, exports) {
-
-module.exports = "<div class=\"row\">\r\n  <div class=\"col-md-10 col-md-offset-1\">\r\n    <div class=\"col col-md-3 col-md-offset-9\">\r\n      <div class=\"pagination__container\" ng-if=\"1 < pages.length || !autoHide\">\r\n      <div ng-if=\"boundaryLinks\"  class=\"pagination__page\" ng-click=\"setCurrent(1)\">\r\n        &laquo;\r\n      </div> \r\n      <div ng-if=\"directionLinks\" class=\"pagination__page\" ng-click=\"setCurrent(pagination.current - 1)\">\r\n        &lsaquo;\r\n      </div>\r\n      <div ng-repeat=\"pageNumber in pages track by tracker(pageNumber, $index)\" class=\"pagination__page\" ng-class=\"{ pagination__current : pagination.current == pageNumber, pagination__page : pageNumber == '...' }\" ng-click=\"setCurrent(pageNumber)\">\r\n        {{ pageNumber }}\r\n      </div>\r\n      <div ng-if=\"directionLinks\" class=\"pagination__page\" ng-click=\"setCurrent(pagination.current + 1)\">\r\n        &rsaquo;\r\n      </div>\r\n      <div ng-if=\"boundaryLinks\"  class=\"pagination__page\" ng-click=\"setCurrent(pagination.last)\">\r\n        &raquo;\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>";
-
-/***/ }),
-/* 113 */
-/***/ (function(module, exports) {
-
-angular.module('hplus.modules.exploredoctors')
-
-  .controller('DoctorCardController',
-    function($scope, globalFactory, doctorFactory){
-
-      $scope.go = function(path, doctor){
-        doctorFactory.saveDoctor(doctor);
-        globalFactory.go(path);
-      };
-    }
-  );
-
-/***/ }),
-/* 114 */
-/***/ (function(module, exports) {
-
-angular.module('hplus.modules.viewdoctor')
-
-  .controller('RecordCardController',
-    function($scope, $location, globalFactory){
-      $scope.go = function(path, medicalRecord){
-        globalFactory.go(path);
-      };
-
-  });
-
-/***/ }),
-/* 115 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var card = __webpack_require__(116);
-var scard = __webpack_require__(117);
-angular.module('hplus.modules.exploremedicines')
-
-  .directive('hplusExploreMedicinesCard', function(){
-    return{
-      restrict: 'EA',
-      scope: {
-        data: '=',
-        selectedMed: '='
-      },
-      template: card
-    };
-  })
-  
-  .directive('hplusSelectedMedicineCard', function(){
-    return{
-      restrict: 'EA',
-      scope: {
-        data: '='
-      },
-      template: scard
-    };
-  })
-
-/***/ }),
-/* 116 */
-/***/ (function(module, exports) {
-
-module.exports = "<div class=\"card__container\" ng-class=\"{'selectedCard__container': data == selectedMed}\">\r\n  <div class=\"card__title\">\r\n    {{selectedMed.name}}\r\n    {{data.name}}\r\n  </div>\r\n      \r\n  <div class=\"card__desc\">\r\n    <span ng-repeat=\"treats in data.treats\"><span ng-hide=\"$first\">,&nbsp;</span>{{treats}}</span>\r\n  </div>\r\n</div>";
-
-/***/ }),
 /* 117 */
 /***/ (function(module, exports) {
 
-module.exports = "<div>\r\n      <label class=\"subtitle\">DETAILS FOR {{data.name}}</label>\r\n      <div class=\"margins\">\r\n        <!-- Detail Section -->\r\n        <div class=\"detail__container\">\r\n          <div class=\"card__title\">\r\n            {{data.name}}\r\n          </div>\r\n      \r\n          <div class=\"detail__desc\">\r\n            <p>\r\n            {{data.desc}}\r\n            </p>\r\n          </div>\r\n          <span class=\"detail__title\">PRICE (PHP)</span>\r\n          <span class=\"detail__subtitle\">{{data.price | currency : 'P '}}</span>\r\n          <br>\r\n          <br>\r\n          <span class=\"detail__title\">TREATMENT FOR</span>\r\n          <span class=\"detail__subtitle\"><span ng-repeat=\"treats in data.treats | limitTo: 3\"><span ng-hide=\"$first\">,&nbsp;</span>{{treats}}</span></span> \r\n          <br>\r\n          <br>\r\n          <div ng-controller=\"modalCtrl as alert\"> \r\n            <button class=\"outline\" ng-click=\"go('/admin/update/medicine')\">Edit</button>\r\n            <button class=\"outline\" ng-click=\"alert.confirm()\">Delete</button>\r\n            <button class=\"outline\" ng-click=\"go('/admin/view/medicine')\">View</button>\r\n          </div>\r\n        </div>\r\n      </div>\r\n</div>";
+module.exports = "<div class=\"row\">\r\n  <div class=\"col-md-10 col-md-offset-1\">\r\n    <div class=\"col col-md-3 col-md-offset-9\">\r\n      <div class=\"pagination__container\" ng-if=\"1 < pages.length || !autoHide\">\r\n      <div ng-if=\"boundaryLinks\"  class=\"pagination__page\" ng-click=\"setCurrent(1)\">\r\n        &laquo;\r\n      </div> \r\n      <div ng-if=\"directionLinks\" class=\"pagination__page\" ng-click=\"setCurrent(pagination.current - 1)\">\r\n        &lsaquo;\r\n      </div>\r\n      <div ng-repeat=\"pageNumber in pages track by tracker(pageNumber, $index)\" class=\"pagination__page\" ng-class=\"{ pagination__current : pagination.current == pageNumber, pagination__page : pageNumber == '...' }\" ng-click=\"setCurrent(pageNumber)\">\r\n        {{ pageNumber }}\r\n      </div>\r\n      <div ng-if=\"directionLinks\" class=\"pagination__page\" ng-click=\"setCurrent(pagination.current + 1)\">\r\n        &rsaquo;\r\n      </div>\r\n      <div ng-if=\"boundaryLinks\"  class=\"pagination__page\" ng-click=\"setCurrent(pagination.last)\">\r\n        &raquo;\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>";
 
 /***/ })
 /******/ ]);
