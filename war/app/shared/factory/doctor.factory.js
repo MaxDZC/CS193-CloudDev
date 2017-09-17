@@ -86,16 +86,13 @@ angular.module('hplus.factory')
 
       var deleteDoctor = function(deleteObject){
         $http({
-          method: "POST",
+          method: "DELETE",
           url: "/Doctor",
+          data: deleteObject
         }).then(function successCallback(response){
-          alert("You have successfully deleted!!!");
+          console.log(response);
         }, function errorCallback(response){
-          var errorMessage = "";
-          for(var i = 0; i < response.data.errorList.length; i++){
-            errorMessage += response.data.errorList[i];
-          }
-          alert(errorMessage);
+          console.log(response);
         });
       }
 
