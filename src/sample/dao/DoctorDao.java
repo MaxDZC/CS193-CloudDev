@@ -20,18 +20,19 @@ public class DoctorDao{
      */
     public DoctorModel getDoctorById(Long id){
         System.out.println("DoctorDao.getDoc start");
-        DoctorModel doctor =    DoctorModelMeta.get().entityToModel(
+        
+        DoctorModel doctor = DoctorModelMeta.get().entityToModel(
             Datastore.query("DoctorModel")
                      .filter("id", FilterOperator.EQUAL, id)
+                     .filter("deletedAt", FilterOperator.EQUAL, null)
                      .asSingleEntity()) ;
         if(doctor != null){
- 
             System.out.println("DoctorDao.getDoc end(success)");
-            return doctor;
         }else{
             System.out.println("DoctorDao.getDoc end(failed)");
-            return null;
         }
+        
+        return doctor;
     }
     
     public String validateDoctor(DoctorDto inputs){
@@ -59,18 +60,44 @@ public class DoctorDao{
     
     public boolean checkDoctorExistsByEmail(String email){
         System.out.println("DoctorDao.getDoc start");
+        
+        boolean ret;
       
         if(
             Datastore.query(DoctorModel.class)
             .filter("email", FilterOperator.EQUAL, email.toLowerCase())
+            .filter("deletedAt", FilterOperator.EQUAL, null)
             .asSingleEntity() != null){
  
             System.out.println("DoctorDao.getDoc end(success)");
-            return true;
+            ret = true;
         }else{
             System.out.println("DoctorDao.getDoc end(failed)");
-            return false;
+            ret = false;
         }
+        
+        return ret;
+    }
+    
+    public boolean checkDoctorUpdateEmail(String email, Long id){
+        System.out.println("DoctorDao.updateEmailCheck start");
+        
+        boolean ret;
+        
+        if(
+            Datastore.query(DoctorModel.class)
+            .filter(CompositeFilterOperator.and(
+                new FilterPredicate("email", FilterOperator.EQUAL, email.toLowerCase()), 
+                new FilterPredicate("id", FilterOperator.NOT_EQUAL, id))).asSingleEntity() != null){
+            
+            System.out.println("DoctorDao.updateEmailCheck end (found)");
+            ret = true;
+        } else {
+            System.out.println("DoctorDao.updateEmailCheck end (not found)");
+            ret = false;
+        }
+        
+        return ret;
     }
     
     public boolean checkDoctorExistsByUsername(String username){
@@ -122,22 +149,24 @@ public class DoctorDao{
         
     }
     
-    public  Object getDoctors(){
+    public Object getDoctors(){
         com.google.appengine.api.datastore.DatastoreService datastore = DatastoreServiceFactory
-                .getDatastoreService();
-                ArrayList<DoctorModel> results =  new ArrayList<DoctorModel>();
-
-               Query query = new Query("DoctorModel");
-                java.util.List<Entity> entities = datastore.prepare(query).asList(
-                 FetchOptions.Builder.withDefaults());
-
-               for (Entity entity : entities) {
-                 results.add(DoctorModelMeta.get().entityToModel(entity));
-               }
-               
-            return results ;
+            .getDatastoreService();
         
+        ArrayList<DoctorModel> results =  new ArrayList<DoctorModel>();
+
+        Query query = new Query("DoctorModel");
+            @SuppressWarnings("deprecation")
+            java.util.List<Entity> entities = datastore.prepare(query.addFilter("deletedAt", FilterOperator.EQUAL, null)).asList(
+            FetchOptions.Builder.withDefaults());
+
+        for(Entity entity : entities) {
+            results.add(DoctorModelMeta.get().entityToModel(entity));
+        }
+               
+        return results ;
     }
+    
     public void updateDoctor(DoctorModel inputDoctor) {
         System.out.println("DoctorDao.updateDoctor " + "start");
         // TODO: Implement this function.
@@ -162,19 +191,14 @@ public class DoctorDao{
         //creating key and ID for the new entity
         Key parentKey = KeyFactory.createKey("Doctor", inputDoc.getUsername());
         Key key = Datastore.allocateId(parentKey, DoctorModel.class);
-        
-        System.out.println("After key");
-        System.out.println(inputDoc.getFirstName());
-        
+
         //Setting the 'key' and 'id' of the model
         inputDoc.setKey(key);
         inputDoc.setId(key.getId());
         inputDoc.setEmail(inputDoc.getEmail().toLowerCase());
         inputDoc.setUsername(inputDoc.getUsername().toLowerCase());
-        inputDoc.setFirstName(processName(inputDoc.getFirstName()));
-        inputDoc.setLastName(processName(inputDoc.getLastName()));
-        
-        System.out.println(inputDoc.getFirstName() + " " + inputDoc.getLastName());
+        inputDoc.setFirstname(processName(inputDoc.getFirstname()));
+        inputDoc.setLastname(processName(inputDoc.getLastname()));
         
         //inserting the item to the datastore
         Datastore.put(inputDoc);
@@ -203,16 +227,15 @@ public class DoctorDao{
 
 
     public void deleteDoctor(DoctorModel inputDoc) {
-        // TODO Auto-generated method stub
-
-            System.out.println("DoctorDao.deleteDoctor " + "start");
-            // TODO: Implement this function.
-            Transaction trans = Datastore.beginTransaction();
-            Datastore.put(inputDoc);
-            trans.commit();
-            System.out.println("DoctorDao.deleteDoctor " + "end");
+        System.out.println("DoctorDao.deleteDoctor " + "start");
         
+        Transaction trans = Datastore.beginTransaction();
         
+        Datastore.put(inputDoc);
+        
+        trans.commit();
+        
+        System.out.println("DoctorDao.deleteDoctor " + "end");
     }
 
 }

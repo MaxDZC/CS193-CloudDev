@@ -5,7 +5,7 @@
 </div>
 
 <div class="row" ng-controller="RegisterDoctorController">
-  <ng-form name="registerDoctorForm" ng-init="doctor.firstname='Max';doctor.lastname='Zuorba';">
+  <ng-form name="registerDoctorForm">
 
     <div class="row match-padding">
       <div class="col col-md-3 col-md-offset-1">
@@ -33,6 +33,7 @@
       <div class="col col-md-3 col-md-offset-1">
         <label class="subtitle">Specialization</label>
           <select ng-model="doctor.specialization" ng-required="true">
+            <option value="">Choose a specialization</option>
             <option ng-repeat="option in specialization" value="{{option.name}}">{{option.name}}</option>
           </select>
       </div>
@@ -55,8 +56,8 @@
     
     <div class="row match-padding">
       <div class="col col-md-3 col-md-offset-1">
-        <label class="subtitle">Password</label>
-        <input type="password" ng-model="doctor.password" ng-required="true">
+        <label class="subtitle">Password (At least 6 characters)</label>
+        <input type="password" ng-model="doctor.password" ng-pattern="passwordRegex" ng-required="true">
       </div>
       <div class="col col-md-3">
         <label class="subtitle">Confirm Password</label>

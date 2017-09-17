@@ -1,7 +1,6 @@
 angular.module('hplus.factory')
 
-  .factory('globalFactory', 
-    function($location,$http,$rootScope){
+  .factory('globalFactory', function($location,$http,$rootScope){
       var user;
       var insertDisease = function(name,symptoms,medicine){
         var dataDisease = {
@@ -27,6 +26,7 @@ angular.module('hplus.factory')
             // or server returns response with an error status.
           });
       }
+      
       var go = function(path){
         $location.path(path);
       };

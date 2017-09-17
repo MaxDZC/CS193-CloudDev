@@ -2,23 +2,23 @@
   <div class="col col-md-10 col-md-offset-1">
 
     <div class="col col-md-8">
-      <div class="navbar__btn" ng-click="go('/admin/list/disease')">
+      <div ng-class="selected('disease')" ng-click="go('/admin/list/disease')">
         Diseases
       </div>
-      <div class="navbar__btn" ng-click="go('/admin/list/medicine')">
+      <div ng-class="selected('medicine')" ng-click="go('/admin/list/medicine')">
         Medicines
       </div>
-      <div class="navbar__btn" ng-click="go('/admin/list/doctor')">
+      <div ng-class="selected('doctor')" ng-click="go('/admin/list/doctor')">
         Doctors
       </div>
-      <div class="navbar__btn" ng-click="">
+      <div ng-class="selected('patient')" ng-click="">
         Patient
       </div>
     </div>
 
     <div ng-show="checkPage()" class="col col-md-4 navbar__action-container">          
       <div class="navbar__btn navbar__btn--action">
-        <a href="#!/admin/register/disease"> 
+        <a href="{{ link }}"> 
           <i class="fa fa-plus-square"></i> {{ registerButton }}
         </a>
       </div>

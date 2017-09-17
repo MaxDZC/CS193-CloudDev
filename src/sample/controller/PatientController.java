@@ -27,7 +27,10 @@ public class PatientController extends Controller {
 
   JSONObject json = new JSONObject();
   String action = request.getParameter("action");
- 
+  String method = request.getMethod();
+  JSONObject jObj = null;
+  
+  if(method == "POST"){
   
         /** 
          * Used to retrieve the JSON equivalent data
@@ -38,20 +41,20 @@ public class PatientController extends Controller {
         while ((str = br.readLine()) != null) {
             sb.append(str);
         }
-        JSONObject jObj = new JSONObject(sb.toString());
+         jObj = new JSONObject(sb.toString());
 
         /**
          * Used to store the information from the request and send to the
          * service class.
          */
-        PatientDto patientDto = new PatientDto(jObj.getString("fname"),
-            jObj.getString("lname"),
+        PatientDto patientDto = new PatientDto(jObj.getString("firstName"),
+            jObj.getString("lastName"),
             jObj.getString("address"),
             jObj.getString("email"),
             jObj.getString("number"),
             jObj.getString("birthday"),
             jObj.getString("username"),
-            jObj.getString("password")
+            jObj.getString("passWord")
            );
 
         if (action.equals("registerPatient")) {
@@ -71,7 +74,7 @@ public class PatientController extends Controller {
 
 
             if (PatientService.updatePatient(patientDto)) {
-                json.put("message", "The Profil of  " + jObj.getString("lname") + " was updated ");
+                json.put("message", "The Profil of  " + jObj.getString("lastName") + " was updated ");
             } else {
                 json.put("message", false);
             }
@@ -79,17 +82,19 @@ public class PatientController extends Controller {
         } else if (action.equals("deletePatient")) {
             if (PatientService.deletePatient(patientDto)) {
 
-                json.put("message", "The Profil of " + jObj.getString("lname") + " was deleted ");
+                json.put("message", "The Profil of " + jObj.getString("lastName") + " was deleted ");
             } else {
                 json.put("message", false);
             }
 
-        } else if (action.equals("getPatient")) {
-
-            json.put("patients", PatientService.getPatient(Long.parseLong(jObj.getString("id"))));
-        } else if (action.equals("getPatients")) {
+        }
+      } else if (method == "GET") {
+           if(this.request.getParameter("id") != null){ 
+            json.put("patients", PatientService.getPatient(Long.parseLong(this.request.getParameter("id"))));
+           } else  {
             json.put("patients", PatientService.getPatients());
         }
+      }
 
         response.setContentType("application/json");
         response.setCharacterEncoding("utf-8");
@@ -101,4 +106,5 @@ public class PatientController extends Controller {
         //screen redirection.
         return null;
     }
+
 }
