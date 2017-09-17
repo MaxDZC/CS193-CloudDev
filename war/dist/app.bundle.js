@@ -37987,6 +37987,7 @@ __webpack_require__(46);
 __webpack_require__(47);
 __webpack_require__(48);
 __webpack_require__(49);
+__webpack_require__(118);
 
 /***/ }),
 /* 45 */
@@ -38565,7 +38566,7 @@ angular.module('hplus.modules.createmedicalrecord', [])
 /* 64 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\r\n  <div class=\"col col-md-8 col-md-offset-1\">\r\n    <h1>Create Medical Record</h1>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row\">\r\n  <div class=\"col col-md-2 col-md-offset-1\">\r\n    <div class=\"row\">\r\n      <div class=\"col col-md-12\">\r\n        <label>Patient's First Name</label>\r\n        <input type=\"text\">\r\n        <label>Patient's Last Name</label>\r\n        <input type=\"text\">\r\n        <label>Birthday</label>\r\n        <input type=\"text\">\r\n        <label>Sex</label>\r\n        <input type=\"text\">\r\n        <label>Admission Date</label>\r\n        <input type=\"text\">\r\n        <button class=\"outline\">Create</button>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  \r\n  <div class=\"col col-md-8 col-md-offset-1\">\r\n    <div class=\"row\">\r\n      <button class=\"outline float-right\">Add 1 more disease</button>\r\n    </div>\r\n    </br>\r\n    </br>\r\n    </br>\r\n    <div class=\"row card__container--custom1\">\r\n      <br>\r\n      <div class=\"row\">\r\n        <div class=\"col col-md-12\">\r\n          <span class=\"subtitle\">Disease</span>\r\n          <br>\r\n          <input class=\"shortinput\" type=\"text\"></input>\r\n        </div>\r\n      </div>\r\n\t  \r\n      <div class=\"row\">\r\n        <div class=\"col col-md-6\">\r\n          <span class=\"subtitle\">Symptoms</span>\r\n          <div class=\"collapsediv\">\r\n            <table>\r\n              <br>\r\n              <tr>\r\n                <td><input name=\"\" type=\"checkbox\"><span>TextHere</span></td>\r\n              </tr>\r\n              <tr>\r\n                <td><input name=\"\" type=\"checkbox\"><span>TextHere</span></td>\r\n              </tr>\r\n               <tr>\r\n                <td><input name=\"\" type=\"checkbox\"><span>TextHere</span></td>\r\n              </tr>\r\n               <tr>\r\n                <td><input name=\"\" type=\"checkbox\"><span>TextHere</span></td>\r\n              </tr>\r\n               <tr>\r\n                <td><input name=\"\" type=\"checkbox\"><span>TextHere</span></td>\r\n              </tr>\r\n            </table>\r\n          </div>\r\n        </div>\r\n\t\t\r\n        <div class=\"col col-md-6\">.\r\n          <span class=\"subtitle\">Medicine</span>\r\n          <div class=\"collapsediv\">\r\n            <br>\r\n            <table>\r\n              <tr>\r\n                <td><input name=\"\" type=\"checkbox\"><span>TextHere</span></td>\r\n              </tr>\r\n              <tr>\r\n                <td><input name=\"\" type=\"checkbox\"><span>TextHere</span></td>\r\n              </tr>\r\n               <tr>\r\n                <td><input name=\"\" type=\"checkbox\"><span>TextHere</span></td>\r\n              </tr>\r\n               <tr>\r\n                <td><input name=\"\" type=\"checkbox\"><span>TextHere</span></td>\r\n              </tr>\r\n               <tr>\r\n                <td><input name=\"\" type=\"checkbox\"><span>TextHere</span></td>\r\n              </tr>\r\n            </table>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>  \r\n  </div>\r\n</div>";
+module.exports = "<div class=\"row\">\r\n  <div class=\"col col-md-8 col-md-offset-1\">\r\n    <h1>Create Medical Record</h1>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row\" ng-controller=\"CreateMedicalRecordController\">\r\n  <ng-form name=\"createMedicalRecordForm\">\r\n  \t<div class=\"col col-md-2 col-md-offset-1\">\r\n    \t<div class=\"row\">\r\n      \t\t<div class=\"col col-md-12\">\r\n        \t\t<label>Patient's First Name</label>\r\n        \t\t<input type=\"text\" ng-model=\"medicalRecord.firstName\" ng-required=\"true\">\r\n        \t\t<label>Patient's Last Name</label>\r\n        \t\t<input type=\"text\" ng-model=\"medicalRecord.lastName\" ng-required=\"true\">\r\n        \t\t<label>Birthday</label>\r\n        \t\t<input type=\"date\" ng-model=\"medicalRecord.birthday\" ng-required=\"true\">\r\n        \t\t<label>Sex</label>\r\n        \t\t<input type=\"text\" ng-model=\"medicalRecord.sex\" ng-required=\"true\">\r\n        \t\t<label>Admission Date</label>\r\n        \t\t<input type=\"date\" ng-model=\"medicalRecord.admissionDate\" ng-required=\"true\">\r\n        \t\t<button class=\"outline\" ng-hide=\"createMedicalRecordForm.$invalid\" ng-click=\"createMedicalRecord()\")>Create</button>\r\n      \t\t</div>\r\n    \t</div>\r\n  \t</div>\r\n  \r\n  \t<div class=\"col col-md-8 col-md-offset-1\">\r\n    \t<div class=\"row\">\r\n      \t\t<button class=\"outline float-right\">Add 1 more disease</button>\r\n    \t</div>\r\n    \t</br>\r\n    \t</br>\r\n    \t</br>\r\n    \t<div class=\"row card__container--custom1\">\r\n      \t\t<br>\r\n      \t\t<div class=\"row\">\r\n        \t\t<div class=\"col col-md-12\">\r\n          \t\t\t<span class=\"subtitle\">Disease</span>\r\n          \t\t\t<br>\r\n          \t\t\t<input class=\"shortinput\" type=\"text\" ng-model=\"medicalRecord.disease\" ng-required=\"true\"></input>\r\n        \t\t</div>\r\n      \t\t</div>\r\n\t  \r\n      \t\t<div class=\"row\">\r\n        \t\t<div class=\"col col-md-6\">\r\n          \t\t\t<span class=\"subtitle\">Symptoms</span>\r\n          \t\t\t<div class=\"collapsediv\">\r\n            \t\t\t<table ng-required=\"true\">\r\n              \t\t\t\t<br>\r\n              \t\t\t\t<tr ng-repeat=\"symptom in symptomList\">\r\n                \t\t\t\t<td><input name=\"\" type=\"checkbox\" ng-model=\"medicalRecord.symptomChoice[$index]\"><span>{{ symptom }}</span></td>\r\n              \t\t\t\t</tr>\r\n            \t\t\t</table>\r\n          \t\t\t</div>\r\n        \t\t</div>\r\n\t\t\r\n        \t\t<div class=\"col col-md-6\">.\r\n          \t\t\t<span class=\"subtitle\">Medicine</span>\r\n          \t\t\t<div class=\"collapsediv\">\r\n            \t\t\t<br>\r\n            \t\t\t<table ng-required=\"true\">\r\n              \t\t\t\t<tr ng-repeat=\"medicine in medicineList\">\r\n                \t\t\t\t<td><input name=\"\" type=\"checkbox\" ng-model=\"medicalRecord.medicineChoice[$index]\"><span>{{ medicine }}</span></td>\r\n              \t\t\t\t</tr>\r\n            \t\t\t</table>\r\n          \t\t\t</div>\r\n        \t\t</div>\r\n      \t\t</div>\r\n    \t</div>  \r\n  \t</div>\r\n  <ng-form>\r\n</div>";
 
 /***/ }),
 /* 65 */
@@ -38574,11 +38575,42 @@ module.exports = "<div class=\"row\">\r\n  <div class=\"col col-md-8 col-md-offs
 angular.module('hplus.modules.createmedicalrecord')
 
   .controller('CreateMedicalRecordController',
-    function($scope, globalFactory){
+    function($scope, globalFactory, medicalRecordFactory){
 
       $scope.go = function(path){
         globalFactory.go(path);
       };
+      
+      $scope.medicalRecord = {};
+      
+      $scope.medicalRecord.symptomChoice = [];
+      
+      $scope.medicalRecord.medicineChoice = [];
+      
+      $scope.symptomList = ["TextHere1", "TextHere2", "TextHere3", "TextHere4" , "TextHere5"];
+      
+      $scope.medicineList = ["TextHere1", "TextHere2", "TextHere3", "TextHere4" , "TextHere5"];
+      
+      $scope.createMedicalRecord = function(){
+    	  medicalRecordFactory.createMedicalRecord($scope.medicalRecord, $scope.initComponents);
+      }
+      
+      $scope.initComponents = function(){
+    	  $scope.medicalRecord.firstName = "";
+    	  $scope.medicalRecord.lastName = "";
+    	  $scope.medicalRecord.birthday = "";
+    	  $scope.medicalRecord.sex = "";
+    	  $scope.medicalRecord.admissionDate = "";
+    	  $scope.medicalRecord.disease = "";
+    	  
+    	  for(var i=0; i < $scope.medicalRecord.symptomChoice.length; i++){
+    		  $scope.medicalRecord.symptomChoice[i] = false;
+    	  }
+    	  
+    	  for(var i=0; i < $scope.medicalRecord.medicineChoice.length; i++){
+    		  $scope.medicalRecord.medicineChoice[i] = false;
+    	  }
+      }
     }
   );
 
@@ -40385,6 +40417,44 @@ module.exports = 'angularUtils.directives.dirPagination';
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"row\">\r\n  <div class=\"col-md-10 col-md-offset-1\">\r\n    <div class=\"col col-md-3 col-md-offset-9\">\r\n      <div class=\"pagination__container\" ng-if=\"1 < pages.length || !autoHide\">\r\n      <div ng-if=\"boundaryLinks\"  class=\"pagination__page\" ng-click=\"setCurrent(1)\">\r\n        &laquo;\r\n      </div> \r\n      <div ng-if=\"directionLinks\" class=\"pagination__page\" ng-click=\"setCurrent(pagination.current - 1)\">\r\n        &lsaquo;\r\n      </div>\r\n      <div ng-repeat=\"pageNumber in pages track by tracker(pageNumber, $index)\" class=\"pagination__page\" ng-class=\"{ pagination__current : pagination.current == pageNumber, pagination__page : pageNumber == '...' }\" ng-click=\"setCurrent(pageNumber)\">\r\n        {{ pageNumber }}\r\n      </div>\r\n      <div ng-if=\"directionLinks\" class=\"pagination__page\" ng-click=\"setCurrent(pagination.current + 1)\">\r\n        &rsaquo;\r\n      </div>\r\n      <div ng-if=\"boundaryLinks\"  class=\"pagination__page\" ng-click=\"setCurrent(pagination.last)\">\r\n        &raquo;\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>";
+
+/***/ }),
+/* 118 */
+/***/ (function(module, exports) {
+
+angular.module('hplus.factory')
+
+  .factory('medicalRecordFactory', 
+    function($http){
+
+      var createMedicalRecord = function(medicalRecordObject, clear){
+        $http({
+          method: 'POST',
+          url: '/MedicalRecord', // Change URL here
+          data: medicalRecordObject
+        }).then(function successCallback(response) {
+            // this callback will be called asynchronously
+            // when the response is available
+        	console.log(response);
+        	clear();
+          }, function errorCallback(response) {
+            // called asynchronously if an error occurs
+            // or server returns response with an error status.
+        	  var errorMessage = "";
+        	  
+        	  for(var i=0; i < response.data.errorList.length; i++){
+        		  errorMessage += response.data.errorList[i];
+        	  }
+        	  
+        	  alert(errorMessage);
+          });
+      }
+      
+      return {
+    	  createMedicalRecord: createMedicalRecord
+      }
+    }
+  );
 
 /***/ })
 /******/ ]);
