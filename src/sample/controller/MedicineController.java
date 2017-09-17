@@ -27,8 +27,11 @@ public class MedicineController extends Controller {
 
         JSONObject json = new JSONObject();
         String action = request.getParameter("action");
-
-
+        String method = request.getMethod();
+        JSONObject jObj = null;
+        
+        if(method == "POST"){
+     
         /** 
          * Used to retrieve the JSON equivalent data
          */
@@ -38,14 +41,14 @@ public class MedicineController extends Controller {
         while ((str = br.readLine()) != null) {
             sb.append(str);
         }
-        JSONObject jObj = new JSONObject(sb.toString());
+         jObj = new JSONObject(sb.toString());
 
         /**
          * Used to store the information from the request and send to the
          * service class.
          */
    MedicineDto medicineDto = new MedicineDto(jObj.getString("name"),
-                                                      jObj.getString("desc"),
+                                                      jObj.getString("description"),
                                                       Double.parseDouble(jObj.getString("price"))
                                                      );
         if (action.equals("registerMedicine")) {
@@ -78,11 +81,13 @@ public class MedicineController extends Controller {
                 json.put("message", false);
             }
 
-        } else if (action.equals("getMedicine")) {
-
-            json.put("medicines", MedicineService.getMedicine(jObj.getString("name")));
-        } else if (action.equals("getMedicines")) {
+        }
+        }  else if (method == "GET") {
+            if(this.request.getParameter("name") != null){ 
+            json.put("medicines", MedicineService.getMedicine(this.request.getParameter("name")));
+        } else {
             json.put("medicines", MedicineService.getMedicines());
+        }
         }
 
         response.setContentType("application/json");
