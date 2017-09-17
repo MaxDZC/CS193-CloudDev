@@ -25,8 +25,8 @@ public class DoctorService {
         DoctorModel doctorModel;
         
         doctorModel = new DoctorModel();
-        doctorModel.setFirstName(inputDoc.getFirstName());
-        doctorModel.setLastName(inputDoc.getLastName());
+        doctorModel.setFirstname(inputDoc.getFirstname());
+        doctorModel.setLastname(inputDoc.getLastname());
         doctorModel.setEmail(inputDoc.getEmail());
         doctorModel.setAddress(inputDoc.getAddress());
         doctorModel.setSpecialization(inputDoc.getSpecialization());
@@ -60,40 +60,74 @@ public class DoctorService {
         return status;
     }
     
-    public static  Boolean updateDoctor(DoctorDto doctorDto) {
+    public static String updateDoctor(DoctorDto doctorDto) {
         System.out.println("DoctorService.updateRecord " + "start");
     
-        DoctorModel doctorModel = storeDtoToModel(doctorDto);
+        String status;
+        DoctorModel doctorModel, resultModel;
+        
+        doctorModel = new DoctorModel();
+        doctorModel.setId(doctorDto.getId());
+        doctorModel.setFirstname(doctorDto.getFirstname());
+        doctorModel.setLastname(doctorDto.getLastname());
+        doctorModel.setEmail(doctorDto.getEmail());
+        doctorModel.setAddress(doctorDto.getAddress());
+        doctorModel.setSpecialization(doctorDto.getSpecialization());
+        doctorModel.setContactNo(doctorDto.getContactNo());
+        doctorModel.setBirthday(doctorDto.getBirthday());
+        doctorModel.setUsername(doctorDto.getUsername());
+        doctorModel.setPassword(doctorDto.getPassword());
+        doctorModel.setCreatedAt(doctorDto.getCreatedAt());
+        doctorModel.setUpdatedAt(doctorDto.getUpdatedAt());
+        doctorModel.setDeletedAt(doctorDto.getDeletedAt());
+        
+        status = "";
         
         try {
-            // checking if there is already the same item that exists in the datastore.
-            DoctorModel resultModel = (DoctorModel) doctorDao.getDoctorById(doctorModel.getId());
-            
-            if (resultModel != null) {
+            if(doctorDao.checkDoctorUpdateEmail(doctorDto.getEmail(), doctorDto.getId())){
+                status += "email"; 
+            } else {
+                // checking if there is already the same item that exists in the datastore.
+                resultModel = (DoctorModel) doctorDao.getDoctorById(doctorDto.getId());
+                
                 // setting the key in order to properly update the item
                 doctorModel.setKey(resultModel.getKey());
-               // doctorModel.setUpdatedAt(new Date().toString());
                 // update the entity to the datastore.
-                DoctorService.doctorDao.updateDoctor(doctorModel);
-                return true;
-                
+                DoctorService.doctorDao.updateDoctor(doctorModel);        
             }
         } catch (Exception e) {
             System.out.println(e.toString());
         }
-        return false;
-       
+        
+        return status;
     }
-    public static Boolean deleteDoctor(DoctorDto doctorDto) {
+    
+    public static String deleteDoctor(DoctorDto doctorDto) {
         System.out.println("DoctorService.deleteRecord " + "start");
-        /**
-         * DoctorModel that will be stored to the datastore. 
-         */
-        DoctorModel doctorModel = storeDtoToModel(doctorDto);
+
+        String state;
+        DoctorModel resultModel;
+        
+        DoctorModel doctorModel = new DoctorModel();
+        doctorModel.setId(doctorDto.getId());
+        doctorModel.setFirstname(doctorDto.getFirstname());
+        doctorModel.setLastname(doctorDto.getLastname());
+        doctorModel.setEmail(doctorDto.getEmail());
+        doctorModel.setAddress(doctorDto.getAddress());
+        doctorModel.setSpecialization(doctorDto.getSpecialization());
+        doctorModel.setContactNo(doctorDto.getContactNo());
+        doctorModel.setBirthday(doctorDto.getBirthday());
+        doctorModel.setUsername(doctorDto.getUsername());
+        doctorModel.setPassword(doctorDto.getPassword());
+        doctorModel.setCreatedAt(doctorDto.getCreatedAt());
+        doctorModel.setUpdatedAt(doctorDto.getUpdatedAt());
+        doctorModel.setDeletedAt(doctorDto.getDeletedAt());
+        
+        state = "";
         
         try { 
             // checking if there is already the same item that exists in the datastore.
-            DoctorModel resultModel = (DoctorModel) doctorDao.getDoctorById(doctorDto.getId());
+            resultModel = (DoctorModel) doctorDao.getDoctorById(doctorDto.getId());
             
             if (resultModel != null) {
                 // setting the key in order to properly delete the item
@@ -103,38 +137,19 @@ public class DoctorService {
                 DoctorService.doctorDao.deleteDoctor(doctorModel);
             
                 System.out.println("Deleted Doctor");
-                return true ;
             } else {
                 // deleting was canceled.
+                state = "failed";
                 System.out.println("There is no item with the same id.");
             }
         } catch (Exception e) {
             System.out.println(e.toString());
         }
         System.out.println("DoctorService.deleteRecord " + "end");
-        return false;
-    }
-    private static DoctorModel storeDtoToModel(DoctorDto doctorDto) {
-           
-        DoctorModel doctorModel = new DoctorModel();
-            
-            // Storing the data from the DTO.
-            doctorModel.setId(doctorDto.getId());
-            doctorModel.setFirstName(doctorDto.getFirstName());
-            doctorModel.setLastName(doctorDto.getLastName());
-            doctorModel.setAddress(doctorDto.getAddress());
-            doctorModel.setSpecialization(doctorDto.getSpecialization());
-           // doctorModel.setContactNumber(doctorDto.getContactNumber());
-           // doctorModel.setBirthDay(doctorDto.getBirthDay());
-           // doctorModel.setUserName(doctorDto.getUserName());
-           // doctorModel.setPassWord(doctorDto.getPassWord());           
-      
-            System.out.println("DoctorService.storeDtoToModel " + "end");
-            
-            // returning the model
-            return doctorModel;
         
+        return state;
     }
+    
     public static Object getDoctors() {
         // TODO Auto-generated method stub
         return doctorDao.getDoctors();
