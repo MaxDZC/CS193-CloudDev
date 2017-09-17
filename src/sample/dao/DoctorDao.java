@@ -149,7 +149,7 @@ public class DoctorDao{
             FetchOptions.Builder.withDefaults());
 
         for(Entity entity : entities) {
-            results.add(DoctorModelMeta.get().entityToModel(entity);
+            results.add(DoctorModelMeta.get().entityToModel(entity));
         }
                
         return results ;
