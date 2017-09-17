@@ -106,7 +106,7 @@ public class DoctorController extends Controller {
                     doctorDto.setUpdatedAt(new Date());
                     doctorDto.setDeletedAt(null);
                     
-                    message = DoctorService.updateDoctor(doctorDto);
+                    message = doctorService.updateDoctor(doctorDto);
                     
                     if(message.equals("")){
                         jsonObject.put("success", true);
@@ -142,6 +142,13 @@ public class DoctorController extends Controller {
                     doctorDto.setDeletedAt(new Date());
                     
                     message = doctorService.deleteDoctor(doctorDto);
+                    
+                    if(message.equals("")){
+                        jsonObject.put("success", true);
+                    } else {
+                        response.setStatus(400);
+                        jsonObject.put("errors", message);
+                    }
                 }
             }
 
@@ -154,7 +161,6 @@ public class DoctorController extends Controller {
             }
             
         }
-        
         
         jsonObject.put("errorList", doctorDto.getErrorList());
         

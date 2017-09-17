@@ -24,8 +24,8 @@ public class DoctorDao{
         DoctorModel doctor = DoctorModelMeta.get().entityToModel(
             Datastore.query("DoctorModel")
                      .filter("id", FilterOperator.EQUAL, id)
-                     .asSingleEntity());
-        
+                     .filter("deletedAt", FilterOperator.EQUAL, null)
+                     .asSingleEntity()) ;
         if(doctor != null){
             System.out.println("DoctorDao.getDoc end(success)");
         }else{
@@ -66,6 +66,7 @@ public class DoctorDao{
         if(
             Datastore.query(DoctorModel.class)
             .filter("email", FilterOperator.EQUAL, email.toLowerCase())
+            .filter("deletedAt", FilterOperator.EQUAL, null)
             .asSingleEntity() != null){
  
             System.out.println("DoctorDao.getDoc end(success)");
@@ -143,14 +144,12 @@ public class DoctorDao{
         ArrayList<DoctorModel> results =  new ArrayList<DoctorModel>();
 
         Query query = new Query("DoctorModel");
-        
-        java.util.List<Entity> entities = datastore.prepare(query).asList(
-        FetchOptions.Builder.withDefaults());
+            @SuppressWarnings("deprecation")
+            java.util.List<Entity> entities = datastore.prepare(query.addFilter("deletedAt", FilterOperator.EQUAL, null)).asList(
+            FetchOptions.Builder.withDefaults());
 
         for(Entity entity : entities) {
-            if(entity.getProperty("DeletedAt") == null){
-                results.add(DoctorModelMeta.get().entityToModel(entity));
-            }
+            results.add(DoctorModelMeta.get().entityToModel(entity));
         }
                
         return results ;

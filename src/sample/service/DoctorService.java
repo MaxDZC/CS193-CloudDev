@@ -60,7 +60,7 @@ public class DoctorService {
         return status;
     }
     
-    public static String updateDoctor(DoctorDto doctorDto) {
+    public String updateDoctor(DoctorDto doctorDto) {
         System.out.println("DoctorService.updateRecord " + "start");
     
         String status;
@@ -102,7 +102,7 @@ public class DoctorService {
         return status;
     }
     
-    public static String deleteDoctor(DoctorDto doctorDto) {
+    public String deleteDoctor(DoctorDto doctorDto) {
         System.out.println("DoctorService.deleteRecord " + "start");
 
         String state;
