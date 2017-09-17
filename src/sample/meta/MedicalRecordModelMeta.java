@@ -1,6 +1,6 @@
 package sample.meta;
 
-//@javax.annotation.Generated(value = { "slim3-gen", "@VERSION@" }, date = "2017-09-17 14:02:19")
+//@javax.annotation.Generated(value = { "slim3-gen", "@VERSION@" }, date = "2017-09-17 22:11:45")
 /** */
 public final class MedicalRecordModelMeta extends org.slim3.datastore.ModelMeta<sample.model.MedicalRecordModel> {
 
@@ -56,24 +56,20 @@ public final class MedicalRecordModelMeta extends org.slim3.datastore.ModelMeta<
 
     @Override
     public sample.model.MedicalRecordModel entityToModel(com.google.appengine.api.datastore.Entity entity) {
-        if(entity != null){
-            sample.model.MedicalRecordModel model = new sample.model.MedicalRecordModel();
-            model.setAdmissionDate((java.lang.String) entity.getProperty("admissionDate"));
-            model.setBirthDay((java.lang.String) entity.getProperty("birthDay"));
-            model.setDeletedAt((java.lang.String) entity.getProperty("deletedAt"));
-            model.setDisease((java.lang.String) entity.getProperty("disease"));
-            model.setFirstName((java.lang.String) entity.getProperty("firstName"));
-            model.setId((java.lang.Long) entity.getProperty("id"));
-            model.setKey(entity.getKey());
-            model.setLastName((java.lang.String) entity.getProperty("lastName"));
-            model.setMedicines(longListToIntegerList(entity.getProperty("medicines")));
-            model.setSex((java.lang.String) entity.getProperty("sex"));
-            model.setSymptoms(longListToIntegerList(entity.getProperty("symptoms")));
-            model.setVersion((java.lang.Long) entity.getProperty("version"));
-            return model;
-        }else{
-            return null;
-        }
+        sample.model.MedicalRecordModel model = new sample.model.MedicalRecordModel();
+        model.setAdmissionDate((java.lang.String) entity.getProperty("admissionDate"));
+        model.setBirthDay((java.lang.String) entity.getProperty("birthDay"));
+        model.setDeletedAt((java.lang.String) entity.getProperty("deletedAt"));
+        model.setDisease((java.lang.String) entity.getProperty("disease"));
+        model.setFirstName((java.lang.String) entity.getProperty("firstName"));
+        model.setId((java.lang.Long) entity.getProperty("id"));
+        model.setKey(entity.getKey());
+        model.setLastName((java.lang.String) entity.getProperty("lastName"));
+        model.setMedicines(longListToIntegerList(entity.getProperty("medicines")));
+        model.setSex((java.lang.String) entity.getProperty("sex"));
+        model.setSymptoms(longListToIntegerList(entity.getProperty("symptoms")));
+        model.setVersion((java.lang.Long) entity.getProperty("version"));
+        return model;
     }
 
     @Override
