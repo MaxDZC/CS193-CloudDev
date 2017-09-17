@@ -52,9 +52,7 @@ public class PatientController extends Controller {
             jObj.getString("address"),
             jObj.getString("email"),
             jObj.getString("number"),
-            jObj.getString("birthday"),
-            jObj.getString("username"),
-            jObj.getString("passWord")
+            jObj.getString("birthday")
            );
 
         if (action.equals("registerPatient")) {
