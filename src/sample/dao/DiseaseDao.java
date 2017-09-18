@@ -15,9 +15,7 @@ import com.google.appengine.api.datastore.Transaction;
 import com.google.appengine.api.datastore.Query.FilterOperator;
 
 import sample.meta.DiseaseModelMeta;
-import sample.meta.DoctorModelMeta;
 import sample.model.DiseaseModel;
-import sample.model.DoctorModel;
 
 public class DiseaseDao extends DaoBase<DiseaseModel>{
     

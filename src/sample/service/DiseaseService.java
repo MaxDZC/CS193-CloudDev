@@ -4,11 +4,8 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import sample.dao.DiseaseDao;
-import sample.dao.MedicineDao;
 import sample.dto.DiseaseDto;
-import sample.dto.MedicineDto;
 import sample.model.DiseaseModel;
-import sample.model.MedicineModel;
 
 
 public class DiseaseService {

@@ -1,10 +1,7 @@
 package sample.dto;
 
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
-import com.google.appengine.api.datastore.Key;
 
 public class DiseaseDto extends ErrorsDto {
     private Long id;
