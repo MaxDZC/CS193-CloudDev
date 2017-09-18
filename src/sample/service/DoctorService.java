@@ -164,4 +164,9 @@ public class DoctorService {
         // TODO Auto-generated method stub
         return doctorDao.getDoctorById(id);
     }
+    public static String generateToken(Long id){
+        String token = null ;
+        
+        return  token ;
+    }
 }
