@@ -7,7 +7,6 @@ import java.util.Date;
 import org.slim3.controller.Controller;
 import org.slim3.controller.Navigation;
 import org.slim3.repackaged.org.json.JSONObject;
-import org.slim3.util.RequestMap;
 
 import sample.dto.DoctorDto;
 import sample.service.DoctorService;

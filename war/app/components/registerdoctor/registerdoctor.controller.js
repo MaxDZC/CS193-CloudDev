@@ -5,6 +5,8 @@ angular.module('hplus.modules.registerdoctor')
 
       $scope.contactNoRegex = "\\d{7,}";
       $scope.passwordRegex = ".{6,}";
+      $scope.meter = "meter-bar";
+      $scope.passwordStatus = "Enter a password";
 
       var errorMessage = "";
 
@@ -26,6 +28,39 @@ angular.module('hplus.modules.registerdoctor')
           id: 3
         }
       ];
+
+      $scope.$watch(
+        // This function returns the value being watched. It is called for each turn of the $digest loop
+        function() { return $scope.passwordStrength; },
+        // This is the change listener, called when the value returned from the above function changes
+        function(newValue, oldValue) {
+          if (newValue != undefined && newValue.password != "") {
+            switch(newValue.score){
+              case 0:
+                $scope.meter = "meter-bar meter-bar-verybad";
+                $scope.passwordStatus = "Very Weak";
+                break;
+              case 1:
+                $scope.meter = "meter-bar meter-bar-bad";
+                $scope.passwordStatus = "Weak";
+                break;
+              case 2:
+                $scope.meter = "meter-bar meter-bar-average";
+                $scope.passwordStatus = "Average";
+                break;
+              case 3:
+                $scope.meter = "meter-bar meter-bar-good";
+                $scope.passwordStatus = "Strong";
+                break;
+              case 4:
+                $scope.meter = "meter-bar meter-bar-verygood";
+                $scope.passwordStatus = "Very Strong";
+            }
+          } else {
+            $scope.meter = "meter-bar";
+            $scope.passwordStatus = "Enter a password";
+          }
+      })
 
       $scope.checkStatus = function(status){
         var retType;
@@ -75,7 +110,7 @@ angular.module('hplus.modules.registerdoctor')
 
       var confirmRegisterDoctor = function(doctor, initComponents){
         doctorFactory.registerDoctor(doctor, initComponents);
-      }
+      };
 
       $scope.registerDoctor = function(){
         var modalObject = {};
