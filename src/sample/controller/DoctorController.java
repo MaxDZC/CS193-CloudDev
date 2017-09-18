@@ -11,6 +11,7 @@ import org.slim3.util.RequestMap;
 
 import sample.dto.DoctorDto;
 import sample.service.DoctorService;
+import sample.service.MedicineService;
 import sample.utils.JSONValidators;
 
 public class DoctorController extends Controller {
@@ -82,13 +83,21 @@ public class DoctorController extends Controller {
                 }
 
             } else if(method == "GET") {
-                jsonObject = new JSONObject();
-                jsonObject.put("doctors", DoctorService.getDoctors());
+                jsonObject  = new JSONObject();
+                
+                if(this.request.getParameter("id") != null){
+                    jsonObject.put("doctor", DoctorService.getDoctor(Long.parseLong(this.request.getParameter("id"))));
+                    } else {
+                    jsonObject.put("doctors", DoctorService.getDoctors());
+                }
+              
             
             } else if(method == "PUT") {
                 
                 jsonObject = new JSONObject(this.request.getReader().readLine());
                 validator = new JSONValidators(jsonObject);
+                
+                
                 
                 if(validator.validate()){
                     

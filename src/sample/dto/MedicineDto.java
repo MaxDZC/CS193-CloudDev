@@ -1,11 +1,40 @@
 package sample.dto;
 
+import java.util.Date;
+
 public class MedicineDto {
     private Long id;
     private String name;
     private String description;
     private Double price;
+    private Date createdaAt;
+    private String deletedAt;
+    private Date updatedAt;
     
+    public Date getCreatedaAt() {
+        return createdaAt;
+    }
+
+    public void setCreatedaAt(Date date) {
+        this.createdaAt = date;
+    }
+
+    public String getDeletedAt() {
+        return deletedAt;
+    }
+
+    public void setDeletedAt(String deletedAt) {
+        this.deletedAt = deletedAt;
+    }
+
+    public Date getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(Date date) {
+        this.updatedAt = date;
+    }
+
     public MedicineDto(){
         
     }

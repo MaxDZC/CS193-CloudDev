@@ -1,11 +1,11 @@
 package sample.meta;
 
-//@javax.annotation.Generated(value = { "slim3-gen", "@VERSION@" }, date = "2017-09-18 00:49:49")
+//@javax.annotation.Generated(value = { "slim3-gen", "@VERSION@" }, date = "2017-09-18 13:07:45")
 /** */
 public final class MedicineModelMeta extends org.slim3.datastore.ModelMeta<sample.model.MedicineModel> {
 
     /** */
-    public final org.slim3.datastore.StringAttributeMeta<sample.model.MedicineModel> createdaAt = new org.slim3.datastore.StringAttributeMeta<sample.model.MedicineModel>(this, "createdaAt", "createdaAt");
+    public final org.slim3.datastore.CoreAttributeMeta<sample.model.MedicineModel, java.util.Date> createdaAt = new org.slim3.datastore.CoreAttributeMeta<sample.model.MedicineModel, java.util.Date>(this, "createdaAt", "createdaAt", java.util.Date.class);
 
     /** */
     public final org.slim3.datastore.StringAttributeMeta<sample.model.MedicineModel> deletedAt = new org.slim3.datastore.StringAttributeMeta<sample.model.MedicineModel>(this, "deletedAt", "deletedAt");
@@ -48,7 +48,7 @@ public final class MedicineModelMeta extends org.slim3.datastore.ModelMeta<sampl
     @Override
     public sample.model.MedicineModel entityToModel(com.google.appengine.api.datastore.Entity entity) {
         sample.model.MedicineModel model = new sample.model.MedicineModel();
-        model.setCreatedaAt((java.lang.String) entity.getProperty("createdaAt"));
+        model.setCreatedaAt((java.util.Date) entity.getProperty("createdaAt"));
         model.setDeletedAt((java.lang.String) entity.getProperty("deletedAt"));
         model.setDescription((java.lang.String) entity.getProperty("description"));
         model.setId((java.lang.Long) entity.getProperty("id"));

@@ -15,20 +15,30 @@ import com.google.appengine.api.datastore.Transaction;
 import com.google.appengine.api.datastore.Query.FilterOperator;
 
 import sample.meta.MedicineModelMeta;
+
 import sample.model.MedicineModel;
+
 
 
 public class MedicineDao {
     
-    public MedicineModel getMed(String name){
-        System.out.println("MedicineDao.getMed start");
+    public Entity getMed(String name){
+        System.out.println("MedicineDao.getDoc start");
         
-        MedicineModel medicine = MedicineModelMeta.get().entityToModel(Datastore.query("MedicineModel")
-                .filter("name", FilterOperator.EQUAL, name)
-                .asSingleEntity() );
+        Entity medicine = null ;
         
- 
-            return medicine;
+          medicine =  Datastore.query("MedicineModel")
+           .filter("name", FilterOperator.EQUAL, name)
+           .filter("deletedAt", FilterOperator.EQUAL, null)
+           .asSingleEntity();
+       
+        if(medicine != null){
+            System.out.println("MedicineDao.getDoc end(success)");
+        }else{
+            System.out.println("MedicineDao.getDoc end(failed)");
+        }
+        
+        return medicine;
         
     }
     

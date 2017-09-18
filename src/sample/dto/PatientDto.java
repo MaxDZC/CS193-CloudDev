@@ -1,5 +1,7 @@
 package sample.dto;
 
+import java.util.Date;
+
 public class PatientDto {
     /**
      * The id of the 'Patient'
@@ -49,15 +51,15 @@ public class PatientDto {
     /**
      * Creates an instance of 'Patient'
      */
-    private String createdaAt;
+    private Date createdaAt;
     private String deletedAt;
     private String updatedAt;
-    public String getCreatedaAt() {
+    public Date getCreatedaAt() {
         return createdaAt;
     }
 
-    public void setCreatedaAt(String createdaAt) {
-        this.createdaAt = createdaAt;
+    public void setCreatedaAt(Date date) {
+        this.createdaAt = date;
     }
 
     public String getDeletedAt() {
