@@ -137,6 +137,7 @@ angular.module('hplus.modules.registerdoctor')
             positiveButton: "Ok",
             isVisible: true
           };
+          
           modalFactory.setContents(modalObject);
         }
       };

@@ -1,23 +1,23 @@
 package sample.meta;
 
-//@javax.annotation.Generated(value = { "slim3-gen", "@VERSION@" }, date = "2017-09-18 12:02:11")
+//@javax.annotation.Generated(value = { "slim3-gen", "@VERSION@" }, date = "2017-09-18 13:57:21")
 /** */
 public final class MedicalRecordModelMeta extends org.slim3.datastore.ModelMeta<sample.model.MedicalRecordModel> {
 
     /** */
-    public final org.slim3.datastore.StringAttributeMeta<sample.model.MedicalRecordModel> admissionDate = new org.slim3.datastore.StringAttributeMeta<sample.model.MedicalRecordModel>(this, "admissionDate", "admissionDate");
+    public final org.slim3.datastore.CoreAttributeMeta<sample.model.MedicalRecordModel, java.util.Date> createdAt = new org.slim3.datastore.CoreAttributeMeta<sample.model.MedicalRecordModel, java.util.Date>(this, "createdAt", "createdAt", java.util.Date.class);
 
     /** */
-    public final org.slim3.datastore.StringAttributeMeta<sample.model.MedicalRecordModel> birthDay = new org.slim3.datastore.StringAttributeMeta<sample.model.MedicalRecordModel>(this, "birthDay", "birthDay");
+    public final org.slim3.datastore.CoreAttributeMeta<sample.model.MedicalRecordModel, java.util.Date> deletedAt = new org.slim3.datastore.CoreAttributeMeta<sample.model.MedicalRecordModel, java.util.Date>(this, "deletedAt", "deletedAt", java.util.Date.class);
 
     /** */
-    public final org.slim3.datastore.StringAttributeMeta<sample.model.MedicalRecordModel> deletedAt = new org.slim3.datastore.StringAttributeMeta<sample.model.MedicalRecordModel>(this, "deletedAt", "deletedAt");
+    public final org.slim3.datastore.CoreAttributeMeta<sample.model.MedicalRecordModel, java.util.Date> dischargeDate = new org.slim3.datastore.CoreAttributeMeta<sample.model.MedicalRecordModel, java.util.Date>(this, "dischargeDate", "dischargeDate", java.util.Date.class);
 
     /** */
-    public final org.slim3.datastore.StringAttributeMeta<sample.model.MedicalRecordModel> disease = new org.slim3.datastore.StringAttributeMeta<sample.model.MedicalRecordModel>(this, "disease", "disease");
+    public final org.slim3.datastore.CollectionAttributeMeta<sample.model.MedicalRecordModel, java.util.ArrayList<java.lang.Long>, java.lang.Long> diseaseIdList = new org.slim3.datastore.CollectionAttributeMeta<sample.model.MedicalRecordModel, java.util.ArrayList<java.lang.Long>, java.lang.Long>(this, "diseaseIdList", "diseaseIdList", java.util.ArrayList.class);
 
     /** */
-    public final org.slim3.datastore.StringAttributeMeta<sample.model.MedicalRecordModel> firstName = new org.slim3.datastore.StringAttributeMeta<sample.model.MedicalRecordModel>(this, "firstName", "firstName");
+    public final org.slim3.datastore.CoreAttributeMeta<sample.model.MedicalRecordModel, java.lang.Long> doctorId = new org.slim3.datastore.CoreAttributeMeta<sample.model.MedicalRecordModel, java.lang.Long>(this, "doctorId", "doctorId", java.lang.Long.class);
 
     /** */
     public final org.slim3.datastore.CoreAttributeMeta<sample.model.MedicalRecordModel, java.lang.Long> id = new org.slim3.datastore.CoreAttributeMeta<sample.model.MedicalRecordModel, java.lang.Long>(this, "id", "id", java.lang.Long.class);
@@ -26,16 +26,22 @@ public final class MedicalRecordModelMeta extends org.slim3.datastore.ModelMeta<
     public final org.slim3.datastore.CoreAttributeMeta<sample.model.MedicalRecordModel, com.google.appengine.api.datastore.Key> key = new org.slim3.datastore.CoreAttributeMeta<sample.model.MedicalRecordModel, com.google.appengine.api.datastore.Key>(this, "__key__", "key", com.google.appengine.api.datastore.Key.class);
 
     /** */
-    public final org.slim3.datastore.StringAttributeMeta<sample.model.MedicalRecordModel> lastName = new org.slim3.datastore.StringAttributeMeta<sample.model.MedicalRecordModel>(this, "lastName", "lastName");
+    public final org.slim3.datastore.CollectionAttributeMeta<sample.model.MedicalRecordModel, java.util.ArrayList<java.lang.Long>, java.lang.Long> medicineIdList = new org.slim3.datastore.CollectionAttributeMeta<sample.model.MedicalRecordModel, java.util.ArrayList<java.lang.Long>, java.lang.Long>(this, "medicineIdList", "medicineIdList", java.util.ArrayList.class);
 
     /** */
-    public final org.slim3.datastore.CollectionAttributeMeta<sample.model.MedicalRecordModel, java.util.ArrayList<java.lang.Integer>, java.lang.Integer> medicines = new org.slim3.datastore.CollectionAttributeMeta<sample.model.MedicalRecordModel, java.util.ArrayList<java.lang.Integer>, java.lang.Integer>(this, "medicines", "medicines", java.util.ArrayList.class);
+    public final org.slim3.datastore.CoreAttributeMeta<sample.model.MedicalRecordModel, java.lang.Long> patientId = new org.slim3.datastore.CoreAttributeMeta<sample.model.MedicalRecordModel, java.lang.Long>(this, "patientId", "patientId", java.lang.Long.class);
 
     /** */
-    public final org.slim3.datastore.StringAttributeMeta<sample.model.MedicalRecordModel> sex = new org.slim3.datastore.StringAttributeMeta<sample.model.MedicalRecordModel>(this, "sex", "sex");
+    public final org.slim3.datastore.CollectionAttributeMeta<sample.model.MedicalRecordModel, java.util.ArrayList<java.lang.Long>, java.lang.Long> quantityList = new org.slim3.datastore.CollectionAttributeMeta<sample.model.MedicalRecordModel, java.util.ArrayList<java.lang.Long>, java.lang.Long>(this, "quantityList", "quantityList", java.util.ArrayList.class);
 
     /** */
-    public final org.slim3.datastore.CollectionAttributeMeta<sample.model.MedicalRecordModel, java.util.ArrayList<java.lang.Integer>, java.lang.Integer> symptoms = new org.slim3.datastore.CollectionAttributeMeta<sample.model.MedicalRecordModel, java.util.ArrayList<java.lang.Integer>, java.lang.Integer>(this, "symptoms", "symptoms", java.util.ArrayList.class);
+    public final org.slim3.datastore.CollectionAttributeMeta<sample.model.MedicalRecordModel, java.util.ArrayList<java.lang.Long>, java.lang.Long> symptomIdList = new org.slim3.datastore.CollectionAttributeMeta<sample.model.MedicalRecordModel, java.util.ArrayList<java.lang.Long>, java.lang.Long>(this, "symptomIdList", "symptomIdList", java.util.ArrayList.class);
+
+    /** */
+    public final org.slim3.datastore.CoreAttributeMeta<sample.model.MedicalRecordModel, java.lang.Boolean> type = new org.slim3.datastore.CoreAttributeMeta<sample.model.MedicalRecordModel, java.lang.Boolean>(this, "type", "type", java.lang.Boolean.class);
+
+    /** */
+    public final org.slim3.datastore.CoreAttributeMeta<sample.model.MedicalRecordModel, java.util.Date> updatedAt = new org.slim3.datastore.CoreAttributeMeta<sample.model.MedicalRecordModel, java.util.Date>(this, "updatedAt", "updatedAt", java.util.Date.class);
 
     /** */
     public final org.slim3.datastore.CoreAttributeMeta<sample.model.MedicalRecordModel, java.lang.Long> version = new org.slim3.datastore.CoreAttributeMeta<sample.model.MedicalRecordModel, java.lang.Long>(this, "version", "version", java.lang.Long.class);
@@ -57,17 +63,19 @@ public final class MedicalRecordModelMeta extends org.slim3.datastore.ModelMeta<
     @Override
     public sample.model.MedicalRecordModel entityToModel(com.google.appengine.api.datastore.Entity entity) {
         sample.model.MedicalRecordModel model = new sample.model.MedicalRecordModel();
-        model.setAdmissionDate((java.lang.String) entity.getProperty("admissionDate"));
-        model.setBirthDay((java.lang.String) entity.getProperty("birthDay"));
-        model.setDeletedAt((java.lang.String) entity.getProperty("deletedAt"));
-        model.setDisease((java.lang.String) entity.getProperty("disease"));
-        model.setFirstName((java.lang.String) entity.getProperty("firstName"));
+        model.setCreatedAt((java.util.Date) entity.getProperty("createdAt"));
+        model.setDeletedAt((java.util.Date) entity.getProperty("deletedAt"));
+        model.setDischargeDate((java.util.Date) entity.getProperty("dischargeDate"));
+        model.setDiseaseIdList(toList(java.lang.Long.class, entity.getProperty("diseaseIdList")));
+        model.setDoctorId((java.lang.Long) entity.getProperty("doctorId"));
         model.setId((java.lang.Long) entity.getProperty("id"));
         model.setKey(entity.getKey());
-        model.setLastName((java.lang.String) entity.getProperty("lastName"));
-        model.setMedicines(longListToIntegerList(entity.getProperty("medicines")));
-        model.setSex((java.lang.String) entity.getProperty("sex"));
-        model.setSymptoms(longListToIntegerList(entity.getProperty("symptoms")));
+        model.setMedicineIdList(toList(java.lang.Long.class, entity.getProperty("medicineIdList")));
+        model.setPatientId((java.lang.Long) entity.getProperty("patientId"));
+        model.setQuantityList(toList(java.lang.Long.class, entity.getProperty("quantityList")));
+        model.setSymptomIdList(toList(java.lang.Long.class, entity.getProperty("symptomIdList")));
+        model.setType((java.lang.Boolean) entity.getProperty("type"));
+        model.setUpdatedAt((java.util.Date) entity.getProperty("updatedAt"));
         model.setVersion((java.lang.Long) entity.getProperty("version"));
         return model;
     }
@@ -81,16 +89,18 @@ public final class MedicalRecordModelMeta extends org.slim3.datastore.ModelMeta<
         } else {
             entity = new com.google.appengine.api.datastore.Entity(kind);
         }
-        entity.setProperty("admissionDate", m.getAdmissionDate());
-        entity.setProperty("birthDay", m.getBirthDay());
+        entity.setProperty("createdAt", m.getCreatedAt());
         entity.setProperty("deletedAt", m.getDeletedAt());
-        entity.setProperty("disease", m.getDisease());
-        entity.setProperty("firstName", m.getFirstName());
+        entity.setProperty("dischargeDate", m.getDischargeDate());
+        entity.setProperty("diseaseIdList", m.getDiseaseIdList());
+        entity.setProperty("doctorId", m.getDoctorId());
         entity.setProperty("id", m.getId());
-        entity.setProperty("lastName", m.getLastName());
-        entity.setProperty("medicines", m.getMedicines());
-        entity.setProperty("sex", m.getSex());
-        entity.setProperty("symptoms", m.getSymptoms());
+        entity.setProperty("medicineIdList", m.getMedicineIdList());
+        entity.setProperty("patientId", m.getPatientId());
+        entity.setProperty("quantityList", m.getQuantityList());
+        entity.setProperty("symptomIdList", m.getSymptomIdList());
+        entity.setProperty("type", m.getType());
+        entity.setProperty("updatedAt", m.getUpdatedAt());
         entity.setProperty("version", m.getVersion());
         entity.setProperty("slim3.schemaVersion", 1);
         return entity;
@@ -154,25 +164,29 @@ public final class MedicalRecordModelMeta extends org.slim3.datastore.ModelMeta<
         sample.model.MedicalRecordModel m = (sample.model.MedicalRecordModel) model;
         writer.beginObject();
         org.slim3.datastore.json.Default encoder0 = new org.slim3.datastore.json.Default();
-        if(m.getAdmissionDate() != null){
-            writer.setNextPropertyName("admissionDate");
-            encoder0.encode(writer, m.getAdmissionDate());
-        }
-        if(m.getBirthDay() != null){
-            writer.setNextPropertyName("birthDay");
-            encoder0.encode(writer, m.getBirthDay());
+        if(m.getCreatedAt() != null){
+            writer.setNextPropertyName("createdAt");
+            encoder0.encode(writer, m.getCreatedAt());
         }
         if(m.getDeletedAt() != null){
             writer.setNextPropertyName("deletedAt");
             encoder0.encode(writer, m.getDeletedAt());
         }
-        if(m.getDisease() != null){
-            writer.setNextPropertyName("disease");
-            encoder0.encode(writer, m.getDisease());
+        if(m.getDischargeDate() != null){
+            writer.setNextPropertyName("dischargeDate");
+            encoder0.encode(writer, m.getDischargeDate());
         }
-        if(m.getFirstName() != null){
-            writer.setNextPropertyName("firstName");
-            encoder0.encode(writer, m.getFirstName());
+        if(m.getDiseaseIdList() != null){
+            writer.setNextPropertyName("diseaseIdList");
+            writer.beginArray();
+            for(java.lang.Long v : m.getDiseaseIdList()){
+                encoder0.encode(writer, v);
+            }
+            writer.endArray();
+        }
+        if(m.getDoctorId() != null){
+            writer.setNextPropertyName("doctorId");
+            encoder0.encode(writer, m.getDoctorId());
         }
         if(m.getId() != null){
             writer.setNextPropertyName("id");
@@ -182,29 +196,41 @@ public final class MedicalRecordModelMeta extends org.slim3.datastore.ModelMeta<
             writer.setNextPropertyName("key");
             encoder0.encode(writer, m.getKey());
         }
-        if(m.getLastName() != null){
-            writer.setNextPropertyName("lastName");
-            encoder0.encode(writer, m.getLastName());
-        }
-        if(m.getMedicines() != null){
-            writer.setNextPropertyName("medicines");
+        if(m.getMedicineIdList() != null){
+            writer.setNextPropertyName("medicineIdList");
             writer.beginArray();
-            for(java.lang.Integer v : m.getMedicines()){
+            for(java.lang.Long v : m.getMedicineIdList()){
                 encoder0.encode(writer, v);
             }
             writer.endArray();
         }
-        if(m.getSex() != null){
-            writer.setNextPropertyName("sex");
-            encoder0.encode(writer, m.getSex());
+        if(m.getPatientId() != null){
+            writer.setNextPropertyName("patientId");
+            encoder0.encode(writer, m.getPatientId());
         }
-        if(m.getSymptoms() != null){
-            writer.setNextPropertyName("symptoms");
+        if(m.getQuantityList() != null){
+            writer.setNextPropertyName("quantityList");
             writer.beginArray();
-            for(java.lang.Integer v : m.getSymptoms()){
+            for(java.lang.Long v : m.getQuantityList()){
                 encoder0.encode(writer, v);
             }
             writer.endArray();
+        }
+        if(m.getSymptomIdList() != null){
+            writer.setNextPropertyName("symptomIdList");
+            writer.beginArray();
+            for(java.lang.Long v : m.getSymptomIdList()){
+                encoder0.encode(writer, v);
+            }
+            writer.endArray();
+        }
+        if(m.getType() != null){
+            writer.setNextPropertyName("type");
+            encoder0.encode(writer, m.getType());
+        }
+        if(m.getUpdatedAt() != null){
+            writer.setNextPropertyName("updatedAt");
+            encoder0.encode(writer, m.getUpdatedAt());
         }
         if(m.getVersion() != null){
             writer.setNextPropertyName("version");
@@ -218,58 +244,92 @@ public final class MedicalRecordModelMeta extends org.slim3.datastore.ModelMeta<
         sample.model.MedicalRecordModel m = new sample.model.MedicalRecordModel();
         org.slim3.datastore.json.JsonReader reader = null;
         org.slim3.datastore.json.Default decoder0 = new org.slim3.datastore.json.Default();
-        reader = rootReader.newObjectReader("admissionDate");
-        m.setAdmissionDate(decoder0.decode(reader, m.getAdmissionDate()));
-        reader = rootReader.newObjectReader("birthDay");
-        m.setBirthDay(decoder0.decode(reader, m.getBirthDay()));
+        reader = rootReader.newObjectReader("createdAt");
+        m.setCreatedAt(decoder0.decode(reader, m.getCreatedAt()));
         reader = rootReader.newObjectReader("deletedAt");
         m.setDeletedAt(decoder0.decode(reader, m.getDeletedAt()));
-        reader = rootReader.newObjectReader("disease");
-        m.setDisease(decoder0.decode(reader, m.getDisease()));
-        reader = rootReader.newObjectReader("firstName");
-        m.setFirstName(decoder0.decode(reader, m.getFirstName()));
+        reader = rootReader.newObjectReader("dischargeDate");
+        m.setDischargeDate(decoder0.decode(reader, m.getDischargeDate()));
+        reader = rootReader.newObjectReader("diseaseIdList");
+        {
+            java.util.ArrayList<java.lang.Long> elements = new java.util.ArrayList<java.lang.Long>();
+            org.slim3.datastore.json.JsonArrayReader r = rootReader.newArrayReader("diseaseIdList");
+            if(r != null){
+                reader = r;
+                int n = r.length();
+                for(int i = 0; i < n; i++){
+                    r.setIndex(i);
+                    java.lang.Long v = decoder0.decode(reader, (java.lang.Long)null)                    ;
+                    if(v != null){
+                        elements.add(v);
+                    }
+                }
+                m.setDiseaseIdList(elements);
+            }
+        }
+        reader = rootReader.newObjectReader("doctorId");
+        m.setDoctorId(decoder0.decode(reader, m.getDoctorId()));
         reader = rootReader.newObjectReader("id");
         m.setId(decoder0.decode(reader, m.getId()));
         reader = rootReader.newObjectReader("key");
         m.setKey(decoder0.decode(reader, m.getKey()));
-        reader = rootReader.newObjectReader("lastName");
-        m.setLastName(decoder0.decode(reader, m.getLastName()));
-        reader = rootReader.newObjectReader("medicines");
+        reader = rootReader.newObjectReader("medicineIdList");
         {
-            java.util.ArrayList<java.lang.Integer> elements = new java.util.ArrayList<java.lang.Integer>();
-            org.slim3.datastore.json.JsonArrayReader r = rootReader.newArrayReader("medicines");
+            java.util.ArrayList<java.lang.Long> elements = new java.util.ArrayList<java.lang.Long>();
+            org.slim3.datastore.json.JsonArrayReader r = rootReader.newArrayReader("medicineIdList");
             if(r != null){
                 reader = r;
                 int n = r.length();
                 for(int i = 0; i < n; i++){
                     r.setIndex(i);
-                    java.lang.Integer v = decoder0.decode(reader, (java.lang.Integer)null)                    ;
+                    java.lang.Long v = decoder0.decode(reader, (java.lang.Long)null)                    ;
                     if(v != null){
                         elements.add(v);
                     }
                 }
-                m.setMedicines(elements);
+                m.setMedicineIdList(elements);
             }
         }
-        reader = rootReader.newObjectReader("sex");
-        m.setSex(decoder0.decode(reader, m.getSex()));
-        reader = rootReader.newObjectReader("symptoms");
+        reader = rootReader.newObjectReader("patientId");
+        m.setPatientId(decoder0.decode(reader, m.getPatientId()));
+        reader = rootReader.newObjectReader("quantityList");
         {
-            java.util.ArrayList<java.lang.Integer> elements = new java.util.ArrayList<java.lang.Integer>();
-            org.slim3.datastore.json.JsonArrayReader r = rootReader.newArrayReader("symptoms");
+            java.util.ArrayList<java.lang.Long> elements = new java.util.ArrayList<java.lang.Long>();
+            org.slim3.datastore.json.JsonArrayReader r = rootReader.newArrayReader("quantityList");
             if(r != null){
                 reader = r;
                 int n = r.length();
                 for(int i = 0; i < n; i++){
                     r.setIndex(i);
-                    java.lang.Integer v = decoder0.decode(reader, (java.lang.Integer)null)                    ;
+                    java.lang.Long v = decoder0.decode(reader, (java.lang.Long)null)                    ;
                     if(v != null){
                         elements.add(v);
                     }
                 }
-                m.setSymptoms(elements);
+                m.setQuantityList(elements);
             }
         }
+        reader = rootReader.newObjectReader("symptomIdList");
+        {
+            java.util.ArrayList<java.lang.Long> elements = new java.util.ArrayList<java.lang.Long>();
+            org.slim3.datastore.json.JsonArrayReader r = rootReader.newArrayReader("symptomIdList");
+            if(r != null){
+                reader = r;
+                int n = r.length();
+                for(int i = 0; i < n; i++){
+                    r.setIndex(i);
+                    java.lang.Long v = decoder0.decode(reader, (java.lang.Long)null)                    ;
+                    if(v != null){
+                        elements.add(v);
+                    }
+                }
+                m.setSymptomIdList(elements);
+            }
+        }
+        reader = rootReader.newObjectReader("type");
+        m.setType(decoder0.decode(reader, m.getType()));
+        reader = rootReader.newObjectReader("updatedAt");
+        m.setUpdatedAt(decoder0.decode(reader, m.getUpdatedAt()));
         reader = rootReader.newObjectReader("version");
         m.setVersion(decoder0.decode(reader, m.getVersion()));
         return m;

@@ -83,19 +83,33 @@ angular.module('hplus.factory')
           modalFactory.setContents(modalObject);
         });
       };
-        
-
-      var deleteDoctor = function(deleteObject){
+      
+      var confirmDeleteDoctor = function(doctor){
         $http({
           method: "DELETE",
           url: "/Doctor",
-          data: deleteObject
+          data: doctor
         }).then(function successCallback(response){
           console.log(response);
           $location.path('/admin/list/doctor');
         }, function errorCallback(response){
           console.log(response);
-        });
+        }); 
+      };
+
+      var deleteDoctor = function(doctor){
+        var modalObject = {
+          type: "confirm",
+          title: "Delete Confirmation",
+          description: "Are you sure you want to archive Dr. " + doctor.lastname + "?",
+          negativeButton: "No",
+          positiveButton: "Yes",
+          isVisible: true,
+          data: confirmDeleteDoctor,
+          object: doctor
+        }
+
+        modalFactory.setContents(modalObject);
       };
 
       var saveDoctor = function(doctor){
@@ -111,7 +125,8 @@ angular.module('hplus.factory')
         getListOfDoctors: getListOfDoctors,
         saveDoctor: saveDoctor,
         getDoctor: getDoctor,
-        updateDoctor: updateDoctor
+        updateDoctor: updateDoctor,
+        deleteDoctor: deleteDoctor
       }
     }
   );

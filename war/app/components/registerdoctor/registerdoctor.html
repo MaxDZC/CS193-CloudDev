@@ -69,10 +69,13 @@
           <div class="meter">
             <div ng-class="meter" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
           </div>
-          <span class="match-padding subtitle">{{ passwordStatus }}</span>
+          <span class="subtitle">{{ passwordStatus }}</span>
       </div>
-      <div class="col col-md-3">
-        <button ng-class="checkStatus(registerDoctorForm.$valid)" ng-disabled="registerDoctorForm.$invalid" ng-click="registerDoctor()">{{ button }}</button>
+    </div>
+    <div class="row match-padding">
+        <div class="col col-md-3 col-md-offset-1">
+          <button ng-class="checkStatus(registerDoctorForm.$valid)" ng-disabled="registerDoctorForm.$invalid" ng-click="registerDoctor()">{{ button }}</button>
+        </div>
       </div>
     </div>
   </ng-form>

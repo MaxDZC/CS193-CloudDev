@@ -6,41 +6,49 @@ import org.slim3.datastore.Datastore;
 
 import com.google.appengine.api.datastore.*;
 import com.google.appengine.api.datastore.Query.FilterOperator;
+import com.google.appengine.api.datastore.Query.CompositeFilterOperator;
+import com.google.appengine.api.datastore.Query.FilterPredicate;
+
 import sample.meta.MedicalRecordModelMeta;
 import sample.model.MedicalRecordModel;
 
 public class MedicalRecordDao {
     
-    public MedicalRecordModel getMedicalRecordByName(MedicalRecordModel inputMedicalRecord){
-        System.out.println("MedicalRecordDao.getMedicalRecordByName start");
+    public MedicalRecordModel getMedicalRecordByPatientInfo(MedicalRecordModel inputMedicalRecord){
+        System.out.println("MedicalRecordDao.getMedicalRecordByPatientInfo start");
+        MedicalRecordModel record = null;
         try{
-            MedicalRecordModel record = MedicalRecordModelMeta.get().entityToModel(
+            record = MedicalRecordModelMeta.get().entityToModel(
                     Datastore.query(MedicalRecordModel.class)
-                             .filter("firstName", FilterOperator.EQUAL, inputMedicalRecord.getFirstName())
+                             .filter(CompositeFilterOperator.and(
+                                 new FilterPredicate("patientId", FilterOperator.EQUAL, inputMedicalRecord.getPatientId()),
+                                 new FilterPredicate("dischargeDate", FilterOperator.LESS_THAN, new Date()),
+                                 new FilterPredicate("deletedAt", FilterOperator.EQUAL, null)))
                              .asSingleEntity()) ;
             
-            System.out.println("MedicalRecordDao.getMedicalRecordByName end");
-            return record;
+            System.out.println("MedicalRecordDao.getMedicalRecordByPatientInfo end");
         }catch(Exception e){
-            System.out.println("MedicalRecordDao.getMedicalRecordByName Exception: "+e.toString());
+            System.out.println("MedicalRecordDao.getMedicalRecordByPatientInfo Exception: "+e.toString());
         }
-        return null;
+        
+        return record;
     }
     
     public MedicalRecordModel getMedicalRecordById(MedicalRecordModel inputMedicalRecord){
         System.out.println("MedicalRecordDao.getMedicalRecordById start");
+        MedicalRecordModel record = null;
         try{
-            MedicalRecordModel record = MedicalRecordModelMeta.get().entityToModel(
+            record = MedicalRecordModelMeta.get().entityToModel(
                     Datastore.query(MedicalRecordModel.class)
                              .filter("id", FilterOperator.EQUAL, inputMedicalRecord.getId())
                              .asSingleEntity()) ;
         
             System.out.println("MedicalRecordDao.getMedicalRecordById end");
-            return record;
         }catch(Exception e){
             System.out.println("MedicalRecordDao.getMedicalRecordById Exception: "+e.toString());
         }
-        return null;
+        
+        return record;
     }
     
     public void insertMedicalRecord(MedicalRecordModel inputMedicalRecord){
@@ -48,7 +56,7 @@ public class MedicalRecordDao {
         try{
             Transaction trans = Datastore.beginTransaction();
         
-            Key parentKey = KeyFactory.createKey("MedicalRecord", inputMedicalRecord.getFirstName()+inputMedicalRecord.getLastName());
+            Key parentKey = KeyFactory.createKey("MedicalRecord", inputMedicalRecord.getDoctorId()+inputMedicalRecord.getPatientId()+new Date().toString());
             Key key = Datastore.allocateId(parentKey, MedicalRecordModel.class);
         
             inputMedicalRecord.setKey(key);
@@ -63,30 +71,26 @@ public class MedicalRecordDao {
         }
     }
     
-    public void deleteMedicalRecord(MedicalRecordModel inputMedicalRecord){
-        System.out.println("MedicalRecordDao.deleteMedicalRecord start");
+    public void deleteOrUpdateMedicalRecord(MedicalRecordModel inputMedicalRecord){
+        System.out.println("MedicalRecordDao.deleteOrUpdateMedicalRecord start");
         try{
             Transaction trans = Datastore.beginTransaction();
-            inputMedicalRecord.setDeletedAt(new Date().toString());
             Datastore.put(inputMedicalRecord);
             trans.commit();
         
-            System.out.println("MedicalRecordDao.deleteMedicalRecord end");
+            System.out.println("MedicalRecordDao.deleteOrUpdateMedicalRecord end");
         }catch(Exception e){
-            System.out.println("MedicalRecordDao.deleteMedicalRecord Exception: "+e.toString());
+            System.out.println("MedicalRecordDao.deleteOrUpdateMedicalRecord Exception: "+e.toString());
         }
     }
     
-    public void updateMedicalRecord(MedicalRecordModel inputMedicalRecord){
-        System.out.println("MedicalRecordDao.updateMedicalRecord start");
-        try{
-            Transaction trans = Datastore.beginTransaction();
-            Datastore.put(trans, inputMedicalRecord);
-            trans.commit();
-            
-            System.out.println("MedicalRecordDao.updateMedicalRecord end");
-        }catch(Exception e){
-            System.out.println("MedicalRecordDao.updateMedicalRecord Exception: "+e.toString());
-        }
+    public static String processDate(String date){
+        String[] dates;
+        
+        dates = date.split(" ");
+        
+        date = dates[5] + "-" + dates[1] + "-" + dates[2];
+        
+        return date;
     }
 }
