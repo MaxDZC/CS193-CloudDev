@@ -24,10 +24,8 @@
     <div class="col col-md-6"><!-- List sector -->
 		  <label class="subtitle">ALL RESULTS</label>
 		  
-		  
-		  
 		  <div class="margins" >
-		    <hplus-explore-medicines-card dir-paginate="med in medicines | filter: searchFilter | itemsPerPage:10" data="med" selectedMed="selectedMedicine" ng-click="setSelected(med)" ></hplus-explore-medicines-card>       
+		    <hplus-explore-medicines-card dir-paginate="med in medicines | filter: searchFilter | itemsPerPage:10" data="med" selectedMed="selectedMedicine" ng-click="setSelected(med)" ng-class="{'selectedCard__container': med == selectedMedicine}"></hplus-explore-medicines-card>       
       </div>    			
     </div>
    	<div class="col col-md-6"><!-- Detail Sector -->
