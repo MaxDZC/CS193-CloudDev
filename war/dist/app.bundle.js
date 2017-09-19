@@ -38965,7 +38965,6 @@ angular.module('hplus.factory')
               isVisible: true
             };
             modalFactory.setContents(modalObject);
-            clear();
           }, function errorCallback(response) {
         	  var errorMessage = "";
               console.log(response);
