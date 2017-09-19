@@ -92,7 +92,14 @@ public class DoctorController extends Controller {
                 jsonObject = new JSONObject(new RequestMap(this.request));
                 
                 if(jsonObject.has("username")){
-                    jsonObject.put("doctor", DoctorModelMeta.get().modelToJson(DoctorService.loginDoctor(jsonObject.getString("username"), jsonObject.getString("password"))));
+                    Object tester = DoctorService.loginDoctor(jsonObject.getString("username"), jsonObject.getString("password"));
+                    if(tester != null){
+                        String doc = DoctorModelMeta.get().modelToJson(tester);
+                        System.out.println(doc);
+                        jsonObject.put("doctor", doc);
+                    } else {
+                       response.setStatus(400);
+                    }
                 } else {
                     jsonObject.put("doctors", DoctorService.getDoctors());
                 }

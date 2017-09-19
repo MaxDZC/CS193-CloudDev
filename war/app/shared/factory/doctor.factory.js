@@ -1,7 +1,7 @@
 angular.module('hplus.factory')
 
   .factory('doctorFactory', 
-    function($http, modalFactory, $window, $location){
+    function($http, modalFactory, $window, $location, globalFactory, $rootScope){
 
       var registerDoctor = function(doctorObject, clear){
         $http({
@@ -148,11 +148,12 @@ angular.module('hplus.factory')
       };
 
       var getUser = function(){
-        return JSON.parse(angular.fromJson($window.localStorage.getItem("user")));
+        return angular.fromJson($window.localStorage.getItem("user"));
       };
 
       var logout = function(){
         $window.localStorage.removeItem("user");
+        $rootScope.$broadcast("changeNavbarOut");
       };
 
       var login = function(user, pass){
@@ -165,15 +166,34 @@ angular.module('hplus.factory')
             method:"GET",
             url:"/Doctor",
             params: data
-        })
-        .then(function successCallback(response) {
-            console.log(response);
-            saveUser(response.data.doctor);
-            go("/admin/list/record");
-          // when the response is available
+        }).then(function successCallback(response) {
+          console.log(response);
+          var doctor = JSON.parse(response.data.doctor);
+          var modalObject = {
+            type: "notify",
+            title: "Login Successful!",
+            description: "Welcome Dr. " + doctor.lastname + "!",
+            positiveButton: "Thank you!",
+            isVisible: true
+          }
+
+          modalFactory.setContents(modalObject);
+
+          saveUser(doctor);
+          $rootScope.$broadcast("userLoggedIn", doctor);
+          $rootScope.$broadcast("changeNavbar", doctor);
+          globalFactory.go("/admin/list/record");
         }, function errorCallback(response) {
-          // called asynchronously if an error occurs
-          // or server returns response with an error status.
+          console.log(response);
+          var modalObject = {
+            type: "notify",
+            title: "Authentication Failed!",
+            description: "Wrong username/email and/or password!",
+            positiveButton: "OK",
+            isVisible: true
+          }
+
+          modalFactory.setContents(modalObject);
         });
       };
       

@@ -1,7 +1,18 @@
 angular.module('hplus.modules.editdisease')
 
   .controller('EditDiseaseController',
-    function($scope, globalFactory){
+    function($location, $scope, globalFactory, doctorFactory){
+      
+      var user = doctorFactory.getUser();
+
+      if(user != null){
+        if(!user.admin){
+          $location.path("/admin/list/record");
+        }
+      } else {
+        $location.path("/");
+      }
+      
       $scope.symptomsSelected = [];
       $scope.medicinesSelected = [];
       $scope.go = function(path){

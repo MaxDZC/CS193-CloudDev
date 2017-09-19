@@ -1,7 +1,19 @@
 angular.module('hplus.modules.registerdiseases')
 
   .controller('RegisterDiseasesController',
-    function($scope, globalFactory,$location){
+    function($scope, $location, globalFactory, doctorFactory){
+      
+      var user = doctorFactory.getUser();
+      console.log(user);
+
+      if(user != null) {
+        if(!user.admin){
+          $location.path("/admin/list/record");
+        }
+      } else {
+        $location.path("/");
+      }
+      
       $scope.symptomsSelected = [];
       $scope.medicinesSelected = [];
       $scope.go = function(path){

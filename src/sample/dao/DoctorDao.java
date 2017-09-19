@@ -124,19 +124,18 @@ public class DoctorDao{
     public Object getDoctorByEmailandPassword(String user,String password){  
         System.out.println("DoctorDao.getDoc start");
        
-        DoctorModel doctor;
-        
-        doctor = DoctorModelMeta.get().entityToModel(Datastore.query(DoctorModel.class).filter(
+        DoctorModel doctor = null;
+        Entity entity = Datastore.query(DoctorModel.class).filter(
             CompositeFilterOperator.and(
                 CompositeFilterOperator.or(
                     new FilterPredicate("username",FilterOperator.EQUAL, user.toLowerCase()), 
                     new FilterPredicate("email", FilterOperator.EQUAL, user.toLowerCase())),
                 new FilterPredicate("password", FilterOperator.EQUAL, password),
                 new FilterPredicate("deletedAt", FilterOperator.EQUAL, null))
-            ).asSingleEntity());
+            ).asSingleEntity();
         
-        if(doctor != null){
-            System.out.println("DoctorDao.getDoc end (success)");
+        if(entity != null){
+            doctor = DoctorModelMeta.get().entityToModel(entity);
         }
         
         return doctor;

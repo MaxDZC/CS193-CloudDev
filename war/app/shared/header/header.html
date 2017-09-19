@@ -11,7 +11,7 @@
     <div ng-show="user != null" class="col col-md-4 header__user-container">
       <span class="header__user-alignment">
         <span class="header__user-name">{{ user.firstname+" "+ user.lastname}}</span>
-        <span class="header__user-title">Administrator</span>
+        <span class="header__user-title">{{ user.specialization }}</span>
       </span>
       
       <div class="dropdown header__user-alignment">

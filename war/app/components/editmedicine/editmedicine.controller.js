@@ -1,7 +1,17 @@
 angular.module('hplus.modules.editmedicine')
 
   .controller('EditMedicineController',
-    function($scope, globalFactory){
+    function($scope, $location, globalFactory, doctorFactory){
+
+      var user = doctorFactory.getUser();
+
+      if(user != null) {
+        if(!user.admin) {
+          $location.path("/admin/list/record");
+        }
+      } else {
+        $location.path("/");
+      }
 
       $scope.go = function(path){
         globalFactory.go(path);
