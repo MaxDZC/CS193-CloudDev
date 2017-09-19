@@ -34,30 +34,8 @@ angular.module('hplus.modules.editdoctor')
         modalFactory.setContents(modalObject);
       };
 
-      $scope.confirmDeleteDoctor = function(){
-
-      };
-
-      $scope.deleteDoctor = function(){
-        var medRecs = 5; // medicalRecordFactory.getMedicalRecords();
-
-        modalObject = {
-          type: "confirm",
-          title: "Confirm Update",
-          description: "Are you sure you want to update Dr. " + $scope.doctorData.lastname + "?",
-          negativeButton: "No",
-          positiveButton: "Yes",
-          isVisible: true,
-          data: confirmUpdateDoctor,
-          object: $scope.doctorData,
-          clean: '/admin/view/doctordetail'
-        };
-        
-        if(medRecs == 0){
-          doctorFactory.deleteDoctor($scope.doctorData);
-        } else {
-
-        }
+      $scope.delete = function(){
+        doctorFactory.deleteDoctor($scope.doctorData);
       };
       
       $scope.specialization = [

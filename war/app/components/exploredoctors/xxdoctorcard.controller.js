@@ -7,5 +7,9 @@ angular.module('hplus.modules.exploredoctors')
         doctorFactory.saveDoctor(doctor);
         globalFactory.go(path);
       };
+
+      $scope.delete = function(doctor){
+        doctorFactory.deleteDoctor(doctor);
+      };
     }
   );

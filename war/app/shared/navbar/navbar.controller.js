@@ -7,11 +7,11 @@ angular.module('hplus.modules.navbar')
       $scope.link = "#!/admin/register/disease";
 
       $scope.checkPage = function(){
-        var state = true;
+        var state = false;
 
-        if($location.path() == "/admin/register/doctor"){
+        if($location.path().indexOf("register") != -1){
           state = false;
-        } else if($location.path().indexOf("doctor")){
+        } else if($location.path().indexOf("doctor") != -1){
           $scope.registerButton = "Register Doctor";
           $scope.link = "#!/admin/register/doctor";
         }

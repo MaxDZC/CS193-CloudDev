@@ -15,37 +15,9 @@ angular.module('hplus.modules.viewdoctor')
         globalFactory.go(path);
       };
 
-      var confirmDeleteDoctor = function(){
-        console.log("deleted!" + $scope.doctorData.id);
-      }
-
-      $scope.confirmDelete = function(){
-        if($scope.recordList.length == 0){
-          modalObject = {
-            type: "confirm",
-            title: "Confirm Deleting",
-            description: "Are you sure you want to delete " + $scope.doctorData.firstname + " " + $scope.doctorData.lastname + "?",
-            negativeButton: "No",
-            positiveButton: "Yes",
-            isVisible: true,
-            data: confirmDeleteDoctor,
-            object: $scope.doctorData,
-            clean: '/admin/list/doctor'
-          };
-      
-          modalFactory.setContents(modalObject);
-        } else {
-          modalObject = {
-            type: "notify",
-            title: "Unable to Delete",
-            description: "Dr. " + $scope.doctorData.firstname + " " + $scope.doctorData.lastname + " has pending medical records!",
-            positiveButton: "Ok",
-            isVisible: true
-          };
-
-          modalFactory.setContents(modalObject);
-        }
-      }
+      $scope.delete = function(){
+        doctorFactory.deleteDoctor($scope.doctorData);
+      };
 
       $scope.recordList = [
         {

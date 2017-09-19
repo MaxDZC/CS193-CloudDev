@@ -39,15 +39,9 @@ public class DoctorController extends Controller {
         String message;
         
         try{
-            //System.out.println(this.request.getReader().readLine());
-            
             
             if(method.equalsIgnoreCase("POST")){
                 jsonObject = new JSONObject(this.request.getReader().readLine());
-                /** 
-                * Used to retrieve the JSON equivalent data
-                */
-                
 
                 validator = new JSONValidators(jsonObject);
                 
@@ -130,9 +124,14 @@ public class DoctorController extends Controller {
                         jsonObject.put("errors", message);
                         response.setStatus(400);
                     }
+                }
                     
-                } else if(method == "DELETE"){
+            } else if(method == "DELETE"){
                     
+                jsonObject = new JSONObject(this.request.getReader().readLine());
+                validator = new JSONValidators(jsonObject);
+                
+                if(validator.validate()){                       
                     birthdays = jsonObject.getString("birthday").split(" ");
                     createdAts = jsonObject.getString("createdAt").split(" ");
                     updatedAts = jsonObject.getString("updatedAt").split(" ");
