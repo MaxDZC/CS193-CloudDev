@@ -143,6 +143,18 @@ angular.module('hplus.factory')
         return angular.fromJson($window.localStorage.getItem("doctor"));
       };
 
+      var saveUser = function(user){
+        $window.localStorage.setItem("user", angular.toJson(user));
+      };
+
+      var getUser = function(){
+        return JSON.parse(angular.fromJson($window.localStorage.getItem("user")));
+      };
+
+      var logout = function(){
+        $window.localStorage.removeItem("user");
+      };
+
       var login = function(user, pass){
         var data = {
           username:user,
@@ -155,29 +167,15 @@ angular.module('hplus.factory')
             params: data
         })
         .then(function successCallback(response) {
-         //  {"message",true} -> Was inserted
-        // {"message",false} -> An error occured
-       // {"message","duplicated"} -> Email already exis
             console.log(response);
-            var users = {
-                      username:response.data.doctors.username,
-                      firstname:response.data.doctors.firstName,
-                      lastname:response.data.doctors.lastName,
-                      birthday:response.data.doctors.birthday,
-                      contactNo:response.data.doctors.contactNo,
-                      specialization:response.data.doctors.specialization,
-                      address:response.data.doctors.address
-                   };
-            $rootScope.$broadcast('loginUserContents', users);
-            console.log("user:" + user.username);
+            saveUser(response.data.doctor);
             go("/admin/list/record");
           // when the response is available
         }, function errorCallback(response) {
           // called asynchronously if an error occurs
           // or server returns response with an error status.
         });
-    }
-
+      };
       
       return {
         registerDoctor: registerDoctor,
@@ -185,7 +183,11 @@ angular.module('hplus.factory')
         saveDoctor: saveDoctor,
         getDoctor: getDoctor,
         updateDoctor: updateDoctor,
-        deleteDoctor: deleteDoctor
+        deleteDoctor: deleteDoctor,
+        login: login,
+        saveUser: saveUser,
+        getUser: getUser,
+        logout: logout
       }
     }
   );

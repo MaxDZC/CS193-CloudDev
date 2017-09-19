@@ -8,9 +8,9 @@
         <span class="header__app-text">HealthPlus</span>
     </div>
 
-    <div ng-class="" class="col col-md-4 header__user-container">
+    <div ng-show="user != null" class="col col-md-4 header__user-container">
       <span class="header__user-alignment">
-        <span class="header__user-name">{{currUser.firstname+" "+currUser.lastname}}</span>
+        <span class="header__user-name">{{ user.firstname+" "+ user.lastname}}</span>
         <span class="header__user-title">Administrator</span>
       </span>
       
@@ -18,6 +18,7 @@
         <button class="dropbtn"><span class="fa fa-caret-down"></span></button>
         <div class="dropdown-content">
           <a href="#">View Profile</a>
+          <a href="#" ng-click="logout()">Logout</a>
         </div>
       </div>
     </div>

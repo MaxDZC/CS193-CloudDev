@@ -1,6 +1,11 @@
 package sample.dto;
 
-public class PatientDto {
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import org.slim3.repackaged.org.json.JSONObject;
+
+public class PatientDto extends ErrorsDto{
     /**
      * The id of the 'Patient'
      */
@@ -9,12 +14,12 @@ public class PatientDto {
     /**
      * The firstName of the 'Patient'
      */
-    private String firstName;
+    private String firstname;
     
     /**
      * The lastName of the 'Patient'
      */
-    private String lastName;
+    private String lastname;
     
     /**
      * The address of the 'Patient'
@@ -22,220 +27,119 @@ public class PatientDto {
     private String address;
     
     /**
-     * The email of the 'Patient'
-     */
-    private String email;
-    
-    /**
      * The contactNumber of the 'Patient'
      */
-    private String contactNumber;
+    private String contactNo;
     
     /**
      * The birthDay of the 'Patient'
      */
-    private String birthDay;
+    private Date birthday;
     
-    /**
-     * The userName of the 'Patient'
-     */
-    private String userName;
+    private boolean sex;
     
-    /**
-     * The passWord of the 'Patient'
-     */
-    private String passWord;
     
     /**
      * Creates an instance of 'Patient'
      */
-    private String createdaAt;
-    private String deletedAt;
-    private String updatedAt;
-    public String getCreatedaAt() {
-        return createdaAt;
-    }
-
-    public void setCreatedaAt(String createdaAt) {
-        this.createdaAt = createdaAt;
-    }
-
-    public String getDeletedAt() {
-        return deletedAt;
-    }
-
-    public void setDeletedAt(String deletedAt) {
-        this.deletedAt = deletedAt;
-    }
-
-    public String getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(String updatedAt) {
-        this.updatedAt = updatedAt;
-    }
-
+    private Date createdAt;
+    private Date deletedAt;
+    private Date updatedAt;
+    
     public PatientDto(){
         
     }
     
-    /**
-     * Creates an instance of 'Patient' with attribute initialization
-     */
-    public PatientDto(String firstName, String lastName, String address, String email,
-            String contactNumber, String birthDay){
+    public PatientDto(JSONObject jObj) throws Exception{
+        this.setFirstName(jObj.getString("firstname"));
+        this.setLastName(jObj.getString("lastname"));
+        this.setAddress(jObj.getString("address"));
         
-        this.setFirstName(firstName);
-        this.setLastName(lastName);
-        this.setAddress(address);
-        this.setEmail(email);
-        this.setContactNumber(contactNumber);
-        this.setBirthDay(birthDay);
-     
+        String birthday = jObj.getString("birthday").split("T")[0];
+        
+        this.setBirthday(new SimpleDateFormat("yyyy-MM-dd").parse(birthday));
+        this.setSex(jObj.getBoolean("sex"));
+        this.setContactNumber(jObj.getString("contactNo"));
     }
     
-    /**
-     * Retrieves the id of the 'Patient'
-     * @return the id of the 'Patient'
-     */
     public Long getId() {
         return id;
     }
     
-    /**
-     * Sets the id of the 'Patient'
-     * @param id - the value to be set
-     */
     public void setId(Long id) {
         this.id = id;
     }
     
-    /**
-     * Retrieves the first name of the 'Patient'.
-     * @return the firstName of the 'Patient'
-     */
     public String getFirstName() {
-        return firstName;
+        return firstname;
     }
     
-    /**
-     * Sets the first name of the 'Patient'.
-     * @param firstName - the value to be set
-     */
     public void setFirstName(String firstName) {
-        this.firstName = firstName;
+        this.firstname = firstName;
     }
     
-    /**
-     * Retrieves the last name of the 'Patient'.
-     * @return the lastName of the 'Patient'
-     */
     public String getLastName() {
-        return lastName;
+        return lastname;
     }
     
-    /**
-     * Sets the last name of the 'Patient'.
-     * @param lastName - the value to be set
-     */
     public void setLastName(String lastName) {
-        this.lastName = lastName;
+        this.lastname = lastName;
     }
     
-    /**
-     * Retrieves the address of the 'Patient'.
-     * @return the address of the 'Patient'
-     */
     public String getAddress() {
         return address;
     }
     
-    /**
-     * Sets the address of the 'Patient'
-     * @param address - the value to be set
-     */
     public void setAddress(String address) {
         this.address = address;
     }
     
-    /**
-     * Retrieves the email of the 'Patient'.
-     * @return the email of the 'Patient'
-     */
-    public String getEmail() {
-        return email;
-    }
-    
-    /**
-     * Sets the email of the 'Patient'.
-     * @param email - the value to be set
-     */
-    public void setEmail(String email) {
-        this.email = email;
-    }
-    
-    /**
-     * Retrieves the contact number of the 'Patient'.
-     * @return the contactNumber of the 'Patient'
-     */
     public String getContactNumber() {
-        return contactNumber;
+        return contactNo;
     }
     
-    /**
-     * Sets the contact number of the 'Patient'.
-     * @param contactNumber - the value to be set
-     */
-    public void setContactNumber(String contactNumber) {
-        this.contactNumber = contactNumber;
+    public void setContactNumber(String contactNo) {
+        this.contactNo = contactNo;
     }
     
-    /**
-     * Retrieves the birthday of the 'Patient'.
-     * @return the birthDay of the 'Patient'
-     */
-    public String getBirthDay() {
-        return birthDay;
+    public Date getBirthday() {
+        return birthday;
     }
     
-    /**
-     * Sets the birthday of the 'Patient'.
-     * @param birthDay - the value to be set
-     */
-    public void setBirthDay(String birthDay) {
-        this.birthDay = birthDay;
+    public void setBirthday(Date date) {
+        this.birthday = date;
     }
     
-    /**
-     * Retrieves the username of the 'Patient'.
-     * @return the userName of the 'Patient'
-     */
-    public String getUserName() {
-        return userName;
+    public boolean isSex() {
+        return sex;
     }
     
-    /**
-     * Sets the username of the 'Patient'.
-     * @param userName - the value to be set
-     */
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setSex(boolean sex) {
+        this.sex = sex;
     }
     
-    /**
-     * Retrieves the password of the 'Patient'.
-     * @return the passWord of the 'Patient'
-     */
-    public String getPassWord() {
-        return passWord;
+    public Date getCreatedAt() {
+        return createdAt;
     }
     
-    /**
-     * Sets the password of the 'Patient'.
-     * @param passWord - the value to be set=
-     */
-    public void setPassWord(String passWord) {
-        this.passWord = passWord;
+    public void setCreatedAt(Date createdaAt) {
+        this.createdAt = createdaAt;
     }
+    
+    public Date getDeletedAt() {
+        return deletedAt;
+    }
+    
+    public void setDeletedAt(Date deletedAt) {
+        this.deletedAt = deletedAt;
+    }
+    
+    public Date getUpdatedAt() {
+        return updatedAt;
+    }
+    
+    public void setUpdatedAt(Date updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+       
 }

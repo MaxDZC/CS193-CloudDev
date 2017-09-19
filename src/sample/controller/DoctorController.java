@@ -7,8 +7,10 @@ import java.util.Date;
 import org.slim3.controller.Controller;
 import org.slim3.controller.Navigation;
 import org.slim3.repackaged.org.json.JSONObject;
+import org.slim3.util.RequestMap;
 
 import sample.dto.DoctorDto;
+import sample.meta.DoctorModelMeta;
 import sample.service.DoctorService;
 import sample.utils.JSONValidators;
 
@@ -38,6 +40,26 @@ public class DoctorController extends Controller {
         String message;
         
         try{
+        /*    DoctorDto adminAccount = new DoctorDto();
+            
+            adminAccount.setFirstname("admin");
+            adminAccount.setLastname("admin");
+            adminAccount.setAddress("Sto. Nino Village, Road 1 Zone Sikwa Pakna-an, Mandaue City");
+            adminAccount.setAdmin(true);
+            adminAccount.setUsername("root");
+            adminAccount.setPassword("root");
+            adminAccount.setSpecialization("Administrator");
+            adminAccount.setContactNo("09323437269");
+            adminAccount.setEmail("teambob.cloud@gmail.com");
+            
+            adminAccount.setCreatedAt(new Date());
+            adminAccount.setDeletedAt(null);
+            adminAccount.setUpdatedAt(null);
+            
+            message = doctorService.insertDoc(adminAccount);
+            jsonObject = new JSONObject();
+            method = "";
+        */
             
             if(method.equalsIgnoreCase("POST")){
                 jsonObject = new JSONObject(this.request.getReader().readLine());
@@ -46,21 +68,13 @@ public class DoctorController extends Controller {
                 
                 if(validator.validate()){
                     
+                    doctorDto = new DoctorDto(jsonObject);
+                    
                     birthday = jsonObject.getString("birthday").split("T")[0];
                     
-                    doctorDto.setFirstname(jsonObject.getString("firstname"));
-                    doctorDto.setLastname(jsonObject.getString("lastname"));
-                    doctorDto.setEmail(jsonObject.getString("email"));
-                    doctorDto.setAddress(jsonObject.getString("address"));
-                    doctorDto.setSpecialization(jsonObject.getString("specialization"));
-                    doctorDto.setContactNo(jsonObject.getString("contactNo"));
                     doctorDto.setBirthday(new SimpleDateFormat("yyyy-MM-dd").parse(birthday));
-                    doctorDto.setUsername(jsonObject.getString("username"));
-                    doctorDto.setPassword(jsonObject.getString("password"));
-                    doctorDto.setToken(null);
-                    doctorDto.setAdmin(false);
                     doctorDto.setCreatedAt(new Date());
-                    doctorDto.setUpdatedAt(new Date());
+                    doctorDto.setUpdatedAt(null);
                     doctorDto.setDeletedAt(null);
                     
                     message = doctorService.insertDoc(doctorDto);
@@ -75,9 +89,14 @@ public class DoctorController extends Controller {
                 }
 
             } else if(method == "GET") {
-                jsonObject = new JSONObject();
-                jsonObject.put("doctors", DoctorService.getDoctors());
-            
+                jsonObject = new JSONObject(new RequestMap(this.request));
+                
+                if(jsonObject.has("username")){
+                    jsonObject.put("doctor", DoctorModelMeta.get().modelToJson(DoctorService.loginDoctor(jsonObject.getString("username"), jsonObject.getString("password"))));
+                } else {
+                    jsonObject.put("doctors", DoctorService.getDoctors());
+                }
+                
             } else if(method == "PUT") {
                 
                 jsonObject = new JSONObject(this.request.getReader().readLine());
@@ -91,18 +110,12 @@ public class DoctorController extends Controller {
                     birthday = birthdays[5] + "-" + birthdays[1] + "-" + birthdays[2];
                     createdAt = createdAts[5] + "-" + createdAts[1] + "-" + createdAts[2];
                     
+                    doctorDto = new DoctorDto(jsonObject);
+                    
+                    
                     doctorDto.setId(jsonObject.getLong("id"));
-                    doctorDto.setFirstname(jsonObject.getString("firstname"));
-                    doctorDto.setLastname(jsonObject.getString("lastname"));
-                    doctorDto.setEmail(jsonObject.getString("email"));
-                    doctorDto.setAddress(jsonObject.getString("address"));
-                    doctorDto.setSpecialization(jsonObject.getString("specialization"));
-                    doctorDto.setContactNo(jsonObject.getString("contactNo"));
+                    
                     doctorDto.setBirthday(new SimpleDateFormat("yyyy-MMM-dd").parse(birthday));
-                    doctorDto.setUsername(jsonObject.getString("username"));
-                    doctorDto.setPassword(jsonObject.getString("password"));
-                    doctorDto.setToken(null);
-                    doctorDto.setAdmin(false);
                     doctorDto.setCreatedAt(new SimpleDateFormat("yyyy-MMM-dd").parse(createdAt));
                     doctorDto.setUpdatedAt(new Date());
                     doctorDto.setDeletedAt(null);
@@ -131,18 +144,11 @@ public class DoctorController extends Controller {
                     createdAt = createdAts[5] + "-" + createdAts[1] + "-" + createdAts[2];
                     updatedAt = updatedAts[5] + "-" + updatedAts[1] + "-" + updatedAts[2];
                     
+                    doctorDto = new DoctorDto(jsonObject);
+                    
                     doctorDto.setId(jsonObject.getLong("id"));
-                    doctorDto.setFirstname(jsonObject.getString("firstname"));
-                    doctorDto.setLastname(jsonObject.getString("lastname"));
-                    doctorDto.setEmail(jsonObject.getString("email"));
-                    doctorDto.setAddress(jsonObject.getString("address"));
-                    doctorDto.setSpecialization(jsonObject.getString("specialization"));
-                    doctorDto.setContactNo(jsonObject.getString("contactNo"));
+                    
                     doctorDto.setBirthday(new SimpleDateFormat("yyyy-MMM-dd").parse(birthday));
-                    doctorDto.setUsername(jsonObject.getString("username"));
-                    doctorDto.setPassword(jsonObject.getString("password"));
-                    doctorDto.setToken(null);
-                    doctorDto.setAdmin(false);
                     doctorDto.setCreatedAt(new SimpleDateFormat("yyyy-MMM-dd").parse(createdAt));
                     doctorDto.setUpdatedAt(new SimpleDateFormat("yyyy-MMM-dd").parse(updatedAt));
                     doctorDto.setDeletedAt(new Date());

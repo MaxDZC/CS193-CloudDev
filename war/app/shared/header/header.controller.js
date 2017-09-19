@@ -1,13 +1,15 @@
 angular.module('hplus.modules.header')
 
   .controller('HeaderController',
-    function($scope, globalFactory,$rootScope){
-          
-      $scope.$on('loginUserContents', function(event, users) {
-        $scope.currUser = users;
-      });
-    	    	
-    	console.log($scope.currUser);
+    function($scope, globalFactory, doctorFactory){
+
+      $scope.user = doctorFactory.getUser();
+      console.log($scope.user);
+
+      $scope.logout = function(){
+        doctorFactory.logout();
+      };
+
       $scope.go = function(path){
         globalFactory.go(path);
       };
