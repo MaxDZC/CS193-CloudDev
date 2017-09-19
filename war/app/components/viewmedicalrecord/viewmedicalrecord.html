@@ -1,0 +1,104 @@
+<div class="row">
+  <div class="col col-md-8 col-md-offset-1">
+    <h1>Medical Record</h1>
+  </div>
+</div>
+
+<div class="row" ng-controller="ViewMedicalRecordController">
+  <div class="col col-md-2 col-md-offset-1">
+    <div class="row">
+      <div class="col col-md-12">
+        <label class="subtitle">Patient</label>
+        <div class="subtitle__value">
+	        {{patient.lastName + ', ' + patient.firstName}}
+	      </div>
+	      <label class="subtitle">Date of Birth</label>
+        <div class="subtitle__value">
+          {{patient.dateOfBirth | date : "longDate"}}
+        </div>
+        <label class="subtitle">Sex</label>
+        <div class="subtitle__value">
+          {{sex}}
+        </div>
+        <label class="subtitle">Admission Date</label>
+        <div class="subtitle__value">
+          {{record.createdAt | date : "longDate"}}
+        </div>
+        <label class="subtitle">Discharge Date</label>
+        <div class="subtitle__value">
+          {{record.dischargeDate | date : "longDate"}}
+        </div>
+        <button class="outline">Edit</button></br>
+        <button class="outline">Delete</button>
+      </div>
+    </div>
+  </div>
+  <div class="col col-md-7">
+    <div class="row">
+      <div class="col-md-12">
+        <!-- <hplus-view-medical-record-card dir-paginate="rec in records | itemsPerPage:10" data="rec"></hplus-view-medical-record-card> -->
+        <div class="margins">
+          <div class="detail__container">
+            <div class="card__title">
+              Diseases
+            </div>
+            <div class="detail__desc">
+              <p>
+              <span ng-repeat="dis in diseases"><span ng-hide="$first">,&nbsp;</span>{{dis}}</span>
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="margins">
+          <div class="detail__container">
+            <div class="card__title">
+              Symptoms
+            </div>
+            <div class="detail__desc">
+              <p>
+              <span ng-repeat="symp in symptoms"><span ng-hide="$first">,&nbsp;</span>{{symp}}</span>
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="margins">
+          <div class="detail__container">
+            <div class="card__title">
+              Medicines
+            </div>
+            <table class="table table-striped">
+              <thead>
+                 <tr>
+                   <th class="name">Name</th>
+                   <th>Price</th>
+                   <th>Quantity</th>
+                   <th>Total</th>
+                 </tr>
+              </thead>
+              <tbody>
+                <tr ng-repeat="med in medicines">
+                  <td class="name">{{med.name}}</td>
+                  <td>{{med.price | currency : "PHP "}}</td>
+                  <td>{{record.quantity[$index]}}</td>
+                  <td>{{med.price * record.quantity[$index] | currency : "PHP "}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-md-offset-6">
+          <div class="margins">
+            <div class="detail__containerTotalPrice">
+              
+                <b>Total:</b> {{totalBill | currency : 'PHP '}} 
+              
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
+</div>
+
+<!-- Pagination Section -->
+<dir-pagination-controls max-size="5"></dir-pagination-controls>

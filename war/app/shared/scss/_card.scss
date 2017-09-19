@@ -10,6 +10,9 @@
   color: $lightGray !important;
  
 }
+.card__tableDiv{
+  background-color: $softWhite !important;
+}
 .card__container--custom1{
   @extend  .card__container;
   height: 25em !important;
@@ -64,4 +67,14 @@
   display: block;
   font-size: $sizeDetailTitle;
   font-weight: 500;
+}
+
+.detail__containerTotalPrice{
+  margin-bottom: $sizePaddingThin;
+  width: 100%;
+  padding: $sizePadding;
+  background-color: $teal;
+  color: white;
+  font-size: $sizeCardTitle;
+  text-align: center
 }
