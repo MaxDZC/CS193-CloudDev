@@ -83,6 +83,10 @@ angular.module('hplus.factory')
           modalFactory.setContents(modalObject);
         });
       };
+
+      var goList = function(){
+        $location.path('/admin/list/doctor');
+      }
       
       var confirmDeleteDoctor = function(doctor){
         $http({
@@ -91,16 +95,35 @@ angular.module('hplus.factory')
           data: doctor
         }).then(function successCallback(response){
           console.log(response);
-          $location.path('/admin/list/doctor');
+          var modalObject = {
+            type: "notify",
+            title: "Archive Successful!",
+            description: "Successfully archived Dr. " + doctor.lastname + "!",
+            positiveButton: "Ok",
+            isVisible: true,
+            data: goList
+          }
+
+          modalFactory.setContents(modalObject);
         }, function errorCallback(response){
           console.log(response);
+          var modalObject = {
+            type: "notify",
+            title: "Archive Failed!",
+            description: "Failed to archive Dr. " + doctor.lastname + "!",
+            positiveButton: "Ok",
+            isVisible: true,
+            data: goList
+          }
+
+          modalFactory.setContents(modalObject);
         }); 
       };
 
       var deleteDoctor = function(doctor){
         var modalObject = {
           type: "confirm",
-          title: "Delete Confirmation",
+          title: "Archive Confirmation",
           description: "Are you sure you want to archive Dr. " + doctor.lastname + "?",
           negativeButton: "No",
           positiveButton: "Yes",
@@ -118,7 +141,43 @@ angular.module('hplus.factory')
 
       var getDoctor = function(){
         return angular.fromJson($window.localStorage.getItem("doctor"));
-      }
+      };
+
+      var login = function(user, pass){
+        var data = {
+          username:user,
+          password:pass
+        };
+        
+        $http({
+            method:"GET",
+            url:"/Doctor",
+            params: data
+        })
+        .then(function successCallback(response) {
+         //  {"message",true} -> Was inserted
+        // {"message",false} -> An error occured
+       // {"message","duplicated"} -> Email already exis
+            console.log(response);
+            var users = {
+                      username:response.data.doctors.username,
+                      firstname:response.data.doctors.firstName,
+                      lastname:response.data.doctors.lastName,
+                      birthday:response.data.doctors.birthday,
+                      contactNo:response.data.doctors.contactNo,
+                      specialization:response.data.doctors.specialization,
+                      address:response.data.doctors.address
+                   };
+            $rootScope.$broadcast('loginUserContents', users);
+            console.log("user:" + user.username);
+            go("/admin/list/record");
+          // when the response is available
+        }, function errorCallback(response) {
+          // called asynchronously if an error occurs
+          // or server returns response with an error status.
+        });
+    }
+
       
       return {
         registerDoctor: registerDoctor,

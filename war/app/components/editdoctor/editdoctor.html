@@ -21,7 +21,7 @@
           <input type="email" ng-model="doctorData.email" ng-required="true">
           <div> 
             <button ng-click="update()">Update</button>
-            <button class="outline delete_btn" ng-click="deleteDoctor()">Archive</button>
+            <button class="outline delete_btn" ng-show="data.medicalRecords == null" ng-click="delete()">Archive</button>
           </div>
         </div>
       </div>
