@@ -19,7 +19,7 @@ public class MedicalRecordDto extends ErrorsDto{
     private ArrayList <Long> medicineIdList;
     private ArrayList <Long> diseaseIdList;
     private ArrayList <Long> quantityList;
-    private Boolean type;
+    private Boolean inPatient;
     
     private Date dischargeDate;
     private Date createdAt; //initialize only when created
@@ -62,6 +62,7 @@ public class MedicalRecordDto extends ErrorsDto{
         String dischargeDate = jObj.getString("dischargeDate").split("T")[0];
         
         this.setDischargeDate(new SimpleDateFormat("yyyy-MM-dd").parse(dischargeDate));
+        this.setInPatient(jObj.getBoolean("inPatient"));
     }
     
     public Long getId() {
@@ -120,12 +121,12 @@ public class MedicalRecordDto extends ErrorsDto{
         this.quantityList = quantityList;
     }
 
-    public Boolean getType() {
-        return type;
+    public Boolean getInPatient() {
+        return inPatient;
     }
 
-    public void setType(Boolean type) {
-        this.type = type;
+    public void setInPatient(Boolean inPatient) {
+        this.inPatient = inPatient;
     }
 
     public Date getDischargeDate() {

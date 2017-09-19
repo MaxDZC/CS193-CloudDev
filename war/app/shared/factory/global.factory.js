@@ -1,7 +1,7 @@
 angular.module('hplus.factory')
 
   .factory('globalFactory', function($location,$http,$rootScope){
-      var user;
+      
       var insertDisease = function(name,symptoms,medicine){
         var dataDisease = {
           diseasename:name,

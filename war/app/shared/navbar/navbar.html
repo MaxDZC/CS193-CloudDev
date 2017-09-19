@@ -2,20 +2,25 @@
   <div class="col col-md-10 col-md-offset-1">
 
     <div class="col col-md-8">
-      <div ng-class="selected('disease')" ng-click="go('/admin/list/disease')">
+      <div ng-show="user == null" ng-class="selected('')" ng-click="go('/')">
+        HealthPlus
+      </div>
+      <div ng-show="user != null" ng-class="selected('record')" ng-click="go('/admin/list/record')">
+        Medical Records
+      </div>
+      <div ng-show="user != null" ng-class="selected('disease')" ng-click="go('/admin/list/disease')">
         Diseases
       </div>
-      <div ng-class="selected('medicine')" ng-click="go('/admin/list/medicine')">
+      <div ng-show="user != null" ng-class="selected('medicine')" ng-click="go('/admin/list/medicine')">
         Medicines
       </div>
-      <div ng-class="selected('doctor')" ng-click="go('/admin/list/doctor')">
+      <div ng-show="user != null && user.admin" ng-class="selected('doctor')" ng-click="go('/admin/list/doctor')">
         Doctors
       </div>
-      <div ng-class="selected('patient')" ng-click="">
+      <div ng-show="user != null" ng-class="selected('patient')" ng-click="">
         Patient
       </div>
     </div>
-
     <div ng-show="checkPage()" class="col col-md-4 navbar__action-container">          
       <div class="navbar__btn navbar__btn--action">
         <a href="{{ link }}"> 
@@ -23,6 +28,5 @@
         </a>
       </div>
     </div>
-
   </div>
 </div>

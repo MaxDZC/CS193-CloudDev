@@ -24,21 +24,7 @@ public class DoctorService {
         String status;
         DoctorModel doctorModel;
         
-        doctorModel = new DoctorModel();
-        doctorModel.setFirstname(inputDoc.getFirstname());
-        doctorModel.setLastname(inputDoc.getLastname());
-        doctorModel.setEmail(inputDoc.getEmail());
-        doctorModel.setAddress(inputDoc.getAddress());
-        doctorModel.setSpecialization(inputDoc.getSpecialization());
-        doctorModel.setContactNo(inputDoc.getContactNo());
-        doctorModel.setBirthday(inputDoc.getBirthday());
-        doctorModel.setUsername(inputDoc.getUsername());
-        doctorModel.setPassword(inputDoc.getPassword());
-        doctorModel.setToken(null);
-        doctorModel.setAdmin(inputDoc.isAdmin());
-        doctorModel.setCreatedAt(inputDoc.getCreatedAt());
-        doctorModel.setUpdatedAt(inputDoc.getUpdatedAt());
-        doctorModel.setDeletedAt(inputDoc.getDeletedAt());
+        doctorModel = new DoctorModel(inputDoc);
         
         status = doctorDao.validateDoctor(inputDoc);
         
@@ -66,20 +52,7 @@ public class DoctorService {
         String status;
         DoctorModel doctorModel, resultModel;
         
-        doctorModel = new DoctorModel();
-        doctorModel.setId(doctorDto.getId());
-        doctorModel.setFirstname(doctorDto.getFirstname());
-        doctorModel.setLastname(doctorDto.getLastname());
-        doctorModel.setEmail(doctorDto.getEmail());
-        doctorModel.setAddress(doctorDto.getAddress());
-        doctorModel.setSpecialization(doctorDto.getSpecialization());
-        doctorModel.setContactNo(doctorDto.getContactNo());
-        doctorModel.setBirthday(doctorDto.getBirthday());
-        doctorModel.setUsername(doctorDto.getUsername());
-        doctorModel.setPassword(doctorDto.getPassword());
-        doctorModel.setCreatedAt(doctorDto.getCreatedAt());
-        doctorModel.setUpdatedAt(doctorDto.getUpdatedAt());
-        doctorModel.setDeletedAt(doctorDto.getDeletedAt());
+        doctorModel = new DoctorModel(doctorDto);
         
         status = "";
         
@@ -108,20 +81,7 @@ public class DoctorService {
         String state;
         DoctorModel resultModel;
         
-        DoctorModel doctorModel = new DoctorModel();
-        doctorModel.setId(doctorDto.getId());
-        doctorModel.setFirstname(doctorDto.getFirstname());
-        doctorModel.setLastname(doctorDto.getLastname());
-        doctorModel.setEmail(doctorDto.getEmail());
-        doctorModel.setAddress(doctorDto.getAddress());
-        doctorModel.setSpecialization(doctorDto.getSpecialization());
-        doctorModel.setContactNo(doctorDto.getContactNo());
-        doctorModel.setBirthday(doctorDto.getBirthday());
-        doctorModel.setUsername(doctorDto.getUsername());
-        doctorModel.setPassword(doctorDto.getPassword());
-        doctorModel.setCreatedAt(doctorDto.getCreatedAt());
-        doctorModel.setUpdatedAt(doctorDto.getUpdatedAt());
-        doctorModel.setDeletedAt(doctorDto.getDeletedAt());
+        DoctorModel doctorModel = new DoctorModel(doctorDto);
         
         state = "";
         
@@ -150,14 +110,12 @@ public class DoctorService {
         return state;
     }
 
-    public static DoctorModel loginDoctor(String username, String password){
-        System.out.println("SERVICEE");
-        DoctorModel  doctor = doctorDao.getDoctorByEmailandPassword(username, password);
-        return doctor;
+    public static Object loginDoctor(String username, String password){
+        System.out.println("DoctorService.loginDoctor");
+        return doctorDao.getDoctorByEmailandPassword(username, password);
     }
 
     public static Object getDoctors() {
-        // TODO Auto-generated method stub
         return doctorDao.getDoctors();
     }
     public static Object getDoctor(Long id) {

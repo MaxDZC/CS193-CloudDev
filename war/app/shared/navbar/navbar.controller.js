@@ -1,10 +1,20 @@
 angular.module('hplus.modules.navbar')
 
   .controller('NavbarController',
-    function($scope, $location, globalFactory){
+    function($scope, $location, globalFactory, doctorFactory){
+
+      $scope.user = doctorFactory.getUser();
 
       $scope.registerButton = "Register Disease";
       $scope.link = "#!/admin/register/disease";
+
+      $scope.$on("changeNavbar", function(event, user){
+        $scope.user = user;
+      });
+
+      $scope.$on("changeNavbarOut", function(event){
+        $scope.user = null;
+      });
 
       $scope.checkPage = function(){
         var state = false;

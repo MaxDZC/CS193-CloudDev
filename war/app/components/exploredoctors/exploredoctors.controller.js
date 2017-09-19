@@ -1,7 +1,17 @@
 angular.module('hplus.modules.exploredoctors')
 
   .controller('ExploreDoctorsController',
-    function($scope, globalFactory, modalFactory, doctorFactory){
+    function($scope, $location, globalFactory, modalFactory, doctorFactory){
+
+      var user = doctorFactory.getUser();
+
+      if(user != null){
+        if(!user.admin){
+          $location.path("/admin/list/record");
+        }
+      } else {
+        $location.path("/");
+      }
 
       $scope.length;
 

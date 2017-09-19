@@ -32,7 +32,7 @@ public class MedicalRecordModel implements Serializable {
     private ArrayList <Long> medicineIdList;
     private ArrayList <Long> diseaseIdList;
     private ArrayList <Long> quantityList;
-    private Boolean type;
+    private Boolean inPatient;
     
     private Date dischargeDate;
     private Date createdAt; //initialize only when created
@@ -51,7 +51,7 @@ public class MedicalRecordModel implements Serializable {
         this.setSymptomIdList(inputMedicalRecord.getSymptomIdList());
         this.setDiseaseIdList(inputMedicalRecord.getDiseaseIdList());
         this.setQuantityList(inputMedicalRecord.getQuantityList());
-        
+        this.setInPatient(inputMedicalRecord.getInPatient());
         this.setDischargeDate(inputMedicalRecord.getDischargeDate());
     }
     
@@ -152,12 +152,12 @@ public class MedicalRecordModel implements Serializable {
         this.quantityList = quantityList;
     }
 
-    public Boolean getType() {
-        return type;
+    public Boolean getInPatient() {
+        return inPatient;
     }
 
-    public void setType(Boolean type) {
-        this.type = type;
+    public void setInPatient(Boolean inPatient) {
+        this.inPatient = inPatient;
     }
 
     public Date getDischargeDate() {
