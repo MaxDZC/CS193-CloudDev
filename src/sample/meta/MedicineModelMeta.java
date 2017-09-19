@@ -1,11 +1,11 @@
 package sample.meta;
 
-//@javax.annotation.Generated(value = { "slim3-gen", "@VERSION@" }, date = "2017-09-18 03:15:54")
+//@javax.annotation.Generated(value = { "slim3-gen", "@VERSION@" }, date = "2017-09-19 15:07:00")
 /** */
 public final class MedicineModelMeta extends org.slim3.datastore.ModelMeta<sample.model.MedicineModel> {
 
     /** */
-    public final org.slim3.datastore.StringAttributeMeta<sample.model.MedicineModel> createdaAt = new org.slim3.datastore.StringAttributeMeta<sample.model.MedicineModel>(this, "createdaAt", "createdaAt");
+    public final org.slim3.datastore.StringAttributeMeta<sample.model.MedicineModel> createdAt = new org.slim3.datastore.StringAttributeMeta<sample.model.MedicineModel>(this, "createdAt", "createdAt");
 
     /** */
     public final org.slim3.datastore.StringAttributeMeta<sample.model.MedicineModel> deletedAt = new org.slim3.datastore.StringAttributeMeta<sample.model.MedicineModel>(this, "deletedAt", "deletedAt");
@@ -48,7 +48,7 @@ public final class MedicineModelMeta extends org.slim3.datastore.ModelMeta<sampl
     @Override
     public sample.model.MedicineModel entityToModel(com.google.appengine.api.datastore.Entity entity) {
         sample.model.MedicineModel model = new sample.model.MedicineModel();
-        model.setCreatedaAt((java.lang.String) entity.getProperty("createdaAt"));
+        model.setCreatedAt((java.lang.String) entity.getProperty("createdAt"));
         model.setDeletedAt((java.lang.String) entity.getProperty("deletedAt"));
         model.setDescription((java.lang.String) entity.getProperty("description"));
         model.setId((java.lang.Long) entity.getProperty("id"));
@@ -69,7 +69,7 @@ public final class MedicineModelMeta extends org.slim3.datastore.ModelMeta<sampl
         } else {
             entity = new com.google.appengine.api.datastore.Entity(kind);
         }
-        entity.setProperty("createdaAt", m.getCreatedaAt());
+        entity.setProperty("createdAt", m.getCreatedAt());
         entity.setProperty("deletedAt", m.getDeletedAt());
         entity.setProperty("description", m.getDescription());
         entity.setProperty("id", m.getId());
@@ -139,9 +139,9 @@ public final class MedicineModelMeta extends org.slim3.datastore.ModelMeta<sampl
         sample.model.MedicineModel m = (sample.model.MedicineModel) model;
         writer.beginObject();
         org.slim3.datastore.json.Default encoder0 = new org.slim3.datastore.json.Default();
-        if(m.getCreatedaAt() != null){
-            writer.setNextPropertyName("createdaAt");
-            encoder0.encode(writer, m.getCreatedaAt());
+        if(m.getCreatedAt() != null){
+            writer.setNextPropertyName("createdAt");
+            encoder0.encode(writer, m.getCreatedAt());
         }
         if(m.getDeletedAt() != null){
             writer.setNextPropertyName("deletedAt");
@@ -183,8 +183,8 @@ public final class MedicineModelMeta extends org.slim3.datastore.ModelMeta<sampl
         sample.model.MedicineModel m = new sample.model.MedicineModel();
         org.slim3.datastore.json.JsonReader reader = null;
         org.slim3.datastore.json.Default decoder0 = new org.slim3.datastore.json.Default();
-        reader = rootReader.newObjectReader("createdaAt");
-        m.setCreatedaAt(decoder0.decode(reader, m.getCreatedaAt()));
+        reader = rootReader.newObjectReader("createdAt");
+        m.setCreatedAt(decoder0.decode(reader, m.getCreatedAt()));
         reader = rootReader.newObjectReader("deletedAt");
         m.setDeletedAt(decoder0.decode(reader, m.getDeletedAt()));
         reader = rootReader.newObjectReader("description");

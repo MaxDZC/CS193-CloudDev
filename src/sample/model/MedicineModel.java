@@ -22,16 +22,16 @@ public class MedicineModel implements Serializable {
     private String name;
     private String description;
     private Double price;
-    private String createdaAt;
+    private String createdAt;
     private String deletedAt;
     private String updatedAt;
     
-    public String getCreatedaAt() {
-        return createdaAt;
+    public String getCreatedAt() {
+        return createdAt;
     }
 
-    public void setCreatedaAt(String createdaAt) {
-        this.createdaAt = createdaAt;
+    public void setCreatedAt(String createdAt) {
+        this.createdAt = createdAt;
     }
 
     public String getDeletedAt() {
