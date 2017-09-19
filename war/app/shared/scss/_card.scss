@@ -25,6 +25,15 @@
   width: 4.5em !important;
   background-color:white;
 }
+
+.card__container--medium{
+  @extend  .card__container;
+  height: .9em !important;
+  padding-top:.1em !important;
+  width: 6.5em !important;
+  background-color:white;
+}
+
 .card__title{
   display: block;
   font-size: $sizeCardTitle;
@@ -38,6 +47,11 @@
 }
 .card__desc--tiny{
   font-size: .5em;
+  text-align: center;
+}
+
+.card__desc--medium{
+  font-size: .7em;
   text-align: center;
 }
 
