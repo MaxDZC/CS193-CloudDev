@@ -17,6 +17,12 @@ angular.module('hplus.modules.editmedicine')
         globalFactory.go(path);
       };
       
+      $scope.medicine = {};
+      
+      $scope.saveMedicine = function(){
+    	  //Save Medicine I guess
+      }
+      
       $scope.medicineTypes = [
         { name : "Suppository",
           id : 1 },

@@ -1,6 +1,5 @@
 package sample.dto;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import org.slim3.repackaged.org.json.JSONObject;
@@ -54,10 +53,6 @@ public class PatientDto extends ErrorsDto{
         this.setFirstName(jObj.getString("firstname"));
         this.setLastName(jObj.getString("lastname"));
         this.setAddress(jObj.getString("address"));
-        
-        String birthday = jObj.getString("birthday").split("T")[0];
-        
-        this.setBirthday(new SimpleDateFormat("yyyy-MM-dd").parse(birthday));
         this.setSex(jObj.getBoolean("sex"));
         this.setContactNumber(jObj.getString("contactNo"));
     }

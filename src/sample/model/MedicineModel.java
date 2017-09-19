@@ -35,7 +35,7 @@ public class MedicineModel implements Serializable {
     }
 
     public String getDeletedAt() {
-        return deletedAt;
+        return this.deletedAt;
     }
 
     public void setDeletedAt(String deletedAt) {

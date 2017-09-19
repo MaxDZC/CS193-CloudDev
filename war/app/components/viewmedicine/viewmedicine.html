@@ -1,119 +1,57 @@
-<div class="row">
-  <div class="col col-md-8 col-md-offset-1">
-    <h1><i class="fa fa-heartbeat"></i>Paracetamol</h1>
-  </div>
-</div>
-
-<div class="row">
-  <div class="col col-md-10 col-md-offset-1">
-    <div class="col-md-3">
-      <span class="subtitle">Price:</span>
-      <div class="subtitle__value">
-        PHP 7.00
-      </div>
-    </div>
-    <div class="col-md-3">
-      <label class="subtitle">USAGE FOR</label>
-      <span class="subtitle subtitle--variable">June 2017</span>
-      <div class="subtitle__value">
-        15 Patients
-      </div>
-    </div>
-    <div class="col-md-3">
-      <label class="subtitle">USAGE FOR THE YEAR</label>
-      <span class="subtitle subtitle--variable">2017</span>
-      <div class="subtitle__value">
-        367 PATIENTS
-      </div>
-    </div>
-    <div class="col-md-3">
-      <label class="subtitle">AMAZING NUMBERS</label>
-      <div class="subtitle__value">
-        HUGE VALUES
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="row margins">
-  <div class="col-md-10 col-md-offset-1 margins">
-	  <div class="col-md-3">
-	    <label class="subtitle">Description:</label>
-	    <div class="subtitle__value">
-	      Paracetamol also known as blabalbablabalbal
+<ng-controller ng-controller="ViewMedicineController">
+	<div class="row">
+	  <div class="col col-md-8 col-md-offset-1">
+	    <h1><i class="fa fa-heartbeat"></i>Paracetamol</h1>
+	  </div>
+	</div>
+	
+	<div class="row">
+	  <div class="col col-md-10 col-md-offset-1">
+	    <div class="col-md-3">
+	      <span class="subtitle">Price:</span>
+	      <div class="subtitle__value">
+	        PHP {{ medicineData.price }}
+	      </div>
 	    </div>
-	    <button class="outline" ng-click="go('/admin/update/medicine')">Edit</button>
+	    <div class="col-md-3">
+	      <label class="subtitle">USAGE FOR</label>
+	      <span class="subtitle subtitle--variable">June 2017</span>
+	      <div class="subtitle__value">
+	        15 Patients
+	      </div>
+	    </div>
+	    <div class="col-md-3">
+	      <label class="subtitle">USAGE FOR THE YEAR</label>
+	      <span class="subtitle subtitle--variable">2017</span>
+	      <div class="subtitle__value">
+	        367 PATIENTS
+	      </div>
+	    </div>
 	  </div>
-	  <div class="col-md-9">
-	    <label class="subtitle">RECENTLY DISPENSED TO THE FOLLOWING PATIENTS</label>
-      <div class="margintop">
-        <div class="card__container">
-          <div class="card__title">
-            Doe, Jane
-          </div>
-
-          <div class="card__desc">
-            Dispensed Feb. 20, 2016 as Demanded by Dr. John Appleseed
-          </div>
-        </div>
-
-        <div class="card__container">
-          <div class="card__title">
-            Phour, Mahn
-          </div>
-  
-          <div class="card__desc">
-            Dispensed June 19, 2015 as Demanded by Dr. John Appleseed
-          </div>
-        </div>
-
-        <div class="card__container">
-          <div class="card__title">
-            Xing, Ah Mae
-          </div>
-  
-          <div class="card__desc">
-            Dispensed Mar. 3, 2015 as Demanded by Dr. John Appleseed
-          </div>
-        </div>
-      </div>
+	</div>
+	
+	<div class="row margins">
+	  <div class="col-md-10 col-md-offset-1 margins">
+		  <div class="col-md-3">
+	      <label class="subtitle">Generic Name</label>
+	      <div class="subtitle__value">
+	        {{ medicineData.name }}
+	      </div>
+	      <label class="subtitle marginTop">Type of Medicine</label>
+	      <div class="subtitle__value">
+	        {{ medicineData.type }}
+	      </div>
+		    <label class="subtitle marginTop">Description:</label>
+		    <div class="subtitle__value">
+		      {{ medicineData.description }}
+		    </div>
+		    <button class="outline" ng-click="go('/admin/update/medicine')">Edit</button>
+		  </div>
+		  <div class="col-md-9">
+		    <label class="subtitle">RECENTLY DISPENSED TO THE FOLLOWING PATIENTS</label>
+	        <hplus-view-medicine-card dir-paginate="record in recordList | itemsPerPage:10" data="record"></hplus-view-doctors-card>
+		  </div>
 	  </div>
-  </div>
-</div>
-
-<!-- Pagination Section -->
-<div class="row">
-  <div class="col-md-10 col-md-offset-1">
-    <div class="col col-md-3 col-md-offset-9">
-      <div class="pagination__container">
-        <div class="pagination__page">
-          <<
-        </div>
-      
-        <div class="pagination__page">
-          <
-        </div>
-      
-        <div class="pagination__page ">
-          2
-        </div>
-      
-        <div class="pagination__page pagination__current">
-          3
-        </div>
-      
-        <div class="pagination__page">
-          4
-        </div>
-      
-        <div class="pagination__page">
-          >
-        </div>
-      
-        <div class="pagination__page">
-          >>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+	</div>
+	<dir-pagination-controls max-size="5"></dir-pagination-controls>
+</ng-controller>

@@ -15,7 +15,6 @@ import sample.service.PatientService;
 import sample.utils.JSONValidators;
 
 public class PatientController extends Controller {
-
     /**
     * Service object that will be used to call CRUD functions to datastore
     */
@@ -154,7 +153,7 @@ public class PatientController extends Controller {
             
         }
         
-        //jsonObject.put("errorList", doctorDto.getErrorList());
+        jsonObject.put("errorList", patientDto.getErrorList());
         
         response.setContentType("application/json");
         response.setCharacterEncoding("utf-8");

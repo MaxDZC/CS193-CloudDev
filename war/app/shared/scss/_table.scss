@@ -1,6 +1,19 @@
 table{
-    border: 1px solid black;
+    border: 0px;
     width:100%;
+    background: transparent;
+}
+th{
+    height: 3em;
+    font-size: 1.5em;
+}
+td{
+    font-size: 1.2em;
+    height: 2em;
+    text-align: center;
+}
+td.name, th.name{
+    text-align: left;
 }
 
 tr{

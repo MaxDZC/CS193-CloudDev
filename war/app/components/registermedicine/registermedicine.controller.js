@@ -21,7 +21,18 @@ angular.module('hplus.modules.registermedicine')
       $scope.medicine = {};
       
       $scope.registerMedicine = function(){
-    	  medicineFactory.registerMedicine($scope.medicine);
+        medicineFactory.registerMedicine($scope.medicine);
       }
+      
+      $scope.medicineTypes = [
+                              { name : "Suppository",
+                                id : 1 },
+                              { name : "Tablet",
+                                id : 2 },
+                              { name : "Syrup",
+                                id : 3 },
+                              { name : "Poison",
+                                id : 4 }
+                            ];
     }
   );

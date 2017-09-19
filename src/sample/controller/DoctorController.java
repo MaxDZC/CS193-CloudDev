@@ -109,6 +109,8 @@ public class DoctorController extends Controller {
                 jsonObject = new JSONObject(this.request.getReader().readLine());
                 validator = new JSONValidators(jsonObject);
                 
+                
+                
                 if(validator.validate()){
                     
                     birthdays = jsonObject.getString("birthday").split(" ");

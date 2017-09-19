@@ -22,15 +22,6 @@ angular.module('hplus.modules.registerdiseases')
      
     //  $scope.symptomList = globalFactory.getSymptomList();
       $scope.bool =false;
-      $scope.checkSelected= function(){
-    	  if($scope.symptomsSelected.length && $scope.medicinesSelected.length){
-    		  //alert.alert
-    		  alert("There is Selected!");
-    	  }else{
-    		  alert("Select at least one Symptom or Medicine");
-    	  }
-      };
-      
      
       $scope.showAdd = function(){
         $scope.bool = !$scope.bool;
@@ -67,15 +58,10 @@ angular.module('hplus.modules.registerdiseases')
         console.log($scope.diseaseName);
         globalFactory.insertDisease($scope.diseaseName,$scope.symptomsSelected,$scope.medicinesSelected);
       }
-      $scope.addSymptom = function(hold){
-    	  $scope.symptomsSelected.push(hold);
-    	  $scope.symptomsSearch.splice($scope.symptomsSearch.indexOf(hold),1);
-      };
       
-      $scope.removeSymptom = function(hold){
-    	  $scope.symptomsSearch.push(hold);
-    	  $scope.symptomsSelected.splice($scope.symptomsSelected.indexOf(hold),1);
-      };
+      $scope.addRemoveSymptom = function(hold){
+    	  $scope.symptomsSelected= hold;
+      }
       
       $scope.symptomsSearch = [
         {
@@ -110,16 +96,20 @@ angular.module('hplus.modules.registerdiseases')
         }
       ];
       
-                                 
-      $scope.addMedicine = function(hold){
-        $scope.medicinesSelected.push(hold);
-        $scope.medicinesSearch.splice($scope.medicinesSearch.indexOf(hold),1);
-      };
-                                 
-      $scope.removeMedicine = function(hold){
-        $scope.medicinesSearch.push(hold);
-        $scope.medicinesSelected.splice($scope.medicinesSelected.indexOf(hold),1);
-      };
+//                                 
+//      $scope.addMedicine = function(hold){
+//        $scope.medicinesSelected.push(hold);
+//        $scope.medicinesSearch.splice($scope.medicinesSearch.indexOf(hold),1);
+//      };
+//                                 
+//      $scope.removeMedicine = function(hold){
+//        $scope.medicinesSearch.push(hold);
+//        $scope.medicinesSelected.splice($scope.medicinesSelected.indexOf(hold),1);
+//      };
+//      
+      $scope.addRemoveMedicine = function(hold){
+    	  $scope.medicinesSelected= hold;
+      }
       
       $scope.medicinesSearch = [
                          {

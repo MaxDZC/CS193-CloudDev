@@ -6,48 +6,44 @@
 
 <div class="row" ng-controller="EditDiseaseController">
   <div class="col-md-10 col-md-offset-1">
-	  <div class="col col-md-4">
-	    <label class="subtitle">Name of Disease</label>
-      <input type="text" value="Diabetes Mellitus Type 2">
-			<div> 
-			  <button ng-click="saveDisease()">Update</button>
-			</div>
-	  </div>
-	
-	  <div class="col col-md-4">
-      <label class="subtitle">Symptoms</label>
-      <input type="text" placeholder="Search Symptom">
-      <div class="borders">
-        <div class="scrollable">
-          <div ng-repeat="option in symptomsSelected | orderBy:'name'">
-            <input type="checkbox" ng-model="option.val" ng-true-value ="true" ng-false-value ="false" ng-change="removeSymptom(option)" ng-checked="true">{{option.name}}<br>
-          </div>
-          <div ng-repeat="option in symptomsSearch | orderBy:'name'">
-            <input type="checkbox" ng-model="option.val" ng-true-value ="true" ng-false-value ="false" ng-change="addSymptom(option)">{{option.name}}<br>
-          </div>
-        </div>
-      </div>
-      <div class = "row" ng-show="bool">
-        <div class="col-md-8" ><input type="text" ng-model="addSymptom"></div>
-        <div class="col-md-4"><button ng-click="">Add</button></div>  
-      </div>
-      <button ng-click="showAdd()">Add New Symptom</button>
-      
-    </div>
-	
-	  <div class="col col-md-4">
-      <label class="subtitle">Medicines</label>
-      <input type="text" placeholder="Search Medicine">
-      <div class="borders">
-        <div class="scrollable">
-          <div ng-repeat="optionmed in medicinesSelected | orderBy:'name'">
-            <input type="checkbox" ng-model="optionmed.val" ng-true-value ="true" ng-false-value ="false" ng-change="removeMedicine(optionmed)" ng-checked="true">{{optionmed.name}}<br>
-          </div>
-          <div ng-repeat="optionmed in medicinesSearch | orderBy:'name'">
-            <input type="checkbox" ng-model="optionmed.val" ng-true-value ="true" ng-false-value ="false" ng-change="addMedicine(optionmed)">{{optionmed.name}}<br>
-          </div>
-        </div>
-      </div>
-    </div>
+    <form name="diseaseForm">
+		  <div class="col col-md-4">
+		    <label class="subtitle">Name of Disease</label>
+	      <input type="text" placeholder="Name" ng-model="diseaseName" required>
+				<div> 
+				  <button ng-click="saveDisease()">Update</button>
+				</div>
+		  </div>
+		
+		  <div class="col col-md-4">
+	      <label class="subtitle">Symptoms</label>
+	      <input type="text" placeholder="Search Symptom">
+	      <div class="borders">
+	        <div class="scrollable">
+	          <div ng-repeat="option in symptomsSearch | orderBy:['-val','name']">
+	            <input type="checkbox" ng-model="option.val" ng-change="addRemoveSymptom(symptomsSearch | filter: {val: true} | orderBy : 'name')" ng-required="!symptomsSelected.length">{{option.name}}<br>
+	          </div>
+	        </div>
+	      </div>
+	      <div class = "row" ng-show="bool">
+	        <div class="col-md-8" ><input type="text" ng-model="addSymptom"></div>
+	        <div class="col-md-4"><button ng-click="">Add</button></div>  
+	      </div>
+	      <button ng-click="showAdd()">Add New Symptom</button>
+	      
+	    </div>
+		
+		  <div class="col col-md-4">
+	      <label class="subtitle">Medicines</label>
+	      <input type="text" placeholder="Search Medicine">
+	      <div class="borders">
+	        <div class="scrollable">
+	          <div ng-repeat="optionmed in medicinesSearch | orderBy:['-val','name']">
+	            <input type="checkbox" ng-model="optionmed.val" ng-change="addRemoveMedicine(medicinesSearch | filter: {val: true} | orderBy : 'name')"  ng-required="!medicinesSelected.length">{{optionmed.name}}<br>
+	          </div>
+	        </div>
+	      </div>
+	    </div>
+    </form>
   </div>
 </div>

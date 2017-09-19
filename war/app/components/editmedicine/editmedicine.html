@@ -6,28 +6,25 @@
 
 <div class="row" ng-controller="EditMedicineController">
   <div class="col col-md-10 col-md-offset-1">
-    <div class="col-md-3">
-      <label class="subtitle">Name of Medicine:</label>
-	    <input type="text" value="RiteMed Metformin" placeholder="Brand Name">
-	    <label class="subtitle">Generic Name:</label>
-      <input type="text" placeholder="Generic Name">
-	    <label class="subtitle">Medicine Type:</label>
-      <select value="">
-        <option ng-repeat="type in medicineTypes" value="type.id">{{type.name}}</option>
-      </select>
-	    <label class="subtitle">Price (PHP) :</label> 
-	    <input id="priceInputField" type="text" value="3.75">
-
-	    <div ng-controller="modalController"> 
-	      <button  ng-click="alert.alert()" >Update</button>
-	      <button class="outline delete_btn" ng-click="alert.confirm()">Delete</button>
-
+	  <form name="medicineForm">
+	    <div class="col-md-3">
+	      <label class="subtitle">Name of Medicine:</label>
+		    <input type="text" value="RiteMed Metformin" placeholder="Brand Name" ng-model="medicine.name" ng-required="true">
+		    <label class="subtitle">Generic Name:</label>
+	      <input type="text" placeholder="Generic Name" ng-model="medicine.generic" ng-required="true">
+		    <label class="subtitle">Medicine Type:</label>
+	      <select name="selectMeds" ng-model="medicine.type" ng-required="true" ng-options="type.id as type.name for type in medicineTypes">
+	        <option value="">--Select One--</option>
+	      </select>
+		    <label class="subtitle">Price (PHP) :</label> 
+		    <input id="priceInputField" type="number" value="3.75" placeholder="Price" ng-model="medicine.price" ng-required="true">
+	      <button type="submit" ng-click="saveMedicine()" >Update</button>
 	    </div>
-    </div>
-    
-    <div class="col col-md-9">
-      <label class="subtitle">Description:</label>
-      <textarea id="descMed" rows="8" cols="50">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent ut lorem quis dolor porttitor accumsan. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Integer vitae erat viverra, vestibulum enim id, pulvinar lectus. Sed volutpat tristique tristique. Vivamus turpis diam, consequat vel sagittis quis, convallis quis sem.</textarea>
-    </div>
+	    
+	    <div class="col col-md-9">
+	      <label class="subtitle">Description:</label>
+	      <textarea id="descMed" rows="8" cols="50" placeholder="Description" ng-required="true">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent ut lorem quis dolor porttitor accumsan. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Integer vitae erat viverra, vestibulum enim id, pulvinar lectus. Sed volutpat tristique tristique. Vivamus turpis diam, consequat vel sagittis quis, convallis quis sem.</textarea>
+	    </div>
+	  </form>
   </div>
 </div>
