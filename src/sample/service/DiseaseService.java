@@ -36,7 +36,7 @@ public class DiseaseService {
     }
     
    
-        public static  Boolean updateDisease(DiseaseDto diseaseDto) {
+        public Boolean updateDisease(DiseaseDto diseaseDto) {
             System.out.println("MedicineService.updateRecord " + "start");
         
             DiseaseModel diseaseModel = storeDtoToModel(diseaseDto);
@@ -60,7 +60,8 @@ public class DiseaseService {
             return false;
            
         }
-        public static Boolean deleteDisease(DiseaseDto diseaseDto) {
+        
+        public Boolean deleteDisease(DiseaseDto diseaseDto) {
             System.out.println("DiseaseService.deleteRecord " + "start");
             DiseaseModel diseaseModel = storeDtoToModel(diseaseDto);
             
@@ -87,7 +88,8 @@ public class DiseaseService {
             System.out.println("MedicineService.deleteRecord " + "end");
             return false;
         }
-        private static DiseaseModel storeDtoToModel(DiseaseDto diseaseDto) {
+        
+        private DiseaseModel storeDtoToModel(DiseaseDto diseaseDto) {
                
             DiseaseModel diseaseModel = new DiseaseModel();
                 
@@ -102,8 +104,13 @@ public class DiseaseService {
                 return diseaseModel;
             
         }
-        public static ArrayList<DiseaseModel> getAllDisease(){
+        
+        public ArrayList<DiseaseModel> getAllDisease(){
             return diseaseDao.getAllDisease();
+        }
+        
+        public DiseaseModel getDisease(String name){
+            return diseaseDao.checkDiseaseExist(name);
         }
     }
 

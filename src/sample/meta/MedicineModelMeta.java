@@ -1,14 +1,14 @@
 package sample.meta;
 
-//@javax.annotation.Generated(value = { "slim3-gen", "@VERSION@" }, date = "2017-09-20 01:15:24")
+//@javax.annotation.Generated(value = { "slim3-gen", "@VERSION@" }, date = "2017-09-20 12:08:25")
 /** */
 public final class MedicineModelMeta extends org.slim3.datastore.ModelMeta<sample.model.MedicineModel> {
 
     /** */
-    public final org.slim3.datastore.StringAttributeMeta<sample.model.MedicineModel> createdAt = new org.slim3.datastore.StringAttributeMeta<sample.model.MedicineModel>(this, "createdAt", "createdAt");
+    public final org.slim3.datastore.CoreAttributeMeta<sample.model.MedicineModel, java.util.Date> createdAt = new org.slim3.datastore.CoreAttributeMeta<sample.model.MedicineModel, java.util.Date>(this, "createdAt", "createdAt", java.util.Date.class);
 
     /** */
-    public final org.slim3.datastore.StringAttributeMeta<sample.model.MedicineModel> deletedAt = new org.slim3.datastore.StringAttributeMeta<sample.model.MedicineModel>(this, "deletedAt", "deletedAt");
+    public final org.slim3.datastore.CoreAttributeMeta<sample.model.MedicineModel, java.util.Date> deletedAt = new org.slim3.datastore.CoreAttributeMeta<sample.model.MedicineModel, java.util.Date>(this, "deletedAt", "deletedAt", java.util.Date.class);
 
     /** */
     public final org.slim3.datastore.StringAttributeMeta<sample.model.MedicineModel> description = new org.slim3.datastore.StringAttributeMeta<sample.model.MedicineModel>(this, "description", "description");
@@ -23,10 +23,13 @@ public final class MedicineModelMeta extends org.slim3.datastore.ModelMeta<sampl
     public final org.slim3.datastore.StringAttributeMeta<sample.model.MedicineModel> name = new org.slim3.datastore.StringAttributeMeta<sample.model.MedicineModel>(this, "name", "name");
 
     /** */
-    public final org.slim3.datastore.CoreAttributeMeta<sample.model.MedicineModel, java.lang.Double> price = new org.slim3.datastore.CoreAttributeMeta<sample.model.MedicineModel, java.lang.Double>(this, "price", "price", java.lang.Double.class);
+    public final org.slim3.datastore.CoreAttributeMeta<sample.model.MedicineModel, java.lang.Float> price = new org.slim3.datastore.CoreAttributeMeta<sample.model.MedicineModel, java.lang.Float>(this, "price", "price", java.lang.Float.class);
 
     /** */
-    public final org.slim3.datastore.StringAttributeMeta<sample.model.MedicineModel> updatedAt = new org.slim3.datastore.StringAttributeMeta<sample.model.MedicineModel>(this, "updatedAt", "updatedAt");
+    public final org.slim3.datastore.StringAttributeMeta<sample.model.MedicineModel> type = new org.slim3.datastore.StringAttributeMeta<sample.model.MedicineModel>(this, "type", "type");
+
+    /** */
+    public final org.slim3.datastore.CoreAttributeMeta<sample.model.MedicineModel, java.util.Date> updatedAt = new org.slim3.datastore.CoreAttributeMeta<sample.model.MedicineModel, java.util.Date>(this, "updatedAt", "updatedAt", java.util.Date.class);
 
     /** */
     public final org.slim3.datastore.CoreAttributeMeta<sample.model.MedicineModel, java.lang.Long> version = new org.slim3.datastore.CoreAttributeMeta<sample.model.MedicineModel, java.lang.Long>(this, "version", "version", java.lang.Long.class);
@@ -48,14 +51,15 @@ public final class MedicineModelMeta extends org.slim3.datastore.ModelMeta<sampl
     @Override
     public sample.model.MedicineModel entityToModel(com.google.appengine.api.datastore.Entity entity) {
         sample.model.MedicineModel model = new sample.model.MedicineModel();
-        model.setCreatedAt((java.lang.String) entity.getProperty("createdAt"));
-        model.setDeletedAt((java.lang.String) entity.getProperty("deletedAt"));
+        model.setCreatedAt((java.util.Date) entity.getProperty("createdAt"));
+        model.setDeletedAt((java.util.Date) entity.getProperty("deletedAt"));
         model.setDescription((java.lang.String) entity.getProperty("description"));
         model.setId((java.lang.Long) entity.getProperty("id"));
         model.setKey(entity.getKey());
         model.setName((java.lang.String) entity.getProperty("name"));
-        model.setPrice((java.lang.Double) entity.getProperty("price"));
-        model.setUpdatedAt((java.lang.String) entity.getProperty("updatedAt"));
+        model.setPrice(doubleToFloat((java.lang.Double) entity.getProperty("price")));
+        model.setType((java.lang.String) entity.getProperty("type"));
+        model.setUpdatedAt((java.util.Date) entity.getProperty("updatedAt"));
         model.setVersion((java.lang.Long) entity.getProperty("version"));
         return model;
     }
@@ -75,6 +79,7 @@ public final class MedicineModelMeta extends org.slim3.datastore.ModelMeta<sampl
         entity.setProperty("id", m.getId());
         entity.setProperty("name", m.getName());
         entity.setProperty("price", m.getPrice());
+        entity.setProperty("type", m.getType());
         entity.setProperty("updatedAt", m.getUpdatedAt());
         entity.setProperty("version", m.getVersion());
         entity.setProperty("slim3.schemaVersion", 1);
@@ -167,6 +172,10 @@ public final class MedicineModelMeta extends org.slim3.datastore.ModelMeta<sampl
             writer.setNextPropertyName("price");
             encoder0.encode(writer, m.getPrice());
         }
+        if(m.getType() != null){
+            writer.setNextPropertyName("type");
+            encoder0.encode(writer, m.getType());
+        }
         if(m.getUpdatedAt() != null){
             writer.setNextPropertyName("updatedAt");
             encoder0.encode(writer, m.getUpdatedAt());
@@ -197,6 +206,8 @@ public final class MedicineModelMeta extends org.slim3.datastore.ModelMeta<sampl
         m.setName(decoder0.decode(reader, m.getName()));
         reader = rootReader.newObjectReader("price");
         m.setPrice(decoder0.decode(reader, m.getPrice()));
+        reader = rootReader.newObjectReader("type");
+        m.setType(decoder0.decode(reader, m.getType()));
         reader = rootReader.newObjectReader("updatedAt");
         m.setUpdatedAt(decoder0.decode(reader, m.getUpdatedAt()));
         reader = rootReader.newObjectReader("version");
