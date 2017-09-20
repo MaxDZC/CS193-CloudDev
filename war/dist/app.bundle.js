@@ -40582,9 +40582,9 @@ app = angular.module('hplus.modules.viewmedicine');
       };
        
       $scope.medicineData = {
-        name: "Xavier Ford",
-        type: "09171234567",
-        description: "Cosmetic Surgery",
+        name: "Paracetamol",
+        type: "Gaseous",
+        description: "Poisonous",
         price: "7.00"
       };
       
