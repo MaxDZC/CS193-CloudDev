@@ -9,6 +9,8 @@ angular.module('hplus.modules.exploredoctors')
         globalFactory.go(path);
       };
       
+      $scope.query = "";
+      
       $scope.doctorList = [];
 
       var populate = function(){
