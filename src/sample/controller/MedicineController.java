@@ -27,9 +27,8 @@ public class MedicineController extends Controller {
         System.out.println("MedicineController.run start");
         
         JSONObject json = new JSONObject();
-        String action = request.getParameter("action");
         String method = request.getMethod();
-        JSONObject jObj = null;
+        JSONObject jObj = new JSONObject();
         MedicineDto medicineDto = null ;
         
         if(method == "POST"){
@@ -70,7 +69,7 @@ public class MedicineController extends Controller {
                 
                 } else if (method == "PUT") {
         
-                    medicineDto = new MedicineDto(jObj.getString("name"),
+                        medicineDto = new MedicineDto(jObj.getString("name"),
                         jObj.getString("desc"),
                         Double.parseDouble(jObj.getString("price"))
                         );

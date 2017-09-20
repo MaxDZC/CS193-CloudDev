@@ -121,32 +121,24 @@ public class DoctorDao{
     }
     
     
-    public DoctorModel getDoctorByEmailandPassword(String email,String password){
-        
+    public Object getDoctorByEmailandPassword(String user,String password){  
         System.out.println("DoctorDao.getDoc start");
        
-        DoctorModel doctor = DoctorModelMeta.get().entityToModel(Datastore.query(DoctorModel.class)
-            .filter(CompositeFilterOperator.and(new FilterPredicate("username", FilterOperator.EQUAL, email.toLowerCase()),
-                new FilterPredicate("password", FilterOperator.EQUAL, password.toLowerCase())))
-            .asSingleEntity());
+        DoctorModel doctor = null;
+        Entity entity = Datastore.query(DoctorModel.class).filter(
+            CompositeFilterOperator.and(
+                CompositeFilterOperator.or(
+                    new FilterPredicate("username",FilterOperator.EQUAL, user.toLowerCase()), 
+                    new FilterPredicate("email", FilterOperator.EQUAL, user.toLowerCase())),
+                new FilterPredicate("password", FilterOperator.EQUAL, password),
+                new FilterPredicate("deletedAt", FilterOperator.EQUAL, null))
+            ).asSingleEntity();
         
-        if(doctor!=null){
-            System.out.println("DoctorDao.getDoc end(success)");
-        }else{
-            DoctorModel doctorUser = DoctorModelMeta.get().entityToModel(Datastore.query(DoctorModel.class)
-                .filter(CompositeFilterOperator.and(new FilterPredicate("email", FilterOperator.EQUAL, email.toLowerCase()),
-                    new FilterPredicate("password", FilterOperator.EQUAL, password.toLowerCase())))
-                .asSingleEntity());
-            if(doctorUser==null){
-                System.out.println("DoctorDao.getDoc end(failed)");  
-            } else {
-                doctor = doctorUser;
-                System.out.println("DoctorDao.getDoc end(success)");
-            }
-           // System.out.println("DoctorDao.getDoc end(failed)");   
+        if(entity != null){
+            doctor = DoctorModelMeta.get().entityToModel(entity);
         }
-        return doctor;
         
+        return doctor;
     }
     
     public Object getDoctors(){
@@ -164,12 +156,12 @@ public class DoctorDao{
             results.add(DoctorModelMeta.get().entityToModel(entity));
         }
                
-        return results ;
+        return results;
     }
     
     public void updateDoctor(DoctorModel inputDoctor) {
         System.out.println("DoctorDao.updateDoctor " + "start");
-        // TODO: Implement this function.
+        
         Transaction trans = Datastore.beginTransaction();
         
         Datastore.put(trans, inputDoctor);

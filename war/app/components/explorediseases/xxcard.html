@@ -1,0 +1,11 @@
+<div class="margins">
+  <div class="card__container">
+    <div class="card__title">
+      {{data.name}}<a ng-click="go('/admin/update/disease')"><span class="delete__icon"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></span></a>
+    </div>
+    
+    <div class="card__desc">
+      Symptoms: <span ng-repeat="symp in data.symp"><span ng-hide="$first">,&nbsp;</span>{{symp}}</span>.
+    </div>
+  </div>
+</div>
