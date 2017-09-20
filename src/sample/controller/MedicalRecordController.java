@@ -7,9 +7,11 @@ import org.slim3.controller.Controller;
 import org.slim3.controller.Navigation;
 import org.slim3.repackaged.org.json.JSONObject;
 
+
 import sample.dao.MedicalRecordDao;
 import sample.dto.MedicalRecordDto;
 import sample.service.MedicalRecordService;
+
 
 
 
@@ -63,7 +65,14 @@ public class MedicalRecordController extends Controller {
                 medicalRecordService.deleteOrUpdateMedicalRecord(medicalRecordDto);
             
             }else if(method.equalsIgnoreCase("GET")){
+               /*  jObj = new JSONObject(new RequestMap(this.request));
                 
+                if(jObj.has("id")){
+                    jObj.put("symptom", medicalRecordService.getMedicalRecordByDoctorId(id)(jObj.getLong("id")));
+                    
+                } else {
+                    jObj.put("symptoms", medicalRecordService.getAllSymp());
+                }*/
             }
             System.out.println("MedicalRecordController.run end");
         }catch(Exception e){
