@@ -39693,8 +39693,14 @@ module.exports = "<div class=\"row\">\r\n  <div class=\"col col-md-8 col-md-offs
 angular.module('hplus.modules.explorediseases')
 
   .controller('ExploreDiseasesController',
-    function($scope, globalFactory){
-     
+    function($scope, $location, globalFactory, doctorFactory){
+
+      var user = doctorFactory.getUser();
+
+      if(user == null){
+        $location.path("/");
+      }
+
       $scope.go = function(path){
         globalFactory.go(path);
       };
@@ -39771,7 +39777,17 @@ module.exports = "<div class=\"card__container\" ng-controller=\"DoctorCardContr
 angular.module('hplus.modules.exploredoctors')
 
   .controller('ExploreDoctorsController',
-    function($scope, globalFactory, modalFactory, doctorFactory){
+    function($scope, $location, globalFactory, modalFactory, doctorFactory){
+
+      var user = doctorFactory.getUser();
+
+      if(user != null){
+        if(!user.admin){
+          $location.path("/admin/list/record");
+        }
+      } else {
+        $location.path("/");
+      }
 
       $scope.length;
 
@@ -41240,7 +41256,26 @@ module.exports = "<div class=\"margins\">\r\n  <div class=\"card__container\">\r
 /* 130 */
 /***/ (function(module, exports) {
 
-throw new Error("Module build failed: Error: ENOENT: no such file or directory, open 'C:\\Users\\ruth awayan\\Documents\\CS193-CloudDev\\war\\app\\components\\exploremedicines\\xxmedicinecard.controller.js'\n    at Error (native)");
+angular.module('hplus.modules.exploremedicines')
+
+  .controller('MedicineCardController',
+    function($scope, $location, globalFactory, doctorFactory){
+      
+      var user = doctorFactory.getUser();
+      
+      $scope.isAdmin = function(){
+        return user.isAdmin;
+      };
+
+      $scope.go = function(path){
+        globalFactory.go(path);
+      };
+
+      $scope.delete = function(doctor){
+        doctorFactory.deleteDoctor(doctor);
+      };
+    }
+  );
 
 /***/ })
 /******/ ]);
