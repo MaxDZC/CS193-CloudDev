@@ -1,161 +1,116 @@
-<div class="row">
-  <div class="col col-md-8 col-md-offset-1">
-    <h1>
-      <i class="fa fa-thermometer-full"></i>
-      Gingivitis
-    </h1>
-  </div>
-</div>
-
-<div class="row">
-  <div class="col col-md-2 col-md-offset-1">
-    <div class="match-padding">
-      <span class="subtitle">
-        Symptoms
-      </span>
-      <div class="subtitle__value">
-        <div class="row card__container--flex">
-          <div class="card__container--tiny">
-            <div class="card__desc--tiny">
-              swollen gums
-            </div>
-          </div>
-
-          <div class="card__container--tiny">
-            <div class="card__desc--tiny">
-              bright red gums
-            </div>
-          </div>
-
-          <div class="card__container--tiny">
-            <div class="card__desc--tiny">
-              bright purple gums
-            </div>
-          </div>
-
-          <div class="card__container--tiny">
-            <div class="card__desc--tiny">
-              tender gums
-            </div>
-          </div>
-
-          <div class="card__container--tiny">
-            <div class="card__desc--tiny">
-             bleeding gums  
-            </div>
-          </div>
-
-          <div class="card__container--tiny">
-            <div class="card__desc--tiny">
-              bad breath
-            </div>
-          </div>
-        </div>
-      </div>
-      <br>
-      <span class="subtitle">
-        Medicine
-      </span>
-      <br>
-     <table>
-        <tr>
-          <td><span>Triclosan</span></td>
-        </tr>
-        <tr>
-          <td><span>Somethig</span></td>
-        </tr>
-        <tr>
-          <td><span>Somthing</span></td>
-        </tr>
-      </table>
-      <br>
-      <button class="outline">Edit</button>
-    </div>
-  </div>
-
-  <div class="col col-md-8">
-    <div class="col col-md-12">
-      <div class="row">
-        <div class="col col-md-4">
-          <span class="subtitle">
-            OCCURENCE FOR 
-          </span>
-          <span class="subtitle subtitle--variable">
-            June 2017
-          </span>
-          <div class="subtitle__value">
-            1 Patients
-          </div>
-        </div>
-          
-        <div class="col col-md-4">
-          <span class="subtitle">
-            OCCURENCE IN YEAR
-          </span>
-          <span class="subtitle subtitle--variable">
-            2017
-          </span>
-          <div class="subtitle__value">
-            24 PATIENTS
-          </div>
-        </div>
-          
-        <div class="col col-md-4">
-          <span class="subtitle">
-            AMAZING NUMBERS
-          </span>
-          <div class="subtitle__value">
-            HUGE VALUES
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="col col-md-12">
-      <br>
-      <br>
-      <span class="subtitle">
-        RECENTLY DIAGNOSED IN THE FOLLOWING PATIENTS
-      </span>
-      <br><br>
-      <div class="card__container">
-        <div class="card__title">
-          Doe, Jane
-        </div>
-        <div class="card__desc">
-          Diagnosed Feb. 20, 2016 as Demanded by Dr. John Appleseed
-        </div>
-      </div>
-
-      <div class="pagination__container">
-        <div class="pagination__page">
-          <i class="fa fa-angle-double-left"></i>
-        </div>
-      
-        <div class="pagination__page">
-          <i class="fa fa-angle-left"></i>
-        </div>
-      
-        <div class="pagination__page">
-          2
-        </div>
-      
-        <div class="pagination__current">
-          3
-        </div>
-      
-        <div class="pagination__page">
-          4
-        </div>
-      
-        <div class="pagination__page">
-          <i class="fa fa-angle-right"></i>
-        </div>
-      
-        <div class="pagination__page">
-          <i class="fa fa-angle-double-right"></i>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+<ng-controller ng-controller="ViewDiseaseController">
+	<div class="row">
+	  <div class="col col-md-8 col-md-offset-1">
+	    <h1>
+	      <i class="fa fa-thermometer-full"></i>
+	      Gingivitis
+	    </h1>
+	  </div>
+	</div>
+	
+	<div class="row">
+	  <div class="col col-md-2 col-md-offset-1">
+	    <div class="match-padding">
+	      <span class="subtitle">
+	        Symptoms
+	      </span>
+	      <div class="subtitle__value">
+	        <div class="row card__container--flex">
+	          <div class="card__container--medium">
+	            <div class="card__desc--medium">
+	              swollen gums
+	            </div>
+	          </div>
+	
+	          <div class="card__container--medium">
+	            <div class="card__desc--medium">
+	              bright red gums
+	            </div>
+	          </div>
+	
+	          <div class="card__container--medium">
+	            <div class="card__desc--medium">
+	              bright purple gums
+	            </div>
+	          </div>
+	
+	          <div class="card__container--medium">
+	            <div class="card__desc--medium">
+	              tender gums
+	            </div>
+	          </div>
+	
+	          <div class="card__container--medium">
+	            <div class="card__desc--medium">
+	             bleeding gums  
+	            </div>
+	          </div>
+	
+	          <div class="card__container--medium">
+	            <div class="card__desc--medium">
+	              bad breath
+	            </div>
+	          </div>
+	        </div>
+	      </div>
+	      <br>
+	      <span class="subtitle">
+	        Medicine
+	      </span>
+	      <br>
+	     <table>
+	        <tr>
+	          <td><span>Triclosan</span></td>
+	        </tr>
+	        <tr>
+	          <td><span>Somethig</span></td>
+	        </tr>
+	        <tr>
+	          <td><span>Somthing</span></td>
+	        </tr>
+	      </table>
+	      <br>
+	      <button class="outline">Edit</button>
+	      <button class="outline">Delete</button>
+	    </div>
+	  </div>
+	
+	  <div class="col col-md-8">
+	    <div class="col col-md-12">
+	      <div class="row">
+	        <div class="col col-md-4">
+	          <span class="subtitle">
+	            OCCURRENCE IN
+	          </span>
+	          <span class="subtitle subtitle--variable">
+	            June 2017
+	          </span>
+	          <div class="subtitle__value">
+	            {{recordList.length}} Patients
+	          </div>
+	        </div>
+	          
+	        <div class="col col-md-4">
+	          <span class="subtitle">
+	            OCCURRENCE IN YEAR
+	          </span>
+	          <span class="subtitle subtitle--variable">
+	            2017
+	          </span>
+	          <div class="subtitle__value">
+	            24 PATIENTS
+	          </div>
+	        </div>
+	      </div>
+	    </div>
+	
+	    <div class="col col-md-12">
+	      <br>
+	      <br>
+	      <label class="subtitle">RECENTLY DIAGNOSED IN THE FOLLOWING PATIENTS</label>
+	      <hplus-view-disease-card dir-paginate="record in recordList | itemsPerPage:10" data="record"></hplus-view-disease-card>
+	    </div>
+	  </div>
+	</div>
+	<dir-pagination-controls max-size="5"></dir-pagination-controls>
+</ng-controller>

@@ -1,6 +1,7 @@
 <div class="card__container" ng-controller="DoctorCardController">
   <div class="card__title">
     {{ data.firstname }} {{ data.lastname }}
+
     <a ng-click="go('/admin/view/doctordetails', data); $event.stopPropagation();">
       <span class="delete__icon">
         <i class="fa fa-eye" aria-hidden="true"></i>
@@ -16,6 +17,7 @@
         <i class="fa fa-archive" aria-hidden="true"></i>
       </span>
     </a>
+
   </div>
   
   <div class="card__desc">

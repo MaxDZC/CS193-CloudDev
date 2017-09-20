@@ -22,6 +22,7 @@ require('./components/login/login.main.js');
 require('./components/viewdoctor/viewdoctor.main.js');
 require('./components/viewdisease/viewdisease.main.js');
 require('./components/viewmedicine/viewmedicine.main.js');
+require('./components/viewmedicalrecord/viewmedicalrecord.main.js');
 require('./components/viewpatient/viewpatient.main.js');
 require('./components/resetpassword/resetpassword.main.js');
 require('./components/explorepatients/explorepatients.main.js');
@@ -47,6 +48,7 @@ angular.module('hplus.modules', [
   'hplus.modules.viewdisease',
   'hplus.modules.viewdoctor',
   'hplus.modules.viewmedicine',
+  'hplus.modules.viewmedicalrecord',
   'hplus.modules.viewpatient',
   'hplus.modules.resetpassword',
   'hplus.modules.explorepatients'

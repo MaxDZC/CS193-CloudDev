@@ -1,119 +1,166 @@
 package sample.controller;
 
-import java.io.BufferedReader;
-import java.io.PrintWriter;
+
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import org.slim3.controller.Controller;
 import org.slim3.controller.Navigation;
 import org.slim3.repackaged.org.json.JSONObject;
+import org.slim3.util.RequestMap;
 
 import sample.dto.PatientDto;
+import sample.meta.PatientModelMeta;
 import sample.service.PatientService;
+import sample.utils.JSONValidators;
 
 public class PatientController extends Controller {
-    
     /**
     * Service object that will be used to call CRUD functions to datastore
     */
     PatientService patientService = new PatientService();
-    
-    
-    /**
-    * For now, used to insert a 'patient' entity to the datastore
-    */
+
     @Override
     protected Navigation run() throws Exception {
         System.out.println("PatientController.run start");
+
+        PatientDto patientDto = new PatientDto();
+        JSONObject jsonObject = null;
+        JSONValidators validator;
         
-        JSONObject json = new JSONObject();
+        String birthday;
+        String createdAt;
+        String updatedAt;
+        String[] birthdays;
+        String[] createdAts;
+        String[] updatedAts;
+
         String method = request.getMethod();
-        JSONObject jObj = null;
-        PatientDto patientDto = null ;
+        boolean message;
         
-        if(method == "POST"){
-            
-            /**
-            * Used to retrieve the JSON equivalent data
-            */
-            BufferedReader br = request.getReader();
-            String str = null;
-            StringBuilder sb = new StringBuilder();
-            while ((str = br.readLine()) != null) {
-                sb.append(str);
-            }
-            jObj = new JSONObject(this.request.getReader().readLine());
-            
-            /**
-            * Used to store the information from the request and send to the
-            * service class.
-            */
-            patientDto = new PatientDto(jObj.getString("firstName"),
-            jObj.getString("lastName"),
-            jObj.getString("address"),
-            jObj.getString("email"),
-            jObj.getString("number"),
-            jObj.getString("birthday")
-            );
-            patientDto.setCreatedaAt(new Date());
-            
+        try{
+
+            if(method.equalsIgnoreCase("POST")){
+                jsonObject = new JSONObject(this.request.getReader().readLine());
+
+                validator = new JSONValidators(jsonObject);
                 
-                
-                if (patientService.insertPat(patientDto) == false) {
+                if(validator.validate()){
                     
-                    json.put("message", "duplicated");
+                    patientDto = new PatientDto(jsonObject);
                     
-                  } else {
+                    birthday = jsonObject.getString("birthday").split("T")[0];
                     
-                    json.put("message", true);
+                    patientDto.setBirthday(new SimpleDateFormat("yyyy-MM-dd").parse(birthday));
+                    patientDto.setCreatedAt(new Date());
+                    patientDto.setUpdatedAt(null);
+                    patientDto.setDeletedAt(null);
                     
-                }
-                
-           } else if (method == "PUT") {
-               jObj = new JSONObject(this.request.getReader().readLine());
-               
-                   patientDto = new PatientDto(jObj.getString("firstName"),
-                   jObj.getString("lastName"),
-                   jObj.getString("address"),
-                   jObj.getString("email"),
-                   jObj.getString("number"),
-                   jObj.getString("birthday")
-                   );
-                   patientDto.setId(Long.parseLong(jObj.getString("id")));
-                
-                
-                if (PatientService.updatePatient(patientDto)) {
-                    json.put("message", "The Profil of  " + jObj.getString("lastName") + " was updated ");
-                   } else {
-                    json.put("message", false);
-                }
-                
-                } else if (method == "DELETE") {
-               
-                    if (PatientService.deletePatient(patientDto)) {
+                    message = patientService.insertPatient(patientDto);
                     
-                    json.put("message", "The Profil of was deleted ");
+                    if (message) {
+                        jsonObject.put("success", true);
                     } else {
-                    json.put("message", false);
+                        jsonObject.put("errors", message);
+                        response.setStatus(400);
+                    }
+                
+                }
+
+            } else if(method == "GET") {
+                jsonObject = new JSONObject(new RequestMap(this.request));
+                
+                if(jsonObject.has("diseaseId")){
+                    jsonObject.put("patient", PatientModelMeta.get().modelToJson(PatientService.getPatient(jsonObject.getLong("diseaseId"))));
+                } else {
+                    jsonObject.put("patients", PatientService.getPatients());
                 }
                 
-            }  else if (method == "GET") {
-            if(this.request.getParameter("id") != null){
-                json.put("patients", PatientService.getPatient(Long.parseLong(this.request.getParameter("id"))));
-                } else  {
-                json.put("patients", PatientService.getPatients());
+            } else if(method == "PUT") {
+                
+                jsonObject = new JSONObject(this.request.getReader().readLine());
+                validator = new JSONValidators(jsonObject);
+                
+                if(validator.validate()){
+                    
+                    birthdays = jsonObject.getString("birthday").split(" ");
+                    createdAts = jsonObject.getString("createdAt").split(" ");
+                    
+                    birthday = birthdays[5] + "-" + birthdays[1] + "-" + birthdays[2];
+                    createdAt = createdAts[5] + "-" + createdAts[1] + "-" + createdAts[2];
+                    
+                    patientDto = new PatientDto(jsonObject);
+                    
+                    
+                    patientDto.setId(jsonObject.getLong("id"));
+                    
+                    patientDto.setBirthday(new SimpleDateFormat("yyyy-MMM-dd").parse(birthday));
+                    patientDto.setCreatedAt(new SimpleDateFormat("yyyy-MMM-dd").parse(createdAt));
+                    patientDto.setUpdatedAt(new Date());
+                    patientDto.setDeletedAt(null);
+                    
+                    message = patientService.updatePatient(patientDto);
+                    
+                    if(message){
+                        jsonObject.put("success", true);
+                    } else {
+                        jsonObject.put("errors", message);
+                        response.setStatus(400);
+                    }
+                }
+                    
+            } else if(method == "DELETE"){
+                    
+                jsonObject = new JSONObject(this.request.getReader().readLine());
+                validator = new JSONValidators(jsonObject);
+                
+                if(validator.validate()){                       
+                    birthdays = jsonObject.getString("birthday").split(" ");
+                    createdAts = jsonObject.getString("createdAt").split(" ");
+                    updatedAts = jsonObject.getString("updatedAt").split(" ");
+                    
+                    birthday = birthdays[5] + "-" + birthdays[1] + "-" + birthdays[2];
+                    createdAt = createdAts[5] + "-" + createdAts[1] + "-" + createdAts[2];
+                    updatedAt = updatedAts[5] + "-" + updatedAts[1] + "-" + updatedAts[2];
+                    
+                    patientDto = new PatientDto(jsonObject);
+                    
+                    patientDto.setId(jsonObject.getLong("id"));
+                    
+                    patientDto.setBirthday(new SimpleDateFormat("yyyy-MMM-dd").parse(birthday));
+                    patientDto.setCreatedAt(new SimpleDateFormat("yyyy-MMM-dd").parse(createdAt));
+                    patientDto.setUpdatedAt(new SimpleDateFormat("yyyy-MMM-dd").parse(updatedAt));
+                    patientDto.setDeletedAt(new Date());
+                    
+                    message = patientService.deletePatient(patientDto);
+                    
+                    if(message){
+                        jsonObject.put("success", true);
+                    } else {
+                        response.setStatus(400);
+                        jsonObject.put("errors", message);
+                    }
+                }
             }
+
+        } catch(Exception e){
+            System.err.println(e.toString());
+            // Adds error message if it exists
+            patientDto.addError("Patient Controller Error:" + e.getMessage());
+            if(jsonObject == null){
+                jsonObject = new JSONObject();
+            }
+            
         }
+        
+        jsonObject.put("errorList", patientDto.getErrorList());
         
         response.setContentType("application/json");
         response.setCharacterEncoding("utf-8");
-        PrintWriter out = response.getWriter();
-        //print JSon
-        out.print(json.toString());
-        
+        response.getWriter().write(jsonObject.toString());
+
         System.out.println("PatientController.run end");
-        //screen redirection.
+        // screen redirection.
         return null;
     }
-    
 }

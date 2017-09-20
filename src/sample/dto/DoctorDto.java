@@ -2,6 +2,8 @@ package sample.dto;
 
 import java.util.Date;
 
+import org.slim3.repackaged.org.json.JSONObject;
+
 public class DoctorDto extends ErrorsDto {
     private Long id;
     private String firstname;
@@ -18,6 +20,24 @@ public class DoctorDto extends ErrorsDto {
     private Date createdAt;
     private Date deletedAt;
     private Date updatedAt;
+    
+    public DoctorDto(){
+        
+    }
+    
+    public DoctorDto(JSONObject obj) throws Exception{
+        this.setFirstname(obj.getString("firstname"));
+        this.setLastname(obj.getString("lastname"));
+        this.setEmail(obj.getString("email"));
+        this.setAddress(obj.getString("address"));
+        this.setSpecialization(obj.getString("specialization"));
+        this.setContactNo(obj.getString("contactNo"));
+      
+        this.setUsername(obj.getString("username"));
+        this.setPassword(obj.getString("password"));
+        this.setAdmin(false);
+        this.setToken(null);
+    }
 
     public Long getId() {
         return id;

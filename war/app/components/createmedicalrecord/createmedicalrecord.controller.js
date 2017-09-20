@@ -1,7 +1,17 @@
 angular.module('hplus.modules.createmedicalrecord')
 
   .controller('CreateMedicalRecordController',
-    function($scope, globalFactory, medicalRecordFactory){
+    function($scope, $location, globalFactory, medicalRecordFactory, doctorFactory){
+
+      var user = doctorFactory.getUser();
+
+      if(user != null) {
+        if(user.admin){
+          $location.path("/admin/list/record");
+        }
+      } else {
+        $location.path("/");
+      }
 
       $scope.go = function(path){
         globalFactory.go(path);

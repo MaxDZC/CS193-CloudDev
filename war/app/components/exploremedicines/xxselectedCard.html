@@ -1,4 +1,4 @@
-<div>
+<div ng-controller="MedicineCardController">
       <label class="subtitle">DETAILS FOR {{data.name}}</label>
       <div class="margins">
         <!-- Detail Section -->
@@ -13,14 +13,14 @@
             </p>
           </div>
           <span class="detail__title">PRICE (PHP)</span>
-          <span class="detail__subtitle">{{data.price | currency : 'P '}}</span>
+          <span class="detail__subtitle">{{data.price | currency : 'PHP '}}</span>
           <br>
           <br>
           <span class="detail__title">TREATMENT FOR</span>
           <span class="detail__subtitle"><span ng-repeat="treats in data.treats | limitTo: 3"><span ng-hide="$first">,&nbsp;</span>{{treats}}</span></span> 
           <br>
           <br>
-          <div ng-controller="modalCtrl as alert"> 
+          <div ng-show="isAdmin()"> 
             <button class="outline" ng-click="go('/admin/update/medicine')">Edit</button>
             <button class="outline" ng-click="alert.confirm()">Delete</button>
             <button class="outline" ng-click="go('/admin/view/medicine')">View</button>

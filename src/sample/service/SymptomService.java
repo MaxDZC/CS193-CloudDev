@@ -1,42 +1,50 @@
 package sample.service;
-
-import java.util.ArrayList;
-
 import sample.dao.SymptomDao;
 import sample.dto.SymptomDto;
 import sample.model.SymptomModel;
+
 
 
 public class SymptomService {
     /**
      * Used to access the DAO functions for the SymptomModel
      */
-    SymptomDao SymptomDao = new SymptomDao();
+    static SymptomDao symptomDao = new SymptomDao();
     
     /**
      * Used to insert an item to the datastore
      * @param inputSymp - the dto that contains the data to be stored in the model object
      */
-    public Boolean insertSymp(SymptomDto inputSymp){
+    
+    public String insertSymp(SymptomDto inputSymp){
         System.out.println("SymptomService.insertSymp start");
         
-        SymptomModel SymptomModel = new SymptomModel();
-        SymptomModel.setName(inputSymp.getName());
-        try{
-            if(SymptomDao.getSymp(SymptomModel) == null){
-                SymptomDao.insertSymp(SymptomModel);
-            }else{
+        String status = "";
+        SymptomModel symptorModel;
+        
+        symptorModel = new SymptomModel(inputSymp);
+        
+        
+        try { 
+            if(status.equals("")){
+                symptomDao.insertSymp(symptorModel);
+                    
+            } else {
                 System.out.println("Symptom Already Exists!");
-                return false;
             }
         }catch (Exception e){
-            System.out.println("Exception in inserting Symptom: "+e.toString());
+            System.out.println("Exception in inserting symptor: "+e.toString());
         }
         
         System.out.println("SymptomService.insertSymp end");
-        return true;
+        
+        return status;
     }
-    public ArrayList<SymptomModel> getAllSymp(){
-        return SymptomDao.getAllSymp();
+    public static Object getAllSymp(){
+        return symptomDao.getAllSymp();
+    }
+    public static Object getSymptom(Long id) {
+        // TODO Auto-generated method stub
+        return symptomDao.getSymp(id);
     }
 }
