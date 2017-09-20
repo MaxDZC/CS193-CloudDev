@@ -51,4 +51,3 @@ angular.module('hplus.modules', [
   'hplus.modules.viewpatient',
   'hplus.modules.resetpassword'
 ]);
-
