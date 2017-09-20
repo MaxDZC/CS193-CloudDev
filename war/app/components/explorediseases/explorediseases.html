@@ -21,7 +21,7 @@
     <div> 
       <div class="col col-md-12 marginBottom">
         <span class="subtitle"><span ng-hide="searchFilter == ''">{{(diseases | filter : searchFilter).length}}</span><span ng-hide="searchFilter != ''">All</span> Results</span>
-        <hplus-explore-diseases-card dir-paginate="dis in diseases | filter : searchFilter | itemsPerPage : 10" data="dis"></hplus-explore-diseases-card>
+        <hplus-explore-diseases-card dir-paginate="dis in diseases | filter : searchFilter | itemsPerPage : 10 | orderBy : 'name'" data="dis"></hplus-explore-diseases-card>
         <dir-pagination-controls max-size="5"></dir-pagination-controls>
 	    </div>
     </div>

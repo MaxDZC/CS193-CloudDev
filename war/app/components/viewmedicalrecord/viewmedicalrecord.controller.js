@@ -11,9 +11,18 @@ angular.module('hplus.modules.viewmedicalrecord')
         "createdAt" : "2016-02-20T09:05:05.035Z"
 	  };
 	  
-	  $scope.diseases = ["Hyperacidity","Trichotrillomania"];
+	  $scope.diseases = [
+	    {
+	      "name" : "Hyperacidity",
+          "symptoms" : ["Vomiting","Repeatedly pulling hair out","Noticeable hair loss","Low self-esteem"]
+	    },
+	    {
+	      "name" : "Trichotrillomania",
+	      "symptoms" : ["Lack of appetite","Constipation","Indigestion","Sour Belching"]
+	    }
+	  ];
 	  
-	  $scope.symptoms = ["Lack of appetite","Constipation","Indigestion","Sour Belching","Vomiting","Repeatedly pulling hair out","Noticeable hair loss","Low self-esteem"];
+	  $scope.symptoms = ["Lack of appetite","Constipation","Indigestion","Repeatedly pulling hair out","Noticeable hair loss","Low self-esteem"];
 	  
       $scope.patient = {
         "firstName" : "Jane",
