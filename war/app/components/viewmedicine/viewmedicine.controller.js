@@ -1,7 +1,13 @@
-app = angular.module('hplus.modules.viewmedicine');
+app = angular.module('hplus.modules.viewmedicine')
 
-  app.controller('ViewMedicineController',
-    function($scope, $location, globalFactory, medicineFactory, modalFactory){
+  .controller('ViewMedicineController',
+    function($scope, $location, globalFactory, doctorFactory, medicineFactory){
+
+      var user = doctorFactory.getUser();
+
+      if(user == null) {
+        $location.path("/");
+      }
 	  
 	  $scope.medicineData = medicineFactory.getMedicine();
       var modalObject;

@@ -10,3 +10,4 @@ angular.module('hplus.modules.exploremedicines', [])
   });
   require('./exploremedicines.directive.js');
   require('./exploremedicines.controller.js');
+  require('./xxmedicinecard.controller.js');

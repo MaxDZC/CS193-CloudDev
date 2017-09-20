@@ -1,7 +1,6 @@
 package sample.model;
 
 import java.io.Serializable;
-import java.util.Date;
 
 import com.google.appengine.api.datastore.Key;
 
@@ -23,20 +22,20 @@ public class MedicineModel implements Serializable {
     private String name;
     private String description;
     private Double price;
-    private Date createdaAt;
+    private String createdAt;
     private String deletedAt;
     private String updatedAt;
     
-    public Date getCreatedaAt() {
-        return createdaAt;
+    public String getCreatedAt() {
+        return createdAt;
     }
 
-    public void setCreatedaAt(Date date) {
-        this.createdaAt = date;
+    public void setCreatedAt(String createdAt) {
+        this.createdAt = createdAt;
     }
 
     public String getDeletedAt() {
-        return deletedAt;
+        return this.deletedAt;
     }
 
     public void setDeletedAt(String deletedAt) {
