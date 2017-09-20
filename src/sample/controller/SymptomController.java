@@ -1,7 +1,6 @@
 package sample.controller;
 
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import org.slim3.controller.Controller;
@@ -10,7 +9,6 @@ import org.slim3.repackaged.org.json.JSONObject;
 import org.slim3.util.RequestMap;
 
 import sample.dto.SymptomDto;
-import sample.meta.SymptomModelMeta;
 import sample.service.SymptomService;
 import sample.utils.JSONValidators;
 
@@ -28,16 +26,10 @@ public class SymptomController extends Controller {
         SymptomDto symptomDto = new SymptomDto();
         JSONObject jsonObject = null;
         JSONValidators validator;
-        
-
-        String createdAt;
-        String updatedAt;
-        String[] createdAts;
-        String[] updatedAts;
 
         String method = request.getMethod();
         String message;
-        
+       
         try{
             
             if(method.equalsIgnoreCase("POST")){
@@ -48,15 +40,11 @@ public class SymptomController extends Controller {
                 if(validator.validate()){
                     
                     symptomDto = new SymptomDto(jsonObject);
-                    
-                    birthday = jsonObject.getString("birthday").split("T")[0];
-                    
-                    symptomDto.setBirthday(new SimpleDateFormat("yyyy-MM-dd").parse(birthday));
+               
                     symptomDto.setCreatedAt(new Date());
-                    symptomDto.setUpdatedAt(null);
-                    symptomDto.setDeletedAt(null);
+                   
                     
-                    message = symptomService.insertDoc(symptomDto);
+                    message = symptomService.insertSymp(symptomDto);
                     
                     if (message.equals("")) {
                         jsonObject.put("success", true);
@@ -70,14 +58,15 @@ public class SymptomController extends Controller {
             } else if(method == "GET") {
                 jsonObject = new JSONObject(new RequestMap(this.request));
                 
-                if(jsonObject.has("name")){
-                    jsonObject.put("symptoms", SymptomService.getSymptom(this.request));
+                if(jsonObject.has("id")){
+                    jsonObject.put("symptom", SymptomService.getSymptom(jsonObject.getLong("id")));
                     
                 } else {
-                    jsonObject.put("symptoms", SymptomService.getSymptoms());
+                    jsonObject.put("symptoms", SymptomService.getAllSymp());
                 }
                 
-            } else if(method == "PUT") {
+            }
+            /*  else if(method == "PUT") {
                 
                 jsonObject = new JSONObject(this.request.getReader().readLine());
                 validator = new JSONValidators(jsonObject);
@@ -144,7 +133,7 @@ public class SymptomController extends Controller {
                         jsonObject.put("errors", message);
                     }
                 }
-            }
+            } */
 
         } catch(Exception e){
             System.err.println(e.toString());

@@ -69,7 +69,7 @@ public class MedicineController extends Controller {
                 
                 } else if (method == "PUT") {
         
-                    medicineDto = new MedicineDto(jObj.getString("name"),
+                        medicineDto = new MedicineDto(jObj.getString("name"),
                         jObj.getString("desc"),
                         Double.parseDouble(jObj.getString("price"))
                         );
