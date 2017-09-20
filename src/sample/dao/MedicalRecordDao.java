@@ -1,5 +1,6 @@
 package sample.dao;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 import org.slim3.datastore.Datastore;
@@ -9,7 +10,9 @@ import com.google.appengine.api.datastore.Query.FilterOperator;
 import com.google.appengine.api.datastore.Query.CompositeFilterOperator;
 import com.google.appengine.api.datastore.Query.FilterPredicate;
 
+import sample.meta.DoctorModelMeta;
 import sample.meta.MedicalRecordModelMeta;
+import sample.model.DoctorModel;
 import sample.model.MedicalRecordModel;
 
 public class MedicalRecordDao {
@@ -92,5 +95,47 @@ public class MedicalRecordDao {
         date = dates[5] + "-" + dates[1] + "-" + dates[2];
         
         return date;
+    }
+
+    public Object getMedicalRecords() {
+        // TODO Auto-generated method stub
+        
+        com.google.appengine.api.datastore.DatastoreService datastore = DatastoreServiceFactory
+                .getDatastoreService();
+            
+            ArrayList<MedicalRecordModel> results =  new ArrayList<MedicalRecordModel>();
+
+            Query query = new Query("MedicalRecordModel");
+                @SuppressWarnings("deprecation")
+                java.util.List<Entity> entities = datastore.prepare(query.addFilter("deletedAt", FilterOperator.EQUAL, null)).asList(
+                FetchOptions.Builder.withDefaults());
+
+            for(Entity entity : entities) {
+                results.add(MedicalRecordModelMeta.get().entityToModel(entity));
+            }
+                   
+            return results;
+       
+    }
+
+  
+
+    public Object getMedicalRecordByDoctorId(Long id) {
+        // TODO Auto-generated method stub
+        com.google.appengine.api.datastore.DatastoreService datastore = DatastoreServiceFactory
+                .getDatastoreService();
+            
+            ArrayList<DoctorModel> results =  new ArrayList<DoctorModel>();
+
+            Query query = new Query("MedicalRecordModel");
+                @SuppressWarnings("deprecation")
+                java.util.List<Entity> entities = datastore.prepare(query.addFilter("deletedAt", FilterOperator.EQUAL, null).addFilter("doctorId", FilterOperator.EQUAL, id)).asList(
+                FetchOptions.Builder.withDefaults());
+
+            for(Entity entity : entities) {
+                results.add(DoctorModelMeta.get().entityToModel(entity));
+            }
+                   
+            return results;
     }
 }

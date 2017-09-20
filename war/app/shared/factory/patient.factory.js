@@ -1,12 +1,12 @@
 angular.module('hplus.factory')
 
-  .factory('patientFactory', 
+  .factory('patientFactory',
     function($http, modalFactory, $window, $location){
 
       var registerPatient = function(patientObject){
         $http({
           method: 'POST',
-          url: '/registerPatient', // Change URL here
+          url: '/Patient', // Change URL here
           data: patientObject
         }).then(function successCallback(response) {
         	console.log(response);
@@ -32,14 +32,14 @@ angular.module('hplus.factory')
               modalFactory.setContents(modalObject);
             });
       }
-      
+
       var getListOfPatients = function(){
           return $http({
             method: "GET",
             url: "/Patient",
           });
         };
-        
+
         var updatePatient = function(patient){
             $http({
               method: "PUT",
@@ -54,7 +54,7 @@ angular.module('hplus.factory')
                 positiveButton: "Ok",
                 isVisible: true
               };
-            
+
               modalFactory.setContents(modalObject);
               savePatient(response.data);
               $location.path('/admin/view/patientdetails');
@@ -67,15 +67,15 @@ angular.module('hplus.factory')
                   positiveButton: "Ok",
                   isVisible: true
                 };
-              
+
                 modalFactory.setContents(modalObject);
               });
             };
-            
+
             var goList = function(){
                 $location.path('/admin/list/patient');
               }
-            
+
             var confirmDeletePatient = function(patient){
                 $http({
                   method: "DELETE",
@@ -105,9 +105,9 @@ angular.module('hplus.factory')
                   }
 
                   modalFactory.setContents(modalObject);
-                }); 
+                });
               };
-              
+
               var deletePatient = function(patient){
                   var modalObject = {
                     type: "confirm",
@@ -122,16 +122,16 @@ angular.module('hplus.factory')
 
                   modalFactory.setContents(modalObject);
                 };
-                
+
                 var savePatient = function(patient){
                   $window.localStorage.setItem("patient", angular.toJson(patient));
                 };
-                
+
                 var getPatient = function(){
                   return angular.fromJson($window.localStorage.getItem("patient"));
                 };
-      
-      
+
+
       return {
         registerPatient: registerPatient,
         getListOfPatients: getListOfPatients,
