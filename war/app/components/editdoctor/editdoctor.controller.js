@@ -3,7 +3,17 @@ angular.module('hplus.modules.editdoctor')
   .controller('EditDoctorController',
     function($scope, $location, globalFactory, doctorFactory, modalFactory){
     
-      $scope.doctorData = doctorFactory.getDoctor();
+      var user = doctorFactory.getUser();
+
+      if(user == null){
+        $location.path("/");
+      } else {
+        if(user.admin){
+          $scope.doctorData = doctorFactory.getDoctor();
+        } else {
+          $scope.doctorData = user;
+        }
+      }
       var modalObject = null;
 
       if($scope.doctorData == null){

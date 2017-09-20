@@ -1,7 +1,13 @@
-app = angular.module('hplus.modules.viewdisease');
+app = angular.module('hplus.modules.viewdisease')
 
-  app.controller('ViewDiseaseController',
-    function($scope, globalFactory){
+  .controller('ViewDiseaseController',
+    function($scope, $location, globalFactory, doctorFactory){
+
+      var user = doctorFactory.getUser();
+
+      if(user == null) {
+        $location.path("/");
+      }
 
       $scope.go = function(path){
         globalFactory.go(path);

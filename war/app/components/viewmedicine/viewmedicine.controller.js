@@ -1,8 +1,14 @@
-app = angular.module('hplus.modules.viewmedicine');
+app = angular.module('hplus.modules.viewmedicine')
 
-  app.controller('ViewMedicineController',
-    function($scope, globalFactory){
-	  
+  .controller('ViewMedicineController',
+    function($scope, $location, globalFactory, doctorFactory){
+
+      var user = doctorFactory.getUser();
+
+      if(user == null) {
+        $location.path("/");
+      }
+
       $scope.go = function(path){
         globalFactory.go(path);
       };
