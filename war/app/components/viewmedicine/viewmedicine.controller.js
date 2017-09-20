@@ -1,16 +1,28 @@
 app = angular.module('hplus.modules.viewmedicine')
 
   .controller('ViewMedicineController',
-    function($scope, $location, globalFactory, doctorFactory){
+    function($scope, $location, globalFactory, doctorFactory, medicineFactory){
 
       var user = doctorFactory.getUser();
 
       if(user == null) {
         $location.path("/");
       }
+	  
+	  $scope.medicineData = medicineFactory.getMedicine();
+      var modalObject;
 
+      if($scope.medicineData == null){
+        $location.path('/admin/list/medicine');
+      }
+	  
       $scope.go = function(path){
+    	medicineFactory.saveMedicine($scope.medicineData);
         globalFactory.go(path);
+      };
+      
+      $scope.delete = function(){
+        medicineFactory.deleteMedicine($scope.medicineData);
       };
        
       $scope.medicineData = {
