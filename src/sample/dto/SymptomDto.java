@@ -1,5 +1,7 @@
 package sample.dto;
 
+import org.slim3.repackaged.org.json.JSONObject;
+
 public class SymptomDto {
     /**
      * The id of the 'Symptom'
@@ -18,18 +20,14 @@ public class SymptomDto {
     /**
      * Creates an instance of 'Symptom'
      */
-    public SymptomDto(){
-        
+    public SymptomDto(JSONObject obj) throws Exception{    
+        this.setName(obj.getString("name"));
     }
     
     /**
      * Creates an instance of 'Symptom' with attribute initialization
      */
-    public SymptomDto(String name){
-        
-        this.setName(name);
-      
-    }
+  
     
     /**
      * Retrieves the id of the 'Symptom'
