@@ -3,7 +3,19 @@ angular.module('hplus.modules.viewdoctor')
   .controller('ViewDoctorController',
     function($scope, $location, globalFactory, doctorFactory, modalFactory){
     
-      $scope.doctorData = doctorFactory.getDoctor();
+      var user = doctorFactory.getUser();
+      console.log(user);
+
+      if(user != null) {
+        if(user.isAdmin){
+          $scope.doctorData = doctorFactory.getDoctor();
+        } else {
+          $scope.doctorData = user;
+        }
+      } else {
+        $location.path("/");
+      }
+
       var modalObject;
 
       if($scope.doctorData == null){

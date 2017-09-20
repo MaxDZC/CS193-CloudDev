@@ -1,0 +1,19 @@
+<div class="margins">
+  <div class="detail__container">
+    <div class="card__title">
+      {{data.name}}
+    </div>
+    <label class="subtitle">Symptoms</label>
+    <div class="subtitle__value">
+      <span ng-repeat="symp in data.symptoms"><span ng-hide="$first">,&nbsp;</span>{{symp}}</span>
+    </div>
+    <label class="subtitle">Medications</label>
+    <div class="subtitle__value">
+      <span ng-repeat="med in data.medications"><span ng-hide="$first">,&nbsp;</span>{{med}}</span>
+    </div>
+    <label class="subtitle">Bill for this disease</label>
+    <div class="subtitle__value">
+      {{data.bill | currency : 'PHP '}}
+    </div>
+  </div>
+</div>

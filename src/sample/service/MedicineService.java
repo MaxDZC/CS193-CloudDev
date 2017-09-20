@@ -4,7 +4,6 @@ import java.util.Date;
 
 import sample.dao.MedicineDao;
 import sample.dto.MedicineDto;
-import sample.meta.MedicineModelMeta;
 import sample.model.MedicineModel;
 
 
@@ -18,12 +17,10 @@ public class MedicineService {
                                                         inputMed.getDescription(),
                                                         inputMed.getPrice()
                                                        );
-        medicineModel.setCreatedaAt(inputMed.getCreatedaAt());
-        
         
         try{
             if(medicineDao.getMed(medicineModel.getName()) == null){
-              medicineDao.insertMed(medicineModel);
+                medicineDao.insertMed(medicineModel);
             }else{
                 System.out.println("Medicine Already Exists!");
                 return false ;
@@ -44,7 +41,7 @@ public class MedicineService {
             
             try {
                 // checking if there is already the same item that exists in the datastore.
-                MedicineModel resultModel = MedicineModelMeta.get().entityToModel( medicineDao.getMed(medicineModel.getName()));
+                MedicineModel resultModel = (MedicineModel) medicineDao.getMed(medicineModel.getName());
                 
                 if (resultModel != null) {
                     // setting the key in order to properly update the item
@@ -70,7 +67,7 @@ public class MedicineService {
             
             try { 
                 // checking if there is already the same item that exists in the datastore.
-                MedicineModel resultModel = MedicineModelMeta.get().entityToModel( medicineDao.getMed(medicineDto.getName()));
+                MedicineModel resultModel = (MedicineModel) medicineDao.getMed(medicineDto.getName());
                 
                 if (resultModel != null) {
                     // setting the key in order to properly delete the item

@@ -30,7 +30,7 @@ public class PatientDao{
         if(Datastore.query("PatientModel")
                 .filter("firstName", 
                          FilterOperator.EQUAL, 
-                         inputPat.getFirstName()
+                         inputPat.getFirstname()
                         ).asSingleEntity() == null){
             
             System.out.println("PatientDao.getPat end(success)");
@@ -114,7 +114,7 @@ public class PatientDao{
         Transaction trans = Datastore.beginTransaction();
         
         //creating key and ID for the new entity
-        Key parentKey = KeyFactory.createKey("Patient", inputPat.getFirstName()+inputPat.getLastName());
+        Key parentKey = KeyFactory.createKey("Patient", inputPat.getFirstname()+inputPat.getLastname());
         Key key = Datastore.allocateId(parentKey, "PatientModel");
         
         //Setting the 'key' and 'id' of the model

@@ -8,5 +8,5 @@ angular.module('hplus.modules.explorediseases', [])
         template: explorediseases
       })
   });
-
+  require('./explorediseases.directive.js');
   require('./explorediseases.controller.js');

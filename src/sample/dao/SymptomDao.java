@@ -18,24 +18,24 @@ public class SymptomDao{
     
     /**
      * Used to get only a single 'Symptom' from the datastore with the same 'name'
-     * @param inputSymp - contains the information for verification
+     * @param id - contains the information for verification
      * @return SymptomModel returned by the query
      */
-    public SymptomModel getSymp(SymptomModel inputSymp){
+    public SymptomModel getSymp(Long id){
         System.out.println("SymptomDao.getSymp start");
         
-        if(Datastore.query("SymptomModel")
-                .filter("name", 
-                         FilterOperator.EQUAL, 
-                         inputSymp.getName()
-                        ).asSingleEntity() == null){
-            
+        SymptomModel symptom = SymptomModelMeta.get().entityToModel(
+            Datastore.query("SymptomModel")
+                     .filter("id", FilterOperator.EQUAL, id)
+                    
+                     .asSingleEntity()) ;
+        if(symptom != null){
             System.out.println("SymptomDao.getSymp end(success)");
-            return null;
         }else{
             System.out.println("SymptomDao.getSymp end(failed)");
-            return inputSymp;
         }
+        
+        return symptom;
     }
     public ArrayList<SymptomModel> getAllSymp(){
         ArrayList<SymptomModel> symp = new ArrayList<SymptomModel>();
