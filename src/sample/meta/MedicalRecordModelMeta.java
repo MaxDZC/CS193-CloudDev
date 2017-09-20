@@ -1,6 +1,6 @@
 package sample.meta;
 
-//@javax.annotation.Generated(value = { "slim3-gen", "@VERSION@" }, date = "2017-09-20 13:32:29")
+//@javax.annotation.Generated(value = { "slim3-gen", "@VERSION@" }, date = "2017-09-20 14:01:55")
 /** */
 public final class MedicalRecordModelMeta extends org.slim3.datastore.ModelMeta<sample.model.MedicalRecordModel> {
 
@@ -23,9 +23,6 @@ public final class MedicalRecordModelMeta extends org.slim3.datastore.ModelMeta<
     public final org.slim3.datastore.CoreAttributeMeta<sample.model.MedicalRecordModel, java.lang.Long> id = new org.slim3.datastore.CoreAttributeMeta<sample.model.MedicalRecordModel, java.lang.Long>(this, "id", "id", java.lang.Long.class);
 
     /** */
-    public final org.slim3.datastore.CoreAttributeMeta<sample.model.MedicalRecordModel, java.lang.Boolean> inPatient = new org.slim3.datastore.CoreAttributeMeta<sample.model.MedicalRecordModel, java.lang.Boolean>(this, "inPatient", "inPatient", java.lang.Boolean.class);
-
-    /** */
     public final org.slim3.datastore.CoreAttributeMeta<sample.model.MedicalRecordModel, com.google.appengine.api.datastore.Key> key = new org.slim3.datastore.CoreAttributeMeta<sample.model.MedicalRecordModel, com.google.appengine.api.datastore.Key>(this, "__key__", "key", com.google.appengine.api.datastore.Key.class);
 
     /** */
@@ -39,6 +36,9 @@ public final class MedicalRecordModelMeta extends org.slim3.datastore.ModelMeta<
 
     /** */
     public final org.slim3.datastore.CollectionAttributeMeta<sample.model.MedicalRecordModel, java.util.ArrayList<java.lang.Long>, java.lang.Long> symptomIdList = new org.slim3.datastore.CollectionAttributeMeta<sample.model.MedicalRecordModel, java.util.ArrayList<java.lang.Long>, java.lang.Long>(this, "symptomIdList", "symptomIdList", java.util.ArrayList.class);
+
+    /** */
+    public final org.slim3.datastore.CoreAttributeMeta<sample.model.MedicalRecordModel, java.lang.Boolean> type = new org.slim3.datastore.CoreAttributeMeta<sample.model.MedicalRecordModel, java.lang.Boolean>(this, "type", "type", java.lang.Boolean.class);
 
     /** */
     public final org.slim3.datastore.CoreAttributeMeta<sample.model.MedicalRecordModel, java.util.Date> updatedAt = new org.slim3.datastore.CoreAttributeMeta<sample.model.MedicalRecordModel, java.util.Date>(this, "updatedAt", "updatedAt", java.util.Date.class);
@@ -69,12 +69,12 @@ public final class MedicalRecordModelMeta extends org.slim3.datastore.ModelMeta<
         model.setDiseaseIdList(toList(java.lang.Long.class, entity.getProperty("diseaseIdList")));
         model.setDoctorId((java.lang.Long) entity.getProperty("doctorId"));
         model.setId((java.lang.Long) entity.getProperty("id"));
-        model.setInPatient((java.lang.Boolean) entity.getProperty("inPatient"));
         model.setKey(entity.getKey());
         model.setMedicineIdList(toList(java.lang.Long.class, entity.getProperty("medicineIdList")));
         model.setPatientId((java.lang.Long) entity.getProperty("patientId"));
         model.setQuantityList(toList(java.lang.Long.class, entity.getProperty("quantityList")));
         model.setSymptomIdList(toList(java.lang.Long.class, entity.getProperty("symptomIdList")));
+        model.setType((java.lang.Boolean) entity.getProperty("type"));
         model.setUpdatedAt((java.util.Date) entity.getProperty("updatedAt"));
         model.setVersion((java.lang.Long) entity.getProperty("version"));
         return model;
@@ -95,11 +95,11 @@ public final class MedicalRecordModelMeta extends org.slim3.datastore.ModelMeta<
         entity.setProperty("diseaseIdList", m.getDiseaseIdList());
         entity.setProperty("doctorId", m.getDoctorId());
         entity.setProperty("id", m.getId());
-        entity.setProperty("inPatient", m.getInPatient());
         entity.setProperty("medicineIdList", m.getMedicineIdList());
         entity.setProperty("patientId", m.getPatientId());
         entity.setProperty("quantityList", m.getQuantityList());
         entity.setProperty("symptomIdList", m.getSymptomIdList());
+        entity.setProperty("type", m.getType());
         entity.setProperty("updatedAt", m.getUpdatedAt());
         entity.setProperty("version", m.getVersion());
         entity.setProperty("slim3.schemaVersion", 1);
@@ -192,10 +192,6 @@ public final class MedicalRecordModelMeta extends org.slim3.datastore.ModelMeta<
             writer.setNextPropertyName("id");
             encoder0.encode(writer, m.getId());
         }
-        if(m.getInPatient() != null){
-            writer.setNextPropertyName("inPatient");
-            encoder0.encode(writer, m.getInPatient());
-        }
         if(m.getKey() != null){
             writer.setNextPropertyName("key");
             encoder0.encode(writer, m.getKey());
@@ -227,6 +223,10 @@ public final class MedicalRecordModelMeta extends org.slim3.datastore.ModelMeta<
                 encoder0.encode(writer, v);
             }
             writer.endArray();
+        }
+        if(m.getType() != null){
+            writer.setNextPropertyName("type");
+            encoder0.encode(writer, m.getType());
         }
         if(m.getUpdatedAt() != null){
             writer.setNextPropertyName("updatedAt");
@@ -271,8 +271,6 @@ public final class MedicalRecordModelMeta extends org.slim3.datastore.ModelMeta<
         m.setDoctorId(decoder0.decode(reader, m.getDoctorId()));
         reader = rootReader.newObjectReader("id");
         m.setId(decoder0.decode(reader, m.getId()));
-        reader = rootReader.newObjectReader("inPatient");
-        m.setInPatient(decoder0.decode(reader, m.getInPatient()));
         reader = rootReader.newObjectReader("key");
         m.setKey(decoder0.decode(reader, m.getKey()));
         reader = rootReader.newObjectReader("medicineIdList");
@@ -328,6 +326,8 @@ public final class MedicalRecordModelMeta extends org.slim3.datastore.ModelMeta<
                 m.setSymptomIdList(elements);
             }
         }
+        reader = rootReader.newObjectReader("type");
+        m.setType(decoder0.decode(reader, m.getType()));
         reader = rootReader.newObjectReader("updatedAt");
         m.setUpdatedAt(decoder0.decode(reader, m.getUpdatedAt()));
         reader = rootReader.newObjectReader("version");
