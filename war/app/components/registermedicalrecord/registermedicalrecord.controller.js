@@ -1,6 +1,6 @@
-angular.module('hplus.modules.createmedicalrecord')
+angular.module('hplus.modules.registermedicalrecord')
 
-  .controller('CreateMedicalRecordController',
+  .controller('RegisterMedicalRecordController',
     function($scope, $location, globalFactory, medicalRecordFactory, doctorFactory){
 
       var user = doctorFactory.getUser();
