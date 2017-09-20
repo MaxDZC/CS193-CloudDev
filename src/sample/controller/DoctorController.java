@@ -52,6 +52,7 @@ public class DoctorController extends Controller {
             adminAccount.setContactNo("09323437269");
             adminAccount.setEmail("teambob.cloud@gmail.com");
             
+            
             adminAccount.setCreatedAt(new Date());
             adminAccount.setDeletedAt(null);
             adminAccount.setUpdatedAt(null);
@@ -112,20 +113,30 @@ public class DoctorController extends Controller {
                 
                 
                 if(validator.validate()){
-                    
-                    birthdays = jsonObject.getString("birthday").split(" ");
-                    createdAts = jsonObject.getString("createdAt").split(" ");
-                    
-                    birthday = birthdays[5] + "-" + birthdays[1] + "-" + birthdays[2];
-                    createdAt = createdAts[5] + "-" + createdAts[1] + "-" + createdAts[2];
-                    
+                   
                     doctorDto = new DoctorDto(jsonObject);
+                    Object aObj = jsonObject.get("birthday");
                     
+                    if(aObj instanceof String){
+                        birthdays = jsonObject.getString("birthday").split(" ");
+                        createdAts = jsonObject.getString("createdAt").split(" ");
+                    
+                        birthday = birthdays[5] + "-" + birthdays[1] + "-" + birthdays[2];
+                        createdAt = createdAts[5] + "-" + createdAts[1] + "-" + createdAts[2];
+                        
+                        doctorDto.setBirthday(new SimpleDateFormat("yyyy-MMM-dd").parse(birthday));
+                        doctorDto.setCreatedAt(new SimpleDateFormat("yyyy-MMM-dd").parse(createdAt));
+                    } else {
+                        Date birthdayNew = new Date(jsonObject.getLong("birthday"));
+                        Date createdAtNew = new Date(jsonObject.getLong("createdAt"));
+                        
+                        doctorDto.setBirthday(birthdayNew);
+                        doctorDto.setCreatedAt(createdAtNew);
+                    }
+                 
                     
                     doctorDto.setId(jsonObject.getLong("id"));
                     
-                    doctorDto.setBirthday(new SimpleDateFormat("yyyy-MMM-dd").parse(birthday));
-                    doctorDto.setCreatedAt(new SimpleDateFormat("yyyy-MMM-dd").parse(createdAt));
                     doctorDto.setUpdatedAt(new Date());
                     doctorDto.setDeletedAt(null);
                     

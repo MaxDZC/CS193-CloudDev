@@ -86,10 +86,22 @@ public class MedicineController extends Controller {
                     
                     medicineDto = new MedicineDto(jsonObject);
                     
+                    Object aObj = jsonObject.get("createdAt");
+                    
+                    if(aObj instanceof String){
+                        createdAts = jsonObject.getString("createdAt").split(" ");
+                    
+                        createdAt = createdAts[5] + "-" + createdAts[1] + "-" + createdAts[2];
+                        
+                        medicineDto.setCreatedAt(new SimpleDateFormat("yyyy-MMM-dd").parse(createdAt));
+                    } else {
+                        Date createdAtNew = new Date(jsonObject.getLong("createdAt"));
+                        
+                        medicineDto.setCreatedAt(createdAtNew);
+                    }
                     
                     medicineDto.setId(jsonObject.getLong("id"));
                     
-                    medicineDto.setCreatedAt(new SimpleDateFormat("yyyy-MMM-dd").parse(createdAt));
                     medicineDto.setUpdatedAt(new Date());
                     medicineDto.setDeletedAt(null);
                     

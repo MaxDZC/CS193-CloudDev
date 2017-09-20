@@ -24,6 +24,8 @@ public class MedicalRecordController extends Controller {
         MedicalRecordDto medicalRecordDto = null;
         MedicalRecordService medicalRecordService = new MedicalRecordService();
         String date;
+        String[] createdAts;
+        String createdAt;
         
         try{
             if(method.equalsIgnoreCase("POST")){
@@ -40,10 +42,22 @@ public class MedicalRecordController extends Controller {
                 jObj = new JSONObject(request.getReader().readLine());
                 date = MedicalRecordDao.processDate(jObj.getString("createdAt"));
                 
+                Object aObj = jObj.get("birthday");
+                
                 medicalRecordDto = new MedicalRecordDto(jObj);
                 
+                if(aObj instanceof String){
+                    createdAts = jObj.getString("createdAt").split(" ");
+                    createdAt = createdAts[5] + "-" + createdAts[1] + "-" + createdAts[2];
+                    
+                    medicalRecordDto.setCreatedAt(new SimpleDateFormat("yyyy-MMM-dd").parse(createdAt));
+                } else {
+                    Date createdAtNew = new Date(jObj.getLong("createdAt"));
+                    
+                    medicalRecordDto.setCreatedAt(createdAtNew);
+                }
+                
                 medicalRecordDto.setId(jObj.getLong("id"));
-                medicalRecordDto.setCreatedAt(new SimpleDateFormat("yyyy-MMM-dd").parse(date));
                 medicalRecordDto.setUpdatedAt(new Date());
                 medicalRecordDto.setDeletedAt(null);
                 

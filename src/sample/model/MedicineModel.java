@@ -39,6 +39,9 @@ public class MedicineModel implements Serializable {
         this.setDescription(inputMed.getDescription());
         this.setType(inputMed.getType());
         this.setPrice(inputMed.getPrice());
+        this.setCreatedAt(inputMed.getCreatedAt());
+        this.setDeletedAt(inputMed.getDeletedAt());
+        this.setUpdatedAt(inputMed.getUpdatedAt());
     }
 
     public Long getId() {
