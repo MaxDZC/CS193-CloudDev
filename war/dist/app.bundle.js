@@ -38485,7 +38485,10 @@ __webpack_require__(118);
 __webpack_require__(124);
 __webpack_require__(130);
 __webpack_require__(135);
+<<<<<<< HEAD
 __webpack_require__(138);
+=======
+>>>>>>> develop
 
 angular.module('hplus.modules', [
   'hplus.modules.header',
@@ -41619,6 +41622,7 @@ module.exports = "<ng-controller ng-controller=\"ViewPatientController\">\r\n\t<
 
 /***/ }),
 /* 132 */
+<<<<<<< HEAD
 /***/ (function(module, exports, __webpack_require__) {
 
 var card = __webpack_require__(133);
@@ -41973,6 +41977,12 @@ module.exports = "<div class=\"row\"><!-- Header Portion -->\r\n  <div class=\"c
 /***/ (function(module, exports, __webpack_require__) {
 
 var card = __webpack_require__(141);
+=======
+/***/ (function(module, exports, __webpack_require__) {
+
+var card = __webpack_require__(133);
+angular.module('hplus.modules.viewpatient')
+>>>>>>> develop
 
 angular.module('hplus.modules.explorepatients')
 
@@ -41987,13 +41997,21 @@ angular.module('hplus.modules.explorepatients')
   })
 
 /***/ }),
+<<<<<<< HEAD
 /* 141 */
+=======
+/* 133 */
+>>>>>>> develop
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"card__container\" ng-controller=\"PatientCardController\">\r\n  <div class=\"card__title\">\r\n    {{ data.firstname }} {{ data.lastname }}\r\n    <a ng-click=\"go('/admin/view/patientdetails', data); $event.stopPropagation();\">\r\n      <span class=\"delete__icon\">\r\n        <i class=\"fa fa-eye\" aria-hidden=\"true\"></i>\r\n      </span>\r\n    </a>\r\n    <a ng-click=\"go('/admin/edit/patient', data); $event.stopPropagation();\">\r\n      <span class=\"delete__icon\">\r\n        <i class=\"fa fa-pencil-square-o\" aria-hidden=\"true\"></i>\r\n      </span>\r\n    </a>\r\n    <a ng-show=\"data.medicalRecords == null\" ng-click=\"delete(data); $event.stopPropagation();\">\r\n      <span class=\"delete__icon\">\r\n        <i class=\"fa fa-archive\" aria-hidden=\"true\"></i>\r\n      </span>\r\n    </a>\r\n  </div>\r\n  \r\n  <div class=\"card__desc\">\r\n    {{ data.specialization }}\r\n  </div>\r\n</div>";
 
 /***/ }),
+<<<<<<< HEAD
 /* 142 */
+=======
+/* 134 */
+>>>>>>> develop
 /***/ (function(module, exports) {
 
 angular.module('hplus.modules.explorepatients')
@@ -42080,6 +42098,170 @@ angular.module('hplus.modules.explorepatients')
   );
 
 /***/ }),
+/* 144 */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"row\">\r\n  <div class=\"col-md-12\" align=\"right\">\r\n      <div class=\"pagination__container\" ng-if=\"1 < pages.length || !autoHide\">\r\n      <div ng-if=\"boundaryLinks\"  class=\"pagination__page\" ng-click=\"setCurrent(1)\">\r\n        &laquo;\r\n      </div> \r\n      <div ng-if=\"directionLinks\" class=\"pagination__page\" ng-click=\"setCurrent(pagination.current - 1)\">\r\n        &lsaquo;\r\n      </div>\r\n      <div ng-repeat=\"pageNumber in pages track by tracker(pageNumber, $index)\" class=\"pagination__page\" ng-class=\"{ pagination__current : pagination.current == pageNumber, pagination__page : pageNumber == '...' }\" ng-click=\"setCurrent(pageNumber)\">\r\n        {{ pageNumber }}\r\n      </div>\r\n      <div ng-if=\"directionLinks\" class=\"pagination__page\" ng-click=\"setCurrent(pagination.current + 1)\">\r\n        &rsaquo;\r\n      </div>\r\n      <div ng-if=\"boundaryLinks\"  class=\"pagination__page\" ng-click=\"setCurrent(pagination.last)\">\r\n        &raquo;\r\n      </div>\r\n    </div>\r\n</div>";
+
+/***/ }),
+/* 135 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var resetpassword = __webpack_require__(136);
+
+angular.module('hplus.modules.resetpassword', [])
+
+  .config(function ($routeProvider){  
+    $routeProvider
+      .when('/admin/reset/password',{
+        template: resetpassword
+      })
+  });
+
+  __webpack_require__(137);
+
+/***/ }),
+/* 136 */
+/***/ (function(module, exports) {
+
+module.exports = "<div  ng-controller=\"ResetPasswordController\">\r\n  <div class=\"row\">\r\n    <div class=\"col col-md-8 col-md-offset-1\">\r\n      <h1>Reset Your Password</h1>\r\n    </div>\r\n  </div>\r\n\r\n  <ng-form name=\"resetPasswordForm\">\r\n    <div class=\"row\">\r\n      <div class=\"col col-md-4 col-md-offset-1\">\r\n        <div class=\"row\">\r\n          <div class=\"col col-md-12\">\r\n            <label class=\"subtitle\">Old Password</label>\r\n            <input type=\"password\" ng-model=\"password.oldPass\" ng-required=\"true\">\r\n            \r\n            <label class=\"subtitle\">New Password (At least 6 characters)</label>\r\n            <input type=\"password\" ng-model=\"password.newPass\" ng-pattern=\"passwordRegex\" zxcvbn=\"passwordStrength\" ng-required=\"true\">\r\n\r\n\r\n            <label class=\"subtitle\">Repeat your new password</label>\r\n            <input type=\"password\" ng-model=\"password.confirmPass\" ng-required=\"true\">\r\n            \r\n            <div class=\"row\">\r\n                <div class=\"meter\">\r\n                  <div ng-class=\"meter\" role=\"progressbar\" aria-valuenow=\"40\" aria-valuemin=\"0\" aria-valuemax=\"100\"></div>\r\n                </div>\r\n                <span class=\"subtitle\">{{ passwordStatus }}</span>\r\n            </div>\r\n            <br><br>\r\n            \r\n            <button ng-class=\"checkStatus(resetPasswordForm.$valid)\" ng-disabled=\"resetPasswordForm.$invalid\" ng-click=\"resetPassword()\">{{ buttonText }}</button>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </ng-form>\r\n</div>";
+
+/***/ }),
+/* 137 */
+/***/ (function(module, exports) {
+
+angular.module('hplus.modules.resetpassword')
+
+  .controller('ResetPasswordController',
+    function($scope, $location, globalFactory, modalFactory, doctorFactory){
+
+      $scope.passwordRegex = ".{6,}";
+      $scope.meter = "meter-bar";
+      $scope.passwordStatus = "Enter a password";
+      $scope.buttonText = "Please fill out all fields";
+
+      var errorMessage = "";
+
+      var user = doctorFactory.getUser();
+      console.log(user);
+
+      if(user == null) {
+        $location.path("/");
+      }
+
+      $scope.go = function(path){
+        globalFactory.go(path);
+      };
+
+      $scope.$watch(
+        // This function returns the value being watched. It is called for each turn of the $digest loop
+        function() { return $scope.passwordStrength; },
+        // This is the change listener, called when the value returned from the above function changes
+        function(newValue, oldValue) {
+          if (newValue != undefined && newValue.password != "") {
+            switch(newValue.score){
+              case 0:
+                $scope.meter = "meter-bar meter-bar-verybad";
+                $scope.passwordStatus = "Very Weak";
+                break;
+              case 1:
+                $scope.meter = "meter-bar meter-bar-bad";
+                $scope.passwordStatus = "Weak";
+                break;
+              case 2:
+                $scope.meter = "meter-bar meter-bar-average";
+                $scope.passwordStatus = "Average";
+                break;
+              case 3:
+                $scope.meter = "meter-bar meter-bar-good";
+                $scope.passwordStatus = "Strong";
+                break;
+              case 4:
+                $scope.meter = "meter-bar meter-bar-verygood";
+                $scope.passwordStatus = "Very Strong";
+            }
+          } else {
+            $scope.meter = "meter-bar";
+            $scope.passwordStatus = "Enter a password";
+          }
+      })
+
+      var validity = function(){
+        var state = false;
+        errorMessage = "";
+
+        if($scope.password.oldPass != user.password){
+          errorMessage += "Old password is wrong!";
+        }
+        
+        if($scope.passwordStrength.password != $scope.password.confirmPass){
+          errorMessage += "Passwords don't match!";
+        } 
+        
+        if(errorMessage == "") {
+          state = true;
+        }
+
+        return state;
+      };
+
+      var confirmPasswordReset = function(){
+        user.password = $scope.password.newPass;
+        doctorFactory.updateDoctor(user);
+      };
+
+      $scope.resetPassword = function(){
+        var modalObject = {};
+        console.log("resetPassword");
+
+        if(validity()){
+          modalObject = {
+            type: "confirm",
+            title: "Confirm Password Reset",
+            description: "Are you sure you want to change your password?",
+            negativeButton: "No",
+            positiveButton: "Yes",
+            isVisible: true,
+            data: confirmPasswordReset
+          };
+        
+          modalFactory.setContents(modalObject);
+        } else {
+          modalObject = {
+            type: "notify",
+            title: "Unable to change password!",
+            description: errorMessage,
+            positiveButton: "Ok",
+            isVisible: true
+          };
+          
+          modalFactory.setContents(modalObject);
+        }
+      };
+
+      $scope.checkStatus = function(status){
+        var retClass;
+
+        if(status){
+          $scope.buttonText = "Reset Password";
+          retClass = "edit-button";
+        } else {
+          $scope.buttonText = "Please fill out all fields";
+          retClass = "delete-button";
+        }
+
+        return retClass;
+      };
+    }
+  );
+
+/***/ }),
+/* 138 */,
+/* 139 */,
+/* 140 */,
+/* 141 */,
+/* 142 */,
+/* 143 */,
 /* 144 */
 /***/ (function(module, exports) {
 
