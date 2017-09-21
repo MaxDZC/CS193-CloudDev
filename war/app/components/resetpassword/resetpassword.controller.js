@@ -6,6 +6,7 @@ angular.module('hplus.modules.resetpassword')
       $scope.passwordRegex = ".{6,}";
       $scope.meter = "meter-bar";
       $scope.passwordStatus = "Enter a password";
+      $scope.buttonText = "Please fill out all fields";
 
       var errorMessage = "";
 
@@ -54,13 +55,19 @@ angular.module('hplus.modules.resetpassword')
       })
 
       var validity = function(){
-        console.log($scope.passwordStrength.password + " ");
-        console.log(user.password);
-        if($scope.passwordStrength.password == $scope.password.confirmPass && $scope.password.oldPass == user.password){
-          state = true;
-        } else {
-          state = false;
+        var state = false;
+        errorMessage = "";
+
+        if($scope.password.oldPass != user.password){
+          errorMessage += "Old password is wrong!";
+        }
+        
+        if($scope.passwordStrength.password != $scope.password.confirmPass){
           errorMessage += "Passwords don't match!";
+        } 
+        
+        if(errorMessage == "") {
+          state = true;
         }
 
         return state;
@@ -98,6 +105,20 @@ angular.module('hplus.modules.resetpassword')
           
           modalFactory.setContents(modalObject);
         }
+      };
+
+      $scope.checkStatus = function(status){
+        var retClass;
+
+        if(status){
+          $scope.buttonText = "Reset Password";
+          retClass = "edit-button";
+        } else {
+          $scope.buttonText = "Please fill out all fields";
+          retClass = "delete-button";
+        }
+
+        return retClass;
       };
     }
   );

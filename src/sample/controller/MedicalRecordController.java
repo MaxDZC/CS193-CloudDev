@@ -40,13 +40,14 @@ public class MedicalRecordController extends Controller {
                 medicalRecordService.insertMedicalRecord(medicalRecordDto);
             }else if(method.equalsIgnoreCase("PUT")){
                 jObj = new JSONObject(request.getReader().readLine());
-                date = MedicalRecordDao.processDate(jObj.getString("createdAt"));
+        
                 
-                Object aObj = jObj.get("birthday");
+                Object aObj = jObj.get("createdAt");
                 
                 medicalRecordDto = new MedicalRecordDto(jObj);
                 
                 if(aObj instanceof String){
+                  //  date = MedicalRecordDao.processDate(jObj.getString("createdAt"));
                     createdAts = jObj.getString("createdAt").split(" ");
                     createdAt = createdAts[5] + "-" + createdAts[1] + "-" + createdAts[2];
                     

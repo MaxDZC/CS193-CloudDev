@@ -83,12 +83,6 @@ public class PatientController extends Controller {
                 
                 if(validator.validate()){
                     
-                    birthdays = jsonObject.getString("birthday").split(" ");
-                    createdAts = jsonObject.getString("createdAt").split(" ");
-                    
-                    birthday = birthdays[5] + "-" + birthdays[1] + "-" + birthdays[2];
-                    createdAt = createdAts[5] + "-" + createdAts[1] + "-" + createdAts[2];
-                    
                     Object aObj = jsonObject.get("birthday");
                     patientDto = new PatientDto(jsonObject);
                     

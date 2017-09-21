@@ -41231,7 +41231,7 @@ angular.module('hplus.modules.resetpassword', [])
 /* 126 */
 /***/ (function(module, exports) {
 
-module.exports = "<div  ng-controller=\"ResetPasswordController\">\r\n<div class=\"row\">\r\n  <div class=\"col col-md-8 col-md-offset-1\">\r\n    <h1>Reset Your Password</h1>\r\n  </div>\r\n</div>\r\n\r\n<ng-form name=\"resetPasswordForm\">\r\n  <div class=\"row\">\r\n    <div class=\"col col-md-2 col-md-offset-1\">\r\n      <div class=\"row\">\r\n        <div class=\"col col-md-12\">\r\n          <label>Old Password</label>\r\n          <input ng-model=\"password.oldPass\" type=\"password\">\r\n          <label>New Password</label>\r\n          <input ng-model=\"password.newPass\" ng-pattern=\"passwordRegex\" zxcvbn=\"passwordStrength\" type=\"password\">\r\n\r\n\r\n          <label>Repeat your new password</label>\r\n          <input ng-model=\"password.confirmPass\" type=\"password\">\r\n          <div class=\"row\">\r\n              <div class=\"meter\">\r\n                <div ng-class=\"meter\" role=\"progressbar\" aria-valuenow=\"40\" aria-valuemin=\"0\" aria-valuemax=\"100\"></div>\r\n              </div>\r\n              <span class=\"subtitle\">{{ passwordStatus }}</span>\r\n      </div>\r\n          <br><br>\r\n          \r\n          <button ng-disabled=\"resetPasswordForm.$invalid\" ng-click=\"resetPassword()\">Reset</button>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</ng-form>\r\n</div>";
+module.exports = "<div  ng-controller=\"ResetPasswordController\">\r\n  <div class=\"row\">\r\n    <div class=\"col col-md-8 col-md-offset-1\">\r\n      <h1>Reset Your Password</h1>\r\n    </div>\r\n  </div>\r\n\r\n  <ng-form name=\"resetPasswordForm\">\r\n    <div class=\"row\">\r\n      <div class=\"col col-md-4 col-md-offset-1\">\r\n        <div class=\"row\">\r\n          <div class=\"col col-md-12\">\r\n            <label class=\"subtitle\">Old Password</label>\r\n            <input type=\"password\" ng-model=\"password.oldPass\" ng-required=\"true\">\r\n            \r\n            <label class=\"subtitle\">New Password (At least 6 characters)</label>\r\n            <input type=\"password\" ng-model=\"password.newPass\" ng-pattern=\"passwordRegex\" zxcvbn=\"passwordStrength\" ng-required=\"true\">\r\n\r\n\r\n            <label class=\"subtitle\">Repeat your new password</label>\r\n            <input type=\"password\" ng-model=\"password.confirmPass\" ng-required=\"true\">\r\n            \r\n            <div class=\"row\">\r\n                <div class=\"meter\">\r\n                  <div ng-class=\"meter\" role=\"progressbar\" aria-valuenow=\"40\" aria-valuemin=\"0\" aria-valuemax=\"100\"></div>\r\n                </div>\r\n                <span class=\"subtitle\">{{ passwordStatus }}</span>\r\n            </div>\r\n            <br><br>\r\n            \r\n            <button ng-class=\"checkStatus(resetPasswordForm.$valid)\" ng-disabled=\"resetPasswordForm.$invalid\" ng-click=\"resetPassword()\">{{ buttonText }}</button>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </ng-form>\r\n</div>";
 
 /***/ }),
 /* 127 */
@@ -41245,6 +41245,7 @@ angular.module('hplus.modules.resetpassword')
       $scope.passwordRegex = ".{6,}";
       $scope.meter = "meter-bar";
       $scope.passwordStatus = "Enter a password";
+      $scope.buttonText = "Please fill out all fields";
 
       var errorMessage = "";
 
@@ -41293,13 +41294,19 @@ angular.module('hplus.modules.resetpassword')
       })
 
       var validity = function(){
-        console.log($scope.passwordStrength.password + " ");
-        console.log(user.password);
-        if($scope.passwordStrength.password == $scope.password.confirmPass && $scope.password.oldPass == user.password){
-          state = true;
-        } else {
-          state = false;
+        var state = false;
+        errorMessage = "";
+
+        if($scope.password.oldPass != user.password){
+          errorMessage += "Old password is wrong!";
+        }
+        
+        if($scope.passwordStrength.password != $scope.password.confirmPass){
           errorMessage += "Passwords don't match!";
+        } 
+        
+        if(errorMessage == "") {
+          state = true;
         }
 
         return state;
@@ -41337,6 +41344,20 @@ angular.module('hplus.modules.resetpassword')
           
           modalFactory.setContents(modalObject);
         }
+      };
+
+      $scope.checkStatus = function(status){
+        var retClass;
+
+        if(status){
+          $scope.buttonText = "Reset Password";
+          retClass = "edit-button";
+        } else {
+          $scope.buttonText = "Please fill out all fields";
+          retClass = "delete-button";
+        }
+
+        return retClass;
       };
     }
   );
