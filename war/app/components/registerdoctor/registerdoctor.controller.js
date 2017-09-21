@@ -1,7 +1,18 @@
 angular.module('hplus.modules.registerdoctor')
 
   .controller('RegisterDoctorController',
-    function($scope, globalFactory, doctorFactory, modalFactory){
+    function($scope, $location, globalFactory, doctorFactory, modalFactory){
+
+      var user = doctorFactory.getUser();
+      console.log(user);
+
+      if(user != null) {
+        if(!user.admin){
+          $location.path("/admin/list/record");
+        }
+      } else {
+        $location.path("/");
+      }
 
       $scope.contactNoRegex = "\\d{7,}";
       $scope.passwordRegex = ".{6,}";
@@ -60,7 +71,7 @@ angular.module('hplus.modules.registerdoctor')
             $scope.meter = "meter-bar";
             $scope.passwordStatus = "Enter a password";
           }
-      })
+      });
 
       $scope.checkStatus = function(status){
         var retType;

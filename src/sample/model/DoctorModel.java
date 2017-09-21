@@ -9,6 +9,8 @@ import com.google.appengine.api.datastore.Key;
 import org.slim3.datastore.Attribute;
 import org.slim3.datastore.Model;
 
+import sample.dto.DoctorDto;
+
 @Model(schemaVersion = 1)
 public class DoctorModel implements Serializable {
 
@@ -35,6 +37,26 @@ public class DoctorModel implements Serializable {
     private Date createdAt;
     private Date deletedAt;
     private Date updatedAt;
+    
+    public DoctorModel(){
+        
+    }
+    
+    public DoctorModel(DoctorDto inputDoc){
+        this.setFirstname(inputDoc.getFirstname());
+        this.setLastname(inputDoc.getLastname());
+        this.setEmail(inputDoc.getEmail());
+        this.setAddress(inputDoc.getAddress());
+        this.setSpecialization(inputDoc.getSpecialization());
+        this.setContactNo(inputDoc.getContactNo());
+        this.setBirthday(inputDoc.getBirthday());
+        this.setUsername(inputDoc.getUsername());
+        this.setPassword(inputDoc.getPassword());
+        this.setAdmin(inputDoc.isAdmin());
+        this.setCreatedAt(inputDoc.getCreatedAt());
+        this.setUpdatedAt(inputDoc.getUpdatedAt());
+        this.setDeletedAt(inputDoc.getDeletedAt());
+    }
 
     public Key getKey() {
         return key;

@@ -1,8 +1,11 @@
 package sample.model;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import com.google.appengine.api.datastore.Key;
+
+import sample.dto.SymptomDto;
 
 import org.slim3.datastore.Attribute;
 import org.slim3.datastore.Model;
@@ -20,6 +23,18 @@ public class SymptomModel implements Serializable {
     
     private Long id;
     private String name; 
+    private Date createdAt;
+ 
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
+
+ 
 
     /**
      * Creates an instance of 'Symptom'
@@ -31,10 +46,11 @@ public class SymptomModel implements Serializable {
     /**
      * Creates an instance of 'Symptom' with attribute initialization
      */
-    public SymptomModel(String name){
-        this.setName(name);
+    public SymptomModel(SymptomDto inputSymp){
+        this.setName(inputSymp.getName());
  
     }
+   
     
     public String getName() {
         return name;

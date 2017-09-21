@@ -3,7 +3,19 @@ angular.module('hplus.modules.editdoctor')
   .controller('EditDoctorController',
     function($scope, $location, globalFactory, doctorFactory, modalFactory){
     
-      $scope.doctorData = doctorFactory.getDoctor();
+      $scope.contactNoRegex = "\\d{6,}"
+
+      var user = doctorFactory.getUser();
+
+      if(user == null){
+        $location.path("/");
+      } else {
+        if(user.admin){
+          $scope.doctorData = doctorFactory.getDoctor();
+        } else {
+          $scope.doctorData = user;
+        }
+      }
       var modalObject = null;
 
       if($scope.doctorData == null){
@@ -16,6 +28,18 @@ angular.module('hplus.modules.editdoctor')
 
       var confirmUpdateDoctor = function(){
         doctorFactory.updateDoctor($scope.doctorData);
+      };
+
+      $scope.checkStatus = function(status) {
+        var retValue = "edit-button";
+
+        if(status){
+          retValue = "edit-button";
+        } else {
+          retValue = "delete-button";
+        }
+
+        return retValue;
       };
 
       $scope.update = function(){

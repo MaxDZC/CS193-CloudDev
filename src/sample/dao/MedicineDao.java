@@ -1,45 +1,82 @@
 package sample.dao;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 import org.slim3.datastore.Datastore;
 
-import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
-import com.google.appengine.api.datastore.FetchOptions;
 import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.KeyFactory;
-import com.google.appengine.api.datastore.Query;
+import com.google.appengine.api.datastore.Query.CompositeFilterOperator;
 import com.google.appengine.api.datastore.Transaction;
 import com.google.appengine.api.datastore.Query.FilterOperator;
+import com.google.appengine.api.datastore.Query.FilterPredicate;
 
 import sample.meta.MedicineModelMeta;
-
+import sample.model.DiseaseModel;
 import sample.model.MedicineModel;
-
 
 
 public class MedicineDao {
     
-    public Entity getMed(String name){
-        System.out.println("MedicineDao.getDoc start");
+    public Boolean validate(MedicineModel medModel){
+        Boolean retVal;
         
-        Entity medicine = null ;
+        Entity entity = Datastore.query(MedicineModel.class)
+            .filter(CompositeFilterOperator.and(
+                new FilterPredicate("name", FilterOperator.EQUAL, medModel.getName()),
+                new FilterPredicate("deletedAt", FilterOperator.EQUAL, null)),
+                new FilterPredicate("id", FilterOperator.NOT_EQUAL, medModel.getId()))
+            .asSingleEntity();
         
-          medicine =  Datastore.query("MedicineModel")
-           .filter("name", FilterOperator.EQUAL, name)
-           .filter("deletedAt", FilterOperator.EQUAL, null)
-           .asSingleEntity();
-       
-        if(medicine != null){
-            System.out.println("MedicineDao.getDoc end(success)");
-        }else{
-            System.out.println("MedicineDao.getDoc end(failed)");
+        if(entity == null){
+            retVal = true;
+        } else {
+            retVal = false;
+        }
+        
+        return retVal;
+    }
+    
+    public MedicineModel getMedById(Long id){
+        System.out.println("MedicineDao.getMedById start");
+        
+        MedicineModel medicine = null;
+        
+        Entity entity = Datastore.query(MedicineModel.class)
+        .filter(CompositeFilterOperator.and(
+               new FilterPredicate("id", FilterOperator.EQUAL, id),
+               new FilterPredicate("deletedAt", FilterOperator.EQUAL, null)))
+        .asSingleEntity();
+        
+        System.out.println(id);
+        
+        if(entity != null){
+            medicine = MedicineModelMeta.get().entityToModel(entity);
         }
         
         return medicine;
+    }
+    
+    public MedicineModel getMed(String name){
+        System.out.println("MedicineDao.getMed start");
         
+        MedicineModel medicine = null;
+        
+        Entity entity = Datastore.query(MedicineModel.class)
+        .filter(CompositeFilterOperator.and(
+               new FilterPredicate("name", FilterOperator.EQUAL, name.toLowerCase()),
+               new FilterPredicate("deletedAt", FilterOperator.EQUAL, null)))
+        .asSingleEntity();
+        
+        if(entity != null){
+            medicine = MedicineModelMeta.get().entityToModel(entity);
+        }
+        
+        System.out.println("MedicineDao.getMed end");
+        return medicine;
     }
     
     public void insertMed(MedicineModel inputMed){
@@ -58,30 +95,29 @@ public class MedicineDao {
     }
     
     
-    public  Object getMedicines(){
-        com.google.appengine.api.datastore.DatastoreService datastore = DatastoreServiceFactory
-                .getDatastoreService();
-                ArrayList<MedicineModel> results =  new ArrayList<MedicineModel>();
+    public Object getMedicines(){
+        ArrayList<MedicineModel> results =  new ArrayList<MedicineModel>();
 
-               Query query = new Query("MedicineModel");
-                java.util.List<Entity> entities = datastore.prepare(query).asList(
-                 FetchOptions.Builder.withDefaults());
+        List<Entity> entities = Datastore.query(MedicineModel.class).filter(
+            "deletedAt", FilterOperator.EQUAL, null
+            ).asEntityList();
 
-               for (Entity entity : entities) {
-                 results.add(MedicineModelMeta.get().entityToModel(entity));
-               }
+        for(Entity entity : entities) {
+            results.add(MedicineModelMeta.get().entityToModel(entity));
+        }
                
-            return results ;
-        
+        return results;
     }
+    
     public void updateMedicine(MedicineModel inputMedicine) {
         System.out.println("MedicineDao.updateMedicine " + "start");
-        // TODO: Implement this function.
+        
         Transaction trans = Datastore.beginTransaction();
         
         Datastore.put(trans, inputMedicine);
         
         trans.commit();
+        
         System.out.println("MedicineDao.updateMedicine " + "end");
     }
     /**
@@ -90,16 +126,33 @@ public class MedicineDao {
      */
    
     public void deleteMedicine(MedicineModel inputDoc) {
-        // TODO Auto-generated method stub
-
-            System.out.println("MedicineDao.deleteMedicine " + "start");
-            // TODO: Implement this function.
-            Transaction trans = Datastore.beginTransaction();
-            Datastore.put(inputDoc);
-            trans.commit();
-            System.out.println("MedicineDao.deleteMedicine " + "end");
+        System.out.println("MedicineDao.deleteMedicine " + "start");
+        Transaction trans = Datastore.beginTransaction();
+        Datastore.put(inputDoc);
+        trans.commit();
+        System.out.println("MedicineDao.deleteMedicine " + "end");
+    }
+    
+    public Boolean checkHold(MedicineModel medModel){
+        Boolean retVal;
         
+        List<Long> values = new ArrayList<Long>();
         
+        values.add(medModel.getId());
+        
+        Entity entity = Datastore.query(DiseaseModel.class)
+            .filter(CompositeFilterOperator.and(
+                new FilterPredicate("medicineIdList", FilterOperator.IN, values),
+                new FilterPredicate("deletedAt", FilterOperator.EQUAL, null)))
+            .asSingleEntity();
+        
+        if(entity == null){
+            retVal = true;
+        } else {
+            retVal = false;
+        }
+        
+        return retVal;
     }
 
 }

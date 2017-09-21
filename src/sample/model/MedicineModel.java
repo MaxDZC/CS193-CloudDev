@@ -8,6 +8,8 @@ import com.google.appengine.api.datastore.Key;
 import org.slim3.datastore.Attribute;
 import org.slim3.datastore.Model;
 
+import sample.dto.MedicineDto;
+
 @Model(schemaVersion = 1)
 public class MedicineModel implements Serializable {
 
@@ -22,46 +24,26 @@ public class MedicineModel implements Serializable {
     private Long id;
     private String name;
     private String description;
-    private Double price;
-    private Date createdaAt;
-    private String deletedAt;
-    private String updatedAt;
+    private String type;
+    private Float price;
+    private Date createdAt;
+    private Date deletedAt;
+    private Date updatedAt;
     
-    public Date getCreatedaAt() {
-        return createdaAt;
-    }
-
-    public void setCreatedaAt(Date date) {
-        this.createdaAt = date;
-    }
-
-    public String getDeletedAt() {
-        return deletedAt;
-    }
-
-    public void setDeletedAt(String deletedAt) {
-        this.deletedAt = deletedAt;
-    }
-
-    public String getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(String updatedAt) {
-        this.updatedAt = updatedAt;
-    }
-
     public MedicineModel(){
         
     }
     
-    public MedicineModel(String name, String description, Double price){
-        this.setName(name);
-        this.setDescription(description);
-        this.setPrice(price);
+    public MedicineModel(MedicineDto inputMed){
+        this.setName(inputMed.getName().toLowerCase());
+        this.setDescription(inputMed.getDescription());
+        this.setType(inputMed.getType());
+        this.setPrice(inputMed.getPrice());
+        this.setCreatedAt(inputMed.getCreatedAt());
+        this.setDeletedAt(inputMed.getDeletedAt());
+        this.setUpdatedAt(inputMed.getUpdatedAt());
     }
-    
-    
+
     public Long getId() {
         return id;
     }
@@ -86,12 +68,44 @@ public class MedicineModel implements Serializable {
         this.description = description;
     }
 
-    public Double getPrice() {
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public Float getPrice() {
         return price;
     }
 
-    public void setPrice(Double price) {
+    public void setPrice(Float price) {
         this.price = price;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public Date getDeletedAt() {
+        return deletedAt;
+    }
+
+    public void setDeletedAt(Date deletedAt) {
+        this.deletedAt = deletedAt;
+    }
+
+    public Date getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(Date updatedAt) {
+        this.updatedAt = updatedAt;
     }
 
     public static long getSerialversionuid() {

@@ -1,14 +1,29 @@
 angular.module('hplus.modules.viewdoctor')
 
   .controller('ViewDoctorController',
-    function($scope, $location, globalFactory, doctorFactory, modalFactory){
+    function($scope, $location, $timeout, globalFactory, doctorFactory, modalFactory){
     
-      $scope.doctorData = doctorFactory.getDoctor();
+      $scope.user = doctorFactory.getUser();
+
+      if($scope.user != null) {
+        if($scope.user.admin){
+          $scope.doctorData = doctorFactory.getDoctor();
+        } else {
+          $scope.doctorData = $scope.user;
+        }
+      } else {
+        $location.path("/");
+      }
+
       var modalObject;
 
-      if($scope.doctorData == null){
+      if($scope.doctorData == null) {
         $location.path('/admin/list/doctor');
       }
+
+      $scope.$on("updateProfile", function(event) {
+        $scope.doctorData = doctorFactory.getUser();
+      });
 
       $scope.go = function(path){
         doctorFactory.saveDoctor($scope.doctorData);

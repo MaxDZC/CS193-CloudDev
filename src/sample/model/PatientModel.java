@@ -1,11 +1,14 @@
 package sample.model;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import com.google.appengine.api.datastore.Key;
 
 import org.slim3.datastore.Attribute;
 import org.slim3.datastore.Model;
+
+import sample.dto.PatientDto;
 
 @Model(schemaVersion = 1)
 public class PatientModel implements Serializable {
@@ -19,63 +22,130 @@ public class PatientModel implements Serializable {
     private Long version;
     
     private Long id;
-    private String firstName;
-    private String lastName;
+    private String firstname;
+    private String lastname;
     private String address;
-    private String specialization;
-    private String contactNumber;
-    private String birthDay;
-    private String userName;
-    private String passWord;
-    private String createdaAt;
-    private String deletedAt;
-    private String updatedAt;
+    private String contactNo;
+    private Date birthday;
+    private boolean sex;
+    private Date createdAt;
+    private Date deletedAt;
+    private Date updatedAt;
     
-    public String getCreatedaAt() {
-        return createdaAt;
-    }
-
-    public void setCreatedaAt(String createdaAt) {
-        this.createdaAt = createdaAt;
-    }
-
-    public String getDeletedAt() {
-        return deletedAt;
-    }
-
-    public void setDeletedAt(String deletedAt) {
-        this.deletedAt = deletedAt;
-    }
-
-    public String getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(String updatedAt) {
-        this.updatedAt = updatedAt;
-    }
-
-    /**
-     * Creates an instance of 'Patient'
-     */
     public PatientModel(){
         
     }
     
+    public PatientModel(PatientDto inputPatient){
+        this.setFirstname(inputPatient.getFirstName());
+        this.setLastname(inputPatient.getLastName());
+        this.setAddress(inputPatient.getAddress());
+        this.setBirthday(inputPatient.getBirthday());
+        this.setContactNo(inputPatient.getContactNumber());
+        this.setSex(inputPatient.isSex());
+        this.setCreatedAt(inputPatient.getCreatedAt());
+        this.setDeletedAt(inputPatient.getDeletedAt());
+        this.setUpdatedAt(inputPatient.getUpdatedAt());
+        
+    }
+
+    public String getFirstname() {
+        return firstname;
+    }
+
+
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
+    }
+
+
+    public String getLastname() {
+        return lastname;
+    }
+
+
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
+    }
+
+
+    public String getAddress() {
+        return address;
+    }
+
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+
+    public String getContactNo() {
+        return contactNo;
+    }
+
+
+    public void setContactNo(String contactNo) {
+        this.contactNo = contactNo;
+    }
+
+
+    public Date getBirthday() {
+        return birthday;
+    }
+
+
+    public boolean isSex() {
+        return sex;
+    }
+
+    public void setSex(boolean sex) {
+        this.sex = sex;
+    }
+
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
+    }
+
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
+
+
+    public Date getDeletedAt() {
+        return deletedAt;
+    }
+
+
+    public void setDeletedAt(Date deletedAt) {
+        this.deletedAt = deletedAt;
+    }
+
+
+    public Date getUpdatedAt() {
+        return updatedAt;
+    }
+
+
+    public void setUpdatedAt(Date updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
+
+    public static long getSerialversionuid() {
+        return serialVersionUID;
+    }
+
+    
     /**
      * Creates an instance of 'Patient' with attribute initialization
      */
-    public PatientModel(String firstName, String lastName, String address, String specialization,
-            String contactNumber, String birthDay, String userName, String passWord){
-        this.setFirstName(firstName);
-        this.setLastName(lastName);
-        this.setAddress(address);
-        this.setSpecialization(specialization);
-        this.setContactNumber(contactNumber);
-        this.setBirthDay(birthDay);
-        this.setUserName(userName);
-        this.setPassWord(passWord);
-    }
+    
     
     /**
      * Returns the key.
@@ -164,164 +234,4 @@ public class PatientModel implements Serializable {
         this.id = id;
     }
     
-    /**
-     * Returns the firstName.
-     *
-     * @return the firstName
-     */
-    public String getFirstName() {
-        return firstName;
-    }
-    
-    /**
-     * Sets the firstName.
-     *
-     * @param firstName
-     *            the firstName
-     */
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-    
-    /**
-     * Returns the lastName.
-     *
-     * @return the lastName
-     */
-    public String getLastName() {
-        return lastName;
-    }
-    
-    /**
-     * Sets the lastName.
-     *
-     * @param lastName
-     *            the lastName
-     */
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-    
-    /**
-     * Returns the address.
-     *
-     * @return the address
-     */
-    public String getAddress() {
-        return address;
-    }
-    
-    /**
-     * Sets the address.
-     *
-     * @param address
-     *            the address
-     */
-    public void setAddress(String address) {
-        this.address = address;
-    }
-    
-    /**
-     * Returns the specialization.
-     *
-     * @return the specialization
-     */
-    public String getSpecialization() {
-        return specialization;
-    }
-    
-    /**
-     * Sets the specialization.
-     *
-     * @param specialization
-     *            the specialization
-     */
-    public void setSpecialization(String specialization) {
-        this.specialization = specialization;
-    }
-    
-    /**
-     * Returns the contactNumber.
-     *
-     * @return the contactNumber
-     */
-    public String getContactNumber() {
-        return contactNumber;
-    }
-    
-    /**
-     * Sets the contactNumber.
-     *
-     * @param contactNumber
-     *            the contactNumber
-     */
-    public void setContactNumber(String contactNumber) {
-        this.contactNumber = contactNumber;
-    }
-    
-    /**
-     * Returns the birthDay.
-     *
-     * @return the birthDay
-     */
-    public String getBirthDay() {
-        return birthDay;
-    }
-    
-    /**
-     * Sets the birthDay.
-     *
-     * @param birthDay
-     *            the birthDay
-     */
-    public void setBirthDay(String birthDay) {
-        this.birthDay = birthDay;
-    }
-    
-    /**
-     * Returns the serialVersionUID.
-     *
-     * @return the serivalVersionUID
-     */
-    public static long getSerialversionuid() {
-        return serialVersionUID;
-    }
-    
-    /**
-     * Returns the userName.
-     *
-     * @return the userName
-     */
-    public String getUserName() {
-        return userName;
-    }
-    
-    /**
-     * Sets the userName.
-     *
-     * @param userName
-     *            the userName
-     */
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-    
-    /**
-     * Returns the passWord.
-     *
-     * @return the passWord
-     */
-    public String getPassWord() {
-        return passWord;
-    }
-    
-    /**
-     * Sets the passWord.
-     *
-     * @param passWord
-     *            the passWord
-     */
-    public void setPassWord(String passWord) {
-        this.passWord = passWord;
-    }
 }

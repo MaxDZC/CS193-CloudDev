@@ -1,6 +1,8 @@
 package sample.dao;
 
 import java.util.ArrayList;
+import java.util.List;
+
 import org.slim3.datastore.Datastore;
 import com.google.appengine.api.datastore.*;
 import com.google.appengine.api.datastore.Query.CompositeFilterOperator;
@@ -26,6 +28,7 @@ public class DoctorDao{
                      .filter("id", FilterOperator.EQUAL, id)
                      .filter("deletedAt", FilterOperator.EQUAL, null)
                      .asSingleEntity()) ;
+        
         if(doctor != null){
             System.out.println("DoctorDao.getDoc end(success)");
         }else{
@@ -121,55 +124,45 @@ public class DoctorDao{
     }
     
     
-    public DoctorModel getDoctorByEmailandPassword(String email,String password){
-        
+    public Object getDoctorByEmailandPassword(String user,String password){  
         System.out.println("DoctorDao.getDoc start");
        
-        DoctorModel doctor = DoctorModelMeta.get().entityToModel(Datastore.query(DoctorModel.class)
-            .filter(CompositeFilterOperator.and(new FilterPredicate("username", FilterOperator.EQUAL, email.toLowerCase()),
-                new FilterPredicate("password", FilterOperator.EQUAL, password.toLowerCase())))
-            .asSingleEntity());
+        DoctorModel doctor = null;
+        Entity entity = Datastore.query(DoctorModel.class).filter(
+            CompositeFilterOperator.and(
+                CompositeFilterOperator.or(
+                    new FilterPredicate("username",FilterOperator.EQUAL, user.toLowerCase()), 
+                    new FilterPredicate("email", FilterOperator.EQUAL, user.toLowerCase())),
+                new FilterPredicate("password", FilterOperator.EQUAL, password),
+                new FilterPredicate("deletedAt", FilterOperator.EQUAL, null))
+            ).asSingleEntity();
         
-        if(doctor!=null){
-            System.out.println("DoctorDao.getDoc end(success)");
-        }else{
-            DoctorModel doctorUser = DoctorModelMeta.get().entityToModel(Datastore.query(DoctorModel.class)
-                .filter(CompositeFilterOperator.and(new FilterPredicate("email", FilterOperator.EQUAL, email.toLowerCase()),
-                    new FilterPredicate("password", FilterOperator.EQUAL, password.toLowerCase())))
-                .asSingleEntity());
-            if(doctorUser==null){
-                System.out.println("DoctorDao.getDoc end(failed)");  
-            } else {
-                doctor = doctorUser;
-                System.out.println("DoctorDao.getDoc end(success)");
-            }
-           // System.out.println("DoctorDao.getDoc end(failed)");   
+        if(entity != null){
+            doctor = DoctorModelMeta.get().entityToModel(entity);
         }
-        return doctor;
         
+        return doctor;
     }
     
     public Object getDoctors(){
-        com.google.appengine.api.datastore.DatastoreService datastore = DatastoreServiceFactory
-            .getDatastoreService();
-        
         ArrayList<DoctorModel> results =  new ArrayList<DoctorModel>();
 
-        Query query = new Query("DoctorModel");
-            @SuppressWarnings("deprecation")
-            java.util.List<Entity> entities = datastore.prepare(query.addFilter("deletedAt", FilterOperator.EQUAL, null)).asList(
-            FetchOptions.Builder.withDefaults());
+        List<Entity> entities = Datastore.query(DoctorModel.class).filter(
+            CompositeFilterOperator.and(
+                new FilterPredicate("admin", FilterOperator.EQUAL, false),
+                new FilterPredicate("deletedAt", FilterOperator.EQUAL, null))
+            ).asEntityList();
 
         for(Entity entity : entities) {
             results.add(DoctorModelMeta.get().entityToModel(entity));
         }
                
-        return results ;
+        return results;
     }
     
     public void updateDoctor(DoctorModel inputDoctor) {
         System.out.println("DoctorDao.updateDoctor " + "start");
-        // TODO: Implement this function.
+        
         Transaction trans = Datastore.beginTransaction();
         
         Datastore.put(trans, inputDoctor);

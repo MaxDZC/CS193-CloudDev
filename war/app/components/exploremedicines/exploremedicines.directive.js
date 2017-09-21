@@ -6,8 +6,7 @@ angular.module('hplus.modules.exploremedicines')
     return{
       restrict: 'EA',
       scope: {
-        data: '=',
-        selectedMed: '='
+        data: '='
       },
       template: card
     };

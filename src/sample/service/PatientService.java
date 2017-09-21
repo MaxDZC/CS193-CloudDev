@@ -13,22 +13,16 @@ public class PatientService {
      */
     static PatientDao patientDao = new PatientDao();
     
+    
     /**
      * Used to insert an item to the datastore
      * @param inputPat - the dto that contains the data to be stored in the model object
      */
-    public Boolean insertPat(PatientDto inputPat){
+    public Boolean insertPatient(PatientDto inputPatient){
         System.out.println("PatientService.insertPat start");
         
-        PatientModel patientModel = new PatientModel(inputPat.getFirstName(),
-                                                  inputPat.getLastName(),
-                                                  inputPat.getAddress(),
-                                                  inputPat.getEmail(),
-                                                  inputPat.getContactNumber(),
-                                                  inputPat.getBirthDay(),
-                                                  inputPat.getUserName(),
-                                                  inputPat.getPassWord()
-                                                 );
+        PatientModel patientModel = new PatientModel(inputPatient);
+        
         try{
             if(PatientDao.getPat(patientModel) == null){
                 PatientDao.insertPat(patientModel);
@@ -43,10 +37,10 @@ public class PatientService {
         System.out.println("PatientService.insertPat end");
         return true;
     }
-    public static  Boolean updatePatient(PatientDto patientDto) {
+    public Boolean updatePatient(PatientDto patientDto) {
         System.out.println("PatientService.updateRecord " + "start");
     
-        PatientModel patientModel = storeDtoToModel(patientDto);
+        PatientModel patientModel = new PatientModel(patientDto);
         
         try {
             // checking if there is already the same item that exists in the datastore.
@@ -55,24 +49,24 @@ public class PatientService {
             if (resultModel != null) {
                 // setting the key in order to properly update the item
                 patientModel.setKey(resultModel.getKey());
-                patientModel.setUpdatedAt(new Date().toString());
+                patientModel.setUpdatedAt(new Date());
                 // update the entity to the datastore.
                 PatientService.patientDao.updatePatient(patientModel);
                 return true;
                 
-            }
+            } 
         } catch (Exception e) {
             System.out.println(e.toString());
         }
         return false;
        
     }
-    public static Boolean deletePatient(PatientDto patientDto) {
+    public Boolean deletePatient(PatientDto patientDto) {
         System.out.println("PatientService.deleteRecord " + "start");
         /**
          * PatientModel that will be stored to the datastore. 
          */
-        PatientModel patientModel = storeDtoToModel(patientDto);
+        PatientModel patientModel = new PatientModel(patientDto);
         
         try { 
             // checking if there is already the same item that exists in the datastore.
@@ -81,7 +75,7 @@ public class PatientService {
             if (resultModel != null) {
                 // setting the key in order to properly delete the item
                 patientModel.setKey(resultModel.getKey());
-                patientModel.setDeletedAt(new Date().toString());
+                patientModel.setDeletedAt(new Date());
                 // delete the entity to the datastore.
                 PatientService.patientDao.deletePatient(patientModel);
             
@@ -97,27 +91,7 @@ public class PatientService {
         System.out.println("PatientService.deleteRecord " + "end");
         return false;
     }
-    private static PatientModel storeDtoToModel(PatientDto patientDto) {
-           
-        PatientModel patientModel = new PatientModel();
-            
-            // Storing the data from the DTO.
-            patientModel.setId(patientDto.getId());
-            patientModel.setFirstName(patientDto.getFirstName());
-            patientModel.setLastName(patientDto.getLastName());
-            patientModel.setAddress(patientDto.getAddress());
-           
-            patientModel.setContactNumber(patientDto.getContactNumber());
-            patientModel.setBirthDay(patientDto.getBirthDay());
-            patientModel.setUserName(patientDto.getUserName());
-            patientModel.setPassWord(patientDto.getPassWord());           
-      
-            System.out.println("PatientService.storeDtoToModel " + "end");
-            
-            // returning the model
-            return patientModel;
-        
-    }
+    
     public static Object getPatients() {
         // TODO Auto-generated method stub
         return patientDao.getPatients();

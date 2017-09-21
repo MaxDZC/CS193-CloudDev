@@ -1,7 +1,7 @@
 angular.module('hplus.factory')
 
   .factory('doctorFactory', 
-    function($http, modalFactory, $window, $location){
+    function($http, $route, modalFactory, $window, $location, globalFactory, $rootScope){
 
       var registerDoctor = function(doctorObject, clear){
         $http({
@@ -41,6 +41,7 @@ angular.module('hplus.factory')
             positiveButton: "Ok",
             isVisible: true
           };
+
           modalFactory.setContents(modalObject);
         });
       }
@@ -86,6 +87,7 @@ angular.module('hplus.factory')
 
       var goList = function(){
         $location.path('/admin/list/doctor');
+        $route.reload();
       }
       
       var confirmDeleteDoctor = function(doctor){
@@ -143,6 +145,19 @@ angular.module('hplus.factory')
         return angular.fromJson($window.localStorage.getItem("doctor"));
       };
 
+      var saveUser = function(user){
+        $window.localStorage.setItem("user", angular.toJson(user));
+      };
+
+      var getUser = function(){
+        return angular.fromJson($window.localStorage.getItem("user"));
+      };
+
+      var logout = function(){
+        $window.localStorage.removeItem("user");
+        $rootScope.$broadcast("changeNavbarOut");
+      };
+
       var login = function(user, pass){
         var data = {
           username:user,
@@ -153,31 +168,40 @@ angular.module('hplus.factory')
             method:"GET",
             url:"/Doctor",
             params: data
-        })
-        .then(function successCallback(response) {
-         //  {"message",true} -> Was inserted
-        // {"message",false} -> An error occured
-       // {"message","duplicated"} -> Email already exis
-            console.log(response);
-            var users = {
-                      username:response.data.doctors.username,
-                      firstname:response.data.doctors.firstName,
-                      lastname:response.data.doctors.lastName,
-                      birthday:response.data.doctors.birthday,
-                      contactNo:response.data.doctors.contactNo,
-                      specialization:response.data.doctors.specialization,
-                      address:response.data.doctors.address
-                   };
-            $rootScope.$broadcast('loginUserContents', users);
-            console.log("user:" + user.username);
-            go("/admin/list/record");
-          // when the response is available
-        }, function errorCallback(response) {
-          // called asynchronously if an error occurs
-          // or server returns response with an error status.
-        });
-    }
+        }).then(function successCallback(response) {
+          console.log(response);
+          var doctor = JSON.parse(response.data.doctor);
+          var modalObject = {
+            type: "notify",
+            title: "Login Successful!",
+            description: "Welcome Dr. " + doctor.lastname + "!",
+            positiveButton: "Ok",
+            isVisible: true
+          }
 
+          modalFactory.setContents(modalObject);
+
+          saveUser(doctor);
+          $rootScope.$broadcast("userLoggedIn", doctor);
+          $rootScope.$broadcast("changeNavbar", doctor);
+          globalFactory.go("/admin/list/record");
+        }, function errorCallback(response) {
+          console.log(response);
+          var modalObject = {
+            type: "notify",
+            title: "Authentication Failed!",
+            description: "Wrong username/email and/or password!",
+            positiveButton: "OK",
+            isVisible: true
+          }
+
+          modalFactory.setContents(modalObject);
+        });
+      };
+
+      var updateView = function(){
+        $rootScope.$broadcast("updateProfile");
+      };
       
       return {
         registerDoctor: registerDoctor,
@@ -185,7 +209,12 @@ angular.module('hplus.factory')
         saveDoctor: saveDoctor,
         getDoctor: getDoctor,
         updateDoctor: updateDoctor,
-        deleteDoctor: deleteDoctor
+        deleteDoctor: deleteDoctor,
+        login: login,
+        saveUser: saveUser,
+        getUser: getUser,
+        updateView: updateView,
+        logout: logout
       }
     }
   );

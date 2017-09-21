@@ -1,0 +1,12 @@
+<div class="margins">
+  <div class="detail__container">
+    <div class="card__title">
+      {{data.name}}
+    </div>
+    
+    <label class="subtitle">Symptoms</label>
+    <div class="subtitle__value">
+      <span ng-repeat="ar in array | intersect : data.symptoms"><span ng-hide="$first">,&nbsp;</span>{{ar}}</span>
+    </div>
+  </div>
+</div>

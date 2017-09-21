@@ -4,96 +4,30 @@
   </div>
 </div>
 	
-<div class="row"><!-- Body Portion -->
+<div class="row" ng-controller="ExploreMedicalRecordsController"><!-- Body Portion -->
   <div class="col col-md-2 col-md-offset-1"><!-- Section for search -->
-	<div class="row">
-	  <div class="col col-md-6">
-	    <label class="subtitle">Search</label>
-	  </div>
-	</div>
-	
-	<div class="match-padding">
-	  <input type="text" placeholder="Enter a name">
-	  <button>Search</button>
-	  <button ng-click="go('/doctor/create/record')">New Record</button>
-	</div>
+    <div class="row">
+      <div class="col col-md-6">
+        <label class="subtitle">Search</label>
+      </div>
+    </div>
+    
+    <div class="match-padding">
+      <input type="text" placeholder="Enter a name" ng-model="searchFilter">
+      <button ng-click="go('/doctor/create/record')">New Record</button>
+    </div>
   </div>
   
   <div > 
     <div class="col col-md-8"><!-- Section containing the tabulated list of doctors -->
 		  <div class="col col-md-12">
-		    <label class="subtitle">ALL RESULTS</label>
-			
-				<div class="margins">
-					<!-- List Section -->
-					<div class="card__container">
-						<div class="card__title">
-							Doe, Jabe
-						</div>
-						
-						<div class="card__desc">
-							Admitted July 20,2017 for Dying
-						</div>
-					</div>
-			
-					<div class="card__container">
-						<div class="card__title">
-							Doe, John
-						</div>
-						
-						<div class="card__desc">
-							Admitted June 26,2017 for Genital Retraction Syndrome
-						</div>
-					</div>
-					
-					<div class="card__container">
-						<div class="card__title">
-							Doe, Ken
-						</div>
-						
-						<div class="card__desc">
-							Admitted July 4,2017 for Trichophagia
-						</div>
-					</div>
-				</div>
+		    <span class="subtitle"><span ng-hide="searchFilter == ''">{{(patients | filter : searchFilter).length}}</span><span ng-hide="searchFilter != ''">All</span> Results</span>
+        <hplus-explore-medical-records-card dir-paginate="pat in patients | filter : searchFilter | itemsPerPage:10 | orderBy : ['lastName','firstName']" data="pat"></hplus-explore-medical-records-card>
+        <!-- Pagination Section -->
+        <dir-pagination-controls max-size="5"></dir-pagination-controls>
 		  </div>
 		</div>
   </div>
 </div>
 
-<!-- Pagination Section -->
-<div class="row">
-  <div class="col-md-10 col-md-offset-1">
-	  <div class="col col-md-3 col-md-offset-9">
-	    <div class="pagination__container">
-			  <div class="pagination__page">
-			    <<
-			  </div>
-			
-			  <div class="pagination__page">
-			    <
-			  </div>
-			
-			  <div class="pagination__page ">
-			    2
-			  </div>
-			
-			  <div class="pagination__page pagination__current">
-			    3
-			  </div>
-			
-			  <div class="pagination__page">
-			    4
-			  </div>
-			
-			  <div class="pagination__page">
-			    >
-			  </div>
-			
-			  <div class="pagination__page">
-			    >>
-			  </div>
-			</div>
-	  </div>
-  </div>
-</div>
+
