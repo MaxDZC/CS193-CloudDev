@@ -1,6 +1,6 @@
 <div class="card__container" ng-controller="DoctorCardController">
   <div class="card__title">
-    {{ data.firstname }} {{ data.lastname }}
+    {{ data.lastname }}, {{ data.firstname }}
 
     <a ng-click="go('/admin/view/doctordetails', data); $event.stopPropagation();">
       <span class="delete__icon">

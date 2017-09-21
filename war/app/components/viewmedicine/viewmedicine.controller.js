@@ -4,32 +4,31 @@ app = angular.module('hplus.modules.viewmedicine')
     function($scope, $location, globalFactory, doctorFactory, medicineFactory){
 
       var user = doctorFactory.getUser();
+      var date = new Date();
+      var monthNames = ["January", "February", "March", "April", "May", "June",
+      "July", "August", "September", "October", "November", "December"];
+
+      $scope.medicine = medicineFactory.getMedicine();
+      $scope.monthAndYear = monthNames[date.getMonth()].toUpperCase() + " " + date.getFullYear();
+      $scope.year = date.getFullYear();
 
       if(user == null) {
         $location.path("/");
       }
-	  
-	  $scope.medicineData = medicineFactory.getMedicine();
+
       var modalObject;
 
-      if($scope.medicineData == null){
-        //$location.path('/admin/list/medicine');
+      if($scope.medicine == null){
+        $location.path('/admin/list/medicine');
       }
 	  
-      $scope.go = function(path){
-    	medicineFactory.saveMedicine($scope.medicineData);
+      $scope.go = function(path) {
+    	  medicineFactory.saveMedicine($scope.medicine);
         globalFactory.go(path);
       };
       
       $scope.delete = function(){
-        medicineFactory.deleteMedicine($scope.medicineData);
-      };
-       
-      $scope.medicineData = {
-        name: "Paracetamol",
-        type: "Gaseous",
-        description: "Poisonous",
-        price: "7.00"
+        medicineFactory.deleteMedicine($scope.medicine);
       };
       
        $scope.recordList = [
