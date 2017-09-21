@@ -1,6 +1,6 @@
 package sample.meta;
 
-//@javax.annotation.Generated(value = { "slim3-gen", "@VERSION@" }, date = "2017-09-21 17:09:03")
+//@javax.annotation.Generated(value = { "slim3-gen", "@VERSION@" }, date = "2017-09-21 12:21:35")
 /** */
 public final class MedicineModelMeta extends org.slim3.datastore.ModelMeta<sample.model.MedicineModel> {
 
@@ -51,8 +51,8 @@ public final class MedicineModelMeta extends org.slim3.datastore.ModelMeta<sampl
     @Override
     public sample.model.MedicineModel entityToModel(com.google.appengine.api.datastore.Entity entity) {
         sample.model.MedicineModel model = new sample.model.MedicineModel();
-        model.setCreatedAt((java.util.Date) entity.getProperty("createdAt"));
-        model.setDeletedAt((java.util.Date) entity.getProperty("deletedAt"));
+        model.setCreatedAt((java.lang.String) entity.getProperty("createdAt"));
+        model.setDeletedAt((java.lang.String) entity.getProperty("deletedAt"));
         model.setDescription((java.lang.String) entity.getProperty("description"));
         model.setId((java.lang.Long) entity.getProperty("id"));
         model.setKey(entity.getKey());

@@ -18,12 +18,58 @@
   
   <div class="col col-md-8"><!-- Section containing the tabulated list of patients -->
     <div class="col col-md-12">
-			<label class="subtitle">ALL RESULTS - {{ patientList.length }}</label>
+			<span class="subtitle"><span >All</span> Results</span>
 			<div class="margins">
         <!-- List Section -->
-        <label class="subtitle" ng-hide="patientList.length">There are no patients to display</label>
-				<hplus-explore-patients-card ng-show="patientList.length" dir-paginate="patient in filtered = (patientList | filter:searchFilter | itemsPerPage:5)" data="patient"></hplus-explore-patients-card>
-		  </div>
+   <div class="card__container">
+  <div class="card__title">
+    Bento Chonghua
+    <a>
+      <span class="delete__icon">
+        <i class="fa fa-eye" aria-hidden="true"></i>
+      </span>
+    </a>
+    <a>
+      <span class="delete__icon">
+        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+      </span>
+    </a>
+    <a>
+      <span class="delete__icon">
+        <i class="fa fa-archive" aria-hidden="true"></i>
+      </span>
+    </a>
+
+  </div>
+  <div class="card__desc">
+    Last admitted August 16,2017
+  </div>
+</div>
+<div class="card__container">
+  <div class="card__title">
+    Dummy The Mummy
+    <a>
+      <span class="delete__icon">
+        <i class="fa fa-eye" aria-hidden="true"></i>
+      </span>
+    </a>
+    <a>
+      <span class="delete__icon">
+        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+      </span>
+    </a>
+    <a>
+      <span class="delete__icon">
+        <i class="fa fa-archive" aria-hidden="true"></i>
+      </span>
+    </a>
+
+  </div>
+  <div class="card__desc">
+    Last admitted November 1,2017
+  </div>
+</div>
+		</div>
     </div>
   </div>
 </div>

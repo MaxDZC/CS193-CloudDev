@@ -18,15 +18,28 @@
   
   <div class="col col-md-8"><!-- Section containing the tabulated list of doctors -->
     <div class="col col-md-12">
+<<<<<<< HEAD
 			<span class="subtitle"><span ng-hide="query == ''">{{(doctorList | filter : query).length}}</span><span ng-hide="query != ''">All</span> Results</span> 
 			<div class="margins">
         <!-- List Section -->
         <label class="subtitle" ng-hide="doctorList.length">There are no doctors to display</label>
 				<hplus-explore-doctors-card ng-show="doctorList.length" dir-paginate="doctor in filtered = (doctorList | filter:searchFilter | itemsPerPage:10  | orderBy : ['lastname','firstname'])" data="doctor"></hplus-explore-doctors-card>
+=======
+			<label class="subtitle">ALL RESULTS - {{ doctorList.length }}</label>
+			<div class="margins">
+        <!-- List Section -->
+        <label class="subtitle" ng-hide="doctorList.length">There are no doctors to display</label>
+<<<<<<< HEAD
+				<hplus-explore-doctors-card ng-show="doctorList.length" dir-paginate="doctor in filtered = (doctorList | filter:searchFilter | itemsPerPage:5)" data="doctor"></hplus-explore-doctors-card>
+=======
+				<hplus-explore-doctors-card ng-show="doctorList.length" dir-paginate="doctor in filtered = (doctorList | filter:searchFilter | itemsPerPage:5  | orderBy : ['lastname','firstname'])" data="doctor"></hplus-explore-doctors-card>
+>>>>>>> 54f861ed7b9796ffe9afcfbb393767ab22c14474
 				<dir-pagination-controls max-size="5"></dir-pagination-controls>
+>>>>>>> develop
 		  </div>
     </div>
   </div>
 </div>
 
 
+<dir-pagination-controls max-size="5"></dir-pagination-controls>
