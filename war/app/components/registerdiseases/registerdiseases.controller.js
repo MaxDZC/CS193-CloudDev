@@ -1,8 +1,8 @@
 angular.module('hplus.modules.registerdiseases')
 
   .controller('RegisterDiseasesController',
-    function($scope, $location, globalFactory, doctorFactory){
-      
+    function($scope, $location, globalFactory, doctorFactory, symptomFactory, medicineFactory, diseaseFactory){
+	 
       var user = doctorFactory.getUser();
       console.log(user);
 
@@ -14,56 +14,22 @@ angular.module('hplus.modules.registerdiseases')
         $location.path("/");
       }
       
-      $scope.symptomsSelected = [];
-      $scope.medicinesSelected = [];
       $scope.go = function(path){
         globalFactory.go(path);
       };
      
-    //  $scope.symptomList = globalFactory.getSymptomList();
-      $scope.bool =false;
-     
-      $scope.showAdd = function(){
-        $scope.bool = !$scope.bool;
-      }
-      $scope.saveArraySymp = function(){
-      
-        angular.forEach($scope.option, function(option){
-          if (option.val){
-            var data= {
-                id: option.id,
-                sympname: option.name
-            }
-            $scope.symptomsSelected .push(data);
-          } 
-        });
-        console.log($scope.symptomsSelected);
-      }
-      $scope.saveArrayMedicine = function(){
-      
-        angular.forEach($scope.optionmed, function(option){
-          if (option.val) {
-             var data1= {
-                id: option.id,
-                medname: option.name
-            }
-            $scope.medicineSelected .push(data1);
-          }
-        });
-        console.log($scope.medicineSelected);
-      }
       $scope.saveDisease = function(){
-        console.log($scope.medicinesSelected);
-        console.log($scope.symptomsSelected);
-        console.log($scope.diseaseName);
-        globalFactory.insertDisease($scope.diseaseName,$scope.symptomsSelected,$scope.medicinesSelected);
+        console.log($scope.disease.medicineId);
+        console.log($scope.disease.symptomId);
+        console.log($scope.disease.name);
+        diseaseFactory.insertDisease($scope.disease);
       }
       
       $scope.addRemoveSymptom = function(hold){
-    	  $scope.symptomsSelected= hold;
+    	  $scope.disease.symptomId= hold;
       }
       
-      $scope.symptomsSearch = [
+      $scope.symptomList = [
         {
           name: "Examples",
           id: 1,
@@ -108,10 +74,10 @@ angular.module('hplus.modules.registerdiseases')
 //      };
 //      
       $scope.addRemoveMedicine = function(hold){
-    	  $scope.medicinesSelected= hold;
+    	  $scope.disease.medicineId= hold;
       }
       
-      $scope.medicinesSearch = [
+      $scope.medicineList = [
                          {
                            name: "Metformin",
                            id: 1,
@@ -158,6 +124,23 @@ angular.module('hplus.modules.registerdiseases')
                            val:false
                          }
                        ];
-
+      
+      $scope.disease = 
+      {
+        "name" : "",
+        "symptomId" : [],
+        "medicineId" : []
+      };
+      
+      var populate = function(){
+            symptomFactory.getListOfSymptoms().then(function(response){
+        	  $scope.symptomList = response.data.symptoms;
+            },function(){});
+            medicineFactory.getListOfMedicines().then(function(response){
+              $scope.medicineList = response.data.medicines;
+            },function(){});
+      };
+      populate();
+      
     }
   );

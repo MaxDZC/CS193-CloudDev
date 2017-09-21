@@ -917,7 +917,7 @@ app.config(function ($routeProvider, $locationProvider, paginationTemplateProvid
     // });
   
   // Stylizes the pagination
-  paginationTemplateProvider.setString(__webpack_require__(134));
+  paginationTemplateProvider.setString(__webpack_require__(138));
 });
 
 
@@ -38482,9 +38482,9 @@ __webpack_require__(104);
 __webpack_require__(107);
 __webpack_require__(113);
 __webpack_require__(118);
-__webpack_require__(123);
-__webpack_require__(129);
-__webpack_require__(131);
+__webpack_require__(124);
+__webpack_require__(130);
+__webpack_require__(135);
 
 angular.module('hplus.modules', [
   'hplus.modules.header',
@@ -38669,8 +38669,10 @@ angular.module('hplus.factory', [])
 __webpack_require__(47);
 __webpack_require__(48);
 __webpack_require__(49);
+__webpack_require__(139);
 __webpack_require__(50);
 __webpack_require__(51);
+__webpack_require__(140);
 __webpack_require__(52);
 
 /***/ }),
@@ -39818,7 +39820,7 @@ angular.module('hplus.modules.explorediseases', [])
 /* 70 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\r\n  <div class=\"col col-md-8 col-md-offset-1\">\r\n    <h1>List of All Diseases</h1>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row\" ng-controller=\"ExploreDiseasesController\">\r\n  <div class=\"col col-md-2 col-md-offset-1\">\r\n    <div class=\"row\">\r\n      <div class=\"col col-md-6\">\r\n        <span class=\"subtitle\">Search</span>\r\n      </div>\r\n    </div>\r\n\t\r\n    <div class=\"match-padding\">\r\n      <input type=\"text\" placeholder=\"Enter a keyword\" ng-model=\"searchFilter\">\r\n    </div>\r\n  </div>\r\n\r\n  <div class=\"col col-md-8\">\r\n    <div> \r\n      <div class=\"col col-md-12 marginBottom\">\r\n        <span class=\"subtitle\"><span ng-hide=\"searchFilter == ''\">{{(diseases | filter : searchFilter).length}}</span><span ng-hide=\"searchFilter != ''\">All</span> Results</span>\r\n        <hplus-explore-diseases-card dir-paginate=\"dis in diseases | filter : searchFilter | itemsPerPage : 10 | orderBy : 'name'\" data=\"dis\"></hplus-explore-diseases-card>\r\n        <dir-pagination-controls max-size=\"5\"></dir-pagination-controls>\r\n\t    </div>\r\n    </div>\r\n  </div>\r\n</div>";
+module.exports = "<div class=\"row\">\r\n  <div class=\"col col-md-8 col-md-offset-1\">\r\n    <h1>List of All Diseases</h1>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row\" ng-controller=\"ExploreDiseasesController\">\r\n  <div class=\"col col-md-2 col-md-offset-1\">\r\n    <div class=\"row\">\r\n      <div class=\"col col-md-6\">\r\n        <span class=\"subtitle\">Search</span>\r\n      </div>\r\n    </div>\r\n\t\r\n    <div class=\"match-padding\">\r\n      <input type=\"text\" placeholder=\"Enter a keyword\" ng-model=\"searchFilter\">\r\n    </div>\r\n  </div>\r\n\r\n  <div class=\"col col-md-8\">\r\n    <div> \r\n      <div class=\"col col-md-12 marginBottom\">\r\n        <span class=\"subtitle\"><span ng-hide=\"searchFilter == ''\">{{(diseases | filter : searchFilter).length}}</span><span ng-hide=\"searchFilter != ''\">All</span> Results</span>\r\n        <hplus-explore-diseases-card dir-paginate=\"dis in diseases | filter : searchFilter | itemsPerPage : 10 | orderBy : 'name'\" data=\"dis\"></hplus-explore-diseases-card>\r\n        {{diseases}}\r\n        <dir-pagination-controls max-size=\"5\"></dir-pagination-controls>\r\n\t    </div>\r\n    </div>\r\n  </div>\r\n</div>";
 
 /***/ }),
 /* 71 */
@@ -39850,7 +39852,7 @@ module.exports = "<div class=\"margins\">\r\n  <div class=\"card__container\">\r
 angular.module('hplus.modules.explorediseases')
 
   .controller('ExploreDiseasesController',
-    function($scope, $location, globalFactory, doctorFactory){
+    function($scope, $location, globalFactory, doctorFactory, globalFactory, modalFactory, diseaseFactory, symptomFactory){
 
       var user = doctorFactory.getUser();
 
@@ -39874,6 +39876,33 @@ angular.module('hplus.modules.explorediseases')
             "symp" : ["Cough","fever","shaking chills","shortness of breath","chest pain"]
         }
       ];
+      
+      var populate = function(){
+        diseaseFactory.getListOfDiseases().then(function(response){
+          console.log(response);
+          $scope.diseases = response.data.diseases;
+          var symptoms = [];
+          $scope.diseases.forEach(function(dis){
+            dis.symp = [];
+            dis.symptomId.forEach(function(symp){
+              var data={ "id" : symp};
+              symptomFactory.getSymptom(data).then(function(){
+                console.log(response);
+                if(response.data.symptom != null){
+                	dis.symp.push(response.data.symptom);
+                }
+              }
+              ,function(){
+                console.log("Error Getting Symptom");
+              });
+            }); 
+          });
+        }, function(response){
+          console.log(response.statusText);
+        });
+      }
+        
+      populate();
     }
   );
 
@@ -40324,7 +40353,7 @@ angular.module('hplus.modules.registerdiseases', [])
 /* 93 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\r\n  <div class=\"col col-md-8 col-md-offset-1\">\r\n    <h1>Register Diseases</h1>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row\" ng-controller=\"RegisterDiseasesController\">\r\n  <div class=\"col-md-10 col-md-offset-1\">\r\n\t  <form name=\"diseaseForm\">\r\n\t    <div class=\"col col-md-4\">\r\n\t      <label class=\"subtitle\">Name of Disease</label>\r\n\t      <input type=\"text\" placeholder=\"Name\" ng-model=\"diseaseName\" required>\r\n\t      <button type=\"submit\" ng-click=\"saveDisease()\">Save</button>\r\n\t    </div>\r\n\t  \r\n\t    <div class=\"col col-md-4\">\r\n\t      <label class=\"subtitle\">Symptoms</label>\r\n\t      <input type=\"text\" placeholder=\"Search Symptom\">\r\n\t      <div class=\"borders\">\r\n\t        <div class=\"scrollable\">\r\n\t          <div ng-repeat=\"option in symptomsSearch | orderBy:['-val','name']\">\r\n\t            <input type=\"checkbox\" ng-model=\"option.val\" ng-change=\"addRemoveSymptom(symptomsSearch | filter: {val: true} | orderBy : 'name')\" ng-required=\"!symptomsSelected.length\">{{option.name}}<br>\r\n\t          </div>\r\n          </div>\r\n        </div>\r\n\t      <div class = \"row\" ng-show=\"bool\">\r\n\t        <div class=\"col-md-8\" ><input type=\"text\" ng-model=\"addSymptom\"></div>\r\n\t        <div class=\"col-md-4\"><button ng-click=\"\">Add</button></div>  \r\n\t      </div>\r\n\t      <button ng-click=\"showAdd()\">Add New Symptom</button>\r\n\t      \r\n\t    </div>\r\n\t  \r\n\t    <div class=\"col col-md-4\">\r\n\t\t    <label class=\"subtitle\">Medicines</label>\r\n\t\t    <input type=\"text\" placeholder=\"Search Medicine\">\r\n\t\t    <div class=\"borders\">\r\n\t\t      <div class=\"scrollable\">\r\n\t\t        <div ng-repeat=\"optionmed in medicinesSearch | orderBy:['-val','name']\">\r\n\t\t          <input type=\"checkbox\" ng-model=\"optionmed.val\" ng-change=\"addRemoveMedicine(medicinesSearch | filter: {val: true}| orderBy:'name')\"  ng-required=\"!medicinesSelected.length\">{{optionmed.name}}<br>\r\n\t\t        </div>\r\n\t\t      </div>\r\n\t      </div>\r\n\t    </div>\r\n\t  </form>\r\n  </div>\r\n</div>";
+module.exports = "<div ng-controller=\"RegisterDiseasesController\">\r\n<div class=\"row\">\r\n  <div class=\"col col-md-8 col-md-offset-1\">\r\n    <h1>Register Diseases</h1>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row\">\r\n  <div class=\"col-md-10 col-md-offset-1\">\r\n\t  <ng-form name=\"diseaseForm\">\r\n\t    <div class=\"col col-md-4\">\r\n\t      <label class=\"subtitle\">Name of Disease</label>\r\n\t      <input type=\"text\" placeholder=\"Name\" ng-model=\"disease.name\" ng-required=\"true\">\r\n\t      <button type=\"submit\" ng-click=\"saveDisease()\">Save</button>\r\n\t    </div>\r\n\t  \r\n\t    <div class=\"col col-md-4\">\r\n\t      <label class=\"subtitle\">Symptoms</label>\r\n\t      <input type=\"text\" placeholder=\"Search Symptom\">\r\n\t      <div class=\"borders\">\r\n\t        <div class=\"scrollable\">\r\n\t          <div ng-repeat=\"option in symptomList | orderBy:['-val','name']\">\r\n\t            <input type=\"checkbox\" ng-model=\"option.val\" ng-change=\"addRemoveSymptom(symptomList | filter: {val: true} | orderBy : 'name')\" ng-required=\"!symptomsSelected.length\">{{option.name}}<br>\r\n\t          </div>\r\n          </div>\r\n        </div>\r\n\t      <div class = \"row\" ng-show=\"bool\">\r\n\t        <div class=\"col-md-8\" ><input type=\"text\" ng-model=\"addSymptom\"></div>\r\n\t        <div class=\"col-md-4\"><button ng-click=\"\">Add</button></div>  \r\n\t      </div>\r\n\t      <button ng-click=\"showAdd()\">Add New Symptom</button>\r\n\t      {{disease.symptomId}}\r\n\t    </div>\r\n\t  \r\n\t    <div class=\"col col-md-4\">\r\n\t\t    <label class=\"subtitle\">Medicines</label>\r\n\t\t    <input type=\"text\" placeholder=\"Search Medicine\">\r\n\t\t    <div class=\"borders\">\r\n\t\t      <div class=\"scrollable\">\r\n\t\t        <div ng-repeat=\"optionmed in medicineList | orderBy:['val','name']\">\r\n\t\t          <input type=\"checkbox\" ng-model=\"optionmed.val\" ng-change=\"addRemoveMedicine(medicineList | filter: {val: true}| orderBy:'name')\"  ng-required=\"!medicinesSelected.length\">{{optionmed.name}}<br>\r\n\t\t        </div>\r\n\t\t      </div>\r\n\t      </div>\r\n\t      {{disease.medicineId}}\r\n\t    </div>\r\n\t  </ng-form>\r\n  </div>\r\n</div>\r\n</div>";
 
 /***/ }),
 /* 94 */
@@ -40333,8 +40362,8 @@ module.exports = "<div class=\"row\">\r\n  <div class=\"col col-md-8 col-md-offs
 angular.module('hplus.modules.registerdiseases')
 
   .controller('RegisterDiseasesController',
-    function($scope, $location, globalFactory, doctorFactory){
-      
+    function($scope, $location, globalFactory, doctorFactory, symptomFactory, medicineFactory, diseaseFactory){
+	 
       var user = doctorFactory.getUser();
       console.log(user);
 
@@ -40346,56 +40375,22 @@ angular.module('hplus.modules.registerdiseases')
         $location.path("/");
       }
       
-      $scope.symptomsSelected = [];
-      $scope.medicinesSelected = [];
       $scope.go = function(path){
         globalFactory.go(path);
       };
      
-    //  $scope.symptomList = globalFactory.getSymptomList();
-      $scope.bool =false;
-     
-      $scope.showAdd = function(){
-        $scope.bool = !$scope.bool;
-      }
-      $scope.saveArraySymp = function(){
-      
-        angular.forEach($scope.option, function(option){
-          if (option.val){
-            var data= {
-                id: option.id,
-                sympname: option.name
-            }
-            $scope.symptomsSelected .push(data);
-          } 
-        });
-        console.log($scope.symptomsSelected);
-      }
-      $scope.saveArrayMedicine = function(){
-      
-        angular.forEach($scope.optionmed, function(option){
-          if (option.val) {
-             var data1= {
-                id: option.id,
-                medname: option.name
-            }
-            $scope.medicineSelected .push(data1);
-          }
-        });
-        console.log($scope.medicineSelected);
-      }
       $scope.saveDisease = function(){
-        console.log($scope.medicinesSelected);
-        console.log($scope.symptomsSelected);
-        console.log($scope.diseaseName);
-        globalFactory.insertDisease($scope.diseaseName,$scope.symptomsSelected,$scope.medicinesSelected);
+        console.log($scope.disease.medicineId);
+        console.log($scope.disease.symptomId);
+        console.log($scope.disease.name);
+        diseaseFactory.insertDisease($scope.disease);
       }
       
       $scope.addRemoveSymptom = function(hold){
-    	  $scope.symptomsSelected= hold;
+    	  $scope.disease.symptomId= hold;
       }
       
-      $scope.symptomsSearch = [
+      $scope.symptomList = [
         {
           name: "Examples",
           id: 1,
@@ -40440,10 +40435,10 @@ angular.module('hplus.modules.registerdiseases')
 //      };
 //      
       $scope.addRemoveMedicine = function(hold){
-    	  $scope.medicinesSelected= hold;
+    	  $scope.disease.medicineId= hold;
       }
       
-      $scope.medicinesSearch = [
+      $scope.medicineList = [
                          {
                            name: "Metformin",
                            id: 1,
@@ -40490,7 +40485,24 @@ angular.module('hplus.modules.registerdiseases')
                            val:false
                          }
                        ];
-
+      
+      $scope.disease = 
+      {
+        "name" : "",
+        "symptomId" : [],
+        "medicineId" : []
+      };
+      
+      var populate = function(){
+            symptomFactory.getListOfSymptoms().then(function(response){
+        	  $scope.symptomList = response.data.symptoms;
+            },function(){});
+            medicineFactory.getListOfMedicines().then(function(response){
+              $scope.medicineList = response.data.medicines;
+            },function(){});
+      };
+      populate();
+      
     }
   );
 
@@ -41192,7 +41204,7 @@ angular.module('hplus.modules.viewmedicine', [])
   });
   __webpack_require__(120);
   __webpack_require__(122);
-  __webpack_require__(135);
+  __webpack_require__(123);
 
 /***/ }),
 /* 119 */
@@ -41333,9 +41345,23 @@ app = angular.module('hplus.modules.viewmedicine')
 
 /***/ }),
 /* 123 */
+/***/ (function(module, exports) {
+
+angular.module('hplus.modules.viewmedicine')
+
+  .controller('RecordCardController',
+    function($scope, $location, globalFactory){
+      $scope.go = function(path, medicalRecord){
+        globalFactory.go(path);
+      };
+
+  });
+
+/***/ }),
+/* 124 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var viewmedicalrecord = __webpack_require__(124);
+var viewmedicalrecord = __webpack_require__(125);
 
 angular.module('hplus.modules.viewmedicalrecord', [])
 
@@ -41345,19 +41371,19 @@ angular.module('hplus.modules.viewmedicalrecord', [])
         template: viewmedicalrecord
       })
   });
-  __webpack_require__(125);  
-  __webpack_require__(126);
-  __webpack_require__(128);
+  __webpack_require__(126);  
+  __webpack_require__(127);
+  __webpack_require__(129);
 
 
 /***/ }),
-/* 124 */
+/* 125 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"row\">\r\n  <div class=\"col col-md-8 col-md-offset-1\">\r\n    <h1>Medical Record</h1>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row\" ng-controller=\"ViewMedicalRecordController\">\r\n  <div class=\"col col-md-2 col-md-offset-1\">\r\n    <div class=\"row\">\r\n      <div class=\"col col-md-12\">\r\n        <label class=\"subtitle\">Patient</label>\r\n        <div class=\"subtitle__value\">\r\n\t        {{patient.lastName + ', ' + patient.firstName}}\r\n\t      </div>\r\n\t      <label class=\"subtitle\">Date of Birth</label>\r\n        <div class=\"subtitle__value\">\r\n          {{patient.dateOfBirth | date : \"longDate\"}}\r\n        </div>\r\n        <label class=\"subtitle\">Sex</label>\r\n        <div class=\"subtitle__value\">\r\n          {{sex}}\r\n        </div>\r\n        <label class=\"subtitle\">Admission Date</label>\r\n        <div class=\"subtitle__value\">\r\n          {{record.createdAt | date : \"longDate\"}}\r\n        </div>\r\n        <label class=\"subtitle\">Discharge Date</label>\r\n        <div class=\"subtitle__value\">\r\n          {{record.dischargeDate | date : \"longDate\"}}\r\n        </div>\r\n        <button class=\"outline\">Edit</button></br>\r\n        <button class=\"outline\">Delete</button>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <div class=\"col col-md-7\">\r\n    <div class=\"row\">\r\n      <div class=\"col-md-12\">\r\n        <!-- <hplus-view-medical-record-card dir-paginate=\"rec in records | itemsPerPage:10\" data=\"rec\"></hplus-view-medical-record-card> -->\r\n        <hplus-view-medical-record-card dir-paginate=\"dis in diseases | itemsPerPage:10\" data=\"dis\" array=\"symptoms\"></hplus-view-medical-record-card>\r\n        <dir-pagination-controls max-size=\"5\"></dir-pagination-controls>\r\n        <div class=\"margins\">\r\n          <div class=\"detail__container\">\r\n            <div class=\"card__title\">\r\n              Medicines\r\n            </div>\r\n            <table class=\"table table-striped\">\r\n              <thead>\r\n                 <tr>\r\n                   <th class=\"name\">Name</th>\r\n                   <th>Price</th>\r\n                   <th>Quantity</th>\r\n                   <th class=\"price\">Total</th>\r\n                 </tr>\r\n              </thead>\r\n              <tbody>\r\n                <tr ng-repeat=\"med in medicines\">\r\n                  <td class=\"name\">{{med.name}}</td>\r\n                  <td>{{med.price | currency : \"PHP \"}}</td>\r\n                  <td>{{record.quantity[$index]}}</td>\r\n                  <td class=\"price\">{{med.price * record.quantity[$index] | currency : \"PHP \"}}</td>\r\n                </tr>\r\n              </tbody>\r\n            </table>\r\n          </div>\r\n        </div>\r\n      </div>\r\n      <div class=\"col-md-5 col-md-offset-7\">\r\n          <div class=\"margins\">\r\n            <div class=\"detail__containerTotalPrice\">\r\n              \r\n                <b>Total:</b> {{totalBill | currency : 'PHP '}} \r\n              \r\n            </div>\r\n          </div>\r\n        </div>\r\n    </div>\r\n  </div>\r\n</div>";
 
 /***/ }),
-/* 125 */
+/* 126 */
 /***/ (function(module, exports) {
 
 angular.module('hplus.modules.viewmedicalrecord')
@@ -41371,10 +41397,10 @@ angular.module('hplus.modules.viewmedicalrecord')
   });
 
 /***/ }),
-/* 126 */
+/* 127 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var card = __webpack_require__(127);
+var card = __webpack_require__(128);
 angular.module('hplus.modules.viewmedicalrecord')
 
   .directive('hplusViewMedicalRecordCard', function(){
@@ -41389,13 +41415,13 @@ angular.module('hplus.modules.viewmedicalrecord')
   })
 
 /***/ }),
-/* 127 */
+/* 128 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"margins\">\r\n  <div class=\"detail__container\">\r\n    <div class=\"card__title\">\r\n      {{data.name}}\r\n    </div>\r\n    \r\n    <label class=\"subtitle\">Symptoms</label>\r\n    <div class=\"subtitle__value\">\r\n      <span ng-repeat=\"ar in array | intersect : data.symptoms\"><span ng-hide=\"$first\">,&nbsp;</span>{{ar}}</span>\r\n    </div>\r\n  </div>\r\n</div>";
 
 /***/ }),
-/* 128 */
+/* 129 */
 /***/ (function(module, exports) {
 
 angular.module('hplus.modules.viewmedicalrecord')
@@ -41452,10 +41478,10 @@ angular.module('hplus.modules.viewmedicalrecord')
   );
 
 /***/ }),
-/* 129 */
+/* 130 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var viewdoctor = __webpack_require__(130);
+var viewdoctor = __webpack_require__(131);
 
 angular.module('hplus.modules.viewpatient', [])
 
@@ -41465,190 +41491,41 @@ angular.module('hplus.modules.viewpatient', [])
         template: viewdoctor
       })
   });
-  __webpack_require__(137);
-  __webpack_require__(136);
+  __webpack_require__(132);
+  __webpack_require__(134);
 
 
 /***/ }),
-/* 130 */
+/* 131 */
 /***/ (function(module, exports) {
 
 module.exports = "<ng-controller ng-controller=\"ViewPatientController\">\r\n\t<div class=\"row\">\r\n\t  <div class=\"col col-md-8 col-md-offset-1\">\r\n\t    <h1><i class=\"fa fa-user-o\"></i> Doe, Jane</h1>\r\n\t  </div>\r\n\t</div>\r\n\t\r\n\t<div class=\"row\">\r\n\t  <div class=\"col col-md-2 col-md-offset-1\">\r\n\t    <div class=\"match-padding\">\r\n\t      <span class=\"subtitle\">\r\n\t        Date of Birth\r\n\t      </span>\r\n\t      <div class=\"subtitle__value\">\r\n\t        January 1, 1970\r\n\t      </div>\r\n\t      \r\n\t       <br>\r\n\t      <span class=\"subtitle\">Address</span>\r\n\t      <div class=\"subtitle__value\">\r\n\t        Deca Homes, Bldg.19, Rm 301, Mandaue City, Cebu\r\n\t      </div>\r\n\t      \r\n\t       <br>\r\n\t      <span class=\"subtitle\">Contact Number</span>\r\n\t      <div class=\"subtitle__value\">\r\n\t        +6906-084-9663\r\n\t      </div>\r\n\t      \r\n\t      <br>\r\n\t      <span class=\"subtitle\">Sex</span>\r\n\t      <div class=\"subtitle__value\">\r\n\t        Female\r\n\t      </div>\r\n\t      <br>\r\n\t      <button class=\"outline\">Edit</button>\r\n\t      <button class=\"outline\">Delete</button>\r\n\t    </div>\r\n\t  </div>\r\n\t\r\n\t  <div class=\"col col-md-8\">\r\n\t    <div class=\"col col-md-12\">\r\n\t      <span class=\"subtitle\">Medical Records of this patient</span>\r\n\t      <br><br>\r\n\t      <hplus-view-patient-card dir-paginate=\"record in recordList | itemsPerPage:10\" data=\"record\"></hplus-view-patient-card>\r\n\t    </div>\r\n\t  </div>\r\n\t</div>\r\n\t<dir-pagination-controls max-size=\"5\"></dir-pagination-controls>\r\n</ng-controller>";
 
 /***/ }),
-/* 131 */
+/* 132 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var resetpassword = __webpack_require__(132);
+var card = __webpack_require__(133);
+angular.module('hplus.modules.viewpatient')
 
-angular.module('hplus.modules.resetpassword', [])
-
-  .config(function ($routeProvider){  
-    $routeProvider
-      .when('/admin/reset/password',{
-        template: resetpassword
-      })
-  });
-
-  __webpack_require__(133);
-
-/***/ }),
-/* 132 */
-/***/ (function(module, exports) {
-
-module.exports = "<div  ng-controller=\"ResetPasswordController\">\r\n  <div class=\"row\">\r\n    <div class=\"col col-md-8 col-md-offset-1\">\r\n      <h1>Reset Your Password</h1>\r\n    </div>\r\n  </div>\r\n\r\n  <ng-form name=\"resetPasswordForm\">\r\n    <div class=\"row\">\r\n      <div class=\"col col-md-4 col-md-offset-1\">\r\n        <div class=\"row\">\r\n          <div class=\"col col-md-12\">\r\n            <label class=\"subtitle\">Old Password</label>\r\n            <input type=\"password\" ng-model=\"password.oldPass\" ng-required=\"true\">\r\n            \r\n            <label class=\"subtitle\">New Password (At least 6 characters)</label>\r\n            <input type=\"password\" ng-model=\"password.newPass\" ng-pattern=\"passwordRegex\" zxcvbn=\"passwordStrength\" ng-required=\"true\">\r\n\r\n\r\n            <label class=\"subtitle\">Repeat your new password</label>\r\n            <input type=\"password\" ng-model=\"password.confirmPass\" ng-required=\"true\">\r\n            \r\n            <div class=\"row\">\r\n                <div class=\"meter\">\r\n                  <div ng-class=\"meter\" role=\"progressbar\" aria-valuenow=\"40\" aria-valuemin=\"0\" aria-valuemax=\"100\"></div>\r\n                </div>\r\n                <span class=\"subtitle\">{{ passwordStatus }}</span>\r\n            </div>\r\n            <br><br>\r\n            \r\n            <button ng-class=\"checkStatus(resetPasswordForm.$valid)\" ng-disabled=\"resetPasswordForm.$invalid\" ng-click=\"resetPassword()\">{{ buttonText }}</button>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </ng-form>\r\n</div>";
+  .directive('hplusViewPatientCard', function(){
+    return{
+      restrict: 'EA',
+      scope: {
+        data: '='
+      },
+      template: card
+    };
+  })
 
 /***/ }),
 /* 133 */
 /***/ (function(module, exports) {
 
-angular.module('hplus.modules.resetpassword')
-
-  .controller('ResetPasswordController',
-    function($scope, $location, globalFactory, modalFactory, doctorFactory){
-
-      $scope.passwordRegex = ".{6,}";
-      $scope.meter = "meter-bar";
-      $scope.passwordStatus = "Enter a password";
-      $scope.buttonText = "Please fill out all fields";
-
-      var errorMessage = "";
-
-      var user = doctorFactory.getUser();
-      console.log(user);
-
-      if(user == null) {
-        $location.path("/");
-      }
-
-      $scope.go = function(path){
-        globalFactory.go(path);
-      };
-
-      $scope.$watch(
-        // This function returns the value being watched. It is called for each turn of the $digest loop
-        function() { return $scope.passwordStrength; },
-        // This is the change listener, called when the value returned from the above function changes
-        function(newValue, oldValue) {
-          if (newValue != undefined && newValue.password != "") {
-            switch(newValue.score){
-              case 0:
-                $scope.meter = "meter-bar meter-bar-verybad";
-                $scope.passwordStatus = "Very Weak";
-                break;
-              case 1:
-                $scope.meter = "meter-bar meter-bar-bad";
-                $scope.passwordStatus = "Weak";
-                break;
-              case 2:
-                $scope.meter = "meter-bar meter-bar-average";
-                $scope.passwordStatus = "Average";
-                break;
-              case 3:
-                $scope.meter = "meter-bar meter-bar-good";
-                $scope.passwordStatus = "Strong";
-                break;
-              case 4:
-                $scope.meter = "meter-bar meter-bar-verygood";
-                $scope.passwordStatus = "Very Strong";
-            }
-          } else {
-            $scope.meter = "meter-bar";
-            $scope.passwordStatus = "Enter a password";
-          }
-      })
-
-      var validity = function(){
-        var state = false;
-        errorMessage = "";
-
-        if($scope.password.oldPass != user.password){
-          errorMessage += "Old password is wrong!";
-        }
-        
-        if($scope.passwordStrength.password != $scope.password.confirmPass){
-          errorMessage += "Passwords don't match!";
-        } 
-        
-        if(errorMessage == "") {
-          state = true;
-        }
-
-        return state;
-      };
-
-      var confirmPasswordReset = function(){
-        user.password = $scope.password.newPass;
-        doctorFactory.updateDoctor(user);
-      };
-
-      $scope.resetPassword = function(){
-        var modalObject = {};
-        console.log("resetPassword");
-
-        if(validity()){
-          modalObject = {
-            type: "confirm",
-            title: "Confirm Password Reset",
-            description: "Are you sure you want to change your password?",
-            negativeButton: "No",
-            positiveButton: "Yes",
-            isVisible: true,
-            data: confirmPasswordReset
-          };
-        
-          modalFactory.setContents(modalObject);
-        } else {
-          modalObject = {
-            type: "notify",
-            title: "Unable to change password!",
-            description: errorMessage,
-            positiveButton: "Ok",
-            isVisible: true
-          };
-          
-          modalFactory.setContents(modalObject);
-        }
-      };
-
-      $scope.checkStatus = function(status){
-        var retClass;
-
-        if(status){
-          $scope.buttonText = "Reset Password";
-          retClass = "edit-button";
-        } else {
-          $scope.buttonText = "Please fill out all fields";
-          retClass = "delete-button";
-        }
-
-        return retClass;
-      };
-    }
-  );
+module.exports = "<div class=\"card__container\">\r\n  <div class=\"card__title match-padding\">\r\n    {{ data.name }} \r\n  </div>\r\n  \r\n  <br>\r\n  <span class=\"subtitle match-padding\">Symptoms</span>\r\n  <div class=\"subtitle__value match-padding\">\r\n    {{ data.symptom }} \r\n  </div>\r\n  \r\n  <br>\r\n  <span class=\"subtitle match-padding\">Medications</span>\r\n  <div class=\"subtitle__value match-padding\">\r\n    {{ data.medicine }} &times; {{ data.dosage }}\r\n  </div>\r\n  \r\n  <div class=\"row\">\r\n   <div class=\"col col-md-4 \">\r\n     <br>\r\n     <span class=\"subtitle\">Admission Date</span>\r\n     <div class=\"subtitle__value\">\r\n       {{ data.admission }}\r\n     </div>\r\n   </div>\r\n   <div class=\"col col-md-4\">\r\n     <br>\r\n     <span class=\"subtitle\">Discharge Date</span>\r\n     <div class=\"subtitle__value\">\r\n       {{ data.discharge }}\r\n     </div>\r\n   </div>\r\n   <div class=\"col col-md-4\">\r\n     <br>\r\n     <span class=\"subtitle\">Bill for this disease</span>\r\n     <div class=\"subtitle__value\">\r\n       {{ data.bill }}\r\n     </div>\r\n   </div>\r\n </div>\r\n</div>";
 
 /***/ }),
 /* 134 */
-/***/ (function(module, exports) {
-
-module.exports = "<div class=\"row\">\r\n  <div class=\"col-md-12\" align=\"right\">\r\n      <div class=\"pagination__container\" ng-if=\"1 < pages.length || !autoHide\">\r\n      <div ng-if=\"boundaryLinks\"  class=\"pagination__page\" ng-click=\"setCurrent(1)\">\r\n        &laquo;\r\n      </div> \r\n      <div ng-if=\"directionLinks\" class=\"pagination__page\" ng-click=\"setCurrent(pagination.current - 1)\">\r\n        &lsaquo;\r\n      </div>\r\n      <div ng-repeat=\"pageNumber in pages track by tracker(pageNumber, $index)\" class=\"pagination__page\" ng-class=\"{ pagination__current : pagination.current == pageNumber, pagination__page : pageNumber == '...' }\" ng-click=\"setCurrent(pageNumber)\">\r\n        {{ pageNumber }}\r\n      </div>\r\n      <div ng-if=\"directionLinks\" class=\"pagination__page\" ng-click=\"setCurrent(pagination.current + 1)\">\r\n        &rsaquo;\r\n      </div>\r\n      <div ng-if=\"boundaryLinks\"  class=\"pagination__page\" ng-click=\"setCurrent(pagination.last)\">\r\n        &raquo;\r\n      </div>\r\n    </div>\r\n</div>";
-
-/***/ }),
-/* 135 */
-/***/ (function(module, exports) {
-
-angular.module('hplus.modules.viewmedicine')
-
-  .controller('RecordCardController',
-    function($scope, $location, globalFactory){
-      $scope.go = function(path, medicalRecord){
-        globalFactory.go(path);
-      };
-
-  });
-
-/***/ }),
-/* 136 */
 /***/ (function(module, exports) {
 
 app = angular.module('hplus.modules.viewpatient');
@@ -41798,27 +41675,434 @@ app = angular.module('hplus.modules.viewpatient');
   });
 
 /***/ }),
-/* 137 */
+/* 135 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var card = __webpack_require__(138);
-angular.module('hplus.modules.viewpatient')
+var resetpassword = __webpack_require__(136);
 
-  .directive('hplusViewPatientCard', function(){
-    return{
-      restrict: 'EA',
-      scope: {
-        data: '='
-      },
-      template: card
-    };
-  })
+angular.module('hplus.modules.resetpassword', [])
+
+  .config(function ($routeProvider){  
+    $routeProvider
+      .when('/admin/reset/password',{
+        template: resetpassword
+      })
+  });
+
+  __webpack_require__(137);
+
+/***/ }),
+/* 136 */
+/***/ (function(module, exports) {
+
+module.exports = "<div  ng-controller=\"ResetPasswordController\">\r\n  <div class=\"row\">\r\n    <div class=\"col col-md-8 col-md-offset-1\">\r\n      <h1>Reset Your Password</h1>\r\n    </div>\r\n  </div>\r\n\r\n  <ng-form name=\"resetPasswordForm\">\r\n    <div class=\"row\">\r\n      <div class=\"col col-md-4 col-md-offset-1\">\r\n        <div class=\"row\">\r\n          <div class=\"col col-md-12\">\r\n            <label class=\"subtitle\">Old Password</label>\r\n            <input type=\"password\" ng-model=\"password.oldPass\" ng-required=\"true\">\r\n            \r\n            <label class=\"subtitle\">New Password (At least 6 characters)</label>\r\n            <input type=\"password\" ng-model=\"password.newPass\" ng-pattern=\"passwordRegex\" zxcvbn=\"passwordStrength\" ng-required=\"true\">\r\n\r\n\r\n            <label class=\"subtitle\">Repeat your new password</label>\r\n            <input type=\"password\" ng-model=\"password.confirmPass\" ng-required=\"true\">\r\n            \r\n            <div class=\"row\">\r\n                <div class=\"meter\">\r\n                  <div ng-class=\"meter\" role=\"progressbar\" aria-valuenow=\"40\" aria-valuemin=\"0\" aria-valuemax=\"100\"></div>\r\n                </div>\r\n                <span class=\"subtitle\">{{ passwordStatus }}</span>\r\n            </div>\r\n            <br><br>\r\n            \r\n            <button ng-class=\"checkStatus(resetPasswordForm.$valid)\" ng-disabled=\"resetPasswordForm.$invalid\" ng-click=\"resetPassword()\">{{ buttonText }}</button>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </ng-form>\r\n</div>";
+
+/***/ }),
+/* 137 */
+/***/ (function(module, exports) {
+
+angular.module('hplus.modules.resetpassword')
+
+  .controller('ResetPasswordController',
+    function($scope, $location, globalFactory, modalFactory, doctorFactory){
+
+      $scope.passwordRegex = ".{6,}";
+      $scope.meter = "meter-bar";
+      $scope.passwordStatus = "Enter a password";
+      $scope.buttonText = "Please fill out all fields";
+
+      var errorMessage = "";
+
+      var user = doctorFactory.getUser();
+      console.log(user);
+
+      if(user == null) {
+        $location.path("/");
+      }
+
+      $scope.go = function(path){
+        globalFactory.go(path);
+      };
+
+      $scope.$watch(
+        // This function returns the value being watched. It is called for each turn of the $digest loop
+        function() { return $scope.passwordStrength; },
+        // This is the change listener, called when the value returned from the above function changes
+        function(newValue, oldValue) {
+          if (newValue != undefined && newValue.password != "") {
+            switch(newValue.score){
+              case 0:
+                $scope.meter = "meter-bar meter-bar-verybad";
+                $scope.passwordStatus = "Very Weak";
+                break;
+              case 1:
+                $scope.meter = "meter-bar meter-bar-bad";
+                $scope.passwordStatus = "Weak";
+                break;
+              case 2:
+                $scope.meter = "meter-bar meter-bar-average";
+                $scope.passwordStatus = "Average";
+                break;
+              case 3:
+                $scope.meter = "meter-bar meter-bar-good";
+                $scope.passwordStatus = "Strong";
+                break;
+              case 4:
+                $scope.meter = "meter-bar meter-bar-verygood";
+                $scope.passwordStatus = "Very Strong";
+            }
+          } else {
+            $scope.meter = "meter-bar";
+            $scope.passwordStatus = "Enter a password";
+          }
+      })
+
+      var validity = function(){
+        var state = false;
+        errorMessage = "";
+
+        if($scope.password.oldPass != user.password){
+          errorMessage += "Old password is wrong!";
+        }
+        
+        if($scope.passwordStrength.password != $scope.password.confirmPass){
+          errorMessage += "Passwords don't match!";
+        } 
+        
+        if(errorMessage == "") {
+          state = true;
+        }
+
+        return state;
+      };
+
+      var confirmPasswordReset = function(){
+        user.password = $scope.password.newPass;
+        doctorFactory.updateDoctor(user);
+      };
+
+      $scope.resetPassword = function(){
+        var modalObject = {};
+        console.log("resetPassword");
+
+        if(validity()){
+          modalObject = {
+            type: "confirm",
+            title: "Confirm Password Reset",
+            description: "Are you sure you want to change your password?",
+            negativeButton: "No",
+            positiveButton: "Yes",
+            isVisible: true,
+            data: confirmPasswordReset
+          };
+        
+          modalFactory.setContents(modalObject);
+        } else {
+          modalObject = {
+            type: "notify",
+            title: "Unable to change password!",
+            description: errorMessage,
+            positiveButton: "Ok",
+            isVisible: true
+          };
+          
+          modalFactory.setContents(modalObject);
+        }
+      };
+
+      $scope.checkStatus = function(status){
+        var retClass;
+
+        if(status){
+          $scope.buttonText = "Reset Password";
+          retClass = "edit-button";
+        } else {
+          $scope.buttonText = "Please fill out all fields";
+          retClass = "delete-button";
+        }
+
+        return retClass;
+      };
+    }
+  );
 
 /***/ }),
 /* 138 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"card__container\">\r\n  <div class=\"card__title match-padding\">\r\n    {{ data.name }} \r\n  </div>\r\n  \r\n  <br>\r\n  <span class=\"subtitle match-padding\">Symptoms</span>\r\n  <div class=\"subtitle__value match-padding\">\r\n    {{ data.symptom }} \r\n  </div>\r\n  \r\n  <br>\r\n  <span class=\"subtitle match-padding\">Medications</span>\r\n  <div class=\"subtitle__value match-padding\">\r\n    {{ data.medicine }} &times; {{ data.dosage }}\r\n  </div>\r\n  \r\n  <div class=\"row\">\r\n   <div class=\"col col-md-4 \">\r\n     <br>\r\n     <span class=\"subtitle\">Admission Date</span>\r\n     <div class=\"subtitle__value\">\r\n       {{ data.admission }}\r\n     </div>\r\n   </div>\r\n   <div class=\"col col-md-4\">\r\n     <br>\r\n     <span class=\"subtitle\">Discharge Date</span>\r\n     <div class=\"subtitle__value\">\r\n       {{ data.discharge }}\r\n     </div>\r\n   </div>\r\n   <div class=\"col col-md-4\">\r\n     <br>\r\n     <span class=\"subtitle\">Bill for this disease</span>\r\n     <div class=\"subtitle__value\">\r\n       {{ data.bill }}\r\n     </div>\r\n   </div>\r\n </div>\r\n</div>";
+module.exports = "<div class=\"row\">\r\n  <div class=\"col-md-12\" align=\"right\">\r\n      <div class=\"pagination__container\" ng-if=\"1 < pages.length || !autoHide\">\r\n      <div ng-if=\"boundaryLinks\"  class=\"pagination__page\" ng-click=\"setCurrent(1)\">\r\n        &laquo;\r\n      </div> \r\n      <div ng-if=\"directionLinks\" class=\"pagination__page\" ng-click=\"setCurrent(pagination.current - 1)\">\r\n        &lsaquo;\r\n      </div>\r\n      <div ng-repeat=\"pageNumber in pages track by tracker(pageNumber, $index)\" class=\"pagination__page\" ng-class=\"{ pagination__current : pagination.current == pageNumber, pagination__page : pageNumber == '...' }\" ng-click=\"setCurrent(pageNumber)\">\r\n        {{ pageNumber }}\r\n      </div>\r\n      <div ng-if=\"directionLinks\" class=\"pagination__page\" ng-click=\"setCurrent(pagination.current + 1)\">\r\n        &rsaquo;\r\n      </div>\r\n      <div ng-if=\"boundaryLinks\"  class=\"pagination__page\" ng-click=\"setCurrent(pagination.last)\">\r\n        &raquo;\r\n      </div>\r\n    </div>\r\n</div>";
+
+/***/ }),
+/* 139 */
+/***/ (function(module, exports) {
+
+angular.module('hplus.factory')
+
+  .factory('diseaseFactory', 
+    function($http, modalFactory, $window, $location, globalFactory, $rootScope){
+
+      var registerDisease = function(diseaseObject){
+        $http({
+          method: 'POST',
+          url: '/Disease', // Change URL here
+          data: diseaseObject
+        }).then(function successCallback(response) {
+        	console.log(response);
+          var modalObject = {
+            type: "notify",
+            title: "Registration Successful!",
+            description: "Disease Registered.",
+            positiveButton: "Ok",
+            isVisible: true
+          };
+          modalFactory.setContents(modalObject);
+        }, function errorCallback(response) {
+          var errorMessage = "";
+          console.log(response);
+
+          var modalObject = {
+            type: "notify",
+            title: "Registration Failure!",
+            description: "Error in Registering Disease.",
+            positiveButton: "Ok",
+            isVisible: true
+          };
+          modalFactory.setContents(modalObject);
+        });
+      }
+
+      var getListOfDiseases = function(){
+        return $http({
+          method: "GET",
+          url: "/Disease",
+        });
+      };
+
+      var updateDoctor = function(doctor){
+        $http({
+          method: "PUT",
+          url: "/Doctor",
+          data: doctor
+        }).then(function(response){
+          console.log(response);
+          var modalObject = {
+            type: "notify",
+            title: "Successfully Updated!",
+            description: "Successfully updated Dr. " + doctor.lastname + "'s profile!",
+            positiveButton: "Ok",
+            isVisible: true
+          };
+        
+          modalFactory.setContents(modalObject);
+          saveDoctor(response.data);
+          $location.path('/admin/view/doctordetails');
+        }, function(response){
+          console.log(response);
+          var modalObject = {
+            type: "notify",
+            title: "Update Failure!",
+            description: "The email you have chosen already exists!",
+            positiveButton: "Ok",
+            isVisible: true
+          };
+        
+          modalFactory.setContents(modalObject);
+        });
+      };
+
+      var goList = function(){
+        $location.path('/admin/list/doctor');
+      }
+      
+      var confirmDeleteDoctor = function(doctor){
+        $http({
+          method: "DELETE",
+          url: "/Doctor",
+          data: doctor
+        }).then(function successCallback(response){
+          console.log(response);
+          var modalObject = {
+            type: "notify",
+            title: "Archive Successful!",
+            description: "Successfully archived Dr. " + doctor.lastname + "!",
+            positiveButton: "Ok",
+            isVisible: true,
+            data: goList
+          }
+
+          modalFactory.setContents(modalObject);
+        }, function errorCallback(response){
+          console.log(response);
+          var modalObject = {
+            type: "notify",
+            title: "Archive Failed!",
+            description: "Failed to archive Dr. " + doctor.lastname + "!",
+            positiveButton: "Ok",
+            isVisible: true,
+            data: goList
+          }
+
+          modalFactory.setContents(modalObject);
+        }); 
+      };
+
+      var deleteDoctor = function(doctor){
+        var modalObject = {
+          type: "confirm",
+          title: "Archive Confirmation",
+          description: "Are you sure you want to archive Dr. " + doctor.lastname + "?",
+          negativeButton: "No",
+          positiveButton: "Yes",
+          isVisible: true,
+          data: confirmDeleteDoctor,
+          object: doctor
+        }
+
+        modalFactory.setContents(modalObject);
+      };
+
+      var saveDoctor = function(doctor){
+        $window.localStorage.setItem("doctor", angular.toJson(doctor));
+      };
+
+      var getDoctor = function(){
+        return angular.fromJson($window.localStorage.getItem("doctor"));
+      };
+
+      var saveUser = function(user){
+        $window.localStorage.setItem("user", angular.toJson(user));
+      };
+
+      var getUser = function(){
+        return angular.fromJson($window.localStorage.getItem("user"));
+      };
+
+      var logout = function(){
+        $window.localStorage.removeItem("user");
+        $rootScope.$broadcast("changeNavbarOut");
+      };
+
+      var login = function(user, pass){
+        var data = {
+          username:user,
+          password:pass
+        };
+        
+        $http({
+            method:"GET",
+            url:"/Doctor",
+            params: data
+        }).then(function successCallback(response) {
+          console.log(response);
+          var doctor = JSON.parse(response.data.doctor);
+          var modalObject = {
+            type: "notify",
+            title: "Login Successful!",
+            description: "Welcome Dr. " + doctor.lastname + "!",
+            positiveButton: "Ok",
+            isVisible: true
+          }
+
+          modalFactory.setContents(modalObject);
+
+          saveUser(doctor);
+          $rootScope.$broadcast("userLoggedIn", doctor);
+          $rootScope.$broadcast("changeNavbar", doctor);
+          globalFactory.go("/admin/list/record");
+        }, function errorCallback(response) {
+          console.log(response);
+          var modalObject = {
+            type: "notify",
+            title: "Authentication Failed!",
+            description: "Wrong username/email and/or password!",
+            positiveButton: "OK",
+            isVisible: true
+          }
+
+          modalFactory.setContents(modalObject);
+        });
+      };
+
+      var updateView = function(){
+        $rootScope.$broadcast("updateProfile");
+      };
+      
+      return {
+        registerDisease: registerDisease,
+        getListOfDiseases: getListOfDiseases,
+        getDisease: getDisease,
+        saveDisease: saveDisease,
+        updateDisease: updateisease,
+        deleteDisease: deleteDisease,
+      }
+    }
+  );
+
+/***/ }),
+/* 140 */
+/***/ (function(module, exports) {
+
+angular.module('hplus.factory')
+
+  .factory('symptomFactory', 
+    function($http, modalFactory, $window, $location, globalFactory, $rootScope){
+
+      var registerSymptom = function(symptomObject, clear){
+        $http({
+          method: 'POST',
+          url: '/Symptom', // Change URL here
+          data: symptomObject
+        }).then(function successCallback(response) {
+        	console.log(response);
+          var modalObject = {
+            type: "notify",
+            title: "Registration Successful!",
+            description: "Symptom Saved.",
+            positiveButton: "Ok",
+            isVisible: true
+          };
+          modalFactory.setContents(modalObject);
+          clear();
+        }, function errorCallback(response) {
+          var errorMessage = "";
+          console.log(response);
+          
+          var modalObject = {
+            type: "notify",
+            title: "Registration Failure!",
+            description: "Symptom failed to save.",
+            positiveButton: "Ok",
+            isVisible: true
+          };
+          modalFactory.setContents(modalObject);
+        });
+      }
+
+      var getListOfSymptoms = function(){
+        return $http({
+          method: "GET",
+          url: "/Symptom",
+        });
+      };
+
+      var goList = function(){
+        $location.path('/admin/list/disease');
+      }
+      var getSymptom = function(symptomObject){
+        return $http({
+            method: "GET",
+            url: "/Symptom",
+            data: symptomObject
+          });
+      };
+      
+      return {
+        registerSymptom: registerSymptom,
+        getListOfSymptoms: getListOfSymptoms,
+        getSymptom: getSymptom
+      }
+    }
+  );
 
 /***/ })
 /******/ ]);

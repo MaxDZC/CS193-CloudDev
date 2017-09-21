@@ -60,7 +60,6 @@ public class SymptomController extends Controller {
                 
                 if(jsonObject.has("id")){
                     jsonObject.put("symptom", SymptomService.getSymptom(jsonObject.getLong("id")));
-                    
                 } else {
                     jsonObject.put("symptoms", SymptomService.getAllSymp());
                 }

@@ -1,15 +1,16 @@
+<div ng-controller="RegisterDiseasesController">
 <div class="row">
   <div class="col col-md-8 col-md-offset-1">
     <h1>Register Diseases</h1>
   </div>
 </div>
 
-<div class="row" ng-controller="RegisterDiseasesController">
+<div class="row">
   <div class="col-md-10 col-md-offset-1">
-	  <form name="diseaseForm">
+	  <ng-form name="diseaseForm">
 	    <div class="col col-md-4">
 	      <label class="subtitle">Name of Disease</label>
-	      <input type="text" placeholder="Name" ng-model="diseaseName" required>
+	      <input type="text" placeholder="Name" ng-model="disease.name" ng-required="true">
 	      <button type="submit" ng-click="saveDisease()">Save</button>
 	    </div>
 	  
@@ -18,8 +19,8 @@
 	      <input type="text" placeholder="Search Symptom">
 	      <div class="borders">
 	        <div class="scrollable">
-	          <div ng-repeat="option in symptomsSearch | orderBy:['-val','name']">
-	            <input type="checkbox" ng-model="option.val" ng-change="addRemoveSymptom(symptomsSearch | filter: {val: true} | orderBy : 'name')" ng-required="!symptomsSelected.length">{{option.name}}<br>
+	          <div ng-repeat="option in symptomList | orderBy:['-val','name']">
+	            <input type="checkbox" ng-model="option.val" ng-change="addRemoveSymptom(symptomList | filter: {val: true} | orderBy : 'name')" ng-required="!symptomsSelected.length">{{option.name}}<br>
 	          </div>
           </div>
         </div>
@@ -28,7 +29,7 @@
 	        <div class="col-md-4"><button ng-click="">Add</button></div>  
 	      </div>
 	      <button ng-click="showAdd()">Add New Symptom</button>
-	      
+	      {{disease.symptomId}}
 	    </div>
 	  
 	    <div class="col col-md-4">
@@ -36,12 +37,14 @@
 		    <input type="text" placeholder="Search Medicine">
 		    <div class="borders">
 		      <div class="scrollable">
-		        <div ng-repeat="optionmed in medicinesSearch | orderBy:['-val','name']">
-		          <input type="checkbox" ng-model="optionmed.val" ng-change="addRemoveMedicine(medicinesSearch | filter: {val: true}| orderBy:'name')"  ng-required="!medicinesSelected.length">{{optionmed.name}}<br>
+		        <div ng-repeat="optionmed in medicineList | orderBy:['val','name']">
+		          <input type="checkbox" ng-model="optionmed.val" ng-change="addRemoveMedicine(medicineList | filter: {val: true}| orderBy:'name')"  ng-required="!medicinesSelected.length">{{optionmed.name}}<br>
 		        </div>
 		      </div>
 	      </div>
+	      {{disease.medicineId}}
 	    </div>
-	  </form>
+	  </ng-form>
   </div>
+</div>
 </div>
