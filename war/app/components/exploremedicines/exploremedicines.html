@@ -18,14 +18,12 @@
 		</div>
   </div>
 
-
-
   <div class="col col-md-8"><!-- Section containing the list and detail of medicines -->
     <div class="col col-md-6"><!-- List sector -->
-		  <label class="subtitle">ALL RESULTS</label>
+		  <label class="subtitle">ALL RESULTS - {{ length }}</label>
 		  
 		  <div class="margins" >
-		    <hplus-explore-medicines-card dir-paginate="med in medicines | filter: {'name' : searchFilter} | itemsPerPage:10  | orderBy : 'name'" data="med" ng-click="setSelected(med)" ng-class="{'selectedCard__container': med == selectedMedicine}"></hplus-explore-medicines-card>       
+		    <hplus-explore-medicines-card dir-paginate="med in medicineList | filter: {'name' : searchFilter} | itemsPerPage:10  | orderBy : 'name'" data="med" ng-click="setSelected(med)" ng-class="{'selectedCard__container': med == selectedMedicine}"></hplus-explore-medicines-card>       
       </div>
       <div class="col-md-12">
       <!-- Pagination Section -->
@@ -36,6 +34,7 @@
    	<div class="col col-md-6"><!-- Detail Sector -->
 		  <hplus-selected-medicine-card data="selectedMedicine" ng-show="selectedMedicine"></hplus-selected-medicine-card>
 		</div>
+
   </div>
 </div>
 

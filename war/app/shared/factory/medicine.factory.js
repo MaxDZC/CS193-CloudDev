@@ -1,12 +1,12 @@
 angular.module('hplus.factory')
 
   .factory('medicineFactory', 
-    function($http, modalFactory, $window, $location){
+    function($http, $route, modalFactory, $window, $location){
 
       var registerMedicine = function(medicineObject){
         $http({
           method: 'POST',
-          url: '/Medicine', // Change URL here
+          url: '/Medicine',
           data: medicineObject
         }).then(function successCallback(response) {
         	console.log(response);
@@ -17,63 +17,64 @@ angular.module('hplus.factory')
               positiveButton: "Ok",
               isVisible: true
             };
+
             modalFactory.setContents(modalObject);
           }, function errorCallback(response) {
-        	  var errorMessage = "";
               console.log(response);
-
               var modalObject = {
                 type: "notify",
                 title: "Registration Failure!",
-                description: errorMessage,
+                description: "A medicine with the same name is already registered!",
                 positiveButton: "Ok",
                 isVisible: true
               };
+
               modalFactory.setContents(modalObject);
           });
       }
       
       var getListOfMedicines = function(){
-          return $http({
-            method: "GET",
+        return $http({
+          method: "GET",
+          url: "/Medicine",
+        });
+      };
+      
+      var updateMedicine = function(medicine){
+          $http({
+            method: "PUT",
             url: "/Medicine",
+            data: medicine
+          }).then(function(response){
+            console.log(response);
+            var modalObject = {
+              type: "notify",
+              title: "Successfully Updated!",
+              description: "Successfully updated " + medicine.name + "!",
+              positiveButton: "Ok",
+              isVisible: true
+            };
+          
+            modalFactory.setContents(modalObject);
+            saveMedicine(response.data);
+            $location.path('/admin/view/medicine');
+          }, function(response){
+            console.log(response);
+            var modalObject = {
+              type: "notify",
+              title: "Update Failure!",
+              description: "This medicine name already exists",
+              positiveButton: "Ok",
+              isVisible: true
+            };
+            
+            modalFactory.setContents(modalObject);
           });
         };
-      
-        var updateMedicine = function(medicine){
-            $http({
-              method: "PUT",
-              url: "/Medicine",
-              data: medicine
-            }).then(function(response){
-              console.log(response);
-              var modalObject = {
-                type: "notify",
-                title: "Successfully Updated!",
-                description: "Successfully updated " + medicine.name + "'s profile!",
-                positiveButton: "Ok",
-                isVisible: true
-              };
-            
-              modalFactory.setContents(modalObject);
-              savePatient(response.data);
-              $location.path('/admin/view/medicinedetails');
-            }, function(response){
-                console.log(response);
-                var modalObject = {
-                  type: "notify",
-                  title: "Update Failure!",
-                  description: "This medicine already exist",
-                  positiveButton: "Ok",
-                  isVisible: true
-                };
-              
-                modalFactory.setContents(modalObject);
-              });
-            };
             
         var goList = function(){
           $location.path('/admin/list/medicine');
+          $route.reload();
         }
         
         var confirmDeleteMedicine = function(medicine){
@@ -90,7 +91,7 @@ angular.module('hplus.factory')
                 positiveButton: "Ok",
                 isVisible: true,
                 data: goList
-              }
+              };
 
               modalFactory.setContents(modalObject);
             }, function errorCallback(response){
@@ -98,42 +99,41 @@ angular.module('hplus.factory')
                 var modalObject = {
                   type: "notify",
                   title: "Archive Failed!",
-                  description: "Failed to archive " + medicine.name + "!",
+                  description: medicine.name + " is currently in use!",
                   positiveButton: "Ok",
-                  isVisible: true,
-                  data: goList
-                }
+                  isVisible: true
+                };
 
                 modalFactory.setContents(modalObject);
               }); 
             };
             
 	    var deleteMedicine = function(medicine){
-	        var modalObject = {
+          var modalObject = {
 	          type: "confirm",
 	          title: "Archive Confirmation",
 	          description: "Are you sure you want to archive " + medicine.name + "?",
 	          negativeButton: "No",
 	          positiveButton: "Yes",
 	          isVisible: true,
-	          data: confirmDeleteMedicine,
-	          object: medicine
-	        }
+            data: confirmDeleteMedicine,
+            object: medicine
+        };
 	
-	        modalFactory.setContents(modalObject);
-	      };
+        modalFactory.setContents(modalObject);
+      };
 	      
       var saveMedicine = function(medicine){
           $window.localStorage.setItem("medicine", angular.toJson(medicine));
-        };
+      };
       
-	  var getMedicine = function(){
-	     return angular.fromJson($window.localStorage.getItem("medicine"));
-	   };  
+	    var getMedicine = function(){
+	      return angular.fromJson($window.localStorage.getItem("medicine"));
+	    };  
       
       return {
         registerMedicine: registerMedicine,
-        getListOfPatients: getListOfPatients,
+        getListOfMedicines: getListOfMedicines,
         saveMedicine: saveMedicine,
         getMedicine: getMedicine,
         updateMedicine: updateMedicine,

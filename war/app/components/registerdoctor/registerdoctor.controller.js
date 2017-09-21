@@ -71,7 +71,7 @@ angular.module('hplus.modules.registerdoctor')
             $scope.meter = "meter-bar";
             $scope.passwordStatus = "Enter a password";
           }
-      })
+      });
 
       $scope.checkStatus = function(status){
         var retType;

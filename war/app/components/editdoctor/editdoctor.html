@@ -1,7 +1,7 @@
 <div ng-controller="EditDoctorController">
   <div class="row">
     <div class="col col-md-8 col-md-offset-1">
-      <h1><i class="fa fa-pencil-square-o"></i> Editing Dr. {{ doctorData.firstname + " " + doctorData.lastname }}</h1>
+      <h1><i class="fa fa-pencil-square-o"></i> Editing Dr. {{ doctorData.firstname + " " + doctorData.lastname }} ({{ doctorData.username }})</h1>
     </div>
   </div>
 
@@ -9,20 +9,26 @@
     <ng-form name="EditDoctorForm">
       <div class="col col-md-3 col-md-offset-1">
         <div class="match-padding">
+          
           <label class="subtitle">Specialization</label>
           <select ng-model="doctorData.specialization" ng-required="true">
             <option ng-repeat="option in specialization" value="{{ option.name }}">{{option.name}}</option>
           </select>
+          
           <label class="subtitle">Contact Number</label>
           <input type="text" ng-model="doctorData.contactNo" ng-pattern="contactNoRegex" ng-required="true">
+          
           <label class="subtitle">Address</label>
           <input type="text" ng-model="doctorData.address" ng-required="true">
+          
           <label class="subtitle">E-mail Address</label>
           <input type="email" ng-model="doctorData.email" ng-required="true">
+          
           <div> 
-            <button ng-click="update()">Update</button>
+            <button ng-class="checkStatus(EditDoctorForm.$valid)" ng-disabled="EditDoctorForm.$invalid" ng-click="update()">Update</button>
             <button class="outline delete_btn" ng-show="data.medicalRecords == null" ng-click="delete()">Archive</button>
           </div>
+          
         </div>
       </div>
     </ng-form>
