@@ -1,12 +1,4 @@
-<!-- Indices written at Thu, 21 Sep 2017 19:09:58 SGT -->
+<!-- Indices written at Thu, 21 Sep 2017 19:36:22 SGT -->
 
-<datastore-indexes>
+<datastore-indexes/>
 
-    <!-- Used 14 times in query history -->
-    <datastore-index kind="MedicineModel" ancestor="false" source="auto">
-        <property name="deletedAt" direction="asc"/>
-        <property name="name" direction="asc"/>
-        <property name="id" direction="asc"/>
-    </datastore-index>
-
-</datastore-indexes>
