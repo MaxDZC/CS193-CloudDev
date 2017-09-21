@@ -9,64 +9,63 @@
   	<div class="col col-md-2 col-md-offset-1">
     	<div class="row">
       		<div class="col col-md-12">
-        		<label>Patient's First Name</label>
-        		<input type="text" ng-model="medicalRecord.firstName" ng-required="true">
-        		<label>Patient's Last Name</label>
-        		<input type="text" ng-model="medicalRecord.lastName" ng-required="true">
-        		<label>Birthday</label>
-        		<input type="date" ng-model="medicalRecord.birthday" ng-required="true">
-        		<label>Sex</label>
-        		<input type="text" ng-model="medicalRecord.sex" ng-required="true">
-        		<label>Admission Date</label>
-        		<input type="date" ng-model="medicalRecord.admissionDate" ng-required="true">
-        		<button class="outline" ng-hide="createMedicalRecordForm.$invalid" ng-click="createMedicalRecord()")>Create</button>
-      		</div>
+      			<span class="header__user-title">Patient Name</span>
+      			
+            <select name="one" class="dropdown-select">
+              <option value="">Select...</option>
+              <option value="1">Option #1</option>
+              <option value="2">Option #2</option>
+              <option value="3">Option #3</option>
+            </select>
+    
+      	</div>
     	</div>
   	</div>
   
-  	<div class="col col-md-8 col-md-offset-1">
+  	<div class="col col-md-7 col-md-offset-1">
     	<div class="row">
       		<button class="outline float-right">Add 1 more disease</button>
     	</div>
-    	</br>
-    	</br>
-    	</br>
+    </div>
+    <div class="row col-md-10 col-md-offset-1">
     	<div class="row card__container--custom1">
-      		<br>
-      		<div class="row">
-        		<div class="col col-md-12">
-          			<span class="subtitle">Disease</span>
-          			<br>
-          			<input class="shortinput" type="text" ng-model="medicalRecord.disease" ng-required="true"></input>
-        		</div>
-      		</div>
 	  
-      		<div class="row">
-        		<div class="col col-md-6">
-          			<span class="subtitle">Symptoms</span>
-          			<div class="collapsediv">
-            			<table ng-required="true">
-              				<br>
-              				<tr ng-repeat="symptom in symptomList">
-                				<td><input name="" type="checkbox" ng-model="medicalRecord.symptomChoice[$index]"><span>{{ symptom }}</span></td>
-              				</tr>
-            			</table>
-          			</div>
-        		</div>
-		
-        		<div class="col col-md-6">.
-          			<span class="subtitle">Medicine</span>
-          			<div class="collapsediv">
-            			<br>
-            			<table ng-required="true">
-              				<tr ng-repeat="medicine in medicineList">
-                				<td><input name="" type="checkbox" ng-model="medicalRecord.medicineChoice[$index]"><span>{{ medicine }}</span></td>
-              				</tr>
-            			</table>
-          			</div>
-        		</div>
-      		</div>
-    	</div>  
+    		<div class="row">
+      		<div class="col col-md-4">
+      			<span class="subtitle">Symptoms</span>
+      			<div class="collapsediv">
+      			  <table ng-required="true">
+      				  <br>
+      				  <tr ng-repeat="symptom in symptomList">
+        				  <td><input name="" type="checkbox" ng-model="medicalRecord.symptomChoice[$index]"><span>{{ symptom }}</span></td>
+      				  </tr>
+      			  </table>
+    			  </div>
+    		  </div>
+			<div class="col col-md-4">
+      			<span class="subtitle">Diseases</span>
+      			<div class="collapsediv">
+      			  <table ng-required="true">
+      				  <br>
+      				  <tr ng-repeat="diseases in diseasesList">
+        				  <td><input name="" type="checkbox" ng-model="medicalRecord.diseasesChoice[$index]"><span>{{ diseases }}</span></td>
+      				  </tr>
+      			  </table>
+    			  </div>
+    		 </div>
+    		<div class="col col-md-4">
+    			<span class="subtitle">Medicine</span>
+    			<div class="collapsediv">
+      			<br>
+      			<table ng-required="true">
+      				<tr ng-repeat="medicine in medicineList">
+        				<td><input name="" type="checkbox" ng-model="medicalRecord.medicineChoice[$index]"><span>{{ medicine }}</span></td>
+      				</tr>
+      			</table>
+    			</div>
+    		</div>
+  		</div>
+  	  </div>  
   	</div>
-  <ng-form>
+  </ng-form>
 </div>

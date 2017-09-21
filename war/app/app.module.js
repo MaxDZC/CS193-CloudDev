@@ -25,6 +25,7 @@ require('./components/viewmedicine/viewmedicine.main.js');
 require('./components/viewmedicalrecord/viewmedicalrecord.main.js');
 require('./components/viewpatient/viewpatient.main.js');
 require('./components/resetpassword/resetpassword.main.js');
+require('./components/explorepatients/explorepatients.main.js');
 
 angular.module('hplus.modules', [
   'hplus.modules.header',
@@ -49,5 +50,7 @@ angular.module('hplus.modules', [
   'hplus.modules.viewmedicine',
   'hplus.modules.viewmedicalrecord',
   'hplus.modules.viewpatient',
-  'hplus.modules.resetpassword'
+  'hplus.modules.resetpassword',
+  'hplus.modules.explorepatients'
+  
 ]);

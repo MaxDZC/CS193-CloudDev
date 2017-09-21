@@ -1,0 +1,39 @@
+<div class="row"><!-- Header Portion -->
+  <div class="col col-md-10 col-md-offset-1">
+    <h1>List of All Patients</h1><!-- Header Name for this Module -->
+  </div>
+</div>
+
+<div class="row" ng-controller="ExplorePatientsController"><!-- Body Portion -->
+  <div class="col col-md-2 col-md-offset-1"><!-- Section for search -->
+    <div class="row">
+	  <div class="col col-md-12">
+	    <label class="subtitle">Search</label>
+	    <input type="text" placeholder="Enter a name or specialty" ng-model="query">
+      <button ng-click="go('/admin/register/patient')">New Patient</button>
+	  </div>
+	</div>
+
+  </div>
+  
+  <div class="col col-md-8"><!-- Section containing the tabulated list of patients -->
+    <div class="col col-md-12">
+	  <label class="subtitle">ALL RESULTS - {{ patientList.length }}</label>
+		  
+	  <div class="margins" >
+	    <hplus-explore-patients-card dir-paginate="pat in patientList | filter: {'name' : searchFilter} | itemsPerPage:10  | orderBy : 'name'" data="pat" ng-click="setSelected(pat)" ng-class="{'selectedCard__container': pat == selectedPatient}"></hplus-explore-patients-card>       
+      </div>
+      <div class="col-md-12">
+      <!-- Pagination Section -->
+      <dir-pagination-controls max-size="5"></dir-pagination-controls>
+      </div>
+    </div>
+    
+    <!--<div class="col col-md-6">
+	  <hplus-selected-patient-card data="selectedPatient" ng-show="selectedPatient"></hplus-selected-patient-card>
+	</div> -->
+  </div>
+</div>
+
+
+<dir-pagination-controls max-size="5"></dir-pagination-controls>
