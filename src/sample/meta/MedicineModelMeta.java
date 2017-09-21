@@ -51,8 +51,8 @@ public final class MedicineModelMeta extends org.slim3.datastore.ModelMeta<sampl
     @Override
     public sample.model.MedicineModel entityToModel(com.google.appengine.api.datastore.Entity entity) {
         sample.model.MedicineModel model = new sample.model.MedicineModel();
-        model.setCreatedAt((java.lang.String) entity.getProperty("createdAt"));
-        model.setDeletedAt((java.lang.String) entity.getProperty("deletedAt"));
+        model.setCreatedAt((java.util.Date) entity.getProperty("createdAt"));
+        model.setDeletedAt((java.util.Date) entity.getProperty("deletedAt"));
         model.setDescription((java.lang.String) entity.getProperty("description"));
         model.setId((java.lang.Long) entity.getProperty("id"));
         model.setKey(entity.getKey());
