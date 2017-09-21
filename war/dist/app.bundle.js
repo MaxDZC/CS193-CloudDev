@@ -41318,12 +41318,13 @@ angular.module('hplus.modules.viewmedicine', [])
   });
   __webpack_require__(120);
   __webpack_require__(122);
+  __webpack_require__(138);
 
 /***/ }),
 /* 119 */
 /***/ (function(module, exports) {
 
-module.exports = "<ng-controller ng-controller=\"ViewMedicineController\">\r\n\t<div class=\"row\">\r\n\t  <div class=\"col col-md-8 col-md-offset-1\">\r\n\t    <h1><i class=\"fa fa-heartbeat\"></i>{{ medicine.name[0].toUpperCase() + medicine.name.substr(1) }}</h1>\r\n\t  </div>\r\n\t</div>\r\n\t\r\n\t<div class=\"row\">\r\n\t  <div class=\"col col-md-10 col-md-offset-1\">\r\n\t    <div class=\"col-md-3\">\r\n\t      <span class=\"subtitle\">Price:</span>\r\n\t      <div class=\"subtitle__value\">\r\n\t        PHP {{ medicine.price }}\r\n\t      </div>\r\n\t    </div>\r\n\t    <div class=\"col-md-3\">\r\n\t      <label class=\"subtitle\">USAGE FOR</label>\r\n\t      <span class=\"subtitle subtitle--variable\">{{ monthAndYear }}</span>\r\n\t      <div class=\"subtitle__value\">\r\n\t        15 Patients\r\n\t      </div>\r\n\t    </div>\r\n\t    <div class=\"col-md-3\">\r\n\t      <label class=\"subtitle\">USAGE FOR THE YEAR</label>\r\n\t      <span class=\"subtitle subtitle--variable\">{{ year }}</span>\r\n\t      <div class=\"subtitle__value\">\r\n\t        367 PATIENTS\r\n\t      </div>\r\n\t    </div>\r\n\t  </div>\r\n\t</div>\r\n\t\r\n\t<div class=\"row margins\">\r\n\t  <div class=\"col-md-10 col-md-offset-1 margins\">\r\n\t\t  <div class=\"col-md-3\">\r\n\t      <label class=\"subtitle marginTop\">Type of Medicine</label>\r\n\t      <div class=\"subtitle__value\">\r\n\t        {{ medicine.type }}\r\n\t      </div>\r\n\t\t    <label class=\"subtitle marginTop\">Description:</label>\r\n\t\t    <div class=\"subtitle__value\">\r\n\t\t      {{ medicine.description }}\r\n\t\t    </div>\r\n\t\t\t\t<button class=\"outline\" ng-click=\"go('/admin/update/medicine')\">Edit</button>\r\n\t\t\t\t<button class=\"outline delete_btn\" ng-click=\"delete()\">Archive</button>\r\n\t\t  </div>\r\n\t\t  <div class=\"col-md-9\">\r\n\t\t    <label class=\"subtitle\">RECENTLY DISPENSED TO THE FOLLOWING PATIENTS</label>\r\n\t        <hplus-view-medicine-card dir-paginate=\"record in recordList | itemsPerPage:10\" data=\"record\"></hplus-view-doctors-card>\r\n\t\t  </div>\r\n\t  </div>\r\n\t</div>\r\n\t<dir-pagination-controls max-size=\"5\"></dir-pagination-controls>\r\n</ng-controller>";
+module.exports = "<ng-controller ng-controller=\"ViewMedicineController\">\r\n\t<div class=\"row\">\r\n\t  <div class=\"col col-md-8 col-md-offset-1\">\r\n\t    <h1><i class=\"fa fa-heartbeat\"></i>{{ medicine.name[0].toUpperCase() + medicine.name.substr(1) }}</h1>\r\n\t  </div>\r\n\t</div>\r\n\t\r\n\t<div class=\"row\">\r\n\t  <div class=\"col col-md-10 col-md-offset-1\">\r\n\t    <div class=\"col-md-3\">\r\n\t      <span class=\"subtitle\">Price:</span>\r\n\t      <div class=\"subtitle__value\">\r\n\t        PHP {{ medicine.price }}\r\n\t      </div>\r\n\t    </div>\r\n\t    <div class=\"col-md-3\">\r\n\t      <label class=\"subtitle\">USAGE FOR</label>\r\n\t      <span class=\"subtitle subtitle--variable\">{{ monthAndYear }}</span>\r\n\t      <div class=\"subtitle__value\">\r\n\t        15 Patients\r\n\t      </div>\r\n\t    </div>\r\n\t    <div class=\"col-md-3\">\r\n\t      <label class=\"subtitle\">USAGE FOR THE YEAR</label>\r\n\t      <span class=\"subtitle subtitle--variable\">{{ year }}</span>\r\n\t      <div class=\"subtitle__value\">\r\n\t        367 PATIENTS\r\n\t      </div>\r\n\t    </div>\r\n\t  </div>\r\n\t</div>\r\n\t\r\n\t<div class=\"row margins\">\r\n\t  <div class=\"col-md-10 col-md-offset-1 margins\">\r\n\t\t  <div class=\"col-md-3\">\r\n\t      <label class=\"subtitle marginTop\">Type of Medicine</label>\r\n\t      <div class=\"subtitle__value\">\r\n\t        {{ medicine.type }}\r\n\t      </div>\r\n\t\t    <label class=\"subtitle marginTop\">Description:</label>\r\n\t\t    <div class=\"subtitle__value\">\r\n\t\t      {{ medicine.description }}\r\n\t\t    </div>\r\n\t\t\t\t<button class=\"outline\" ng-click=\"go('/admin/update/medicine')\">Edit</button>\r\n\t\t\t\t<button class=\"outline delete_btn\" ng-click=\"delete()\">Archive</button>\r\n\t\t  </div>\r\n\t\t  <div class=\"col-md-9\">\r\n\t\t    <label class=\"subtitle\">RECENTLY DISPENSED TO THE FOLLOWING PATIENTS</label>\r\n\t        <hplus-view-medicine-card dir-paginate=\"record in recordList | itemsPerPage:10\" data=\"record\"></hplus-view-medicine-card>\r\n\t\t  </div>\r\n\t  </div>\r\n\t</div>\r\n\t<dir-pagination-controls max-size=\"5\"></dir-pagination-controls>\r\n</ng-controller>";
 
 /***/ }),
 /* 120 */
@@ -41589,13 +41590,15 @@ angular.module('hplus.modules.viewpatient', [])
         template: viewdoctor
       })
   });
+  __webpack_require__(139);
+  __webpack_require__(141);
 
 
 /***/ }),
 /* 130 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\r\n  <div class=\"col col-md-8 col-md-offset-1\">\r\n    <h1><i class=\"fa fa-user-o\"></i> Doe, Jane</h1>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row\">\r\n  <div class=\"col col-md-2 col-md-offset-1\">\r\n    <div class=\"match-padding\">\r\n      <span class=\"subtitle\">\r\n        Date of Birth\r\n      </span>\r\n      <div class=\"subtitle__value\">\r\n        January 1, 1970\r\n      </div>\r\n      <br>\r\n      <span class=\"subtitle\">Sex</span>\r\n      <div class=\"subtitle__value\">\r\n        Female\r\n      </div>\r\n      <br>\r\n      <button class=\"outline\">Edit</button>\r\n    </div>\r\n  </div>\r\n\r\n  <div class=\"col col-md-8\">\r\n    <div class=\"col col-md-12\">\r\n      <span class=\"subtitle\">\r\n        Medical Records of this patient\r\n      </span>\r\n      <br><br>\r\n      <div class=\"card__container match-padding\">\r\n        <div class=\"card__title match-padding\">\r\n          Hyperacidity\r\n        </div>\r\n\r\n        <br>\r\n        <span class=\"subtitle match-padding\">Symptoms</span>\r\n        <div class=\"subtitle__value match-padding\">\r\n          Lack of appetite, Constipation, Indigestion, Sour belching, Vomiting\r\n        </div>\r\n\r\n        <br>\r\n        <span class=\"subtitle match-padding\">Medications</span>\r\n        <div class=\"subtitle__value match-padding\">\r\n          Omeprazole 20mg &times; 7\r\n        </div>\r\n\r\n        <div class=\"row\">\r\n          <div class=\"col col-md-4 \">\r\n            <br>\r\n            <span class=\"subtitle\">Admission Date</span>\r\n            <div class=\"subtitle__value\">\r\n              February 20, 2016\r\n            </div>\r\n          </div>\r\n          <div class=\"col col-md-4\">\r\n            <br>\r\n            <span class=\"subtitle\">Discharge Date</span>\r\n            <div class=\"subtitle__value\">\r\n              February 21, 2016\r\n            </div>\r\n          </div>\r\n          <div class=\"col col-md-4\">\r\n            <br>\r\n            <span class=\"subtitle\">Bill for this disease</span>\r\n            <div class=\"subtitle__value\">\r\n              PHP 308.00\r\n            </div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n\r\n      <div class=\"pagination__container\">\r\n        <div class=\"pagination__page\">\r\n          <i class=\"fa fa-angle-double-left\"></i>\r\n        </div>\r\n\r\n        <div class=\"pagination__page\">\r\n          <i class=\"fa fa-angle-left\"></i>\r\n        </div>\r\n\r\n        <div class=\"pagination__page\">\r\n          2\r\n        </div>\r\n\r\n        <div class=\"pagination__current\">\r\n          3\r\n        </div>\r\n\r\n        <div class=\"pagination__page\">\r\n          4\r\n        </div>\r\n\r\n        <div class=\"pagination__page\">\r\n          <i class=\"fa fa-angle-right\"></i>\r\n        </div>\r\n        \r\n        <div class=\"pagination__page\">\r\n          <i class=\"fa fa-angle-double-right\"></i>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>";
+module.exports = "<ng-controller ng-controller=\"ViewPatientController\">\r\n\t<div class=\"row\">\r\n\t  <div class=\"col col-md-8 col-md-offset-1\">\r\n\t    <h1><i class=\"fa fa-user-o\"></i> Doe, Jane</h1>\r\n\t  </div>\r\n\t</div>\r\n\t\r\n\t<div class=\"row\">\r\n\t  <div class=\"col col-md-2 col-md-offset-1\">\r\n\t    <div class=\"match-padding\">\r\n\t      <span class=\"subtitle\">\r\n\t        Date of Birth\r\n\t      </span>\r\n\t      <div class=\"subtitle__value\">\r\n\t        January 1, 1970\r\n\t      </div>\r\n\t      \r\n\t       <br>\r\n\t      <span class=\"subtitle\">Address</span>\r\n\t      <div class=\"subtitle__value\">\r\n\t        Deca Homes, Bldg.19, Rm 301, Mandaue City, Cebu\r\n\t      </div>\r\n\t      \r\n\t       <br>\r\n\t      <span class=\"subtitle\">Contact Number</span>\r\n\t      <div class=\"subtitle__value\">\r\n\t        +6906-084-9663\r\n\t      </div>\r\n\t      \r\n\t      <br>\r\n\t      <span class=\"subtitle\">Sex</span>\r\n\t      <div class=\"subtitle__value\">\r\n\t        Female\r\n\t      </div>\r\n\t      <br>\r\n\t      <button class=\"outline\">Edit</button>\r\n\t      <button class=\"outline\">Delete</button>\r\n\t    </div>\r\n\t  </div>\r\n\t\r\n\t  <div class=\"col col-md-8\">\r\n\t    <div class=\"col col-md-12\">\r\n\t      <span class=\"subtitle\">Medical Records of this patient</span>\r\n\t      <br><br>\r\n\t      <hplus-view-patient-card dir-paginate=\"record in recordList | itemsPerPage:10\" data=\"record\"></hplus-view-patient-card>\r\n\t    </div>\r\n\t  </div>\r\n\t</div>\r\n\t<dir-pagination-controls max-size=\"5\"></dir-pagination-controls>\r\n</ng-controller>";
 
 /***/ }),
 /* 131 */
@@ -41754,6 +41757,196 @@ angular.module('hplus.modules.resetpassword')
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"row\">\r\n  <div class=\"col-md-12\" align=\"right\">\r\n      <div class=\"pagination__container\" ng-if=\"1 < pages.length || !autoHide\">\r\n      <div ng-if=\"boundaryLinks\"  class=\"pagination__page\" ng-click=\"setCurrent(1)\">\r\n        &laquo;\r\n      </div> \r\n      <div ng-if=\"directionLinks\" class=\"pagination__page\" ng-click=\"setCurrent(pagination.current - 1)\">\r\n        &lsaquo;\r\n      </div>\r\n      <div ng-repeat=\"pageNumber in pages track by tracker(pageNumber, $index)\" class=\"pagination__page\" ng-class=\"{ pagination__current : pagination.current == pageNumber, pagination__page : pageNumber == '...' }\" ng-click=\"setCurrent(pageNumber)\">\r\n        {{ pageNumber }}\r\n      </div>\r\n      <div ng-if=\"directionLinks\" class=\"pagination__page\" ng-click=\"setCurrent(pagination.current + 1)\">\r\n        &rsaquo;\r\n      </div>\r\n      <div ng-if=\"boundaryLinks\"  class=\"pagination__page\" ng-click=\"setCurrent(pagination.last)\">\r\n        &raquo;\r\n      </div>\r\n    </div>\r\n</div>";
+
+/***/ }),
+/* 135 */,
+/* 136 */,
+/* 137 */,
+/* 138 */
+/***/ (function(module, exports) {
+
+angular.module('hplus.modules.viewmedicine')
+
+  .controller('RecordCardController',
+    function($scope, $location, globalFactory){
+      $scope.go = function(path, medicalRecord){
+        globalFactory.go(path);
+      };
+
+  });
+
+/***/ }),
+/* 139 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var card = __webpack_require__(140);
+angular.module('hplus.modules.viewpatient')
+
+  .directive('hplusViewPatientCard', function(){
+    return{
+      restrict: 'EA',
+      scope: {
+        data: '='
+      },
+      template: card
+    };
+  })
+
+/***/ }),
+/* 140 */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"card__container\">\r\n  <div class=\"card__title match-padding\">\r\n    {{ data.name }} \r\n  </div>\r\n  \r\n  <br>\r\n  <span class=\"subtitle match-padding\">Symptoms</span>\r\n  <div class=\"subtitle__value match-padding\">\r\n    {{ data.symptom }} \r\n  </div>\r\n  \r\n  <br>\r\n  <span class=\"subtitle match-padding\">Medications</span>\r\n  <div class=\"subtitle__value match-padding\">\r\n    {{ data.medicine }} &times; {{ data.dosage }}\r\n  </div>\r\n  \r\n  <div class=\"row\">\r\n   <div class=\"col col-md-4 \">\r\n     <br>\r\n     <span class=\"subtitle\">Admission Date</span>\r\n     <div class=\"subtitle__value\">\r\n       {{ data.admission }}\r\n     </div>\r\n   </div>\r\n   <div class=\"col col-md-4\">\r\n     <br>\r\n     <span class=\"subtitle\">Discharge Date</span>\r\n     <div class=\"subtitle__value\">\r\n       {{ data.discharge }}\r\n     </div>\r\n   </div>\r\n   <div class=\"col col-md-4\">\r\n     <br>\r\n     <span class=\"subtitle\">Bill for this disease</span>\r\n     <div class=\"subtitle__value\">\r\n       {{ data.bill }}\r\n     </div>\r\n   </div>\r\n </div>\r\n</div>";
+
+/***/ }),
+/* 141 */
+/***/ (function(module, exports) {
+
+app = angular.module('hplus.modules.viewpatient');
+
+  app.controller('ViewPatientController',
+    function($scope, $location, globalFactory, doctorFactory, patientFactory){
+	  
+	  var user = doctorFactory.getUser();
+
+      if(user == null) {
+        $location.path("/");
+      }
+	  
+	  $scope.patientData = patientFactory.getPatient();
+      var modalObject;
+
+      if($scope.patientData == null){
+        //$location.path('/admin/list/patient');
+      }
+	  
+      $scope.go = function(path){
+    	patientFactory.savePatient($scope.patientData);  
+        globalFactory.go(path);
+      };
+      
+      $scope.delete = function(){
+        patientFactory.deletePatient($scope.patientData);
+      };
+      
+      
+       
+      $scope.patientData = {
+        name: "Doe, Jane",
+        sex: "female"
+      };
+      
+       $scope.recordList = [
+        {
+    	 name: "Hyperacidity",
+         symptom:"Hot, Cold, Warm",
+         medicine: "Biogesic",
+         dosage: "20mgx7",
+         admission: "February 20, 2016",
+         discharge: "February 21, 2016",
+         bill: "308.00"
+        },
+        {
+       	 name: "Heart Burn",
+         symptom:"Hot, Cold, Warm",
+         medicine: "Biogesic",
+         dosage: "20mgx7",
+         admission: "February 20, 2016",
+         discharge: "February 21, 2016",
+         bill: "400.00"
+        },
+        {
+         name: "Osteoporosis",
+         symptom:"Hot, Cold, Warm",
+         medicine: "Biogesic",
+         dosage: "20mgx7",
+         admission: "February 20, 2016",
+         discharge: "February 21, 2016",
+         bill: "308.00"
+        },
+        {
+         name: "Hyperacidity",
+         symptom:"Hot, Cold, Warm",
+         medicine: "Biogesic",
+         dosage: "20mgx7",
+         admission: "February 20, 2016",
+         discharge: "February 21, 2016",
+         bill: "308.00"
+        },
+        {
+          name: "Hyperacidity",
+          symptom:"Hot, Cold, Warm",
+          medicine: "Biogesic",
+          dosage: "20mgx7",
+          admission: "February 20, 2016",
+          discharge: "February 21, 2016",          
+          bill: "308.00"
+         },
+         {
+          name: "Hyperacidity",
+          symptom:"Hot, Cold, Warm",
+          medicine: "Biogesic",
+          dosage: "20mgx7",
+          admission: "February 20, 2016",
+          discharge: "February 21, 2016",
+          bill: "308.00"
+        },
+        {
+          name: "Hyperacidity",
+          symptom:"Hot, Cold, Warm",
+          medicine: "Biogesic",
+          dosage: "20mgx7",
+          admission: "February 20, 2016",
+          discharge: "February 21, 2016",
+          bill: "308.00"
+         },
+         {
+          name: "Hyperacidity",
+          symptom:"Hot, Cold, Warm",
+          medicine: "Biogesic",
+          dosage: "20mgx7",
+          admission: "February 20, 2016",
+          discharge: "February 21, 2016",
+          bill: "308.00"
+         },
+         {
+          name: "Hyperacidity",
+          symptom:"Hot, Cold, Warm",
+          medicine: "Biogesic",
+          dosage: "20mgx7",
+          admission: "February 20, 2016",
+          discharge: "February 21, 2016",
+          bill: "308.00"
+         },
+         {
+    	  name: "Hyperacidity",
+          symptom:"Hot, Cold, Warm",
+          medicine: "Biogesic",
+          dosage: "20mgx7",
+          admission: "February 20, 2016",
+          discharge: "February 21, 2016",
+          bill: "308.00"
+         },
+         {
+          name: "Hyperacidity",
+          symptom:"Hot, Cold, Warm",
+          medicine: "Biogesic",
+          dosage: "20mgx7",
+          admission: "February 20, 2016",
+          discharge: "February 21, 2016",
+          bill: "308.00"
+         },
+         {
+          name: "Hyperacidity",
+          symptom:"Hot, Cold, Warm",
+          medicine: "Biogesic",
+          dosage: "20mgx7",
+          admission: "February 20, 2016",
+          discharge: "February 21, 2016",
+          bill: "308.00"
+         }
+      ];
+  });
 
 /***/ })
 /******/ ]);

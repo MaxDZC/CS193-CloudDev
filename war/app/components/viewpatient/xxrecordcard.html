@@ -1,0 +1,41 @@
+<div class="card__container">
+  <div class="card__title match-padding">
+    {{ data.name }} 
+  </div>
+  
+  <br>
+  <span class="subtitle match-padding">Symptoms</span>
+  <div class="subtitle__value match-padding">
+    {{ data.symptom }} 
+  </div>
+  
+  <br>
+  <span class="subtitle match-padding">Medications</span>
+  <div class="subtitle__value match-padding">
+    {{ data.medicine }} &times; {{ data.dosage }}
+  </div>
+  
+  <div class="row">
+   <div class="col col-md-4 ">
+     <br>
+     <span class="subtitle">Admission Date</span>
+     <div class="subtitle__value">
+       {{ data.admission }}
+     </div>
+   </div>
+   <div class="col col-md-4">
+     <br>
+     <span class="subtitle">Discharge Date</span>
+     <div class="subtitle__value">
+       {{ data.discharge }}
+     </div>
+   </div>
+   <div class="col col-md-4">
+     <br>
+     <span class="subtitle">Bill for this disease</span>
+     <div class="subtitle__value">
+       {{ data.bill }}
+     </div>
+   </div>
+ </div>
+</div>
