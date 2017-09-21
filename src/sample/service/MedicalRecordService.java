@@ -44,4 +44,14 @@ public class MedicalRecordService {
             System.out.println("MedicalRecordService.deleteOrMedicalRecord Exception: "+e.toString());
         }
     }
+    
+    public static Object getMedicalRecords() {
+        return medicalRecordDao.getMedicalRecords();
+    }
+    
+ 
+    public static Object getMedicalRecordByDoctorId(Long id) {
+        // TODO Auto-generated method stub
+        return medicalRecordDao.getMedicalRecordByDoctorId(id);
+    }
 }

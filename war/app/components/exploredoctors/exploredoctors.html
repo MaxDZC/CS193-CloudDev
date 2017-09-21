@@ -22,7 +22,12 @@
 			<div class="margins">
         <!-- List Section -->
         <label class="subtitle" ng-hide="doctorList.length">There are no doctors to display</label>
+<<<<<<< HEAD
 				<hplus-explore-doctors-card ng-show="doctorList.length" dir-paginate="doctor in filtered = (doctorList | filter:searchFilter | itemsPerPage:5)" data="doctor"></hplus-explore-doctors-card>
+=======
+				<hplus-explore-doctors-card ng-show="doctorList.length" dir-paginate="doctor in filtered = (doctorList | filter:searchFilter | itemsPerPage:5  | orderBy : ['lastname','firstname'])" data="doctor"></hplus-explore-doctors-card>
+				<dir-pagination-controls max-size="5"></dir-pagination-controls>
+>>>>>>> develop
 		  </div>
     </div>
   </div>

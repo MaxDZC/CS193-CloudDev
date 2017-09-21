@@ -83,19 +83,28 @@ public class PatientController extends Controller {
                 
                 if(validator.validate()){
                     
-                    birthdays = jsonObject.getString("birthday").split(" ");
-                    createdAts = jsonObject.getString("createdAt").split(" ");
-                    
-                    birthday = birthdays[5] + "-" + birthdays[1] + "-" + birthdays[2];
-                    createdAt = createdAts[5] + "-" + createdAts[1] + "-" + createdAts[2];
-                    
+                    Object aObj = jsonObject.get("birthday");
                     patientDto = new PatientDto(jsonObject);
                     
+                    if(aObj instanceof String){
+                        birthdays = jsonObject.getString("birthday").split(" ");
+                        createdAts = jsonObject.getString("createdAt").split(" ");
+                    
+                        birthday = birthdays[5] + "-" + birthdays[1] + "-" + birthdays[2];
+                        createdAt = createdAts[5] + "-" + createdAts[1] + "-" + createdAts[2];
+                        
+                        patientDto.setBirthday(new SimpleDateFormat("yyyy-MMM-dd").parse(birthday));
+                        patientDto.setCreatedAt(new SimpleDateFormat("yyyy-MMM-dd").parse(createdAt));
+                    } else {
+                        Date birthdayNew = new Date(jsonObject.getLong("birthday"));
+                        Date createdAtNew = new Date(jsonObject.getLong("createdAt"));
+                        
+                        patientDto.setBirthday(birthdayNew);
+                        patientDto.setCreatedAt(createdAtNew);
+                    }
                     
                     patientDto.setId(jsonObject.getLong("id"));
                     
-                    patientDto.setBirthday(new SimpleDateFormat("yyyy-MMM-dd").parse(birthday));
-                    patientDto.setCreatedAt(new SimpleDateFormat("yyyy-MMM-dd").parse(createdAt));
                     patientDto.setUpdatedAt(new Date());
                     patientDto.setDeletedAt(null);
                     

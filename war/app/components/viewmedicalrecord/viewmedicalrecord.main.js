@@ -8,6 +8,6 @@ angular.module('hplus.modules.viewmedicalrecord', [])
         template: viewmedicalrecord
       })
   });
-  
+  require('./viewmedicalrecord.filter.js');  
   require('./viewmedicalrecord.directive.js');
   require('./viewmedicalrecord.controller.js');

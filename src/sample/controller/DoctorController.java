@@ -12,6 +12,7 @@ import org.slim3.util.RequestMap;
 import sample.dto.DoctorDto;
 import sample.meta.DoctorModelMeta;
 import sample.service.DoctorService;
+import sample.service.MedicalRecordService;
 import sample.utils.JSONValidators;
 
 public class DoctorController extends Controller {
@@ -20,6 +21,7 @@ public class DoctorController extends Controller {
     * Service object that will be used to call CRUD functions to datastore
     */
     DoctorService doctorService = new DoctorService();
+    MedicalRecordService medicalRecordService = new MedicalRecordService();
 
     @Override
     protected Navigation run() throws Exception {
@@ -40,7 +42,7 @@ public class DoctorController extends Controller {
         String message;
         
         try{
-        /*    DoctorDto adminAccount = new DoctorDto();
+        /* \   DoctorDto adminAccount = new DoctorDto();
             
             adminAccount.setFirstname("admin");
             adminAccount.setLastname("admin");
@@ -51,6 +53,7 @@ public class DoctorController extends Controller {
             adminAccount.setSpecialization("Administrator");
             adminAccount.setContactNo("09323437269");
             adminAccount.setEmail("teambob.cloud@gmail.com");
+            
             
             adminAccount.setCreatedAt(new Date());
             adminAccount.setDeletedAt(null);
@@ -96,12 +99,17 @@ public class DoctorController extends Controller {
                     if(tester != null){
                         String doc = DoctorModelMeta.get().modelToJson(tester);
                         System.out.println(doc);
+                        JSONObject jsonResult = new JSONObject(doc);
+                        long doctorId = jsonResult.getLong("id");
                         jsonObject.put("doctor", doc);
+                        jsonObject.put("doctorMedicalRecords", MedicalRecordService.getMedicalRecordByDoctorId(doctorId));
+                        System.out.println(MedicalRecordService.getMedicalRecordByDoctorId((long) 627));
                     } else {
                        response.setStatus(400);
                     }
                 } else {
                     jsonObject.put("doctors", DoctorService.getDoctors());
+                    jsonObject.put("medicalRecords", MedicalRecordService.getMedicalRecords());
                 }
                 
             } else if(method == "PUT") {
@@ -112,20 +120,30 @@ public class DoctorController extends Controller {
                 
                 
                 if(validator.validate()){
-                    
-                    birthdays = jsonObject.getString("birthday").split(" ");
-                    createdAts = jsonObject.getString("createdAt").split(" ");
-                    
-                    birthday = birthdays[5] + "-" + birthdays[1] + "-" + birthdays[2];
-                    createdAt = createdAts[5] + "-" + createdAts[1] + "-" + createdAts[2];
-                    
+                   
                     doctorDto = new DoctorDto(jsonObject);
+                    Object aObj = jsonObject.get("birthday");
                     
+                    if(aObj instanceof String){
+                        birthdays = jsonObject.getString("birthday").split(" ");
+                        createdAts = jsonObject.getString("createdAt").split(" ");
+                    
+                        birthday = birthdays[5] + "-" + birthdays[1] + "-" + birthdays[2];
+                        createdAt = createdAts[5] + "-" + createdAts[1] + "-" + createdAts[2];
+                        
+                        doctorDto.setBirthday(new SimpleDateFormat("yyyy-MMM-dd").parse(birthday));
+                        doctorDto.setCreatedAt(new SimpleDateFormat("yyyy-MMM-dd").parse(createdAt));
+                    } else {
+                        Date birthdayNew = new Date(jsonObject.getLong("birthday"));
+                        Date createdAtNew = new Date(jsonObject.getLong("createdAt"));
+                        
+                        doctorDto.setBirthday(birthdayNew);
+                        doctorDto.setCreatedAt(createdAtNew);
+                    }
+                 
                     
                     doctorDto.setId(jsonObject.getLong("id"));
                     
-                    doctorDto.setBirthday(new SimpleDateFormat("yyyy-MMM-dd").parse(birthday));
-                    doctorDto.setCreatedAt(new SimpleDateFormat("yyyy-MMM-dd").parse(createdAt));
                     doctorDto.setUpdatedAt(new Date());
                     doctorDto.setDeletedAt(null);
                     

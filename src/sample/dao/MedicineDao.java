@@ -20,11 +20,11 @@ import sample.model.MedicineModel;
 
 public class MedicineDao {
     
-    public MedicineModel getMed(String name){
+    public MedicineModel getMed(Long id){
         System.out.println("MedicineDao.getMed start");
         
-        MedicineModel medicine = MedicineModelMeta.get().entityToModel(Datastore.query("MedicineModel")
-                .filter("name", FilterOperator.EQUAL, name)
+        MedicineModel medicine = MedicineModelMeta.get().entityToModel(Datastore.query(MedicineModel.class)
+                .filter("id", FilterOperator.EQUAL, id)
                 .asSingleEntity() );
         
  

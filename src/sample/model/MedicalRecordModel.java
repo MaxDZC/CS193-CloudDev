@@ -53,6 +53,10 @@ public class MedicalRecordModel implements Serializable {
         this.setQuantityList(inputMedicalRecord.getQuantityList());
         this.setInPatient(inputMedicalRecord.getInPatient());
         this.setDischargeDate(inputMedicalRecord.getDischargeDate());
+        
+        this.setCreatedAt(inputMedicalRecord.getCreatedAt());
+        this.setDeletedAt(inputMedicalRecord.getDeletedAt());
+        this.setUpdatedAt(inputMedicalRecord.getUpdatedAt());
     }
     
     
