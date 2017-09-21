@@ -173,7 +173,7 @@ angular.module('hplus.factory')
             type: "notify",
             title: "Login Successful!",
             description: "Welcome Dr. " + doctor.lastname + "!",
-            positiveButton: "Thank you!",
+            positiveButton: "Ok",
             isVisible: true
           }
 
@@ -196,6 +196,10 @@ angular.module('hplus.factory')
           modalFactory.setContents(modalObject);
         });
       };
+
+      var updateView = function(){
+        $rootScope.$broadcast("updateProfile");
+      };
       
       return {
         registerDoctor: registerDoctor,
@@ -207,6 +211,7 @@ angular.module('hplus.factory')
         login: login,
         saveUser: saveUser,
         getUser: getUser,
+        updateView: updateView,
         logout: logout
       }
     }

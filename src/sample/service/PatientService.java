@@ -49,12 +49,12 @@ public class PatientService {
             if (resultModel != null) {
                 // setting the key in order to properly update the item
                 patientModel.setKey(resultModel.getKey());
-                patientModel.setUpdatedAt(new Date().toString());
+                patientModel.setUpdatedAt(new Date());
                 // update the entity to the datastore.
                 PatientService.patientDao.updatePatient(patientModel);
                 return true;
                 
-            }
+            } 
         } catch (Exception e) {
             System.out.println(e.toString());
         }
@@ -75,7 +75,7 @@ public class PatientService {
             if (resultModel != null) {
                 // setting the key in order to properly delete the item
                 patientModel.setKey(resultModel.getKey());
-                patientModel.setDeletedAt(new Date().toString());
+                patientModel.setDeletedAt(new Date());
                 // delete the entity to the datastore.
                 PatientService.patientDao.deletePatient(patientModel);
             
