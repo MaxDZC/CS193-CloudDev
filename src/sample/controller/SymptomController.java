@@ -5,6 +5,7 @@ import java.util.Date;
 
 import org.slim3.controller.Controller;
 import org.slim3.controller.Navigation;
+import org.slim3.repackaged.org.json.JSONArray;
 import org.slim3.repackaged.org.json.JSONObject;
 import org.slim3.util.RequestMap;
 
@@ -60,7 +61,7 @@ public class SymptomController extends Controller {
                 
                 if(jsonObject.has("id")){
                     jsonObject.put("symptom", SymptomService.getSymptom(jsonObject.getLong("id")));
-                } else {
+                }else {
                     jsonObject.put("symptoms", SymptomService.getAllSymp());
                 }
                 

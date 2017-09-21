@@ -42,8 +42,8 @@ public class DiseaseController extends Controller {
                 validator = new JSONValidators(jsonObject);
                 
                 if(validator.validate()){
-                    JSONArray sympId = jsonObject.getJSONArray("medicineId");
-                    JSONArray medId = jsonObject.getJSONArray("symptomsId");
+                    JSONArray sympId = jsonObject.getJSONArray("symptomId");
+                    JSONArray medId = jsonObject.getJSONArray("medicineId");
                     List<Long> idsymptoms = new ArrayList<Long>();
                     List<Long> idmedicines = new ArrayList<Long>();
                     diseaseName = jsonObject.getString("name");
@@ -111,23 +111,23 @@ public class DiseaseController extends Controller {
                 validator = new JSONValidators(jsonObject);
                 
                 if(validator.validate()){                       
-                    createdAts = jsonObject.getString("createdAt").split(" ");
-                    updatedAts = jsonObject.getString("updatedAt").split(" ");
+                    //createdAts = jsonObject.getString("createdAt").split(" ");
+                    //updatedAts = jsonObject.getString("updatedAt").split(" ");
                     
-                    createdAt = createdAts[5] + "-" + createdAts[1] + "-" + createdAts[2];
-                    updatedAt = updatedAts[5] + "-" + updatedAts[1] + "-" + updatedAts[2];
+                    //createdAt = createdAts[5] + "-" + createdAts[1] + "-" + createdAts[2];
+                    //updatedAt = updatedAts[5] + "-" + updatedAts[1] + "-" + updatedAts[2];
                     
                     diseaseDto = new DiseaseDto(jsonObject);
                     
                     diseaseDto.setId(jsonObject.getLong("medicineId"));
-            
-                    diseaseDto.setUpdatedAt(new SimpleDateFormat("yyyy-MMM-dd").parse(updatedAt));
+                    
+                    //diseaseDto.setUpdatedAt(new SimpleDateFormat("yyyy-MMM-dd").parse(updatedAt));
                     diseaseDto.setDeletedAt(new Date());
                     
                     message = diseaseService.deleteDisease(diseaseDto);
                     
                     if(message){
-                        jsonObject.put("success", true);
+                        jsonObject.put("success", true);    
                     } else {
                         response.setStatus(400);
                         jsonObject.put("errors", message);

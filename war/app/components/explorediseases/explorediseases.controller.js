@@ -26,29 +26,54 @@ angular.module('hplus.modules.explorediseases')
         }
       ];
       
+      
+      
       var populate = function(){
         diseaseFactory.getListOfDiseases().then(function(response){
-          console.log(response);
+          console.log(response); 
+          
           $scope.diseases = response.data.diseases;
           var symptoms = [];
-          $scope.diseases.forEach(function(dis){
-            dis.symp = [];
-            dis.symptomId.forEach(function(symp){
-              var data={ "id" : symp};
-              symptomFactory.getSymptom(data).then(function(){
-                console.log(response);
-                if(response.data.symptom != null){
-                	dis.symp.push(response.data.symptom);
+          
+          symptomFactory.getListOfSymptoms().then(function(response){
+            var symptomList = response.data.symptoms;
+            console.log(symptomList);
+            
+            symptomList.sort(function(a, b){return a.id - b.id});
+            
+            $scope.diseases.forEach(function(dis){
+              dis.symp = [];              
+              dis.symptomId.sort(function(a, b){return a - b});
+              var i,j;
+              
+              console.log("Sorted "+dis.symptomId);
+              
+              for(i = j = 0; i < dis.symptomId.length && j < symptomList.length;){
+            	  console.log("compare "+dis.symptomId[i]+" TO "+symptomList[j].id +" IS ");
+                if(dis.symptomId[i] == symptomList[j].id){
+                  dis.symp.push(symptomList[j].name); 
+                  i++; j++;
+                }else{
+                	(dis.symptomId[i] < symptomList[j].id)? i++ : j++;
                 }
               }
-              ,function(){
-                console.log("Error Getting Symptom");
-              });
-            }); 
-          });
-        }, function(response){
-          console.log(response.statusText);
-        });
+              
+            });
+            },function(){});
+        },function(){});
+          
+//          $scope.diseases.forEach(function(dis){
+//            var hold = dis.symptomId;
+//            
+//            symptomFactory.getListOfSymptomsID(data).then(function(response){
+//              console.log("symptomIDList: "+response.data.symptomIdList);
+//              dis.symp = response.data.symptomIdList;
+//            },function(){});
+//            
+//          });
+//        }, function(response){
+//          console.log(response.statusText);
+//        });
       }
         
       populate();

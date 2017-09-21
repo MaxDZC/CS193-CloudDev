@@ -47,14 +47,14 @@ public class DiseaseDto extends ErrorsDto {
         this.id = id;
     }
     public DiseaseDto (JSONObject jObj) throws Exception{
-        this.setName(jObj.getString("diseasename"));
+        this.setName(jObj.getString("name"));
         //this.setGenericName(jObj.getString("genericName"));
-        JSONArray sympId = jObj.getJSONArray("medicineids");
-        JSONArray medId = jObj.getJSONArray("symptomsids");
+        JSONArray sympId = jObj.getJSONArray("medicineId");
+        JSONArray medId = jObj.getJSONArray("symptomId");
         List<Long> idsymptoms = new ArrayList<Long>();
         List<Long> idmedicines = new ArrayList<Long>();
         for(int i=0;i<sympId.length();i++){
-            idsymptoms.add(sympId.getJSONObject(i).getLong("id"));
+            // TO DO: Fix this shit> idsymptoms.add(sympId.getInt(i));
             System.out.println("symp: " +sympId.getJSONObject(i).getLong("id"));
            
         }

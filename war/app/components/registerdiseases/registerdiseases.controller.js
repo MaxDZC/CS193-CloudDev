@@ -18,11 +18,44 @@ angular.module('hplus.modules.registerdiseases')
         globalFactory.go(path);
       };
      
+      $scope.checkStatus = function(status) {
+          var retValue = "edit-button";
+
+          if(status){
+            retValue = "edit-button";
+          } else {
+            retValue = "delete-button";
+          }
+
+          return retValue;
+        };
+      
+      $scope.showAdd = false;
+      
+      $scope.saveSymptom = function(){
+        var data = {"name":$scope.addSymptom};
+        symptomFactory.registerSymptom(data);
+        symptomFactory.getListOfSymptoms().then(function(response){
+            $scope.symptomList = response.data.symptoms;
+            $scope.symptomList.forEach(function(med){
+              med.val = false;
+            });
+          },function(){});
+      }
+      
       $scope.saveDisease = function(){
         console.log($scope.disease.medicineId);
         console.log($scope.disease.symptomId);
         console.log($scope.disease.name);
-        diseaseFactory.insertDisease($scope.disease);
+        diseaseFactory.registerDisease($scope.disease);
+        $scope.disease = {
+                "name" : "",
+                "symptomId" : [],
+                "medicineId" : []
+              };
+              
+        setVals($scope.symptomList,false);
+       setVals($scope.medicineList,false);
       }
       
       $scope.addRemoveSymptom = function(hold){
@@ -135,12 +168,25 @@ angular.module('hplus.modules.registerdiseases')
       var populate = function(){
             symptomFactory.getListOfSymptoms().then(function(response){
         	  $scope.symptomList = response.data.symptoms;
+        	  $scope.symptomList.forEach(function(med){
+                med.val = false;
+              });
             },function(){});
             medicineFactory.getListOfMedicines().then(function(response){
               $scope.medicineList = response.data.medicines;
+              $scope.medicineList.forEach(function(med){
+                med.val = false;
+              });
             },function(){});
       };
       populate();
+      
+      var setVals = function (a, v) {
+    	    var i, n = a.length;
+    	    for (i = 0; i < n; ++i) {
+    	        a[i].val = v;
+    	    }
+    	}
       
     }
   );

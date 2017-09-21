@@ -26,11 +26,12 @@ public class SymptomService {
         
         
         try { 
-            if(status.equals("")){
+            if(!symptomDao.checkSymptomExistsByName(inputSymp.getName())){
                 symptomDao.insertSymp(symptorModel);
                     
             } else {
                 System.out.println("Symptom Already Exists!");
+                status="Symptom Already Exists!";
             }
         }catch (Exception e){
             System.out.println("Exception in inserting symptor: "+e.toString());

@@ -76,7 +76,7 @@ public class DiseaseService {
                     // delete the entity to the datastore.
                     diseaseDao.deleteDisease(diseaseModel);
                 
-                    System.out.println("Deleted Medicine");
+                    System.out.println("Deleted Doctor");
                     return true ;
                 } else {
                     // deleting was canceled.

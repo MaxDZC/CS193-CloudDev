@@ -12,6 +12,7 @@ import com.google.appengine.api.datastore.Query.FilterOperator;
 import com.google.appengine.api.datastore.Transaction;
 
 import sample.meta.SymptomModelMeta;
+import sample.model.DoctorModel;
 import sample.model.SymptomModel;
 
 public class SymptomDao{
@@ -45,6 +46,7 @@ public class SymptomDao{
         }
         return symp;
     }
+    
     /**
      * Used to insert the 'Symptom' to the datastore
      * @param inputSymp - the item to be inserted
@@ -61,10 +63,30 @@ public class SymptomDao{
         //Setting the 'key' and 'id' of the model
         inputSymp.setKey(key);
         inputSymp.setId(key.getId());
-        
+        inputSymp.setName(inputSymp.getName().toLowerCase());
         //inserting the item to the datastore
         Datastore.put(inputSymp);
         trans.commit();
         System.out.println("SymptomDao.insertSymp end");
+    }
+    
+    public boolean checkSymptomExistsByName(String name){
+        System.out.println("SymptomDao.checkSymptom start");
+        
+        boolean ret;
+      
+        if(
+            Datastore.query(SymptomModel.class)
+            .filter("name", FilterOperator.EQUAL, name.toLowerCase())
+            .asSingleEntity() != null){
+ 
+            System.out.println("SymptomDao.checkSymptom end(success)");
+            ret = true;
+        }else{
+            System.out.println("SymptomDao.checkSymptom end(failed)");
+            ret = false;
+        }
+        
+        return ret;
     }
 }

@@ -3,7 +3,7 @@ angular.module('hplus.factory')
   .factory('symptomFactory', 
     function($http, modalFactory, $window, $location, globalFactory, $rootScope){
 
-      var registerSymptom = function(symptomObject, clear){
+      var registerSymptom = function(symptomObject){
         $http({
           method: 'POST',
           url: '/Symptom', // Change URL here
@@ -18,15 +18,14 @@ angular.module('hplus.factory')
             isVisible: true
           };
           modalFactory.setContents(modalObject);
-          clear();
         }, function errorCallback(response) {
-          var errorMessage = "";
+          var errorMessage = response.data.errors;
           console.log(response);
           
           var modalObject = {
             type: "notify",
             title: "Registration Failure!",
-            description: "Symptom failed to save.",
+            description: errorMessage,
             positiveButton: "Ok",
             isVisible: true
           };
@@ -40,6 +39,14 @@ angular.module('hplus.factory')
           url: "/Symptom",
         });
       };
+      
+      var getListOfSymptomsID = function(symptomObject){
+          return $http({
+            method: "GET",
+            url: "/Symptom",
+            data: symptomObject
+          });
+        };
 
       var goList = function(){
         $location.path('/admin/list/disease');
@@ -55,6 +62,7 @@ angular.module('hplus.factory')
       return {
         registerSymptom: registerSymptom,
         getListOfSymptoms: getListOfSymptoms,
+        getListOfSymptomsID: getListOfSymptomsID,
         getSymptom: getSymptom
       }
     }
