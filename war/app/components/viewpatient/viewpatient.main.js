@@ -8,3 +8,5 @@ angular.module('hplus.modules.viewpatient', [])
         template: viewdoctor
       })
   });
+  require('./viewpatient.directive.js');
+  require('./viewpatient.controller.js');
