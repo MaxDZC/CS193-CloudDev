@@ -13,7 +13,7 @@ app = angular.module('hplus.modules.viewmedicine')
       var modalObject;
 
       if($scope.medicineData == null){
-        $location.path('/admin/list/medicine');
+        //$location.path('/admin/list/medicine');
       }
 	  
       $scope.go = function(path){

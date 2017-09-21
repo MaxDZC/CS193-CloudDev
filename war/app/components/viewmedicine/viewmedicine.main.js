@@ -10,3 +10,4 @@ angular.module('hplus.modules.viewmedicine', [])
   });
   require('./viewmedicine.directive.js');
   require('./viewmedicine.controller.js');
+  require('./xxrecordcard.controller.js');

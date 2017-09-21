@@ -133,7 +133,7 @@ angular.module('hplus.factory')
       
       return {
         registerMedicine: registerMedicine,
-        getListOfPatients: getListOfPatients,
+        getListOfMedicines: getListOfMedicines,
         saveMedicine: saveMedicine,
         getMedicine: getMedicine,
         updateMedicine: updateMedicine,
