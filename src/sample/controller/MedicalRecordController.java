@@ -7,9 +7,11 @@ import org.slim3.controller.Controller;
 import org.slim3.controller.Navigation;
 import org.slim3.repackaged.org.json.JSONObject;
 
+
 import sample.dao.MedicalRecordDao;
 import sample.dto.MedicalRecordDto;
 import sample.service.MedicalRecordService;
+
 
 
 
@@ -24,6 +26,8 @@ public class MedicalRecordController extends Controller {
         MedicalRecordDto medicalRecordDto = null;
         MedicalRecordService medicalRecordService = new MedicalRecordService();
         String date;
+        String[] createdAts;
+        String createdAt;
         
         try{
             if(method.equalsIgnoreCase("POST")){
@@ -38,12 +42,25 @@ public class MedicalRecordController extends Controller {
                 medicalRecordService.insertMedicalRecord(medicalRecordDto);
             }else if(method.equalsIgnoreCase("PUT")){
                 jObj = new JSONObject(request.getReader().readLine());
-                date = MedicalRecordDao.processDate(jObj.getString("createdAt"));
+        
+                
+                Object aObj = jObj.get("createdAt");
                 
                 medicalRecordDto = new MedicalRecordDto(jObj);
                 
+                if(aObj instanceof String){
+                  //  date = MedicalRecordDao.processDate(jObj.getString("createdAt"));
+                    createdAts = jObj.getString("createdAt").split(" ");
+                    createdAt = createdAts[5] + "-" + createdAts[1] + "-" + createdAts[2];
+                    
+                    medicalRecordDto.setCreatedAt(new SimpleDateFormat("yyyy-MMM-dd").parse(createdAt));
+                } else {
+                    Date createdAtNew = new Date(jObj.getLong("createdAt"));
+                    
+                    medicalRecordDto.setCreatedAt(createdAtNew);
+                }
+                
                 medicalRecordDto.setId(jObj.getLong("id"));
-                medicalRecordDto.setCreatedAt(new SimpleDateFormat("yyyy-MMM-dd").parse(date));
                 medicalRecordDto.setUpdatedAt(new Date());
                 medicalRecordDto.setDeletedAt(null);
                 
@@ -63,7 +80,14 @@ public class MedicalRecordController extends Controller {
                 medicalRecordService.deleteOrUpdateMedicalRecord(medicalRecordDto);
             
             }else if(method.equalsIgnoreCase("GET")){
+               /*  jObj = new JSONObject(new RequestMap(this.request));
                 
+                if(jObj.has("id")){
+                    jObj.put("symptom", medicalRecordService.getMedicalRecordByDoctorId(id)(jObj.getLong("id")));
+                    
+                } else {
+                    jObj.put("symptoms", medicalRecordService.getAllSymp());
+                }*/
             }
             System.out.println("MedicalRecordController.run end");
         }catch(Exception e){

@@ -18,10 +18,11 @@ angular.module('hplus.modules.navbar')
 
       $scope.checkPage = function(){
         var state = false;
+        var location = $location.path();
 
-        if($location.path().indexOf("register") != -1){
+        if(location.indexOf("register") != -1){
           state = false;
-        } else if($location.path().indexOf("doctor") != -1){
+        } else if(location.indexOf("doctor") != -1 && location != "/admin/view/doctordetails") {
           $scope.registerButton = "Register Doctor";
           $scope.link = "#!/admin/register/doctor";
         }
@@ -33,7 +34,7 @@ angular.module('hplus.modules.navbar')
         var currLoc = $location.path();
         var btnClass = "navbar__btn";
 
-        if(currLoc.indexOf(page) != -1){
+        if(currLoc.indexOf(page) != -1 && currLoc != "/admin/view/doctordetails"){
           btnClass += " navbar__btn--selected";
         }
 

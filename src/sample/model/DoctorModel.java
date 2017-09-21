@@ -53,6 +53,9 @@ public class DoctorModel implements Serializable {
         this.setUsername(inputDoc.getUsername());
         this.setPassword(inputDoc.getPassword());
         this.setAdmin(inputDoc.isAdmin());
+        this.setCreatedAt(inputDoc.getCreatedAt());
+        this.setUpdatedAt(inputDoc.getUpdatedAt());
+        this.setDeletedAt(inputDoc.getDeletedAt());
     }
 
     public Key getKey() {

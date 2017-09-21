@@ -1,6 +1,8 @@
 package sample.dao;
 
 import java.util.ArrayList;
+import java.util.List;
+
 import org.slim3.datastore.Datastore;
 import com.google.appengine.api.datastore.*;
 import com.google.appengine.api.datastore.Query.CompositeFilterOperator;
@@ -142,15 +144,13 @@ public class DoctorDao{
     }
     
     public Object getDoctors(){
-        com.google.appengine.api.datastore.DatastoreService datastore = DatastoreServiceFactory
-            .getDatastoreService();
-        
         ArrayList<DoctorModel> results =  new ArrayList<DoctorModel>();
 
-        Query query = new Query("DoctorModel");
-            @SuppressWarnings("deprecation")
-            java.util.List<Entity> entities = datastore.prepare(query.addFilter("deletedAt", FilterOperator.EQUAL, null)).asList(
-            FetchOptions.Builder.withDefaults());
+        List<Entity> entities = Datastore.query(DoctorModel.class).filter(
+            CompositeFilterOperator.and(
+                new FilterPredicate("admin", FilterOperator.EQUAL, false),
+                new FilterPredicate("deletedAt", FilterOperator.EQUAL, null))
+            ).asEntityList();
 
         for(Entity entity : entities) {
             results.add(DoctorModelMeta.get().entityToModel(entity));

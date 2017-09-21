@@ -37,30 +37,8 @@
     <div class="row">
       <div class="col-md-12">
         <!-- <hplus-view-medical-record-card dir-paginate="rec in records | itemsPerPage:10" data="rec"></hplus-view-medical-record-card> -->
-        <div class="margins">
-          <div class="detail__container">
-            <div class="card__title">
-              Diseases
-            </div>
-            <div class="detail__desc">
-              <p>
-              <span ng-repeat="dis in diseases"><span ng-hide="$first">,&nbsp;</span>{{dis}}</span>
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="margins">
-          <div class="detail__container">
-            <div class="card__title">
-              Symptoms
-            </div>
-            <div class="detail__desc">
-              <p>
-              <span ng-repeat="symp in symptoms"><span ng-hide="$first">,&nbsp;</span>{{symp}}</span>
-              </p>
-            </div>
-          </div>
-        </div>
+        <hplus-view-medical-record-card dir-paginate="dis in diseases | itemsPerPage:10" data="dis" array="symptoms"></hplus-view-medical-record-card>
+        <dir-pagination-controls max-size="5"></dir-pagination-controls>
         <div class="margins">
           <div class="detail__container">
             <div class="card__title">
@@ -72,7 +50,7 @@
                    <th class="name">Name</th>
                    <th>Price</th>
                    <th>Quantity</th>
-                   <th>Total</th>
+                   <th class="price">Total</th>
                  </tr>
               </thead>
               <tbody>
@@ -80,14 +58,14 @@
                   <td class="name">{{med.name}}</td>
                   <td>{{med.price | currency : "PHP "}}</td>
                   <td>{{record.quantity[$index]}}</td>
-                  <td>{{med.price * record.quantity[$index] | currency : "PHP "}}</td>
+                  <td class="price">{{med.price * record.quantity[$index] | currency : "PHP "}}</td>
                 </tr>
               </tbody>
             </table>
           </div>
         </div>
       </div>
-      <div class="col-md-6 col-md-offset-6">
+      <div class="col-md-5 col-md-offset-7">
           <div class="margins">
             <div class="detail__containerTotalPrice">
               

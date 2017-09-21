@@ -8,3 +8,6 @@ angular.module('hplus.modules.exploremedicalrecords', [])
         template: exploremedicalrecords
       })
   });
+
+require('./exploremedicalrecords.directive.js');
+require('./exploremedicalrecords.controller.js');

@@ -1,6 +1,10 @@
 package sample.meta;
 
+<<<<<<< HEAD
 //@javax.annotation.Generated(value = { "slim3-gen", "@VERSION@" }, date = "2017-09-20 14:01:55")
+=======
+//@javax.annotation.Generated(value = { "slim3-gen", "@VERSION@" }, date = "2017-09-21 12:21:35")
+>>>>>>> e0c0b6093691ae62be8eccd9e0a3939cb48fc972
 /** */
 public final class PatientModelMeta extends org.slim3.datastore.ModelMeta<sample.model.PatientModel> {
 
@@ -14,10 +18,14 @@ public final class PatientModelMeta extends org.slim3.datastore.ModelMeta<sample
     public final org.slim3.datastore.StringAttributeMeta<sample.model.PatientModel> contactNumber = new org.slim3.datastore.StringAttributeMeta<sample.model.PatientModel>(this, "contactNumber", "contactNumber");
 
     /** */
+<<<<<<< HEAD
     public final org.slim3.datastore.StringAttributeMeta<sample.model.PatientModel> createdaAt = new org.slim3.datastore.StringAttributeMeta<sample.model.PatientModel>(this, "createdaAt", "createdaAt");
+=======
+    public final org.slim3.datastore.CoreAttributeMeta<sample.model.PatientModel, java.util.Date> createdAt = new org.slim3.datastore.CoreAttributeMeta<sample.model.PatientModel, java.util.Date>(this, "createdAt", "createdAt", java.util.Date.class);
+>>>>>>> e0c0b6093691ae62be8eccd9e0a3939cb48fc972
 
     /** */
-    public final org.slim3.datastore.StringAttributeMeta<sample.model.PatientModel> deletedAt = new org.slim3.datastore.StringAttributeMeta<sample.model.PatientModel>(this, "deletedAt", "deletedAt");
+    public final org.slim3.datastore.CoreAttributeMeta<sample.model.PatientModel, java.util.Date> deletedAt = new org.slim3.datastore.CoreAttributeMeta<sample.model.PatientModel, java.util.Date>(this, "deletedAt", "deletedAt", java.util.Date.class);
 
     /** */
     public final org.slim3.datastore.StringAttributeMeta<sample.model.PatientModel> firstName = new org.slim3.datastore.StringAttributeMeta<sample.model.PatientModel>(this, "firstName", "firstName");
@@ -38,7 +46,7 @@ public final class PatientModelMeta extends org.slim3.datastore.ModelMeta<sample
     public final org.slim3.datastore.StringAttributeMeta<sample.model.PatientModel> specialization = new org.slim3.datastore.StringAttributeMeta<sample.model.PatientModel>(this, "specialization", "specialization");
 
     /** */
-    public final org.slim3.datastore.StringAttributeMeta<sample.model.PatientModel> updatedAt = new org.slim3.datastore.StringAttributeMeta<sample.model.PatientModel>(this, "updatedAt", "updatedAt");
+    public final org.slim3.datastore.CoreAttributeMeta<sample.model.PatientModel, java.util.Date> updatedAt = new org.slim3.datastore.CoreAttributeMeta<sample.model.PatientModel, java.util.Date>(this, "updatedAt", "updatedAt", java.util.Date.class);
 
     /** */
     public final org.slim3.datastore.StringAttributeMeta<sample.model.PatientModel> userName = new org.slim3.datastore.StringAttributeMeta<sample.model.PatientModel>(this, "userName", "userName");
@@ -64,6 +72,7 @@ public final class PatientModelMeta extends org.slim3.datastore.ModelMeta<sample
     public sample.model.PatientModel entityToModel(com.google.appengine.api.datastore.Entity entity) {
         sample.model.PatientModel model = new sample.model.PatientModel();
         model.setAddress((java.lang.String) entity.getProperty("address"));
+<<<<<<< HEAD
         model.setBirthDay((java.lang.String) entity.getProperty("birthDay"));
         model.setContactNumber((java.lang.String) entity.getProperty("contactNumber"));
         model.setCreatedaAt((java.lang.String) entity.getProperty("createdaAt"));
@@ -76,6 +85,18 @@ public final class PatientModelMeta extends org.slim3.datastore.ModelMeta<sample
         model.setSpecialization((java.lang.String) entity.getProperty("specialization"));
         model.setUpdatedAt((java.lang.String) entity.getProperty("updatedAt"));
         model.setUserName((java.lang.String) entity.getProperty("userName"));
+=======
+        model.setBirthday((java.util.Date) entity.getProperty("birthday"));
+        model.setContactNo((java.lang.String) entity.getProperty("contactNo"));
+        model.setCreatedAt((java.util.Date) entity.getProperty("createdAt"));
+        model.setDeletedAt((java.util.Date) entity.getProperty("deletedAt"));
+        model.setFirstname((java.lang.String) entity.getProperty("firstname"));
+        model.setId((java.lang.Long) entity.getProperty("id"));
+        model.setKey(entity.getKey());
+        model.setLastname((java.lang.String) entity.getProperty("lastname"));
+        model.setSex(booleanToPrimitiveBoolean((java.lang.Boolean) entity.getProperty("sex")));
+        model.setUpdatedAt((java.util.Date) entity.getProperty("updatedAt"));
+>>>>>>> e0c0b6093691ae62be8eccd9e0a3939cb48fc972
         model.setVersion((java.lang.Long) entity.getProperty("version"));
         return model;
     }

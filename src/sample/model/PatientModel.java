@@ -28,9 +28,9 @@ public class PatientModel implements Serializable {
     private String contactNo;
     private Date birthday;
     private boolean sex;
-    private String createdAt;
-    private String deletedAt;
-    private String updatedAt;
+    private Date createdAt;
+    private Date deletedAt;
+    private Date updatedAt;
     
     public PatientModel(){
         
@@ -43,6 +43,10 @@ public class PatientModel implements Serializable {
         this.setBirthday(inputPatient.getBirthday());
         this.setContactNo(inputPatient.getContactNumber());
         this.setSex(inputPatient.isSex());
+        this.setCreatedAt(inputPatient.getCreatedAt());
+        this.setDeletedAt(inputPatient.getDeletedAt());
+        this.setUpdatedAt(inputPatient.getUpdatedAt());
+        
     }
 
     public String getFirstname() {
@@ -103,32 +107,32 @@ public class PatientModel implements Serializable {
     }
 
 
-    public String getCreatedAt() {
+    public Date getCreatedAt() {
         return createdAt;
     }
 
 
-    public void setCreatedAt(String createdAt) {
+    public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
     }
 
 
-    public String getDeletedAt() {
+    public Date getDeletedAt() {
         return deletedAt;
     }
 
 
-    public void setDeletedAt(String deletedAt) {
+    public void setDeletedAt(Date deletedAt) {
         this.deletedAt = deletedAt;
     }
 
 
-    public String getUpdatedAt() {
+    public Date getUpdatedAt() {
         return updatedAt;
     }
 
 
-    public void setUpdatedAt(String updatedAt) {
+    public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
     }
 
