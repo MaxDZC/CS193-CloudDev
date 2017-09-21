@@ -1,7 +1,7 @@
 <ng-controller ng-controller="ViewDoctorController">
   <div class="row">
     <div class="col col-md-8 col-md-offset-1">
-      <h1><i class="fa fa-user-md"></i>Dr. {{ doctorData.firstname + " " + doctorData.lastname }}</h1>
+      <h1><i class="fa fa-user-md"></i>Dr. {{ doctorData.firstname + " " + doctorData.lastname }} ({{ doctorData.username }})</h1>
     </div>
   </div>
 
@@ -22,23 +22,30 @@
         <div class="subtitle__value">
           {{ doctorData.email }}
         </div>
-  	  <div>
-  		  <button class="outline" ng-click="go('/admin/edit/doctor')">Edit</button>
-  		  <button class="outline" ng-show="data.medicalRecords == null" ng-click="delete()">Archive</button>
-  	  </div>
+        <div>
+          <button class="outline" ng-click="go('/admin/edit/doctor')">Edit</button>
+          <button class="outline" ng-show="data.medicalRecords == null" ng-click="delete()">Archive</button>
+          <button class="outline" ng-show="!user.admin || (user.admin && user.id == doctorData.id)" ng-click="go('admin/reset/password')">Change Password</button> 
+        </div>
       </div>
     </div>
 
-    <div class="col col-md-7">
+    <div ng-show="!user.admin || user.id != doctorData.id" class="col col-md-7">
       <div class="col col-md-12">
-        <label class="subtitle">Medical Records Handled By</label>
+        <label class="subtitle" ng-if="user.admin">Medical Records Handled By</label>
+        <label class="subtitle" ng-if="!user.admin">You are handling the following medical records </label>
 
-        <span class="subtitle subtitle--variable">
+        <span ng-if="user.admin" class="subtitle subtitle--variable">
           Dr. {{ doctorData.firstname + " " + doctorData.lastname }} - Total: {{ recordList.length }}
         </span>
 
+        <span ng-if="!user.admin" class="subtitle subtitle--variable">
+          Total: {{ recordList.length }}
+        </span>
+
         <div ng-hide="recordList.length">
-          <span class="subtitle">This doctor isn't handling any medical records</span>
+          <span ng-if="user.admin" class="subtitle">This doctor isn't handling any medical records</span>
+          <span ng-if="!user.admin" class="subtitle">You aren't handling any medical records</span>
         </div>
 
   		  <hplus-view-doctors-card ng-show="recordList.length" dir-paginate="record in recordList | itemsPerPage:10" data="record"></hplus-view-doctors-card>
