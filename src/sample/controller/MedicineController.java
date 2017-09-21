@@ -26,13 +26,14 @@ public class MedicineController extends Controller {
         System.out.println("MedicineController.run start");
 
         MedicineDto medicineDto = new MedicineDto();
-        JSONObject jsonObject = null;
+        JSONObject jsonObject = new JSONObject();
         JSONValidators validator;
         
         String createdAt;
         String updatedAt;
         String[] createdAts;
         String[] updatedAts;
+        Object aObj;
 
         String method = request.getMethod();
         boolean message;
@@ -67,7 +68,7 @@ public class MedicineController extends Controller {
                 jsonObject = new JSONObject(new RequestMap(this.request));
                 
                 if(jsonObject.has("id")){
-                    jsonObject.put("medicine", MedicineModelMeta.get().modelToJson(MedicineService.getMedicine(jsonObject.getLong("medicineId"))));
+                    jsonObject.put("medicine", MedicineModelMeta.get().modelToJson(MedicineService.getMedicineById(jsonObject.getLong("medicineId"))));
                 } else {
                     jsonObject.put("medicines", MedicineService.getMedicines());
                 }
@@ -77,11 +78,10 @@ public class MedicineController extends Controller {
                 validator = new JSONValidators(jsonObject);
                 
                 if(validator.validate()){
-                   
                     
                     medicineDto = new MedicineDto(jsonObject);
                     
-                    Object aObj = jsonObject.get("createdAt");
+                    aObj = jsonObject.get("createdAt");
                     
                     if(aObj instanceof String){
                         createdAts = jsonObject.getString("createdAt").split(" ");
@@ -115,19 +115,34 @@ public class MedicineController extends Controller {
                 jsonObject = new JSONObject(this.request.getReader().readLine());
                 validator = new JSONValidators(jsonObject);
                 
-                if(validator.validate()){                       
-                    createdAts = jsonObject.getString("createdAt").split(" ");
-                    updatedAts = jsonObject.getString("updatedAt").split(" ");
-                    
-                    createdAt = createdAts[5] + "-" + createdAts[1] + "-" + createdAts[2];
-                    updatedAt = updatedAts[5] + "-" + updatedAts[1] + "-" + updatedAts[2];
+                if(validator.validate()){     
                     
                     medicineDto = new MedicineDto(jsonObject);
                     
-                    medicineDto.setId(jsonObject.getLong("medicineId"));
+                    aObj = jsonObject.get("createdAt");
                     
-                    medicineDto.setCreatedAt(new SimpleDateFormat("yyyy-MMM-dd").parse(createdAt));
-                    medicineDto.setUpdatedAt(new SimpleDateFormat("yyyy-MMM-dd").parse(updatedAt));
+                    if(aObj instanceof String){
+                        createdAts = jsonObject.getString("createdAt").split(" ");
+                        createdAt = createdAts[5] + "-" + createdAts[1] + "-" + createdAts[2];
+                        medicineDto.setCreatedAt(new SimpleDateFormat("yyyy-MMM-dd").parse(createdAt));
+                        
+                        if(jsonObject.has("updatedAt")){
+                            updatedAts = jsonObject.getString("updatedAt").split(" ");
+                            updatedAt = updatedAts[5] + "-" + updatedAts[1] + "-" + updatedAts[2];
+                            medicineDto.setUpdatedAt(new SimpleDateFormat("yyyy-MMM-dd").parse(updatedAt));
+                        }
+                        
+                    } else {
+                        Date createdAtNew = new Date(jsonObject.getLong("createdAt"));            
+                        medicineDto.setCreatedAt(createdAtNew);
+                        
+                        if(jsonObject.has("updatedAt")){ 
+                            Date updatedAtNew = new Date(jsonObject.getLong("updated At")); 
+                            medicineDto.setUpdatedAt(updatedAtNew);
+                        }
+                    }
+                    
+                    medicineDto.setId(jsonObject.getLong("id"));
                     medicineDto.setDeletedAt(new Date());
                     
                     message = medicineService.deleteMedicine(medicineDto);
@@ -145,9 +160,6 @@ public class MedicineController extends Controller {
             System.err.println(e.toString());
             // Adds error message if it exists
             medicineDto.addError("Medicine Controller Error:" + e.getMessage());
-            if(jsonObject == null){
-                jsonObject = new JSONObject();
-            }
             
         }
         

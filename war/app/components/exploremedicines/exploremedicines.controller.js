@@ -1,7 +1,10 @@
 angular.module('hplus.modules.exploremedicines')
 
   .controller('ExploreMedicinesController',
-    function($scope, $location, globalFactory, doctorFactory){
+    function($scope, $location, globalFactory, doctorFactory, medicineFactory){
+
+      $scope.length = 0;
+      $scope.selectedMedicine = null;
 
       var user = doctorFactory.getUser();
 
@@ -9,18 +12,24 @@ angular.module('hplus.modules.exploremedicines')
         $location.path("/");
       }
 
+      var populate = function(){
+        medicineFactory.getListOfMedicines().then(function(response){
+          console.log(response);
+          $scope.medicineList = response.data.medicines;
+          $scope.length = $scope.medicineList.length;
+        }, function(response){
+          console.log(response);
+        });
+      };
+
+      populate();
+
       $scope.go = function(path){
         globalFactory.go(path);
       };
       
-      $scope.selectedMedicine = {name : "Metformin",
-              desc : "Insert super long desc wooo amazing woawhe",
-              price : 40000,
-              treats :["Diabetes Mellitus"],
-              id : 1};
       
       $scope.setSelected = function(med){
-    	  
     	  $scope.selectedMedicine = med;
       };
       

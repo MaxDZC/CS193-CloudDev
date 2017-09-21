@@ -1,20 +1,22 @@
 angular.module('hplus.modules.exploremedicines')
 
   .controller('MedicineCardController',
-    function($scope, $location, globalFactory, doctorFactory){
+    function($scope, $location, globalFactory, doctorFactory, medicineFactory, modalFactory){
       
       var user = doctorFactory.getUser();
       
       $scope.isAdmin = function(){
-        return user.isAdmin;
+        return user.admin;
       };
 
-      $scope.go = function(path){
+      $scope.go = function(path, medicine) {
+        medicineFactory.saveMedicine(medicine);
         globalFactory.go(path);
       };
 
-      $scope.delete = function(doctor){
-        doctorFactory.deleteDoctor(doctor);
+      $scope.delete = function(medicine) {
+        medicineFactory.deleteMedicine(medicine);
       };
+
     }
   );

@@ -28,6 +28,7 @@ public class DoctorDao{
                      .filter("id", FilterOperator.EQUAL, id)
                      .filter("deletedAt", FilterOperator.EQUAL, null)
                      .asSingleEntity()) ;
+        
         if(doctor != null){
             System.out.println("DoctorDao.getDoc end(success)");
         }else{
