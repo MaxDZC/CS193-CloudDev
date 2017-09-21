@@ -13,13 +13,10 @@ public class MedicineService {
     public Boolean insertMed(MedicineDto inputMed){
         System.out.println("MedicineService.insertMed start");
         
-        MedicineModel medicineModel = new MedicineModel(inputMed.getName(),
-                                                        inputMed.getDescription(),
-                                                        inputMed.getPrice()
-                                                       );
+        MedicineModel medicineModel = new MedicineModel(inputMed);
         
         try{
-            if(medicineDao.getMed(medicineModel.getName()) == null){
+            if(medicineDao.getMed(medicineModel.getId()) == null){
                 medicineDao.insertMed(medicineModel);
             }else{
                 System.out.println("Medicine Already Exists!");
@@ -34,19 +31,19 @@ public class MedicineService {
     }
     
    
-        public static  Boolean updateMedicine(MedicineDto medicineDto) {
+        public Boolean updateMedicine(MedicineDto medicineDto) {
             System.out.println("MedicineService.updateRecord " + "start");
         
             MedicineModel medicineModel = storeDtoToModel(medicineDto);
             
             try {
                 // checking if there is already the same item that exists in the datastore.
-                MedicineModel resultModel = (MedicineModel) medicineDao.getMed(medicineModel.getName());
+                MedicineModel resultModel = (MedicineModel) medicineDao.getMed(medicineModel.getId());
                 
                 if (resultModel != null) {
                     // setting the key in order to properly update the item
                     medicineModel.setKey(resultModel.getKey());
-                    medicineModel.setUpdatedAt(new Date().toString());
+                    medicineModel.setUpdatedAt(new Date());
                     // update the entity to the datastore.
                     MedicineService.medicineDao.updateMedicine(medicineModel);
                     return true;
@@ -58,7 +55,7 @@ public class MedicineService {
             return false;
            
         }
-        public static Boolean deleteMedicine(MedicineDto medicineDto) {
+        public Boolean deleteMedicine(MedicineDto medicineDto) {
             System.out.println("MedicineService.deleteRecord " + "start");
             /**
              * MedicineModel that will be stored to the datastore. 
@@ -67,12 +64,12 @@ public class MedicineService {
             
             try { 
                 // checking if there is already the same item that exists in the datastore.
-                MedicineModel resultModel = (MedicineModel) medicineDao.getMed(medicineDto.getName());
+                MedicineModel resultModel = (MedicineModel) medicineDao.getMed(medicineDto.getId());
                 
                 if (resultModel != null) {
                     // setting the key in order to properly delete the item
                     medicineModel.setKey(resultModel.getKey());
-                    medicineModel.setDeletedAt(new Date().toString());
+                    medicineModel.setDeletedAt(new Date());
                     // delete the entity to the datastore.
                     MedicineService.medicineDao.deleteMedicine(medicineModel);
                 
@@ -88,7 +85,7 @@ public class MedicineService {
             System.out.println("MedicineService.deleteRecord " + "end");
             return false;
         }
-        private static MedicineModel storeDtoToModel(MedicineDto medicineDto) {
+        private MedicineModel storeDtoToModel(MedicineDto medicineDto) {
                
             MedicineModel medicineModel = new MedicineModel();
                 
@@ -109,9 +106,9 @@ public class MedicineService {
             // TODO Auto-generated method stub
             return medicineDao.getMedicines();
         }
-        public static Object getMedicine(String name) {
+        public static Object getMedicine(Long id) {
             // TODO Auto-generated method stub
-            return medicineDao.getMed(name);
+            return medicineDao.getMed(id);
         }
     }
 
