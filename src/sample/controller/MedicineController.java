@@ -76,8 +76,6 @@ public class MedicineController extends Controller {
                 jsonObject = new JSONObject(this.request.getReader().readLine());
                 validator = new JSONValidators(jsonObject);
                 
-                
-                
                 if(validator.validate()){
                    
                     

@@ -5,7 +5,8 @@ angular.module('hplus.modules.viewmedicalrecord')
     return{
       restrict: 'EA',
       scope: {
-        data: '='
+        data: '=',
+        array: '='
       },
       template: card
     };
