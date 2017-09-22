@@ -12,6 +12,12 @@ input[type=text], input[type=password], input[type=number], input[type=email], i
   -webkit-font-smoothing: antialiased !important;
 }
 
+.checkboxText{
+  font-family: $font;
+  font-size: $sizeText;
+  color: $black;
+}
+
 textarea{
   margin-top: $sizePaddingHalf;
   margin-bottom: $sizePaddingHalf;

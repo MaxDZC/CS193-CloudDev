@@ -2,7 +2,7 @@ angular.module('hplus.modules.exploremedicines')
 
   .controller('ExploreMedicinesController',
     function($scope, $location, globalFactory, doctorFactory, medicineFactory){
-
+	  
       $scope.length = 0;
       $scope.selectedMedicine = null;
 
@@ -12,6 +12,8 @@ angular.module('hplus.modules.exploremedicines')
         $location.path("/");
       }
 
+      $scope.searchFilter = "";
+      
       var populate = function(){
         medicineFactory.getListOfMedicines().then(function(response){
           console.log(response);

@@ -99,12 +99,12 @@ public class DiseaseDao extends DaoBase<DiseaseModel>{
     public void deleteDisease(DiseaseModel inputDis) {
         // TODO Auto-generated method stub
 
-            System.out.println("DoctorDao.deleteDoctor " + "start");
+            System.out.println("DoctorDao.deleteDisease " + "start");
             // TODO: Implement this function.
             Transaction trans = Datastore.beginTransaction();
             Datastore.put(inputDis);
             trans.commit();
-            System.out.println("DoctorDao.deleteDoctor " + "end");
+            System.out.println("DoctorDao.deleteDisease " + "end");
         
         
     }

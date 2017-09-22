@@ -20,7 +20,7 @@
 
   <div class="col col-md-8"><!-- Section containing the list and detail of medicines -->
     <div class="col col-md-6"><!-- List sector -->
-		  <label class="subtitle">ALL RESULTS - {{ length }}</label>
+		  <span class="subtitle"><span ng-hide="searchFilter == ''">{{(medicineList | filter : {'name' : searchFilter}).length}}</span><span ng-hide="searchFilter != ''">All</span> Results<span ng-hide="searchFilter != ''"> - {{medicineList.length}}</span></span>
 		  
 		  <div class="margins" >
 		    <hplus-explore-medicines-card dir-paginate="med in medicineList | filter: {'name' : searchFilter} | itemsPerPage:10  | orderBy : 'name'" data="med" ng-click="setSelected(med)" ng-class="{'selectedCard__container': med == selectedMedicine}"></hplus-explore-medicines-card>       

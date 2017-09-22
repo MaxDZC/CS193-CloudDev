@@ -10,3 +10,4 @@ angular.module('hplus.modules.explorediseases', [])
   });
   require('./explorediseases.directive.js');
   require('./explorediseases.controller.js');
+  require('./xxcard.controller.js');
