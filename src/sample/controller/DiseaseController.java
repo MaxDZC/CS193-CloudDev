@@ -36,7 +36,7 @@ public class DiseaseController extends Controller {
         DiseaseService diseaseService = new DiseaseService();
         
         try{
-            if("POST".equalsIgnoreCase(method)){
+            if(method.equals("POST")){
                 jsonObject = new JSONObject(this.request.getReader().readLine());
                 validator = new JSONValidators(jsonObject);
                 

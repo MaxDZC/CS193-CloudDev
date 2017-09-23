@@ -25,15 +25,32 @@ public class DiseaseDto extends ErrorsDto {
         List<Long> idsymptoms = new ArrayList<Long>();
         List<Long> idmedicines = new ArrayList<Long>();
         
-        sympId = jObj.getJSONArray("medicineId");
-        medId = jObj.getJSONArray("symptomId");
+        System.out.println("error before array");
         
-        for(i = 0; i < sympId.length(); i++){
-            idsymptoms.add(sympId.getJSONObject(i).getLong("id"));
+        sympId = jObj.getJSONArray("symptomId");
+        medId = jObj.getJSONArray("medicineId");
+        
+        System.out.println("error here");
+        System.out.println(sympId);
+        
+        if(sympId.get(0) instanceof JSONObject) {
+            for(i = 0; i < sympId.length(); i++){
+                idsymptoms.add(sympId.getJSONObject(i).getLong("id"));
+            }
+        } else {
+            for(i = 0; i < sympId.length(); i++){
+                idsymptoms.add(sympId.getLong(i));
+            }
         }
         
-        for(i = 0; i < medId.length(); i++){
-            idmedicines.add(medId.getJSONObject(i).getLong("id"));
+        if(medId.get(0) instanceof JSONObject){
+            for(i = 0; i < medId.length(); i++){
+                idmedicines.add(medId.getJSONObject(i).getLong("id"));
+            }
+        } else {
+            for(i = 0; i < medId.length(); i++){
+                idmedicines.add(medId.getLong(i));
+            }
         }
         
         this.setName(jObj.getString("name"));

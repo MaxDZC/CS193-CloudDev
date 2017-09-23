@@ -1,49 +1,60 @@
-<div class="row">
-  <div class="col col-md-8 col-md-offset-1">
-    <h1>Edit Disease</h1>
-  </div>
-</div>
+<div ng-controller="EditDiseaseController">
+	<div class="row">
+		<div class="col col-md-8 col-md-offset-1">
+			<h1>Update Disease</h1>
+		</div>
+	</div>
 
-<div class="row" ng-controller="EditDiseaseController">
-  <div class="col-md-10 col-md-offset-1">
-    <form name="diseaseForm">
-		  <div class="col col-md-4">
-		    <label class="subtitle">Name of Disease</label>
-	      <input type="text" placeholder="Name" ng-model="diseaseName" required>
-				<div> 
-				  <button ng-click="saveDisease()">Update</button>
+	<div class="row">
+		<div class="col-md-10 col-md-offset-1">
+			<ng-form name="diseaseForm">
+				<div class="col col-md-4">
+					<label class="subtitle">Name of Disease</label>
+					<input type="text" placeholder="Name" ng-model="disease.name" ng-required="true" name="Name">
+					<button type="submit" ng-class="checkStatus(diseaseForm.$valid)" ng-disabled="diseaseForm.$invalid" ng-click="updateDisease()">Update</button>
 				</div>
-		  </div>
+			
+				<div class="col col-md-4">
+					<label class="subtitle">Symptoms</label>
+					<input type="text" placeholder="Search Symptom" ng-model="searchFilterSymp">
+					<div class="borders">
+						<div class="scrollable">
+							<div ng-repeat="option in symptomList | filter: {'name' : searchFilterSymp} | orderBy:['-val','name']">
+								<input type="checkbox" ng-model="option.val" ng-change="addRemoveSymptom(symptomList | filter: {val: true} | orderBy : 'name')" ng-required="!disease.symptomId.length"><span class="checkboxText">{{ option.name[0].toUpperCase() + option.name.substr(1) }}</span><br>
+							</div>
+						</div>
+					</div>
+						
+				</div>
+				<div class="col col-md-4">
+					<label class="subtitle">Medicines</label>
+					<input type="text" placeholder="Search Medicine" ng-model="searchFilterMed">
+					<div class="borders">
+						<div class="scrollable">
+							<div ng-repeat="optionmed in medicineList | filter: {'name' : searchFilterMed} | orderBy:['-val','name']">
+								<input type="checkbox" ng-model="optionmed.val" ng-change="addRemoveMedicine(medicineList | filter: {val: true}| orderBy:'name')" ng-required="!disease.medicineId.length"><span class="checkboxText">{{ optionmed.name[0].toUpperCase() + optionmed.name.substr(1) }}</span><br>
+							</div>
+						</div>
+					</div>
+				</div>
+			</ng-form>
+		</div>
+	</div>
+
+	<div class="row">
 		
-		  <div class="col col-md-4">
-	      <label class="subtitle">Symptoms</label>
-	      <input type="text" placeholder="Search Symptom">
-	      <div class="borders">
-	        <div class="scrollable">
-	          <div ng-repeat="option in symptomsSearch | orderBy:['-val','name']">
-	            <input type="checkbox" ng-model="option.val" ng-change="addRemoveSymptom(symptomsSearch | filter: {val: true} | orderBy : 'name')" ng-required="!symptomsSelected.length">{{option.name}}<br>
-	          </div>
-	        </div>
-	      </div>
-	      <div class = "row" ng-show="bool">
-	        <div class="col-md-8" ><input type="text" ng-model="addSymptom"></div>
-	        <div class="col-md-4"><button ng-click="">Add</button></div>  
-	      </div>
-	      <button ng-click="showAdd()">Add New Symptom</button>
-	      
-	    </div>
-		
-		  <div class="col col-md-4">
-	      <label class="subtitle">Medicines</label>
-	      <input type="text" placeholder="Search Medicine">
-	      <div class="borders">
-	        <div class="scrollable">
-	          <div ng-repeat="optionmed in medicinesSearch | orderBy:['-val','name']">
-	            <input type="checkbox" ng-model="optionmed.val" ng-change="addRemoveMedicine(medicinesSearch | filter: {val: true} | orderBy : 'name')"  ng-required="!medicinesSelected.length">{{optionmed.name}}<br>
-	          </div>
-	        </div>
-	      </div>
-	    </div>
-    </form>
-  </div>
+		<div class="col-md-10 col-md-offset-1">
+				<div class="col col-md-4 col-md-offset-4">
+				<div class=" col-md-12 borders" ng-show="showAdd">
+						<ng-form name="saveSympForm">
+							<input type="text" ng-model="addSymptom" ng-required="true" placeholder="Symptom Name">
+							<button ng-click="saveSymptom()" ng-class="checkStatus(saveSympForm.$valid)" ng-disabled="saveSympForm.$invalid" type="submit">Add</button>
+							<button ng-click="showAdd = !showAdd">Close</button>
+						</ng-form>
+					</div>
+					
+					<button ng-hide="showAdd" ng-click="showAdd = !showAdd" type="submit">Add New Symptom</button>
+				</div>
+		</div>
+	</div>
 </div>

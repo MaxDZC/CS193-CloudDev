@@ -39417,7 +39417,7 @@ angular.module('hplus.modules.editdisease', [])
 /* 58 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\r\n  <div class=\"col col-md-8 col-md-offset-1\">\r\n    <h1>Edit Disease</h1>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row\" ng-controller=\"EditDiseaseController\">\r\n  <div class=\"col-md-10 col-md-offset-1\">\r\n    <form name=\"diseaseForm\">\r\n\t\t  <div class=\"col col-md-4\">\r\n\t\t    <label class=\"subtitle\">Name of Disease</label>\r\n\t      <input type=\"text\" placeholder=\"Name\" ng-model=\"diseaseName\" required>\r\n\t\t\t\t<div> \r\n\t\t\t\t  <button ng-click=\"saveDisease()\">Update</button>\r\n\t\t\t\t</div>\r\n\t\t  </div>\r\n\t\t\r\n\t\t  <div class=\"col col-md-4\">\r\n\t      <label class=\"subtitle\">Symptoms</label>\r\n\t      <input type=\"text\" placeholder=\"Search Symptom\">\r\n\t      <div class=\"borders\">\r\n\t        <div class=\"scrollable\">\r\n\t          <div ng-repeat=\"option in symptomsSearch | orderBy:['-val','name']\">\r\n\t            <input type=\"checkbox\" ng-model=\"option.val\" ng-change=\"addRemoveSymptom(symptomsSearch | filter: {val: true} | orderBy : 'name')\" ng-required=\"!symptomsSelected.length\">{{option.name}}<br>\r\n\t          </div>\r\n\t        </div>\r\n\t      </div>\r\n\t      <div class = \"row\" ng-show=\"bool\">\r\n\t        <div class=\"col-md-8\" ><input type=\"text\" ng-model=\"addSymptom\"></div>\r\n\t        <div class=\"col-md-4\"><button ng-click=\"\">Add</button></div>  \r\n\t      </div>\r\n\t      <button ng-click=\"showAdd()\">Add New Symptom</button>\r\n\t      \r\n\t    </div>\r\n\t\t\r\n\t\t  <div class=\"col col-md-4\">\r\n\t      <label class=\"subtitle\">Medicines</label>\r\n\t      <input type=\"text\" placeholder=\"Search Medicine\">\r\n\t      <div class=\"borders\">\r\n\t        <div class=\"scrollable\">\r\n\t          <div ng-repeat=\"optionmed in medicinesSearch | orderBy:['-val','name']\">\r\n\t            <input type=\"checkbox\" ng-model=\"optionmed.val\" ng-change=\"addRemoveMedicine(medicinesSearch | filter: {val: true} | orderBy : 'name')\"  ng-required=\"!medicinesSelected.length\">{{optionmed.name}}<br>\r\n\t          </div>\r\n\t        </div>\r\n\t      </div>\r\n\t    </div>\r\n    </form>\r\n  </div>\r\n</div>";
+module.exports = "<div ng-controller=\"EditDiseaseController\">\r\n\t<div class=\"row\">\r\n\t\t<div class=\"col col-md-8 col-md-offset-1\">\r\n\t\t\t<h1>Update Disease</h1>\r\n\t\t</div>\r\n\t</div>\r\n\r\n\t<div class=\"row\">\r\n\t\t<div class=\"col-md-10 col-md-offset-1\">\r\n\t\t\t<ng-form name=\"diseaseForm\">\r\n\t\t\t\t<div class=\"col col-md-4\">\r\n\t\t\t\t\t<label class=\"subtitle\">Name of Disease</label>\r\n\t\t\t\t\t<input type=\"text\" placeholder=\"Name\" ng-model=\"disease.name\" ng-required=\"true\" name=\"Name\">\r\n\t\t\t\t\t<button type=\"submit\" ng-class=\"checkStatus(diseaseForm.$valid)\" ng-disabled=\"diseaseForm.$invalid\" ng-click=\"updateDisease()\">Update</button>\r\n\t\t\t\t</div>\r\n\t\t\t\r\n\t\t\t\t<div class=\"col col-md-4\">\r\n\t\t\t\t\t<label class=\"subtitle\">Symptoms</label>\r\n\t\t\t\t\t<input type=\"text\" placeholder=\"Search Symptom\" ng-model=\"searchFilterSymp\">\r\n\t\t\t\t\t<div class=\"borders\">\r\n\t\t\t\t\t\t<div class=\"scrollable\">\r\n\t\t\t\t\t\t\t<div ng-repeat=\"option in symptomList | filter: {'name' : searchFilterSymp} | orderBy:['-val','name']\">\r\n\t\t\t\t\t\t\t\t<input type=\"checkbox\" ng-model=\"option.val\" ng-change=\"addRemoveSymptom(symptomList | filter: {val: true} | orderBy : 'name')\" ng-required=\"!disease.symptomId.length\"><span class=\"checkboxText\">{{ option.name[0].toUpperCase() + option.name.substr(1) }}</span><br>\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\r\n\t\t\t\t</div>\r\n\t\t\t\t<div class=\"col col-md-4\">\r\n\t\t\t\t\t<label class=\"subtitle\">Medicines</label>\r\n\t\t\t\t\t<input type=\"text\" placeholder=\"Search Medicine\" ng-model=\"searchFilterMed\">\r\n\t\t\t\t\t<div class=\"borders\">\r\n\t\t\t\t\t\t<div class=\"scrollable\">\r\n\t\t\t\t\t\t\t<div ng-repeat=\"optionmed in medicineList | filter: {'name' : searchFilterMed} | orderBy:['-val','name']\">\r\n\t\t\t\t\t\t\t\t<input type=\"checkbox\" ng-model=\"optionmed.val\" ng-change=\"addRemoveMedicine(medicineList | filter: {val: true}| orderBy:'name')\" ng-required=\"!disease.medicineId.length\"><span class=\"checkboxText\">{{ optionmed.name[0].toUpperCase() + optionmed.name.substr(1) }}</span><br>\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t</div>\r\n\t\t\t</ng-form>\r\n\t\t</div>\r\n\t</div>\r\n\r\n\t<div class=\"row\">\r\n\t\t\r\n\t\t<div class=\"col-md-10 col-md-offset-1\">\r\n\t\t\t\t<div class=\"col col-md-4 col-md-offset-4\">\r\n\t\t\t\t<div class=\" col-md-12 borders\" ng-show=\"showAdd\">\r\n\t\t\t\t\t\t<ng-form name=\"saveSympForm\">\r\n\t\t\t\t\t\t\t<input type=\"text\" ng-model=\"addSymptom\" ng-required=\"true\" placeholder=\"Symptom Name\">\r\n\t\t\t\t\t\t\t<button ng-click=\"saveSymptom()\" ng-class=\"checkStatus(saveSympForm.$valid)\" ng-disabled=\"saveSympForm.$invalid\" type=\"submit\">Add</button>\r\n\t\t\t\t\t\t\t<button ng-click=\"showAdd = !showAdd\">Close</button>\r\n\t\t\t\t\t\t</ng-form>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t\t\r\n\t\t\t\t\t<button ng-hide=\"showAdd\" ng-click=\"showAdd = !showAdd\" type=\"submit\">Add New Symptom</button>\r\n\t\t\t\t</div>\r\n\t\t</div>\r\n\t</div>\r\n</div>";
 
 /***/ }),
 /* 59 */
@@ -39426,9 +39426,11 @@ module.exports = "<div class=\"row\">\r\n  <div class=\"col col-md-8 col-md-offs
 angular.module('hplus.modules.editdisease')
 
   .controller('EditDiseaseController',
-    function($location, $scope, globalFactory, doctorFactory){
+    function($location, $scope, globalFactory, doctorFactory, diseaseFactory, symptomFactory, medicineFactory, modalFactory){
       
       var user = doctorFactory.getUser();
+      $scope.disease = diseaseFactory.getDisease();
+      console.log($scope.disease);
 
       if(user != null){
         if(!user.admin){
@@ -39440,138 +39442,139 @@ angular.module('hplus.modules.editdisease')
       
       $scope.symptomsSelected = [];
       $scope.medicinesSelected = [];
+      $scope.showAdd = false;
+
       $scope.go = function(path){
         globalFactory.go(path);
       };
-     
-    //  $scope.symptomList = globalFactory.getSymptomList();
-      $scope.bool =false;
-     
-      $scope.showAdd = function(){
-        $scope.bool = !$scope.bool;
-      }
+
+      $scope.checkStatus = function(status) {
+        var retValue = "edit-button";
+
+        if(status){
+          retValue = "edit-button";
+        } else {
+          retValue = "delete-button";
+        }
+
+        return retValue;
+      };
+
+      $scope.saveSymptom = function(){
+        var data = {"name":$scope.addSymptom};
+        symptomFactory.registerSymptom(data);
+      };
+
+      $scope.$on("repopulateUpdate", function(event){
+        $scope.showAdd = !$scope.showAdd;
+        $scope.addSymptom = "";
+
+        symptomFactory.getListOfSymptoms().then(function(response){
+          $scope.symptomList = response.data.symptoms;
+          $scope.symptomList.forEach(function(med){
+            med.val = false;
+          });
+
+          populate();
+        });
+
+      });
+
       $scope.saveArraySymp = function(){
-      
         angular.forEach($scope.option, function(option){
           if (option.val){
             var data= {
                 id: option.id,
                 sympname: option.name
             }
-            $scope.symptomsSelected .push(data);
+            $scope.symptomsSelected.push(data);
           } 
         });
         console.log($scope.symptomsSelected);
-      }
+      };
+
       $scope.saveArrayMedicine = function(){
-      
         angular.forEach($scope.optionmed, function(option){
           if (option.val) {
              var data1= {
                 id: option.id,
                 medname: option.name
             }
-            $scope.medicineSelected .push(data1);
+            $scope.medicineSelected.push(data1);
           }
         });
         console.log($scope.medicineSelected);
-      }
+      };
       
-      $scope.saveDisease = function(){
-        console.log($scope.medicinesSelected);
-	    console.log($scope.symptomsSelected);
-	    console.log($scope.diseaseName);
-	    globalFactory.insertDisease($scope.diseaseName,$scope.symptomsSelected,$scope.medicinesSelected);
-      }
+      var updateConfirmDisease = function(){
+        console.log($scope.disease);
+
+        diseaseFactory.updateDisease($scope.disease);
+        
+        $scope.disease = {
+                "name" : "",
+                "symptomId" : [],
+                "medicineId" : []
+        };
+        
+        $scope.searchFilterSymp = "";
+        setVals($scope.symptomList, false);
+        setVals($scope.medicineList, false);
+      };
+
+      $scope.updateDisease = function(){
+        var modalObject = {
+          type: "confirm",
+          title: "Confirm Update",
+          description: "Are you sure you want to update this disease?",
+          negativeButton: "No",
+          positiveButton: "Yes",
+          isVisible: true,
+          data: updateConfirmDisease
+        };
+
+        modalFactory.setContents(modalObject);
+      };
+
+      var populate = function(){
+        symptomFactory.getListOfSymptoms().then(function(response){
+          $scope.symptomList = response.data.symptoms;
+          $scope.symptomList.forEach(function(med){
+            if($scope.disease.symptomId.indexOf(med.id) == -1){
+              med.val = false;
+            } else {
+              med.val = true;
+            }
+          });
+        });
+        medicineFactory.getListOfMedicines().then(function(response){
+          $scope.medicineList = response.data.medicines;
+          $scope.medicineList.forEach(function(med){
+            if($scope.disease.medicineId.indexOf(med.id) == -1){
+              med.val = false;
+            } else {
+              med.val = true;
+            }
+          });
+        });
+      };
+
+      populate();
+
+      var setVals = function (a, v) {
+        var i, n = a.length;
+        for (i = 0; i < n; ++i) {
+          a[i].val = v;
+        }
+    	};
       
       $scope.addRemoveSymptom = function(hold){
-        $scope.symptomsSelected = hold;
-      }
-      
-      $scope.symptomsSearch = [
-        {
-          name: "Examples",
-          id: 1,
-          val:false
-        },
-        {
-          name: "of",
-          id: 2,
-          val:false
-        },
-        {
-          name: "Symptoms",
-          id: 3,
-          val:false
-        },
-        {
-          name: "wooh",
-          id: 4,
-          val:false
-        },
-        {
-          name: "hahaha",
-          id: 5,
-          val:false
-        },
-        {
-          name: "BoBurnham",
-          id: 6,
-          val:false
-        }
-      ];
-      
+    	  $scope.disease.symptomId = hold;
+      };
+    
       $scope.addRemoveMedicine = function(hold){
-        $scope.medicinesSelected= hold;
-      }
-      
-      $scope.medicinesSearch = [
-                         {
-                           name: "Metformin",
-                           id: 1,
-                           val:false
-                         },
-                         {
-                           name: "Meth",
-                           id: 2,
-                           val:false
-                         },
-                         {
-                           name: "Methamphetamine",
-                           id: 3,
-                           val:false
-                         },
-                         {
-                           name: "Methazolamide",
-                           id: 4,
-                           val:false
-                         },
-                         {
-                           name: "Methazolamide",
-                           id: 5,
-                           val:false
-                         },
-                         {
-                           name: "Meth",
-                           id: 6,
-                           val:false
-                         },
-                         {
-                           name: "Methenamine",
-                           id: 7,
-                           val:false
-                         },
-                         {
-                           name: "Methimazole",
-                           id: 8,
-                           val:false
-                         },
-                         {
-                           name: "Meth",
-                           id: 9,
-                           val:false
-                         }
-                       ];
+    	  $scope.disease.medicineId = hold;
+      };
     }
   );
   
@@ -40459,7 +40462,7 @@ angular.module('hplus.modules.registerdiseases', [])
 /* 93 */
 /***/ (function(module, exports) {
 
-module.exports = "<div ng-controller=\"RegisterDiseasesController\">\r\n\t<div class=\"row\">\r\n\t\t<div class=\"col col-md-8 col-md-offset-1\">\r\n\t\t\t<h1>Register Diseases</h1>\r\n\t\t</div>\r\n\t</div>\r\n\r\n\t<div class=\"row\">\r\n\t\t<div class=\"col-md-10 col-md-offset-1\">\r\n\t\t\t<ng-form name=\"diseaseForm\">\r\n\t\t\t\t<div class=\"col col-md-4\">\r\n\t\t\t\t\t<label class=\"subtitle\">Name of Disease</label>\r\n\t\t\t\t\t<input type=\"text\" placeholder=\"Name\" ng-model=\"disease.name\" ng-required=\"true\" name=\"Name\">\r\n\t\t\t\t\t<button type=\"submit\" ng-class=\"checkStatus(diseaseForm.$valid)\" ng-disabled=\"diseaseForm.$invalid\" ng-click=\"saveDisease()\">Save</button>\r\n\t\t\t\t\t\r\n\t\t\t\t</div>\r\n\t\t\t\r\n\t\t\t\t<div class=\"col col-md-4\">\r\n\t\t\t\t\t<label class=\"subtitle\">Symptoms</label>\r\n\t\t\t\t\t<input type=\"text\" placeholder=\"Search Symptom\" ng-model=\"searchFilterSymp\">\r\n\t\t\t\t\t<div class=\"borders\">\r\n\t\t\t\t\t\t<div class=\"scrollable\">\r\n\t\t\t\t\t\t\t<div ng-repeat=\"option in symptomList | filter: {'name' : searchFilterSymp} | orderBy:['-val','name']\">\r\n\t\t\t\t\t\t\t\t<input type=\"checkbox\" ng-model=\"option.val\" ng-change=\"addRemoveSymptom(symptomList | filter: {val: true} | orderBy : 'name')\" ng-required=\"!disease.symptomId.length\"><span class=\"checkboxText\">{{ option.name[0].toUpperCase() + option.name.substr(1) }}</span><br>\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\r\n\t\t\t\t</div>\r\n\t\t\t\t<div class=\"col col-md-4\">\r\n\t\t\t\t\t<label class=\"subtitle\">Medicines</label>\r\n\t\t\t\t\t<input type=\"text\" placeholder=\"Search Medicine\" ng-model=\"searchFilterMed\">\r\n\t\t\t\t\t<div class=\"borders\">\r\n\t\t\t\t\t\t<div class=\"scrollable\">\r\n\t\t\t\t\t\t\t<div ng-repeat=\"optionmed in medicineList | filter: {'name' : searchFilterMed} | orderBy:['-val','name']\">\r\n\t\t\t\t\t\t\t\t<input type=\"checkbox\" ng-model=\"optionmed.val\" ng-change=\"addRemoveMedicine(medicineList | filter: {val: true}| orderBy:'name')\" ng-required=\"!disease.medicineId.length\"><span class=\"checkboxText\">{{ optionmed.name[0].toUpperCase() + optionmed.name.substr(1) }}</span><br>\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t</div>\r\n\t\t\t</ng-form>\r\n\t\t</div>\r\n\t</div>\r\n\r\n\t<div class=\"row\">\r\n\t\t\r\n\t\t<div class=\"col-md-10 col-md-offset-1\">\r\n\t\t\t\t<div class=\"col col-md-4 col-md-offset-4\">\r\n\t\t\t\t<div class=\" col-md-12 borders\" ng-show=\"showAdd\">\r\n\t\t\t\t\t\t<ng-form name=\"saveSympForm\">\r\n\t\t\t\t\t\t\t<input type=\"text\" ng-model=\"addSymptom\" ng-required=\"true\" placeholder=\"Symptom Name\">\r\n\t\t\t\t\t\t\t<button ng-click=\"saveSymptom()\" ng-class=\"checkStatus(saveSympForm.$valid)\" ng-disabled=\"saveSympForm.$invalid\" type=\"submit\">Add</button>\r\n\t\t\t\t\t\t\t<button ng-click=\"showAdd = !showAdd\">Close</button>\r\n\t\t\t\t\t\t</ng-form>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t\t\r\n\t\t\t\t\t<button ng-hide=\"showAdd\" ng-click=\"showAdd = !showAdd\" type=\"submit\">Add New Symptom</button>\r\n\t\t\t\t</div>\r\n\t\t</div>\r\n\t</div>\r\n\r\n</div>";
+module.exports = "<div ng-controller=\"RegisterDiseasesController\">\r\n\t<div class=\"row\">\r\n\t\t<div class=\"col col-md-8 col-md-offset-1\">\r\n\t\t\t<h1>Register Diseases</h1>\r\n\t\t</div>\r\n\t</div>\r\n\r\n\t<div class=\"row\">\r\n\t\t<div class=\"col-md-10 col-md-offset-1\">\r\n\t\t\t<ng-form name=\"diseaseForm\">\r\n\t\t\t\t<div class=\"col col-md-4\">\r\n\t\t\t\t\t<label class=\"subtitle\">Name of Disease</label>\r\n\t\t\t\t\t<input type=\"text\" placeholder=\"Name\" ng-model=\"disease.name\" ng-required=\"true\" name=\"Name\">\r\n\t\t\t\t\t<button type=\"submit\" ng-class=\"checkStatus(diseaseForm.$valid)\" ng-disabled=\"diseaseForm.$invalid\" ng-click=\"saveDisease()\">Save</button>\r\n\t\t\t\t\t\r\n\t\t\t\t</div>\r\n\t\t\t\r\n\t\t\t\t<div class=\"col col-md-4\">\r\n\t\t\t\t\t<label class=\"subtitle\">Symptoms</label>\r\n\t\t\t\t\t<input type=\"text\" placeholder=\"Search Symptom\" ng-model=\"searchFilterSymp\">\r\n\t\t\t\t\t<div class=\"borders\">\r\n\t\t\t\t\t\t<div class=\"scrollable\">\r\n\t\t\t\t\t\t\t<div ng-repeat=\"option in symptomList | filter: {'name' : searchFilterSymp} | orderBy:['-val','name']\">\r\n\t\t\t\t\t\t\t\t<input type=\"checkbox\" ng-model=\"option.val\" ng-change=\"addRemoveSymptom(symptomList | filter: {val: true} | orderBy : 'name')\" ng-required=\"!disease.symptomId.length\"><span class=\"checkboxText\">{{ option.name[0].toUpperCase() + option.name.substr(1) }}</span><br>\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\r\n\t\t\t\t</div>\r\n\t\t\t\t<div class=\"col col-md-4\">\r\n\t\t\t\t\t<label class=\"subtitle\">Medicines</label>\r\n\t\t\t\t\t<input type=\"text\" placeholder=\"Search Medicine\" ng-model=\"searchFilterMed\">\r\n\t\t\t\t\t<div class=\"borders\">\r\n\t\t\t\t\t\t<div class=\"scrollable\">\r\n\t\t\t\t\t\t\t<div ng-repeat=\"optionmed in medicineList | filter: {'name' : searchFilterMed} | orderBy:['-val','name']\">\r\n\t\t\t\t\t\t\t\t<input type=\"checkbox\" ng-model=\"optionmed.val\" ng-change=\"addRemoveMedicine(medicineList | filter: {val: true}| orderBy:'name')\" ng-required=\"!disease.medicineId.length\"><span class=\"checkboxText\">{{ optionmed.name[0].toUpperCase() + optionmed.name.substr(1) }}</span><br>\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t</div>\r\n\t\t\t</ng-form>\r\n\t\t</div>\r\n\t</div>\r\n\r\n\t<div class=\"row\">\r\n\t\t\r\n\t\t<div class=\"col-md-10 col-md-offset-1\">\r\n\t\t\t\t<div class=\"col col-md-4 col-md-offset-4\">\r\n\t\t\t\t<div class=\" col-md-12 borders\" ng-show=\"showAdd\">\r\n\t\t\t\t\t\t<ng-form name=\"saveSympForm\">\r\n\t\t\t\t\t\t\t<input type=\"text\" ng-model=\"addSymptom\" ng-required=\"true\" placeholder=\"Symptom Name\">\r\n\t\t\t\t\t\t\t<button ng-click=\"saveSymptom()\" ng-class=\"checkStatus(saveSympForm.$valid)\" ng-disabled=\"saveSympForm.$invalid\" type=\"submit\">Add</button>\r\n\t\t\t\t\t\t\t<button ng-click=\"showAdd = !showAdd\">Close</button>\r\n\t\t\t\t\t\t</ng-form>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t\t\r\n\t\t\t\t\t<button ng-hide=\"showAdd\" ng-click=\"showAdd = !showAdd\" type=\"submit\">Add New Symptom</button>\r\n\t\t\t\t</div>\r\n\t\t</div>\r\n\t</div>\r\n</div>";
 
 /***/ }),
 /* 94 */
@@ -40479,6 +40482,13 @@ angular.module('hplus.modules.registerdiseases')
       } else {
         $location.path("/");
       }
+
+      $scope.disease = 
+      {
+        "name" : "",
+        "symptomId" : [],
+        "medicineId" : []
+      };
       
       $scope.go = function(path){
         globalFactory.go(path);
@@ -40519,10 +40529,13 @@ angular.module('hplus.modules.registerdiseases')
       });
       
       $scope.saveDisease = function(){
+        console.log("meds");
         console.log($scope.disease.medicineId);
         console.log($scope.disease.symptomId);
         console.log($scope.disease.name);
+        
         diseaseFactory.registerDisease($scope.disease);
+        
         $scope.disease = {
                 "name" : "",
                 "symptomId" : [],
@@ -40535,110 +40548,11 @@ angular.module('hplus.modules.registerdiseases')
       };
       
       $scope.addRemoveSymptom = function(hold){
-    	  $scope.disease.symptomId= hold;
-      }
-      
-      $scope.symptomList = [
-        {
-          name: "Examples",
-          id: 1,
-          val:false
-        },
-        {
-          name: "of",
-          id: 2,
-          val:false
-        },
-        {
-          name: "Symptoms",
-          id: 3,
-          val:false
-        },
-        {
-          name: "wooh",
-          id: 4,
-          val:false
-        },
-        {
-          name: "hahaha",
-          id: 5,
-          val:false
-        },
-        {
-          name: "BoBurnham",
-          id: 6,
-          val:false
-        }
-      ];
-      
-//                                 
-//      $scope.addMedicine = function(hold){
-//        $scope.medicinesSelected.push(hold);
-//        $scope.medicinesSearch.splice($scope.medicinesSearch.indexOf(hold),1);
-//      };
-//                                 
-//      $scope.removeMedicine = function(hold){
-//        $scope.medicinesSearch.push(hold);
-//        $scope.medicinesSelected.splice($scope.medicinesSelected.indexOf(hold),1);
-//      };
-//      
+    	  $scope.disease.symptomId = hold;
+      };
+    
       $scope.addRemoveMedicine = function(hold){
-    	  $scope.disease.medicineId= hold;
-      }
-      
-      $scope.medicineList = [
-                         {
-                           name: "Metformin",
-                           id: 1,
-                           val:false
-                         },
-                         {
-                           name: "Meth",
-                           id: 2,
-                           val:false
-                         },
-                         {
-                           name: "Methamphetamine",
-                           id: 3,
-                           val:false
-                         },
-                         {
-                           name: "Methazolamide",
-                           id: 4,
-                           val:false
-                         },
-                         {
-                           name: "Methazolamide",
-                           id: 5,
-                           val:false
-                         },
-                         {
-                           name: "Meth",
-                           id: 6,
-                           val:false
-                         },
-                         {
-                           name: "Methenamine",
-                           id: 7,
-                           val:false
-                         },
-                         {
-                           name: "Methimazole",
-                           id: 8,
-                           val:false
-                         },
-                         {
-                           name: "Meth",
-                           id: 9,
-                           val:false
-                         }
-                       ];
-      
-      $scope.disease = 
-      {
-        "name" : "",
-        "symptomId" : [],
-        "medicineId" : []
+    	  $scope.disease.medicineId = hold;
       };
       
       var populate = function(){
@@ -40648,23 +40562,23 @@ angular.module('hplus.modules.registerdiseases')
         	    $scope.symptomList.forEach(function(med){
                 med.val = false;
               });
-            },function(){});
+            });
             medicineFactory.getListOfMedicines().then(function(response){
               $scope.medicineList = response.data.medicines;
               $scope.medicineList.forEach(function(med){
                 med.val = false;
               });
-            },function(){});
+            });
       };
 
       populate();
       
       var setVals = function (a, v) {
-    	    var i, n = a.length;
-    	    for (i = 0; i < n; ++i) {
-    	        a[i].val = v;
-    	    }
-    	}
+        var i, n = a.length;
+        for (i = 0; i < n; ++i) {
+            a[i].val = v;
+        }
+    	};
       
     }
   );
@@ -42246,29 +42160,31 @@ angular.module('hplus.factory')
       };
 
       var updateDisease = function(disease){
+        var modalObject;
+
         $http({
           method: "PUT",
-          url: "/Doctor",
-          data: doctor
+          url: "/Disease",
+          data: disease
         }).then(function(response){
           console.log(response);
-          var modalObject = {
+          modalObject = {
             type: "notify",
             title: "Successfully Updated!",
-            description: "Successfully updated Dr. " + doctor.lastname + "'s profile!",
+            description: "Successfully updated disease!",
             positiveButton: "Ok",
             isVisible: true
           };
         
           modalFactory.setContents(modalObject);
-          saveDoctor(response.data);
-          $location.path('/admin/view/doctordetails');
+          saveDisease(response.data);
+          $location.path('/admin/list/disease');
         }, function(response){
           console.log(response);
           var modalObject = {
             type: "notify",
             title: "Update Failure!",
-            description: "The email you have chosen already exists!",
+            description: "Another disease with the same name already exists!",
             positiveButton: "Ok",
             isVisible: true
           };

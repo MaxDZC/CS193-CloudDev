@@ -41,29 +41,31 @@ angular.module('hplus.factory')
       };
 
       var updateDisease = function(disease){
+        var modalObject;
+
         $http({
           method: "PUT",
-          url: "/Doctor",
-          data: doctor
+          url: "/Disease",
+          data: disease
         }).then(function(response){
           console.log(response);
-          var modalObject = {
+          modalObject = {
             type: "notify",
             title: "Successfully Updated!",
-            description: "Successfully updated Dr. " + doctor.lastname + "'s profile!",
+            description: "Successfully updated disease!",
             positiveButton: "Ok",
             isVisible: true
           };
         
           modalFactory.setContents(modalObject);
-          saveDoctor(response.data);
-          $location.path('/admin/view/doctordetails');
+          saveDisease(response.data);
+          $location.path('/admin/list/disease');
         }, function(response){
           console.log(response);
           var modalObject = {
             type: "notify",
             title: "Update Failure!",
-            description: "The email you have chosen already exists!",
+            description: "Another disease with the same name already exists!",
             positiveButton: "Ok",
             isVisible: true
           };
