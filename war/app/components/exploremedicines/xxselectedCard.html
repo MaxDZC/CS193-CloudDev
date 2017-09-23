@@ -16,8 +16,8 @@
           <span class="detail__subtitle">{{ data.price | currency : 'PHP '}}</span>
           <br>
           <br>
-          <span class="detail__title" ng-if="data.treats">TREATMENT FOR</span>
-          <span class="detail__subtitle"><span ng-repeat="treats in data.treats | limitTo: 3"><span ng-hide="$first">,&nbsp;</span>{{treats}}</span></span> 
+          <span class="detail__title">TREATMENT FOR</span>
+          <span class="detail__subtitle"><span ng-repeat="treats in data.treats"><span ng-hide="$first">,&nbsp;</span>{{ treats }}</span></span> 
           <br>
           <br>
           <div ng-show="isAdmin()"> 

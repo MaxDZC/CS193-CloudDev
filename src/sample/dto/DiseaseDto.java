@@ -25,13 +25,8 @@ public class DiseaseDto extends ErrorsDto {
         List<Long> idsymptoms = new ArrayList<Long>();
         List<Long> idmedicines = new ArrayList<Long>();
         
-        System.out.println("error before array");
-        
         sympId = jObj.getJSONArray("symptomId");
         medId = jObj.getJSONArray("medicineId");
-        
-        System.out.println("error here");
-        System.out.println(sympId);
         
         if(sympId.get(0) instanceof JSONObject) {
             for(i = 0; i < sympId.length(); i++){

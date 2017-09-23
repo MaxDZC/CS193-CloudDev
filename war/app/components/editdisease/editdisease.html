@@ -12,6 +12,7 @@
 					<label class="subtitle">Name of Disease</label>
 					<input type="text" placeholder="Name" ng-model="disease.name" ng-required="true" name="Name">
 					<button type="submit" ng-class="checkStatus(diseaseForm.$valid)" ng-disabled="diseaseForm.$invalid" ng-click="updateDisease()">Update</button>
+					<button class="outline delete_btn" ng-click="delete()">Archive</button>
 				</div>
 			
 				<div class="col col-md-4">

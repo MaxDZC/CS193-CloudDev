@@ -39417,7 +39417,7 @@ angular.module('hplus.modules.editdisease', [])
 /* 58 */
 /***/ (function(module, exports) {
 
-module.exports = "<div ng-controller=\"EditDiseaseController\">\r\n\t<div class=\"row\">\r\n\t\t<div class=\"col col-md-8 col-md-offset-1\">\r\n\t\t\t<h1>Update Disease</h1>\r\n\t\t</div>\r\n\t</div>\r\n\r\n\t<div class=\"row\">\r\n\t\t<div class=\"col-md-10 col-md-offset-1\">\r\n\t\t\t<ng-form name=\"diseaseForm\">\r\n\t\t\t\t<div class=\"col col-md-4\">\r\n\t\t\t\t\t<label class=\"subtitle\">Name of Disease</label>\r\n\t\t\t\t\t<input type=\"text\" placeholder=\"Name\" ng-model=\"disease.name\" ng-required=\"true\" name=\"Name\">\r\n\t\t\t\t\t<button type=\"submit\" ng-class=\"checkStatus(diseaseForm.$valid)\" ng-disabled=\"diseaseForm.$invalid\" ng-click=\"updateDisease()\">Update</button>\r\n\t\t\t\t</div>\r\n\t\t\t\r\n\t\t\t\t<div class=\"col col-md-4\">\r\n\t\t\t\t\t<label class=\"subtitle\">Symptoms</label>\r\n\t\t\t\t\t<input type=\"text\" placeholder=\"Search Symptom\" ng-model=\"searchFilterSymp\">\r\n\t\t\t\t\t<div class=\"borders\">\r\n\t\t\t\t\t\t<div class=\"scrollable\">\r\n\t\t\t\t\t\t\t<div ng-repeat=\"option in symptomList | filter: {'name' : searchFilterSymp} | orderBy:['-val','name']\">\r\n\t\t\t\t\t\t\t\t<input type=\"checkbox\" ng-model=\"option.val\" ng-change=\"addRemoveSymptom(symptomList | filter: {val: true} | orderBy : 'name')\" ng-required=\"!disease.symptomId.length\"><span class=\"checkboxText\">{{ option.name[0].toUpperCase() + option.name.substr(1) }}</span><br>\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\r\n\t\t\t\t</div>\r\n\t\t\t\t<div class=\"col col-md-4\">\r\n\t\t\t\t\t<label class=\"subtitle\">Medicines</label>\r\n\t\t\t\t\t<input type=\"text\" placeholder=\"Search Medicine\" ng-model=\"searchFilterMed\">\r\n\t\t\t\t\t<div class=\"borders\">\r\n\t\t\t\t\t\t<div class=\"scrollable\">\r\n\t\t\t\t\t\t\t<div ng-repeat=\"optionmed in medicineList | filter: {'name' : searchFilterMed} | orderBy:['-val','name']\">\r\n\t\t\t\t\t\t\t\t<input type=\"checkbox\" ng-model=\"optionmed.val\" ng-change=\"addRemoveMedicine(medicineList | filter: {val: true}| orderBy:'name')\" ng-required=\"!disease.medicineId.length\"><span class=\"checkboxText\">{{ optionmed.name[0].toUpperCase() + optionmed.name.substr(1) }}</span><br>\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t</div>\r\n\t\t\t</ng-form>\r\n\t\t</div>\r\n\t</div>\r\n\r\n\t<div class=\"row\">\r\n\t\t\r\n\t\t<div class=\"col-md-10 col-md-offset-1\">\r\n\t\t\t\t<div class=\"col col-md-4 col-md-offset-4\">\r\n\t\t\t\t<div class=\" col-md-12 borders\" ng-show=\"showAdd\">\r\n\t\t\t\t\t\t<ng-form name=\"saveSympForm\">\r\n\t\t\t\t\t\t\t<input type=\"text\" ng-model=\"addSymptom\" ng-required=\"true\" placeholder=\"Symptom Name\">\r\n\t\t\t\t\t\t\t<button ng-click=\"saveSymptom()\" ng-class=\"checkStatus(saveSympForm.$valid)\" ng-disabled=\"saveSympForm.$invalid\" type=\"submit\">Add</button>\r\n\t\t\t\t\t\t\t<button ng-click=\"showAdd = !showAdd\">Close</button>\r\n\t\t\t\t\t\t</ng-form>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t\t\r\n\t\t\t\t\t<button ng-hide=\"showAdd\" ng-click=\"showAdd = !showAdd\" type=\"submit\">Add New Symptom</button>\r\n\t\t\t\t</div>\r\n\t\t</div>\r\n\t</div>\r\n</div>";
+module.exports = "<div ng-controller=\"EditDiseaseController\">\r\n\t<div class=\"row\">\r\n\t\t<div class=\"col col-md-8 col-md-offset-1\">\r\n\t\t\t<h1>Update Disease</h1>\r\n\t\t</div>\r\n\t</div>\r\n\r\n\t<div class=\"row\">\r\n\t\t<div class=\"col-md-10 col-md-offset-1\">\r\n\t\t\t<ng-form name=\"diseaseForm\">\r\n\t\t\t\t<div class=\"col col-md-4\">\r\n\t\t\t\t\t<label class=\"subtitle\">Name of Disease</label>\r\n\t\t\t\t\t<input type=\"text\" placeholder=\"Name\" ng-model=\"disease.name\" ng-required=\"true\" name=\"Name\">\r\n\t\t\t\t\t<button type=\"submit\" ng-class=\"checkStatus(diseaseForm.$valid)\" ng-disabled=\"diseaseForm.$invalid\" ng-click=\"updateDisease()\">Update</button>\r\n\t\t\t\t\t<button class=\"outline delete_btn\" ng-click=\"delete()\">Archive</button>\r\n\t\t\t\t</div>\r\n\t\t\t\r\n\t\t\t\t<div class=\"col col-md-4\">\r\n\t\t\t\t\t<label class=\"subtitle\">Symptoms</label>\r\n\t\t\t\t\t<input type=\"text\" placeholder=\"Search Symptom\" ng-model=\"searchFilterSymp\">\r\n\t\t\t\t\t<div class=\"borders\">\r\n\t\t\t\t\t\t<div class=\"scrollable\">\r\n\t\t\t\t\t\t\t<div ng-repeat=\"option in symptomList | filter: {'name' : searchFilterSymp} | orderBy:['-val','name']\">\r\n\t\t\t\t\t\t\t\t<input type=\"checkbox\" ng-model=\"option.val\" ng-change=\"addRemoveSymptom(symptomList | filter: {val: true} | orderBy : 'name')\" ng-required=\"!disease.symptomId.length\"><span class=\"checkboxText\">{{ option.name[0].toUpperCase() + option.name.substr(1) }}</span><br>\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\r\n\t\t\t\t</div>\r\n\t\t\t\t<div class=\"col col-md-4\">\r\n\t\t\t\t\t<label class=\"subtitle\">Medicines</label>\r\n\t\t\t\t\t<input type=\"text\" placeholder=\"Search Medicine\" ng-model=\"searchFilterMed\">\r\n\t\t\t\t\t<div class=\"borders\">\r\n\t\t\t\t\t\t<div class=\"scrollable\">\r\n\t\t\t\t\t\t\t<div ng-repeat=\"optionmed in medicineList | filter: {'name' : searchFilterMed} | orderBy:['-val','name']\">\r\n\t\t\t\t\t\t\t\t<input type=\"checkbox\" ng-model=\"optionmed.val\" ng-change=\"addRemoveMedicine(medicineList | filter: {val: true}| orderBy:'name')\" ng-required=\"!disease.medicineId.length\"><span class=\"checkboxText\">{{ optionmed.name[0].toUpperCase() + optionmed.name.substr(1) }}</span><br>\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t</div>\r\n\t\t\t</ng-form>\r\n\t\t</div>\r\n\t</div>\r\n\r\n\t<div class=\"row\">\r\n\t\t\r\n\t\t<div class=\"col-md-10 col-md-offset-1\">\r\n\t\t\t\t<div class=\"col col-md-4 col-md-offset-4\">\r\n\t\t\t\t<div class=\" col-md-12 borders\" ng-show=\"showAdd\">\r\n\t\t\t\t\t\t<ng-form name=\"saveSympForm\">\r\n\t\t\t\t\t\t\t<input type=\"text\" ng-model=\"addSymptom\" ng-required=\"true\" placeholder=\"Symptom Name\">\r\n\t\t\t\t\t\t\t<button ng-click=\"saveSymptom()\" ng-class=\"checkStatus(saveSympForm.$valid)\" ng-disabled=\"saveSympForm.$invalid\" type=\"submit\">Add</button>\r\n\t\t\t\t\t\t\t<button ng-click=\"showAdd = !showAdd\">Close</button>\r\n\t\t\t\t\t\t</ng-form>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t\t\r\n\t\t\t\t\t<button ng-hide=\"showAdd\" ng-click=\"showAdd = !showAdd\" type=\"submit\">Add New Symptom</button>\r\n\t\t\t\t</div>\r\n\t\t</div>\r\n\t</div>\r\n</div>";
 
 /***/ }),
 /* 59 */
@@ -39575,6 +39575,10 @@ angular.module('hplus.modules.editdisease')
       $scope.addRemoveMedicine = function(hold){
     	  $scope.disease.medicineId = hold;
       };
+
+      $scope.delete = function() {
+        diseaseFactory.deleteDisease($scope.disease);
+      }
     }
   );
   
@@ -39891,7 +39895,7 @@ angular.module('hplus.modules.explorediseases', [])
 /* 70 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\r\n  <div class=\"col col-md-8 col-md-offset-1\">\r\n    <h1>List of All Diseases</h1>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row\" ng-controller=\"ExploreDiseasesController\">\r\n  <div class=\"col col-md-2 col-md-offset-1\">\r\n    <div class=\"row\">\r\n      <div class=\"col col-md-6\">\r\n        <span class=\"subtitle\">Search</span>\r\n      </div>\r\n    </div>\r\n\t\r\n    <div class=\"match-padding\">\r\n      <input type=\"text\" placeholder=\"Enter a keyword\" ng-model=\"searchFilter\">\r\n    </div>\r\n  </div>\r\n\r\n  <div class=\"col col-md-8\">\r\n    <div> \r\n      <div class=\"col col-md-12 marginBottom\">\r\n        <span class=\"subtitle\"><span ng-hide=\"searchFilter == ''\">{{(diseases | filter : searchFilter).length}}</span><span ng-hide=\"searchFilter != ''\">All</span> Results<span ng-hide=\"searchFilter != ''\"> - {{diseases.length}}</span></span>\r\n        <hplus-explore-diseases-card dir-paginate=\"dis in diseases | filter : searchFilter | itemsPerPage : 10 | orderBy : 'name'\" data=\"dis\"></hplus-explore-diseases-card>\r\n        <dir-pagination-controls max-size=\"5\"></dir-pagination-controls>\r\n\t    </div>\r\n    </div>\r\n  </div>\r\n</div>";
+module.exports = "<div class=\"row\">\r\n  <div class=\"col col-md-8 col-md-offset-1\">\r\n    <h1>List of All Diseases</h1>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row\" ng-controller=\"ExploreDiseasesController\">\r\n  <div class=\"col col-md-2 col-md-offset-1\">\r\n    <div class=\"row\">\r\n      <div class=\"col col-md-6\">\r\n        <span class=\"subtitle\">Search</span>\r\n      </div>\r\n    </div>\r\n\t\r\n    <div class=\"match-padding\">\r\n      <input type=\"text\" placeholder=\"Enter a keyword\" ng-model=\"query\">\r\n      <button ng-click=\"go('/admin/register/disease')\">New Disease</button>\r\n    </div>\r\n  </div>\r\n\r\n  <div class=\"col col-md-8\">\r\n    <div> \r\n      <div class=\"col col-md-12 marginBottom\">\r\n        <span class=\"subtitle\"><span ng-hide=\"query == ''\">{{(diseases | filter : searchFilter).length}}</span><span ng-hide=\"query != ''\">All {{(diseases | filter : searchFilter).length}}</span> Results<span ng-hide=\"query != ''\"></span></span>\r\n        <hplus-explore-diseases-card dir-paginate=\"dis in diseases | filter : searchFilter | itemsPerPage : 10 | orderBy : 'name'\" data=\"dis\"></hplus-explore-diseases-card>\r\n        <dir-pagination-controls max-size=\"5\"></dir-pagination-controls>\r\n\t    </div>\r\n    </div>\r\n  </div>\r\n</div>";
 
 /***/ }),
 /* 71 */
@@ -39914,7 +39918,7 @@ angular.module('hplus.modules.explorediseases')
 /* 72 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"margins\">\r\n  <div class=\"card__container\" ng-controller=\"CardController\">\r\n    <div class=\"card__title\">\r\n      {{data.name}}\r\n      \r\n      <a ng-click=\"go('/admin/view/disease', data); $event.stopPropagation();\">\r\n      <span class=\"delete__icon\">\r\n        <i class=\"fa fa-eye\" aria-hidden=\"true\"></i>\r\n      </span>\r\n    </a>\r\n    <a ng-click=\"go('/admin/update/disease', data); $event.stopPropagation();\">\r\n      <span class=\"delete__icon\">\r\n        <i class=\"fa fa-pencil-square-o\" aria-hidden=\"true\"></i>\r\n      </span>\r\n    </a>\r\n    <a ng-click=\"delete(data); $event.stopPropagation();\">\r\n      <span class=\"delete__icon\">\r\n        <i class=\"fa fa-archive\" aria-hidden=\"true\"></i>\r\n      </span>\r\n    </a>\r\n    \r\n    </div>\r\n    \r\n    <div class=\"card__desc\">\r\n      Symptoms: <span ng-repeat=\"symp in data.symp\"><span ng-hide=\"$first\">,&nbsp;</span>{{symp}}</span>.\r\n    </div>\r\n  </div>\r\n</div>";
+module.exports = "<div class=\"margins\">\r\n  <div class=\"card__container\" ng-controller=\"CardController\">\r\n    <div class=\"card__title\">\r\n      {{ data.name[0].toUpperCase() + data.name.substr(1) }}\r\n      \r\n      <a ng-click=\"go('/admin/view/disease', data); $event.stopPropagation();\">\r\n      <span class=\"delete__icon\">\r\n        <i class=\"fa fa-eye\" aria-hidden=\"true\"></i>\r\n      </span>\r\n    </a>\r\n    <a ng-click=\"go('/admin/update/disease', data); $event.stopPropagation();\">\r\n      <span class=\"delete__icon\">\r\n        <i class=\"fa fa-pencil-square-o\" aria-hidden=\"true\"></i>\r\n      </span>\r\n    </a>\r\n    <a ng-click=\"delete(data); $event.stopPropagation();\">\r\n      <span class=\"delete__icon\">\r\n        <i class=\"fa fa-archive\" aria-hidden=\"true\"></i>\r\n      </span>\r\n    </a>\r\n    \r\n    </div>\r\n    \r\n    <div class=\"card__desc\">\r\n      Symptoms: <span ng-repeat=\"symp in data.symp\"><span ng-hide=\"$first\">,&nbsp;</span>{{ symp }}</span>.\r\n    </div>\r\n  </div>\r\n</div>";
 
 /***/ }),
 /* 73 */
@@ -39935,22 +39939,9 @@ angular.module('hplus.modules.explorediseases')
         globalFactory.go(path);
       };
      
-      $scope.searchFilter = "";
+      $scope.query = "";
       
-      $scope.diseases=[
-        {
-          "name" : "Tuberculosis",
-          "symp" : ["Fever","chills","night sweats","loss of appetite","weight loss and fatigue"]
-        },
-        {
-        	"name" : "Pneumonia",
-            "symp" : ["Cough","fever","shaking chills","shortness of breath","chest pain"]
-        }
-      ];
-      
-      
-      
-      var populate = function(){
+      var populate = function() {
         diseaseFactory.getListOfDiseases().then(function(response){
           console.log(response); 
           
@@ -39959,46 +39950,44 @@ angular.module('hplus.modules.explorediseases')
           
           symptomFactory.getListOfSymptoms().then(function(response){
             var symptomList = response.data.symptoms;
-            console.log(symptomList);
-            
+          
             symptomList.sort(function(a, b){return a.id - b.id});
-            
+
             $scope.diseases.forEach(function(dis){
               dis.symp = [];              
               dis.symptomId.sort(function(a, b){return a - b});
-              var i,j;
-              
-              console.log("Sorted "+dis.symptomId);
+              var i, j;
               
               for(i = j = 0; i < dis.symptomId.length && j < symptomList.length;){
-            	  console.log("compare "+dis.symptomId[i]+" TO "+symptomList[j].id +" IS ");
-                if(dis.symptomId[i] == symptomList[j].id){
-                  dis.symp.push(symptomList[j].name); 
+                if(dis.symptomId[i] == symptomList[j].id) {
+                  dis.symp.push(symptomList[j].name[0].toUpperCase() + symptomList[j].name.substr(1)); 
                   i++; j++;
-                }else{
+                } else {
                 	(dis.symptomId[i] < symptomList[j].id)? i++ : j++;
                 }
               }
-              
-            });
-            },function(){});
-        },function(){});
-          
-//          $scope.diseases.forEach(function(dis){
-//            var hold = dis.symptomId;
-//            
-//            symptomFactory.getListOfSymptomsID(data).then(function(response){
-//              console.log("symptomIDList: "+response.data.symptomIdList);
-//              dis.symp = response.data.symptomIdList;
-//            },function(){});
-//            
-//          });
-//        }, function(response){
-//          console.log(response.statusText);
-//        });
-      }
         
+            });
+            console.log($scope.diseases);
+          });
+        });
+      };
+
       populate();
+    
+      $scope.searchFilter = function(disease){
+        var retVal;
+
+        if(!$scope.query 
+        || (disease.name.toLowerCase().indexOf($scope.query) != -1)){
+          retVal = true;
+        } else {
+          retVal = false;
+        }
+
+        return retVal;
+      };
+    
     }
   );
 
@@ -40026,7 +40015,7 @@ angular.module('hplus.modules.exploredoctors', [])
 /* 75 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\"><!-- Header Portion -->\r\n  <div class=\"col col-md-10 col-md-offset-1\">\r\n    <h1>List of All Doctors</h1><!-- Header Name for this Module -->\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row\" ng-controller=\"ExploreDoctorsController\"><!-- Body Portion -->\r\n  <div class=\"col col-md-2 col-md-offset-1\"><!-- Section for search -->\r\n    <div class=\"row\">\r\n\t  <div class=\"col col-md-12\">\r\n\t    <label class=\"subtitle\">Search</label>\r\n\t    <input type=\"text\" placeholder=\"Enter a name or specialty\" ng-model=\"query\">\r\n      <button ng-click=\"go('/admin/register/doctor')\">New Doctor</button>\r\n\t  </div>\r\n\t</div>\r\n\r\n  </div>\r\n  \r\n  <div class=\"col col-md-8\"><!-- Section containing the tabulated list of doctors -->\r\n    <div class=\"col col-md-12\">\r\n\t\t\t<span class=\"subtitle\"><span ng-hide=\"query == ''\">{{(doctorList | filter : query).length}}</span><span ng-hide=\"query != ''\">All</span> Results</span>\r\n\t\t\t<div class=\"margins\">\r\n        <!-- List Section -->\r\n        <label class=\"subtitle\" ng-hide=\"doctorList.length\">There are no doctors to display</label>\r\n\t\t\t\t<hplus-explore-doctors-card ng-show=\"doctorList.length\" dir-paginate=\"doctor in filtered = (doctorList | filter:searchFilter | itemsPerPage:5  | orderBy : ['lastname','firstname'])\" data=\"doctor\"></hplus-explore-doctors-card>\r\n\t\t\t\t<dir-pagination-controls max-size=\"5\"></dir-pagination-controls>\r\n\t\t  </div>\r\n    </div>\r\n  </div>\r\n</div>";
+module.exports = "<div class=\"row\"><!-- Header Portion -->\r\n  <div class=\"col col-md-10 col-md-offset-1\">\r\n    <h1>List of All Doctors</h1><!-- Header Name for this Module -->\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row\" ng-controller=\"ExploreDoctorsController\"><!-- Body Portion -->\r\n  <div class=\"col col-md-2 col-md-offset-1\"><!-- Section for search -->\r\n\r\n    <div class=\"row\">\r\n\t    <div class=\"col col-md-12\">\r\n\t      <label class=\"subtitle\">Search</label>\r\n\t      <input type=\"text\" placeholder=\"Enter a name or specialty\" ng-model=\"query\">\r\n        <button ng-click=\"go('/admin/register/doctor')\">New Doctor</button>\r\n\t    </div>\r\n\t  </div>\r\n\r\n  </div>\r\n  \r\n  <div class=\"col col-md-8\"><!-- Section containing the tabulated list of doctors -->\r\n    <div class=\"col col-md-12\">\r\n\t\t\t<span class=\"subtitle\"><span ng-hide=\"query == ''\">{{(doctorList | filter : searchFilter).length}}</span><span ng-hide=\"query != ''\">All {{(doctorList | filter : searchFilter).length}}</span> Results</span>\r\n\t\t\t<div class=\"margins\">\r\n        <!-- List Section -->\r\n        <label class=\"subtitle\" ng-hide=\"doctorList.length\">There are no doctors to display</label>\r\n\t\t\t\t<hplus-explore-doctors-card ng-show=\"doctorList.length\" dir-paginate=\"doctor in filtered = (doctorList | filter:searchFilter | itemsPerPage:10  | orderBy : ['lastname','firstname'])\" data=\"doctor\"></hplus-explore-doctors-card>\r\n\t\t\t\t<dir-pagination-controls max-size=\"5\"></dir-pagination-controls>\r\n\t\t  </div>\r\n    </div>\r\n  </div>\r\n</div>";
 
 /***/ }),
 /* 76 */
@@ -40102,17 +40091,7 @@ angular.module('hplus.modules.exploredoctors')
         } else {
           return false;
         }
-      }
-
-      // modalFactory.setContents({
-      //   type: "confirm",
-      //   title: "Totally save changes",
-      //   description: "Are you sure you want to save changes?",
-      //   negativeButton: "No",
-      //   positiveButton: "Yes",
-      //   isVisible: true,
-      //   data: null
-      // });
+      };
     }
   );
 
@@ -40158,7 +40137,7 @@ angular.module('hplus.modules.exploremedicines', [])
 /* 81 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\"><!-- Header Portion -->\r\n  <div class=\"col col-md-10 col-md-offset-1\">\r\n    <h1>List of All Medicines</h1><!-- Header Name for this Module -->\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row\" ng-controller=\"ExploreMedicinesController\"><!-- Body Portion -->\r\n  <div class=\"col col-md-2 col-md-offset-1\"><!-- Section for search -->\r\n\t\t<div class=\"row\">\r\n\t\t  <div class=\"col col-md-6\">\r\n\t\t\t<label class=\"subtitle\">Search</label>\r\n\t\t  </div>\r\n\t\t</div>\r\n\t\r\n\t\t<div class=\"match-padding\">\r\n\t\t  <input type=\"text\" placeholder=\"Enter a name\" ng-model=\"searchFilter\">\r\n\t\t  <button ng-click=\"go('/admin/register/medicine')\">New Medicine</button>\r\n\t\t</div>\r\n  </div>\r\n\r\n  <div class=\"col col-md-8\"><!-- Section containing the list and detail of medicines -->\r\n    <div class=\"col col-md-6\"><!-- List sector -->\r\n\t\t  <span class=\"subtitle\"><span ng-hide=\"searchFilter == ''\">{{(medicineList | filter : {'name' : searchFilter}).length}}</span><span ng-hide=\"searchFilter != ''\">All</span> Results<span ng-hide=\"searchFilter != ''\"> - {{medicineList.length}}</span></span>\r\n\t\t  \r\n\t\t  <div class=\"margins\" >\r\n\t\t    <hplus-explore-medicines-card dir-paginate=\"med in medicineList | filter: {'name' : searchFilter} | itemsPerPage:10  | orderBy : 'name'\" data=\"med\" ng-click=\"setSelected(med)\" ng-class=\"{'selectedCard__container': med == selectedMedicine}\"></hplus-explore-medicines-card>       \r\n      </div>\r\n      <div class=\"col-md-12\">\r\n      <!-- Pagination Section -->\r\n      <dir-pagination-controls max-size=\"5\"></dir-pagination-controls>\r\n      </div>\r\n    </div>\r\n    \r\n   \t<div class=\"col col-md-6\"><!-- Detail Sector -->\r\n\t\t  <hplus-selected-medicine-card data=\"selectedMedicine\" ng-show=\"selectedMedicine\"></hplus-selected-medicine-card>\r\n\t\t</div>\r\n\r\n  </div>\r\n</div>\r\n\r\n";
+module.exports = "<div class=\"row\"><!-- Header Portion -->\r\n  <div class=\"col col-md-10 col-md-offset-1\">\r\n    <h1>List of All Medicines</h1><!-- Header Name for this Module -->\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row\" ng-controller=\"ExploreMedicinesController\"><!-- Body Portion -->\r\n  <div class=\"col col-md-2 col-md-offset-1\"><!-- Section for search -->\r\n\t\t<div class=\"row\">\r\n\t\t  <div class=\"col col-md-6\">\r\n\t\t\t<label class=\"subtitle\">Search</label>\r\n\t\t  </div>\r\n\t\t</div>\r\n\t\r\n\t\t<div class=\"match-padding\">\r\n\t\t  <input type=\"text\" placeholder=\"Enter a name\" ng-model=\"query\">\r\n\t\t  <button ng-click=\"go('/admin/register/medicine')\">New Medicine</button>\r\n\t\t</div>\r\n  </div>\r\n\r\n  <div class=\"col col-md-8\"><!-- Section containing the list and detail of medicines -->\r\n    <div class=\"col col-md-6\"><!-- List sector -->\r\n\t\t  <span class=\"subtitle\"><span ng-hide=\"query == ''\">{{(medicineList | filter : searchFilter).length }}</span><span ng-hide=\"query != ''\">All {{(medicineList | filter : searchFilter).length }}</span> Results<span ng-hide=\"searchFilter != ''\"></span></span>\r\n\t\t  \r\n\t\t  <div class=\"margins\" >\r\n\t\t    <hplus-explore-medicines-card dir-paginate=\"med in medicineList | filter: searchFilter | itemsPerPage:10  | orderBy : 'name'\" data=\"med\" ng-click=\"setSelected(med)\" ng-class=\"{'selectedCard__container': med == selectedMedicine}\"></hplus-explore-medicines-card>       \r\n      </div>\r\n      <div class=\"col-md-12\">\r\n      <!-- Pagination Section -->\r\n      <dir-pagination-controls max-size=\"5\"></dir-pagination-controls>\r\n      </div>\r\n    </div>\r\n    \r\n   \t<div class=\"col col-md-6\"><!-- Detail Sector -->\r\n\t\t  <hplus-selected-medicine-card data=\"selectedMedicine\" ng-show=\"selectedMedicine\"></hplus-selected-medicine-card>\r\n\t\t</div>\r\n\r\n  </div>\r\n</div>\r\n\r\n";
 
 /***/ }),
 /* 82 */
@@ -40192,13 +40171,13 @@ angular.module('hplus.modules.exploremedicines')
 /* 83 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"card__container\">\r\n  <div class=\"card__title\">\r\n    {{ data.name[0].toUpperCase() + data.name.substr(1) }}\r\n  </div>\r\n      \r\n  <div class=\"card__desc\">\r\n    <span ng-repeat=\"treats in data.treats\"><span ng-hide=\"$first\">,&nbsp;</span>{{ treats }}</span>\r\n  </div>\r\n</div>";
+module.exports = "<div class=\"card__container\">\r\n  <div class=\"card__title\">\r\n    {{ data.name[0].toUpperCase() + data.name.substr(1) }}\r\n  </div>\r\n      \r\n  <div class=\"card__desc\">\r\n    <span ng-repeat=\"treats in data.treats | limitTo: 3\"><span ng-hide=\"$first\">,&nbsp;</span>{{ treats }}</span>\r\n  </div>\r\n</div>";
 
 /***/ }),
 /* 84 */
 /***/ (function(module, exports) {
 
-module.exports = "<div ng-controller=\"MedicineCardController\">\r\n      <label class=\"subtitle\">DETAILS FOR {{ data.name }}</label>\r\n      <div class=\"margins\">\r\n        <!-- Detail Section -->\r\n        <div class=\"detail__container\">\r\n          <div class=\"card__title\">\r\n            {{ data.name[0].toUpperCase() + data.name.substr(1) }}\r\n          </div>\r\n      \r\n          <div class=\"detail__desc\">\r\n            <p>\r\n            {{ data.description }}\r\n            </p>\r\n          </div>\r\n          <span class=\"detail__title\">PRICE (PHP)</span>\r\n          <span class=\"detail__subtitle\">{{ data.price | currency : 'PHP '}}</span>\r\n          <br>\r\n          <br>\r\n          <span class=\"detail__title\" ng-if=\"data.treats\">TREATMENT FOR</span>\r\n          <span class=\"detail__subtitle\"><span ng-repeat=\"treats in data.treats | limitTo: 3\"><span ng-hide=\"$first\">,&nbsp;</span>{{treats}}</span></span> \r\n          <br>\r\n          <br>\r\n          <div ng-show=\"isAdmin()\"> \r\n            <button class=\"outline\" ng-click=\"go('/admin/update/medicine', data)\">Edit</button>\r\n            <button class=\"outline\" ng-click=\"delete(data)\">Delete</button>\r\n            <button class=\"outline\" ng-click=\"go('/admin/view/medicine', data)\">View</button>\r\n          </div>\r\n        </div>\r\n      </div>\r\n</div>";
+module.exports = "<div ng-controller=\"MedicineCardController\">\r\n      <label class=\"subtitle\">DETAILS FOR {{ data.name }}</label>\r\n      <div class=\"margins\">\r\n        <!-- Detail Section -->\r\n        <div class=\"detail__container\">\r\n          <div class=\"card__title\">\r\n            {{ data.name[0].toUpperCase() + data.name.substr(1) }}\r\n          </div>\r\n      \r\n          <div class=\"detail__desc\">\r\n            <p>\r\n            {{ data.description }}\r\n            </p>\r\n          </div>\r\n          <span class=\"detail__title\">PRICE (PHP)</span>\r\n          <span class=\"detail__subtitle\">{{ data.price | currency : 'PHP '}}</span>\r\n          <br>\r\n          <br>\r\n          <span class=\"detail__title\">TREATMENT FOR</span>\r\n          <span class=\"detail__subtitle\"><span ng-repeat=\"treats in data.treats\"><span ng-hide=\"$first\">,&nbsp;</span>{{ treats }}</span></span> \r\n          <br>\r\n          <br>\r\n          <div ng-show=\"isAdmin()\"> \r\n            <button class=\"outline\" ng-click=\"go('/admin/update/medicine', data)\">Edit</button>\r\n            <button class=\"outline\" ng-click=\"delete(data)\">Delete</button>\r\n            <button class=\"outline\" ng-click=\"go('/admin/view/medicine', data)\">View</button>\r\n          </div>\r\n        </div>\r\n      </div>\r\n</div>";
 
 /***/ }),
 /* 85 */
@@ -40207,10 +40186,12 @@ module.exports = "<div ng-controller=\"MedicineCardController\">\r\n      <label
 angular.module('hplus.modules.exploremedicines')
 
   .controller('ExploreMedicinesController',
-    function($scope, $location, globalFactory, doctorFactory, medicineFactory){
+    function($scope, $location, globalFactory, doctorFactory, medicineFactory, diseaseFactory){
 	  
       $scope.length = 0;
       $scope.selectedMedicine = null;
+      $scope.query = "";
+      $scope.diseaseList = [];
 
       var user = doctorFactory.getUser();
 
@@ -40218,13 +40199,43 @@ angular.module('hplus.modules.exploremedicines')
         $location.path("/");
       }
 
-      $scope.searchFilter = "";
+      $scope.searchFilter = function(medicine){
+        if(!$scope.query 
+        || (medicine.name.toLowerCase().indexOf($scope.query) != -1)){
+          return true;
+        } else {
+          return false;
+        }
+      };
       
       var populate = function(){
         medicineFactory.getListOfMedicines().then(function(response){
           console.log(response);
           $scope.medicineList = response.data.medicines;
           $scope.length = $scope.medicineList.length;
+
+          diseaseFactory.getListOfDiseases().then(function(response){
+            console.log(response);
+            $scope.diseaseList = response.data.diseases;
+            var x, y, treats, name;
+
+            for(x = 0; x < $scope.medicineList.length; x++){
+              treats = [];
+              for(y = 0; y < $scope.diseaseList.length; y++){
+                if($scope.diseaseList[y].medicineId.indexOf($scope.medicineList[x].id) != -1){
+                  name = $scope.diseaseList[y].name;
+                  treats.push(name[0].toUpperCase() + name.substr(1));
+                }
+              }
+              if(treats.length == 0){
+                treats.push("Nothing");
+              }
+              $scope.medicineList[x].treats = treats;
+            }
+            
+
+          });
+
         }, function(response){
           console.log(response);
         });
@@ -40240,86 +40251,6 @@ angular.module('hplus.modules.exploremedicines')
       $scope.setSelected = function(med){
     	  $scope.selectedMedicine = med;
       };
-      
-      $scope.medicines=[
-        {
-          name : "Metformin",
-          desc : "Insert super long desc wooo amazing woawhe",
-          price : 40000,
-          treats :["Diabetes Mellitus"],
-          id : 1
-        },
-        {
-          name : "Methadone",
-          desc : "Insert super long desc wooo amazing woawhe",
-          price : 30000,
-          treats :["Opioid dependency","chronic pain"],
-          id : 2
-        },
-        {
-          name : "Methampetamine",
-          desc : "Methamphetamine is a strong central nervous system stimulant that is mainly used as a recreational drug and less commonly as a treatment for attention deficit hyperactivity disorder and obesity.",
-          price : 24990,
-          treats :["Attention deficit hyperactivity disorder","obesity"],
-          id : 3
-        },
-        {
-          name : "Methazolamide",
-          desc : "For the sake of variety",
-          price : 30000,
-          treats :["Intraocular pressure in glaucoma"],
-          id : 4
-        },
-        {
-          name : "Shit",
-          desc : "New York can i shit, i got lots of shit to sa i got lots of shit to say oooohhhhhhhh, i cant fir mt hand inside a pringle can, i have a huge amount of trouble",
-          price : 30000,
-          treats :["Intraocular pressure in glaucoma"],
-          id : 5
-        },
-        {
-          name : "LookATALllthishands",
-          desc : "Pringle Cans. you hink you can i know u can PRINGLES listen to the people im sure 80% of your complaint letters are about the width of your cans.just. make them wider. Thatis priority numero uno. i dont go to the gym because im self conscious about my body. but im self conscious about my body cuz i dont go the gym. irony can be so painful",
-          price : 30000,
-          treats :["Chicken Burrito, BRAH"],
-          id : 6
-        },
-        {
-          name : "ItWouldntFIt",
-          desc : "Half of it half of it. i think its time that we break it down.... WAoooww. waooowwwwwwww. waaaaaooooooowwwwwwwww. buluulululul. I can sit here and preend that my biggest ropblems are pringle cans and burritos. but my bbiggetsp roblem is you. but i wanna ",
-          price : 30000,
-          treats :["Chicken Burrito, BRAH"],
-          id : 7
-        },
-        {
-          name : "Shit",
-          desc : "New York can i shit, i got lots of shit to sa i got lots of shit to say oooohhhhhhhh, i cant fir mt hand inside a pringle can, i have a huge amount of trouble",
-          price : 30000,
-          treats :["Intraocular pressure in glaucoma"],
-          id : 8
-        },
-        {
-          name : "LookATALllthishands",
-          desc : "Pringle Cans. you hink you can i know u can PRINGLES listen to the people im sure 80% of your complaint letters are about the width of your cans.just. make them wider. Thatis priority numero uno. i dont go to the gym because im self conscious about my body. but im self conscious about my body cuz i dont go the gym. irony can be so painful",
-          price : 30000,
-          treats :["Chicken Burrito, BRAH"],
-          id : 9
-        },
-        {
-          name : "ItWouldntFIt",
-          desc : "Half of it half of it. i think its time that we break it down.... WAoooww. waooowwwwwwww. waaaaaooooooowwwwwwwww. buluulululul. I can sit here and preend that my biggest ropblems are pringle cans and burritos. but my bbiggetsp roblem is you. but i wanna ",
-          price : 30000,
-          treats :["Chicken Burrito, BRAH"],
-          id : 10
-        },
-        {
-          name : "Wouldntagotthelettuce",
-          desc : "They dont need to know the half of this right now. If they still dont understand you thenee yourun it one more time AAAH",
-          price : 30000,
-          treats :["RIGHT NOW"],
-          id : 11
-        }
-      ];
     }
   );
 
@@ -40990,11 +40921,7 @@ angular.module('hplus.modules.login')
       console.log(user);
 
       if(user != null){
-        if(user.admin){
-          $location.path("/admin/list/disease");
-        } else {
-          $location.path("/admin/list/record");
-        }
+        $location.path("/admin/list/record");
       }
 
       $scope.go = function(path){
@@ -42120,12 +42047,12 @@ module.exports = "<div class=\"row\">\r\n  <div class=\"col-md-12\" align=\"righ
 angular.module('hplus.factory')
 
   .factory('diseaseFactory', 
-    function($http, modalFactory, $window, $location, globalFactory, $rootScope){
+    function($http, $rootScope, $route, modalFactory, $window, $location, globalFactory){
 
       var registerDisease = function(diseaseObject){
         $http({
           method: 'POST',
-          url: '/Disease', // Change URL here
+          url: '/Disease',
           data: diseaseObject
         }).then(function successCallback(response) {
         	console.log(response);
@@ -42159,6 +42086,11 @@ angular.module('hplus.factory')
         });
       };
 
+      var goList = function(){
+        $location.path('/admin/list/disease');
+        $route.reload();
+      };
+
       var updateDisease = function(disease){
         var modalObject;
 
@@ -42168,17 +42100,17 @@ angular.module('hplus.factory')
           data: disease
         }).then(function(response){
           console.log(response);
+          saveDisease(response.data);
           modalObject = {
             type: "notify",
             title: "Successfully Updated!",
             description: "Successfully updated disease!",
             positiveButton: "Ok",
-            isVisible: true
+            isVisible: true,
+            data: goList
           };
         
           modalFactory.setContents(modalObject);
-          saveDisease(response.data);
-          $location.path('/admin/list/disease');
         }, function(response){
           console.log(response);
           var modalObject = {
@@ -42193,53 +42125,52 @@ angular.module('hplus.factory')
         });
       };
 
-      var goList = function(){
-        $location.path('/admin/list/doctor');
-      }
-      
       var confirmDeleteDisease = function(disease){
-          $http({
-            method: "DELETE",
-            url: "/Disease",
-            data: disease
-          }).then(function successCallback(response){
-            console.log(response);
-            var modalObject = {
-              type: "notify",
-              title: "Archive Successful!",
-              description: "Successfully archived " + disease.name + "!",
-              positiveButton: "Ok",
-              isVisible: true,
-              data: goList
-            }
+        var name = disease.name[0].toUpperCase() + disease.name.substr(1);
+
+        $http({
+          method: "DELETE",
+          url: "/Disease",
+          data: disease
+        }).then(function successCallback(response){
+          console.log(response);
+          var modalObject = {
+            type: "notify",
+            title: "Archive Successful!",
+            description: "Successfully archived " + name + "!",
+            positiveButton: "Ok",
+            isVisible: true,
+            data: goList
+          };
 
             modalFactory.setContents(modalObject);
-          }, function errorCallback(response){
-            console.log(response);
-            var modalObject = {
-              type: "notify",
-              title: "Archive Failed!",
-              description: "Failed to archive " + disease.name + "!",
-              positiveButton: "Ok",
-              isVisible: true,
-              data: goList
-            }
+        }, function errorCallback(response){
+          console.log(response);
+          var modalObject = {
+            type: "notify",
+            title: "Archive Failed!",
+            description: "Unable to archive disease, a patient currently has this disease.",
+            positiveButton: "Ok",
+            isVisible: true,
+            data: goList
+          };
 
-            modalFactory.setContents(modalObject);
-          }); 
-        };
+          modalFactory.setContents(modalObject);
+        }); 
+      };
       
       var deleteDisease = function(disease){
+        var name = disease.name[0].toUpperCase() + disease.name.substr(1);
         var modalObject = {
           type: "confirm",
           title: "Archive Confirmation",
-          description: "Are you sure you want to archive " + disease.name + "?",
+          description: "Are you sure you want to archive " + name + "?",
           negativeButton: "No",
           positiveButton: "Yes",
           isVisible: true,
           data: confirmDeleteDisease,
           object: disease
-        }
+        };
 
         modalFactory.setContents(modalObject);
       };

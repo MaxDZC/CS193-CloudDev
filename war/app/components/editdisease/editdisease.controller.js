@@ -150,6 +150,10 @@ angular.module('hplus.modules.editdisease')
       $scope.addRemoveMedicine = function(hold){
     	  $scope.disease.medicineId = hold;
       };
+
+      $scope.delete = function() {
+        diseaseFactory.deleteDisease($scope.disease);
+      }
     }
   );
   
