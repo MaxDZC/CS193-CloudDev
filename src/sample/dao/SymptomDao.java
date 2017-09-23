@@ -1,6 +1,7 @@
 package sample.dao;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.slim3.datastore.Datastore;
@@ -130,6 +131,38 @@ public class SymptomDao{
                 .asSingle();
         
         return (checker == null);
+    }
+    
+    public void cleanUp(){
+        System.out.println("SymptomDao.cleanUp start");
+        
+        List<SymptomModel> symptoms = this.getAllSymp();
+        List<Long> checkIds;
+        List<DiseaseModel> diseaseModels;
+        Transaction tx;
+        
+        for(SymptomModel symptom : symptoms){
+            checkIds = new ArrayList<Long>();
+            
+            checkIds.add(symptom.getId());
+            
+            diseaseModels = Datastore.query(DiseaseModel.class)
+                        .filter("symptomId", FilterOperator.IN, checkIds)
+                        .filter("deletedAt", FilterOperator.EQUAL, null)
+                    .asList();
+            
+            if(diseaseModels.size() == 0){
+                symptom.setDeletedAt(new Date());
+                
+                tx = Datastore.beginTransaction();
+                Datastore.put(symptom);
+                tx.commit();
+                
+                System.out.println("Cleaned" + symptom.getName());
+            }
+        }
+        
+        System.out.println("SymptomDao.cleanUp end");
     }
     
 }

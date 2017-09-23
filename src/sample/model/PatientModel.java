@@ -37,11 +37,11 @@ public class PatientModel implements Serializable {
     }
     
     public PatientModel(PatientDto inputPatient){
-        this.setFirstname(inputPatient.getFirstName());
-        this.setLastname(inputPatient.getLastName());
-        this.setAddress(inputPatient.getAddress());
+        this.setFirstname(processName(inputPatient.getFirstname()));
+        this.setLastname(processName(inputPatient.getLastname()));
+        this.setAddress(processName(inputPatient.getAddress()));
         this.setBirthday(inputPatient.getBirthday());
-        this.setContactNo(inputPatient.getContactNumber());
+        this.setContactNo(inputPatient.getContactNo());
         this.setSex(inputPatient.isSex());
         this.setCreatedAt(inputPatient.getCreatedAt());
         this.setDeletedAt(inputPatient.getDeletedAt());
@@ -140,12 +140,6 @@ public class PatientModel implements Serializable {
     public static long getSerialversionuid() {
         return serialVersionUID;
     }
-
-    
-    /**
-     * Creates an instance of 'Patient' with attribute initialization
-     */
-    
     
     /**
      * Returns the key.
@@ -234,4 +228,22 @@ public class PatientModel implements Serializable {
         this.id = id;
     }
     
+    public static String processName(String name){
+        String retName;
+        String[] names;
+        int i;
+        
+        names = name.split(" ");
+        retName = "";
+        
+        for(i = 0; i < names.length; i++){
+            names[i] = Character.toUpperCase(names[i].charAt(0)) + names[i].substring(1).toLowerCase();
+            retName += names[i];
+            if(i + 1 != names.length){
+                retName += " ";
+            }
+        }
+        
+        return retName;     
+    }
 }

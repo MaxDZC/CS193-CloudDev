@@ -3,7 +3,7 @@
 	  <div class="col col-md-8 col-md-offset-1">
 	    <h1>
 	      <i class="fa fa-thermometer-full"></i>
-	      Gingivitis
+	      {{ disease.name[0].toUpperCase() + disease.name.substr(1) }}
 	    </h1>
 	  </div>
 	</div>
@@ -16,42 +16,14 @@
 	      </span>
 	      <div class="subtitle__value">
 	        <div class="row card__container--flex">
-	          <div class="card__container--medium">
+
+	          <div class="card__container--medium" ng-repeat="symptom in disease.symp">
 	            <div class="card__desc--medium">
-	              swollen gums
+	              {{ symptom }}
 	            </div>
 	          </div>
-	
-	          <div class="card__container--medium">
-	            <div class="card__desc--medium">
-	              bright red gums
-	            </div>
-	          </div>
-	
-	          <div class="card__container--medium">
-	            <div class="card__desc--medium">
-	              bright purple gums
-	            </div>
-	          </div>
-	
-	          <div class="card__container--medium">
-	            <div class="card__desc--medium">
-	              tender gums
-	            </div>
-	          </div>
-	
-	          <div class="card__container--medium">
-	            <div class="card__desc--medium">
-	             bleeding gums  
-	            </div>
-	          </div>
-	
-	          <div class="card__container--medium">
-	            <div class="card__desc--medium">
-	              bad breath
-	            </div>
-	          </div>
-	        </div>
+					
+					</div>
 	      </div>
 	      <br>
 	      <span class="subtitle">
@@ -59,19 +31,13 @@
 	      </span>
 	      <br>
 	     <table>
-	        <tr>
-	          <td><span>Triclosan</span></td>
-	        </tr>
-	        <tr>
-	          <td><span>Somethig</span></td>
-	        </tr>
-	        <tr>
-	          <td><span>Somthing</span></td>
+	        <tr ng-repeat="medicine in disease.meds">
+	          <td><span>{{ medicine }}</span></td>
 	        </tr>
 	      </table>
 	      <br>
-	      <button class="outline">Edit</button>
-	      <button class="outline">Delete</button>
+	      <button class="outline" ng-click="go('/admin/update/disease')" ng-show="user.admin">Edit</button>
+	      <button class="outline" ng-click="delete()" ng-show="user.admin">Archive</button>
 	    </div>
 	  </div>
 	
@@ -83,10 +49,10 @@
 	            OCCURRENCE IN
 	          </span>
 	          <span class="subtitle subtitle--variable">
-	            June 2017
+	            {{ monthAndYear }}
 	          </span>
 	          <div class="subtitle__value">
-	            {{recordList.length}} Patients
+	            {{ recordList.length }} Patients
 	          </div>
 	        </div>
 	          
@@ -95,7 +61,7 @@
 	            OCCURRENCE IN YEAR
 	          </span>
 	          <span class="subtitle subtitle--variable">
-	            2017
+	            {{ year }}
 	          </span>
 	          <div class="subtitle__value">
 	            24 PATIENTS

@@ -3,9 +3,9 @@ angular.module('hplus.modules.explorediseases')
   .controller('ExploreDiseasesController',
     function($scope, $location, globalFactory, doctorFactory, globalFactory, modalFactory, diseaseFactory, symptomFactory){
 
-      var user = doctorFactory.getUser();
+      $scope.user = doctorFactory.getUser();
 
-      if(user == null){
+      if($scope.user == null){
         $location.path("/");
       }
 

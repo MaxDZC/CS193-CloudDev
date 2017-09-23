@@ -3,6 +3,7 @@ package sample.service;
 import java.util.ArrayList;
 
 import sample.dao.DiseaseDao;
+import sample.dao.SymptomDao;
 import sample.dto.DiseaseDto;
 import sample.model.DiseaseModel;
 
@@ -94,6 +95,10 @@ public class DiseaseService {
     }
         
     public ArrayList<DiseaseModel> getAllDisease(){
+        SymptomDao symptomDao = new SymptomDao();
+        
+        symptomDao.cleanUp();
+        
         return diseaseDao.getAllDisease();
     }
     

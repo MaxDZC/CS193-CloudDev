@@ -2,22 +2,22 @@
   <div class="card__container" ng-controller="CardController">
     <div class="card__title">
       {{ data.name[0].toUpperCase() + data.name.substr(1) }}
-      
+    
       <a ng-click="go('/admin/view/disease', data); $event.stopPropagation();">
-      <span class="delete__icon">
-        <i class="fa fa-eye" aria-hidden="true"></i>
-      </span>
-    </a>
-    <a ng-click="go('/admin/update/disease', data); $event.stopPropagation();">
-      <span class="delete__icon">
-        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-      </span>
-    </a>
-    <a ng-click="delete(data); $event.stopPropagation();">
-      <span class="delete__icon">
-        <i class="fa fa-archive" aria-hidden="true"></i>
-      </span>
-    </a>
+        <span class="delete__icon">
+          <i class="fa fa-eye" aria-hidden="true"></i>
+        </span>
+      </a>
+      <a ng-show="user.admin" ng-click="go('/admin/update/disease', data); $event.stopPropagation();">
+        <span class="delete__icon">
+          <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+        </span>
+      </a>
+      <a ng-show="user.admin" ng-click="delete(data); $event.stopPropagation();">
+        <span class="delete__icon">
+          <i class="fa fa-archive" aria-hidden="true"></i>
+        </span>
+      </a>
     
     </div>
     

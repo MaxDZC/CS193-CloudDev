@@ -49,7 +49,7 @@ public class SymptomController extends Controller {
                     message = symptomService.insertSymp(symptomDto);
                     
                     if (message) {
-                        jsonObject.put("success", true);
+                        jsonObject.put("success", message);
                     } else {
                         jsonObject.put("errors", message);
                         response.setStatus(400);
@@ -64,6 +64,7 @@ public class SymptomController extends Controller {
                 } else {
                     jsonObject.put("symptoms", SymptomService.getAllSymp());
                 }
+                
             } else if(method.equals("PUT")) {
                 jsonObject = new JSONObject(this.request.getReader().readLine());
                 validator = new JSONValidators(jsonObject);
@@ -87,14 +88,14 @@ public class SymptomController extends Controller {
                     message = symptomService.updateSymptom(symptomDto);
                     
                     if(message) {
-                        jsonObject.put("success", true);
+                        jsonObject.put("success", message);
                     } else {
                         jsonObject.put("errors", message);
                         response.setStatus(400);
                     }
                 }
                     
-            } else if(method == "DELETE"){
+            } else if(method.equals("DELETE")) {
                     
                 jsonObject = new JSONObject(this.request.getReader().readLine());
                 validator = new JSONValidators(jsonObject);
@@ -131,7 +132,7 @@ public class SymptomController extends Controller {
                     message = symptomService.deleteSymptom(symptomDto);
                     
                     if(message){
-                        jsonObject.put("success", true);
+                        jsonObject.put("success", message);
                     } else {
                         response.setStatus(400);
                         jsonObject.put("errors", message);

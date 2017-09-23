@@ -20,9 +20,9 @@
           <span class="detail__subtitle"><span ng-repeat="treats in data.treats"><span ng-hide="$first">,&nbsp;</span>{{ treats }}</span></span> 
           <br>
           <br>
-          <div ng-show="isAdmin()"> 
-            <button class="outline" ng-click="go('/admin/update/medicine', data)">Edit</button>
-            <button class="outline" ng-click="delete(data)">Delete</button>
+          <div> 
+            <button ng-show="isAdmin()" class="outline" ng-click="go('/admin/update/medicine', data)">Edit</button>
+            <button ng-show="isAdmin()" class="outline" ng-click="delete(data)">Delete</button>
             <button class="outline" ng-click="go('/admin/view/medicine', data)">View</button>
           </div>
         </div>

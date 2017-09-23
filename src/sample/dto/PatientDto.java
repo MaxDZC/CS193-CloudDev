@@ -9,38 +9,12 @@ public class PatientDto extends ErrorsDto{
      * The id of the 'Patient'
      */
     private Long id;
-    
-    /**
-     * The firstName of the 'Patient'
-     */
     private String firstname;
-    
-    /**
-     * The lastName of the 'Patient'
-     */
     private String lastname;
-    
-    /**
-     * The address of the 'Patient'
-     */
     private String address;
-    
-    /**
-     * The contactNumber of the 'Patient'
-     */
     private String contactNo;
-    
-    /**
-     * The birthDay of the 'Patient'
-     */
-    private Date birthday;
-    
+    private Date birthday;  
     private boolean sex;
-    
-    
-    /**
-     * Creates an instance of 'Patient'
-     */
     private Date createdAt;
     private Date deletedAt;
     private Date updatedAt;
@@ -49,12 +23,12 @@ public class PatientDto extends ErrorsDto{
         
     }
     
-    public PatientDto(JSONObject jObj) throws Exception{
-        this.setFirstName(jObj.getString("firstname"));
-        this.setLastName(jObj.getString("lastname"));
+    public PatientDto(JSONObject jObj) throws Exception {
+        this.setFirstname(jObj.getString("firstname"));
+        this.setLastname(jObj.getString("lastname"));
         this.setAddress(jObj.getString("address"));
+        this.setContactNo(jObj.getString("contactNo"));
         this.setSex(jObj.getBoolean("sex"));
-        this.setContactNumber(jObj.getString("contactNo"));
     }
     
     public Long getId() {
@@ -65,20 +39,20 @@ public class PatientDto extends ErrorsDto{
         this.id = id;
     }
     
-    public String getFirstName() {
+    public String getFirstname() {
         return firstname;
     }
     
-    public void setFirstName(String firstName) {
-        this.firstname = firstName;
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
     }
     
-    public String getLastName() {
+    public String getLastname() {
         return lastname;
     }
     
-    public void setLastName(String lastName) {
-        this.lastname = lastName;
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
     }
     
     public String getAddress() {
@@ -89,11 +63,11 @@ public class PatientDto extends ErrorsDto{
         this.address = address;
     }
     
-    public String getContactNumber() {
+    public String getContactNo() {
         return contactNo;
     }
     
-    public void setContactNumber(String contactNo) {
+    public void setContactNo(String contactNo) {
         this.contactNo = contactNo;
     }
     

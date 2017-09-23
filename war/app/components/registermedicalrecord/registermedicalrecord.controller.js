@@ -3,9 +3,9 @@ angular.module('hplus.modules.registermedicalrecord')
   .controller('RegisterMedicalRecordController',
     function($scope, $location, globalFactory, medicalRecordFactory, doctorFactory){
 
-      var user = doctorFactory.getUser();
+      $scope.user = doctorFactory.getUser();
 
-      if(user != null) {
+      if($scope.user != null) {
         if(user.admin){
           $location.path("/admin/list/record");
         }

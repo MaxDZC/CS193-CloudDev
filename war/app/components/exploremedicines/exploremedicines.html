@@ -14,7 +14,7 @@
 	
 		<div class="match-padding">
 		  <input type="text" placeholder="Enter a name" ng-model="query">
-		  <button ng-click="go('/admin/register/medicine')">New Medicine</button>
+		  <button ng-show="user.admin" ng-click="go('/admin/register/medicine')">New Medicine</button>
 		</div>
   </div>
 
