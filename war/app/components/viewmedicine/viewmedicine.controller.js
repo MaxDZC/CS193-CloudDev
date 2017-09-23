@@ -3,7 +3,7 @@ app = angular.module('hplus.modules.viewmedicine')
   .controller('ViewMedicineController',
     function($scope, $location, globalFactory, doctorFactory, medicineFactory){
 
-      var user = doctorFactory.getUser();
+      $scope.user = doctorFactory.getUser();
       var date = new Date();
       var monthNames = ["January", "February", "March", "April", "May", "June",
       "July", "August", "September", "October", "November", "December"];
@@ -12,7 +12,7 @@ app = angular.module('hplus.modules.viewmedicine')
       $scope.monthAndYear = monthNames[date.getMonth()].toUpperCase() + " " + date.getFullYear();
       $scope.year = date.getFullYear();
 
-      if(user == null) {
+      if($scope.user == null) {
         $location.path("/");
       }
 

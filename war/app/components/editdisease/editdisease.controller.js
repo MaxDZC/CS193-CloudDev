@@ -14,6 +14,10 @@ angular.module('hplus.modules.editdisease')
       } else {
         $location.path("/");
       }
+
+      if($scope.disease == null){
+        $location.path("/admin/list/disease");
+      }
       
       $scope.symptomsSelected = [];
       $scope.medicinesSelected = [];

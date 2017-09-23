@@ -47,7 +47,7 @@ public class SymptomService {
         symptomModel.setId(symptomDto.getId());
         
         try {
-            if(symptomDao.checkIfNameIsUsed(symptomModel)){
+            if(symptomDao.checkIfNameIsUsed(symptomModel) && symptomDao.checkIfUsed(symptomModel)){
                 resultModel = symptomDao.getSymp(symptomModel.getId());
                 
                 if (resultModel != null) {

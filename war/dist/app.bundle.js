@@ -38608,7 +38608,7 @@ angular.module('hplus.modules.navbar')
 /* 44 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row navbar__background\" ng-controller=\"NavbarController\">\r\n  <div class=\"col col-md-10 col-md-offset-1\">\r\n\r\n    <div class=\"col col-md-8\">\r\n      <div ng-show=\"user == null\" ng-class=\"selected('')\" ng-click=\"go('/')\">\r\n        HealthPlus\r\n      </div>\r\n      <div ng-show=\"user != null\" ng-class=\"selected('record')\" ng-click=\"go('/admin/list/record')\">\r\n        Medical Records\r\n      </div>\r\n      <div ng-show=\"user != null\" ng-class=\"selected('disease')\" ng-click=\"go('/admin/list/disease')\">\r\n        Diseases\r\n      </div>\r\n      <div ng-show=\"user != null\" ng-class=\"selected('medicine')\" ng-click=\"go('/admin/list/medicine')\">\r\n        Medicines\r\n      </div>\r\n      <div ng-show=\"user != null && user.admin\" ng-class=\"selected('doctor')\" ng-click=\"go('/admin/list/doctor')\">\r\n        Doctors\r\n      </div>\r\n      <div ng-show=\"user != null\" ng-class=\"selected('patient')\" ng-click=\"go('/admin/list/patient')\">\r\n        Patients\r\n      </div>\r\n    </div>\r\n    <div ng-show=\"checkPage()\" class=\"col col-md-4 navbar__action-container\">\r\n      <div class=\"navbar__btn navbar__btn--action\">\r\n        <span class=\"anchor-like\" ng-click=\"go(link)\">\r\n          <i class=\"fa fa-plus-square\"></i> {{ registerButton }}\r\n        </span>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n";
+module.exports = "<div class=\"row navbar__background\" ng-controller=\"NavbarController\">\r\n  <div class=\"col col-md-10 col-md-offset-1\">\r\n\r\n    <div class=\"col col-md-8\">\r\n      <div ng-show=\"user == null\" ng-class=\"selected('')\" ng-click=\"go('/')\">\r\n        HealthPlus\r\n      </div>\r\n      <div ng-show=\"user != null\" ng-class=\"selected('record')\" ng-click=\"go('/admin/list/record')\">\r\n        Medical Records\r\n      </div>\r\n      <div ng-show=\"user != null\" ng-class=\"selected('patient')\" ng-click=\"go('/admin/list/patient')\">\r\n        Patients\r\n      </div>\r\n      <div ng-show=\"user != null && user.admin\" ng-class=\"selected('doctor')\" ng-click=\"go('/admin/list/doctor')\">\r\n        Doctors\r\n      </div>\r\n      <div ng-show=\"user != null\" ng-class=\"selected('medicine')\" ng-click=\"go('/admin/list/medicine')\">\r\n        Medicines\r\n      </div>\r\n      <div ng-show=\"user != null\" ng-class=\"selected('disease')\" ng-click=\"go('/admin/list/disease')\">\r\n        Diseases\r\n      </div>\r\n    </div>\r\n    <div ng-show=\"checkPage()\" class=\"col col-md-4 navbar__action-container\">\r\n      <div class=\"navbar__btn navbar__btn--action\">\r\n        <span class=\"anchor-like\" ng-click=\"go(link)\">\r\n          <i class=\"fa fa-plus-square\"></i> {{ registerButton }}\r\n        </span>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n";
 
 /***/ }),
 /* 45 */
@@ -39439,6 +39439,10 @@ angular.module('hplus.modules.editdisease')
       } else {
         $location.path("/");
       }
+
+      if($scope.disease == null){
+        $location.path("/admin/list/disease");
+      }
       
       $scope.symptomsSelected = [];
       $scope.medicinesSelected = [];
@@ -39618,6 +39622,7 @@ angular.module('hplus.modules.editdoctor')
       $scope.contactNoRegex = "\\d{6,}"
 
       var user = doctorFactory.getUser();
+      var modalObject = null;
 
       if(user == null){
         $location.path("/");
@@ -39628,7 +39633,6 @@ angular.module('hplus.modules.editdoctor')
           $scope.doctorData = user;
         }
       }
-      var modalObject = null;
 
       if($scope.doctorData == null){
         $location.path('/admin/list/doctor');
@@ -39826,9 +39830,9 @@ angular.module('hplus.modules.registermedicalrecord')
   .controller('RegisterMedicalRecordController',
     function($scope, $location, globalFactory, medicalRecordFactory, doctorFactory){
 
-      var user = doctorFactory.getUser();
+      $scope.user = doctorFactory.getUser();
 
-      if(user != null) {
+      if($scope.user != null) {
         if(user.admin){
           $location.path("/admin/list/record");
         }
@@ -39895,7 +39899,7 @@ angular.module('hplus.modules.explorediseases', [])
 /* 70 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\r\n  <div class=\"col col-md-8 col-md-offset-1\">\r\n    <h1>List of All Diseases</h1>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row\" ng-controller=\"ExploreDiseasesController\">\r\n  <div class=\"col col-md-2 col-md-offset-1\">\r\n    <div class=\"row\">\r\n      <div class=\"col col-md-6\">\r\n        <span class=\"subtitle\">Search</span>\r\n      </div>\r\n    </div>\r\n\t\r\n    <div class=\"match-padding\">\r\n      <input type=\"text\" placeholder=\"Enter a keyword\" ng-model=\"query\">\r\n      <button ng-click=\"go('/admin/register/disease')\">New Disease</button>\r\n    </div>\r\n  </div>\r\n\r\n  <div class=\"col col-md-8\">\r\n    <div> \r\n      <div class=\"col col-md-12 marginBottom\">\r\n        <span class=\"subtitle\"><span ng-hide=\"query == ''\">{{(diseases | filter : searchFilter).length}}</span><span ng-hide=\"query != ''\">All {{(diseases | filter : searchFilter).length}}</span> Results<span ng-hide=\"query != ''\"></span></span>\r\n        <hplus-explore-diseases-card dir-paginate=\"dis in diseases | filter : searchFilter | itemsPerPage : 10 | orderBy : 'name'\" data=\"dis\"></hplus-explore-diseases-card>\r\n        <dir-pagination-controls max-size=\"5\"></dir-pagination-controls>\r\n\t    </div>\r\n    </div>\r\n  </div>\r\n</div>";
+module.exports = "<div class=\"row\">\r\n  <div class=\"col col-md-8 col-md-offset-1\">\r\n    <h1>List of All Diseases</h1>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row\" ng-controller=\"ExploreDiseasesController\">\r\n  <div class=\"col col-md-2 col-md-offset-1\">\r\n    <div class=\"row\">\r\n      <div class=\"col col-md-6\">\r\n        <span class=\"subtitle\">Search</span>\r\n      </div>\r\n    </div>\r\n\t\r\n    <div class=\"match-padding\">\r\n      <input type=\"text\" placeholder=\"Enter a keyword\" ng-model=\"query\">\r\n      <button ng-show=\"user.admin\" ng-click=\"go('/admin/register/disease')\">New Disease</button>\r\n    </div>\r\n  </div>\r\n\r\n  <div class=\"col col-md-8\">\r\n    <div> \r\n      <div class=\"col col-md-12 marginBottom\">\r\n        <span class=\"subtitle\"><span ng-hide=\"query == ''\">{{(diseases | filter : searchFilter).length}}</span><span ng-hide=\"query != ''\">All {{(diseases | filter : searchFilter).length}}</span> Results<span ng-hide=\"query != ''\"></span></span>\r\n        <hplus-explore-diseases-card dir-paginate=\"dis in diseases | filter : searchFilter | itemsPerPage : 10 | orderBy : 'name'\" data=\"dis\"></hplus-explore-diseases-card>\r\n        <dir-pagination-controls max-size=\"5\"></dir-pagination-controls>\r\n\t    </div>\r\n    </div>\r\n  </div>\r\n</div>";
 
 /***/ }),
 /* 71 */
@@ -39918,7 +39922,7 @@ angular.module('hplus.modules.explorediseases')
 /* 72 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"margins\">\r\n  <div class=\"card__container\" ng-controller=\"CardController\">\r\n    <div class=\"card__title\">\r\n      {{ data.name[0].toUpperCase() + data.name.substr(1) }}\r\n      \r\n      <a ng-click=\"go('/admin/view/disease', data); $event.stopPropagation();\">\r\n      <span class=\"delete__icon\">\r\n        <i class=\"fa fa-eye\" aria-hidden=\"true\"></i>\r\n      </span>\r\n    </a>\r\n    <a ng-click=\"go('/admin/update/disease', data); $event.stopPropagation();\">\r\n      <span class=\"delete__icon\">\r\n        <i class=\"fa fa-pencil-square-o\" aria-hidden=\"true\"></i>\r\n      </span>\r\n    </a>\r\n    <a ng-click=\"delete(data); $event.stopPropagation();\">\r\n      <span class=\"delete__icon\">\r\n        <i class=\"fa fa-archive\" aria-hidden=\"true\"></i>\r\n      </span>\r\n    </a>\r\n    \r\n    </div>\r\n    \r\n    <div class=\"card__desc\">\r\n      Symptoms: <span ng-repeat=\"symp in data.symp\"><span ng-hide=\"$first\">,&nbsp;</span>{{ symp }}</span>.\r\n    </div>\r\n  </div>\r\n</div>";
+module.exports = "<div class=\"margins\">\r\n  <div class=\"card__container\" ng-controller=\"CardController\">\r\n    <div class=\"card__title\">\r\n      {{ data.name[0].toUpperCase() + data.name.substr(1) }}\r\n    \r\n      <a ng-click=\"go('/admin/view/disease', data); $event.stopPropagation();\">\r\n        <span class=\"delete__icon\">\r\n          <i class=\"fa fa-eye\" aria-hidden=\"true\"></i>\r\n        </span>\r\n      </a>\r\n      <a ng-show=\"user.admin\" ng-click=\"go('/admin/update/disease', data); $event.stopPropagation();\">\r\n        <span class=\"delete__icon\">\r\n          <i class=\"fa fa-pencil-square-o\" aria-hidden=\"true\"></i>\r\n        </span>\r\n      </a>\r\n      <a ng-show=\"user.admin\" ng-click=\"delete(data); $event.stopPropagation();\">\r\n        <span class=\"delete__icon\">\r\n          <i class=\"fa fa-archive\" aria-hidden=\"true\"></i>\r\n        </span>\r\n      </a>\r\n    \r\n    </div>\r\n    \r\n    <div class=\"card__desc\">\r\n      Symptoms: <span ng-repeat=\"symp in data.symp\"><span ng-hide=\"$first\">,&nbsp;</span>{{ symp }}</span>.\r\n    </div>\r\n  </div>\r\n</div>";
 
 /***/ }),
 /* 73 */
@@ -39929,9 +39933,9 @@ angular.module('hplus.modules.explorediseases')
   .controller('ExploreDiseasesController',
     function($scope, $location, globalFactory, doctorFactory, globalFactory, modalFactory, diseaseFactory, symptomFactory){
 
-      var user = doctorFactory.getUser();
+      $scope.user = doctorFactory.getUser();
 
-      if(user == null){
+      if($scope.user == null){
         $location.path("/");
       }
 
@@ -40137,7 +40141,7 @@ angular.module('hplus.modules.exploremedicines', [])
 /* 81 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\"><!-- Header Portion -->\r\n  <div class=\"col col-md-10 col-md-offset-1\">\r\n    <h1>List of All Medicines</h1><!-- Header Name for this Module -->\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row\" ng-controller=\"ExploreMedicinesController\"><!-- Body Portion -->\r\n  <div class=\"col col-md-2 col-md-offset-1\"><!-- Section for search -->\r\n\t\t<div class=\"row\">\r\n\t\t  <div class=\"col col-md-6\">\r\n\t\t\t<label class=\"subtitle\">Search</label>\r\n\t\t  </div>\r\n\t\t</div>\r\n\t\r\n\t\t<div class=\"match-padding\">\r\n\t\t  <input type=\"text\" placeholder=\"Enter a name\" ng-model=\"query\">\r\n\t\t  <button ng-click=\"go('/admin/register/medicine')\">New Medicine</button>\r\n\t\t</div>\r\n  </div>\r\n\r\n  <div class=\"col col-md-8\"><!-- Section containing the list and detail of medicines -->\r\n    <div class=\"col col-md-6\"><!-- List sector -->\r\n\t\t  <span class=\"subtitle\"><span ng-hide=\"query == ''\">{{(medicineList | filter : searchFilter).length }}</span><span ng-hide=\"query != ''\">All {{(medicineList | filter : searchFilter).length }}</span> Results<span ng-hide=\"searchFilter != ''\"></span></span>\r\n\t\t  \r\n\t\t  <div class=\"margins\" >\r\n\t\t    <hplus-explore-medicines-card dir-paginate=\"med in medicineList | filter: searchFilter | itemsPerPage:10  | orderBy : 'name'\" data=\"med\" ng-click=\"setSelected(med)\" ng-class=\"{'selectedCard__container': med == selectedMedicine}\"></hplus-explore-medicines-card>       \r\n      </div>\r\n      <div class=\"col-md-12\">\r\n      <!-- Pagination Section -->\r\n      <dir-pagination-controls max-size=\"5\"></dir-pagination-controls>\r\n      </div>\r\n    </div>\r\n    \r\n   \t<div class=\"col col-md-6\"><!-- Detail Sector -->\r\n\t\t  <hplus-selected-medicine-card data=\"selectedMedicine\" ng-show=\"selectedMedicine\"></hplus-selected-medicine-card>\r\n\t\t</div>\r\n\r\n  </div>\r\n</div>\r\n\r\n";
+module.exports = "<div class=\"row\"><!-- Header Portion -->\r\n  <div class=\"col col-md-10 col-md-offset-1\">\r\n    <h1>List of All Medicines</h1><!-- Header Name for this Module -->\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row\" ng-controller=\"ExploreMedicinesController\"><!-- Body Portion -->\r\n  <div class=\"col col-md-2 col-md-offset-1\"><!-- Section for search -->\r\n\t\t<div class=\"row\">\r\n\t\t  <div class=\"col col-md-6\">\r\n\t\t\t<label class=\"subtitle\">Search</label>\r\n\t\t  </div>\r\n\t\t</div>\r\n\t\r\n\t\t<div class=\"match-padding\">\r\n\t\t  <input type=\"text\" placeholder=\"Enter a name\" ng-model=\"query\">\r\n\t\t  <button ng-show=\"user.admin\" ng-click=\"go('/admin/register/medicine')\">New Medicine</button>\r\n\t\t</div>\r\n  </div>\r\n\r\n  <div class=\"col col-md-8\"><!-- Section containing the list and detail of medicines -->\r\n    <div class=\"col col-md-6\"><!-- List sector -->\r\n\t\t  <span class=\"subtitle\"><span ng-hide=\"query == ''\">{{(medicineList | filter : searchFilter).length }}</span><span ng-hide=\"query != ''\">All {{(medicineList | filter : searchFilter).length }}</span> Results<span ng-hide=\"searchFilter != ''\"></span></span>\r\n\t\t  \r\n\t\t  <div class=\"margins\" >\r\n\t\t    <hplus-explore-medicines-card dir-paginate=\"med in medicineList | filter: searchFilter | itemsPerPage:10  | orderBy : 'name'\" data=\"med\" ng-click=\"setSelected(med)\" ng-class=\"{'selectedCard__container': med == selectedMedicine}\"></hplus-explore-medicines-card>       \r\n      </div>\r\n      <div class=\"col-md-12\">\r\n      <!-- Pagination Section -->\r\n      <dir-pagination-controls max-size=\"5\"></dir-pagination-controls>\r\n      </div>\r\n    </div>\r\n    \r\n   \t<div class=\"col col-md-6\"><!-- Detail Sector -->\r\n\t\t  <hplus-selected-medicine-card data=\"selectedMedicine\" ng-show=\"selectedMedicine\"></hplus-selected-medicine-card>\r\n\t\t</div>\r\n\r\n  </div>\r\n</div>\r\n\r\n";
 
 /***/ }),
 /* 82 */
@@ -40177,7 +40181,7 @@ module.exports = "<div class=\"card__container\">\r\n  <div class=\"card__title\
 /* 84 */
 /***/ (function(module, exports) {
 
-module.exports = "<div ng-controller=\"MedicineCardController\">\r\n      <label class=\"subtitle\">DETAILS FOR {{ data.name }}</label>\r\n      <div class=\"margins\">\r\n        <!-- Detail Section -->\r\n        <div class=\"detail__container\">\r\n          <div class=\"card__title\">\r\n            {{ data.name[0].toUpperCase() + data.name.substr(1) }}\r\n          </div>\r\n      \r\n          <div class=\"detail__desc\">\r\n            <p>\r\n            {{ data.description }}\r\n            </p>\r\n          </div>\r\n          <span class=\"detail__title\">PRICE (PHP)</span>\r\n          <span class=\"detail__subtitle\">{{ data.price | currency : 'PHP '}}</span>\r\n          <br>\r\n          <br>\r\n          <span class=\"detail__title\">TREATMENT FOR</span>\r\n          <span class=\"detail__subtitle\"><span ng-repeat=\"treats in data.treats\"><span ng-hide=\"$first\">,&nbsp;</span>{{ treats }}</span></span> \r\n          <br>\r\n          <br>\r\n          <div ng-show=\"isAdmin()\"> \r\n            <button class=\"outline\" ng-click=\"go('/admin/update/medicine', data)\">Edit</button>\r\n            <button class=\"outline\" ng-click=\"delete(data)\">Delete</button>\r\n            <button class=\"outline\" ng-click=\"go('/admin/view/medicine', data)\">View</button>\r\n          </div>\r\n        </div>\r\n      </div>\r\n</div>";
+module.exports = "<div ng-controller=\"MedicineCardController\">\r\n      <label class=\"subtitle\">DETAILS FOR {{ data.name }}</label>\r\n      <div class=\"margins\">\r\n        <!-- Detail Section -->\r\n        <div class=\"detail__container\">\r\n          <div class=\"card__title\">\r\n            {{ data.name[0].toUpperCase() + data.name.substr(1) }}\r\n          </div>\r\n      \r\n          <div class=\"detail__desc\">\r\n            <p>\r\n            {{ data.description }}\r\n            </p>\r\n          </div>\r\n          <span class=\"detail__title\">PRICE (PHP)</span>\r\n          <span class=\"detail__subtitle\">{{ data.price | currency : 'PHP '}}</span>\r\n          <br>\r\n          <br>\r\n          <span class=\"detail__title\">TREATMENT FOR</span>\r\n          <span class=\"detail__subtitle\"><span ng-repeat=\"treats in data.treats\"><span ng-hide=\"$first\">,&nbsp;</span>{{ treats }}</span></span> \r\n          <br>\r\n          <br>\r\n          <div> \r\n            <button ng-show=\"isAdmin()\" class=\"outline\" ng-click=\"go('/admin/update/medicine', data)\">Edit</button>\r\n            <button ng-show=\"isAdmin()\" class=\"outline\" ng-click=\"delete(data)\">Delete</button>\r\n            <button class=\"outline\" ng-click=\"go('/admin/view/medicine', data)\">View</button>\r\n          </div>\r\n        </div>\r\n      </div>\r\n</div>";
 
 /***/ }),
 /* 85 */
@@ -40193,9 +40197,9 @@ angular.module('hplus.modules.exploremedicines')
       $scope.query = "";
       $scope.diseaseList = [];
 
-      var user = doctorFactory.getUser();
+      $scope.user = doctorFactory.getUser();
 
-      if(user == null){
+      if($scope.user == null){
         $location.path("/");
       }
 
@@ -40303,7 +40307,7 @@ __webpack_require__(91);
 /* 88 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\"><!-- Header Portion -->\r\n  <div class=\"col col-md-10 col-md-offset-1\">\r\n    <h1>List of All Medical Records</h1><!-- Header Name for this Module -->\r\n  </div>\r\n</div>\r\n\t\r\n<div class=\"row\" ng-controller=\"ExploreMedicalRecordsController\"><!-- Body Portion -->\r\n  <div class=\"col col-md-2 col-md-offset-1\"><!-- Section for search -->\r\n    <div class=\"row\">\r\n      <div class=\"col col-md-6\">\r\n        <label class=\"subtitle\">Search</label>\r\n      </div>\r\n    </div>\r\n    \r\n    <div class=\"match-padding\">\r\n      <input type=\"text\" placeholder=\"Enter a name\" ng-model=\"searchFilter\">\r\n      <button ng-click=\"go('/doctor/create/record')\">New Record</button>\r\n    </div>\r\n  </div>\r\n  \r\n  <div > \r\n    <div class=\"col col-md-8\"><!-- Section containing the tabulated list of doctors -->\r\n\t\t  <div class=\"col col-md-12\">\r\n\t\t    <span class=\"subtitle\"><span ng-hide=\"searchFilter == ''\">{{(patients | filter : searchFilter).length}}</span><span ng-hide=\"searchFilter != ''\">All</span> Results</span>\r\n        <hplus-explore-medical-records-card dir-paginate=\"pat in patients | filter : searchFilter | itemsPerPage:10 | orderBy : ['lastName','firstName']\" data=\"pat\"></hplus-explore-medical-records-card>\r\n        <!-- Pagination Section -->\r\n        <dir-pagination-controls max-size=\"5\"></dir-pagination-controls>\r\n\t\t  </div>\r\n\t\t</div>\r\n  </div>\r\n</div>\r\n\r\n\r\n";
+module.exports = "<div class=\"row\"><!-- Header Portion -->\r\n  <div class=\"col col-md-10 col-md-offset-1\">\r\n    <h1>List of All Medical Records</h1><!-- Header Name for this Module -->\r\n  </div>\r\n</div>\r\n\t\r\n<div class=\"row\" ng-controller=\"ExploreMedicalRecordsController\"><!-- Body Portion -->\r\n  <div class=\"col col-md-2 col-md-offset-1\"><!-- Section for search -->\r\n    <div class=\"row\">\r\n      <div class=\"col col-md-6\">\r\n        <label class=\"subtitle\">Search</label>\r\n      </div>\r\n    </div>\r\n    \r\n    <div class=\"match-padding\">\r\n      <input type=\"text\" placeholder=\"Enter a name\" ng-model=\"searchFilter\">\r\n      <button ng-hide=\"user.admin\" ng-click=\"go('/doctor/create/record')\">New Record</button>\r\n    </div>\r\n  </div>\r\n  \r\n  <div > \r\n    <div class=\"col col-md-8\"><!-- Section containing the tabulated list of doctors -->\r\n\t\t  <div class=\"col col-md-12\">\r\n\t\t    <span class=\"subtitle\"><span ng-hide=\"searchFilter == ''\">{{(patients | filter : searchFilter).length}}</span><span ng-hide=\"searchFilter != ''\">All</span> Results</span>\r\n        <hplus-explore-medical-records-card dir-paginate=\"pat in patients | filter : searchFilter | itemsPerPage:10 | orderBy : ['lastName','firstName']\" data=\"pat\"></hplus-explore-medical-records-card>\r\n        <!-- Pagination Section -->\r\n        <dir-pagination-controls max-size=\"5\"></dir-pagination-controls>\r\n\t\t  </div>\r\n\t\t</div>\r\n  </div>\r\n</div>\r\n\r\n\r\n";
 
 /***/ }),
 /* 89 */
@@ -40337,9 +40341,9 @@ angular.module('hplus.modules.exploremedicalrecords')
   .controller('ExploreMedicalRecordsController',
 	function($scope, $location, globalFactory, doctorFactory){
 
-		var user = doctorFactory.getUser();
+		$scope.user = doctorFactory.getUser();
 
-		if(user == null){
+		if($scope.user == null){
 			$location.path("/");
 		}
 		
@@ -41123,14 +41127,15 @@ angular.module('hplus.modules.viewdisease', [])
         template: viewdisease
       })
   });
+
 __webpack_require__(115);
-  __webpack_require__(117);
+__webpack_require__(117);
 
 /***/ }),
 /* 114 */
 /***/ (function(module, exports) {
 
-module.exports = "<ng-controller ng-controller=\"ViewDiseaseController\">\r\n\t<div class=\"row\">\r\n\t  <div class=\"col col-md-8 col-md-offset-1\">\r\n\t    <h1>\r\n\t      <i class=\"fa fa-thermometer-full\"></i>\r\n\t      Gingivitis\r\n\t    </h1>\r\n\t  </div>\r\n\t</div>\r\n\t\r\n\t<div class=\"row\">\r\n\t  <div class=\"col col-md-2 col-md-offset-1\">\r\n\t    <div class=\"match-padding\">\r\n\t      <span class=\"subtitle\">\r\n\t        Symptoms\r\n\t      </span>\r\n\t      <div class=\"subtitle__value\">\r\n\t        <div class=\"row card__container--flex\">\r\n\t          <div class=\"card__container--medium\">\r\n\t            <div class=\"card__desc--medium\">\r\n\t              swollen gums\r\n\t            </div>\r\n\t          </div>\r\n\t\r\n\t          <div class=\"card__container--medium\">\r\n\t            <div class=\"card__desc--medium\">\r\n\t              bright red gums\r\n\t            </div>\r\n\t          </div>\r\n\t\r\n\t          <div class=\"card__container--medium\">\r\n\t            <div class=\"card__desc--medium\">\r\n\t              bright purple gums\r\n\t            </div>\r\n\t          </div>\r\n\t\r\n\t          <div class=\"card__container--medium\">\r\n\t            <div class=\"card__desc--medium\">\r\n\t              tender gums\r\n\t            </div>\r\n\t          </div>\r\n\t\r\n\t          <div class=\"card__container--medium\">\r\n\t            <div class=\"card__desc--medium\">\r\n\t             bleeding gums  \r\n\t            </div>\r\n\t          </div>\r\n\t\r\n\t          <div class=\"card__container--medium\">\r\n\t            <div class=\"card__desc--medium\">\r\n\t              bad breath\r\n\t            </div>\r\n\t          </div>\r\n\t        </div>\r\n\t      </div>\r\n\t      <br>\r\n\t      <span class=\"subtitle\">\r\n\t        Medicine\r\n\t      </span>\r\n\t      <br>\r\n\t     <table>\r\n\t        <tr>\r\n\t          <td><span>Triclosan</span></td>\r\n\t        </tr>\r\n\t        <tr>\r\n\t          <td><span>Somethig</span></td>\r\n\t        </tr>\r\n\t        <tr>\r\n\t          <td><span>Somthing</span></td>\r\n\t        </tr>\r\n\t      </table>\r\n\t      <br>\r\n\t      <button class=\"outline\">Edit</button>\r\n\t      <button class=\"outline\">Delete</button>\r\n\t    </div>\r\n\t  </div>\r\n\t\r\n\t  <div class=\"col col-md-8\">\r\n\t    <div class=\"col col-md-12\">\r\n\t      <div class=\"row\">\r\n\t        <div class=\"col col-md-4\">\r\n\t          <span class=\"subtitle\">\r\n\t            OCCURRENCE IN\r\n\t          </span>\r\n\t          <span class=\"subtitle subtitle--variable\">\r\n\t            June 2017\r\n\t          </span>\r\n\t          <div class=\"subtitle__value\">\r\n\t            {{recordList.length}} Patients\r\n\t          </div>\r\n\t        </div>\r\n\t          \r\n\t        <div class=\"col col-md-4\">\r\n\t          <span class=\"subtitle\">\r\n\t            OCCURRENCE IN YEAR\r\n\t          </span>\r\n\t          <span class=\"subtitle subtitle--variable\">\r\n\t            2017\r\n\t          </span>\r\n\t          <div class=\"subtitle__value\">\r\n\t            24 PATIENTS\r\n\t          </div>\r\n\t        </div>\r\n\t      </div>\r\n\t    </div>\r\n\t\r\n\t    <div class=\"col col-md-12\">\r\n\t      <br>\r\n\t      <br>\r\n\t      <label class=\"subtitle\">RECENTLY DIAGNOSED IN THE FOLLOWING PATIENTS</label>\r\n\t      <hplus-view-disease-card dir-paginate=\"record in recordList | itemsPerPage:10\" data=\"record\"></hplus-view-disease-card>\r\n\t    </div>\r\n\t  </div>\r\n\t</div>\r\n\t<dir-pagination-controls max-size=\"5\"></dir-pagination-controls>\r\n</ng-controller>";
+module.exports = "<ng-controller ng-controller=\"ViewDiseaseController\">\r\n\t<div class=\"row\">\r\n\t  <div class=\"col col-md-8 col-md-offset-1\">\r\n\t    <h1>\r\n\t      <i class=\"fa fa-thermometer-full\"></i>\r\n\t      {{ disease.name[0].toUpperCase() + disease.name.substr(1) }}\r\n\t    </h1>\r\n\t  </div>\r\n\t</div>\r\n\t\r\n\t<div class=\"row\">\r\n\t  <div class=\"col col-md-2 col-md-offset-1\">\r\n\t    <div class=\"match-padding\">\r\n\t      <span class=\"subtitle\">\r\n\t        Symptoms\r\n\t      </span>\r\n\t      <div class=\"subtitle__value\">\r\n\t        <div class=\"row card__container--flex\">\r\n\r\n\t          <div class=\"card__container--medium\" ng-repeat=\"symptom in disease.symp\">\r\n\t            <div class=\"card__desc--medium\">\r\n\t              {{ symptom }}\r\n\t            </div>\r\n\t          </div>\r\n\t\t\t\t\t\r\n\t\t\t\t\t</div>\r\n\t      </div>\r\n\t      <br>\r\n\t      <span class=\"subtitle\">\r\n\t        Medicine\r\n\t      </span>\r\n\t      <br>\r\n\t     <table>\r\n\t        <tr ng-repeat=\"medicine in disease.meds\">\r\n\t          <td><span>{{ medicine }}</span></td>\r\n\t        </tr>\r\n\t      </table>\r\n\t      <br>\r\n\t      <button class=\"outline\" ng-click=\"go('/admin/update/disease')\" ng-show=\"user.admin\">Edit</button>\r\n\t      <button class=\"outline\" ng-click=\"delete()\" ng-show=\"user.admin\">Archive</button>\r\n\t    </div>\r\n\t  </div>\r\n\t\r\n\t  <div class=\"col col-md-8\">\r\n\t    <div class=\"col col-md-12\">\r\n\t      <div class=\"row\">\r\n\t        <div class=\"col col-md-4\">\r\n\t          <span class=\"subtitle\">\r\n\t            OCCURRENCE IN\r\n\t          </span>\r\n\t          <span class=\"subtitle subtitle--variable\">\r\n\t            {{ monthAndYear }}\r\n\t          </span>\r\n\t          <div class=\"subtitle__value\">\r\n\t            {{ recordList.length }} Patients\r\n\t          </div>\r\n\t        </div>\r\n\t          \r\n\t        <div class=\"col col-md-4\">\r\n\t          <span class=\"subtitle\">\r\n\t            OCCURRENCE IN YEAR\r\n\t          </span>\r\n\t          <span class=\"subtitle subtitle--variable\">\r\n\t            {{ year }}\r\n\t          </span>\r\n\t          <div class=\"subtitle__value\">\r\n\t            24 PATIENTS\r\n\t          </div>\r\n\t        </div>\r\n\t      </div>\r\n\t    </div>\r\n\t\r\n\t    <div class=\"col col-md-12\">\r\n\t      <br>\r\n\t      <br>\r\n\t      <label class=\"subtitle\">RECENTLY DIAGNOSED IN THE FOLLOWING PATIENTS</label>\r\n\t      <hplus-view-disease-card dir-paginate=\"record in recordList | itemsPerPage:10\" data=\"record\"></hplus-view-disease-card>\r\n\t    </div>\r\n\t  </div>\r\n\t</div>\r\n\t<dir-pagination-controls max-size=\"5\"></dir-pagination-controls>\r\n</ng-controller>";
 
 /***/ }),
 /* 115 */
@@ -41162,17 +41167,55 @@ module.exports = "<div class=\"card__container\">\r\n  <div class=\"card__title\
 app = angular.module('hplus.modules.viewdisease')
 
   .controller('ViewDiseaseController',
-    function($scope, $location, globalFactory, doctorFactory){
+    function($scope, $location, globalFactory, doctorFactory, diseaseFactory, medicineFactory){
 
-      var user = doctorFactory.getUser();
+      $scope.user = doctorFactory.getUser();
+      $scope.disease = diseaseFactory.getDisease();
 
-      if(user == null) {
+      var date = new Date();
+      var monthNames = ["January", "February", "March", "April", "May", "June",
+      "July", "August", "September", "October", "November", "December"];
+
+      $scope.monthAndYear = monthNames[date.getMonth()].toUpperCase() + " " + date.getFullYear();
+      $scope.year = date.getFullYear();
+
+      if($scope.user == null) {
         $location.path("/");
+      }
+
+      if($scope.disease == null){
+        $location.path("/admin/list/disease");
       }
 
       $scope.go = function(path){
         globalFactory.go(path);
       };
+
+      var populate = function(){
+        medicineFactory.getListOfMedicines().then(function(response){
+          console.log(response);
+          var medicineList = response.data.medicines;
+          var meds = [];
+          var x, y;
+
+          for(x = 0; x < medicineList.length; x++){
+            for(y = 0; y < $scope.disease.medicineId.length; y++){
+              if(medicineList[x].id == $scope.disease.medicineId[y]){
+                meds.push(medicineList[x].name);
+              }
+            }
+          }
+
+          $scope.disease.meds = meds;
+        });
+      };
+
+      populate();
+
+      $scope.delete = function(){
+        diseaseFactory.deleteDisease($scope.disease);
+      };
+      
       $scope.recordList = [
            {
              name: "Doe, Jane",
@@ -41265,7 +41308,7 @@ angular.module('hplus.modules.viewmedicine', [])
 /* 119 */
 /***/ (function(module, exports) {
 
-module.exports = "<ng-controller ng-controller=\"ViewMedicineController\">\r\n\t<div class=\"row\">\r\n\t  <div class=\"col col-md-8 col-md-offset-1\">\r\n\t    <h1><i class=\"fa fa-heartbeat\"></i>{{ medicine.name[0].toUpperCase() + medicine.name.substr(1) }}</h1>\r\n\t  </div>\r\n\t</div>\r\n\t\r\n\t<div class=\"row\">\r\n\t  <div class=\"col col-md-10 col-md-offset-1\">\r\n\t    <div class=\"col-md-3\">\r\n\t      <span class=\"subtitle\">Price:</span>\r\n\t      <div class=\"subtitle__value\">\r\n\t        PHP {{ medicine.price }}\r\n\t      </div>\r\n\t    </div>\r\n\t    <div class=\"col-md-3\">\r\n\t      <label class=\"subtitle\">USAGE FOR</label>\r\n\t      <span class=\"subtitle subtitle--variable\">{{ monthAndYear }}</span>\r\n\t      <div class=\"subtitle__value\">\r\n\t        15 Patients\r\n\t      </div>\r\n\t    </div>\r\n\t    <div class=\"col-md-3\">\r\n\t      <label class=\"subtitle\">USAGE FOR THE YEAR</label>\r\n\t      <span class=\"subtitle subtitle--variable\">{{ year }}</span>\r\n\t      <div class=\"subtitle__value\">\r\n\t        367 PATIENTS\r\n\t      </div>\r\n\t    </div>\r\n\t  </div>\r\n\t</div>\r\n\t\r\n\t<div class=\"row margins\">\r\n\t  <div class=\"col-md-10 col-md-offset-1 margins\">\r\n\t\t  <div class=\"col-md-3\">\r\n\t      <label class=\"subtitle marginTop\">Type of Medicine</label>\r\n\t      <div class=\"subtitle__value\">\r\n\t        {{ medicine.type }}\r\n\t      </div>\r\n\t\t    <label class=\"subtitle marginTop\">Description:</label>\r\n\t\t    <div class=\"subtitle__value\">\r\n\t\t      {{ medicine.description }}\r\n\t\t    </div>\r\n\t\t\t\t<button class=\"outline\" ng-click=\"go('/admin/update/medicine')\">Edit</button>\r\n\t\t\t\t<button class=\"outline delete_btn\" ng-click=\"delete()\">Archive</button>\r\n\t\t  </div>\r\n\t\t  <div class=\"col-md-9\">\r\n\t\t    <label class=\"subtitle\">RECENTLY DISPENSED TO THE FOLLOWING PATIENTS</label>\r\n\t        <hplus-view-medicine-card dir-paginate=\"record in recordList | itemsPerPage:10\" data=\"record\"></hplus-view-medicine-card>\r\n\t\t  </div>\r\n\t  </div>\r\n\t</div>\r\n\t<dir-pagination-controls max-size=\"5\"></dir-pagination-controls>\r\n</ng-controller>";
+module.exports = "<ng-controller ng-controller=\"ViewMedicineController\">\r\n\t<div class=\"row\">\r\n\t  <div class=\"col col-md-8 col-md-offset-1\">\r\n\t    <h1><i class=\"fa fa-heartbeat\"></i>{{ medicine.name[0].toUpperCase() + medicine.name.substr(1) }}</h1>\r\n\t  </div>\r\n\t</div>\r\n\t\r\n\t<div class=\"row\">\r\n\t  <div class=\"col col-md-10 col-md-offset-1\">\r\n\t    <div class=\"col-md-3\">\r\n\t      <span class=\"subtitle\">Price:</span>\r\n\t      <div class=\"subtitle__value\">\r\n\t        PHP {{ medicine.price }}\r\n\t      </div>\r\n\t    </div>\r\n\t    <div class=\"col-md-3\">\r\n\t      <label class=\"subtitle\">USAGE FOR</label>\r\n\t      <span class=\"subtitle subtitle--variable\">{{ monthAndYear }}</span>\r\n\t      <div class=\"subtitle__value\">\r\n\t        15 Patients\r\n\t      </div>\r\n\t    </div>\r\n\t    <div class=\"col-md-3\">\r\n\t      <label class=\"subtitle\">USAGE FOR THE YEAR</label>\r\n\t      <span class=\"subtitle subtitle--variable\">{{ year }}</span>\r\n\t      <div class=\"subtitle__value\">\r\n\t        367 PATIENTS\r\n\t      </div>\r\n\t    </div>\r\n\t  </div>\r\n\t</div>\r\n\t\r\n\t<div class=\"row margins\">\r\n\t  <div class=\"col-md-10 col-md-offset-1 margins\">\r\n\t\t  <div class=\"col-md-3\">\r\n\t      <label class=\"subtitle marginTop\">Type of Medicine</label>\r\n\t      <div class=\"subtitle__value\">\r\n\t        {{ medicine.type }}\r\n\t      </div>\r\n\t\t    <label class=\"subtitle marginTop\">Description:</label>\r\n\t\t    <div class=\"subtitle__value\">\r\n\t\t      {{ medicine.description }}\r\n\t\t    </div>\r\n\t\t\t\t<button class=\"outline\" ng-show=\"user.admin\" ng-click=\"go('/admin/update/medicine')\">Edit</button>\r\n\t\t\t\t<button class=\"outline delete_btn\" ng-show=\"user.admin\" ng-click=\"delete()\">Archive</button>\r\n\t\t  </div>\r\n\t\t  <div class=\"col-md-9\">\r\n\t\t    <label class=\"subtitle\">RECENTLY DISPENSED TO THE FOLLOWING PATIENTS</label>\r\n\t        <hplus-view-medicine-card dir-paginate=\"record in recordList | itemsPerPage:10\" data=\"record\"></hplus-view-medicine-card>\r\n\t\t  </div>\r\n\t  </div>\r\n\t</div>\r\n\t<dir-pagination-controls max-size=\"5\"></dir-pagination-controls>\r\n</ng-controller>";
 
 /***/ }),
 /* 120 */
@@ -41299,7 +41342,7 @@ app = angular.module('hplus.modules.viewmedicine')
   .controller('ViewMedicineController',
     function($scope, $location, globalFactory, doctorFactory, medicineFactory){
 
-      var user = doctorFactory.getUser();
+      $scope.user = doctorFactory.getUser();
       var date = new Date();
       var monthNames = ["January", "February", "March", "April", "May", "June",
       "July", "August", "September", "October", "November", "December"];
@@ -41308,7 +41351,7 @@ app = angular.module('hplus.modules.viewmedicine')
       $scope.monthAndYear = monthNames[date.getMonth()].toUpperCase() + " " + date.getFullYear();
       $scope.year = date.getFullYear();
 
-      if(user == null) {
+      if($scope.user == null) {
         $location.path("/");
       }
 
@@ -41904,7 +41947,7 @@ angular.module('hplus.modules.explorepatients', [])
 /* 139 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\"><!-- Header Portion -->\r\n  <div class=\"col col-md-10 col-md-offset-1\">\r\n    <h1>List of All Patients</h1><!-- Header Name for this Module -->\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row\" ng-controller=\"ExplorePatientsController\"><!-- Body Portion -->\r\n  <div class=\"col col-md-2 col-md-offset-1\"><!-- Section for search -->\r\n    <div class=\"row\">\r\n\t  <div class=\"col col-md-12\">\r\n\t    <label class=\"subtitle\">Search</label>\r\n\t    <input type=\"text\" placeholder=\"Enter a name or specialty\" ng-model=\"query\">\r\n      <button ng-click=\"go('/admin/register/patient')\">New Patient</button>\r\n\t  </div>\r\n\t</div>\r\n\r\n  </div>\r\n  \r\n  <div class=\"col col-md-8\"><!-- Section containing the tabulated list of patients -->\r\n    <div class=\"col col-md-12\">\r\n\t  <label class=\"subtitle\">ALL RESULTS - {{ patientList.length }}</label>\r\n\t\t  \r\n\t  <div class=\"margins\" >\r\n\t    <hplus-explore-patients-card dir-paginate=\"pat in patientList | filter: {'name' : searchFilter} | itemsPerPage:10  | orderBy : 'name'\" data=\"pat\" ng-click=\"setSelected(pat)\" ng-class=\"{'selectedCard__container': pat == selectedPatient}\"></hplus-explore-patients-card>       \r\n      </div>\r\n      <div class=\"col-md-12\">\r\n      <!-- Pagination Section -->\r\n      <dir-pagination-controls max-size=\"5\"></dir-pagination-controls>\r\n      </div>\r\n    </div>\r\n    \r\n    <!--<div class=\"col col-md-6\">\r\n\t  <hplus-selected-patient-card data=\"selectedPatient\" ng-show=\"selectedPatient\"></hplus-selected-patient-card>\r\n\t</div> -->\r\n  </div>\r\n</div>\r\n\r\n\r\n<dir-pagination-controls max-size=\"5\"></dir-pagination-controls>";
+module.exports = "<div class=\"row\"><!-- Header Portion -->\r\n  <div class=\"col col-md-10 col-md-offset-1\">\r\n    <h1>List of All Patients</h1><!-- Header Name for this Module -->\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row\" ng-controller=\"ExplorePatientsController\"><!-- Body Portion -->\r\n  <div class=\"col col-md-2 col-md-offset-1\"><!-- Section for search -->\r\n    <div class=\"row\">\r\n\t  <div class=\"col col-md-12\">\r\n\t    <label class=\"subtitle\">Search</label>\r\n\t    <input type=\"text\" placeholder=\"Enter a name or specialty\" ng-model=\"query\">\r\n\t  </div>\r\n\t</div>\r\n\r\n  </div>\r\n  \r\n  <div class=\"col col-md-8\"><!-- Section containing the tabulated list of patients -->\r\n    <div class=\"col col-md-12\">\r\n\t  <label class=\"subtitle\">ALL RESULTS - {{ patientList.length }}</label>\r\n\t\t  \r\n\t  <div class=\"margins\" >\r\n\t    <hplus-explore-patients-card dir-paginate=\"pat in patientList | filter: {'name' : searchFilter} | itemsPerPage:10  | orderBy : 'name'\" data=\"pat\" ng-click=\"setSelected(pat)\" ng-class=\"{'selectedCard__container': pat == selectedPatient}\"></hplus-explore-patients-card>       \r\n      </div>\r\n      <div class=\"col-md-12\">\r\n      <!-- Pagination Section -->\r\n      <dir-pagination-controls max-size=\"5\"></dir-pagination-controls>\r\n      </div>\r\n    </div>\r\n    \r\n    <!--<div class=\"col col-md-6\">\r\n\t  <hplus-selected-patient-card data=\"selectedPatient\" ng-show=\"selectedPatient\"></hplus-selected-patient-card>\r\n\t</div> -->\r\n  </div>\r\n</div>\r\n\r\n\r\n<dir-pagination-controls max-size=\"5\"></dir-pagination-controls>";
 
 /***/ }),
 /* 140 */
@@ -42017,7 +42060,7 @@ angular.module('hplus.modules.explorepatients')
   .controller('PatientCardController',
     function($scope, $location, globalFactory, doctorFactory, patientFactory, modalFactory){
 	  
-	  var user = doctorFactory.getUser();
+	    var user = doctorFactory.getUser();
       
       $scope.isAdmin = function(){
         return user.admin;
@@ -42278,8 +42321,10 @@ angular.module('hplus.factory')
 angular.module('hplus.modules.explorediseases')
 
   .controller('CardController',
-    function($scope, globalFactory, diseaseFactory){
+    function($scope, globalFactory, diseaseFactory, doctorFactory){
       
+      $scope.user = doctorFactory.getUser();
+
       $scope.go = function(path, disease){
         diseaseFactory.saveDisease(disease);
         globalFactory.go(path);

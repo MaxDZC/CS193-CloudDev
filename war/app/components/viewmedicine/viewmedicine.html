@@ -41,8 +41,8 @@
 		    <div class="subtitle__value">
 		      {{ medicine.description }}
 		    </div>
-				<button class="outline" ng-click="go('/admin/update/medicine')">Edit</button>
-				<button class="outline delete_btn" ng-click="delete()">Archive</button>
+				<button class="outline" ng-show="user.admin" ng-click="go('/admin/update/medicine')">Edit</button>
+				<button class="outline delete_btn" ng-show="user.admin" ng-click="delete()">Archive</button>
 		  </div>
 		  <div class="col-md-9">
 		    <label class="subtitle">RECENTLY DISPENSED TO THE FOLLOWING PATIENTS</label>

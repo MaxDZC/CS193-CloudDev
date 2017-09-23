@@ -23,8 +23,8 @@ public class MedicineDto extends ErrorsDto{
         this.setName(jObj.getString("name"));
         //this.setGenericName(jObj.getString("genericName"));
         this.setDescription(jObj.getString("description"));
-        this.setType(jObj.getString("type"));
         this.setPrice((float)jObj.getDouble("price"));
+        this.setType(jObj.getString("type"));
     }
     
     public Long getId() {

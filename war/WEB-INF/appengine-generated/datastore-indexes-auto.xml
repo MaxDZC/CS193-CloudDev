@@ -1,26 +1,18 @@
-<!-- Indices written at Sat, 23 Sep 2017 14:58:09 SGT -->
+<!-- Indices written at Sat, 23 Sep 2017 21:19:18 SGT -->
 
 <datastore-indexes>
 
-    <!-- Used 1 time in query history -->
-    <datastore-index kind="DoctorModel" ancestor="false" source="auto">
-        <property name="admin" direction="asc"/>
-        <property name="deletedAt" direction="asc"/>
-        <property name="id" direction="asc"/>
-    </datastore-index>
-
-    <!-- Used 42 times in query history -->
-    <datastore-index kind="DiseaseModel" ancestor="false" source="auto">
-        <property name="deletedAt" direction="asc"/>
-        <property name="name" direction="asc"/>
-        <property name="id" direction="asc"/>
-    </datastore-index>
-
-    <!-- Used 3 times in query history -->
+    <!-- Used 5 times in query history -->
     <datastore-index kind="MedicalRecordModel" ancestor="false" source="auto">
         <property name="deletedAt" direction="asc"/>
         <property name="diseaseIdList" direction="asc"/>
         <property name="dischargeDate" direction="asc"/>
+    </datastore-index>
+
+    <!-- Used 1 time in query history -->
+    <datastore-index kind="DiseaseModel" ancestor="false" source="auto">
+        <property name="symptomId" direction="asc"/>
+        <property name="deletedAt" direction="asc"/>
     </datastore-index>
 
 </datastore-indexes>
