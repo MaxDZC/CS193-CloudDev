@@ -6,23 +6,24 @@
 
 <div class="row" ng-controller="ExploreDoctorsController"><!-- Body Portion -->
   <div class="col col-md-2 col-md-offset-1"><!-- Section for search -->
+
     <div class="row">
-	  <div class="col col-md-12">
-	    <label class="subtitle">Search</label>
-	    <input type="text" placeholder="Enter a name or specialty" ng-model="query">
-      <button ng-click="go('/admin/register/doctor')">New Doctor</button>
+	    <div class="col col-md-12">
+	      <label class="subtitle">Search</label>
+	      <input type="text" placeholder="Enter a name or specialty" ng-model="query">
+        <button ng-click="go('/admin/register/doctor')">New Doctor</button>
+	    </div>
 	  </div>
-	</div>
 
   </div>
   
   <div class="col col-md-8"><!-- Section containing the tabulated list of doctors -->
     <div class="col col-md-12">
-			<span class="subtitle"><span ng-hide="query == ''">{{(doctorList | filter : query).length}}</span><span ng-hide="query != ''">All</span> Results</span>
+			<span class="subtitle"><span ng-hide="query == ''">{{(doctorList | filter : searchFilter).length}}</span><span ng-hide="query != ''">All {{(doctorList | filter : searchFilter).length}}</span> Results</span>
 			<div class="margins">
         <!-- List Section -->
         <label class="subtitle" ng-hide="doctorList.length">There are no doctors to display</label>
-				<hplus-explore-doctors-card ng-show="doctorList.length" dir-paginate="doctor in filtered = (doctorList | filter:searchFilter | itemsPerPage:5  | orderBy : ['lastname','firstname'])" data="doctor"></hplus-explore-doctors-card>
+				<hplus-explore-doctors-card ng-show="doctorList.length" dir-paginate="doctor in filtered = (doctorList | filter:searchFilter | itemsPerPage:10  | orderBy : ['lastname','firstname'])" data="doctor"></hplus-explore-doctors-card>
 				<dir-pagination-controls max-size="5"></dir-pagination-controls>
 		  </div>
     </div>

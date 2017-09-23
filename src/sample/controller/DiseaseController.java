@@ -1,127 +1,132 @@
 package sample.controller;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 import org.slim3.controller.Controller;
 import org.slim3.controller.Navigation;
-import org.slim3.repackaged.org.json.JSONArray;
 import org.slim3.repackaged.org.json.JSONObject;
 import org.slim3.util.RequestMap;
 
 import sample.dto.DiseaseDto;
 import sample.meta.DiseaseModelMeta;
-import sample.meta.DoctorModelMeta;
+import sample.model.DiseaseModel;
 import sample.service.DiseaseService;
-import sample.service.DoctorService;
-import sample.service.MedicalRecordService;
 import sample.utils.JSONValidators;
 
 public class DiseaseController extends Controller {
-    JSONObject jsonObject;
-    static DiseaseService diseaseService = new DiseaseService();
-    JSONArray sympId; 
-    JSONArray medId;
-    String diseaseName;
-    JSONValidators validator;
-    DiseaseDto diseaseDto;
-    String createdAt;
-    String updatedAt;
-    String[] createdAts;
-    String[] updatedAts;
-    boolean message;
+
     @Override
     public Navigation run() throws Exception {
+        
+        Boolean message;
+        JSONValidators validator;
+        Object checkObj;
+        String[] createdAts;
+        String[] updatedAts;
+        String createdAt;
+        String updatedAt;
+        Date createdAtNew;
+        Date updatedAtNew;
+        
+        DiseaseDto diseaseDto = new DiseaseDto();
+        DiseaseModel diseaseModel;
         String method = request.getMethod();
-        System.out.println("WHAATTTT1");
+        JSONObject jsonObject = new JSONObject();
+        DiseaseService diseaseService = new DiseaseService();
+        
         try{
-            if("POST".equalsIgnoreCase(method)){
+            if(method.equals("POST")){
                 jsonObject = new JSONObject(this.request.getReader().readLine());
                 validator = new JSONValidators(jsonObject);
                 
                 if(validator.validate()){
-                    JSONArray sympId = jsonObject.getJSONArray("symptomId");
-                    JSONArray medId = jsonObject.getJSONArray("medicineId");
-                    List<Long> idsymptoms = new ArrayList<Long>();
-                    List<Long> idmedicines = new ArrayList<Long>();
-                    diseaseName = jsonObject.getString("name");
+                    diseaseDto = new DiseaseDto(jsonObject);
+                    diseaseDto.setCreatedAt(new Date());
                     
-                    for(int i=0;i<sympId.length();i++){
-                        idsymptoms.add(sympId.getJSONObject(i).getLong("id"));
-                        System.out.println("symp: " +sympId.getJSONObject(i).getLong("id"));
-                    }
-                    for(int i=0;i<medId.length();i++){
-                        idmedicines.add(medId.getJSONObject(i).getLong("id"));
-                    }
-                    if(idmedicines!=null && idsymptoms!=null){
-                        System.out.println("HELLO");
-                        DiseaseDto dto = new DiseaseDto();
-                        dto.setMedicineId(idmedicines);
-                        dto.setSymptomId(idsymptoms);
-                        dto.setName(diseaseName);
-                        diseaseService.insertDisease(dto);
+                    if(!diseaseService.insertDisease(diseaseDto)){
+                        response.setStatus(400);
                     }
                 }
-            }  else if(method == "GET") {
+            }  else if(method.equals("GET")) {
                 jsonObject = new JSONObject(new RequestMap(this.request));
-                if(jsonObject.has("id")){
-                    System.out.println("Getting Single Disease");
-                    diseaseName= jsonObject.getString("name");
-                    jsonObject.put("disease", DiseaseModelMeta.get().modelToJson(diseaseService.getDisease(diseaseName)));
+                
+                if(jsonObject.has("name")) {
+                    diseaseModel = diseaseService.getDisease(jsonObject.getString("name"));
+                    
+                    if(diseaseModel != null) {
+                        jsonObject.put("disease", DiseaseModelMeta.get().modelToJson(diseaseModel));
+                    } else {
+                        response.setStatus(400);
+                    }
                 } else {
                     System.out.println("Getting All Diseases");
                     jsonObject.put("diseases", diseaseService.getAllDisease());
                 }
-            } else if(method == "PUT") {
+                
+            } else if(method.equals("PUT")) {
                 
                 jsonObject = new JSONObject(this.request.getReader().readLine());
                 validator = new JSONValidators(jsonObject);
                 
-                
-                
                 if(validator.validate()){
                     
-                    createdAts = jsonObject.getString("createdAt").split(" ");
-                    
-                    createdAt = createdAts[5] + "-" + createdAts[1] + "-" + createdAts[2];
-                    
                     diseaseDto = new DiseaseDto(jsonObject);
+                    checkObj = jsonObject.get("createdAt");
                     
+                    if(checkObj instanceof String){
+                        createdAts = jsonObject.getString("createdAt").split(" ");
+                        createdAt = createdAts[5] + "-" + createdAts[1] + "-" + createdAts[2];
+                        diseaseDto.setCreatedAt(new SimpleDateFormat("yyyy-MMM-dd").parse(createdAt));
+                    } else {
+                        createdAtNew = new Date(jsonObject.getLong("createdAt"));
+                        diseaseDto.setCreatedAt(createdAtNew);
+                    }
                     
                     diseaseDto.setId(jsonObject.getLong("id"));
-                    
                     diseaseDto.setUpdatedAt(new Date());
-                    diseaseDto.setDeletedAt(null);
                     
                     message = diseaseService.updateDisease(diseaseDto);
                     
                     if(message){
                         jsonObject.put("success", true);
                     } else {
-                        jsonObject.put("errors", message);
+                        jsonObject.put("errors", !message);
                         response.setStatus(400);
                     }
                 }
                     
-            } else if(method == "DELETE"){
-                    
+            } else if(method.equals("DELETE")) {
                 jsonObject = new JSONObject(this.request.getReader().readLine());
                 validator = new JSONValidators(jsonObject);
                 
-                if(validator.validate()){                       
-                    //createdAts = jsonObject.getString("createdAt").split(" ");
-                    //updatedAts = jsonObject.getString("updatedAt").split(" ");
-                    
-                    //createdAt = createdAts[5] + "-" + createdAts[1] + "-" + createdAts[2];
-                    //updatedAt = updatedAts[5] + "-" + updatedAts[1] + "-" + updatedAts[2];
+                if(validator.validate()){               
                     
                     diseaseDto = new DiseaseDto(jsonObject);
+                    checkObj = jsonObject.get("createdAt");
                     
-                    diseaseDto.setId(jsonObject.getLong("medicineId"));
+                    if(checkObj instanceof String){
+                        createdAts = jsonObject.getString("createdAt").split(" ");
+                        createdAt = createdAts[5] + "-" + createdAts[1] + "-" + createdAts[2];
+                        diseaseDto.setCreatedAt(new SimpleDateFormat("yyyy-MMM-dd").parse(createdAt));
+                        
+                        if(jsonObject.has("updatedAt")){
+                            updatedAts = jsonObject.getString("updatedAt").split(" ");
+                            updatedAt = updatedAts[5] + "-" + updatedAts[1] + "-" + updatedAts[2];
+                            diseaseDto.setUpdatedAt(new SimpleDateFormat("yyyy-MMM-dd").parse(updatedAt));
+                        }
+                        
+                    } else {
+                        createdAtNew = new Date(jsonObject.getLong("createdAt"));            
+                        diseaseDto.setCreatedAt(createdAtNew);
+                        
+                        if(jsonObject.has("updatedAt")){ 
+                            updatedAtNew = new Date(jsonObject.getLong("updated At")); 
+                            diseaseDto.setUpdatedAt(updatedAtNew);
+                        }
+                    }
                     
-                    //diseaseDto.setUpdatedAt(new SimpleDateFormat("yyyy-MMM-dd").parse(updatedAt));
+                    diseaseDto.setId(jsonObject.getLong("id"));
                     diseaseDto.setDeletedAt(new Date());
                     
                     message = diseaseService.deleteDisease(diseaseDto);
@@ -130,11 +135,10 @@ public class DiseaseController extends Controller {
                         jsonObject.put("success", true);    
                     } else {
                         response.setStatus(400);
-                        jsonObject.put("errors", message);
+                        jsonObject.put("errors", !message);
                     }
                 }
             }
-
 
         }catch(Exception e){
             e.printStackTrace();

@@ -44,16 +44,6 @@ angular.module('hplus.modules.exploredoctors')
         } else {
           return false;
         }
-      }
-
-      // modalFactory.setContents({
-      //   type: "confirm",
-      //   title: "Totally save changes",
-      //   description: "Are you sure you want to save changes?",
-      //   negativeButton: "No",
-      //   positiveButton: "Yes",
-      //   isVisible: true,
-      //   data: null
-      // });
+      };
     }
   );

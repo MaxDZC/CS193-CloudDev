@@ -1,10 +1,12 @@
 angular.module('hplus.modules.exploremedicines')
 
   .controller('ExploreMedicinesController',
-    function($scope, $location, globalFactory, doctorFactory, medicineFactory){
+    function($scope, $location, globalFactory, doctorFactory, medicineFactory, diseaseFactory){
 	  
       $scope.length = 0;
       $scope.selectedMedicine = null;
+      $scope.query = "";
+      $scope.diseaseList = [];
 
       var user = doctorFactory.getUser();
 
@@ -12,13 +14,43 @@ angular.module('hplus.modules.exploremedicines')
         $location.path("/");
       }
 
-      $scope.searchFilter = "";
+      $scope.searchFilter = function(medicine){
+        if(!$scope.query 
+        || (medicine.name.toLowerCase().indexOf($scope.query) != -1)){
+          return true;
+        } else {
+          return false;
+        }
+      };
       
       var populate = function(){
         medicineFactory.getListOfMedicines().then(function(response){
           console.log(response);
           $scope.medicineList = response.data.medicines;
           $scope.length = $scope.medicineList.length;
+
+          diseaseFactory.getListOfDiseases().then(function(response){
+            console.log(response);
+            $scope.diseaseList = response.data.diseases;
+            var x, y, treats, name;
+
+            for(x = 0; x < $scope.medicineList.length; x++){
+              treats = [];
+              for(y = 0; y < $scope.diseaseList.length; y++){
+                if($scope.diseaseList[y].medicineId.indexOf($scope.medicineList[x].id) != -1){
+                  name = $scope.diseaseList[y].name;
+                  treats.push(name[0].toUpperCase() + name.substr(1));
+                }
+              }
+              if(treats.length == 0){
+                treats.push("Nothing");
+              }
+              $scope.medicineList[x].treats = treats;
+            }
+            
+
+          });
+
         }, function(response){
           console.log(response);
         });
@@ -34,85 +66,5 @@ angular.module('hplus.modules.exploremedicines')
       $scope.setSelected = function(med){
     	  $scope.selectedMedicine = med;
       };
-      
-      $scope.medicines=[
-        {
-          name : "Metformin",
-          desc : "Insert super long desc wooo amazing woawhe",
-          price : 40000,
-          treats :["Diabetes Mellitus"],
-          id : 1
-        },
-        {
-          name : "Methadone",
-          desc : "Insert super long desc wooo amazing woawhe",
-          price : 30000,
-          treats :["Opioid dependency","chronic pain"],
-          id : 2
-        },
-        {
-          name : "Methampetamine",
-          desc : "Methamphetamine is a strong central nervous system stimulant that is mainly used as a recreational drug and less commonly as a treatment for attention deficit hyperactivity disorder and obesity.",
-          price : 24990,
-          treats :["Attention deficit hyperactivity disorder","obesity"],
-          id : 3
-        },
-        {
-          name : "Methazolamide",
-          desc : "For the sake of variety",
-          price : 30000,
-          treats :["Intraocular pressure in glaucoma"],
-          id : 4
-        },
-        {
-          name : "Shit",
-          desc : "New York can i shit, i got lots of shit to sa i got lots of shit to say oooohhhhhhhh, i cant fir mt hand inside a pringle can, i have a huge amount of trouble",
-          price : 30000,
-          treats :["Intraocular pressure in glaucoma"],
-          id : 5
-        },
-        {
-          name : "LookATALllthishands",
-          desc : "Pringle Cans. you hink you can i know u can PRINGLES listen to the people im sure 80% of your complaint letters are about the width of your cans.just. make them wider. Thatis priority numero uno. i dont go to the gym because im self conscious about my body. but im self conscious about my body cuz i dont go the gym. irony can be so painful",
-          price : 30000,
-          treats :["Chicken Burrito, BRAH"],
-          id : 6
-        },
-        {
-          name : "ItWouldntFIt",
-          desc : "Half of it half of it. i think its time that we break it down.... WAoooww. waooowwwwwwww. waaaaaooooooowwwwwwwww. buluulululul. I can sit here and preend that my biggest ropblems are pringle cans and burritos. but my bbiggetsp roblem is you. but i wanna ",
-          price : 30000,
-          treats :["Chicken Burrito, BRAH"],
-          id : 7
-        },
-        {
-          name : "Shit",
-          desc : "New York can i shit, i got lots of shit to sa i got lots of shit to say oooohhhhhhhh, i cant fir mt hand inside a pringle can, i have a huge amount of trouble",
-          price : 30000,
-          treats :["Intraocular pressure in glaucoma"],
-          id : 8
-        },
-        {
-          name : "LookATALllthishands",
-          desc : "Pringle Cans. you hink you can i know u can PRINGLES listen to the people im sure 80% of your complaint letters are about the width of your cans.just. make them wider. Thatis priority numero uno. i dont go to the gym because im self conscious about my body. but im self conscious about my body cuz i dont go the gym. irony can be so painful",
-          price : 30000,
-          treats :["Chicken Burrito, BRAH"],
-          id : 9
-        },
-        {
-          name : "ItWouldntFIt",
-          desc : "Half of it half of it. i think its time that we break it down.... WAoooww. waooowwwwwwww. waaaaaooooooowwwwwwwww. buluulululul. I can sit here and preend that my biggest ropblems are pringle cans and burritos. but my bbiggetsp roblem is you. but i wanna ",
-          price : 30000,
-          treats :["Chicken Burrito, BRAH"],
-          id : 10
-        },
-        {
-          name : "Wouldntagotthelettuce",
-          desc : "They dont need to know the half of this right now. If they still dont understand you thenee yourun it one more time AAAH",
-          price : 30000,
-          treats :["RIGHT NOW"],
-          id : 11
-        }
-      ];
     }
   );

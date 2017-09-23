@@ -10,21 +10,8 @@ import org.slim3.repackaged.org.json.JSONArray;
 import org.slim3.repackaged.org.json.JSONException;
 import org.slim3.repackaged.org.json.JSONObject;
 
-/**
- * Utility used to perform certain functions that are not supplied by the framework.
- * @author Lehmar Cabrillos
- * @version 0.01
- * Version History
- * [03/02/2016] 0.01 – Lehmar Cabrillos  – Initial codes.
- */
 public class Utils {
 
-    /**
-     * Method used to convert a JSONObject into a HashMap.
-     * Uses recursion implementation.
-     * @param JSONObject json - JSON to be converted.
-     * @return Map<String, Object> - the result Map.
-     */
     public static Map<String, Object> jsonToMap(JSONObject json) throws JSONException {
         Map<String, Object> retMap = new HashMap<String, Object>();
 
@@ -42,11 +29,7 @@ public class Utils {
         return retMap;
     }
 
-    /**
-     * Method used to push the object into the Map, if the object is a JSONObject.
-     * @param JSONObject json - JSON to be converted.
-     * @return Map<String, Object> - the result Map.
-     */
+    
     @SuppressWarnings("unchecked")
     protected static Map<String, Object> toMap(JSONObject object) throws JSONException {
         Map<String, Object> map = new HashMap<String, Object>();

@@ -4,31 +4,34 @@ angular.module('hplus.factory')
     function($http, modalFactory, $window, $location, globalFactory, $rootScope){
 
       var registerSymptom = function(symptomObject){
+        var modalObject;
+
         $http({
           method: 'POST',
           url: '/Symptom', // Change URL here
           data: symptomObject
         }).then(function successCallback(response) {
         	console.log(response);
-          var modalObject = {
+          modalObject = {
             type: "notify",
             title: "Registration Successful!",
             description: "Symptom Saved.",
             positiveButton: "Ok",
             isVisible: true
           };
+
           modalFactory.setContents(modalObject);
+          $rootScope.$broadcast("repopulate");
         }, function errorCallback(response) {
-          var errorMessage = response.data.errors;
           console.log(response);
-          
-          var modalObject = {
+          modalObject = {
             type: "notify",
             title: "Registration Failure!",
-            description: errorMessage,
+            description: "Symptom with the same name already exists!",
             positiveButton: "Ok",
             isVisible: true
           };
+
           modalFactory.setContents(modalObject);
         });
       }

@@ -1,12 +1,12 @@
 angular.module('hplus.factory')
 
   .factory('diseaseFactory', 
-    function($http, modalFactory, $window, $location, globalFactory, $rootScope){
+    function($http, $rootScope, $route, modalFactory, $window, $location, globalFactory){
 
       var registerDisease = function(diseaseObject){
         $http({
           method: 'POST',
-          url: '/Disease', // Change URL here
+          url: '/Disease',
           data: diseaseObject
         }).then(function successCallback(response) {
         	console.log(response);
@@ -25,7 +25,7 @@ angular.module('hplus.factory')
           var modalObject = {
             type: "notify",
             title: "Registration Failure!",
-            description: "Error in Registering Disease.",
+            description: "A disease with the same name already exists!",
             positiveButton: "Ok",
             isVisible: true
           };
@@ -40,30 +40,37 @@ angular.module('hplus.factory')
         });
       };
 
+      var goList = function(){
+        $location.path('/admin/list/disease');
+        $route.reload();
+      };
+
       var updateDisease = function(disease){
+        var modalObject;
+
         $http({
           method: "PUT",
-          url: "/Doctor",
-          data: doctor
+          url: "/Disease",
+          data: disease
         }).then(function(response){
           console.log(response);
-          var modalObject = {
+          saveDisease(response.data);
+          modalObject = {
             type: "notify",
             title: "Successfully Updated!",
-            description: "Successfully updated Dr. " + doctor.lastname + "'s profile!",
+            description: "Successfully updated disease!",
             positiveButton: "Ok",
-            isVisible: true
+            isVisible: true,
+            data: goList
           };
         
           modalFactory.setContents(modalObject);
-          saveDoctor(response.data);
-          $location.path('/admin/view/doctordetails');
         }, function(response){
           console.log(response);
           var modalObject = {
             type: "notify",
             title: "Update Failure!",
-            description: "The email you have chosen already exists!",
+            description: "Another disease with the same name already exists!",
             positiveButton: "Ok",
             isVisible: true
           };
@@ -72,53 +79,52 @@ angular.module('hplus.factory')
         });
       };
 
-      var goList = function(){
-        $location.path('/admin/list/doctor');
-      }
-      
       var confirmDeleteDisease = function(disease){
-          $http({
-            method: "DELETE",
-            url: "/Disease",
-            data: disease
-          }).then(function successCallback(response){
-            console.log(response);
-            var modalObject = {
-              type: "notify",
-              title: "Archive Successful!",
-              description: "Successfully archived " + disease.name + "!",
-              positiveButton: "Ok",
-              isVisible: true,
-              data: goList
-            }
+        var name = disease.name[0].toUpperCase() + disease.name.substr(1);
+
+        $http({
+          method: "DELETE",
+          url: "/Disease",
+          data: disease
+        }).then(function successCallback(response){
+          console.log(response);
+          var modalObject = {
+            type: "notify",
+            title: "Archive Successful!",
+            description: "Successfully archived " + name + "!",
+            positiveButton: "Ok",
+            isVisible: true,
+            data: goList
+          };
 
             modalFactory.setContents(modalObject);
-          }, function errorCallback(response){
-            console.log(response);
-            var modalObject = {
-              type: "notify",
-              title: "Archive Failed!",
-              description: "Failed to archive " + disease.name + "!",
-              positiveButton: "Ok",
-              isVisible: true,
-              data: goList
-            }
+        }, function errorCallback(response){
+          console.log(response);
+          var modalObject = {
+            type: "notify",
+            title: "Archive Failed!",
+            description: "Unable to archive disease, a patient currently has this disease.",
+            positiveButton: "Ok",
+            isVisible: true,
+            data: goList
+          };
 
-            modalFactory.setContents(modalObject);
-          }); 
-        };
+          modalFactory.setContents(modalObject);
+        }); 
+      };
       
       var deleteDisease = function(disease){
+        var name = disease.name[0].toUpperCase() + disease.name.substr(1);
         var modalObject = {
           type: "confirm",
           title: "Archive Confirmation",
-          description: "Are you sure you want to archive " + disease.name + "?",
+          description: "Are you sure you want to archive " + name + "?",
           negativeButton: "No",
           positiveButton: "Yes",
           isVisible: true,
           data: confirmDeleteDisease,
           object: disease
-        }
+        };
 
         modalFactory.setContents(modalObject);
       };

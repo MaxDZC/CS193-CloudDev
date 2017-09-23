@@ -1,7 +1,7 @@
 <div class="margins">
   <div class="card__container" ng-controller="CardController">
     <div class="card__title">
-      {{data.name}}
+      {{ data.name[0].toUpperCase() + data.name.substr(1) }}
       
       <a ng-click="go('/admin/view/disease', data); $event.stopPropagation();">
       <span class="delete__icon">
@@ -22,7 +22,7 @@
     </div>
     
     <div class="card__desc">
-      Symptoms: <span ng-repeat="symp in data.symp"><span ng-hide="$first">,&nbsp;</span>{{symp}}</span>.
+      Symptoms: <span ng-repeat="symp in data.symp"><span ng-hide="$first">,&nbsp;</span>{{ symp }}</span>.
     </div>
   </div>
 </div>
