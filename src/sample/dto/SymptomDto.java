@@ -9,33 +9,42 @@ public class SymptomDto extends ErrorsDto {
      * The id of the 'Symptom'
      */
     private Long id;
-    
-    /**
-     * The firstName of the 'Symptom'
-     */
     private String name;
     private Date createdAt;
-  
+    private Date updatedAt;
+    private Date deletedAt;
     
     
-    
-    
-    
-    public Date getCreatedAt() {
-        return createdAt;
-    }
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    /**
-     * Creates an instance of 'Symptom'
-     */
     public SymptomDto(JSONObject obj) throws Exception{    
         this.setName(obj.getString("name"));
     }
-    public SymptomDto(){
+    
+    public SymptomDto(){}
+    
+    public Date getUpdatedAt() {
+        return updatedAt;
     }
+
+    public void setUpdatedAt(Date updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
+    public Date getDeletedAt() {
+        return deletedAt;
+    }
+
+    public void setDeletedAt(Date deletedAt) {
+        this.deletedAt = deletedAt;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+    
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
+    
     
     /**
      * Creates an instance of 'Symptom' with attribute initialization

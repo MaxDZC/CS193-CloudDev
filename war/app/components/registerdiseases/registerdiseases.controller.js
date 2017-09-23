@@ -4,7 +4,6 @@ angular.module('hplus.modules.registerdiseases')
     function($scope, $location, globalFactory, doctorFactory, symptomFactory, medicineFactory, diseaseFactory){
 	 
       var user = doctorFactory.getUser();
-      console.log(user);
 
       if(user != null) {
         if(!user.admin){
@@ -35,13 +34,22 @@ angular.module('hplus.modules.registerdiseases')
       $scope.saveSymptom = function(){
         var data = {"name":$scope.addSymptom};
         symptomFactory.registerSymptom(data);
+      };
+
+      $scope.$on("repopulate", function(event){
+        $scope.showAdd = !$scope.showAdd;
+        $scope.addSymptom = "";
+
         symptomFactory.getListOfSymptoms().then(function(response){
-            $scope.symptomList = response.data.symptoms;
-            $scope.symptomList.forEach(function(med){
-              med.val = false;
-            });
-          },function(){});
-      }
+          $scope.symptomList = response.data.symptoms;
+          $scope.symptomList.forEach(function(med){
+            med.val = false;
+          });
+
+          populate();
+        });
+
+      });
       
       $scope.saveDisease = function(){
         console.log($scope.disease.medicineId);
@@ -52,11 +60,12 @@ angular.module('hplus.modules.registerdiseases')
                 "name" : "",
                 "symptomId" : [],
                 "medicineId" : []
-              };
-              
-        setVals($scope.symptomList,false);
-       setVals($scope.medicineList,false);
-      }
+        };
+        
+        $scope.searchFilterSymp = "";
+        setVals($scope.symptomList, false);
+        setVals($scope.medicineList, false);
+      };
       
       $scope.addRemoveSymptom = function(hold){
     	  $scope.disease.symptomId= hold;
@@ -167,8 +176,9 @@ angular.module('hplus.modules.registerdiseases')
       
       var populate = function(){
             symptomFactory.getListOfSymptoms().then(function(response){
-        	  $scope.symptomList = response.data.symptoms;
-        	  $scope.symptomList.forEach(function(med){
+              console.log(response);
+        	    $scope.symptomList = response.data.symptoms;
+        	    $scope.symptomList.forEach(function(med){
                 med.val = false;
               });
             },function(){});
@@ -179,6 +189,7 @@ angular.module('hplus.modules.registerdiseases')
               });
             },function(){});
       };
+
       populate();
       
       var setVals = function (a, v) {

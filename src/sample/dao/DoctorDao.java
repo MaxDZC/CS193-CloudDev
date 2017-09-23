@@ -145,9 +145,9 @@ public class DoctorDao{
     }
     
     public Object getDoctors(){
-        ArrayList<DoctorModel> results =  new ArrayList<DoctorModel>();
+        List<DoctorModel> results =  new ArrayList<DoctorModel>();
 
-        List<Entity> entities = Datastore.query(DoctorModel.class).filter(
+  /*      List<Entity> entities = Datastore.query(DoctorModel.class).filter(
             CompositeFilterOperator.and(
                 new FilterPredicate("admin", FilterOperator.EQUAL, false),
                 new FilterPredicate("deletedAt", FilterOperator.EQUAL, null))
@@ -156,7 +156,12 @@ public class DoctorDao{
         for(Entity entity : entities) {
             results.add(DoctorModelMeta.get().entityToModel(entity));
         }
-               
+  */
+        results = Datastore.query(DoctorModel.class)
+                .filter("admin", FilterOperator.EQUAL, false)
+                .filter("deletedAt", FilterOperator.EQUAL, null)
+             .asList();
+        
         return results;
     }
     

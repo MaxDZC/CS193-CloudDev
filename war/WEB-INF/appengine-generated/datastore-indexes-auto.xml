@@ -1,7 +1,12 @@
-<<<<<<< HEAD
-<!-- Indices written at Fri, 22 Sep 2017 04:48:53 SGT -->
-=======
->>>>>>> b4a258a3947611a39bff2c002e368174914ac2c1
+<!-- Indices written at Sat, 23 Sep 2017 10:42:04 SGT -->
 
-<datastore-indexes/>
+<datastore-indexes>
 
+    <!-- Used 1 time in query history -->
+    <datastore-index kind="DoctorModel" ancestor="false" source="auto">
+        <property name="admin" direction="asc"/>
+        <property name="deletedAt" direction="asc"/>
+        <property name="id" direction="asc"/>
+    </datastore-index>
+
+</datastore-indexes>

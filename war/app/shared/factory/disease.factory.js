@@ -25,7 +25,7 @@ angular.module('hplus.factory')
           var modalObject = {
             type: "notify",
             title: "Registration Failure!",
-            description: "Error in Registering Disease.",
+            description: "A disease with the same name already exists!",
             positiveButton: "Ok",
             isVisible: true
           };

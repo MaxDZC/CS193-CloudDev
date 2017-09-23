@@ -20,6 +20,7 @@ public class MedicalRecordDao {
     public MedicalRecordModel getMedicalRecordByPatientInfo(MedicalRecordModel inputMedicalRecord){
         System.out.println("MedicalRecordDao.getMedicalRecordByPatientInfo start");
         MedicalRecordModel record = null;
+        
         try{
             record = MedicalRecordModelMeta.get().entityToModel(
                     Datastore.query(MedicalRecordModel.class)

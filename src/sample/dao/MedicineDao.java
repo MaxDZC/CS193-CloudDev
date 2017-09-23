@@ -120,10 +120,6 @@ public class MedicineDao {
         
         System.out.println("MedicineDao.updateMedicine " + "end");
     }
-    /**
-     * Used to insert the 'Medicine' to the datastore
-     * @param inputDoc - the item to be inserted
-     */
    
     public void deleteMedicine(MedicineModel inputDoc) {
         System.out.println("MedicineDao.deleteMedicine " + "start");
@@ -134,8 +130,6 @@ public class MedicineDao {
     }
     
     public Boolean checkHold(MedicineModel medModel){
-        Boolean retVal;
-        
         List<Long> values = new ArrayList<Long>();
         
         values.add(medModel.getId());
@@ -146,13 +140,7 @@ public class MedicineDao {
                 new FilterPredicate("deletedAt", FilterOperator.EQUAL, null)))
             .asSingleEntity();
         
-        if(entity == null){
-            retVal = true;
-        } else {
-            retVal = false;
-        }
-        
-        return retVal;
+        return (entity == null);
     }
 
 }

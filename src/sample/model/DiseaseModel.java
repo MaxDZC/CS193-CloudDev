@@ -9,6 +9,8 @@ import com.google.appengine.api.datastore.Key;
 import org.slim3.datastore.Attribute;
 import org.slim3.datastore.Model;
 
+import sample.dto.DiseaseDto;
+
 @Model(schemaVersion = 1)
 public class DiseaseModel implements Serializable {
 
@@ -24,20 +26,32 @@ public class DiseaseModel implements Serializable {
     private String name;
     private List<Long> symptomId;
     private List<Long> medicineId;
+    private Date createdAt;
     private Date deletedAt;
     private Date updatedAt;
-    /**
-     * Returns the key.
-     *
-     * @return the key
-     */
-    public DiseaseModel(){
-        
+
+    public DiseaseModel(){}
+    
+    public DiseaseModel(DiseaseDto diseaseDto){
+        this.setName(diseaseDto.getName().toLowerCase());
+        this.setSymptomId(diseaseDto.getSymptomId());
+        this.setMedicineId(diseaseDto.getMedicineId());
+        this.setCreatedAt(diseaseDto.getCreatedAt());
+        this.setUpdatedAt(diseaseDto.getUpdatedAt());
+        this.setDeletedAt(diseaseDto.getDeletedAt());
     }
-    public DiseaseModel(List<Long> symps,List<Long> meds, String diseasename){
-        name = diseasename;
-        symptomId = symps;
-        medicineId = meds;
+    
+    
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+    
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
+    
+    public static long getSerialversionuid() {
+        return serialVersionUID;
     }
     public Key getKey() {
         return key;
@@ -67,33 +81,40 @@ public class DiseaseModel implements Serializable {
         this.medicineId = medicineId;
     }
 
-    /**
-     * Sets the key.
-     *
-     * @param key
-     *            the key
-     */
     public void setKey(Key key) {
         this.key = key;
     }
 
-    /**
-     * Returns the version.
-     *
-     * @return the version
-     */
     public Long getVersion() {
         return version;
     }
 
-    /**
-     * Sets the version.
-     *
-     * @param version
-     *            the version
-     */
     public void setVersion(Long version) {
         this.version = version;
+    }
+    
+    public Long getId() {
+        return id;
+    }
+    
+    public void setId(Long id) {
+        this.id = id;
+    }
+    
+    public Date getDeletedAt() {
+        return deletedAt;
+    }
+    
+    public void setDeletedAt(Date deletedAt) {
+        this.deletedAt = deletedAt;
+    }
+    
+    public Date getUpdatedAt() {
+        return updatedAt;
+    }
+    
+    public void setUpdatedAt(Date updatedAt) {
+        this.updatedAt = updatedAt;
     }
 
     @Override
@@ -125,22 +146,5 @@ public class DiseaseModel implements Serializable {
         }
         return true;
     }
-    public Long getId() {
-        return id;
-    }
-    public void setId(Long id) {
-        this.id = id;
-    }
-    public Date getDeletedAt() {
-        return deletedAt;
-    }
-    public void setDeletedAt(Date deletedAt) {
-        this.deletedAt = deletedAt;
-    }
-    public Date getUpdatedAt() {
-        return updatedAt;
-    }
-    public void setUpdatedAt(Date updatedAt) {
-        this.updatedAt = updatedAt;
-    }
+
 }
