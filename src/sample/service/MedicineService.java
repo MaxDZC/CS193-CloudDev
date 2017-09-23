@@ -32,7 +32,7 @@ public class MedicineService {
     
    
     public Boolean updateMedicine(MedicineDto medicineDto) {
-        System.out.println("MedicineService.updateRecord " + "start");
+        System.out.println("MedicineService.updateMedicine start");
     
         MedicineModel medicineModel = new MedicineModel(medicineDto);
         MedicineModel resultModel;
@@ -41,7 +41,6 @@ public class MedicineService {
         medicineModel.setId(medicineDto.getId());
         
         try {
-            // checking if there is already the same item that exists in the datastore.
             if(medicineDao.validate(medicineModel)){
                 resultModel = medicineDao.getMedById(medicineModel.getId());
                 
@@ -56,24 +55,23 @@ public class MedicineService {
             System.out.println(e.toString());
         }
         
+        System.out.println("MedicineService.updateMedicine end");
         return ret;
-       
     }
     
     
     public Boolean deleteMedicine(MedicineDto medicineDto) {
-        System.out.println("MedicineService.deleteRecord " + "start");
-        /**
-         * MedicineModel that will be stored to the datastore. 
-         */
+        System.out.println("MedicineService.deleteRecord start");
+        
         MedicineModel medicineModel = new MedicineModel(medicineDto);
         MedicineModel resultModel = null;
-        medicineModel.setId(medicineDto.getId());
         Boolean retVal = false;
+        
+        medicineModel.setId(medicineDto.getId());
     
         try {
             if(medicineDao.checkHold(medicineModel)){
-                resultModel = (MedicineModel) medicineDao.getMedById(medicineDto.getId());
+                resultModel = medicineDao.getMedById(medicineDto.getId());
             
                 if (resultModel != null) {
                     medicineModel.setKey(resultModel.getKey());
@@ -86,7 +84,7 @@ public class MedicineService {
             System.out.println(e.toString());
         }
         
-        System.out.println("MedicineService.deleteRecord " + "end");
+        System.out.println("MedicineService.deleteRecord end");
         return retVal;
     }
     
