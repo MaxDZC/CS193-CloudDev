@@ -41,7 +41,7 @@ public class MedicineService {
         medicineModel.setId(medicineDto.getId());
         
         try {
-            if(medicineDao.validate(medicineModel)){
+            if(medicineDao.validate(medicineModel) && medicineDao.checkHold(medicineModel)){
                 resultModel = medicineDao.getMedById(medicineModel.getId());
                 
                 if (resultModel != null) {

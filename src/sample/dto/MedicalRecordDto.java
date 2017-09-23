@@ -1,9 +1,9 @@
 package sample.dto;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+import org.slim3.repackaged.org.json.JSONArray;
 import org.slim3.repackaged.org.json.JSONObject;
 
 
@@ -30,38 +30,39 @@ public class MedicalRecordDto extends ErrorsDto{
         
     }
 
-    public MedicalRecordDto(JSONObject jObj) throws Exception{
+    public MedicalRecordDto(JSONObject jObj) throws Exception {
+        ArrayList <Long> tempMedIdList = new ArrayList<Long>();
+        ArrayList <Long> tempDisIdList = new ArrayList<Long>();
+        ArrayList <Long> tempSymIdList = new ArrayList<Long>();
+        ArrayList <Long> tempQuantityList = new ArrayList<Long>();
+        JSONArray sympIdList = jObj.getJSONArray("symptomIdList");
+        JSONArray medIdList = jObj.getJSONArray("medicineIdList");
+        JSONArray disIdList = jObj.getJSONArray("diseaseIdList");
+        JSONArray quantityList = jObj.getJSONArray("quantityList");
+        int i;
+        
+        for(i = 0; i < sympIdList.length(); i++){
+            tempSymIdList.add(sympIdList.getLong(i));
+        }
+        
+        for(i = 0; i < medIdList.length(); i++){
+            tempMedIdList.add(medIdList.getLong(i));
+        }
+        
+        for(i = 0; i < disIdList.length(); i++){
+            tempDisIdList.add(disIdList.getLong(i));
+        }
+
+        for(i = 0; i < quantityList.length(); i++){
+            tempQuantityList.add(quantityList.getLong(i));
+        }
+        
         this.setDoctorId(jObj.getLong("doctorId"));
         this.setPatientId(jObj.getLong("patientId"));
-        
-        ArrayList <Long> tempMedIdList = new ArrayList <Long>();
-        for(int i=0; i < jObj.getJSONArray("medicineIdList").length(); i++){
-            tempMedIdList.add(jObj.getJSONArray("medicineIdList").getLong(i));
-        }
-        
-        ArrayList <Long> tempDisIdList = new ArrayList <Long>();
-        for(int i=0; i < jObj.getJSONArray("diseaseIdList").length(); i++){
-            tempDisIdList.add(jObj.getJSONArray("diseaseIdList").getLong(i));
-        }
-        
-        ArrayList <Long> tempSymIdList = new ArrayList <Long>();
-        for(int i=0; i < jObj.getJSONArray("symptomIdList").length(); i++){
-            tempSymIdList.add(jObj.getJSONArray("symptomIdList").getLong(i));
-        }
-        
-        ArrayList <Long> tempQuantityList = new ArrayList <Long>();
-        for(int i=0; i < jObj.getJSONArray("quantityList").length(); i++){
-            tempQuantityList.add(jObj.getJSONArray("quantityList").getLong(i));
-        }
-        
         this.setMedicineIdList(tempMedIdList);
         this.setSymptomIdList(tempSymIdList);
         this.setDiseaseIdList(tempDisIdList);
         this.setQuantityList(tempQuantityList);
-        
-        String dischargeDate = jObj.getString("dischargeDate").split("T")[0];
-        
-        this.setDischargeDate(new SimpleDateFormat("yyyy-MM-dd").parse(dischargeDate));
         this.setInPatient(jObj.getBoolean("inPatient"));
     }
     

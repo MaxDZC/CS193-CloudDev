@@ -82,7 +82,7 @@ public class PatientDao{
         Transaction trans = Datastore.beginTransaction();
         
         //creating key and ID for the new entity
-        Key parentKey = KeyFactory.createKey("Patient", inputPat.getFirstname()+inputPat.getLastname()+inputPat.getContactNo()+inputPat.getBirthday());
+        Key parentKey = KeyFactory.createKey("Patient", inputPat.getFirstname()+inputPat.getLastname()+inputPat.getContactNo()+inputPat.getBirthday().toString());
         Key key = Datastore.allocateId(parentKey, "PatientModel");
         
         //Setting the 'key' and 'id' of the model

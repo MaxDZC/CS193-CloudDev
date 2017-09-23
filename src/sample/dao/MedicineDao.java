@@ -65,7 +65,7 @@ public class MedicineDao {
         System.out.println("MedicineDao.insertMed start");
         Transaction trans = Datastore.beginTransaction();
         
-        Key parentKey = KeyFactory.createKey("Medicine", inputMed.getCreatedAt() + inputMed.getName());
+        Key parentKey = KeyFactory.createKey("Medicine", inputMed.getCreatedAt().toString() + inputMed.getName());
         Key key = Datastore.allocateId(parentKey, "MedicineModel");
         
         inputMed.setKey(key);

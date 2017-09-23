@@ -32,7 +32,6 @@ public class DoctorDto extends ErrorsDto {
         this.setAddress(obj.getString("address"));
         this.setSpecialization(obj.getString("specialization"));
         this.setContactNo(obj.getString("contactNo"));
-      
         this.setUsername(obj.getString("username"));
         this.setPassword(obj.getString("password"));
         this.setAdmin(false);

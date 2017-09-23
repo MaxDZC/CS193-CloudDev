@@ -50,7 +50,7 @@ public class SymptomDao{
         
         Transaction trans = Datastore.beginTransaction();
         
-        Key parentKey = KeyFactory.createKey("Symptom", inputSymp.getId() + inputSymp.getName());
+        Key parentKey = KeyFactory.createKey("Symptom", new Date().toString() + inputSymp.getName());
         Key key = Datastore.allocateId(parentKey, "SymptomModel");
         
         inputSymp.setKey(key);

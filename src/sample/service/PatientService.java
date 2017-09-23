@@ -43,7 +43,7 @@ public class PatientService {
         patientModel.setId(patientDto.getId());
         
         try {
-            if(patientDao.getPat(patientModel) == null){ 
+            if(patientDao.getPat(patientModel) == null && patientDao.checkHold(patientModel)){ 
                 resultModel = (PatientModel) patientDao.getPatientById(patientModel.getId());
                 
                 if (resultModel != null) {
