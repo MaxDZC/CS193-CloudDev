@@ -7,65 +7,41 @@
 <div class="row" ng-controller="RegisterMedicalRecordController">
   <ng-form name="createMedicalRecordForm">
   	<div class="col col-md-2 col-md-offset-1">
-    	<div class="row">
-      		<div class="col col-md-12">
-      			<span class="header__user-title">Patient Name</span>
-      			
-            <select name="one" class="dropdown-select">
-              <option value="">Select...</option>
-              <option value="1">Option #1</option>
-              <option value="2">Option #2</option>
-              <option value="3">Option #3</option>
-            </select>
     
-      	</div>
-    	</div>
+		 <div class="col col-md-2 col-md-offset-0"><!-- Section for search -->
+		<div class="row">
+	  <div class="container">  
+	  	<form id="custom-search-form" class="form-search form-horizontal pull-left">
+	    <label class="subtitle">Search</label>
+	    <input type="text" placeholder="Enter a name" ng-model="searchFilter">
+		</form>	 	  
+	  </div>
+	</div>
+	
+  </div>
   	</div>
-  
-  	<div class="col col-md-7 col-md-offset-1">
-    	<div class="row">
-      		<button class="outline float-right">Add 1 more disease</button>
-    	</div>
+ 
+ <div class="col col-md-8"><!-- Section containing the list and detail of medicines -->
+    <div class="col col-md-9"><!-- List sector -->
+		  <label class="subtitle">ALL RESULTS</label>
+		  
+		  <div class="margins" >
+		    <hplus-explore-medicines-card dir-paginate="pat in patient | filter: {'name' : searchFilter} | itemsPerPage:10  | orderBy : 'name'" data="pat" ng-click="setSelected(pat)" ng-class="{'selectedCard__container': pat == selectedPatient}"></hplus-explore-medicines-card>  
+		         
+      </div>
+      <div class="col-md-12">
+      <!-- Pagination Section -->
+      <dir-pagination-controls max-size="5"></dir-pagination-controls>
+      </div>
     </div>
-    <div class="row col-md-10 col-md-offset-1">
-    	<div class="row card__container--custom1">
-	  
-    		<div class="row">
-      		<div class="col col-md-4">
-      			<span class="subtitle">Symptoms</span>
-      			<div class="collapsediv">
-      			  <table ng-required="true">
-      				  <br>
-      				  <tr ng-repeat="symptom in symptomList">
-        				  <td><input name="" type="checkbox" ng-model="medicalRecord.symptomChoice[$index]"><span>{{ symptom }}</span></td>
-      				  </tr>
-      			  </table>
-    			  </div>
-    		  </div>
-			<div class="col col-md-4">
-      			<span class="subtitle">Diseases</span>
-      			<div class="collapsediv">
-      			  <table ng-required="true">
-      				  <br>
-      				  <tr ng-repeat="diseases in diseasesList">
-        				  <td><input name="" type="checkbox" ng-model="medicalRecord.diseasesChoice[$index]"><span>{{ diseases }}</span></td>
-      				  </tr>
-      			  </table>
-    			  </div>
-    		 </div>
-    		<div class="col col-md-4">
-    			<span class="subtitle">Medicine</span>
-    			<div class="collapsediv">
-      			<br>
-      			<table ng-required="true">
-      				<tr ng-repeat="medicine in medicineList">
-        				<td><input name="" type="checkbox" ng-model="medicalRecord.medicineChoice[$index]"><span>{{ medicine }}</span></td>
-      				</tr>
-      			</table>
-    			</div>
-    		</div>
-  		</div>
-  	  </div>  
-  	</div>
-  </ng-form>
+    <div class="col col-md-6"><!-- Detail Sector -->
+		  <hplus-selected-medicine-card data="selectedPatient" ng-show="selectedPatient"></hplus-selected-medicine-card>
+		</div>
+  </div>
 </div>
+</ng-form>
+</div>
+
+
+    
+     

@@ -1,0 +1,9 @@
+<div class="card__container">
+  <div class="card__title">
+    {{data.name}}
+  </div>
+      
+  <div class="card__desc">
+    <span ng-repeat="treats in data.treats"><span ng-hide="$first">,&nbsp;</span>{{treats}}</span>
+  </div>
+</div>

@@ -1,27 +1,11 @@
 package sample.meta;
 
-<<<<<<< HEAD
-//@javax.annotation.Generated(value = { "slim3-gen", "@VERSION@" }, date = "2017-09-20 16:41:24")
-=======
-<<<<<<< HEAD
-//@javax.annotation.Generated(value = { "slim3-gen", "@VERSION@" }, date = "2017-09-20 14:01:55")
-=======
-//@javax.annotation.Generated(value = { "slim3-gen", "@VERSION@" }, date = "2017-09-21 12:21:35")
->>>>>>> e0c0b6093691ae62be8eccd9e0a3939cb48fc972
->>>>>>> develop
+//@javax.annotation.Generated(value = { "slim3-gen", "@VERSION@" }, date = "2017-09-23 21:31:37")
 /** */
 public final class MedicineModelMeta extends org.slim3.datastore.ModelMeta<sample.model.MedicineModel> {
 
     /** */
-<<<<<<< HEAD
-    public final org.slim3.datastore.StringAttributeMeta<sample.model.MedicineModel> createdAt = new org.slim3.datastore.StringAttributeMeta<sample.model.MedicineModel>(this, "createdAt", "createdAt");
-=======
-<<<<<<< HEAD
-    public final org.slim3.datastore.CoreAttributeMeta<sample.model.MedicineModel, java.util.Date> createdaAt = new org.slim3.datastore.CoreAttributeMeta<sample.model.MedicineModel, java.util.Date>(this, "createdaAt", "createdaAt", java.util.Date.class);
-=======
     public final org.slim3.datastore.CoreAttributeMeta<sample.model.MedicineModel, java.util.Date> createdAt = new org.slim3.datastore.CoreAttributeMeta<sample.model.MedicineModel, java.util.Date>(this, "createdAt", "createdAt", java.util.Date.class);
->>>>>>> e0c0b6093691ae62be8eccd9e0a3939cb48fc972
->>>>>>> develop
 
     /** */
     public final org.slim3.datastore.CoreAttributeMeta<sample.model.MedicineModel, java.util.Date> deletedAt = new org.slim3.datastore.CoreAttributeMeta<sample.model.MedicineModel, java.util.Date>(this, "deletedAt", "deletedAt", java.util.Date.class);
@@ -67,17 +51,8 @@ public final class MedicineModelMeta extends org.slim3.datastore.ModelMeta<sampl
     @Override
     public sample.model.MedicineModel entityToModel(com.google.appengine.api.datastore.Entity entity) {
         sample.model.MedicineModel model = new sample.model.MedicineModel();
-<<<<<<< HEAD
-        model.setCreatedAt((java.lang.String) entity.getProperty("createdAt"));
-=======
-<<<<<<< HEAD
-        model.setCreatedaAt((java.util.Date) entity.getProperty("createdaAt"));
->>>>>>> develop
-        model.setDeletedAt((java.lang.String) entity.getProperty("deletedAt"));
-=======
         model.setCreatedAt((java.util.Date) entity.getProperty("createdAt"));
         model.setDeletedAt((java.util.Date) entity.getProperty("deletedAt"));
->>>>>>> e0c0b6093691ae62be8eccd9e0a3939cb48fc972
         model.setDescription((java.lang.String) entity.getProperty("description"));
         model.setId((java.lang.Long) entity.getProperty("id"));
         model.setKey(entity.getKey());

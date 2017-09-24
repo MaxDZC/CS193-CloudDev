@@ -1,14 +1,6 @@
 package sample.meta;
 
-<<<<<<< HEAD
-//@javax.annotation.Generated(value = { "slim3-gen", "@VERSION@" }, date = "2017-09-20 16:41:24")
-=======
-<<<<<<< HEAD
-//@javax.annotation.Generated(value = { "slim3-gen", "@VERSION@" }, date = "2017-09-20 14:01:55")
-=======
-//@javax.annotation.Generated(value = { "slim3-gen", "@VERSION@" }, date = "2017-09-21 12:21:35")
->>>>>>> e0c0b6093691ae62be8eccd9e0a3939cb48fc972
->>>>>>> develop
+//@javax.annotation.Generated(value = { "slim3-gen", "@VERSION@" }, date = "2017-09-23 21:31:37")
 /** */
 public final class MedicalRecordModelMeta extends org.slim3.datastore.ModelMeta<sample.model.MedicalRecordModel> {
 
