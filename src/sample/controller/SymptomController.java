@@ -1,6 +1,7 @@
 package sample.controller;
 
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import org.slim3.controller.Controller;
@@ -23,125 +24,125 @@ public class SymptomController extends Controller {
     protected Navigation run() throws Exception {
         System.out.println("SymptomController.run start");
 
-        SymptomDto symptomDto = new SymptomDto();
-        JSONObject jsonObject = null;
         JSONValidators validator;
+        Boolean message;
+        Object checkObj;
+        String[] createdAts;
+        String[] updatedAts;
+        String createdAt;
+        String updatedAt;
+        Date createdAtNew;
+        Date updatedAtNew;
 
+        SymptomDto symptomDto = new SymptomDto();
+        JSONObject jsonObject = new JSONObject();
         String method = request.getMethod();
-        String message;
        
         try{
-            
-            if(method.equalsIgnoreCase("POST")){
+            if(method.equals("POST")){
                 jsonObject = new JSONObject(this.request.getReader().readLine());
-
                 validator = new JSONValidators(jsonObject);
                 
                 if(validator.validate()){
-                    
                     symptomDto = new SymptomDto(jsonObject);
-               
                     symptomDto.setCreatedAt(new Date());
-                   
-                    
                     message = symptomService.insertSymp(symptomDto);
                     
-                    if (message.equals("")) {
-                        jsonObject.put("success", true);
+                    if (message) {
+                        jsonObject.put("success", message);
                     } else {
                         jsonObject.put("errors", message);
                         response.setStatus(400);
                     }
-                
                 }
 
-            } else if(method == "GET") {
+            } else if(method.equals("GET")) {
                 jsonObject = new JSONObject(new RequestMap(this.request));
                 
                 if(jsonObject.has("id")){
                     jsonObject.put("symptom", SymptomService.getSymptom(jsonObject.getLong("id")));
-                    
                 } else {
                     jsonObject.put("symptoms", SymptomService.getAllSymp());
                 }
                 
-            }
-            /*  else if(method == "PUT") {
-                
+            } else if(method.equals("PUT")) {
                 jsonObject = new JSONObject(this.request.getReader().readLine());
                 validator = new JSONValidators(jsonObject);
                 
-                
-                
                 if(validator.validate()){
-                    
-                   
-                    createdAts = jsonObject.getString("createdAt").split(" ");
-                    
-                 
-                    createdAt = createdAts[5] + "-" + createdAts[1] + "-" + createdAts[2];
-                    
                     symptomDto = new SymptomDto(jsonObject);
+                    checkObj = jsonObject.get("createdAt");
                     
+                    if(checkObj instanceof String){
+                        createdAts = jsonObject.getString("createdAt").split(" ");
+                        createdAt = createdAts[5] + "-" + createdAts[1] + "-" + createdAts[2];
+                        symptomDto.setCreatedAt(new SimpleDateFormat("yyyy-MMM-dd").parse(createdAt));
+                    } else {
+                        createdAtNew = new Date(jsonObject.getLong("createdAt"));
+                        symptomDto.setCreatedAt(createdAtNew);
+                    }
                     
                     symptomDto.setId(jsonObject.getLong("id"));
-                    
-                   
-                    symptomDto.setCreatedAt(new SimpleDateFormat("yyyy-MMM-dd").parse(createdAt));
                     symptomDto.setUpdatedAt(new Date());
-                    symptomDto.setDeletedAt(null);
                     
                     message = symptomService.updateSymptom(symptomDto);
                     
-                    if(message.equals("")){
-                        jsonObject.put("success", true);
+                    if(message) {
+                        jsonObject.put("success", message);
                     } else {
                         jsonObject.put("errors", message);
                         response.setStatus(400);
                     }
                 }
                     
-            } else if(method == "DELETE"){
+            } else if(method.equals("DELETE")) {
                     
                 jsonObject = new JSONObject(this.request.getReader().readLine());
                 validator = new JSONValidators(jsonObject);
                 
                 if(validator.validate()){                       
-                   
-                    createdAts = jsonObject.getString("createdAt").split(" ");
-                    updatedAts = jsonObject.getString("updatedAt").split(" ");
-                    
-                   
-                    createdAt = createdAts[5] + "-" + createdAts[1] + "-" + createdAts[2];
-                    updatedAt = updatedAts[5] + "-" + updatedAts[1] + "-" + updatedAts[2];
-                    
+             
                     symptomDto = new SymptomDto(jsonObject);
+                    checkObj = jsonObject.get("createdAt");
                     
+                    if(checkObj instanceof String){
+                        createdAts = jsonObject.getString("createdAt").split(" ");
+                        createdAt = createdAts[5] + "-" + createdAts[1] + "-" + createdAts[2];
+                        symptomDto.setCreatedAt(new SimpleDateFormat("yyyy-MMM-dd").parse(createdAt));
+                        
+                        if(jsonObject.has("updatedAt")){
+                            updatedAts = jsonObject.getString("updatedAt").split(" ");
+                            updatedAt = updatedAts[5] + "-" + updatedAts[1] + "-" + updatedAts[2];
+                            symptomDto.setUpdatedAt(new SimpleDateFormat("yyyy-MMM-dd").parse(updatedAt));
+                        }
+                        
+                    } else {
+                        createdAtNew = new Date(jsonObject.getLong("createdAt"));            
+                        symptomDto.setCreatedAt(createdAtNew);
+                        
+                        if(jsonObject.has("updatedAt")){ 
+                            updatedAtNew = new Date(jsonObject.getLong("updated At")); 
+                            symptomDto.setUpdatedAt(updatedAtNew);
+                        }
+                    }
+
                     symptomDto.setId(jsonObject.getLong("id"));
-                    
-                   
-                    symptomDto.setCreatedAt(new SimpleDateFormat("yyyy-MMM-dd").parse(createdAt));
-                    symptomDto.setUpdatedAt(new SimpleDateFormat("yyyy-MMM-dd").parse(updatedAt));
                     symptomDto.setDeletedAt(new Date());
                     
                     message = symptomService.deleteSymptom(symptomDto);
                     
-                    if(message.equals("")){
-                        jsonObject.put("success", true);
+                    if(message){
+                        jsonObject.put("success", message);
                     } else {
                         response.setStatus(400);
                         jsonObject.put("errors", message);
                     }
                 }
-            } */
+            }
 
         } catch(Exception e){
             System.err.println(e.toString());
-            // Adds error message if it exists
             symptomDto.addError("Symptom Controller Error:" + e.getMessage());
-            if(jsonObject == null){
-                jsonObject = new JSONObject();
-            }
             
         }
         

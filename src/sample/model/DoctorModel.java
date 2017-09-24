@@ -43,14 +43,14 @@ public class DoctorModel implements Serializable {
     }
     
     public DoctorModel(DoctorDto inputDoc){
-        this.setFirstname(inputDoc.getFirstname());
-        this.setLastname(inputDoc.getLastname());
-        this.setEmail(inputDoc.getEmail());
-        this.setAddress(inputDoc.getAddress());
+        this.setFirstname(processName(inputDoc.getFirstname()));
+        this.setLastname(processName(inputDoc.getLastname()));
+        this.setEmail(inputDoc.getEmail().toLowerCase());
+        this.setAddress(processName(inputDoc.getAddress()));
         this.setSpecialization(inputDoc.getSpecialization());
         this.setContactNo(inputDoc.getContactNo());
         this.setBirthday(inputDoc.getBirthday());
-        this.setUsername(inputDoc.getUsername());
+        this.setUsername(inputDoc.getUsername().toLowerCase());
         this.setPassword(inputDoc.getPassword());
         this.setAdmin(inputDoc.isAdmin());
         this.setCreatedAt(inputDoc.getCreatedAt());
@@ -74,7 +74,6 @@ public class DoctorModel implements Serializable {
         this.version = version;
     }
 
-
     public Long getId() {
         return id;
     }
@@ -87,50 +86,37 @@ public class DoctorModel implements Serializable {
         return firstname;
     }
 
-
     public void setFirstname(String firstname) {
         this.firstname = firstname;
     }
-
 
     public String getLastname() {
         return lastname;
     }
 
-
     public void setLastname(String lastname) {
         this.lastname = lastname;
     }
 
-
     public String getEmail() {
         return email;
-    }
-    
+    }    
 
     public void setEmail(String email) {
         this.email = email;
     }
 
-
-
     public String getAddress() {
         return address;
     }
-
-
 
     public void setAddress(String address) {
         this.address = address;
     }
 
-
-
     public String getSpecialization() {
         return specialization;
     }
-
-
 
     public void setSpecialization(String specialization) {
         this.specialization = specialization;
@@ -238,19 +224,33 @@ public class DoctorModel implements Serializable {
         return updatedAt;
     }
 
-
-
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
     }
-
-
 
     public static long getSerialversionuid() {
         return serialVersionUID;
     }
 
-
+    public static String processName(String name){
+        String retName;
+        String[] names;
+        int i;
+        
+        names = name.split(" ");
+        retName = "";
+        
+        for(i = 0; i < names.length; i++){
+            names[i] = Character.toUpperCase(names[i].charAt(0)) + names[i].substring(1).toLowerCase();
+            retName += names[i];
+            if(i + 1 != names.length){
+                retName += " ";
+            }
+        }
+        
+        return retName;     
+    }
+    
 
     @Override
     public int hashCode() {

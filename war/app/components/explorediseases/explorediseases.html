@@ -13,14 +13,15 @@
     </div>
 	
     <div class="match-padding">
-      <input type="text" placeholder="Enter a keyword" ng-model="searchFilter">
+      <input type="text" placeholder="Enter a keyword" ng-model="query">
+      <button ng-show="user.admin" ng-click="go('/admin/register/disease')">New Disease</button>
     </div>
   </div>
 
   <div class="col col-md-8">
     <div> 
       <div class="col col-md-12 marginBottom">
-        <span class="subtitle"><span ng-hide="searchFilter == ''">{{(diseases | filter : searchFilter).length}}</span><span ng-hide="searchFilter != ''">All</span> Results</span>
+        <span class="subtitle"><span ng-hide="query == ''">{{(diseases | filter : searchFilter).length}}</span><span ng-hide="query != ''">All {{(diseases | filter : searchFilter).length}}</span> Results<span ng-hide="query != ''"></span></span>
         <hplus-explore-diseases-card dir-paginate="dis in diseases | filter : searchFilter | itemsPerPage : 10 | orderBy : 'name'" data="dis"></hplus-explore-diseases-card>
         <dir-pagination-controls max-size="5"></dir-pagination-controls>
 	    </div>

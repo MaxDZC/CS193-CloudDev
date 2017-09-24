@@ -28,7 +28,7 @@ public class DoctorController extends Controller {
         System.out.println("DoctorController.run start");
 
         DoctorDto doctorDto = new DoctorDto();
-        JSONObject jsonObject = null;
+        JSONObject jsonObject = new JSONObject();
         JSONValidators validator;
         
         String birthday;
@@ -37,12 +37,16 @@ public class DoctorController extends Controller {
         String[] birthdays;
         String[] createdAts;
         String[] updatedAts;
+        Date birthdayNew;
+        Date createdAtNew;
+        Date updatedAtNew;
+        Object aObj;
 
         String method = request.getMethod();
         String message;
         
         try{
-        /* \   DoctorDto adminAccount = new DoctorDto();
+        /*    DoctorDto adminAccount = new DoctorDto();
             
             adminAccount.setFirstname("admin");
             adminAccount.setLastname("admin");
@@ -64,21 +68,17 @@ public class DoctorController extends Controller {
             method = "";
         */
             
-            if(method.equalsIgnoreCase("POST")){
+            if(method.equals("POST")){
                 jsonObject = new JSONObject(this.request.getReader().readLine());
-
                 validator = new JSONValidators(jsonObject);
                 
-                if(validator.validate()){
-                    
+                if(validator.validate()) {
                     doctorDto = new DoctorDto(jsonObject);
                     
                     birthday = jsonObject.getString("birthday").split("T")[0];
                     
                     doctorDto.setBirthday(new SimpleDateFormat("yyyy-MM-dd").parse(birthday));
                     doctorDto.setCreatedAt(new Date());
-                    doctorDto.setUpdatedAt(null);
-                    doctorDto.setDeletedAt(null);
                     
                     message = doctorService.insertDoc(doctorDto);
                     
@@ -91,38 +91,33 @@ public class DoctorController extends Controller {
                 
                 }
 
-            } else if(method == "GET") {
+            } else if(method.equals("GET")) {
                 jsonObject = new JSONObject(new RequestMap(this.request));
                 
-                if(jsonObject.has("username")){
-                    Object tester = DoctorService.loginDoctor(jsonObject.getString("username"), jsonObject.getString("password"));
+                if(jsonObject.has("username")) {
+                    Object tester = doctorService.loginDoctor(jsonObject.getString("username"), jsonObject.getString("password"));
                     if(tester != null){
                         String doc = DoctorModelMeta.get().modelToJson(tester);
                         System.out.println(doc);
                         JSONObject jsonResult = new JSONObject(doc);
                         long doctorId = jsonResult.getLong("id");
                         jsonObject.put("doctor", doc);
-                        jsonObject.put("doctorMedicalRecords", MedicalRecordService.getMedicalRecordByDoctorId(doctorId));
-                        System.out.println(MedicalRecordService.getMedicalRecordByDoctorId((long) 627));
+                        jsonObject.put("doctorMedicalRecords", medicalRecordService.getMedicalRecordByDoctorId(doctorId));
                     } else {
                        response.setStatus(400);
                     }
                 } else {
-                    jsonObject.put("doctors", DoctorService.getDoctors());
-                    jsonObject.put("medicalRecords", MedicalRecordService.getMedicalRecords());
+                    jsonObject.put("doctors", doctorService.getDoctors());
+                    jsonObject.put("medicalRecords", medicalRecordService.getMedicalRecords());
                 }
                 
-            } else if(method == "PUT") {
-                
+            } else if(method.equals("PUT")) {                
                 jsonObject = new JSONObject(this.request.getReader().readLine());
                 validator = new JSONValidators(jsonObject);
                 
-                
-                
                 if(validator.validate()){
-                   
                     doctorDto = new DoctorDto(jsonObject);
-                    Object aObj = jsonObject.get("birthday");
+                    aObj = jsonObject.get("birthday");
                     
                     if(aObj instanceof String){
                         birthdays = jsonObject.getString("birthday").split(" ");
@@ -134,18 +129,15 @@ public class DoctorController extends Controller {
                         doctorDto.setBirthday(new SimpleDateFormat("yyyy-MMM-dd").parse(birthday));
                         doctorDto.setCreatedAt(new SimpleDateFormat("yyyy-MMM-dd").parse(createdAt));
                     } else {
-                        Date birthdayNew = new Date(jsonObject.getLong("birthday"));
-                        Date createdAtNew = new Date(jsonObject.getLong("createdAt"));
+                        birthdayNew = new Date(jsonObject.getLong("birthday"));
+                        createdAtNew = new Date(jsonObject.getLong("createdAt"));
                         
                         doctorDto.setBirthday(birthdayNew);
                         doctorDto.setCreatedAt(createdAtNew);
                     }
-                 
                     
                     doctorDto.setId(jsonObject.getLong("id"));
-                    
                     doctorDto.setUpdatedAt(new Date());
-                    doctorDto.setDeletedAt(null);
                     
                     message = doctorService.updateDoctor(doctorDto);
                     
@@ -157,15 +149,13 @@ public class DoctorController extends Controller {
                     }
                 }
                     
-            } else if(method == "DELETE"){
-                    
+            } else if(method.equals("DELETE")) {
                 jsonObject = new JSONObject(this.request.getReader().readLine());
                 validator = new JSONValidators(jsonObject);
                 
-                if(validator.validate()){                    
-                    
-                    
-                    Object aObj = jsonObject.get("birthday");
+                if(validator.validate()){             
+                    doctorDto = new DoctorDto(jsonObject);
+                    aObj = jsonObject.get("birthday");
                     
                     if(aObj instanceof String){
                         birthdays = jsonObject.getString("birthday").split(" ");
@@ -183,23 +173,19 @@ public class DoctorController extends Controller {
                             doctorDto.setUpdatedAt(new SimpleDateFormat("yyyy-MMM-dd").parse(updatedAt));
                         }
                     } else {
-                        Date birthdayNew = new Date(jsonObject.getLong("birthday"));
-                        Date createdAtNew = new Date(jsonObject.getLong("createdAt"));
+                        birthdayNew = new Date(jsonObject.getLong("birthday"));
+                        createdAtNew = new Date(jsonObject.getLong("createdAt"));
                         
                         doctorDto.setBirthday(birthdayNew);
                         doctorDto.setCreatedAt(createdAtNew);
                         
                         if(jsonObject.has("updatedAt")){
-                            Date updatedAtNew = new Date(jsonObject.getLong("updatedAt"));
+                            updatedAtNew = new Date(jsonObject.getLong("updatedAt"));
                             doctorDto.setUpdatedAt(updatedAtNew);
                         }
                     }
                     
-                    
-                    doctorDto = new DoctorDto(jsonObject);
-                    
                     doctorDto.setId(jsonObject.getLong("id"));
-                    
                     doctorDto.setDeletedAt(new Date());
                     
                     message = doctorService.deleteDoctor(doctorDto);
@@ -217,10 +203,6 @@ public class DoctorController extends Controller {
             System.err.println(e.toString());
             // Adds error message if it exists
             doctorDto.addError("Doctor Controller Error:" + e.getMessage());
-            if(jsonObject == null){
-                jsonObject = new JSONObject();
-            }
-            
         }
         
         jsonObject.put("errorList", doctorDto.getErrorList());

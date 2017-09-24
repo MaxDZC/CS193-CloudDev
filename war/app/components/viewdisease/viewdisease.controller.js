@@ -1,17 +1,55 @@
 app = angular.module('hplus.modules.viewdisease')
 
   .controller('ViewDiseaseController',
-    function($scope, $location, globalFactory, doctorFactory){
+    function($scope, $location, globalFactory, doctorFactory, diseaseFactory, medicineFactory){
 
-      var user = doctorFactory.getUser();
+      $scope.user = doctorFactory.getUser();
+      $scope.disease = diseaseFactory.getDisease();
 
-      if(user == null) {
+      var date = new Date();
+      var monthNames = ["January", "February", "March", "April", "May", "June",
+      "July", "August", "September", "October", "November", "December"];
+
+      $scope.monthAndYear = monthNames[date.getMonth()].toUpperCase() + " " + date.getFullYear();
+      $scope.year = date.getFullYear();
+
+      if($scope.user == null) {
         $location.path("/");
+      }
+
+      if($scope.disease == null){
+        $location.path("/admin/list/disease");
       }
 
       $scope.go = function(path){
         globalFactory.go(path);
       };
+
+      var populate = function(){
+        medicineFactory.getListOfMedicines().then(function(response){
+          console.log(response);
+          var medicineList = response.data.medicines;
+          var meds = [];
+          var x, y;
+
+          for(x = 0; x < medicineList.length; x++){
+            for(y = 0; y < $scope.disease.medicineId.length; y++){
+              if(medicineList[x].id == $scope.disease.medicineId[y]){
+                meds.push(medicineList[x].name);
+              }
+            }
+          }
+
+          $scope.disease.meds = meds;
+        });
+      };
+
+      populate();
+
+      $scope.delete = function(){
+        diseaseFactory.deleteDisease($scope.disease);
+      };
+      
       $scope.recordList = [
            {
              name: "Doe, Jane",

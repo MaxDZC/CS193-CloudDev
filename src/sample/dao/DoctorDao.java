@@ -10,24 +10,20 @@ import com.google.appengine.api.datastore.Query.FilterOperator;
 import com.google.appengine.api.datastore.Query.FilterPredicate;
 
 import sample.dto.DoctorDto;
-import sample.meta.DoctorModelMeta;
 import sample.model.DoctorModel;
+import sample.model.MedicalRecordModel;
 
 public class DoctorDao{
     
-    /**
-     * Used to get only a single 'Doctor' from the datastore with the same 'name'
-     * @param inputDoc - contains the information for verification
-     * @return DoctorModel returned by the query
-     */
     public DoctorModel getDoctorById(Long id){
         System.out.println("DoctorDao.getDoc start");
         
-        DoctorModel doctor = DoctorModelMeta.get().entityToModel(
-            Datastore.query("DoctorModel")
+        DoctorModel doctor;
+        
+        doctor = Datastore.query(DoctorModel.class)
                      .filter("id", FilterOperator.EQUAL, id)
                      .filter("deletedAt", FilterOperator.EQUAL, null)
-                     .asSingleEntity()) ;
+                 .asSingle();
         
         if(doctor != null){
             System.out.println("DoctorDao.getDoc end(success)");
@@ -39,18 +35,15 @@ public class DoctorDao{
     }
     
     public String validateDoctor(DoctorDto inputs){
-        System.out.println("DoctorDao.getDoc start");
+        System.out.println("DoctorDao.validate start");
         String msg= "";
         
         if(checkDoctorExistsByEmail(inputs.getEmail())){
-            
             System.out.println("DoctorDao.getDoc end(success)");
             msg += "email";
-           
         }
         
         if(checkDoctorExistsByUsername(inputs.getUsername())){
-            
             System.out.println("DoctorDao.getDoc end(success)");
             if(!msg.equals("")){
                 msg += ",";
@@ -64,14 +57,15 @@ public class DoctorDao{
     public boolean checkDoctorExistsByEmail(String email){
         System.out.println("DoctorDao.getDoc start");
         
+        DoctorModel checker;
         boolean ret;
+        
+        checker = Datastore.query(DoctorModel.class)
+                    .filter("email", FilterOperator.EQUAL, email)
+                    .filter("deletedAt", FilterOperator.EQUAL, null)
+                .asSingle();
       
-        if(
-            Datastore.query(DoctorModel.class)
-            .filter("email", FilterOperator.EQUAL, email.toLowerCase())
-            .filter("deletedAt", FilterOperator.EQUAL, null)
-            .asSingleEntity() != null){
- 
+        if(checker != null){
             System.out.println("DoctorDao.getDoc end(success)");
             ret = true;
         }else{
@@ -85,14 +79,16 @@ public class DoctorDao{
     public boolean checkDoctorUpdateEmail(String email, Long id){
         System.out.println("DoctorDao.updateEmailCheck start");
         
+        DoctorModel checker;
         boolean ret;
         
-        if(
-            Datastore.query(DoctorModel.class)
-            .filter(CompositeFilterOperator.and(
-                new FilterPredicate("email", FilterOperator.EQUAL, email.toLowerCase()), 
-                new FilterPredicate("id", FilterOperator.NOT_EQUAL, id))).asSingleEntity() != null){
-            
+        checker = Datastore.query(DoctorModel.class)
+                    .filter("id", FilterOperator.NOT_EQUAL, id)
+                    .filter("email", FilterOperator.EQUAL, email)
+                    .filter("deletedAt", FilterOperator.EQUAL, null)
+                .asSingle();
+        
+        if(checker != null){
             System.out.println("DoctorDao.updateEmailCheck end (found)");
             ret = true;
         } else {
@@ -106,16 +102,18 @@ public class DoctorDao{
     public boolean checkDoctorExistsByUsername(String username){
         System.out.println("DoctorDao.getDoc start");
         
+        DoctorModel checker;
         boolean ret;
       
-        if(
-            Datastore.query(DoctorModel.class)
-            .filter("username", FilterOperator.EQUAL, username.toLowerCase())
-            .asSingleEntity() != null){
- 
+        checker = Datastore.query(DoctorModel.class)
+                    .filter("username", FilterOperator.EQUAL, username)
+                    .filter("deletedAt", FilterOperator.EQUAL, null)
+                .asSingle();
+        
+        if(checker != null) {
             System.out.println("DoctorDao.getDoc end(success)");
             ret = true;
-        }else{
+        } else {
             System.out.println("DoctorDao.getDoc end(failed)");
             ret = false;
         }
@@ -124,111 +122,91 @@ public class DoctorDao{
     }
     
     
-    public Object getDoctorByEmailandPassword(String user,String password){  
-        System.out.println("DoctorDao.getDoc start");
+    public DoctorModel getDoctorByEmailandPassword(String user,String password){  
+        System.out.println("DoctorDao.getDocByEmailAndPass start");
        
-        DoctorModel doctor = null;
-        Entity entity = Datastore.query(DoctorModel.class).filter(
+        DoctorModel doctor;
+
+        
+        doctor = Datastore.query(DoctorModel.class).filter(
             CompositeFilterOperator.and(
                 CompositeFilterOperator.or(
                     new FilterPredicate("username",FilterOperator.EQUAL, user.toLowerCase()), 
                     new FilterPredicate("email", FilterOperator.EQUAL, user.toLowerCase())),
                 new FilterPredicate("password", FilterOperator.EQUAL, password),
                 new FilterPredicate("deletedAt", FilterOperator.EQUAL, null))
-            ).asSingleEntity();
+            ).asSingle();
         
-        if(entity != null){
-            doctor = DoctorModelMeta.get().entityToModel(entity);
-        }
-        
+        System.out.println("DoctorDao.getDocByEmailAndPass end");
         return doctor;
     }
     
-    public Object getDoctors(){
-        ArrayList<DoctorModel> results =  new ArrayList<DoctorModel>();
-
-        List<Entity> entities = Datastore.query(DoctorModel.class).filter(
-            CompositeFilterOperator.and(
-                new FilterPredicate("admin", FilterOperator.EQUAL, false),
-                new FilterPredicate("deletedAt", FilterOperator.EQUAL, null))
-            ).asEntityList();
-
-        for(Entity entity : entities) {
-            results.add(DoctorModelMeta.get().entityToModel(entity));
-        }
-               
+    public List<DoctorModel> getDoctors(){ 
+        System.out.println("DoctorDao.getDoctors start");
+        
+        List<DoctorModel> results =  new ArrayList<DoctorModel>();
+        
+        results = Datastore.query(DoctorModel.class)
+                .filter("admin", FilterOperator.EQUAL, false)
+                .filter("deletedAt", FilterOperator.EQUAL, null)
+             .asList();
+        
+        System.out.println("DoctorDao.getDoctors end");
         return results;
     }
     
     public void updateDoctor(DoctorModel inputDoctor) {
-        System.out.println("DoctorDao.updateDoctor " + "start");
+        System.out.println("DoctorDao.updateDoctor start");
         
         Transaction trans = Datastore.beginTransaction();
-        
         Datastore.put(trans, inputDoctor);
-        
         trans.commit();
-        System.out.println("DoctorDao.updateDoctor " + "end");
+        
+        System.out.println("DoctorDao.updateDoctor end");
     }
-    /**
-     * Used to insert the 'Doctor' to the datastore
-     * @param inputDoc - the item to be inserted
-     */
+    
     public void insertDoc(DoctorModel inputDoc){
         System.out.println("DoctorDao.insertDoc start");
         
         Transaction trans = Datastore.beginTransaction();
         
-        System.out.println(inputDoc.getUsername());
-        
         //creating key and ID for the new entity
-        Key parentKey = KeyFactory.createKey("Doctor", inputDoc.getUsername());
+        Key parentKey = KeyFactory.createKey("Doctor", inputDoc.getCreatedAt().toString() + inputDoc.getUsername());
         Key key = Datastore.allocateId(parentKey, DoctorModel.class);
 
         //Setting the 'key' and 'id' of the model
         inputDoc.setKey(key);
         inputDoc.setId(key.getId());
-        inputDoc.setEmail(inputDoc.getEmail().toLowerCase());
-        inputDoc.setUsername(inputDoc.getUsername().toLowerCase());
-        inputDoc.setFirstname(processName(inputDoc.getFirstname()));
-        inputDoc.setLastname(processName(inputDoc.getLastname()));
         
         //inserting the item to the datastore
         Datastore.put(inputDoc);
         trans.commit();
+        
         System.out.println("DoctorDao.insertDoc end");
-    }
-    
-    public static String processName(String name){
-        String retName;
-        String[] names;
-        int i;
-        
-        names = name.split(" ");
-        retName = "";
-        
-        for(i = 0; i < names.length; i++){
-            names[i] = Character.toUpperCase(names[i].charAt(0)) + names[i].substring(1).toLowerCase();
-            retName += names[i];
-            if(i + 1 != names.length){
-                retName += " ";
-            }
-        }
-        
-        return retName;     
     }
 
 
     public void deleteDoctor(DoctorModel inputDoc) {
-        System.out.println("DoctorDao.deleteDoctor " + "start");
+        System.out.println("DoctorDao.deleteDoctor start");
         
         Transaction trans = Datastore.beginTransaction();
-        
         Datastore.put(inputDoc);
-        
         trans.commit();
         
-        System.out.println("DoctorDao.deleteDoctor " + "end");
+        System.out.println("DoctorDao.deleteDoctor end");
+    }
+    
+    public Boolean checkHold(Long id){
+        System.out.println("DoctorDao.checkHold start");
+        
+        List<MedicalRecordModel> medRecModels;
+        
+        medRecModels = Datastore.query(MedicalRecordModel.class)
+                    .filter("doctorId", FilterOperator.EQUAL, id)
+                    .filter("deletedAt", FilterOperator.EQUAL, null)
+                .asList();
+        
+        return (medRecModels.size() == 0);
     }
 
 }

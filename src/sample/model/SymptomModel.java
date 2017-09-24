@@ -24,8 +24,24 @@ public class SymptomModel implements Serializable {
     private Long id;
     private String name; 
     private Date createdAt;
- 
+    private Date updatedAt;
+    private Date deletedAt;
 
+    /**
+     * Creates an instance of 'Symptom'
+     */
+    public SymptomModel(){}
+    
+    /**
+     * Creates an instance of 'Symptom' with attribute initialization
+     */
+    public SymptomModel(SymptomDto inputSymp){
+        this.setName(inputSymp.getName().toLowerCase());
+        this.setCreatedAt(inputSymp.getCreatedAt());
+        this.setUpdatedAt(inputSymp.getUpdatedAt());
+        this.setDeletedAt(inputSymp.getDeletedAt());
+    }
+    
     public Date getCreatedAt() {
         return createdAt;
     }
@@ -33,25 +49,28 @@ public class SymptomModel implements Serializable {
     public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
     }
-
- 
-
-    /**
-     * Creates an instance of 'Symptom'
-     */
-    public SymptomModel(){
-        
-    }
-    
-    /**
-     * Creates an instance of 'Symptom' with attribute initialization
-     */
-    public SymptomModel(SymptomDto inputSymp){
-        this.setName(inputSymp.getName());
- 
-    }
    
     
+    public Date getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(Date updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
+    public Date getDeletedAt() {
+        return deletedAt;
+    }
+
+    public void setDeletedAt(Date deletedAt) {
+        this.deletedAt = deletedAt;
+    }
+
+    public static long getSerialversionuid() {
+        return serialVersionUID;
+    }
+
     public String getName() {
         return name;
     }

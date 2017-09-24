@@ -1,11 +1,18 @@
 package sample.meta;
 
+<<<<<<< HEAD
 //@javax.annotation.Generated(value = { "slim3-gen", "@VERSION@" }, date = "2017-09-24 12:50:41")
+=======
+//@javax.annotation.Generated(value = { "slim3-gen", "@VERSION@" }, date = "2017-09-22 23:27:01")
+>>>>>>> 00c2bea7e85e48ed385da3c6261bd3d81aab90e6
 /** */
 public final class SymptomModelMeta extends org.slim3.datastore.ModelMeta<sample.model.SymptomModel> {
 
     /** */
     public final org.slim3.datastore.CoreAttributeMeta<sample.model.SymptomModel, java.util.Date> createdAt = new org.slim3.datastore.CoreAttributeMeta<sample.model.SymptomModel, java.util.Date>(this, "createdAt", "createdAt", java.util.Date.class);
+
+    /** */
+    public final org.slim3.datastore.CoreAttributeMeta<sample.model.SymptomModel, java.util.Date> deletedAt = new org.slim3.datastore.CoreAttributeMeta<sample.model.SymptomModel, java.util.Date>(this, "deletedAt", "deletedAt", java.util.Date.class);
 
     /** */
     public final org.slim3.datastore.CoreAttributeMeta<sample.model.SymptomModel, java.lang.Long> id = new org.slim3.datastore.CoreAttributeMeta<sample.model.SymptomModel, java.lang.Long>(this, "id", "id", java.lang.Long.class);
@@ -15,6 +22,9 @@ public final class SymptomModelMeta extends org.slim3.datastore.ModelMeta<sample
 
     /** */
     public final org.slim3.datastore.StringAttributeMeta<sample.model.SymptomModel> name = new org.slim3.datastore.StringAttributeMeta<sample.model.SymptomModel>(this, "name", "name");
+
+    /** */
+    public final org.slim3.datastore.CoreAttributeMeta<sample.model.SymptomModel, java.util.Date> updatedAt = new org.slim3.datastore.CoreAttributeMeta<sample.model.SymptomModel, java.util.Date>(this, "updatedAt", "updatedAt", java.util.Date.class);
 
     /** */
     public final org.slim3.datastore.CoreAttributeMeta<sample.model.SymptomModel, java.lang.Long> version = new org.slim3.datastore.CoreAttributeMeta<sample.model.SymptomModel, java.lang.Long>(this, "version", "version", java.lang.Long.class);
@@ -37,9 +47,11 @@ public final class SymptomModelMeta extends org.slim3.datastore.ModelMeta<sample
     public sample.model.SymptomModel entityToModel(com.google.appengine.api.datastore.Entity entity) {
         sample.model.SymptomModel model = new sample.model.SymptomModel();
         model.setCreatedAt((java.util.Date) entity.getProperty("createdAt"));
+        model.setDeletedAt((java.util.Date) entity.getProperty("deletedAt"));
         model.setId((java.lang.Long) entity.getProperty("id"));
         model.setKey(entity.getKey());
         model.setName((java.lang.String) entity.getProperty("name"));
+        model.setUpdatedAt((java.util.Date) entity.getProperty("updatedAt"));
         model.setVersion((java.lang.Long) entity.getProperty("version"));
         return model;
     }
@@ -54,8 +66,10 @@ public final class SymptomModelMeta extends org.slim3.datastore.ModelMeta<sample
             entity = new com.google.appengine.api.datastore.Entity(kind);
         }
         entity.setProperty("createdAt", m.getCreatedAt());
+        entity.setProperty("deletedAt", m.getDeletedAt());
         entity.setProperty("id", m.getId());
         entity.setProperty("name", m.getName());
+        entity.setProperty("updatedAt", m.getUpdatedAt());
         entity.setProperty("version", m.getVersion());
         entity.setProperty("slim3.schemaVersion", 1);
         return entity;
@@ -123,6 +137,10 @@ public final class SymptomModelMeta extends org.slim3.datastore.ModelMeta<sample
             writer.setNextPropertyName("createdAt");
             encoder0.encode(writer, m.getCreatedAt());
         }
+        if(m.getDeletedAt() != null){
+            writer.setNextPropertyName("deletedAt");
+            encoder0.encode(writer, m.getDeletedAt());
+        }
         if(m.getId() != null){
             writer.setNextPropertyName("id");
             encoder0.encode(writer, m.getId());
@@ -134,6 +152,10 @@ public final class SymptomModelMeta extends org.slim3.datastore.ModelMeta<sample
         if(m.getName() != null){
             writer.setNextPropertyName("name");
             encoder0.encode(writer, m.getName());
+        }
+        if(m.getUpdatedAt() != null){
+            writer.setNextPropertyName("updatedAt");
+            encoder0.encode(writer, m.getUpdatedAt());
         }
         if(m.getVersion() != null){
             writer.setNextPropertyName("version");
@@ -149,12 +171,16 @@ public final class SymptomModelMeta extends org.slim3.datastore.ModelMeta<sample
         org.slim3.datastore.json.Default decoder0 = new org.slim3.datastore.json.Default();
         reader = rootReader.newObjectReader("createdAt");
         m.setCreatedAt(decoder0.decode(reader, m.getCreatedAt()));
+        reader = rootReader.newObjectReader("deletedAt");
+        m.setDeletedAt(decoder0.decode(reader, m.getDeletedAt()));
         reader = rootReader.newObjectReader("id");
         m.setId(decoder0.decode(reader, m.getId()));
         reader = rootReader.newObjectReader("key");
         m.setKey(decoder0.decode(reader, m.getKey()));
         reader = rootReader.newObjectReader("name");
         m.setName(decoder0.decode(reader, m.getName()));
+        reader = rootReader.newObjectReader("updatedAt");
+        m.setUpdatedAt(decoder0.decode(reader, m.getUpdatedAt()));
         reader = rootReader.newObjectReader("version");
         m.setVersion(decoder0.decode(reader, m.getVersion()));
         return m;

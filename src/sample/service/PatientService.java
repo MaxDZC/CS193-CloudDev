@@ -1,7 +1,5 @@
 package sample.service;
 
-import java.util.Date;
-
 import sample.dao.PatientDao;
 import sample.dto.PatientDto;
 import sample.model.PatientModel;
@@ -12,92 +10,89 @@ public class PatientService {
      * Used to access the DAO functions for the PatientModel
      */
     static PatientDao patientDao = new PatientDao();
-    
-    
-    /**
-     * Used to insert an item to the datastore
-     * @param inputPat - the dto that contains the data to be stored in the model object
-     */
+
     public Boolean insertPatient(PatientDto inputPatient){
         System.out.println("PatientService.insertPat start");
         
         PatientModel patientModel = new PatientModel(inputPatient);
+        Boolean state = true;
         
         try{
-            if(PatientDao.getPat(patientModel) == null){
+            if(patientDao.getPat(patientModel) == null) {
+                System.out.println("Inserting Patient");
                 PatientDao.insertPat(patientModel);
-            }else{
+            } else {
                 System.out.println("Patient Already Exists!");
-                return false;
+                state = false;
             }
-        }catch (Exception e){
+        }catch (Exception e) {
             System.out.println("Exception in inserting Patient: "+e.toString());
         }
         
         System.out.println("PatientService.insertPat end");
-        return true;
+        return state;
     }
-    public Boolean updatePatient(PatientDto patientDto) {
-        System.out.println("PatientService.updateRecord " + "start");
     
+    public Boolean updatePatient(PatientDto patientDto) {
+        System.out.println("PatientService.updatePatient start");
+    
+        PatientModel resultModel;
         PatientModel patientModel = new PatientModel(patientDto);
+        Boolean state = false;
+        
+        patientModel.setId(patientDto.getId());
         
         try {
-            // checking if there is already the same item that exists in the datastore.
-            PatientModel resultModel = (PatientModel) patientDao.getPatientById(patientModel.getId());
-            
-            if (resultModel != null) {
-                // setting the key in order to properly update the item
-                patientModel.setKey(resultModel.getKey());
-                patientModel.setUpdatedAt(new Date());
-                // update the entity to the datastore.
-                PatientService.patientDao.updatePatient(patientModel);
-                return true;
+            if(patientDao.getPat(patientModel) == null && patientDao.checkHold(patientModel)){ 
+                resultModel = (PatientModel) patientDao.getPatientById(patientModel.getId());
                 
-            } 
-        } catch (Exception e) {
-            System.out.println(e.toString());
-        }
-        return false;
-       
-    }
-    public Boolean deletePatient(PatientDto patientDto) {
-        System.out.println("PatientService.deleteRecord " + "start");
-        /**
-         * PatientModel that will be stored to the datastore. 
-         */
-        PatientModel patientModel = new PatientModel(patientDto);
-        
-        try { 
-            // checking if there is already the same item that exists in the datastore.
-            PatientModel resultModel = (PatientModel) patientDao.getPatientById(patientDto.getId());
-            
-            if (resultModel != null) {
-                // setting the key in order to properly delete the item
-                patientModel.setKey(resultModel.getKey());
-                patientModel.setDeletedAt(new Date());
-                // delete the entity to the datastore.
-                PatientService.patientDao.deletePatient(patientModel);
-            
-                System.out.println("Deleted Patient");
-                return true ;
-            } else {
-                // deleting was canceled.
-                System.out.println("There is no item with the same id.");
+                if (resultModel != null) {
+                    patientModel.setKey(resultModel.getKey());
+                    patientDao.updatePatient(patientModel);
+                    state = true;
+                }
             }
         } catch (Exception e) {
             System.out.println(e.toString());
         }
-        System.out.println("PatientService.deleteRecord " + "end");
-        return false;
+        
+        return state;
+    }
+    
+    public Boolean deletePatient(PatientDto patientDto) {
+        System.out.println("PatientService.deleteRecord " + "start");
+
+        PatientModel patientModel = new PatientModel(patientDto);
+        Boolean state = false;
+        
+        patientModel.setId(patientDto.getId());
+        
+        try { 
+            if(patientDao.checkHold(patientModel)){ 
+                PatientModel resultModel = (PatientModel) patientDao.getPatientById(patientDto.getId());
+                
+                if (resultModel != null) {
+                    patientModel.setKey(resultModel.getKey());
+                    patientDao.deletePatient(patientModel);
+                    System.out.println("Deleted Patient");
+                    state = true;
+                } else {
+                    System.out.println("There is no item with the same id. Did not delete");
+                }
+            }
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        }
+        
+        System.out.println("PatientService.deleteRecord end");
+        return state;
     }
     
     public static Object getPatients() {
-        // TODO Auto-generated method stub
         return patientDao.getPatients();
     }
+    
     public static Object getPatient(Long id) {
-        // TODO Auto-generated method stub
         return patientDao.getPatientById(id);
     }
 }

@@ -7,11 +7,7 @@ angular.module('hplus.modules.login')
       console.log(user);
 
       if(user != null){
-        if(user.admin){
-          $location.path("/admin/list/disease");
-        } else {
-          $location.path("/admin/list/record");
-        }
+        $location.path("/admin/list/record");
       }
 
       $scope.go = function(path){

@@ -13,8 +13,54 @@ public class DiseaseDto extends ErrorsDto {
     private String name;
     private List<Long> symptomId;
     private List<Long> medicineId;
+    private Date createdAt;
     private Date deletedAt;
     private Date updatedAt;
+    
+    public DiseaseDto (JSONObject jObj) throws Exception{
+        
+        JSONArray sympId;
+        JSONArray medId;
+        int i;
+        List<Long> idsymptoms = new ArrayList<Long>();
+        List<Long> idmedicines = new ArrayList<Long>();
+        
+        sympId = jObj.getJSONArray("symptomId");
+        medId = jObj.getJSONArray("medicineId");
+        
+        if(sympId.get(0) instanceof JSONObject) {
+            for(i = 0; i < sympId.length(); i++){
+                idsymptoms.add(sympId.getJSONObject(i).getLong("id"));
+            }
+        } else {
+            for(i = 0; i < sympId.length(); i++){
+                idsymptoms.add(sympId.getLong(i));
+            }
+        }
+        
+        if(medId.get(0) instanceof JSONObject){
+            for(i = 0; i < medId.length(); i++){
+                idmedicines.add(medId.getJSONObject(i).getLong("id"));
+            }
+        } else {
+            for(i = 0; i < medId.length(); i++){
+                idmedicines.add(medId.getLong(i));
+            }
+        }
+        
+        this.setName(jObj.getString("name"));
+        this.setMedicineId(idmedicines);
+        this.setSymptomId(idsymptoms);
+    }
+    
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
+
     public String getName() {
         return name;
     }
@@ -46,29 +92,8 @@ public class DiseaseDto extends ErrorsDto {
     public void setId(Long id) {
         this.id = id;
     }
-    public DiseaseDto (JSONObject jObj) throws Exception{
-        this.setName(jObj.getString("diseasename"));
-        //this.setGenericName(jObj.getString("genericName"));
-        JSONArray sympId = jObj.getJSONArray("medicineids");
-        JSONArray medId = jObj.getJSONArray("symptomsids");
-        List<Long> idsymptoms = new ArrayList<Long>();
-        List<Long> idmedicines = new ArrayList<Long>();
-        for(int i=0;i<sympId.length();i++){
-            idsymptoms.add(sympId.getJSONObject(i).getLong("id"));
-            System.out.println("symp: " +sympId.getJSONObject(i).getLong("id"));
-           
-        }
-        for(int i=0;i<medId.length();i++){
-            idmedicines.add(medId.getJSONObject(i).getLong("id"));
-        }
-        this.setMedicineId(idmedicines);
-        this.setSymptomId(idsymptoms);
-        this.setUpdatedAt(new Date());
-        this.setDeletedAt(null);
-    }
 
     public DiseaseDto() {
-        // TODO Auto-generated constructor stub
     }
 
     public Date getUpdatedAt() {

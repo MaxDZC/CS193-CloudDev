@@ -3,9 +3,9 @@ angular.module('hplus.modules.exploremedicalrecords')
   .controller('ExploreMedicalRecordsController',
 	function($scope, $location, globalFactory, doctorFactory){
 
-		var user = doctorFactory.getUser();
+		$scope.user = doctorFactory.getUser();
 
-		if(user == null){
+		if($scope.user == null){
 			$location.path("/");
 		}
 		

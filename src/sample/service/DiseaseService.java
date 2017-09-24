@@ -1,9 +1,9 @@
 package sample.service;
 
 import java.util.ArrayList;
-import java.util.Date;
 
 import sample.dao.DiseaseDao;
+import sample.dao.SymptomDao;
 import sample.dto.DiseaseDto;
 import sample.model.DiseaseModel;
 
@@ -14,104 +14,97 @@ public class DiseaseService {
     public Boolean insertDisease(DiseaseDto inputDisease){
         System.out.println("MedicineService.insertMed start");
         
-        DiseaseModel diseaseModel = new DiseaseModel();
-        diseaseModel.setName(inputDisease.getName());
-        diseaseModel.setMedicineId(inputDisease.getMedicineId());
-        diseaseModel.setSymptomId(inputDisease.getSymptomId());
+        DiseaseModel diseaseModel = new DiseaseModel(inputDisease);
+        Boolean state = true;
         
         try{
-            if(diseaseDao.checkDiseaseExist(diseaseModel.getName())==null){
-                System.out.println("www");
+            if(diseaseDao.checkDiseaseExistByName(diseaseModel.getName()) == null){
                 diseaseDao.insertDisease(diseaseModel);
-            }else{
-                System.out.println("Medicine Already Exists!");
-                return false ;
+            } else {
+                System.out.println("Disease Already Exists!");
+                state = false;
             }
-        }catch(Exception e){
+        } catch (Exception e){
             System.out.println("Exception in inserting medicine: "+e.toString());
         }
         
         System.out.println("MedicineService.insertMed end");
-        return true ;
+        return state;
     }
     
    
-        public Boolean updateDisease(DiseaseDto diseaseDto) {
-            System.out.println("MedicineService.updateRecord " + "start");
+    public Boolean updateDisease(DiseaseDto diseaseDto) {
+        System.out.println("MedicineService.updateRecord " + "start");
+    
+        DiseaseModel diseaseModel = new DiseaseModel(diseaseDto);
+        DiseaseModel resultModel;
+        Boolean state = false;
         
-            DiseaseModel diseaseModel = storeDtoToModel(diseaseDto);
+        diseaseModel.setId(diseaseDto.getId());
+        
+        try {
+            if(diseaseDao.validate(diseaseModel)) {
             
-            try {
-                // checking if there is already the same item that exists in the datastore.
-                DiseaseModel resultModel = (DiseaseModel) diseaseDao.checkDiseaseExist(diseaseModel.getName());
+                resultModel = diseaseDao.checkDiseaseExist(diseaseModel.getId());
                 
                 if (resultModel != null) {
-                    // setting the key in order to properly update the item
                     diseaseModel.setKey(resultModel.getKey());
-                    diseaseModel.setUpdatedAt(new Date());
-                    // update the entity to the datastore.
                     diseaseDao.updateDisease(diseaseModel);
-                    return true;
-                    
+                    state = true;
                 }
-            } catch (Exception e) {
-                System.out.println(e.toString());
             }
-            return false;
-           
+            
+        } catch (Exception e) {
+            System.out.println(e.toString());
         }
         
-        public Boolean deleteDisease(DiseaseDto diseaseDto) {
-            System.out.println("DiseaseService.deleteRecord " + "start");
-            DiseaseModel diseaseModel = storeDtoToModel(diseaseDto);
-            
-            try { 
-                // checking if there is already the same item that exists in the datastore.
-                DiseaseModel resultModel = diseaseDao.checkDiseaseExist(diseaseModel.getName());
+        return state;
+       
+    }
+        
+    public Boolean deleteDisease(DiseaseDto diseaseDto) {
+        System.out.println("DiseaseService.deleteRecord " + "start");
+        
+        DiseaseModel diseaseModel = new DiseaseModel(diseaseDto);
+        DiseaseModel resultModel;
+        Boolean state = false;
+        
+        diseaseModel.setId(diseaseDto.getId());
+        
+        try { 
+            if(diseaseDao.checkIfUsed(diseaseModel)){
+                resultModel = diseaseDao.checkDiseaseExist(diseaseModel.getId());
                 
                 if (resultModel != null) {
-                    // setting the key in order to properly delete the item
                     diseaseModel.setKey(resultModel.getKey());
-                    diseaseModel.setDeletedAt(new Date());
-                    // delete the entity to the datastore.
                     diseaseDao.deleteDisease(diseaseModel);
                 
-                    System.out.println("Deleted Medicine");
-                    return true ;
+                    System.out.println("Deleted Disease");
+                    state = true;
                 } else {
-                    // deleting was canceled.
                     System.out.println("There is no item with the same id.");
                 }
-            } catch (Exception e) {
-                System.out.println(e.toString());
             }
-            System.out.println("MedicineService.deleteRecord " + "end");
-            return false;
-        }
-        
-        private DiseaseModel storeDtoToModel(DiseaseDto diseaseDto) {
-               
-            DiseaseModel diseaseModel = new DiseaseModel();
-                
-                // Storing the data from the DTO.
-                diseaseModel.setSymptomId(diseaseDto.getSymptomId());
-                diseaseModel.setMedicineId(diseaseDto.getMedicineId());
-                diseaseModel.setName(diseaseDto.getName());
-          
-                System.out.println("DiseaseService.storeDtoToModel " + "end");
-                
-                // returning the model
-                return diseaseModel;
             
+        } catch (Exception e) {
+            System.out.println(e.toString());
         }
         
-        public ArrayList<DiseaseModel> getAllDisease(){
-            return diseaseDao.getAllDisease();
-        }
-        
-        public DiseaseModel getDisease(String name){
-            return diseaseDao.checkDiseaseExist(name);
-        }
+        System.out.println("MedicineService.deleteRecord " + "end");
+        return state;
     }
+        
+    public ArrayList<DiseaseModel> getAllDisease(){
+        SymptomDao symptomDao = new SymptomDao();
+        
+        symptomDao.cleanUp();
+        
+        return diseaseDao.getAllDisease();
+    }
+    
+    public DiseaseModel getDisease(String name){
+        return diseaseDao.checkDiseaseExistByName(name);
+    }
+}
 
 

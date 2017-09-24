@@ -1,18 +1,13 @@
 package sample.dao;
 
-import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import org.slim3.datastore.Datastore;
 
 import com.google.appengine.api.datastore.*;
 import com.google.appengine.api.datastore.Query.FilterOperator;
-import com.google.appengine.api.datastore.Query.CompositeFilterOperator;
-import com.google.appengine.api.datastore.Query.FilterPredicate;
 
-import sample.meta.DoctorModelMeta;
-import sample.meta.MedicalRecordModelMeta;
-import sample.model.DoctorModel;
 import sample.model.MedicalRecordModel;
 
 public class MedicalRecordDao {
@@ -20,17 +15,16 @@ public class MedicalRecordDao {
     public MedicalRecordModel getMedicalRecordByPatientInfo(MedicalRecordModel inputMedicalRecord){
         System.out.println("MedicalRecordDao.getMedicalRecordByPatientInfo start");
         MedicalRecordModel record = null;
+        
         try{
-            record = MedicalRecordModelMeta.get().entityToModel(
-                    Datastore.query(MedicalRecordModel.class)
-                             .filter(CompositeFilterOperator.and(
-                                 new FilterPredicate("patientId", FilterOperator.EQUAL, inputMedicalRecord.getPatientId()),
-                                 new FilterPredicate("dischargeDate", FilterOperator.LESS_THAN, new Date()),
-                                 new FilterPredicate("deletedAt", FilterOperator.EQUAL, null)))
-                             .asSingleEntity()) ;
+            record = Datastore.query(MedicalRecordModel.class)
+                        .filter("patientId", FilterOperator.EQUAL, inputMedicalRecord.getPatientId())
+                        .filter("dischargeDate", FilterOperator.GREATER_THAN, new Date())
+                        .filter("deletedAt", FilterOperator.EQUAL, null)
+                    .asSingle();
             
             System.out.println("MedicalRecordDao.getMedicalRecordByPatientInfo end");
-        }catch(Exception e){
+        } catch(Exception e) {
             System.out.println("MedicalRecordDao.getMedicalRecordByPatientInfo Exception: "+e.toString());
         }
         
@@ -39,15 +33,17 @@ public class MedicalRecordDao {
     
     public MedicalRecordModel getMedicalRecordById(MedicalRecordModel inputMedicalRecord){
         System.out.println("MedicalRecordDao.getMedicalRecordById start");
+        
         MedicalRecordModel record = null;
-        try{
-            record = MedicalRecordModelMeta.get().entityToModel(
-                    Datastore.query(MedicalRecordModel.class)
-                             .filter("id", FilterOperator.EQUAL, inputMedicalRecord.getId())
-                             .asSingleEntity()) ;
+        
+        try {
+            record = Datastore.query(MedicalRecordModel.class)
+                        .filter("id", FilterOperator.EQUAL, inputMedicalRecord.getId())
+                        .filter("deletedAt", FilterOperator.EQUAL, null)
+                    .asSingle();
         
             System.out.println("MedicalRecordDao.getMedicalRecordById end");
-        }catch(Exception e){
+        } catch(Exception e) {
             System.out.println("MedicalRecordDao.getMedicalRecordById Exception: "+e.toString());
         }
         
@@ -56,6 +52,7 @@ public class MedicalRecordDao {
     
     public void insertMedicalRecord(MedicalRecordModel inputMedicalRecord){
         System.out.println("MedicalRecordDao.insertMedicalRecord start");
+        
         try{
             Transaction trans = Datastore.beginTransaction();
         
@@ -69,13 +66,14 @@ public class MedicalRecordDao {
         
             trans.commit();
             System.out.println("MedicalRecordDao.insertMedicalRecord end");
-        }catch(Exception e){
+        } catch(Exception e) {
             System.out.println("MedicalRecordDao.insertMedicalRecord Exception: "+e.toString());
         }
     }
     
     public void deleteOrUpdateMedicalRecord(MedicalRecordModel inputMedicalRecord){
         System.out.println("MedicalRecordDao.deleteOrUpdateMedicalRecord start");
+        
         try{
             Transaction trans = Datastore.beginTransaction();
             Datastore.put(inputMedicalRecord);
@@ -97,45 +95,28 @@ public class MedicalRecordDao {
         return date;
     }
 
-    public Object getMedicalRecords() {
-        // TODO Auto-generated method stub
+    public List<MedicalRecordModel> getMedicalRecords() {
         
-        com.google.appengine.api.datastore.DatastoreService datastore = DatastoreServiceFactory
-                .getDatastoreService();
-            
-            ArrayList<MedicalRecordModel> results =  new ArrayList<MedicalRecordModel>();
-
-            Query query = new Query("MedicalRecordModel");
-                @SuppressWarnings("deprecation")
-                java.util.List<Entity> entities = datastore.prepare(query.addFilter("deletedAt", FilterOperator.EQUAL, null)).asList(
-                FetchOptions.Builder.withDefaults());
-
-            for(Entity entity : entities) {
-                results.add(MedicalRecordModelMeta.get().entityToModel(entity));
-            }
-                   
-            return results;
-       
+        List<MedicalRecordModel> medRecModels;
+        
+        medRecModels = Datastore.query(MedicalRecordModel.class)
+                    .filter("deletedAt", FilterOperator.EQUAL, null)
+                .asList();
+        
+        return medRecModels;
     }
 
   
 
-    public Object getMedicalRecordByDoctorId(Long id) {
-        // TODO Auto-generated method stub
-        com.google.appengine.api.datastore.DatastoreService datastore = DatastoreServiceFactory
-                .getDatastoreService();
-            
-            ArrayList<DoctorModel> results =  new ArrayList<DoctorModel>();
-
-            Query query = new Query("MedicalRecordModel");
-                @SuppressWarnings("deprecation")
-                java.util.List<Entity> entities = datastore.prepare(query.addFilter("deletedAt", FilterOperator.EQUAL, null).addFilter("doctorId", FilterOperator.EQUAL, id)).asList(
-                FetchOptions.Builder.withDefaults());
-
-            for(Entity entity : entities) {
-                results.add(DoctorModelMeta.get().entityToModel(entity));
-            }
-                   
-            return results;
+    public List<MedicalRecordModel> getMedicalRecordByDoctorId(Long id) {
+        
+        List<MedicalRecordModel> medRecModels;
+        
+        medRecModels = Datastore.query(MedicalRecordModel.class)
+                    .filter("doctorId", FilterOperator.EQUAL, id)
+                    .filter("deletedAt", FilterOperator.EQUAL, null)
+                .asList();
+        
+        return medRecModels;
     }
 }

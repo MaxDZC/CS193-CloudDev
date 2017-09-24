@@ -6,6 +6,7 @@ angular.module('hplus.modules.editdoctor')
       $scope.contactNoRegex = "\\d{6,}"
 
       var user = doctorFactory.getUser();
+      var modalObject = null;
 
       if(user == null){
         $location.path("/");
@@ -16,7 +17,6 @@ angular.module('hplus.modules.editdoctor')
           $scope.doctorData = user;
         }
       }
-      var modalObject = null;
 
       if($scope.doctorData == null){
         $location.path('/admin/list/doctor');
