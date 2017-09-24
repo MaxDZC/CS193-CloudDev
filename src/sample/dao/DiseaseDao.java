@@ -37,16 +37,10 @@ public class DiseaseDao extends DaoBase<DiseaseModel>{
     
     public DiseaseModel checkDiseaseExist(Long id) {
         
-        Entity entity = Datastore.query("DiseaseModel")
+        DiseaseModel disease = Datastore.query(DiseaseModel.class)
                 .filter("id", FilterOperator.EQUAL, id)
                 .filter("deletedAt", FilterOperator.EQUAL, null)
-            .asSingleEntity();
-        
-        DiseaseModel disease = null;
-        
-        if(entity != null){
-            disease = DiseaseModelMeta.get().entityToModel(entity);
-        }
+            .asSingle();
         
         return disease;
     }

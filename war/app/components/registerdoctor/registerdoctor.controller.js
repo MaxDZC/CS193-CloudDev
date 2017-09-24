@@ -85,7 +85,7 @@ angular.module('hplus.modules.registerdoctor')
         }
 
         return retType;
-      }
+      };
 
       var validity = function(){
         var state;
@@ -117,7 +117,7 @@ angular.module('hplus.modules.registerdoctor')
         }
 
         return state;
-      }
+      };
 
       var confirmRegisterDoctor = function(doctor, initComponents){
         doctorFactory.registerDoctor(doctor, initComponents);
