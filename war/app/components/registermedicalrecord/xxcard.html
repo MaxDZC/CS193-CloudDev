@@ -1,9 +1,9 @@
 <div class="card__container">
   <div class="card__title">
-    {{data.name}}
+    {{data.lastname + ', ' + data.firstname}}
   </div>
       
   <div class="card__desc">
-    <span ng-repeat="date in data.date"><span ng-hide="$first">,&nbsp;</span>{{date}}</span>
+    Last admitted: {{data.createdAt}}
   </div>
 </div>

@@ -1,51 +1,133 @@
+<div ng-controller="RegisterPatientController">
 <div class="row">
   <div class="col col-md-8 col-md-offset-1">
-    <h1>Register Patient</h1>
+    <h1 ng-hide="registerRecord">Register Patient</h1>
+    <h1 ng-hide="!registerRecord">Register Medical Record</h1>
   </div>
 </div>
 
-<div class="row" ng-controller="RegisterPatientController">
+<div class="row">
   <ng-form name="registerPatientForm">
-		<div class="row match-padding">
-			<div class="col col-md-3 col-md-offset-1">
-				<label class="subtitle">Patient's First Name</label>
-				<input type="text" ng-model="patient.firstname" ng-required="true">
-			</div>
-			<div class="col col-md-3">
-				<label class="subtitle">Patient's Last Name</label>
-				<input type="text" ng-model="patient.lastname" ng-required="true">
-			</div>
-		</div>
-
-		<div class="row match-padding">
-			<div class="col col-md-3 col-md-offset-1">
-				<label class="subtitle">Patient's Address</label>
-				<input type="text" ng-model="patient.address" ng-required="true">
-			</div>
-			<div class="col col-md-3">
-				<label class="subtitle">Patient's Contact Number</label>
-				<input type="text" ng-model="patient.contactNo" ng-pattern="regex" ng-required="true">
-			</div>
-		</div>
-						
-		<div class="row match-padding">
-			<div class="col col-md-3 col-md-offset-1">
-				<label class="subtitle">Birthday</label>
-				<input type="date" ng-model="patient.birthday" ng-required="true">
-			</div>
-			<div class="col col-md-3">
-				<label class="subtitle">Sex</label>
-				<select ng-model="patient.sex" ng-required="true">
-					<option value="">Choose a sex</option>
-					<option value="true">Male</option>
-					<option value="false">Female</option>
-				</select>
-			</div>
-		</div>
-		<div class="row match-padding">
-			<div class="col col-md-3 col-md-offset-1">
-				<button class="outline" ng-class="checkStatus(registerPatientForm.$valid)" ng-disabled="registerPatientForm.$invalid" ng-click="registerPatient()")>Register Patient</button>
-			</div>
-		</div>
+    <div ng-hide="registerRecord">
+      <div class="row match-padding">
+        <div class="col col-md-3 col-md-offset-1">
+          <label class="subtitle">Patient's First Name</label>
+          <input type="text" ng-model="patient.firstname" ng-required="true">
+        </div>
+        <div class="col col-md-3">
+          <label class="subtitle">Patient's Last Name</label>
+          <input type="text" ng-model="patient.lastname" ng-required="true">
+        </div>
+      </div>
+  
+      <div class="row match-padding">
+        <div class="col col-md-3 col-md-offset-1">
+          <label class="subtitle">Patient's Address</label>
+          <input type="text" ng-model="patient.address" ng-required="true">
+        </div>
+        <div class="col col-md-3">
+          <label class="subtitle">Patient's Contact Number</label>
+          <input type="text" ng-model="patient.contactNo" ng-pattern="regex" ng-required="true">
+        </div>
+      </div>
+              
+      <div class="row match-padding">
+        <div class="col col-md-3 col-md-offset-1">
+          <label class="subtitle">Birthday</label>
+          <input type="date" ng-model="patient.birthday" ng-required="true">
+        </div>
+        <div class="col col-md-3">
+          <label class="subtitle">Sex</label>
+          <select ng-model="patient.sex" ng-required="true">
+            <option value="">Choose a sex</option>
+            <option value="true">Male</option>
+            <option value="false">Female</option>
+          </select>
+        </div>
+      </div>
+      <div class="row match-padding">
+        <div class="col col-md-3 col-md-offset-1">
+          <button class="outline" ng-class="checkStatus(registerPatientForm.$valid)" ng-disabled="registerPatientForm.$invalid" ng-click="createRecord()">Create Medical Record</button>
+        </div>
+      </div>
+    </div>
   </ng-form>
+  
+  
+  
+  <div class="row" ng-hide="!registerRecord">
+    <div class="col-md-10 col-md-offset-1">
+      <div class="row">
+        <div class="col-md-5">
+          <div class="card__container" ng-click="editPatient()">
+            <div class="card__title">
+              {{patient.lastname + ', ' + patient.firstname}}
+            </div>
+          </div>
+        </div>   
+      </div>
+      <ng-form name="registerRecordForm">
+        <div class="col-md-4">
+          <label class="subtitle">Discharge Date </label>
+          <input type="date" ng-model="medicalRecord.dischargeDate" ng-required="true">
+        </div>
+        <div class="col-md-4 col-md-offset-4">
+          <label class="subtitle">Patient Type</label>
+          <select ng-model="medicalRecord.type" ng-required="true">
+            <option val="true">Inpatient</option>
+            <option val="false">Outpatient</option>  
+          </select>
+        </div>
+      
+      
+      <div class="col col-md-4">
+        <label class="subtitle">Symptoms</label>
+        <input type="text" placeholder="Search Symptom" ng-model="searchFilterSymp">
+        <div class="borders">
+          <div class="scrollable">
+            <div ng-repeat="option in symptomList | filter: {'name':searchFilterSymp} | orderBy:['val','name']">
+              <input type="checkbox" ng-model="option.val" ng-change="addRemoveSymptom(symptomList | filter: {val: true} | orderBy : 'name')" ng-required="!medicalRecord.symptomId.length" ng-false-value="null">{{option.name}}<br>
+            </div>
+          </div>
+        </div>
+        <button ng-class="checkStatus(registerRecordForm.$valid)" type="submit" ng-click="registerPatient()" ng-disabled="registerRecordForm.$invalid">Register Patient</button>
+      </div>
+      
+      <div class="col col-md-4">
+        <label class="subtitle">Diseases</label>
+        <input type="text" placeholder="Search Disease" ng-model="searchFilterDis">
+        <div class="borders">
+          <div class="scrollable">
+            <div ng-repeat="option in diseaseList | filter: {'name':searchFilterDis} | orderBy:['val','name']">
+              <input type="checkbox" ng-model="option.val" ng-change="addRemoveDisease(diseaseList | filter: {val: true} | orderBy : 'name')" ng-required="!medicalRecord.diseaseId.length" ng-false-value="null">{{option.name}}<br>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col col-md-4">
+        <label class="subtitle">Medicines</label>
+        <input type="text" placeholder="Search Medicine" ng-model="searchFilterMed">
+        <div class="borders">
+          <div class="scrollable">
+            <div ng-repeat="optionmed in medicineList | filter: {'name':searchFilterMed} | orderBy:['val','name']">
+              <input type="checkbox" ng-model="optionmed.val" ng-change="addRemoveMedicine(medicineList | filter: {val: true}| orderBy:'name')"  ng-required="medicalRecord.diseaseId.length > medicalRecord.medicineId.length" ng-false-value="null">{{optionmed.name}}
+              <div class="row" ng-hide="!optionmed.val">
+                <input type="number" ng-model="optionmed.quantity" placeholder="Quantity" ng-change="calculateTotal()" ng-required="optionmed.val" class="quant">{{' x ' + (optionmed.price|currency : 'PHP ')}}
+              </div>
+            </div>
+          </div>
+        </div>
+        <br>
+          <div class="margins">
+            <div class="detail__containerTotalPrice">
+               <b>Total:</b> {{medicalRecord.totalCost | currency : 'PHP '}}
+               {{medicalRecord}}
+            </div>
+          </div>
+        </div>
+      </ng-form>
+    </div>
+  </div>
+</div>
 </div>

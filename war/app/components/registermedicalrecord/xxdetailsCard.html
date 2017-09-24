@@ -2,14 +2,13 @@
 <ng-form name="createMedicalRecordForm">
 
   <div class="col-md-4">
-    <label class="subtitle">Discharge Date: </label>
+    <label class="subtitle">Discharge Date </label>
     <input type="date" ng-model="medicalRecord.dischargeDate" ng-required="true">
   </div>
   <div class="col-md-4 col-md-offset-4">
- 		<label class="subtitle">Patient Type:</label>
- 		<select ng-model="medicalRecord.type" ng-required="true">
-      <option val="true">Inpatient</option>
-      <option val="false">Outpatient</option>  
+ 		<label class="subtitle">Patient Type</label>
+ 		<select ng-model="medicalRecord.type" ng-required="true" ng-options="type.val as type.name for type in patientType">
+      <option>--Select--</option>
  		</select>
   </div>
 
@@ -24,7 +23,7 @@
       </div>
     </div>
   </div>
-  <button class="outline" type="submit" ng-click="saveMedRec()" ng-disabled="createMedicalRecordForm.$invalid">Create</button>
+  <button ng-class="checkStatus(createMedicalRecordForm.$valid)" type="submit" ng-click="saveMedRec()" ng-disabled="createMedicalRecordForm.$invalid">Create</button>
 </div>
 
 <div class="col col-md-4">

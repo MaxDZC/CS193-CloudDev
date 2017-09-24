@@ -1,7 +1,7 @@
 angular.module('hplus.modules.exploremedicalrecords')
 
   .controller('ExploreMedicalRecordsController',
-	function($scope, $location, globalFactory, doctorFactory){
+	function($scope, $location, globalFactory, doctorFactory, patientFactory){
 
 		$scope.user = doctorFactory.getUser();
 
