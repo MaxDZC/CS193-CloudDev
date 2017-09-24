@@ -1,7 +1,7 @@
 <ng-controller ng-controller="ViewPatientController">
 	<div class="row">
 	  <div class="col col-md-8 col-md-offset-1">
-	    <h1><i class="fa fa-user-o"></i> Doe, Jane</h1>
+	    <h1><i class="fa fa-user-o"></i> {{ patient.name }}</h1>
 	  </div>
 	</div>
 	
@@ -12,29 +12,29 @@
 	        Date of Birth
 	      </span>
 	      <div class="subtitle__value">
-	        January 1, 1970
+					{{ patient.processedBirthday }}
 	      </div>
 	      
 	       <br>
 	      <span class="subtitle">Address</span>
 	      <div class="subtitle__value">
-	        Deca Homes, Bldg.19, Rm 301, Mandaue City, Cebu
+	        {{ patient.address }}
 	      </div>
 	      
 	       <br>
 	      <span class="subtitle">Contact Number</span>
 	      <div class="subtitle__value">
-	        +6906-084-9663
+	        {{ patient.contactNo }}
 	      </div>
 	      
 	      <br>
 	      <span class="subtitle">Sex</span>
 	      <div class="subtitle__value">
-	        Female
+	        {{ patient.sexDisplay }}
 	      </div>
 	      <br>
 	      <button class="outline">Edit</button>
-	      <button class="outline">Delete</button>
+	      <button class="outline">Archive</button>
 	    </div>
 	  </div>
 	

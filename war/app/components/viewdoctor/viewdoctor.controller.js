@@ -4,6 +4,8 @@ angular.module('hplus.modules.viewdoctor')
     function($scope, $location, $timeout, globalFactory, doctorFactory, modalFactory){
     
       $scope.user = doctorFactory.getUser();
+      var monthNames = ["January", "February", "March", "April", "May", "June",
+      "July", "August", "September", "October", "November", "December"];
 
       if($scope.user != null) {
         if($scope.user.admin){
@@ -19,6 +21,14 @@ angular.module('hplus.modules.viewdoctor')
 
       if($scope.doctorData == null) {
         $location.path('/admin/list/doctor');
+      } else {
+        var brokenDate = $scope.doctorData.birthday.split(" ");
+
+        for(var i = 0; i < monthNames.length && $scope.doctorData.processedBirthday == null; i++){
+          if(monthNames[i].indexOf(brokenDate[1]) != -1) {
+            $scope.doctorData.processedBirthday = monthNames[i] + " " + (parseInt(brokenDate[2]) + 1) + ", " + brokenDate[5];
+          }
+        }
       }
 
       $scope.$on("updateProfile", function(event) {

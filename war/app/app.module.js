@@ -4,7 +4,6 @@ require('./shared/factory/app.factory.js');
 require('./shared/modal/modal.main.js');
 
 require('./components/editdisease/editdisease.main.js');
-
 require('./components/editdoctor/editdoctor.main.js');
 require('./components/editmedicine/editmedicine.main.js');
 
@@ -52,5 +51,4 @@ angular.module('hplus.modules', [
   'hplus.modules.viewpatient',
   'hplus.modules.resetpassword',
   'hplus.modules.explorepatients'
-  
 ]);

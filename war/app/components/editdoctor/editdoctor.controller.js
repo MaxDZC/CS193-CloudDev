@@ -3,7 +3,7 @@ angular.module('hplus.modules.editdoctor')
   .controller('EditDoctorController',
     function($scope, $location, globalFactory, doctorFactory, modalFactory){
     
-      $scope.contactNoRegex = "\\d{6,}"
+      $scope.contactNoRegex = "\\d{6,}";
 
       var user = doctorFactory.getUser();
       var modalObject = null;
