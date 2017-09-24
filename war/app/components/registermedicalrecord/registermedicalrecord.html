@@ -6,42 +6,76 @@
 
 <div class="row" ng-controller="RegisterMedicalRecordController">
   <ng-form name="createMedicalRecordForm">
-  	<div class="col col-md-2 col-md-offset-1">
-    
-		 <div class="col col-md-2 col-md-offset-0"><!-- Section for search -->
-		<div class="row">
-	  <div class="container">  
-	  	<form id="custom-search-form" class="form-search form-horizontal pull-left">
-	    <label class="subtitle">Search</label>
-	    <input type="text" placeholder="Enter a name" ng-model="searchFilter">
-		</form>	 	  
-	  </div>
-	</div>
-	
-  </div>
-  	</div>
+    <div class="col col-md-2 col-md-offset-1" ng-hide="selectedPatient != null">
+      <div class="row">
+	      <div class="col col-md-6">
+	        <label class="subtitle">Search</label>
+	      </div>
+	    </div>
+		  <div class="match-padding">
+	      <input type="text" placeholder="Enter a name" ng-model="searchFilter">
+	    </div>
+    </div>
  
- <div class="col col-md-8"><!-- Section containing the list and detail of medicines -->
-    <div class="col col-md-9"><!-- List sector -->
-		  <label class="subtitle">ALL RESULTS</label>
-		  
-		  <div class="margins" >
+    <div class="col col-md-8" ng-hide="selectedPatient != null">
+      <div class="col col-md-9"><!-- List sector -->
+		    <span class="subtitle"><span ng-hide="searchFilter == ''">{{(patient | filter : {'name': searchFilter}).length}}</span><span ng-hide="searchFilter != ''">All</span> Results<span ng-hide="searchFilter != ''"> - {{patient.length}}</span></span>
+		
 		    <hplus-explore-medicines-card dir-paginate="pat in patient | filter: {'name' : searchFilter} | itemsPerPage:10  | orderBy : 'name'" data="pat" ng-click="setSelected(pat)" ng-class="{'selectedCard__container': pat == selectedPatient}"></hplus-explore-medicines-card>  
 		         
+        <!-- Pagination Section -->
+        <dir-pagination-controls max-size="5"></dir-pagination-controls>
+      
       </div>
-      <div class="col-md-12">
-      <!-- Pagination Section -->
-      <dir-pagination-controls max-size="5"></dir-pagination-controls>
-      </div>
+      <div class="col col-md-6"><!-- Detail Sector -->
+		    <hplus-selected-medicine-card data="selectedPatient" ng-show="selectedPatient"></hplus-selected-medicine-card>
+		  </div>
     </div>
-    <div class="col col-md-6"><!-- Detail Sector -->
-		  <hplus-selected-medicine-card data="selectedPatient" ng-show="selectedPatient"></hplus-selected-medicine-card>
-		</div>
-  </div>
-</div>
-</ng-form>
-</div>
-
-
     
-     
+    <div class="col-md-10 col-md-offset-1" ng-hide="selectedPatient == null">
+      <div class="col-md-12">
+        <hplus-explore-medicines-card data="selectedPatient" ng-click="selectedPatient = null"></hplus-explore-medicines-card>
+      </div>
+      <div class="col col-md-4">
+        <label class="subtitle">Symptoms</label>
+        <input type="text" placeholder="Search Symptom">
+        <div class="borders">
+          <div class="scrollable">
+            <div ng-repeat="option in symptomsSearch | orderBy:['-val','name']">
+              <input type="checkbox" ng-model="option.val" ng-change="addRemoveSymptom(symptomsSearch | filter: {val: true} | orderBy : 'name')" ng-required="!symptomsSelected.length">{{option.name}}<br>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="col col-md-4">
+        <label class="subtitle">Diseases</label>
+        <input type="text" placeholder="Search Disease">
+        <div class="borders">
+          <div class="scrollable">
+            <div ng-repeat="option in diseasesSearch | orderBy:['-val','name']">
+              <input type="checkbox" ng-model="option.val" ng-change="addRemoveDisease(diseasesSearch | filter: {val: true} | orderBy : 'name')" ng-required="!diseasesSelected.length">{{option.name}}<br>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="col col-md-4">
+        <label class="subtitle">Medicines</label>
+        <input type="text" placeholder="Search Medicine">
+        <div class="borders">
+          <div class="scrollable">
+            <div ng-repeat="optionmed in medicinesSearch | orderBy:['-val','name']">
+              <input type="checkbox" ng-model="optionmed.val" ng-change="addRemoveMedicine(medicinesSearch | filter: {val: true}| orderBy:'name')"  ng-required="!medicinesSelected.length">{{optionmed.name}}<br>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-md-12">
+        <button class="outline" type="submit" ng-click="" ng-disabled="createMedicalRecordForm.$invalid">Create</button>
+      </div>
+	  </div>
+	  
+  </ng-form>
+</div>

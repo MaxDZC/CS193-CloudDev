@@ -17,6 +17,8 @@ angular.module('hplus.modules.registermedicalrecord')
         globalFactory.go(path);
       };
       
+      $scope.searchFilter = "";
+      
       $scope.medicalRecord = {};
       
       $scope.medicalRecord.symptomChoice = [];
