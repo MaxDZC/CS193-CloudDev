@@ -38634,7 +38634,7 @@ angular.module('hplus.modules.navbar')
         var state = false;
         var location = $location.path();
 
-        if($scope.user.admin){
+        if($scope.user != null && $scope.user.admin) {
           if(location.indexOf("register") != -1){
             state = false;
           } else if(location.indexOf("doctor") != -1 && location != "/admin/view/doctordetails") {
