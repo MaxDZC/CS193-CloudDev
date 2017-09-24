@@ -3,6 +3,40 @@ angular.module('hplus.modules.registermedicalrecord')
   .controller('DetailsCardController',
     function($scope, $location, globalFactory, doctorFactory){
       
+	  $scope.medicalRecord = {
+	    "patient" : "",
+	    "symptomId" : {},
+	    "diseaseId" : {},
+	    "medicineId" : {},
+        "type" : "",
+        "totalCost" : 0
+	  };
+	  
+	  $scope.populate = function(data){
+        if(data != null){
+          $scope.medicalRecord.patient = data.id;
+        }
+	  };
+	  
+	  $scope.addRemoveSymptom = function(hold){
+        $scope.medicalRecord.symptomId = hold;
+	  };
+	  
+	  $scope.addRemoveDisease = function(hold){
+        $scope.medicalRecord.diseaseId = hold;
+	  };
+	  
+	  $scope.addRemoveMedicine = function(hold){
+        $scope.medicalRecord.medicineId = hold;
+	  };
+	  
+	  $scope.calculateTotal = function(){
+        $scope.medicalRecord.totalCost = 0;
+        $scope.medicalRecord.medicineId.forEach(function(med){
+          $scope.medicalRecord.totalCost += (med.price * med.quantity);
+        });
+	  };
+	  
 	  $scope.symptomList = [ 
         {
           "name" : "DISISIT"
@@ -14,10 +48,12 @@ angular.module('hplus.modules.registermedicalrecord')
       
       $scope.medicineList = [ 
         {
-          "name" : "DISISIT"
+          "name" : "DISISIT",
+          "price" : 123
         },
         {
-          "name" : "PRITITIT"
+          "name" : "PRITITIT",
+          "price" : 25
         }
       ];
       
@@ -47,15 +83,6 @@ angular.module('hplus.modules.registermedicalrecord')
         "name" : "PRITITIT"
       }
       ];
-	  
-
-      $scope.medicalRecord = {};
-      
-      $scope.medicalRecord.symptomId = [];
-      
-      $scope.medicalRecord.medicineId = [];
-      
-      
       
       $scope.go = function(path){
         globalFactory.go(path);
@@ -63,6 +90,11 @@ angular.module('hplus.modules.registermedicalrecord')
 
       $scope.delete = function(doctor){
         doctorFactory.deleteDoctor(doctor);
+      };
+      
+      $scope.saveMedRec = function(){
+        alert("test");
+        //saveMedRec
       };
     }
   );

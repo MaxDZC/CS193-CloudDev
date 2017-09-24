@@ -12,6 +12,16 @@ input[type=text], input[type=password], input[type=number], input[type=email], i
   -webkit-font-smoothing: antialiased !important;
 }
 
+input[type=number].quant{
+  height: 1.5em;
+  text-align: center;
+  width: 40%;
+  color: $black;
+  border: 1px solid $black;
+  transition: 0.3s ease;
+  -webkit-font-smoothing: antialiased !important; 
+}
+
 .checkboxText{
   font-family: $font;
   font-size: $sizeText;
