@@ -20,11 +20,22 @@ angular.module('hplus.modules.navbar')
         var state = false;
         var location = $location.path();
 
-        if(location.indexOf("register") != -1){
-          state = false;
-        } else if(location.indexOf("doctor") != -1 && location != "/admin/view/doctordetails") {
-          $scope.registerButton = "Register Doctor";
-          $scope.link = "#!/admin/register/doctor";
+        if($scope.user.admin){
+          if(location.indexOf("register") != -1){
+            state = false;
+          } else if(location.indexOf("doctor") != -1 && location != "/admin/view/doctordetails") {
+            state = true;
+            $scope.registerButton = "Register Doctor";
+            $scope.link = "/admin/register/doctor";
+          } else if(location.indexOf("disease") != -1) {
+            state = true;
+            $scope.registerButton = "Register Disease";
+            $scope.link = "/admin/register/disease";
+          } else if(location.indexOf("medicine") != -1) {
+            state = true;
+            $scope.registerButton = "Register Medicine";
+            $scope.link = "/admin/register/medicine";
+          }
         }
 
         return state;

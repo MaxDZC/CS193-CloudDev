@@ -35,7 +35,7 @@ public class MedicineModel implements Serializable {
     }
     
     public MedicineModel(MedicineDto inputMed){
-        this.setName(inputMed.getName());
+        this.setName(inputMed.getName().toLowerCase());
         this.setDescription(inputMed.getDescription());
         this.setType(inputMed.getType());
         this.setPrice(inputMed.getPrice());

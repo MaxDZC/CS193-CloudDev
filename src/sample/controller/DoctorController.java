@@ -162,22 +162,44 @@ public class DoctorController extends Controller {
                 jsonObject = new JSONObject(this.request.getReader().readLine());
                 validator = new JSONValidators(jsonObject);
                 
-                if(validator.validate()){                       
-                    birthdays = jsonObject.getString("birthday").split(" ");
-                    createdAts = jsonObject.getString("createdAt").split(" ");
-                    updatedAts = jsonObject.getString("updatedAt").split(" ");
+                if(validator.validate()){                    
                     
-                    birthday = birthdays[5] + "-" + birthdays[1] + "-" + birthdays[2];
-                    createdAt = createdAts[5] + "-" + createdAts[1] + "-" + createdAts[2];
-                    updatedAt = updatedAts[5] + "-" + updatedAts[1] + "-" + updatedAts[2];
+                    
+                    Object aObj = jsonObject.get("birthday");
+                    
+                    if(aObj instanceof String){
+                        birthdays = jsonObject.getString("birthday").split(" ");
+                        createdAts = jsonObject.getString("createdAt").split(" ");
+                    
+                        birthday = birthdays[5] + "-" + birthdays[1] + "-" + birthdays[2];
+                        createdAt = createdAts[5] + "-" + createdAts[1] + "-" + createdAts[2];
+                        
+                        doctorDto.setBirthday(new SimpleDateFormat("yyyy-MMM-dd").parse(birthday));
+                        doctorDto.setCreatedAt(new SimpleDateFormat("yyyy-MMM-dd").parse(createdAt));
+                        
+                        if(jsonObject.has("updatedAt")){
+                            updatedAts = jsonObject.getString("updatedAt").split(" ");
+                            updatedAt = updatedAts[5] + "-" + updatedAts[1] + "-" + updatedAts[2];
+                            doctorDto.setUpdatedAt(new SimpleDateFormat("yyyy-MMM-dd").parse(updatedAt));
+                        }
+                    } else {
+                        Date birthdayNew = new Date(jsonObject.getLong("birthday"));
+                        Date createdAtNew = new Date(jsonObject.getLong("createdAt"));
+                        
+                        doctorDto.setBirthday(birthdayNew);
+                        doctorDto.setCreatedAt(createdAtNew);
+                        
+                        if(jsonObject.has("updatedAt")){
+                            Date updatedAtNew = new Date(jsonObject.getLong("updatedAt"));
+                            doctorDto.setUpdatedAt(updatedAtNew);
+                        }
+                    }
+                    
                     
                     doctorDto = new DoctorDto(jsonObject);
                     
                     doctorDto.setId(jsonObject.getLong("id"));
                     
-                    doctorDto.setBirthday(new SimpleDateFormat("yyyy-MMM-dd").parse(birthday));
-                    doctorDto.setCreatedAt(new SimpleDateFormat("yyyy-MMM-dd").parse(createdAt));
-                    doctorDto.setUpdatedAt(new SimpleDateFormat("yyyy-MMM-dd").parse(updatedAt));
                     doctorDto.setDeletedAt(new Date());
                     
                     message = doctorService.deleteDoctor(doctorDto);

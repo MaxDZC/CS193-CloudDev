@@ -1,7 +1,7 @@
 angular.module('hplus.factory')
 
   .factory('doctorFactory', 
-    function($http, modalFactory, $window, $location, globalFactory, $rootScope){
+    function($http, $route, modalFactory, $window, $location, globalFactory, $rootScope){
 
       var registerDoctor = function(doctorObject, clear){
         $http({
@@ -41,6 +41,7 @@ angular.module('hplus.factory')
             positiveButton: "Ok",
             isVisible: true
           };
+
           modalFactory.setContents(modalObject);
         });
       }
@@ -86,6 +87,7 @@ angular.module('hplus.factory')
 
       var goList = function(){
         $location.path('/admin/list/doctor');
+        $route.reload();
       }
       
       var confirmDeleteDoctor = function(doctor){

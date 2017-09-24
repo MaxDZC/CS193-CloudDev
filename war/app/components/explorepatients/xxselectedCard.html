@@ -1,4 +1,4 @@
-<div ng-controller="MedicineCardController">
+<div ng-controller="PatientCardController">
       <label class="subtitle">DETAILS FOR {{ data.name }}</label>
       <div class="margins">
         <!-- Detail Section -->
@@ -12,8 +12,8 @@
             {{ data.description }}
             </p>
           </div>
-          <span class="detail__title">PRICE (PHP)</span>
-          <span class="detail__subtitle">{{ data.price | currency : 'PHP '}}</span>
+          <span class="detail__title">DATE</span>
+          <span class="detail__subtitle">{{ data.date }}</span>
           <br>
           <br>
           <span class="detail__title" ng-if="data.treats">TREATMENT FOR</span>
@@ -21,9 +21,9 @@
           <br>
           <br>
           <div ng-show="isAdmin()"> 
-            <button class="outline" ng-click="go('/admin/update/medicine', data)">Edit</button>
+            <button class="outline" ng-click="go('/admin/update/patient', data)">Edit</button>
             <button class="outline" ng-click="delete(data)">Delete</button>
-            <button class="outline" ng-click="go('/admin/view/medicine', data)">View</button>
+            <button class="outline" ng-click="go('/admin/view/patient', data)">View</button>
           </div>
         </div>
       </div>

@@ -1,30 +1,38 @@
-<div class="row">
-  <div class="col col-md-8 col-md-offset-1">
-    <h1>Edit Medicine</h1>
-  </div>
-</div>
+<div ng-controller="EditMedicineController">
+	<div class="row">
+		<div class="col col-md-8 col-md-offset-1">
+			<h1>Edit Medicine</h1>
+		</div>
+	</div>
 
-<div class="row" ng-controller="EditMedicineController">
-  <div class="col col-md-10 col-md-offset-1">
-	  <form name="medicineForm">
-	    <div class="col-md-3">
-	      <label class="subtitle">Name of Medicine:</label>
-		    <input type="text" value="RiteMed Metformin" placeholder="Brand Name" ng-model="medicine.name" ng-required="true">
-		    <label class="subtitle">Generic Name:</label>
-	      <input type="text" placeholder="Generic Name" ng-model="medicine.generic" ng-required="true">
-		    <label class="subtitle">Medicine Type:</label>
-	      <select name="selectMeds" ng-model="medicine.type" ng-required="true" ng-options="type.id as type.name for type in medicineTypes">
-	        <option value="">--Select One--</option>
-	      </select>
-		    <label class="subtitle">Price (PHP) :</label> 
-		    <input id="priceInputField" type="number" value="3.75" placeholder="Price" ng-model="medicine.price" ng-required="true">
-	      <button type="submit" ng-click="saveMedicine()" >Update</button>
-	    </div>
-	    
-	    <div class="col col-md-9">
-	      <label class="subtitle">Description:</label>
-	      <textarea id="descMed" rows="8" cols="50" placeholder="Description" ng-required="true">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent ut lorem quis dolor porttitor accumsan. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Integer vitae erat viverra, vestibulum enim id, pulvinar lectus. Sed volutpat tristique tristique. Vivamus turpis diam, consequat vel sagittis quis, convallis quis sem.</textarea>
-	    </div>
-	  </form>
-  </div>
+	<div class="row">
+		<div class="col col-md-10 col-md-offset-1">
+			<ng-form name="medicineForm">
+				<div class="col-md-3">
+					<label class="subtitle">Name of Medicine:</label>
+					<input type="text" placeholder="Brand Name" ng-model="medicine.name" ng-required="true">
+
+				<!--	<label class="subtitle">Generic Name:</label>
+					<input type="text" placeholder="Generic Name" ng-model="medicine.generic" ng-required="true">
+				-->
+
+					<label class="subtitle">Medicine Type:</label>
+					<select name="selectMeds" ng-model="medicine.type" ng-required="true" ng-options="value as value for value in medicineTypes">
+						<option value="">--Select One--</option>
+					</select>
+
+					<label class="subtitle">Price (PHP) :</label> 
+					<input id="priceInputField" type="number" placeholder="Price" ng-model="medicine.price" ng-required="true">
+
+					<button ng-class="checkStatus(medicineForm.$valid)" ng-disabled="medicineForm.$invalid"  type="submit" ng-click="updateMedicine()">Update</button>
+					<button class="outline delete_btn" ng-click="delete()">Archive</button>
+				</div>
+				
+				<div class="col col-md-9">
+					<label class="subtitle">Description:</label>
+					<textarea id="descMed" rows="8" cols="50" ng-model="medicine.description" placeholder="Description" ng-required="true"></textarea>
+				</div>
+			</ng-form>
+		</div>
+	</div>
 </div>

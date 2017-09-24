@@ -1,12 +1,35 @@
 angular.module('hplus.modules.explorepatients')
 
   .controller('ExplorePatientsController',
-    function($scope, globalFactory, modalFactory, patientFactory){
+    function($scope, $location, globalFactory, doctorFactory, modalFactory, patientFactory){
 
       $scope.length;
+      $scope.selectedPatient = null;
+      
+      var user = doctorFactory.getUser();
 
+      if(user == null){
+        //$location.path("/");
+      }
+
+      var populate = function(){
+        patientFactory.getListOfPatients().then(function(response){
+          console.log(response);
+          $scope.patientList = response.data.patients;
+          $scope.length = $scope.patientList.length;
+        }, function(response){
+          console.log(response);
+        });
+      };
+
+      populate();
+      
       $scope.go = function(path){
         globalFactory.go(path);
+      };
+      
+      $scope.setSelected = function(pat){
+    	  $scope.selectedPatient = pat;
       };
       
       $scope.patientList = [
@@ -25,18 +48,6 @@ angular.module('hplus.modules.explorepatients')
       }
       
       ];
-
-      var populate = function(){
-        patientFactory.getListOfPatients().then(function(response){
-          console.log(response);
-          $scope.patientList = response.data.patients;
-          $scope.length = $scope.patientList.length;
-        }, function(response){
-          console.log(response.statusText);
-        });
-      }
-
-      populate();
 
       $scope.searchFilter = function(patient){
         if(!$scope.query 

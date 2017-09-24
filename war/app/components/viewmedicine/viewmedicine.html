@@ -1,7 +1,7 @@
 <ng-controller ng-controller="ViewMedicineController">
 	<div class="row">
 	  <div class="col col-md-8 col-md-offset-1">
-	    <h1><i class="fa fa-heartbeat"></i>Paracetamol</h1>
+	    <h1><i class="fa fa-heartbeat"></i>{{ medicine.name[0].toUpperCase() + medicine.name.substr(1) }}</h1>
 	  </div>
 	</div>
 	
@@ -10,19 +10,19 @@
 	    <div class="col-md-3">
 	      <span class="subtitle">Price:</span>
 	      <div class="subtitle__value">
-	        PHP {{ medicineData.price }}
+	        PHP {{ medicine.price }}
 	      </div>
 	    </div>
 	    <div class="col-md-3">
 	      <label class="subtitle">USAGE FOR</label>
-	      <span class="subtitle subtitle--variable">June 2017</span>
+	      <span class="subtitle subtitle--variable">{{ monthAndYear }}</span>
 	      <div class="subtitle__value">
 	        15 Patients
 	      </div>
 	    </div>
 	    <div class="col-md-3">
 	      <label class="subtitle">USAGE FOR THE YEAR</label>
-	      <span class="subtitle subtitle--variable">2017</span>
+	      <span class="subtitle subtitle--variable">{{ year }}</span>
 	      <div class="subtitle__value">
 	        367 PATIENTS
 	      </div>
@@ -33,19 +33,16 @@
 	<div class="row margins">
 	  <div class="col-md-10 col-md-offset-1 margins">
 		  <div class="col-md-3">
-	      <label class="subtitle">Generic Name</label>
-	      <div class="subtitle__value">
-	        {{ medicineData.name }}
-	      </div>
 	      <label class="subtitle marginTop">Type of Medicine</label>
 	      <div class="subtitle__value">
-	        {{ medicineData.type }}
+	        {{ medicine.type }}
 	      </div>
 		    <label class="subtitle marginTop">Description:</label>
 		    <div class="subtitle__value">
-		      {{ medicineData.description }}
+		      {{ medicine.description }}
 		    </div>
-		    <button class="outline" ng-click="go('/admin/update/medicine')">Edit</button>
+				<button class="outline" ng-click="go('/admin/update/medicine')">Edit</button>
+				<button class="outline delete_btn" ng-click="delete()">Archive</button>
 		  </div>
 		  <div class="col-md-9">
 		    <label class="subtitle">RECENTLY DISPENSED TO THE FOLLOWING PATIENTS</label>

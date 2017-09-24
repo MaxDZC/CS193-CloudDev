@@ -31,7 +31,7 @@ angular.module('hplus.modules.exploredoctors')
         }, function(response){
           console.log(response.statusText);
         });
-      }
+      };
 
       populate();
 

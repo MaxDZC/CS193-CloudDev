@@ -18,59 +18,20 @@
   
   <div class="col col-md-8"><!-- Section containing the tabulated list of patients -->
     <div class="col col-md-12">
-			<span class="subtitle"><span >All</span> Results</span>
-			<div class="margins">
-        <!-- List Section -->
-   <div class="card__container">
-  <div class="card__title">
-    Bento Chonghua
-    <a>
-      <span class="delete__icon">
-        <i class="fa fa-eye" aria-hidden="true"></i>
-      </span>
-    </a>
-    <a>
-      <span class="delete__icon">
-        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-      </span>
-    </a>
-    <a>
-      <span class="delete__icon">
-        <i class="fa fa-archive" aria-hidden="true"></i>
-      </span>
-    </a>
-
-  </div>
-  <div class="card__desc">
-    Last admitted August 16,2017
-  </div>
-</div>
-<div class="card__container">
-  <div class="card__title">
-    Dummy The Mummy
-    <a>
-      <span class="delete__icon">
-        <i class="fa fa-eye" aria-hidden="true"></i>
-      </span>
-    </a>
-    <a>
-      <span class="delete__icon">
-        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-      </span>
-    </a>
-    <a>
-      <span class="delete__icon">
-        <i class="fa fa-archive" aria-hidden="true"></i>
-      </span>
-    </a>
-
-  </div>
-  <div class="card__desc">
-    Last admitted November 1,2017
-  </div>
-</div>
-		</div>
+	  <label class="subtitle">ALL RESULTS - {{ patientList.length }}</label>
+		  
+	  <div class="margins" >
+	    <hplus-explore-patients-card dir-paginate="pat in patientList | filter: {'name' : searchFilter} | itemsPerPage:10  | orderBy : 'name'" data="pat" ng-click="setSelected(pat)" ng-class="{'selectedCard__container': pat == selectedPatient}"></hplus-explore-patients-card>       
+      </div>
+      <div class="col-md-12">
+      <!-- Pagination Section -->
+      <dir-pagination-controls max-size="5"></dir-pagination-controls>
+      </div>
     </div>
+    
+    <!--<div class="col col-md-6">
+	  <hplus-selected-patient-card data="selectedPatient" ng-show="selectedPatient"></hplus-selected-patient-card>
+	</div> -->
   </div>
 </div>
 
