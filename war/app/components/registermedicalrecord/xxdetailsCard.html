@@ -1,4 +1,12 @@
 <div ng-controller="DetailsCardController">
+<div class="col-md-12">
+  <div class="subtitle pull-right">
+ 		<label>Patient Type: {{data.type}}</label>
+  </div>
+</div>
+
+</div>
+
 <div class="col col-md-4">
   <label class="subtitle">Symptoms</label>
   <input type="text" placeholder="Search Symptom" ng-model="searchFilterSymp">
@@ -39,5 +47,9 @@
 
 <div class="col-md-12">
   <button class="outline" type="submit" ng-click="" ng-disabled="createMedicalRecordForm.$invalid">Create</button>
+  <div class="card__title pull-right">
+ 		<label>Total cost: {{data.cost}}</label>
+  </div>
 </div>
+
 </div>
