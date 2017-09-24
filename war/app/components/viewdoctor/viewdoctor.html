@@ -22,6 +22,17 @@
         <div class="subtitle__value">
           {{ doctorData.email }}
         </div>
+
+        <label class="subtitle">Address</label>
+        <div class="subtitle__value">
+          {{ doctorData.address }}
+        </div>
+
+        <label class="subtitle">Birthday</label>
+        <div class="subtitle__value">
+          {{ doctorData.processedBirthday }}
+        </div>
+
         <div>
           <button class="outline" ng-click="go('/admin/edit/doctor')">Edit</button>
           <button class="outline" ng-show="data.medicalRecords == null" ng-click="delete()">Archive</button>

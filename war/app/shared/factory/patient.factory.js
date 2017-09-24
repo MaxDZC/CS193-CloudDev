@@ -3,34 +3,36 @@ angular.module('hplus.factory')
   .factory('patientFactory',
     function($http, modalFactory, $window, $location){
 
-      var registerPatient = function(patientObject){
+      var registerPatient = function(patient){
         $http({
           method: 'POST',
-          url: '/Patient', // Change URL here
-          data: patientObject
+          url: '/Patient',
+          data: patient
         }).then(function successCallback(response) {
-        	console.log(response);
-            var modalObject = {
-              type: "notify",
-              title: "Registration Successful!",
-              description: patientObject.firstname + " " + patientObject.lastname + " is successfully registered!",
-              positiveButton: "Ok",
-              isVisible: true
-            };
-            modalFactory.setContents(modalObject);
-          }, function errorCallback(response) {
-        	  var errorMessage = "";
-              console.log(response);
+          console.log(response);
+          
+          var modalObject = {
+            type: "notify",
+            title: "Registration Successful!",
+            description: patient.firstname + " " + patient.lastname + " is successfully registered!",
+            positiveButton: "Ok",
+            isVisible: true
+          };
 
-              var modalObject = {
-                type: "notify",
-                title: "Registration Failure!",
-                description: errorMessage,
-                positiveButton: "Ok",
-                isVisible: true
-              };
-              modalFactory.setContents(modalObject);
-            });
+          modalFactory.setContents(modalObject);
+        }, function errorCallback(response) {
+          console.log(response);
+
+          var modalObject = {
+            type: "notify",
+            title: "Registration Failure!",
+            description: "This patient already exists!",
+            positiveButton: "Ok",
+            isVisible: true
+          };
+
+          modalFactory.setContents(modalObject);
+        });
       }
 
       var getListOfPatients = function(){

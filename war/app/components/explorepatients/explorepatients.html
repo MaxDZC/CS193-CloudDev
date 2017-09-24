@@ -9,7 +9,7 @@
     <div class="row">
 	  <div class="col col-md-12">
 	    <label class="subtitle">Search</label>
-	    <input type="text" placeholder="Enter a name or specialty" ng-model="query">
+	    <input type="text" placeholder="Enter a name" ng-model="query">
 	  </div>
 	</div>
 
@@ -17,20 +17,17 @@
   
   <div class="col col-md-8"><!-- Section containing the tabulated list of patients -->
     <div class="col col-md-12">
-	  <label class="subtitle">ALL RESULTS - {{ patientList.length }}</label>
+      <span class="subtitle">
+        <span ng-hide="query == ''">{{(patientList | filter: searchFilter).length}}</span><span ng-hide="query != ''">All {{(patientList | filter: searchFilter).length}}</span> Results</span>
 		  
 	  <div class="margins" >
-	    <hplus-explore-patients-card dir-paginate="pat in patientList | filter: {'name' : searchFilter} | itemsPerPage:10  | orderBy : 'name'" data="pat" ng-click="setSelected(pat)" ng-class="{'selectedCard__container': pat == selectedPatient}"></hplus-explore-patients-card>       
+      <label class="subtitle" ng-hide="patientList.length">There are no patients to display</label>
+	    <hplus-explore-patients-card dir-paginate="pat in filtered = (patientList | filter: searchFilter | itemsPerPage:10 | orderBy : ['lastname','firstname'])" data="pat"></hplus-explore-patients-card>       
       </div>
       <div class="col-md-12">
-      <!-- Pagination Section -->
       <dir-pagination-controls max-size="5"></dir-pagination-controls>
       </div>
     </div>
-    
-    <!--<div class="col col-md-6">
-	  <hplus-selected-patient-card data="selectedPatient" ng-show="selectedPatient"></hplus-selected-patient-card>
-	</div> -->
   </div>
 </div>
 

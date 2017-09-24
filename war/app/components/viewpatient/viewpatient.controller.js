@@ -3,33 +3,39 @@ app = angular.module('hplus.modules.viewpatient');
   app.controller('ViewPatientController',
     function($scope, $location, globalFactory, doctorFactory, patientFactory){
 	  
-	  var user = doctorFactory.getUser();
+      var user = doctorFactory.getUser();
+      var monthNames = ["January", "February", "March", "April", "May", "June",
+      "July", "August", "September", "October", "November", "December"];
 
       if(user == null) {
         $location.path("/");
       }
 	  
-	  $scope.patientData = patientFactory.getPatient();
+      $scope.patient = patientFactory.getPatient();
       var modalObject;
 
-      if($scope.patientData == null){
-        //$location.path('/admin/list/patient');
+      if($scope.patient == null){
+        $location.path('/admin/list/patient');
+      } else {
+        $scope.patient.name = $scope.patient.lastname + ", " + $scope.patient.firstname;
+
+        var brokenDate = $scope.patient.birthday.split(" ");
+        for(var i = 0; i < monthNames.length && $scope.patient.processedBirthday == null; i++){
+          if(monthNames[i].indexOf(brokenDate[1]) != -1) {
+            $scope.patient.processedBirthday = monthNames[i] + " " + (parseInt(brokenDate[2]) + 1) + ", " + brokenDate[5];
+          }
+        }
+
+        $scope.patient.sexDisplay = ($scope.patient.sex) ? "Male" : "Female";
       }
 	  
       $scope.go = function(path){
-    	patientFactory.savePatient($scope.patientData);  
+    	  patientFactory.savePatient($scope.patient);  
         globalFactory.go(path);
       };
       
       $scope.delete = function(){
-        patientFactory.deletePatient($scope.patientData);
-      };
-      
-      
-       
-      $scope.patientData = {
-        name: "Doe, Jane",
-        sex: "female"
+        patientFactory.deletePatient($scope.patient);
       };
       
        $scope.recordList = [
