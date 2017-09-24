@@ -1,40 +1,43 @@
-<div class="row col-md-10 col-md-offset-1">
-    	<div class="row card__container--custom1">
-	  
-    		<div class="row">
-      		<div class="col col-md-4">
-      			<span class="subtitle">Symptoms</span>
-      			<div class="collapsediv">
-      			  <table ng-required="true">
-      				  <br>
-      				  <tr ng-repeat="symptom in symptomList">
-        				  <td><input name="" type="checkbox" ng-model="medicalRecord.symptomChoice[$index]"><span>{{ symptom }}</span></td>
-      				  </tr>
-      			  </table>
-    			  </div>
-    		  </div>
-			<div class="col col-md-4">
-      			<span class="subtitle">Diseases</span>
-      			<div class="collapsediv">
-      			  <table ng-required="true">
-      				  <br>
-      				  <tr ng-repeat="diseases in diseasesList">
-        				  <td><input name="" type="checkbox" ng-model="medicalRecord.diseasesChoice[$index]"><span>{{ diseases }}</span></td>
-      				  </tr>
-      			  </table>
-    			  </div>
-    		 </div>
-    		<div class="col col-md-4">
-    			<span class="subtitle">Medicine</span>
-    			<div class="collapsediv">
-      			<br>
-      			<table ng-required="true">
-      				<tr ng-repeat="medicine in medicineList">
-        				<td><input name="" type="checkbox" ng-model="medicalRecord.medicineChoice[$index]"><span>{{ medicine }}</span></td>
-      				</tr>
-      			</table>
-    			</div>
-    		</div>
-  		</div>
-  	  </div>  
-  	</div>
+<div ng-controller="DetailsCardController">
+<div class="col col-md-4">
+  <label class="subtitle">Symptoms</label>
+  <input type="text" placeholder="Search Symptom" ng-model="searchFilterSymp">
+  <div class="borders">
+    <div class="scrollable">
+      <div ng-repeat="option in symptomList | filter: {'name':searchFilterSymp} | orderBy:['val','name']">
+        <input type="checkbox" ng-model="option.val" ng-change="addRemoveSymptom(symptomsSearch | filter: {val: true} | orderBy : 'name')" ng-required="!symptomsSelected.length">{{option.name}}<br>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="col col-md-4">
+  <label class="subtitle">Diseases</label>
+  <input type="text" placeholder="Search Disease" ng-model="searchFilterDis">
+  <div class="borders">
+    <div class="scrollable">
+      <div ng-repeat="option in diseaseList | filter: {'name':searchFilterDis} | orderBy:['val','name']">
+        <input type="checkbox" ng-model="option.val" ng-change="addRemoveDisease(diseasesSearch | filter: {val: true} | orderBy : 'name')" ng-required="!diseasesSelected.length">{{option.name}}<br>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="col col-md-4">
+  <label class="subtitle">Medicines</label>
+  <input type="text" placeholder="Search Medicine" ng-model="searchFilterMed">
+  <div class="borders">
+    <div class="scrollable">
+      <div ng-repeat="optionmed in medicineList | filter: {'name':searchFilterMed} | orderBy:['val','name']">
+        <input type="checkbox" ng-model="optionmed.val" ng-change="addRemoveMedicine(medicinesSearch | filter: {val: true}| orderBy:'name')"  ng-required="!medicinesSelected.length">{{optionmed.name}}
+<!--        <input type="number" ng-model="optionmed.quantity" placeholder="0" ng-hide="!optionmed.val"> -->
+        <br>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="col-md-12">
+  <button class="outline" type="submit" ng-click="" ng-disabled="createMedicalRecordForm.$invalid">Create</button>
+</div>
+</div>

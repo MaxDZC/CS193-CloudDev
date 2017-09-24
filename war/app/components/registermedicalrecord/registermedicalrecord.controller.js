@@ -1,17 +1,17 @@
 angular.module('hplus.modules.registermedicalrecord')
 
   .controller('RegisterMedicalRecordController',
-    function($scope, $location, globalFactory, medicalRecordFactory, doctorFactory){
+    function($scope, $location, globalFactory, doctorFactory, symptomFactory, medicineFactory, diseaseFactory){
 
       $scope.user = doctorFactory.getUser();
 
-      if($scope.user != null) {
-        if(user.admin){
-          $location.path("/admin/list/record");
-        }
-      } else {
-        $location.path("/");
-      }
+//      if($scope.user != null) {
+//        if(user.admin){
+//          $location.path("/admin/list/record");
+//        }
+//      } else {
+//        $location.path("/");
+//      }
 
       $scope.go = function(path){
         globalFactory.go(path);
@@ -19,15 +19,6 @@ angular.module('hplus.modules.registermedicalrecord')
       
       $scope.searchFilter = "";
       
-      $scope.medicalRecord = {};
-      
-      $scope.medicalRecord.symptomChoice = [];
-      
-      $scope.medicalRecord.medicineChoice = [];
-      
-      $scope.symptomList = ["TextHere1", "TextHere2", "TextHere3", "TextHere4" , "TextHere5"];
-      
-      $scope.medicineList = ["TextHere1", "TextHere2", "TextHere3", "TextHere4" , "TextHere5"];
       $scope.setSelected = function(pat){
     	  
     	  $scope.selectedPatient = pat;

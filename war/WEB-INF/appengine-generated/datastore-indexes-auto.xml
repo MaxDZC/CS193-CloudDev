@@ -1,22 +1,4 @@
-<<<<<<< HEAD
-<!-- Indices written at Sun, 24 Sep 2017 13:03:23 SGT -->
-=======
-<!-- Indices written at Sat, 23 Sep 2017 21:19:18 SGT -->
->>>>>>> 00c2bea7e85e48ed385da3c6261bd3d81aab90e6
+<!-- Indices written at Sun, 24 Sep 2017 14:08:16 SGT -->
 
-<datastore-indexes>
+<datastore-indexes/>
 
-    <!-- Used 5 times in query history -->
-    <datastore-index kind="MedicalRecordModel" ancestor="false" source="auto">
-        <property name="deletedAt" direction="asc"/>
-        <property name="diseaseIdList" direction="asc"/>
-        <property name="dischargeDate" direction="asc"/>
-    </datastore-index>
-
-    <!-- Used 1 time in query history -->
-    <datastore-index kind="DiseaseModel" ancestor="false" source="auto">
-        <property name="symptomId" direction="asc"/>
-        <property name="deletedAt" direction="asc"/>
-    </datastore-index>
-
-</datastore-indexes>
