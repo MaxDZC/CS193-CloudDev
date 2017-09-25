@@ -21,8 +21,8 @@
   <div > 
     <div class="col col-md-8"><!-- Section containing the tabulated list of doctors -->
 		  <div class="col col-md-12">
-		    <span class="subtitle"><span ng-hide="searchFilter == ''">{{(patients | filter : searchFilter).length}}</span><span ng-hide="searchFilter != ''">All</span> Results</span>
-        <hplus-explore-medical-records-card dir-paginate="pat in patients | filter : searchFilter | itemsPerPage:10 | orderBy : ['lastName','firstName']" data="pat"></hplus-explore-medical-records-card>
+		    <span class="subtitle"><span ng-hide="searchFilter == ''">{{(medRecs | filter : searchFilter).length}}</span><span ng-hide="searchFilter != ''">All</span> Results</span>
+        <hplus-explore-medical-records-card dir-paginate="pat in medRecs | filter : searchFilter | itemsPerPage:10 | orderBy : ['lastName','firstName']" data="pat"></hplus-explore-medical-records-card>
         <!-- Pagination Section -->
         <dir-pagination-controls max-size="5"></dir-pagination-controls>
 		  </div>

@@ -22,7 +22,7 @@ public class MedicalRecordController extends Controller {
         
         String method = request.getMethod();
         JSONObject jObj = new JSONObject();
-        MedicalRecordDto medicalRecordDto = null;
+        MedicalRecordDto medicalRecordDto = new MedicalRecordDto();
         MedicalRecordService medicalRecordService = new MedicalRecordService();
        
         String[] dischargeDates;
@@ -48,10 +48,12 @@ public class MedicalRecordController extends Controller {
                 
             } else if(method.equalsIgnoreCase("GET")){
                 jObj = new JSONObject(new RequestMap(this.request));
-                
+                System.out.println("MedicalRecord Get");
                 if(jObj.has("doctorId")){
+                    System.out.println("MedicalRecord Get doctorID");
                     jObj.put("medicalRecords", medicalRecordService.getMedicalRecordByDoctorId(jObj.getLong("doctorId")));   
                 } else {
+                    System.out.println("MedicalRecord Get list of medicalRecords");
                     jObj.put("medicalRecords", medicalRecordService.getMedicalRecords());
                 }
                 

@@ -98,11 +98,10 @@ public class MedicalRecordDao {
     public List<MedicalRecordModel> getMedicalRecords() {
         
         List<MedicalRecordModel> medRecModels;
-        
         medRecModels = Datastore.query(MedicalRecordModel.class)
                     .filter("deletedAt", FilterOperator.EQUAL, null)
                 .asList();
-        
+     
         return medRecModels;
     }
 

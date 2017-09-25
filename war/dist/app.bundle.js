@@ -40721,7 +40721,7 @@ __webpack_require__(96);
 /* 93 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\"><!-- Header Portion -->\r\n  <div class=\"col col-md-10 col-md-offset-1\">\r\n    <h1>List of All Medical Records</h1><!-- Header Name for this Module -->\r\n  </div>\r\n</div>\r\n\t\r\n<div class=\"row\" ng-controller=\"ExploreMedicalRecordsController\"><!-- Body Portion -->\r\n  <div class=\"col col-md-2 col-md-offset-1\"><!-- Section for search -->\r\n    <div class=\"row\">\r\n      <div class=\"col col-md-6\">\r\n        <label class=\"subtitle\">Search</label>\r\n      </div>\r\n    </div>\r\n    \r\n    <div class=\"match-padding\">\r\n      <input type=\"text\" placeholder=\"Enter a name\" ng-model=\"searchFilter\">\r\n      <button ng-click=\"go('/doctor/register/record')\">New Record</button>\r\n    </div>\r\n  </div>\r\n  \r\n  <div > \r\n    <div class=\"col col-md-8\"><!-- Section containing the tabulated list of doctors -->\r\n\t\t  <div class=\"col col-md-12\">\r\n\t\t    <span class=\"subtitle\"><span ng-hide=\"searchFilter == ''\">{{(patients | filter : searchFilter).length}}</span><span ng-hide=\"searchFilter != ''\">All</span> Results</span>\r\n        <hplus-explore-medical-records-card dir-paginate=\"pat in patients | filter : searchFilter | itemsPerPage:10 | orderBy : ['lastName','firstName']\" data=\"pat\"></hplus-explore-medical-records-card>\r\n        <!-- Pagination Section -->\r\n        <dir-pagination-controls max-size=\"5\"></dir-pagination-controls>\r\n\t\t  </div>\r\n\t\t</div>\r\n  </div>\r\n</div>\r\n\r\n\r\n";
+module.exports = "<div class=\"row\"><!-- Header Portion -->\r\n  <div class=\"col col-md-10 col-md-offset-1\">\r\n    <h1>List of All Medical Records</h1><!-- Header Name for this Module -->\r\n  </div>\r\n</div>\r\n\t\r\n<div class=\"row\" ng-controller=\"ExploreMedicalRecordsController\"><!-- Body Portion -->\r\n  <div class=\"col col-md-2 col-md-offset-1\"><!-- Section for search -->\r\n    <div class=\"row\">\r\n      <div class=\"col col-md-6\">\r\n        <label class=\"subtitle\">Search</label>\r\n      </div>\r\n    </div>\r\n    \r\n    <div class=\"match-padding\">\r\n      <input type=\"text\" placeholder=\"Enter a name\" ng-model=\"searchFilter\">\r\n      <button ng-click=\"go('/doctor/register/record')\">New Record</button>\r\n    </div>\r\n  </div>\r\n  \r\n  <div > \r\n    <div class=\"col col-md-8\"><!-- Section containing the tabulated list of doctors -->\r\n\t\t  <div class=\"col col-md-12\">\r\n\t\t    <span class=\"subtitle\"><span ng-hide=\"searchFilter == ''\">{{(medRecs | filter : searchFilter).length}}</span><span ng-hide=\"searchFilter != ''\">All</span> Results</span>\r\n        <hplus-explore-medical-records-card dir-paginate=\"pat in medRecs | filter : searchFilter | itemsPerPage:10 | orderBy : ['lastName','firstName']\" data=\"pat\"></hplus-explore-medical-records-card>\r\n        <!-- Pagination Section -->\r\n        <dir-pagination-controls max-size=\"5\"></dir-pagination-controls>\r\n\t\t  </div>\r\n\t\t</div>\r\n  </div>\r\n</div>\r\n\r\n\r\n";
 
 /***/ }),
 /* 94 */
@@ -40744,7 +40744,7 @@ angular.module('hplus.modules.exploremedicalrecords')
 /* 95 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"margins\">\r\n  <!-- List Section -->  \r\n  <div class=\"card__container\">\r\n    <div class=\"card__title\">\r\n      {{data.lastName + ', ' + data.firstName}}\r\n    </div>\r\n    \r\n    <div class=\"card__desc\">\r\n      Admitted {{data.createdAt | date : \"longDate\"}} for <span ng-repeat=\"dis in data.diseases\"><span ng-hide=\"$first\">,&nbsp;</span>{{dis}}</span>\r\n    </div>\r\n  </div>\r\n</div>";
+module.exports = "<div class=\"margins\">\r\n  <!-- List Section -->  \r\n  <div class=\"card__container\">\r\n    <div class=\"card__title\">\r\n      {{data.lastname + ', ' + data.firstname}}\r\n    </div>\r\n    \r\n    <div class=\"card__desc\">\r\n      Admitted {{data.createdAt | date : \"longDate\"}} for <span ng-repeat=\"dis in data.diseases\"><span ng-hide=\"$first\">,&nbsp;</span>{{dis}}</span>\r\n    </div>\r\n  </div>\r\n</div>";
 
 /***/ }),
 /* 96 */
@@ -40767,33 +40767,53 @@ angular.module('hplus.modules.exploremedicalrecords')
 	  
 	  $scope.searchFilter = "";
 	  
-	  $scope.patients =[ 
-	    {
-		  "firstName" : "John",
-		  "lastName" : "Doe",
-		  "createdAt" : "1970-01-01T09:05:05.035Z",
-		  "diseases" : ["Dying"]
-	    },
-	    {
-		  "firstName" : "Joe",
-		  "lastName" : "Doe",
-		  "createdAt" : "1970-01-01T09:05:05.035Z",
-		  "diseases" : ["Genital Retraction Syndrome"]
-	    },
-	    {
-		  "firstName" : "Jane",
-		  "lastName" : "Doe",
-		  "createdAt" : "1970-01-01T09:05:05.035Z",
-		  "diseases" : ["Trichophagia","Tuberculosis"]
-	    }
-	  ];
+	  $scope.medRecs =[];
+	  
+	  $scope.medicalRecords = [];
 	  
 	  var populate = function(){
-	    medicalRecordFactory.getListOfMedicalRecords().then(function(response){
-	      $scope.medicalRecords = response.data;
-	      console.log("DATA");
+	    console.log("medFactoryStart");
+	    patientFactory.getListOfPatients().then(function(response){
+	      $scope.patients = response.data.patients;
 	      console.log(response.data);
 	    },function(){});
+	    diseaseFactory.getListOfDiseases().then(function(response){
+	      $scope.diseases = response.data.diseases;
+	      console.log(response.data);
+	    },function(){});
+	    medicalRecordFactory.getListOfMedicalRecords().then(function(response){
+	      $scope.medicalRecords = response.data.medicalRecords;
+	      console.log(response.data);
+	      
+	      $scope.diseases.sort(function(a, b){return a.id-b.id});
+	      $scope.patients.sort(function(a, b){return a.id-b.id})
+	      
+	      $scope.medicalRecords.forEach(function(medR){
+	        medR.diseaseIdList.sort();
+	        var d;
+	        var hold={ "firstname" : "No patient","lastname" : "No patient", "createdAt" : "","diseases" : []};
+	        hold.createdAt = medR.createdAt;
+	        
+	        for(var i = d = 0; i < medR.diseaseIdList.length && d < $scope.diseases.length;){
+	          if($scope.diseases[d].id == medR.diseaseIdList[i]){
+	            hold.diseases.push($scope.diseases[d].name);
+	            d++; i++;
+	          }else{
+	            ($scope.diseases[d].id > medR.diseaseIdList[i].id)?i++:d++;
+	          }
+	        }
+	        
+	        for(d = 0; d < $scope.patients.length && medR.patientId != $scope.patients[d].id; d++){}
+	        if(d < $scope.patients.length){
+	          hold.firstname = $scope.patients[d].firstname;
+		      hold.lastname = $scope.patients[d].lastname;
+	        }
+	        
+	        $scope.medRecs.push(hold);
+	      });
+	      console.log($scope.medRecs);
+	    },function(){});
+	    
 	  };
 	  
 	  populate();
