@@ -70,6 +70,7 @@ app = angular.module('hplus.modules.viewmedicine')
             for(y = 0; y < doctorList.length && $scope.recordList[x].doctor == null; y++) {
               if($scope.recordList[x].doctorId == doctorList[y].id) {
                 $scope.recordList[x].doctor = doctorList[y].firstname + " " + doctorList[y].lastname;
+                $scope.recordList[x].doctorId = doctorList[y].id;
               }
             }
           }

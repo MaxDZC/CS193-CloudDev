@@ -52,7 +52,7 @@
 	            {{ monthAndYear }}
 	          </span>
 	          <div class="subtitle__value">
-	            {{ recordList.length }} Patients
+	            {{ monthUsage }} Patients
 	          </div>
 	        </div>
 	          
@@ -64,7 +64,7 @@
 	            {{ year }}
 	          </span>
 	          <div class="subtitle__value">
-	            24 PATIENTS
+	            {{ yearUsage }} Patients
 	          </div>
 	        </div>
 	      </div>
@@ -72,8 +72,9 @@
 	
 	    <div class="col col-md-12">
 	      <br>
-	      <br>
-	      <label class="subtitle">RECENTLY DIAGNOSED IN THE FOLLOWING PATIENTS</label>
+				<br>
+				<label ng-if="!recordList" class="subtitle">Hasn't been diagnosed in any patient</label>
+	      <label ng-if="recordList" class="subtitle">DIAGNOSED IN THE FOLLOWING PATIENTS</label>
 	      <hplus-view-disease-card dir-paginate="record in recordList | itemsPerPage:10" data="record"></hplus-view-disease-card>
 	    </div>
 	  </div>
