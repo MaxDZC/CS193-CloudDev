@@ -1,10 +1,10 @@
 angular.module('hplus.modules.viewmedicine')
 
   .controller('RecordCardController',
-    function($scope, $location, globalFactory){
+    function($scope, $location, globalFactory, medicalRecordFactory){
       
       $scope.go = function(path, medicalRecord){
-        console.log("atay");
+        medicalRecordFactory.saveMedicalRecord(medicalRecord);
         globalFactory.go(path);
       };
 

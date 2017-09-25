@@ -83,10 +83,8 @@ angular.module('hplus.modules.viewdoctor')
             }
             $scope.recordList[x].disease = disease;
           }
-
-
+            
         });
-
       }
 
       $scope.$on("updateProfile", function(event) {

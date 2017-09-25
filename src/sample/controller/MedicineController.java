@@ -11,6 +11,7 @@ import org.slim3.util.RequestMap;
 
 import sample.dto.MedicineDto;
 import sample.meta.MedicineModelMeta;
+import sample.service.MedicalRecordService;
 import sample.service.MedicineService;
 import sample.utils.JSONValidators;
 
@@ -20,6 +21,7 @@ public class MedicineController extends Controller {
     * Service object that will be used to call CRUD functions to datastore
     */
     MedicineService medicineService = new MedicineService();
+    MedicalRecordService medicalRecordService = new MedicalRecordService();
 
     @Override
     protected Navigation run() throws Exception {
@@ -68,6 +70,7 @@ public class MedicineController extends Controller {
                     jsonObject.put("medicine", MedicineModelMeta.get().modelToJson(MedicineService.getMedicineById(jsonObject.getLong("medicineId"))));
                 } else {
                     jsonObject.put("medicines", MedicineService.getMedicines());
+                    jsonObject.put("medicalRecords", medicalRecordService.getMedicalRecords());
                 }
             } else if(method.equals("PUT")) {
                 jsonObject = new JSONObject(this.request.getReader().readLine());

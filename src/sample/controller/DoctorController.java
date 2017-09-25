@@ -12,7 +12,6 @@ import org.slim3.repackaged.org.json.JSONObject;
 import org.slim3.util.RequestMap;
 
 import sample.dto.DoctorDto;
-import sample.meta.DoctorModelMeta;
 import sample.model.DoctorModel;
 import sample.service.DoctorService;
 import sample.service.MedicalRecordService;
@@ -105,11 +104,6 @@ public class DoctorController extends Controller {
                     if(doctorModel != null){
                         List<DoctorModel> dm = new ArrayList<DoctorModel>();
                         dm.add(doctorModel);
-                       // String doc = DoctorModelMeta.get().modelToJson(tester);
-                       // System.out.println(doc);
-                       // JSONObject jsonResult = new JSONObject(doc);
-                       // long doctorId = jsonResult.getLong("id");
-                        System.out.println("What");
                         jsonObject.put("doctor", dm);
                         jsonObject.put("doctorMedicalRecords", medicalRecordService.getMedicalRecordByDoctorId(doctorModel.getId()));
                     } else {

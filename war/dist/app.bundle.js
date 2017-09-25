@@ -39773,6 +39773,8 @@ angular.module('hplus.modules.editmedicine')
 
       if($scope.medicine == null){
         $location.path('/admin/list/medicine');
+      } else if($scope.medicine.medicalRecords) {
+        $location.path("/admin/list/medicine");
       }
 
       $scope.go = function(path){
@@ -40353,7 +40355,7 @@ module.exports = "<div class=\"card__container\">\r\n  <div class=\"card__title\
 /* 84 */
 /***/ (function(module, exports) {
 
-module.exports = "<div ng-controller=\"MedicineCardController\">\r\n      <label class=\"subtitle\">DETAILS FOR {{ data.name }}</label>\r\n      <div class=\"margins\">\r\n        <!-- Detail Section -->\r\n        <div class=\"detail__container\">\r\n          <div class=\"card__title\">\r\n            {{ data.name[0].toUpperCase() + data.name.substr(1) }}\r\n          </div>\r\n      \r\n          <div class=\"detail__desc\">\r\n            <p>\r\n            {{ data.description }}\r\n            </p>\r\n          </div>\r\n          <span class=\"detail__title\">PRICE (PHP)</span>\r\n          <span class=\"detail__subtitle\">{{ data.price | currency : 'PHP '}}</span>\r\n          <br>\r\n          <br>\r\n          <span class=\"detail__title\">TREATMENT FOR</span>\r\n          <span class=\"detail__subtitle\"><span ng-repeat=\"treats in data.treats\"><span ng-hide=\"$first\">,&nbsp;</span>{{ treats }}</span></span> \r\n          <br>\r\n          <br>\r\n          <div> \r\n            <button ng-show=\"isAdmin()\" class=\"outline\" ng-click=\"go('/admin/update/medicine', data)\">Edit</button>\r\n            <button ng-show=\"isAdmin()\" class=\"outline\" ng-click=\"delete(data)\">Delete</button>\r\n            <button class=\"outline\" ng-click=\"go('/admin/view/medicine', data)\">View</button>\r\n          </div>\r\n        </div>\r\n      </div>\r\n</div>";
+module.exports = "<div ng-controller=\"MedicineCardController\">\r\n      <label class=\"subtitle\">DETAILS FOR {{ data.name }}</label>\r\n      <div class=\"margins\">\r\n        <!-- Detail Section -->\r\n        <div class=\"detail__container\">\r\n          <div class=\"card__title\">\r\n            {{ data.name[0].toUpperCase() + data.name.substr(1) }}\r\n          </div>\r\n      \r\n          <div class=\"detail__desc\">\r\n            <p>\r\n            {{ data.description }}\r\n            </p>\r\n          </div>\r\n          <span class=\"detail__title\">PRICE (PHP)</span>\r\n          <span class=\"detail__subtitle\">{{ data.price | currency : 'PHP '}}</span>\r\n          <br>\r\n          <br>\r\n          <span class=\"detail__title\">TREATMENT FOR</span>\r\n          <span class=\"detail__subtitle\"><span ng-repeat=\"treats in data.treats\"><span ng-hide=\"$first\">,&nbsp;</span>{{ treats }}</span></span> \r\n          <br>\r\n          <br>\r\n          <div> \r\n            <button ng-show=\"isAdmin() && !data.medicalRecords\" class=\"outline\" ng-click=\"go('/admin/update/medicine', data)\">Edit</button>\r\n            <button ng-show=\"isAdmin() && !data.medicalRecords\" class=\"outline\" ng-click=\"delete(data)\">Archive</button>\r\n            <button class=\"outline\" ng-click=\"go('/admin/view/medicine', data)\">View</button>\r\n          </div>\r\n        </div>\r\n      </div>\r\n</div>";
 
 /***/ }),
 /* 85 */
@@ -40364,7 +40366,6 @@ angular.module('hplus.modules.exploremedicines')
   .controller('ExploreMedicinesController',
     function($scope, $location, globalFactory, doctorFactory, medicineFactory, diseaseFactory){
 	  
-      $scope.length = 0;
       $scope.selectedMedicine = null;
       $scope.query = "";
       $scope.diseaseList = [];
@@ -40388,8 +40389,26 @@ angular.module('hplus.modules.exploremedicines')
         medicineFactory.getListOfMedicines().then(function(response){
           console.log(response);
           $scope.medicineList = response.data.medicines;
-          $scope.length = $scope.medicineList.length;
+          var medicalRecords = response.data.medicalRecords;
 
+          var x, y, z;
+          
+          for(x = 0; x < $scope.medicineList.length; x++) {
+            for(y = 0; y < medicalRecords.length; y++) {
+              for(z = 0; z < medicalRecords[y].medicineIdList.length; z++) {
+                if(medicalRecords[y].medicineIdList[z] == $scope.medicineList[x].id) {
+                  if($scope.medicineList[x].medicalRecords == null) {
+                    $scope.medicineList[x].medicalRecords = [];
+                  }
+                  $scope.medicineList[x].medicalRecords.push(medicalRecords[y]);
+                  z = medicalRecords[y].medicineIdList.length;
+                }
+              } 
+            }
+          }
+
+          console.log($scope.medicineList);
+          
           diseaseFactory.getListOfDiseases().then(function(response){
             console.log(response);
             $scope.diseaseList = response.data.diseases;
@@ -41242,7 +41261,7 @@ angular.module('hplus.modules.viewdoctor')
 /* 110 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"card__container\" ng-controller=\"DoctorRecordCardController\">\r\n  <div class=\"card__title\">\r\n    {{ data.name }}\r\n\r\n    <a ng-click=\"go('/view/record', data); $event.stopPropagation()\"><span class=\"delete__icon\"><i class=\"fa fa-eye\" aria-hidden=\"true\"></i></span></a>\r\n    <a ng-click=\"go('/update/medicalrecord', data); $event.stopPropagation()\"><span class=\"delete__icon\"><i class=\"fa fa-pencil-square-o\" aria-hidden=\"true\"></i></span></a>\r\n  \r\n  </div>\r\n  \r\n  <div class=\"card__desc\">\r\n    Admitted {{ data.date }} for {{ data.disease }}\r\n  </div>\r\n</div>";
+module.exports = "<div class=\"card__container\" ng-controller=\"DoctorRecordCardController\">\r\n  <div class=\"card__title\">\r\n    {{ data.name }}\r\n\r\n    <a ng-click=\"go('/view/medicalrecord', data); $event.stopPropagation()\"><span class=\"delete__icon\"><i class=\"fa fa-eye\" aria-hidden=\"true\"></i></span></a>\r\n    <a ng-click=\"go('/update/medicalrecord', data); $event.stopPropagation()\"><span class=\"delete__icon\"><i class=\"fa fa-pencil-square-o\" aria-hidden=\"true\"></i></span></a>\r\n  \r\n  </div>\r\n  \r\n  <div class=\"card__desc\">\r\n    Admitted {{ data.date }} for {{ data.disease }}\r\n  </div>\r\n</div>";
 
 /***/ }),
 /* 111 */
@@ -41333,10 +41352,8 @@ angular.module('hplus.modules.viewdoctor')
             }
             $scope.recordList[x].disease = disease;
           }
-
-
+            
         });
-
       }
 
       $scope.$on("updateProfile", function(event) {
@@ -41564,7 +41581,7 @@ angular.module('hplus.modules.viewmedicine', [])
 /* 119 */
 /***/ (function(module, exports) {
 
-module.exports = "<ng-controller ng-controller=\"ViewMedicineController\">\r\n\t<div class=\"row\">\r\n\t  <div class=\"col col-md-8 col-md-offset-1\">\r\n\t    <h1><i class=\"fa fa-heartbeat\"></i>{{ medicine.name[0].toUpperCase() + medicine.name.substr(1) }}</h1>\r\n\t  </div>\r\n\t</div>\r\n\t\r\n\t<div class=\"row\">\r\n\t  <div class=\"col col-md-10 col-md-offset-1\">\r\n\t    <div class=\"col-md-3\">\r\n\t      <span class=\"subtitle\">Price:</span>\r\n\t      <div class=\"subtitle__value\">\r\n\t        PHP {{ medicine.price }}\r\n\t      </div>\r\n\t    </div>\r\n\t    <div class=\"col-md-3\">\r\n\t      <label class=\"subtitle\">USAGE FOR</label>\r\n\t      <span class=\"subtitle subtitle--variable\">{{ monthAndYear }}</span>\r\n\t      <div class=\"subtitle__value\">\r\n\t        15 Patients\r\n\t      </div>\r\n\t    </div>\r\n\t    <div class=\"col-md-3\">\r\n\t      <label class=\"subtitle\">USAGE FOR THE YEAR</label>\r\n\t      <span class=\"subtitle subtitle--variable\">{{ year }}</span>\r\n\t      <div class=\"subtitle__value\">\r\n\t        367 PATIENTS\r\n\t      </div>\r\n\t    </div>\r\n\t  </div>\r\n\t</div>\r\n\t\r\n\t<div class=\"row margins\">\r\n\t  <div class=\"col-md-10 col-md-offset-1 margins\">\r\n\t\t  <div class=\"col-md-3\">\r\n\t      <label class=\"subtitle marginTop\">Type of Medicine</label>\r\n\t      <div class=\"subtitle__value\">\r\n\t        {{ medicine.type }}\r\n\t      </div>\r\n\t\t    <label class=\"subtitle marginTop\">Description:</label>\r\n\t\t    <div class=\"subtitle__value\">\r\n\t\t      {{ medicine.description }}\r\n\t\t    </div>\r\n\t\t\t\t<button class=\"outline\" ng-show=\"user.admin\" ng-click=\"go('/admin/update/medicine')\">Edit</button>\r\n\t\t\t\t<button class=\"outline delete_btn\" ng-show=\"user.admin\" ng-click=\"delete()\">Archive</button>\r\n\t\t  </div>\r\n\t\t  <div class=\"col-md-9\">\r\n\t\t    <label class=\"subtitle\">RECENTLY DISPENSED TO THE FOLLOWING PATIENTS</label>\r\n\t        <hplus-view-medicine-card dir-paginate=\"record in recordList | itemsPerPage:10\" data=\"record\"></hplus-view-medicine-card>\r\n\t\t  </div>\r\n\t  </div>\r\n\t</div>\r\n\t<dir-pagination-controls max-size=\"5\"></dir-pagination-controls>\r\n</ng-controller>";
+module.exports = "<ng-controller ng-controller=\"ViewMedicineController\">\r\n\t<div class=\"row\">\r\n\t  <div class=\"col col-md-8 col-md-offset-1\">\r\n\t    <h1><i class=\"fa fa-heartbeat\"></i>{{ medicine.name[0].toUpperCase() + medicine.name.substr(1) }}</h1>\r\n\t  </div>\r\n\t</div>\r\n\t\r\n\t<div class=\"row\">\r\n\t  <div class=\"col col-md-10 col-md-offset-1\">\r\n\t    <div class=\"col-md-3\">\r\n\t      <span class=\"subtitle\">Price:</span>\r\n\t      <div class=\"subtitle__value\">\r\n\t        PHP {{ medicine.price }}\r\n\t      </div>\r\n\t    </div>\r\n\t    <div class=\"col-md-3\">\r\n\t      <label class=\"subtitle\">USAGE FOR</label>\r\n\t      <span class=\"subtitle subtitle--variable\">{{ monthAndYear }}</span>\r\n\t      <div class=\"subtitle__value\">\r\n\t        {{ monthUsage }} Patients\r\n\t      </div>\r\n\t    </div>\r\n\t    <div class=\"col-md-3\">\r\n\t      <label class=\"subtitle\">USAGE FOR THE YEAR</label>\r\n\t      <span class=\"subtitle subtitle--variable\">{{ year }}</span>\r\n\t      <div class=\"subtitle__value\">\r\n\t        {{ yearUsage }} Patients\r\n\t      </div>\r\n\t    </div>\r\n\t  </div>\r\n\t</div>\r\n\t\r\n\t<div class=\"row margins\">\r\n\t  <div class=\"col-md-10 col-md-offset-1 margins\">\r\n\t\t  <div class=\"col-md-3\">\r\n\t      <label class=\"subtitle marginTop\">Type of Medicine</label>\r\n\t      <div class=\"subtitle__value\">\r\n\t        {{ medicine.type }}\r\n\t      </div>\r\n\t\t    <label class=\"subtitle marginTop\">Description:</label>\r\n\t\t    <div class=\"subtitle__value\">\r\n\t\t      {{ medicine.description }}\r\n\t\t    </div>\r\n\t\t\t\t<button class=\"outline\" ng-show=\"user.admin && !recordList\" ng-click=\"go('/admin/update/medicine')\">Edit</button>\r\n\t\t\t\t<button class=\"outline delete_btn\" ng-show=\"user.admin && !recordList\" ng-click=\"delete()\">Archive</button>\r\n\t\t  </div>\r\n\t\t  <div class=\"col-md-9\">\r\n\t\t\t\t<label ng-if=\"!recordList\" class=\"subtitle\">Hasn't been dispensed</label>\r\n\t\t\t\t<label ng-if=\"recordList\" class=\"subtitle\">DISPENSED TO THE FOLLOWING PATIENTS</label>\r\n\t        <hplus-view-medicine-card dir-paginate=\"record in recordList | itemsPerPage:10\" data=\"record\"></hplus-view-medicine-card>\r\n\t\t  </div>\r\n\t  </div>\r\n\t</div>\r\n\t<dir-pagination-controls max-size=\"5\"></dir-pagination-controls>\r\n</ng-controller>";
 
 /***/ }),
 /* 120 */
@@ -41587,7 +41604,7 @@ angular.module('hplus.modules.viewmedicine')
 /* 121 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"card__container\">\r\n  <div class=\"card__title\">\r\n    {{ data.name }} \r\n    <a ng-click=\"go('/admin/view/medicine'); $event.stopPropagation()\"><span class=\"delete__icon\"><i class=\"fa fa-eye\" aria-hidden=\"true\"></i></span></a>\r\n    <a ng-click=\"go('/admin/edit/medicine'); $event.stopPropagation()\"><span class=\"delete__icon\"><i class=\"fa fa-pencil-square-o\" aria-hidden=\"true\"></i></span></a>\r\n  </div>\r\n  \r\n  <div class=\"card__desc\">\r\n    Dispensed  {{ data.date }} as Demanded by Dr. John Appleseed\r\n  </div>\r\n</div>";
+module.exports = "<div class=\"card__container\" ng-controller=\"RecordCardController\">\r\n  <div class=\"card__title\">\r\n    {{ data.name }} \r\n\r\n    <a ng-click=\"go('/view/medicalrecord', data); $event.stopPropagation()\"><span class=\"delete__icon\"><i class=\"fa fa-eye\" aria-hidden=\"true\"></i></span></a>\r\n    <a ng-click=\"go('/update/medicalrecord', data); $event.stopPropagation()\"><span class=\"delete__icon\"><i class=\"fa fa-pencil-square-o\" aria-hidden=\"true\"></i></span></a>\r\n  </div>\r\n  \r\n  <div class=\"card__desc\">\r\n    Dispensed  {{ data.date }} as Demanded by Dr. John Appleseed\r\n  </div>\r\n</div>";
 
 /***/ }),
 /* 122 */
@@ -41596,7 +41613,7 @@ module.exports = "<div class=\"card__container\">\r\n  <div class=\"card__title\
 app = angular.module('hplus.modules.viewmedicine')
 
   .controller('ViewMedicineController',
-    function($scope, $location, globalFactory, doctorFactory, medicineFactory){
+    function($scope, $location, globalFactory, doctorFactory, medicineFactory, patientFactory){
 
       $scope.user = doctorFactory.getUser();
       var date = new Date();
@@ -41615,6 +41632,47 @@ app = angular.module('hplus.modules.viewmedicine')
 
       if($scope.medicine == null){
         $location.path('/admin/list/medicine');
+      } else {
+        $scope.recordList = $scope.medicine.medicalRecords;
+        console.log($scope.recordList);
+        $scope.monthUsage = 0;
+        $scope.yearUsage = 0;
+        
+
+        patientFactory.getListOfPatients().then(function(response){
+          console.log(response);
+          var patientList = response.data.patients;
+          var x, y;
+
+          for(x = 0; x < $scope.recordList.length; x++) {
+            for(y = 0; y < patientList.length && $scope.recordList[x].name == null; y++) {
+              if($scope.recordList[x].patientId == patientList[y].id){
+                $scope.recordList[x].name = patientList[y].lastname + ", " + patientList[y].firstname;
+
+                var date = $scope.recordList[x].createdAt.split(" ");
+
+                for(var i = 0; i < monthNames.length && $scope.recordList[x].date == null; i++) {
+                  if(monthNames[i].indexOf(date[1]) != -1) {
+                    realDate = new Date(date[5], (i + 1), parseInt(date[2]) + 1);
+
+                    if($scope.monthAndYear.toLowerCase().indexOf(monthNames[i].toLowerCase()) != -1) {
+                      $scope.yearUsage++;
+                      $scope.monthUsage++;
+                    } else if(date[5] == $scope.year) {
+                      $scope.yearUsage++;
+                    }
+
+                    $scope.recordList[x].date = monthNames[i].substr(0, 3);
+                    if(monthNames[i].length > 3){
+                      $scope.recordList[x].date += ".";
+                    }
+                    $scope.recordList[x].date += " " + realDate.getDate() + ", " + realDate.getFullYear();
+                  }
+                }
+              }
+            }
+          }
+        });
       }
 	  
       $scope.go = function(path) {
@@ -41626,7 +41684,7 @@ app = angular.module('hplus.modules.viewmedicine')
         medicineFactory.deleteMedicine($scope.medicine);
       };
       
-       $scope.recordList = [
+ /*      $scope.recordList = [
         {
           name: "Doe, Jane",
           date: "Feb. 20, 2016",
@@ -41694,6 +41752,7 @@ app = angular.module('hplus.modules.viewmedicine')
           id: 11
         }
       ];
+      */
   });
 
 /***/ }),
@@ -41703,10 +41762,10 @@ app = angular.module('hplus.modules.viewmedicine')
 angular.module('hplus.modules.viewmedicine')
 
   .controller('RecordCardController',
-    function($scope, $location, globalFactory){
+    function($scope, $location, globalFactory, medicalRecordFactory){
       
       $scope.go = function(path, medicalRecord){
-        console.log("atay");
+        medicalRecordFactory.saveMedicalRecord(medicalRecord);
         globalFactory.go(path);
       };
 
@@ -41722,7 +41781,7 @@ angular.module('hplus.modules.viewmedicalrecord', [])
 
   .config(function ($routeProvider){  
     $routeProvider      
-      .when('/view/record',{
+      .when('/view/medicalrecord',{
         template: viewmedicalrecord
       })
   });

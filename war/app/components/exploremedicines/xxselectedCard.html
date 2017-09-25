@@ -21,8 +21,8 @@
           <br>
           <br>
           <div> 
-            <button ng-show="isAdmin()" class="outline" ng-click="go('/admin/update/medicine', data)">Edit</button>
-            <button ng-show="isAdmin()" class="outline" ng-click="delete(data)">Delete</button>
+            <button ng-show="isAdmin() && !data.medicalRecords" class="outline" ng-click="go('/admin/update/medicine', data)">Edit</button>
+            <button ng-show="isAdmin() && !data.medicalRecords" class="outline" ng-click="delete(data)">Archive</button>
             <button class="outline" ng-click="go('/admin/view/medicine', data)">View</button>
           </div>
         </div>

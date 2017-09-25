@@ -1,4 +1,4 @@
-<!-- Indices written at Tue, 26 Sep 2017 02:56:52 SGT -->
+<!-- Indices written at Tue, 26 Sep 2017 03:39:14 SGT -->
 
 <datastore-indexes>
 
@@ -14,6 +14,13 @@
         <property name="deletedAt" direction="asc"/>
         <property name="patientId" direction="asc"/>
         <property name="dischargeDate" direction="asc"/>
+    </datastore-index>
+
+    <!-- Used 2 times in query history -->
+    <datastore-index kind="MedicineModel" ancestor="false" source="auto">
+        <property name="deletedAt" direction="asc"/>
+        <property name="name" direction="asc"/>
+        <property name="id" direction="asc"/>
     </datastore-index>
 
 </datastore-indexes>

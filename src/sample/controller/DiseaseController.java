@@ -12,6 +12,7 @@ import sample.dto.DiseaseDto;
 import sample.meta.DiseaseModelMeta;
 import sample.model.DiseaseModel;
 import sample.service.DiseaseService;
+import sample.service.MedicalRecordService;
 import sample.utils.JSONValidators;
 
 public class DiseaseController extends Controller {
@@ -34,6 +35,7 @@ public class DiseaseController extends Controller {
         String method = request.getMethod();
         JSONObject jsonObject = new JSONObject();
         DiseaseService diseaseService = new DiseaseService();
+        MedicalRecordService medicalRecordService = new MedicalRecordService();
         
         try{
             if(method.equals("POST")){
@@ -62,6 +64,7 @@ public class DiseaseController extends Controller {
                 } else {
                     System.out.println("Getting All Diseases");
                     jsonObject.put("diseases", diseaseService.getAllDisease());
+                    jsonObject.put("medicalRecords", medicalRecordService.getMedicalRecords());
                 }
                 
             } else if(method.equals("PUT")) {

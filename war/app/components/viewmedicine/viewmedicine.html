@@ -17,14 +17,14 @@
 	      <label class="subtitle">USAGE FOR</label>
 	      <span class="subtitle subtitle--variable">{{ monthAndYear }}</span>
 	      <div class="subtitle__value">
-	        15 Patients
+	        {{ monthUsage }} Patients
 	      </div>
 	    </div>
 	    <div class="col-md-3">
 	      <label class="subtitle">USAGE FOR THE YEAR</label>
 	      <span class="subtitle subtitle--variable">{{ year }}</span>
 	      <div class="subtitle__value">
-	        367 PATIENTS
+	        {{ yearUsage }} Patients
 	      </div>
 	    </div>
 	  </div>
@@ -41,11 +41,12 @@
 		    <div class="subtitle__value">
 		      {{ medicine.description }}
 		    </div>
-				<button class="outline" ng-show="user.admin" ng-click="go('/admin/update/medicine')">Edit</button>
-				<button class="outline delete_btn" ng-show="user.admin" ng-click="delete()">Archive</button>
+				<button class="outline" ng-show="user.admin && !recordList" ng-click="go('/admin/update/medicine')">Edit</button>
+				<button class="outline delete_btn" ng-show="user.admin && !recordList" ng-click="delete()">Archive</button>
 		  </div>
 		  <div class="col-md-9">
-		    <label class="subtitle">RECENTLY DISPENSED TO THE FOLLOWING PATIENTS</label>
+				<label ng-if="!recordList" class="subtitle">Hasn't been dispensed</label>
+				<label ng-if="recordList" class="subtitle">DISPENSED TO THE FOLLOWING PATIENTS</label>
 	        <hplus-view-medicine-card dir-paginate="record in recordList | itemsPerPage:10" data="record"></hplus-view-medicine-card>
 		  </div>
 	  </div>
