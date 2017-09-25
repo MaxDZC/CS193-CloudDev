@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 3);
+/******/ 	return __webpack_require__(__webpack_require__.s = 4);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -883,16 +883,35 @@ module.exports = adjacency_graphs;
 /* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(4);
+var editmedicalrecord = __webpack_require__(66);
 
-__webpack_require__(25);
-__webpack_require__(27);
-var zxcvbn = __webpack_require__(29);
+angular.module('hplus.modules.editmedicalrecord', [])
+
+  .config(function ($routeProvider){  
+    $routeProvider      
+      .when('/update/medicalrecord',{
+        template: editmedicalrecord	
+      })
+  });
+
+  __webpack_require__(67);
+
+
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(5);
+
+__webpack_require__(26);
+__webpack_require__(28);
+var zxcvbn = __webpack_require__(30);
 window.zxcvbn = zxcvbn;
-__webpack_require__(34);
 __webpack_require__(35);
+__webpack_require__(36);
 
-__webpack_require__(37);
+__webpack_require__(38);
 
 
 var app = angular.module('hplus', [
@@ -917,18 +936,18 @@ app.config(function ($routeProvider, $locationProvider, paginationTemplateProvid
     // });
   
   // Stylizes the pagination
-  paginationTemplateProvider.setString(__webpack_require__(144));
+  paginationTemplateProvider.setString(__webpack_require__(153));
 });
 
 
 /***/ }),
-/* 4 */
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(5);
+var content = __webpack_require__(6);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -936,7 +955,7 @@ var transform;
 var options = {}
 options.transform = transform
 // add the styles to the DOM
-var update = __webpack_require__(23)(content, options);
+var update = __webpack_require__(24)(content, options);
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -953,29 +972,15 @@ if(false) {
 }
 
 /***/ }),
-/* 5 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(1)(undefined);
-// imports
-exports.i(__webpack_require__(6), "");
-
-// module
-exports.push([module.i, "@charset \"UTF-8\";\n/*!\r\n * Bootstrap v3.3.7 (http://getbootstrap.com)\r\n * Copyright 2011-2016 Twitter, Inc.\r\n * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)\r\n * Modified by Joshua Velasco\r\n */\n/*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */\nhtml {\n  font-family: sans-serif;\n  -ms-text-size-adjust: 100%;\n  -webkit-text-size-adjust: 100%; }\n\narticle, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {\n  display: block; }\n\naudio, canvas, progress, video {\n  display: inline-block;\n  vertical-align: baseline; }\n\naudio:not([controls]) {\n  display: none;\n  height: 0; }\n\n[hidden], template {\n  display: none; }\n\na {\n  background-color: transparent; }\n\na:active, a:hover {\n  outline: 0; }\n\nabbr[title] {\n  border-bottom: 1px dotted; }\n\nb, strong {\n  font-weight: bold; }\n\ndfn {\n  font-style: italic; }\n\nmark {\n  background: #ff0;\n  color: #000; }\n\nsmall {\n  font-size: 80%; }\n\nsub, sup {\n  font-size: 75%;\n  line-height: 0;\n  position: relative;\n  vertical-align: baseline; }\n\nsup {\n  top: -0.5em; }\n\nsub {\n  bottom: -0.25em; }\n\nimg {\n  border: 0; }\n\nsvg:not(:root) {\n  overflow: hidden; }\n\nfigure {\n  margin: 1em 40px; }\n\nhr {\n  -webkit-box-sizing: content-box;\n  -moz-box-sizing: content-box;\n  box-sizing: content-box;\n  height: 0; }\n\npre {\n  overflow: auto; }\n\ncode, kbd, pre, samp {\n  font-family: monospace, monospace;\n  font-size: 1em; }\n\nbutton {\n  overflow: visible; }\n\nbutton, button, html input[type=\"button\"], input[type=\"reset\"], input[type=\"submit\"] {\n  -webkit-appearance: button;\n  cursor: pointer; }\n\nbutton[disabled], html input[disabled] {\n  cursor: default; }\n\nbutton::-moz-focus-inner, input::-moz-focus-inner {\n  border: 0;\n  padding: 0; }\n\ninput {\n  line-height: normal; }\n\ninput[type=\"checkbox\"], input[type=\"radio\"] {\n  -webkit-box-sizing: border-box;\n  -moz-box-sizing: border-box;\n  box-sizing: border-box;\n  padding: 0; }\n\ninput[type=\"number\"]::-webkit-inner-spin-button, input[type=\"number\"]::-webkit-outer-spin-button {\n  height: auto; }\n\ninput[type=\"search\"] {\n  -webkit-appearance: textfield;\n  -webkit-box-sizing: content-box;\n  -moz-box-sizing: content-box;\n  box-sizing: content-box; }\n\ninput[type=\"search\"]::-webkit-search-cancel-button, input[type=\"search\"]::-webkit-search-decoration {\n  -webkit-appearance: none; }\n\nfieldset {\n  border: 1px solid #c0c0c0;\n  margin: 0 2px;\n  padding: 0.35em 0.625em 0.75em; }\n\nlegend {\n  border: 0;\n  padding: 0; }\n\ntextarea {\n  overflow: auto; }\n\noptgroup {\n  font-weight: bold; }\n\ntable {\n  border-collapse: collapse;\n  border-spacing: 0; }\n\ntd, th {\n  padding: 0; }\n\n* {\n  -webkit-box-sizing: border-box;\n  -moz-box-sizing: border-box;\n  box-sizing: border-box; }\n\n*:before, *:after {\n  -webkit-box-sizing: border-box;\n  -moz-box-sizing: border-box;\n  box-sizing: border-box; }\n\nhtml {\n  font-size: 10px;\n  -webkit-tap-highlight-color: transparent; }\n\ninput, button, a {\n  color: #337ab7;\n  text-decoration: none; }\n\na:hover, a:focus {\n  color: #23527c;\n  text-decoration: underline; }\n\na:focus {\n  outline: 5px auto -webkit-focus-ring-color;\n  outline-offset: -2px; }\n\nfigure {\n  margin: 0; }\n\nimg {\n  vertical-align: middle; }\n\n.img-responsive {\n  display: block;\n  max-width: 100%;\n  height: auto; }\n\n.img-rounded {\n  border-radius: 6px; }\n\n.img-thumbnail {\n  padding: 4px;\n  line-height: 1.42857143;\n  background-color: #fff;\n  border: 1px solid #ddd;\n  border-radius: 4px;\n  -webkit-transition: all .2s ease-in-out;\n  -o-transition: all .2s ease-in-out;\n  transition: all .2s ease-in-out;\n  display: inline-block;\n  max-width: 100%;\n  height: auto; }\n\n.img-circle {\n  border-radius: 50%; }\n\nhr {\n  margin-top: 20px;\n  margin-bottom: 20px;\n  border: 0;\n  border-top: 1px solid #eee; }\n\n.sr-only {\n  position: absolute;\n  width: 1px;\n  height: 1px;\n  margin: -1px;\n  padding: 0;\n  overflow: hidden;\n  clip: rect(0, 0, 0, 0);\n  border: 0; }\n\n.sr-only-focusable:active, .sr-only-focusable:focus {\n  position: static;\n  width: auto;\n  height: auto;\n  margin: 0;\n  overflow: visible;\n  clip: auto; }\n\n[role=\"button\"] {\n  cursor: pointer; }\n\n.container {\n  margin-right: auto;\n  margin-left: auto;\n  padding-left: 15px;\n  padding-right: 15px; }\n\n@media (min-width: 768px) {\n  .container {\n    width: 750px; } }\n\n@media (min-width: 992px) {\n  .container {\n    width: 970px; } }\n\n@media (min-width: 1200px) {\n  .container {\n    width: 1170px; } }\n\n.container-fluid {\n  margin-right: auto;\n  margin-left: auto;\n  padding-left: 15px;\n  padding-right: 15px; }\n\n.col-xs-1, .col-sm-1, .col-md-1, .col-lg-1, .col-xs-2, .col-sm-2, .col-md-2, .col-lg-2, .col-xs-3, .col-sm-3, .col-md-3, .col-lg-3, .col-xs-4, .col-sm-4, .col-md-4, .col-lg-4, .col-xs-5, .col-sm-5, .col-md-5, .col-lg-5, .col-xs-6, .col-sm-6, .col-md-6, .col-lg-6, .col-xs-7, .col-sm-7, .col-md-7, .col-lg-7, .col-xs-8, .col-sm-8, .col-md-8, .col-lg-8, .col-xs-9, .col-sm-9, .col-md-9, .col-lg-9, .col-xs-10, .col-sm-10, .col-md-10, .col-lg-10, .col-xs-11, .col-sm-11, .col-md-11, .col-lg-11, .col-xs-12, .col-sm-12, .col-md-12, .col-lg-12 {\n  position: relative;\n  min-height: 1px;\n  padding-left: 15px;\n  padding-right: 15px; }\n\n.col-xs-1, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9, .col-xs-10, .col-xs-11, .col-xs-12 {\n  float: left; }\n\n.col-xs-12 {\n  width: 100%; }\n\n.col-xs-11 {\n  width: 91.66666667%; }\n\n.col-xs-10 {\n  width: 83.33333333%; }\n\n.col-xs-9 {\n  width: 75%; }\n\n.col-xs-8 {\n  width: 66.66666667%; }\n\n.col-xs-7 {\n  width: 58.33333333%; }\n\n.col-xs-6 {\n  width: 50%; }\n\n.col-xs-5 {\n  width: 41.66666667%; }\n\n.col-xs-4 {\n  width: 33.33333333%; }\n\n.col-xs-3 {\n  width: 25%; }\n\n.col-xs-2 {\n  width: 16.66666667%; }\n\n.col-xs-1 {\n  width: 8.33333333%; }\n\n.col-xs-pull-12 {\n  right: 100%; }\n\n.col-xs-pull-11 {\n  right: 91.66666667%; }\n\n.col-xs-pull-10 {\n  right: 83.33333333%; }\n\n.col-xs-pull-9 {\n  right: 75%; }\n\n.col-xs-pull-8 {\n  right: 66.66666667%; }\n\n.col-xs-pull-7 {\n  right: 58.33333333%; }\n\n.col-xs-pull-6 {\n  right: 50%; }\n\n.col-xs-pull-5 {\n  right: 41.66666667%; }\n\n.col-xs-pull-4 {\n  right: 33.33333333%; }\n\n.col-xs-pull-3 {\n  right: 25%; }\n\n.col-xs-pull-2 {\n  right: 16.66666667%; }\n\n.col-xs-pull-1 {\n  right: 8.33333333%; }\n\n.col-xs-pull-0 {\n  right: auto; }\n\n.col-xs-push-12 {\n  left: 100%; }\n\n.col-xs-push-11 {\n  left: 91.66666667%; }\n\n.col-xs-push-10 {\n  left: 83.33333333%; }\n\n.col-xs-push-9 {\n  left: 75%; }\n\n.col-xs-push-8 {\n  left: 66.66666667%; }\n\n.col-xs-push-7 {\n  left: 58.33333333%; }\n\n.col-xs-push-6 {\n  left: 50%; }\n\n.col-xs-push-5 {\n  left: 41.66666667%; }\n\n.col-xs-push-4 {\n  left: 33.33333333%; }\n\n.col-xs-push-3 {\n  left: 25%; }\n\n.col-xs-push-2 {\n  left: 16.66666667%; }\n\n.col-xs-push-1 {\n  left: 8.33333333%; }\n\n.col-xs-push-0 {\n  left: auto; }\n\n.col-xs-offset-12 {\n  margin-left: 100%; }\n\n.col-xs-offset-11 {\n  margin-left: 91.66666667%; }\n\n.col-xs-offset-10 {\n  margin-left: 83.33333333%; }\n\n.col-xs-offset-9 {\n  margin-left: 75%; }\n\n.col-xs-offset-8 {\n  margin-left: 66.66666667%; }\n\n.col-xs-offset-7 {\n  margin-left: 58.33333333%; }\n\n.col-xs-offset-6 {\n  margin-left: 50%; }\n\n.col-xs-offset-5 {\n  margin-left: 41.66666667%; }\n\n.col-xs-offset-4 {\n  margin-left: 33.33333333%; }\n\n.col-xs-offset-3 {\n  margin-left: 25%; }\n\n.col-xs-offset-2 {\n  margin-left: 16.66666667%; }\n\n.col-xs-offset-1 {\n  margin-left: 8.33333333%; }\n\n.col-xs-offset-0 {\n  margin-left: 0; }\n\n@media (min-width: 768px) {\n  .col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12 {\n    float: left; }\n  .col-sm-12 {\n    width: 100%; }\n  .col-sm-11 {\n    width: 91.66666667%; }\n  .col-sm-10 {\n    width: 83.33333333%; }\n  .col-sm-9 {\n    width: 75%; }\n  .col-sm-8 {\n    width: 66.66666667%; }\n  .col-sm-7 {\n    width: 58.33333333%; }\n  .col-sm-6 {\n    width: 50%; }\n  .col-sm-5 {\n    width: 41.66666667%; }\n  .col-sm-4 {\n    width: 33.33333333%; }\n  .col-sm-3 {\n    width: 25%; }\n  .col-sm-2 {\n    width: 16.66666667%; }\n  .col-sm-1 {\n    width: 8.33333333%; }\n  .col-sm-pull-12 {\n    right: 100%; }\n  .col-sm-pull-11 {\n    right: 91.66666667%; }\n  .col-sm-pull-10 {\n    right: 83.33333333%; }\n  .col-sm-pull-9 {\n    right: 75%; }\n  .col-sm-pull-8 {\n    right: 66.66666667%; }\n  .col-sm-pull-7 {\n    right: 58.33333333%; }\n  .col-sm-pull-6 {\n    right: 50%; }\n  .col-sm-pull-5 {\n    right: 41.66666667%; }\n  .col-sm-pull-4 {\n    right: 33.33333333%; }\n  .col-sm-pull-3 {\n    right: 25%; }\n  .col-sm-pull-2 {\n    right: 16.66666667%; }\n  .col-sm-pull-1 {\n    right: 8.33333333%; }\n  .col-sm-pull-0 {\n    right: auto; }\n  .col-sm-push-12 {\n    left: 100%; }\n  .col-sm-push-11 {\n    left: 91.66666667%; }\n  .col-sm-push-10 {\n    left: 83.33333333%; }\n  .col-sm-push-9 {\n    left: 75%; }\n  .col-sm-push-8 {\n    left: 66.66666667%; }\n  .col-sm-push-7 {\n    left: 58.33333333%; }\n  .col-sm-push-6 {\n    left: 50%; }\n  .col-sm-push-5 {\n    left: 41.66666667%; }\n  .col-sm-push-4 {\n    left: 33.33333333%; }\n  .col-sm-push-3 {\n    left: 25%; }\n  .col-sm-push-2 {\n    left: 16.66666667%; }\n  .col-sm-push-1 {\n    left: 8.33333333%; }\n  .col-sm-push-0 {\n    left: auto; }\n  .col-sm-offset-12 {\n    margin-left: 100%; }\n  .col-sm-offset-11 {\n    margin-left: 91.66666667%; }\n  .col-sm-offset-10 {\n    margin-left: 83.33333333%; }\n  .col-sm-offset-9 {\n    margin-left: 75%; }\n  .col-sm-offset-8 {\n    margin-left: 66.66666667%; }\n  .col-sm-offset-7 {\n    margin-left: 58.33333333%; }\n  .col-sm-offset-6 {\n    margin-left: 50%; }\n  .col-sm-offset-5 {\n    margin-left: 41.66666667%; }\n  .col-sm-offset-4 {\n    margin-left: 33.33333333%; }\n  .col-sm-offset-3 {\n    margin-left: 25%; }\n  .col-sm-offset-2 {\n    margin-left: 16.66666667%; }\n  .col-sm-offset-1 {\n    margin-left: 8.33333333%; }\n  .col-sm-offset-0 {\n    margin-left: 0; } }\n\n@media (min-width: 992px) {\n  .col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12 {\n    float: left; }\n  .col-md-12 {\n    width: 100%; }\n  .col-md-11 {\n    width: 91.66666667%; }\n  .col-md-10 {\n    width: 83.33333333%; }\n  .col-md-9 {\n    width: 75%; }\n  .col-md-8 {\n    width: 66.66666667%; }\n  .col-md-7 {\n    width: 58.33333333%; }\n  .col-md-6 {\n    width: 50%; }\n  .col-md-5 {\n    width: 41.66666667%; }\n  .col-md-4 {\n    width: 33.33333333%; }\n  .col-md-3 {\n    width: 25%; }\n  .col-md-2 {\n    width: 16.66666667%; }\n  .col-md-1 {\n    width: 8.33333333%; }\n  .col-md-pull-12 {\n    right: 100%; }\n  .col-md-pull-11 {\n    right: 91.66666667%; }\n  .col-md-pull-10 {\n    right: 83.33333333%; }\n  .col-md-pull-9 {\n    right: 75%; }\n  .col-md-pull-8 {\n    right: 66.66666667%; }\n  .col-md-pull-7 {\n    right: 58.33333333%; }\n  .col-md-pull-6 {\n    right: 50%; }\n  .col-md-pull-5 {\n    right: 41.66666667%; }\n  .col-md-pull-4 {\n    right: 33.33333333%; }\n  .col-md-pull-3 {\n    right: 25%; }\n  .col-md-pull-2 {\n    right: 16.66666667%; }\n  .col-md-pull-1 {\n    right: 8.33333333%; }\n  .col-md-pull-0 {\n    right: auto; }\n  .col-md-push-12 {\n    left: 100%; }\n  .col-md-push-11 {\n    left: 91.66666667%; }\n  .col-md-push-10 {\n    left: 83.33333333%; }\n  .col-md-push-9 {\n    left: 75%; }\n  .col-md-push-8 {\n    left: 66.66666667%; }\n  .col-md-push-7 {\n    left: 58.33333333%; }\n  .col-md-push-6 {\n    left: 50%; }\n  .col-md-push-5 {\n    left: 41.66666667%; }\n  .col-md-push-4 {\n    left: 33.33333333%; }\n  .col-md-push-3 {\n    left: 25%; }\n  .col-md-push-2 {\n    left: 16.66666667%; }\n  .col-md-push-1 {\n    left: 8.33333333%; }\n  .col-md-push-0 {\n    left: auto; }\n  .col-md-offset-12 {\n    margin-left: 100%; }\n  .col-md-offset-11 {\n    margin-left: 91.66666667%; }\n  .col-md-offset-10 {\n    margin-left: 83.33333333%; }\n  .col-md-offset-9 {\n    margin-left: 75%; }\n  .col-md-offset-8 {\n    margin-left: 66.66666667%; }\n  .col-md-offset-7 {\n    margin-left: 58.33333333%; }\n  .col-md-offset-6 {\n    margin-left: 50%; }\n  .col-md-offset-5 {\n    margin-left: 41.66666667%; }\n  .col-md-offset-4 {\n    margin-left: 33.33333333%; }\n  .col-md-offset-3 {\n    margin-left: 25%; }\n  .col-md-offset-2 {\n    margin-left: 16.66666667%; }\n  .col-md-offset-1 {\n    margin-left: 8.33333333%; }\n  .col-md-offset-0 {\n    margin-left: 0; } }\n\n@media (min-width: 1200px) {\n  .col-lg-1, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-10, .col-lg-11, .col-lg-12 {\n    float: left; }\n  .col-lg-12 {\n    width: 100%; }\n  .col-lg-11 {\n    width: 91.66666667%; }\n  .col-lg-10 {\n    width: 83.33333333%; }\n  .col-lg-9 {\n    width: 75%; }\n  .col-lg-8 {\n    width: 66.66666667%; }\n  .col-lg-7 {\n    width: 58.33333333%; }\n  .col-lg-6 {\n    width: 50%; }\n  .col-lg-5 {\n    width: 41.66666667%; }\n  .col-lg-4 {\n    width: 33.33333333%; }\n  .col-lg-3 {\n    width: 25%; }\n  .col-lg-2 {\n    width: 16.66666667%; }\n  .col-lg-1 {\n    width: 8.33333333%; }\n  .col-lg-pull-12 {\n    right: 100%; }\n  .col-lg-pull-11 {\n    right: 91.66666667%; }\n  .col-lg-pull-10 {\n    right: 83.33333333%; }\n  .col-lg-pull-9 {\n    right: 75%; }\n  .col-lg-pull-8 {\n    right: 66.66666667%; }\n  .col-lg-pull-7 {\n    right: 58.33333333%; }\n  .col-lg-pull-6 {\n    right: 50%; }\n  .col-lg-pull-5 {\n    right: 41.66666667%; }\n  .col-lg-pull-4 {\n    right: 33.33333333%; }\n  .col-lg-pull-3 {\n    right: 25%; }\n  .col-lg-pull-2 {\n    right: 16.66666667%; }\n  .col-lg-pull-1 {\n    right: 8.33333333%; }\n  .col-lg-pull-0 {\n    right: auto; }\n  .col-lg-push-12 {\n    left: 100%; }\n  .col-lg-push-11 {\n    left: 91.66666667%; }\n  .col-lg-push-10 {\n    left: 83.33333333%; }\n  .col-lg-push-9 {\n    left: 75%; }\n  .col-lg-push-8 {\n    left: 66.66666667%; }\n  .col-lg-push-7 {\n    left: 58.33333333%; }\n  .col-lg-push-6 {\n    left: 50%; }\n  .col-lg-push-5 {\n    left: 41.66666667%; }\n  .col-lg-push-4 {\n    left: 33.33333333%; }\n  .col-lg-push-3 {\n    left: 25%; }\n  .col-lg-push-2 {\n    left: 16.66666667%; }\n  .col-lg-push-1 {\n    left: 8.33333333%; }\n  .col-lg-push-0 {\n    left: auto; }\n  .col-lg-offset-12 {\n    margin-left: 100%; }\n  .col-lg-offset-11 {\n    margin-left: 91.66666667%; }\n  .col-lg-offset-10 {\n    margin-left: 83.33333333%; }\n  .col-lg-offset-9 {\n    margin-left: 75%; }\n  .col-lg-offset-8 {\n    margin-left: 66.66666667%; }\n  .col-lg-offset-7 {\n    margin-left: 58.33333333%; }\n  .col-lg-offset-6 {\n    margin-left: 50%; }\n  .col-lg-offset-5 {\n    margin-left: 41.66666667%; }\n  .col-lg-offset-4 {\n    margin-left: 33.33333333%; }\n  .col-lg-offset-3 {\n    margin-left: 25%; }\n  .col-lg-offset-2 {\n    margin-left: 16.66666667%; }\n  .col-lg-offset-1 {\n    margin-left: 8.33333333%; }\n  .col-lg-offset-0 {\n    margin-left: 0; } }\n\n.clearfix:before, .clearfix:after, .container:before, .container:after, .container-fluid:before, .container-fluid:after, .row:before, .row:after {\n  content: \" \";\n  display: table; }\n\n.clearfix:after, .container:after, .container-fluid:after, .row:after {\n  clear: both; }\n\n.center-block {\n  display: block;\n  margin-left: auto;\n  margin-right: auto; }\n\n.pull-right {\n  float: right !important; }\n\n.pull-left {\n  float: left !important; }\n\n.hide {\n  display: none !important; }\n\n.show {\n  display: block !important; }\n\n.invisible {\n  visibility: hidden; }\n\n.text-hide {\n  font: 0/0 a;\n  color: transparent;\n  text-shadow: none;\n  background-color: transparent;\n  border: 0; }\n\n.hidden {\n  display: none !important; }\n\n.affix {\n  position: fixed; }\n\n@-ms-viewport {\n  width: device-width; }\n\n.visible-xs, .visible-sm, .visible-md, .visible-lg {\n  display: none !important; }\n\n.visible-xs-block, .visible-xs-inline, .visible-xs-inline-block, .visible-sm-block, .visible-sm-inline, .visible-sm-inline-block, .visible-md-block, .visible-md-inline, .visible-md-inline-block, .visible-lg-block, .visible-lg-inline, .visible-lg-inline-block {\n  display: none !important; }\n\n@media (max-width: 767px) {\n  .visible-xs {\n    display: block !important; }\n  table.visible-xs {\n    display: table !important; }\n  tr.visible-xs {\n    display: table-row !important; }\n  th.visible-xs, td.visible-xs {\n    display: table-cell !important; } }\n\n@media (max-width: 767px) {\n  .visible-xs-block {\n    display: block !important; } }\n\n@media (max-width: 767px) {\n  .visible-xs-inline {\n    display: inline !important; } }\n\n@media (max-width: 767px) {\n  .visible-xs-inline-block {\n    display: inline-block !important; } }\n\n@media (min-width: 768px) and (max-width: 991px) {\n  .visible-sm {\n    display: block !important; }\n  table.visible-sm {\n    display: table !important; }\n  tr.visible-sm {\n    display: table-row !important; }\n  th.visible-sm, td.visible-sm {\n    display: table-cell !important; } }\n\n@media (min-width: 768px) and (max-width: 991px) {\n  .visible-sm-block {\n    display: block !important; } }\n\n@media (min-width: 768px) and (max-width: 991px) {\n  .visible-sm-inline {\n    display: inline !important; } }\n\n@media (min-width: 768px) and (max-width: 991px) {\n  .visible-sm-inline-block {\n    display: inline-block !important; } }\n\n@media (min-width: 992px) and (max-width: 1199px) {\n  .visible-md {\n    display: block !important; }\n  table.visible-md {\n    display: table !important; }\n  tr.visible-md {\n    display: table-row !important; }\n  th.visible-md, td.visible-md {\n    display: table-cell !important; } }\n\n@media (min-width: 992px) and (max-width: 1199px) {\n  .visible-md-block {\n    display: block !important; } }\n\n@media (min-width: 992px) and (max-width: 1199px) {\n  .visible-md-inline {\n    display: inline !important; } }\n\n@media (min-width: 992px) and (max-width: 1199px) {\n  .visible-md-inline-block {\n    display: inline-block !important; } }\n\n@media (min-width: 1200px) {\n  .visible-lg {\n    display: block !important; }\n  table.visible-lg {\n    display: table !important; }\n  tr.visible-lg {\n    display: table-row !important; }\n  th.visible-lg, td.visible-lg {\n    display: table-cell !important; } }\n\n@media (min-width: 1200px) {\n  .visible-lg-block {\n    display: block !important; } }\n\n@media (min-width: 1200px) {\n  .visible-lg-inline {\n    display: inline !important; } }\n\n@media (min-width: 1200px) {\n  .visible-lg-inline-block {\n    display: inline-block !important; } }\n\n@media (max-width: 767px) {\n  .hidden-xs {\n    display: none !important; } }\n\n@media (min-width: 768px) and (max-width: 991px) {\n  .hidden-sm {\n    display: none !important; } }\n\n@media (min-width: 992px) and (max-width: 1199px) {\n  .hidden-md {\n    display: none !important; } }\n\n@media (min-width: 1200px) {\n  .hidden-lg {\n    display: none !important; } }\n\n.visible-print {\n  display: none !important; }\n\n@media print {\n  .visible-print {\n    display: block !important; }\n  table.visible-print {\n    display: table !important; }\n  tr.visible-print {\n    display: table-row !important; }\n  th.visible-print, td.visible-print {\n    display: table-cell !important; } }\n\n.visible-print-block {\n  display: none !important; }\n\n@media print {\n  .visible-print-block {\n    display: block !important; } }\n\n.visible-print-inline {\n  display: none !important; }\n\n@media print {\n  .visible-print-inline {\n    display: inline !important; } }\n\n.visible-print-inline-block {\n  display: none !important; }\n\n@media print {\n  .visible-print-inline-block {\n    display: inline-block !important; } }\n\n@media print {\n  .hidden-print {\n    display: none !important; } }\n\n/*!\r\n *  Font Awesome 4.7.0 by @davegandy - http://fontawesome.io - @fontawesome\r\n *  License - http://fontawesome.io/license (Font: SIL OFL 1.1, CSS: MIT License)\r\n */\n/* FONT PATH\r\n * -------------------------- */\n@font-face {\n  font-family: 'FontAwesome';\n  src: url(" + __webpack_require__(17) + ");\n  src: url(" + __webpack_require__(18) + "?#iefix&v=4.7.0) format(\"embedded-opentype\"), url(" + __webpack_require__(19) + ") format(\"woff2\"), url(" + __webpack_require__(20) + ") format(\"woff\"), url(" + __webpack_require__(21) + ") format(\"truetype\"), url(" + __webpack_require__(22) + "#fontawesomeregular) format(\"svg\");\n  font-weight: normal;\n  font-style: normal; }\n\n.fa {\n  display: inline-block;\n  font: normal normal normal 14px/1 FontAwesome;\n  font-size: inherit;\n  text-rendering: auto;\n  -webkit-font-smoothing: antialiased;\n  -moz-osx-font-smoothing: grayscale; }\n\n/* makes the font 33% larger relative to the icon container */\n.fa-lg {\n  font-size: 1.33333em;\n  line-height: 0.75em;\n  vertical-align: -15%; }\n\n.fa-2x {\n  font-size: 2em; }\n\n.fa-3x {\n  font-size: 3em; }\n\n.fa-4x {\n  font-size: 4em; }\n\n.fa-5x {\n  font-size: 5em; }\n\n.fa-fw {\n  width: 1.28571em;\n  text-align: center; }\n\n.fa-ul {\n  padding-left: 0;\n  margin-left: 2.14286em;\n  list-style-type: none; }\n  .fa-ul > li {\n    position: relative; }\n\n.fa-li {\n  position: absolute;\n  left: -2.14286em;\n  width: 2.14286em;\n  top: 0.14286em;\n  text-align: center; }\n  .fa-li.fa-lg {\n    left: -1.85714em; }\n\n.fa-border {\n  padding: .2em .25em .15em;\n  border: solid 0.08em #eee;\n  border-radius: .1em; }\n\n.fa-pull-left {\n  float: left; }\n\n.fa-pull-right {\n  float: right; }\n\n.fa.fa-pull-left {\n  margin-right: .3em; }\n\n.fa.fa-pull-right {\n  margin-left: .3em; }\n\n/* Deprecated as of 4.4.0 */\n.pull-right {\n  float: right; }\n\n.pull-left {\n  float: left; }\n\n.fa.pull-left {\n  margin-right: .3em; }\n\n.fa.pull-right {\n  margin-left: .3em; }\n\n.fa-spin {\n  -webkit-animation: fa-spin 2s infinite linear;\n  animation: fa-spin 2s infinite linear; }\n\n.fa-pulse {\n  -webkit-animation: fa-spin 1s infinite steps(8);\n  animation: fa-spin 1s infinite steps(8); }\n\n@-webkit-keyframes fa-spin {\n  0% {\n    -webkit-transform: rotate(0deg);\n    transform: rotate(0deg); }\n  100% {\n    -webkit-transform: rotate(359deg);\n    transform: rotate(359deg); } }\n\n@keyframes fa-spin {\n  0% {\n    -webkit-transform: rotate(0deg);\n    transform: rotate(0deg); }\n  100% {\n    -webkit-transform: rotate(359deg);\n    transform: rotate(359deg); } }\n\n.fa-rotate-90 {\n  -ms-filter: \"progid:DXImageTransform.Microsoft.BasicImage(rotation=1)\";\n  -webkit-transform: rotate(90deg);\n  -ms-transform: rotate(90deg);\n  transform: rotate(90deg); }\n\n.fa-rotate-180 {\n  -ms-filter: \"progid:DXImageTransform.Microsoft.BasicImage(rotation=2)\";\n  -webkit-transform: rotate(180deg);\n  -ms-transform: rotate(180deg);\n  transform: rotate(180deg); }\n\n.fa-rotate-270 {\n  -ms-filter: \"progid:DXImageTransform.Microsoft.BasicImage(rotation=3)\";\n  -webkit-transform: rotate(270deg);\n  -ms-transform: rotate(270deg);\n  transform: rotate(270deg); }\n\n.fa-flip-horizontal {\n  -ms-filter: \"progid:DXImageTransform.Microsoft.BasicImage(rotation=0, mirror=1)\";\n  -webkit-transform: scale(-1, 1);\n  -ms-transform: scale(-1, 1);\n  transform: scale(-1, 1); }\n\n.fa-flip-vertical {\n  -ms-filter: \"progid:DXImageTransform.Microsoft.BasicImage(rotation=2, mirror=1)\";\n  -webkit-transform: scale(1, -1);\n  -ms-transform: scale(1, -1);\n  transform: scale(1, -1); }\n\n:root .fa-rotate-90,\n:root .fa-rotate-180,\n:root .fa-rotate-270,\n:root .fa-flip-horizontal,\n:root .fa-flip-vertical {\n  filter: none; }\n\n.fa-stack {\n  position: relative;\n  display: inline-block;\n  width: 2em;\n  height: 2em;\n  line-height: 2em;\n  vertical-align: middle; }\n\n.fa-stack-1x, .fa-stack-2x {\n  position: absolute;\n  left: 0;\n  width: 100%;\n  text-align: center; }\n\n.fa-stack-1x {\n  line-height: inherit; }\n\n.fa-stack-2x {\n  font-size: 2em; }\n\n.fa-inverse {\n  color: #fff; }\n\n/* Font Awesome uses the Unicode Private Use Area (PUA) to ensure screen\r\n   readers do not read off random characters that represent icons */\n.fa-glass:before {\n  content: \"\\F000\"; }\n\n.fa-music:before {\n  content: \"\\F001\"; }\n\n.fa-search:before {\n  content: \"\\F002\"; }\n\n.fa-envelope-o:before {\n  content: \"\\F003\"; }\n\n.fa-heart:before {\n  content: \"\\F004\"; }\n\n.fa-star:before {\n  content: \"\\F005\"; }\n\n.fa-star-o:before {\n  content: \"\\F006\"; }\n\n.fa-user:before {\n  content: \"\\F007\"; }\n\n.fa-film:before {\n  content: \"\\F008\"; }\n\n.fa-th-large:before {\n  content: \"\\F009\"; }\n\n.fa-th:before {\n  content: \"\\F00A\"; }\n\n.fa-th-list:before {\n  content: \"\\F00B\"; }\n\n.fa-check:before {\n  content: \"\\F00C\"; }\n\n.fa-remove:before,\n.fa-close:before,\n.fa-times:before {\n  content: \"\\F00D\"; }\n\n.fa-search-plus:before {\n  content: \"\\F00E\"; }\n\n.fa-search-minus:before {\n  content: \"\\F010\"; }\n\n.fa-power-off:before {\n  content: \"\\F011\"; }\n\n.fa-signal:before {\n  content: \"\\F012\"; }\n\n.fa-gear:before,\n.fa-cog:before {\n  content: \"\\F013\"; }\n\n.fa-trash-o:before {\n  content: \"\\F014\"; }\n\n.fa-home:before {\n  content: \"\\F015\"; }\n\n.fa-file-o:before {\n  content: \"\\F016\"; }\n\n.fa-clock-o:before {\n  content: \"\\F017\"; }\n\n.fa-road:before {\n  content: \"\\F018\"; }\n\n.fa-download:before {\n  content: \"\\F019\"; }\n\n.fa-arrow-circle-o-down:before {\n  content: \"\\F01A\"; }\n\n.fa-arrow-circle-o-up:before {\n  content: \"\\F01B\"; }\n\n.fa-inbox:before {\n  content: \"\\F01C\"; }\n\n.fa-play-circle-o:before {\n  content: \"\\F01D\"; }\n\n.fa-rotate-right:before,\n.fa-repeat:before {\n  content: \"\\F01E\"; }\n\n.fa-refresh:before {\n  content: \"\\F021\"; }\n\n.fa-list-alt:before {\n  content: \"\\F022\"; }\n\n.fa-lock:before {\n  content: \"\\F023\"; }\n\n.fa-flag:before {\n  content: \"\\F024\"; }\n\n.fa-headphones:before {\n  content: \"\\F025\"; }\n\n.fa-volume-off:before {\n  content: \"\\F026\"; }\n\n.fa-volume-down:before {\n  content: \"\\F027\"; }\n\n.fa-volume-up:before {\n  content: \"\\F028\"; }\n\n.fa-qrcode:before {\n  content: \"\\F029\"; }\n\n.fa-barcode:before {\n  content: \"\\F02A\"; }\n\n.fa-tag:before {\n  content: \"\\F02B\"; }\n\n.fa-tags:before {\n  content: \"\\F02C\"; }\n\n.fa-book:before {\n  content: \"\\F02D\"; }\n\n.fa-bookmark:before {\n  content: \"\\F02E\"; }\n\n.fa-print:before {\n  content: \"\\F02F\"; }\n\n.fa-camera:before {\n  content: \"\\F030\"; }\n\n.fa-font:before {\n  content: \"\\F031\"; }\n\n.fa-bold:before {\n  content: \"\\F032\"; }\n\n.fa-italic:before {\n  content: \"\\F033\"; }\n\n.fa-text-height:before {\n  content: \"\\F034\"; }\n\n.fa-text-width:before {\n  content: \"\\F035\"; }\n\n.fa-align-left:before {\n  content: \"\\F036\"; }\n\n.fa-align-center:before {\n  content: \"\\F037\"; }\n\n.fa-align-right:before {\n  content: \"\\F038\"; }\n\n.fa-align-justify:before {\n  content: \"\\F039\"; }\n\n.fa-list:before {\n  content: \"\\F03A\"; }\n\n.fa-dedent:before,\n.fa-outdent:before {\n  content: \"\\F03B\"; }\n\n.fa-indent:before {\n  content: \"\\F03C\"; }\n\n.fa-video-camera:before {\n  content: \"\\F03D\"; }\n\n.fa-photo:before,\n.fa-image:before,\n.fa-picture-o:before {\n  content: \"\\F03E\"; }\n\n.fa-pencil:before {\n  content: \"\\F040\"; }\n\n.fa-map-marker:before {\n  content: \"\\F041\"; }\n\n.fa-adjust:before {\n  content: \"\\F042\"; }\n\n.fa-tint:before {\n  content: \"\\F043\"; }\n\n.fa-edit:before,\n.fa-pencil-square-o:before {\n  content: \"\\F044\"; }\n\n.fa-share-square-o:before {\n  content: \"\\F045\"; }\n\n.fa-check-square-o:before {\n  content: \"\\F046\"; }\n\n.fa-arrows:before {\n  content: \"\\F047\"; }\n\n.fa-step-backward:before {\n  content: \"\\F048\"; }\n\n.fa-fast-backward:before {\n  content: \"\\F049\"; }\n\n.fa-backward:before {\n  content: \"\\F04A\"; }\n\n.fa-play:before {\n  content: \"\\F04B\"; }\n\n.fa-pause:before {\n  content: \"\\F04C\"; }\n\n.fa-stop:before {\n  content: \"\\F04D\"; }\n\n.fa-forward:before {\n  content: \"\\F04E\"; }\n\n.fa-fast-forward:before {\n  content: \"\\F050\"; }\n\n.fa-step-forward:before {\n  content: \"\\F051\"; }\n\n.fa-eject:before {\n  content: \"\\F052\"; }\n\n.fa-chevron-left:before {\n  content: \"\\F053\"; }\n\n.fa-chevron-right:before {\n  content: \"\\F054\"; }\n\n.fa-plus-circle:before {\n  content: \"\\F055\"; }\n\n.fa-minus-circle:before {\n  content: \"\\F056\"; }\n\n.fa-times-circle:before {\n  content: \"\\F057\"; }\n\n.fa-check-circle:before {\n  content: \"\\F058\"; }\n\n.fa-question-circle:before {\n  content: \"\\F059\"; }\n\n.fa-info-circle:before {\n  content: \"\\F05A\"; }\n\n.fa-crosshairs:before {\n  content: \"\\F05B\"; }\n\n.fa-times-circle-o:before {\n  content: \"\\F05C\"; }\n\n.fa-check-circle-o:before {\n  content: \"\\F05D\"; }\n\n.fa-ban:before {\n  content: \"\\F05E\"; }\n\n.fa-arrow-left:before {\n  content: \"\\F060\"; }\n\n.fa-arrow-right:before {\n  content: \"\\F061\"; }\n\n.fa-arrow-up:before {\n  content: \"\\F062\"; }\n\n.fa-arrow-down:before {\n  content: \"\\F063\"; }\n\n.fa-mail-forward:before,\n.fa-share:before {\n  content: \"\\F064\"; }\n\n.fa-expand:before {\n  content: \"\\F065\"; }\n\n.fa-compress:before {\n  content: \"\\F066\"; }\n\n.fa-plus:before {\n  content: \"\\F067\"; }\n\n.fa-minus:before {\n  content: \"\\F068\"; }\n\n.fa-asterisk:before {\n  content: \"\\F069\"; }\n\n.fa-exclamation-circle:before {\n  content: \"\\F06A\"; }\n\n.fa-gift:before {\n  content: \"\\F06B\"; }\n\n.fa-leaf:before {\n  content: \"\\F06C\"; }\n\n.fa-fire:before {\n  content: \"\\F06D\"; }\n\n.fa-eye:before {\n  content: \"\\F06E\"; }\n\n.fa-eye-slash:before {\n  content: \"\\F070\"; }\n\n.fa-warning:before,\n.fa-exclamation-triangle:before {\n  content: \"\\F071\"; }\n\n.fa-plane:before {\n  content: \"\\F072\"; }\n\n.fa-calendar:before {\n  content: \"\\F073\"; }\n\n.fa-random:before {\n  content: \"\\F074\"; }\n\n.fa-comment:before {\n  content: \"\\F075\"; }\n\n.fa-magnet:before {\n  content: \"\\F076\"; }\n\n.fa-chevron-up:before {\n  content: \"\\F077\"; }\n\n.fa-chevron-down:before {\n  content: \"\\F078\"; }\n\n.fa-retweet:before {\n  content: \"\\F079\"; }\n\n.fa-shopping-cart:before {\n  content: \"\\F07A\"; }\n\n.fa-folder:before {\n  content: \"\\F07B\"; }\n\n.fa-folder-open:before {\n  content: \"\\F07C\"; }\n\n.fa-arrows-v:before {\n  content: \"\\F07D\"; }\n\n.fa-arrows-h:before {\n  content: \"\\F07E\"; }\n\n.fa-bar-chart-o:before,\n.fa-bar-chart:before {\n  content: \"\\F080\"; }\n\n.fa-twitter-square:before {\n  content: \"\\F081\"; }\n\n.fa-facebook-square:before {\n  content: \"\\F082\"; }\n\n.fa-camera-retro:before {\n  content: \"\\F083\"; }\n\n.fa-key:before {\n  content: \"\\F084\"; }\n\n.fa-gears:before,\n.fa-cogs:before {\n  content: \"\\F085\"; }\n\n.fa-comments:before {\n  content: \"\\F086\"; }\n\n.fa-thumbs-o-up:before {\n  content: \"\\F087\"; }\n\n.fa-thumbs-o-down:before {\n  content: \"\\F088\"; }\n\n.fa-star-half:before {\n  content: \"\\F089\"; }\n\n.fa-heart-o:before {\n  content: \"\\F08A\"; }\n\n.fa-sign-out:before {\n  content: \"\\F08B\"; }\n\n.fa-linkedin-square:before {\n  content: \"\\F08C\"; }\n\n.fa-thumb-tack:before {\n  content: \"\\F08D\"; }\n\n.fa-external-link:before {\n  content: \"\\F08E\"; }\n\n.fa-sign-in:before {\n  content: \"\\F090\"; }\n\n.fa-trophy:before {\n  content: \"\\F091\"; }\n\n.fa-github-square:before {\n  content: \"\\F092\"; }\n\n.fa-upload:before {\n  content: \"\\F093\"; }\n\n.fa-lemon-o:before {\n  content: \"\\F094\"; }\n\n.fa-phone:before {\n  content: \"\\F095\"; }\n\n.fa-square-o:before {\n  content: \"\\F096\"; }\n\n.fa-bookmark-o:before {\n  content: \"\\F097\"; }\n\n.fa-phone-square:before {\n  content: \"\\F098\"; }\n\n.fa-twitter:before {\n  content: \"\\F099\"; }\n\n.fa-facebook-f:before,\n.fa-facebook:before {\n  content: \"\\F09A\"; }\n\n.fa-github:before {\n  content: \"\\F09B\"; }\n\n.fa-unlock:before {\n  content: \"\\F09C\"; }\n\n.fa-credit-card:before {\n  content: \"\\F09D\"; }\n\n.fa-feed:before,\n.fa-rss:before {\n  content: \"\\F09E\"; }\n\n.fa-hdd-o:before {\n  content: \"\\F0A0\"; }\n\n.fa-bullhorn:before {\n  content: \"\\F0A1\"; }\n\n.fa-bell:before {\n  content: \"\\F0F3\"; }\n\n.fa-certificate:before {\n  content: \"\\F0A3\"; }\n\n.fa-hand-o-right:before {\n  content: \"\\F0A4\"; }\n\n.fa-hand-o-left:before {\n  content: \"\\F0A5\"; }\n\n.fa-hand-o-up:before {\n  content: \"\\F0A6\"; }\n\n.fa-hand-o-down:before {\n  content: \"\\F0A7\"; }\n\n.fa-arrow-circle-left:before {\n  content: \"\\F0A8\"; }\n\n.fa-arrow-circle-right:before {\n  content: \"\\F0A9\"; }\n\n.fa-arrow-circle-up:before {\n  content: \"\\F0AA\"; }\n\n.fa-arrow-circle-down:before {\n  content: \"\\F0AB\"; }\n\n.fa-globe:before {\n  content: \"\\F0AC\"; }\n\n.fa-wrench:before {\n  content: \"\\F0AD\"; }\n\n.fa-tasks:before {\n  content: \"\\F0AE\"; }\n\n.fa-filter:before {\n  content: \"\\F0B0\"; }\n\n.fa-briefcase:before {\n  content: \"\\F0B1\"; }\n\n.fa-arrows-alt:before {\n  content: \"\\F0B2\"; }\n\n.fa-group:before,\n.fa-users:before {\n  content: \"\\F0C0\"; }\n\n.fa-chain:before,\n.fa-link:before {\n  content: \"\\F0C1\"; }\n\n.fa-cloud:before {\n  content: \"\\F0C2\"; }\n\n.fa-flask:before {\n  content: \"\\F0C3\"; }\n\n.fa-cut:before,\n.fa-scissors:before {\n  content: \"\\F0C4\"; }\n\n.fa-copy:before,\n.fa-files-o:before {\n  content: \"\\F0C5\"; }\n\n.fa-paperclip:before {\n  content: \"\\F0C6\"; }\n\n.fa-save:before,\n.fa-floppy-o:before {\n  content: \"\\F0C7\"; }\n\n.fa-square:before {\n  content: \"\\F0C8\"; }\n\n.fa-navicon:before,\n.fa-reorder:before,\n.fa-bars:before {\n  content: \"\\F0C9\"; }\n\n.fa-list-ul:before {\n  content: \"\\F0CA\"; }\n\n.fa-list-ol:before {\n  content: \"\\F0CB\"; }\n\n.fa-strikethrough:before {\n  content: \"\\F0CC\"; }\n\n.fa-underline:before {\n  content: \"\\F0CD\"; }\n\n.fa-table:before {\n  content: \"\\F0CE\"; }\n\n.fa-magic:before {\n  content: \"\\F0D0\"; }\n\n.fa-truck:before {\n  content: \"\\F0D1\"; }\n\n.fa-pinterest:before {\n  content: \"\\F0D2\"; }\n\n.fa-pinterest-square:before {\n  content: \"\\F0D3\"; }\n\n.fa-google-plus-square:before {\n  content: \"\\F0D4\"; }\n\n.fa-google-plus:before {\n  content: \"\\F0D5\"; }\n\n.fa-money:before {\n  content: \"\\F0D6\"; }\n\n.fa-caret-down:before {\n  content: \"\\F0D7\"; }\n\n.fa-caret-up:before {\n  content: \"\\F0D8\"; }\n\n.fa-caret-left:before {\n  content: \"\\F0D9\"; }\n\n.fa-caret-right:before {\n  content: \"\\F0DA\"; }\n\n.fa-columns:before {\n  content: \"\\F0DB\"; }\n\n.fa-unsorted:before,\n.fa-sort:before {\n  content: \"\\F0DC\"; }\n\n.fa-sort-down:before,\n.fa-sort-desc:before {\n  content: \"\\F0DD\"; }\n\n.fa-sort-up:before,\n.fa-sort-asc:before {\n  content: \"\\F0DE\"; }\n\n.fa-envelope:before {\n  content: \"\\F0E0\"; }\n\n.fa-linkedin:before {\n  content: \"\\F0E1\"; }\n\n.fa-rotate-left:before,\n.fa-undo:before {\n  content: \"\\F0E2\"; }\n\n.fa-legal:before,\n.fa-gavel:before {\n  content: \"\\F0E3\"; }\n\n.fa-dashboard:before,\n.fa-tachometer:before {\n  content: \"\\F0E4\"; }\n\n.fa-comment-o:before {\n  content: \"\\F0E5\"; }\n\n.fa-comments-o:before {\n  content: \"\\F0E6\"; }\n\n.fa-flash:before,\n.fa-bolt:before {\n  content: \"\\F0E7\"; }\n\n.fa-sitemap:before {\n  content: \"\\F0E8\"; }\n\n.fa-umbrella:before {\n  content: \"\\F0E9\"; }\n\n.fa-paste:before,\n.fa-clipboard:before {\n  content: \"\\F0EA\"; }\n\n.fa-lightbulb-o:before {\n  content: \"\\F0EB\"; }\n\n.fa-exchange:before {\n  content: \"\\F0EC\"; }\n\n.fa-cloud-download:before {\n  content: \"\\F0ED\"; }\n\n.fa-cloud-upload:before {\n  content: \"\\F0EE\"; }\n\n.fa-user-md:before {\n  content: \"\\F0F0\"; }\n\n.fa-stethoscope:before {\n  content: \"\\F0F1\"; }\n\n.fa-suitcase:before {\n  content: \"\\F0F2\"; }\n\n.fa-bell-o:before {\n  content: \"\\F0A2\"; }\n\n.fa-coffee:before {\n  content: \"\\F0F4\"; }\n\n.fa-cutlery:before {\n  content: \"\\F0F5\"; }\n\n.fa-file-text-o:before {\n  content: \"\\F0F6\"; }\n\n.fa-building-o:before {\n  content: \"\\F0F7\"; }\n\n.fa-hospital-o:before {\n  content: \"\\F0F8\"; }\n\n.fa-ambulance:before {\n  content: \"\\F0F9\"; }\n\n.fa-medkit:before {\n  content: \"\\F0FA\"; }\n\n.fa-fighter-jet:before {\n  content: \"\\F0FB\"; }\n\n.fa-beer:before {\n  content: \"\\F0FC\"; }\n\n.fa-h-square:before {\n  content: \"\\F0FD\"; }\n\n.fa-plus-square:before {\n  content: \"\\F0FE\"; }\n\n.fa-angle-double-left:before {\n  content: \"\\F100\"; }\n\n.fa-angle-double-right:before {\n  content: \"\\F101\"; }\n\n.fa-angle-double-up:before {\n  content: \"\\F102\"; }\n\n.fa-angle-double-down:before {\n  content: \"\\F103\"; }\n\n.fa-angle-left:before {\n  content: \"\\F104\"; }\n\n.fa-angle-right:before {\n  content: \"\\F105\"; }\n\n.fa-angle-up:before {\n  content: \"\\F106\"; }\n\n.fa-angle-down:before {\n  content: \"\\F107\"; }\n\n.fa-desktop:before {\n  content: \"\\F108\"; }\n\n.fa-laptop:before {\n  content: \"\\F109\"; }\n\n.fa-tablet:before {\n  content: \"\\F10A\"; }\n\n.fa-mobile-phone:before,\n.fa-mobile:before {\n  content: \"\\F10B\"; }\n\n.fa-circle-o:before {\n  content: \"\\F10C\"; }\n\n.fa-quote-left:before {\n  content: \"\\F10D\"; }\n\n.fa-quote-right:before {\n  content: \"\\F10E\"; }\n\n.fa-spinner:before {\n  content: \"\\F110\"; }\n\n.fa-circle:before {\n  content: \"\\F111\"; }\n\n.fa-mail-reply:before,\n.fa-reply:before {\n  content: \"\\F112\"; }\n\n.fa-github-alt:before {\n  content: \"\\F113\"; }\n\n.fa-folder-o:before {\n  content: \"\\F114\"; }\n\n.fa-folder-open-o:before {\n  content: \"\\F115\"; }\n\n.fa-smile-o:before {\n  content: \"\\F118\"; }\n\n.fa-frown-o:before {\n  content: \"\\F119\"; }\n\n.fa-meh-o:before {\n  content: \"\\F11A\"; }\n\n.fa-gamepad:before {\n  content: \"\\F11B\"; }\n\n.fa-keyboard-o:before {\n  content: \"\\F11C\"; }\n\n.fa-flag-o:before {\n  content: \"\\F11D\"; }\n\n.fa-flag-checkered:before {\n  content: \"\\F11E\"; }\n\n.fa-terminal:before {\n  content: \"\\F120\"; }\n\n.fa-code:before {\n  content: \"\\F121\"; }\n\n.fa-mail-reply-all:before,\n.fa-reply-all:before {\n  content: \"\\F122\"; }\n\n.fa-star-half-empty:before,\n.fa-star-half-full:before,\n.fa-star-half-o:before {\n  content: \"\\F123\"; }\n\n.fa-location-arrow:before {\n  content: \"\\F124\"; }\n\n.fa-crop:before {\n  content: \"\\F125\"; }\n\n.fa-code-fork:before {\n  content: \"\\F126\"; }\n\n.fa-unlink:before,\n.fa-chain-broken:before {\n  content: \"\\F127\"; }\n\n.fa-question:before {\n  content: \"\\F128\"; }\n\n.fa-info:before {\n  content: \"\\F129\"; }\n\n.fa-exclamation:before {\n  content: \"\\F12A\"; }\n\n.fa-superscript:before {\n  content: \"\\F12B\"; }\n\n.fa-subscript:before {\n  content: \"\\F12C\"; }\n\n.fa-eraser:before {\n  content: \"\\F12D\"; }\n\n.fa-puzzle-piece:before {\n  content: \"\\F12E\"; }\n\n.fa-microphone:before {\n  content: \"\\F130\"; }\n\n.fa-microphone-slash:before {\n  content: \"\\F131\"; }\n\n.fa-shield:before {\n  content: \"\\F132\"; }\n\n.fa-calendar-o:before {\n  content: \"\\F133\"; }\n\n.fa-fire-extinguisher:before {\n  content: \"\\F134\"; }\n\n.fa-rocket:before {\n  content: \"\\F135\"; }\n\n.fa-maxcdn:before {\n  content: \"\\F136\"; }\n\n.fa-chevron-circle-left:before {\n  content: \"\\F137\"; }\n\n.fa-chevron-circle-right:before {\n  content: \"\\F138\"; }\n\n.fa-chevron-circle-up:before {\n  content: \"\\F139\"; }\n\n.fa-chevron-circle-down:before {\n  content: \"\\F13A\"; }\n\n.fa-html5:before {\n  content: \"\\F13B\"; }\n\n.fa-css3:before {\n  content: \"\\F13C\"; }\n\n.fa-anchor:before {\n  content: \"\\F13D\"; }\n\n.fa-unlock-alt:before {\n  content: \"\\F13E\"; }\n\n.fa-bullseye:before {\n  content: \"\\F140\"; }\n\n.fa-ellipsis-h:before {\n  content: \"\\F141\"; }\n\n.fa-ellipsis-v:before {\n  content: \"\\F142\"; }\n\n.fa-rss-square:before {\n  content: \"\\F143\"; }\n\n.fa-play-circle:before {\n  content: \"\\F144\"; }\n\n.fa-ticket:before {\n  content: \"\\F145\"; }\n\n.fa-minus-square:before {\n  content: \"\\F146\"; }\n\n.fa-minus-square-o:before {\n  content: \"\\F147\"; }\n\n.fa-level-up:before {\n  content: \"\\F148\"; }\n\n.fa-level-down:before {\n  content: \"\\F149\"; }\n\n.fa-check-square:before {\n  content: \"\\F14A\"; }\n\n.fa-pencil-square:before {\n  content: \"\\F14B\"; }\n\n.fa-external-link-square:before {\n  content: \"\\F14C\"; }\n\n.fa-share-square:before {\n  content: \"\\F14D\"; }\n\n.fa-compass:before {\n  content: \"\\F14E\"; }\n\n.fa-toggle-down:before,\n.fa-caret-square-o-down:before {\n  content: \"\\F150\"; }\n\n.fa-toggle-up:before,\n.fa-caret-square-o-up:before {\n  content: \"\\F151\"; }\n\n.fa-toggle-right:before,\n.fa-caret-square-o-right:before {\n  content: \"\\F152\"; }\n\n.fa-euro:before,\n.fa-eur:before {\n  content: \"\\F153\"; }\n\n.fa-gbp:before {\n  content: \"\\F154\"; }\n\n.fa-dollar:before,\n.fa-usd:before {\n  content: \"\\F155\"; }\n\n.fa-rupee:before,\n.fa-inr:before {\n  content: \"\\F156\"; }\n\n.fa-cny:before,\n.fa-rmb:before,\n.fa-yen:before,\n.fa-jpy:before {\n  content: \"\\F157\"; }\n\n.fa-ruble:before,\n.fa-rouble:before,\n.fa-rub:before {\n  content: \"\\F158\"; }\n\n.fa-won:before,\n.fa-krw:before {\n  content: \"\\F159\"; }\n\n.fa-bitcoin:before,\n.fa-btc:before {\n  content: \"\\F15A\"; }\n\n.fa-file:before {\n  content: \"\\F15B\"; }\n\n.fa-file-text:before {\n  content: \"\\F15C\"; }\n\n.fa-sort-alpha-asc:before {\n  content: \"\\F15D\"; }\n\n.fa-sort-alpha-desc:before {\n  content: \"\\F15E\"; }\n\n.fa-sort-amount-asc:before {\n  content: \"\\F160\"; }\n\n.fa-sort-amount-desc:before {\n  content: \"\\F161\"; }\n\n.fa-sort-numeric-asc:before {\n  content: \"\\F162\"; }\n\n.fa-sort-numeric-desc:before {\n  content: \"\\F163\"; }\n\n.fa-thumbs-up:before {\n  content: \"\\F164\"; }\n\n.fa-thumbs-down:before {\n  content: \"\\F165\"; }\n\n.fa-youtube-square:before {\n  content: \"\\F166\"; }\n\n.fa-youtube:before {\n  content: \"\\F167\"; }\n\n.fa-xing:before {\n  content: \"\\F168\"; }\n\n.fa-xing-square:before {\n  content: \"\\F169\"; }\n\n.fa-youtube-play:before {\n  content: \"\\F16A\"; }\n\n.fa-dropbox:before {\n  content: \"\\F16B\"; }\n\n.fa-stack-overflow:before {\n  content: \"\\F16C\"; }\n\n.fa-instagram:before {\n  content: \"\\F16D\"; }\n\n.fa-flickr:before {\n  content: \"\\F16E\"; }\n\n.fa-adn:before {\n  content: \"\\F170\"; }\n\n.fa-bitbucket:before {\n  content: \"\\F171\"; }\n\n.fa-bitbucket-square:before {\n  content: \"\\F172\"; }\n\n.fa-tumblr:before {\n  content: \"\\F173\"; }\n\n.fa-tumblr-square:before {\n  content: \"\\F174\"; }\n\n.fa-long-arrow-down:before {\n  content: \"\\F175\"; }\n\n.fa-long-arrow-up:before {\n  content: \"\\F176\"; }\n\n.fa-long-arrow-left:before {\n  content: \"\\F177\"; }\n\n.fa-long-arrow-right:before {\n  content: \"\\F178\"; }\n\n.fa-apple:before {\n  content: \"\\F179\"; }\n\n.fa-windows:before {\n  content: \"\\F17A\"; }\n\n.fa-android:before {\n  content: \"\\F17B\"; }\n\n.fa-linux:before {\n  content: \"\\F17C\"; }\n\n.fa-dribbble:before {\n  content: \"\\F17D\"; }\n\n.fa-skype:before {\n  content: \"\\F17E\"; }\n\n.fa-foursquare:before {\n  content: \"\\F180\"; }\n\n.fa-trello:before {\n  content: \"\\F181\"; }\n\n.fa-female:before {\n  content: \"\\F182\"; }\n\n.fa-male:before {\n  content: \"\\F183\"; }\n\n.fa-gittip:before,\n.fa-gratipay:before {\n  content: \"\\F184\"; }\n\n.fa-sun-o:before {\n  content: \"\\F185\"; }\n\n.fa-moon-o:before {\n  content: \"\\F186\"; }\n\n.fa-archive:before {\n  content: \"\\F187\"; }\n\n.fa-bug:before {\n  content: \"\\F188\"; }\n\n.fa-vk:before {\n  content: \"\\F189\"; }\n\n.fa-weibo:before {\n  content: \"\\F18A\"; }\n\n.fa-renren:before {\n  content: \"\\F18B\"; }\n\n.fa-pagelines:before {\n  content: \"\\F18C\"; }\n\n.fa-stack-exchange:before {\n  content: \"\\F18D\"; }\n\n.fa-arrow-circle-o-right:before {\n  content: \"\\F18E\"; }\n\n.fa-arrow-circle-o-left:before {\n  content: \"\\F190\"; }\n\n.fa-toggle-left:before,\n.fa-caret-square-o-left:before {\n  content: \"\\F191\"; }\n\n.fa-dot-circle-o:before {\n  content: \"\\F192\"; }\n\n.fa-wheelchair:before {\n  content: \"\\F193\"; }\n\n.fa-vimeo-square:before {\n  content: \"\\F194\"; }\n\n.fa-turkish-lira:before,\n.fa-try:before {\n  content: \"\\F195\"; }\n\n.fa-plus-square-o:before {\n  content: \"\\F196\"; }\n\n.fa-space-shuttle:before {\n  content: \"\\F197\"; }\n\n.fa-slack:before {\n  content: \"\\F198\"; }\n\n.fa-envelope-square:before {\n  content: \"\\F199\"; }\n\n.fa-wordpress:before {\n  content: \"\\F19A\"; }\n\n.fa-openid:before {\n  content: \"\\F19B\"; }\n\n.fa-institution:before,\n.fa-bank:before,\n.fa-university:before {\n  content: \"\\F19C\"; }\n\n.fa-mortar-board:before,\n.fa-graduation-cap:before {\n  content: \"\\F19D\"; }\n\n.fa-yahoo:before {\n  content: \"\\F19E\"; }\n\n.fa-google:before {\n  content: \"\\F1A0\"; }\n\n.fa-reddit:before {\n  content: \"\\F1A1\"; }\n\n.fa-reddit-square:before {\n  content: \"\\F1A2\"; }\n\n.fa-stumbleupon-circle:before {\n  content: \"\\F1A3\"; }\n\n.fa-stumbleupon:before {\n  content: \"\\F1A4\"; }\n\n.fa-delicious:before {\n  content: \"\\F1A5\"; }\n\n.fa-digg:before {\n  content: \"\\F1A6\"; }\n\n.fa-pied-piper-pp:before {\n  content: \"\\F1A7\"; }\n\n.fa-pied-piper-alt:before {\n  content: \"\\F1A8\"; }\n\n.fa-drupal:before {\n  content: \"\\F1A9\"; }\n\n.fa-joomla:before {\n  content: \"\\F1AA\"; }\n\n.fa-language:before {\n  content: \"\\F1AB\"; }\n\n.fa-fax:before {\n  content: \"\\F1AC\"; }\n\n.fa-building:before {\n  content: \"\\F1AD\"; }\n\n.fa-child:before {\n  content: \"\\F1AE\"; }\n\n.fa-paw:before {\n  content: \"\\F1B0\"; }\n\n.fa-spoon:before {\n  content: \"\\F1B1\"; }\n\n.fa-cube:before {\n  content: \"\\F1B2\"; }\n\n.fa-cubes:before {\n  content: \"\\F1B3\"; }\n\n.fa-behance:before {\n  content: \"\\F1B4\"; }\n\n.fa-behance-square:before {\n  content: \"\\F1B5\"; }\n\n.fa-steam:before {\n  content: \"\\F1B6\"; }\n\n.fa-steam-square:before {\n  content: \"\\F1B7\"; }\n\n.fa-recycle:before {\n  content: \"\\F1B8\"; }\n\n.fa-automobile:before,\n.fa-car:before {\n  content: \"\\F1B9\"; }\n\n.fa-cab:before,\n.fa-taxi:before {\n  content: \"\\F1BA\"; }\n\n.fa-tree:before {\n  content: \"\\F1BB\"; }\n\n.fa-spotify:before {\n  content: \"\\F1BC\"; }\n\n.fa-deviantart:before {\n  content: \"\\F1BD\"; }\n\n.fa-soundcloud:before {\n  content: \"\\F1BE\"; }\n\n.fa-database:before {\n  content: \"\\F1C0\"; }\n\n.fa-file-pdf-o:before {\n  content: \"\\F1C1\"; }\n\n.fa-file-word-o:before {\n  content: \"\\F1C2\"; }\n\n.fa-file-excel-o:before {\n  content: \"\\F1C3\"; }\n\n.fa-file-powerpoint-o:before {\n  content: \"\\F1C4\"; }\n\n.fa-file-photo-o:before,\n.fa-file-picture-o:before,\n.fa-file-image-o:before {\n  content: \"\\F1C5\"; }\n\n.fa-file-zip-o:before,\n.fa-file-archive-o:before {\n  content: \"\\F1C6\"; }\n\n.fa-file-sound-o:before,\n.fa-file-audio-o:before {\n  content: \"\\F1C7\"; }\n\n.fa-file-movie-o:before,\n.fa-file-video-o:before {\n  content: \"\\F1C8\"; }\n\n.fa-file-code-o:before {\n  content: \"\\F1C9\"; }\n\n.fa-vine:before {\n  content: \"\\F1CA\"; }\n\n.fa-codepen:before {\n  content: \"\\F1CB\"; }\n\n.fa-jsfiddle:before {\n  content: \"\\F1CC\"; }\n\n.fa-life-bouy:before,\n.fa-life-buoy:before,\n.fa-life-saver:before,\n.fa-support:before,\n.fa-life-ring:before {\n  content: \"\\F1CD\"; }\n\n.fa-circle-o-notch:before {\n  content: \"\\F1CE\"; }\n\n.fa-ra:before,\n.fa-resistance:before,\n.fa-rebel:before {\n  content: \"\\F1D0\"; }\n\n.fa-ge:before,\n.fa-empire:before {\n  content: \"\\F1D1\"; }\n\n.fa-git-square:before {\n  content: \"\\F1D2\"; }\n\n.fa-git:before {\n  content: \"\\F1D3\"; }\n\n.fa-y-combinator-square:before,\n.fa-yc-square:before,\n.fa-hacker-news:before {\n  content: \"\\F1D4\"; }\n\n.fa-tencent-weibo:before {\n  content: \"\\F1D5\"; }\n\n.fa-qq:before {\n  content: \"\\F1D6\"; }\n\n.fa-wechat:before,\n.fa-weixin:before {\n  content: \"\\F1D7\"; }\n\n.fa-send:before,\n.fa-paper-plane:before {\n  content: \"\\F1D8\"; }\n\n.fa-send-o:before,\n.fa-paper-plane-o:before {\n  content: \"\\F1D9\"; }\n\n.fa-history:before {\n  content: \"\\F1DA\"; }\n\n.fa-circle-thin:before {\n  content: \"\\F1DB\"; }\n\n.fa-header:before {\n  content: \"\\F1DC\"; }\n\n.fa-paragraph:before {\n  content: \"\\F1DD\"; }\n\n.fa-sliders:before {\n  content: \"\\F1DE\"; }\n\n.fa-share-alt:before {\n  content: \"\\F1E0\"; }\n\n.fa-share-alt-square:before {\n  content: \"\\F1E1\"; }\n\n.fa-bomb:before {\n  content: \"\\F1E2\"; }\n\n.fa-soccer-ball-o:before,\n.fa-futbol-o:before {\n  content: \"\\F1E3\"; }\n\n.fa-tty:before {\n  content: \"\\F1E4\"; }\n\n.fa-binoculars:before {\n  content: \"\\F1E5\"; }\n\n.fa-plug:before {\n  content: \"\\F1E6\"; }\n\n.fa-slideshare:before {\n  content: \"\\F1E7\"; }\n\n.fa-twitch:before {\n  content: \"\\F1E8\"; }\n\n.fa-yelp:before {\n  content: \"\\F1E9\"; }\n\n.fa-newspaper-o:before {\n  content: \"\\F1EA\"; }\n\n.fa-wifi:before {\n  content: \"\\F1EB\"; }\n\n.fa-calculator:before {\n  content: \"\\F1EC\"; }\n\n.fa-paypal:before {\n  content: \"\\F1ED\"; }\n\n.fa-google-wallet:before {\n  content: \"\\F1EE\"; }\n\n.fa-cc-visa:before {\n  content: \"\\F1F0\"; }\n\n.fa-cc-mastercard:before {\n  content: \"\\F1F1\"; }\n\n.fa-cc-discover:before {\n  content: \"\\F1F2\"; }\n\n.fa-cc-amex:before {\n  content: \"\\F1F3\"; }\n\n.fa-cc-paypal:before {\n  content: \"\\F1F4\"; }\n\n.fa-cc-stripe:before {\n  content: \"\\F1F5\"; }\n\n.fa-bell-slash:before {\n  content: \"\\F1F6\"; }\n\n.fa-bell-slash-o:before {\n  content: \"\\F1F7\"; }\n\n.fa-trash:before {\n  content: \"\\F1F8\"; }\n\n.fa-copyright:before {\n  content: \"\\F1F9\"; }\n\n.fa-at:before {\n  content: \"\\F1FA\"; }\n\n.fa-eyedropper:before {\n  content: \"\\F1FB\"; }\n\n.fa-paint-brush:before {\n  content: \"\\F1FC\"; }\n\n.fa-birthday-cake:before {\n  content: \"\\F1FD\"; }\n\n.fa-area-chart:before {\n  content: \"\\F1FE\"; }\n\n.fa-pie-chart:before {\n  content: \"\\F200\"; }\n\n.fa-line-chart:before {\n  content: \"\\F201\"; }\n\n.fa-lastfm:before {\n  content: \"\\F202\"; }\n\n.fa-lastfm-square:before {\n  content: \"\\F203\"; }\n\n.fa-toggle-off:before {\n  content: \"\\F204\"; }\n\n.fa-toggle-on:before {\n  content: \"\\F205\"; }\n\n.fa-bicycle:before {\n  content: \"\\F206\"; }\n\n.fa-bus:before {\n  content: \"\\F207\"; }\n\n.fa-ioxhost:before {\n  content: \"\\F208\"; }\n\n.fa-angellist:before {\n  content: \"\\F209\"; }\n\n.fa-cc:before {\n  content: \"\\F20A\"; }\n\n.fa-shekel:before,\n.fa-sheqel:before,\n.fa-ils:before {\n  content: \"\\F20B\"; }\n\n.fa-meanpath:before {\n  content: \"\\F20C\"; }\n\n.fa-buysellads:before {\n  content: \"\\F20D\"; }\n\n.fa-connectdevelop:before {\n  content: \"\\F20E\"; }\n\n.fa-dashcube:before {\n  content: \"\\F210\"; }\n\n.fa-forumbee:before {\n  content: \"\\F211\"; }\n\n.fa-leanpub:before {\n  content: \"\\F212\"; }\n\n.fa-sellsy:before {\n  content: \"\\F213\"; }\n\n.fa-shirtsinbulk:before {\n  content: \"\\F214\"; }\n\n.fa-simplybuilt:before {\n  content: \"\\F215\"; }\n\n.fa-skyatlas:before {\n  content: \"\\F216\"; }\n\n.fa-cart-plus:before {\n  content: \"\\F217\"; }\n\n.fa-cart-arrow-down:before {\n  content: \"\\F218\"; }\n\n.fa-diamond:before {\n  content: \"\\F219\"; }\n\n.fa-ship:before {\n  content: \"\\F21A\"; }\n\n.fa-user-secret:before {\n  content: \"\\F21B\"; }\n\n.fa-motorcycle:before {\n  content: \"\\F21C\"; }\n\n.fa-street-view:before {\n  content: \"\\F21D\"; }\n\n.fa-heartbeat:before {\n  content: \"\\F21E\"; }\n\n.fa-venus:before {\n  content: \"\\F221\"; }\n\n.fa-mars:before {\n  content: \"\\F222\"; }\n\n.fa-mercury:before {\n  content: \"\\F223\"; }\n\n.fa-intersex:before,\n.fa-transgender:before {\n  content: \"\\F224\"; }\n\n.fa-transgender-alt:before {\n  content: \"\\F225\"; }\n\n.fa-venus-double:before {\n  content: \"\\F226\"; }\n\n.fa-mars-double:before {\n  content: \"\\F227\"; }\n\n.fa-venus-mars:before {\n  content: \"\\F228\"; }\n\n.fa-mars-stroke:before {\n  content: \"\\F229\"; }\n\n.fa-mars-stroke-v:before {\n  content: \"\\F22A\"; }\n\n.fa-mars-stroke-h:before {\n  content: \"\\F22B\"; }\n\n.fa-neuter:before {\n  content: \"\\F22C\"; }\n\n.fa-genderless:before {\n  content: \"\\F22D\"; }\n\n.fa-facebook-official:before {\n  content: \"\\F230\"; }\n\n.fa-pinterest-p:before {\n  content: \"\\F231\"; }\n\n.fa-whatsapp:before {\n  content: \"\\F232\"; }\n\n.fa-server:before {\n  content: \"\\F233\"; }\n\n.fa-user-plus:before {\n  content: \"\\F234\"; }\n\n.fa-user-times:before {\n  content: \"\\F235\"; }\n\n.fa-hotel:before,\n.fa-bed:before {\n  content: \"\\F236\"; }\n\n.fa-viacoin:before {\n  content: \"\\F237\"; }\n\n.fa-train:before {\n  content: \"\\F238\"; }\n\n.fa-subway:before {\n  content: \"\\F239\"; }\n\n.fa-medium:before {\n  content: \"\\F23A\"; }\n\n.fa-yc:before,\n.fa-y-combinator:before {\n  content: \"\\F23B\"; }\n\n.fa-optin-monster:before {\n  content: \"\\F23C\"; }\n\n.fa-opencart:before {\n  content: \"\\F23D\"; }\n\n.fa-expeditedssl:before {\n  content: \"\\F23E\"; }\n\n.fa-battery-4:before,\n.fa-battery:before,\n.fa-battery-full:before {\n  content: \"\\F240\"; }\n\n.fa-battery-3:before,\n.fa-battery-three-quarters:before {\n  content: \"\\F241\"; }\n\n.fa-battery-2:before,\n.fa-battery-half:before {\n  content: \"\\F242\"; }\n\n.fa-battery-1:before,\n.fa-battery-quarter:before {\n  content: \"\\F243\"; }\n\n.fa-battery-0:before,\n.fa-battery-empty:before {\n  content: \"\\F244\"; }\n\n.fa-mouse-pointer:before {\n  content: \"\\F245\"; }\n\n.fa-i-cursor:before {\n  content: \"\\F246\"; }\n\n.fa-object-group:before {\n  content: \"\\F247\"; }\n\n.fa-object-ungroup:before {\n  content: \"\\F248\"; }\n\n.fa-sticky-note:before {\n  content: \"\\F249\"; }\n\n.fa-sticky-note-o:before {\n  content: \"\\F24A\"; }\n\n.fa-cc-jcb:before {\n  content: \"\\F24B\"; }\n\n.fa-cc-diners-club:before {\n  content: \"\\F24C\"; }\n\n.fa-clone:before {\n  content: \"\\F24D\"; }\n\n.fa-balance-scale:before {\n  content: \"\\F24E\"; }\n\n.fa-hourglass-o:before {\n  content: \"\\F250\"; }\n\n.fa-hourglass-1:before,\n.fa-hourglass-start:before {\n  content: \"\\F251\"; }\n\n.fa-hourglass-2:before,\n.fa-hourglass-half:before {\n  content: \"\\F252\"; }\n\n.fa-hourglass-3:before,\n.fa-hourglass-end:before {\n  content: \"\\F253\"; }\n\n.fa-hourglass:before {\n  content: \"\\F254\"; }\n\n.fa-hand-grab-o:before,\n.fa-hand-rock-o:before {\n  content: \"\\F255\"; }\n\n.fa-hand-stop-o:before,\n.fa-hand-paper-o:before {\n  content: \"\\F256\"; }\n\n.fa-hand-scissors-o:before {\n  content: \"\\F257\"; }\n\n.fa-hand-lizard-o:before {\n  content: \"\\F258\"; }\n\n.fa-hand-spock-o:before {\n  content: \"\\F259\"; }\n\n.fa-hand-pointer-o:before {\n  content: \"\\F25A\"; }\n\n.fa-hand-peace-o:before {\n  content: \"\\F25B\"; }\n\n.fa-trademark:before {\n  content: \"\\F25C\"; }\n\n.fa-registered:before {\n  content: \"\\F25D\"; }\n\n.fa-creative-commons:before {\n  content: \"\\F25E\"; }\n\n.fa-gg:before {\n  content: \"\\F260\"; }\n\n.fa-gg-circle:before {\n  content: \"\\F261\"; }\n\n.fa-tripadvisor:before {\n  content: \"\\F262\"; }\n\n.fa-odnoklassniki:before {\n  content: \"\\F263\"; }\n\n.fa-odnoklassniki-square:before {\n  content: \"\\F264\"; }\n\n.fa-get-pocket:before {\n  content: \"\\F265\"; }\n\n.fa-wikipedia-w:before {\n  content: \"\\F266\"; }\n\n.fa-safari:before {\n  content: \"\\F267\"; }\n\n.fa-chrome:before {\n  content: \"\\F268\"; }\n\n.fa-firefox:before {\n  content: \"\\F269\"; }\n\n.fa-opera:before {\n  content: \"\\F26A\"; }\n\n.fa-internet-explorer:before {\n  content: \"\\F26B\"; }\n\n.fa-tv:before,\n.fa-television:before {\n  content: \"\\F26C\"; }\n\n.fa-contao:before {\n  content: \"\\F26D\"; }\n\n.fa-500px:before {\n  content: \"\\F26E\"; }\n\n.fa-amazon:before {\n  content: \"\\F270\"; }\n\n.fa-calendar-plus-o:before {\n  content: \"\\F271\"; }\n\n.fa-calendar-minus-o:before {\n  content: \"\\F272\"; }\n\n.fa-calendar-times-o:before {\n  content: \"\\F273\"; }\n\n.fa-calendar-check-o:before {\n  content: \"\\F274\"; }\n\n.fa-industry:before {\n  content: \"\\F275\"; }\n\n.fa-map-pin:before {\n  content: \"\\F276\"; }\n\n.fa-map-signs:before {\n  content: \"\\F277\"; }\n\n.fa-map-o:before {\n  content: \"\\F278\"; }\n\n.fa-map:before {\n  content: \"\\F279\"; }\n\n.fa-commenting:before {\n  content: \"\\F27A\"; }\n\n.fa-commenting-o:before {\n  content: \"\\F27B\"; }\n\n.fa-houzz:before {\n  content: \"\\F27C\"; }\n\n.fa-vimeo:before {\n  content: \"\\F27D\"; }\n\n.fa-black-tie:before {\n  content: \"\\F27E\"; }\n\n.fa-fonticons:before {\n  content: \"\\F280\"; }\n\n.fa-reddit-alien:before {\n  content: \"\\F281\"; }\n\n.fa-edge:before {\n  content: \"\\F282\"; }\n\n.fa-credit-card-alt:before {\n  content: \"\\F283\"; }\n\n.fa-codiepie:before {\n  content: \"\\F284\"; }\n\n.fa-modx:before {\n  content: \"\\F285\"; }\n\n.fa-fort-awesome:before {\n  content: \"\\F286\"; }\n\n.fa-usb:before {\n  content: \"\\F287\"; }\n\n.fa-product-hunt:before {\n  content: \"\\F288\"; }\n\n.fa-mixcloud:before {\n  content: \"\\F289\"; }\n\n.fa-scribd:before {\n  content: \"\\F28A\"; }\n\n.fa-pause-circle:before {\n  content: \"\\F28B\"; }\n\n.fa-pause-circle-o:before {\n  content: \"\\F28C\"; }\n\n.fa-stop-circle:before {\n  content: \"\\F28D\"; }\n\n.fa-stop-circle-o:before {\n  content: \"\\F28E\"; }\n\n.fa-shopping-bag:before {\n  content: \"\\F290\"; }\n\n.fa-shopping-basket:before {\n  content: \"\\F291\"; }\n\n.fa-hashtag:before {\n  content: \"\\F292\"; }\n\n.fa-bluetooth:before {\n  content: \"\\F293\"; }\n\n.fa-bluetooth-b:before {\n  content: \"\\F294\"; }\n\n.fa-percent:before {\n  content: \"\\F295\"; }\n\n.fa-gitlab:before {\n  content: \"\\F296\"; }\n\n.fa-wpbeginner:before {\n  content: \"\\F297\"; }\n\n.fa-wpforms:before {\n  content: \"\\F298\"; }\n\n.fa-envira:before {\n  content: \"\\F299\"; }\n\n.fa-universal-access:before {\n  content: \"\\F29A\"; }\n\n.fa-wheelchair-alt:before {\n  content: \"\\F29B\"; }\n\n.fa-question-circle-o:before {\n  content: \"\\F29C\"; }\n\n.fa-blind:before {\n  content: \"\\F29D\"; }\n\n.fa-audio-description:before {\n  content: \"\\F29E\"; }\n\n.fa-volume-control-phone:before {\n  content: \"\\F2A0\"; }\n\n.fa-braille:before {\n  content: \"\\F2A1\"; }\n\n.fa-assistive-listening-systems:before {\n  content: \"\\F2A2\"; }\n\n.fa-asl-interpreting:before,\n.fa-american-sign-language-interpreting:before {\n  content: \"\\F2A3\"; }\n\n.fa-deafness:before,\n.fa-hard-of-hearing:before,\n.fa-deaf:before {\n  content: \"\\F2A4\"; }\n\n.fa-glide:before {\n  content: \"\\F2A5\"; }\n\n.fa-glide-g:before {\n  content: \"\\F2A6\"; }\n\n.fa-signing:before,\n.fa-sign-language:before {\n  content: \"\\F2A7\"; }\n\n.fa-low-vision:before {\n  content: \"\\F2A8\"; }\n\n.fa-viadeo:before {\n  content: \"\\F2A9\"; }\n\n.fa-viadeo-square:before {\n  content: \"\\F2AA\"; }\n\n.fa-snapchat:before {\n  content: \"\\F2AB\"; }\n\n.fa-snapchat-ghost:before {\n  content: \"\\F2AC\"; }\n\n.fa-snapchat-square:before {\n  content: \"\\F2AD\"; }\n\n.fa-pied-piper:before {\n  content: \"\\F2AE\"; }\n\n.fa-first-order:before {\n  content: \"\\F2B0\"; }\n\n.fa-yoast:before {\n  content: \"\\F2B1\"; }\n\n.fa-themeisle:before {\n  content: \"\\F2B2\"; }\n\n.fa-google-plus-circle:before,\n.fa-google-plus-official:before {\n  content: \"\\F2B3\"; }\n\n.fa-fa:before,\n.fa-font-awesome:before {\n  content: \"\\F2B4\"; }\n\n.fa-handshake-o:before {\n  content: \"\\F2B5\"; }\n\n.fa-envelope-open:before {\n  content: \"\\F2B6\"; }\n\n.fa-envelope-open-o:before {\n  content: \"\\F2B7\"; }\n\n.fa-linode:before {\n  content: \"\\F2B8\"; }\n\n.fa-address-book:before {\n  content: \"\\F2B9\"; }\n\n.fa-address-book-o:before {\n  content: \"\\F2BA\"; }\n\n.fa-vcard:before,\n.fa-address-card:before {\n  content: \"\\F2BB\"; }\n\n.fa-vcard-o:before,\n.fa-address-card-o:before {\n  content: \"\\F2BC\"; }\n\n.fa-user-circle:before {\n  content: \"\\F2BD\"; }\n\n.fa-user-circle-o:before {\n  content: \"\\F2BE\"; }\n\n.fa-user-o:before {\n  content: \"\\F2C0\"; }\n\n.fa-id-badge:before {\n  content: \"\\F2C1\"; }\n\n.fa-drivers-license:before,\n.fa-id-card:before {\n  content: \"\\F2C2\"; }\n\n.fa-drivers-license-o:before,\n.fa-id-card-o:before {\n  content: \"\\F2C3\"; }\n\n.fa-quora:before {\n  content: \"\\F2C4\"; }\n\n.fa-free-code-camp:before {\n  content: \"\\F2C5\"; }\n\n.fa-telegram:before {\n  content: \"\\F2C6\"; }\n\n.fa-thermometer-4:before,\n.fa-thermometer:before,\n.fa-thermometer-full:before {\n  content: \"\\F2C7\"; }\n\n.fa-thermometer-3:before,\n.fa-thermometer-three-quarters:before {\n  content: \"\\F2C8\"; }\n\n.fa-thermometer-2:before,\n.fa-thermometer-half:before {\n  content: \"\\F2C9\"; }\n\n.fa-thermometer-1:before,\n.fa-thermometer-quarter:before {\n  content: \"\\F2CA\"; }\n\n.fa-thermometer-0:before,\n.fa-thermometer-empty:before {\n  content: \"\\F2CB\"; }\n\n.fa-shower:before {\n  content: \"\\F2CC\"; }\n\n.fa-bathtub:before,\n.fa-s15:before,\n.fa-bath:before {\n  content: \"\\F2CD\"; }\n\n.fa-podcast:before {\n  content: \"\\F2CE\"; }\n\n.fa-window-maximize:before {\n  content: \"\\F2D0\"; }\n\n.fa-window-minimize:before {\n  content: \"\\F2D1\"; }\n\n.fa-window-restore:before {\n  content: \"\\F2D2\"; }\n\n.fa-times-rectangle:before,\n.fa-window-close:before {\n  content: \"\\F2D3\"; }\n\n.fa-times-rectangle-o:before,\n.fa-window-close-o:before {\n  content: \"\\F2D4\"; }\n\n.fa-bandcamp:before {\n  content: \"\\F2D5\"; }\n\n.fa-grav:before {\n  content: \"\\F2D6\"; }\n\n.fa-etsy:before {\n  content: \"\\F2D7\"; }\n\n.fa-imdb:before {\n  content: \"\\F2D8\"; }\n\n.fa-ravelry:before {\n  content: \"\\F2D9\"; }\n\n.fa-eercast:before {\n  content: \"\\F2DA\"; }\n\n.fa-microchip:before {\n  content: \"\\F2DB\"; }\n\n.fa-snowflake-o:before {\n  content: \"\\F2DC\"; }\n\n.fa-superpowers:before {\n  content: \"\\F2DD\"; }\n\n.fa-wpexplorer:before {\n  content: \"\\F2DE\"; }\n\n.fa-meetup:before {\n  content: \"\\F2E0\"; }\n\n.sr-only {\n  position: absolute;\n  width: 1px;\n  height: 1px;\n  padding: 0;\n  margin: -1px;\n  overflow: hidden;\n  clip: rect(0, 0, 0, 0);\n  border: 0; }\n\n.sr-only-focusable:active, .sr-only-focusable:focus {\n  position: static;\n  width: auto;\n  height: auto;\n  margin: 0;\n  overflow: visible;\n  clip: auto; }\n\nbody {\n  margin: 0 auto;\n  padding: 0;\n  font-family: \"Fira Sans\", Helvetica, Arial, sans-serif;\n  font-size: 1.3em;\n  font-weight: 400;\n  -webkit-font-smoothing: antialiased !important;\n  -webkit-text-stroke: 0.1px; }\n\nh1 {\n  font-size: 3em;\n  font-weight: 700; }\n\n.subtitle {\n  margin-top: 0.6em;\n  display: inline-block;\n  font-size: 1.3em;\n  text-transform: uppercase; }\n\n.subtitle--variable {\n  font-style: italic;\n  text-transform: none; }\n\n.subtitle__value {\n  font-size: 1.5em;\n  font-weight: 500; }\n\n.match-padding, h1 {\n  padding: 0 15px; }\n\n.float-right {\n  float: right; }\n\n.float-left {\n  float: left; }\n\n.hyperlink {\n  color: #78C5EB;\n  cursor: pointer; }\n\na {\n  text-decoration: none;\n  color: #fff; }\n\n.unselectable, .pagination__container, .pagination__page, .pagination__current, .pagination__page:hover, .pagination__current:hover, .modal__btn {\n  -webkit-touch-callout: none;\n  -webkit-user-select: none;\n  -khtml-user-select: none;\n  -moz-user-select: none;\n  -ms-user-select: none;\n  -o-user-select: none;\n  user-select: none; }\n\n.edit-button {\n  color: #fff !important;\n  background-color: #1a566f !important; }\n\n.delete-button {\n  color: #fff !important;\n  background-color: #8a0719 !important; }\n\n.delete__icon {\n  float: right;\n  color: #ab9393; }\n\n.delete_btn {\n  margin-left: 12px; }\n\n.scrollable {\n  overflow: auto;\n  min-height: 140px;\n  max-height: 140px;\n  margin: 0.6em; }\n\n.borders {\n  border: 1.5px solid #000; }\n\n.nobttmpdng {\n  padding-bottom: 0.6em; }\n\ninput[type=text], input[type=password], input[type=number], input[type=email], input[type=date], select {\n  margin-top: 0.6em;\n  margin-bottom: 0.6em;\n  width: 100%;\n  height: 2em;\n  padding: 0.6em;\n  font-family: \"Fira Sans\", Helvetica, Arial, sans-serif;\n  font-size: 1.3em;\n  color: #000;\n  border: 1.5px solid #000;\n  transition: 0.3s ease;\n  -webkit-font-smoothing: antialiased !important; }\n\ninput[type=number].quant {\n  height: 1.5em;\n  text-align: center;\n  width: 40%;\n  color: #000;\n  border: 1px solid #000;\n  transition: 0.3s ease;\n  -webkit-font-smoothing: antialiased !important; }\n\n.checkboxText {\n  font-family: \"Fira Sans\", Helvetica, Arial, sans-serif;\n  font-size: 1.3em;\n  color: #000; }\n\ntextarea {\n  margin-top: 0.6em;\n  margin-bottom: 0.6em;\n  width: 100%;\n  height: 6em;\n  padding: 0.6em;\n  font-family: \"Fira Sans\", Helvetica, Arial, sans-serif;\n  font-size: 1.3em;\n  color: #000;\n  border: 1.5px solid #000;\n  transition: 0.3s ease;\n  -webkit-font-smoothing: antialiased !important; }\n\ninput[type=text]:focus, input[type=password]:focus, textarea:focus, select:focus {\n  border: 1.5px solid #63ECB0;\n  transition: 0.3s ease; }\n\n/* Overrides for removing spinner in number input fields */\ninput[type=number] {\n  -moz-appearance: textfield; }\n\ninput[type=date]::-webkit-inner-spin-button,\ninput[type=date]::-webkit-outer-spin-button,\ninput[type=number]::-webkit-inner-spin-button,\ninput[type=number]::-webkit-outer-spin-button {\n  -webkit-appearance: none; }\n\n/* End overrides */\n.shortinput {\n  width: 50% !important; }\n\nselect {\n  padding: 0.25em !important; }\n\noption {\n  width: 100%; }\n\ntextarea {\n  resize: none; }\n\nbutton {\n  padding: 0.6em;\n  font-family: \"Fira Sans\", Helvetica, Arial, sans-serif;\n  font-size: 1.3em;\n  color: #000 !important;\n  background-color: #78C5EB;\n  border: none;\n  transition: 0.2s ease;\n  margin-top: 0.6em;\n  margin-bottom: 0.6em; }\n\nbutton.outline {\n  padding: 0.6em 1em;\n  background-color: #EEE;\n  transition: 0.2s ease;\n  border: 1.5px solid #000; }\n\nbutton:hover {\n  background-color: #78C5EB;\n  transition: 0.2s ease; }\n\ninput, select, option {\n  outline: 0; }\n\n.card__container, .card__container--custom1, .card__container--flex, .card__container--tiny, .card__container--medium {\n  height: auto;\n  margin-bottom: 0.25em;\n  width: 100%;\n  padding: 1em;\n  background-color: #EEE;\n  cursor: pointer; }\n\n.selectedCard__container {\n  color: #CCC !important; }\n\n.newPatient__container {\n  color: #ed1c24 !important; }\n\n.card__tableDiv {\n  background-color: #EEE !important; }\n\n.card__container--custom1 {\n  height: 25em !important; }\n\n.card__container--flex {\n  height: auto !important; }\n\n.card__container--tiny {\n  height: .2em !important;\n  padding-top: .1em !important;\n  width: 4.5em !important;\n  background-color: white; }\n\n.card__container--medium {\n  height: .9em !important;\n  padding-top: .1em !important;\n  width: 6.5em !important;\n  background-color: white; }\n\n.card__title {\n  display: block;\n  font-size: 2em;\n  font-weight: 700; }\n\n.card__desc {\n  display: block;\n  font-size: 1.3em;\n  font-style: italic; }\n\n.card__desc--tiny {\n  font-size: .5em;\n  text-align: center; }\n\n.card__desc--medium {\n  font-size: .7em;\n  text-align: center; }\n\n.detail__container {\n  margin-bottom: 0.25em;\n  width: 100%;\n  padding: 1em;\n  background-color: #EEE; }\n\n.detail__title {\n  display: block;\n  font-size: 1.5em;\n  font-weight: 700; }\n\n.detail__desc {\n  display: block;\n  font-size: 1.3em;\n  font-style: bold; }\n\n.detail__subtitle {\n  display: block;\n  font-size: 1.5em;\n  font-weight: 500; }\n\n.detail__containerTotalPrice {\n  margin-bottom: 0.25em;\n  width: 100%;\n  padding: 1em;\n  background-color: #3E809C;\n  color: white;\n  font-size: 1.5em;\n  text-align: center; }\n\ntable {\n  border: 0px;\n  width: 100%;\n  background: transparent; }\n\nth {\n  height: 3em;\n  font-size: 1.5em; }\n\ntd {\n  font-size: 1.2em;\n  height: 2em;\n  text-align: center; }\n\ntd.name, th.name {\n  text-align: left; }\n\ntd.price, th.price {\n  text-align: right; }\n\n.pagination__container {\n  float: right;\n  vertical-align: middle; }\n\n.pagination__page, .pagination__current {\n  display: inline-block;\n  height: 1.5em;\n  width: 1.5em;\n  padding-top: 0.25em;\n  font-size: 1.5em !important;\n  font-weight: 500;\n  text-align: center;\n  background-color: #EEE;\n  cursor: pointer; }\n\n.pagination__page:hover, .pagination__current:hover {\n  background-color: #78C5EB; }\n\n.pagination__current {\n  background-color: #3E809C;\n  color: #fff;\n  font-weight: 700; }\n\n.modal__background {\n  position: fixed;\n  z-index: 9999;\n  margin: 0 auto;\n  padding: 0;\n  height: 100%;\n  width: 100%;\n  text-align: center;\n  background: rgba(0, 0, 0, 0.8); }\n\n.modal__box {\n  margin-top: 10%;\n  background: #EEE; }\n\n.modal__title {\n  padding-top: 0.75em;\n  font-size: 2em;\n  font-weight: 700; }\n\nhr.modal__divider {\n  margin-left: -15px;\n  margin-right: -15px;\n  border: 2px solid #63ECB0; }\n\n.modal__description {\n  padding-bottom: 0.6em;\n  font-size: 1.3em;\n  text-align: center; }\n\n.modal__btn {\n  width: 4em; }\n\n.modal__btn--bad {\n  background-color: #CCC; }\n\n.modal__btn--good {\n  background-color: #63ECB0; }\n\n.header__background {\n  height: 4em; }\n\n.header__app-text {\n  height: 4em;\n  font-size: 2em;\n  font-weight: 500;\n  line-height: 2em; }\n\n.header__user-container {\n  margin-top: 0.75em;\n  height: 4em;\n  text-align: right; }\n\n.header__user-name, .header__user-title {\n  display: block;\n  font-size: 1.3em;\n  font-weight: 500; }\n\n.header__user-title {\n  font-weight: 400; }\n\n.header__user-alignment {\n  display: inline-block;\n  padding: 0 0.25em;\n  vertical-align: top; }\n\nimg.header__logo {\n  height: 2em;\n  width: auto;\n  vertical-align: sub; }\n\n.dropbtn {\n  background-color: #78C5EB;\n  color: white;\n  padding: 5px;\n  border: none;\n  cursor: pointer;\n  margin-bottom: 5px; }\n\n.dropdown {\n  position: relative;\n  display: inline-block; }\n\n.dropdown-content {\n  display: none;\n  position: absolute;\n  background-color: #f9f9f9;\n  min-width: 160px;\n  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);\n  z-index: 1;\n  right: 0; }\n\n.dropdown-content a {\n  color: black;\n  padding: 12px 16px;\n  text-decoration: none;\n  display: block; }\n\n.dropdown-content a:hover {\n  background-color: #f1f1f1; }\n\n.dropdown:hover .dropdown-content {\n  display: block;\n  margin-top: 0px; }\n\n.dropdown:hover .dropbtn {\n  background-color: #77E1EF; }\n\n.link {\n  cursor: pointer; }\n\n.navbar__background {\n  height: 4em;\n  background-color: #EEE; }\n\n.navbar__btn {\n  display: inline-block;\n  height: 2.7em;\n  margin-left: -0.15em;\n  padding: 0.6em 1em 0 1em;\n  width: auto;\n  font-size: 1.5em;\n  font-weight: 500;\n  line-height: 1.5em;\n  text-align: center;\n  cursor: auto;\n  transition: 0.1s ease; }\n\n.navbar__btn:hover, .navbar__btn--action:hover {\n  background-color: #78C5EB;\n  color: #000;\n  cursor: pointer;\n  transition: 0.1s ease; }\n\n.navbar__btn--selected {\n  background-color: #3E809C;\n  color: #fff; }\n\n.navbar__btn--action {\n  background-color: #63ECB0;\n  color: #000; }\n\n.navbar__btn--action:hover {\n  background-color: #009E60;\n  color: #fff; }\n\n.navbar__action-container {\n  text-align: right; }\n\n.anchor-like {\n  cursor: pointer;\n  color: white; }\n\n.main {\n  margin: 0 auto;\n  max-width: 320px; }\n\n.login-or {\n  position: relative;\n  margin-top: 20%;\n  margin-bottom: 10px;\n  padding-top: 10px;\n  padding-bottom: 10px;\n  font-size: 18px;\n  color: #aaa; }\n\n.span-or {\n  position: absolute;\n  left: 50%;\n  top: -2px;\n  margin-left: -25px;\n  display: block;\n  width: 50px;\n  text-align: center;\n  background-color: #fff; }\n\n.hr-or {\n  margin-top: 0 !important;\n  margin-bottom: 0 !important;\n  height: 1px;\n  background-color: #cdcdcd; }\n\nh3 {\n  line-height: 300%;\n  text-align: center; }\n\ninput[type=\"password\"] {\n  margin-bottom: .6em;\n  padding: .25em;\n  width: 100%;\n  font-family: \"Fira Sans\", Helvetica, Arial, sans-serif;\n  font-size: 1.3em;\n  color: #000;\n  -webkit-font-smoothing: antialiased !important; }\n\n.login-form {\n  position: relative;\n  margin-top: 30%; }\n\n.collapsediv {\n  overflow: scroll;\n  height: 16em; }\n\n.card__container > .subtitle__value, .card__container--custom1 > .subtitle__value, .card__container--flex > .subtitle__value, .card__container--tiny > .subtitle__value, .card__container--medium > .subtitle__value {\n  font-size: 1.5em;\n  font-weight: 500; }\n\n.meter {\n  background: #d7d7d7;\n  border: 0.25em solid #d7d7d7;\n  border-radius: 0.25em;\n  color: transparent;\n  overflow: hidden; }\n\n.meter-bar {\n  background: none;\n  border-radius: inherit;\n  border-bottom-right-radius: 0;\n  border-top-right-radius: 0;\n  height: 1em;\n  position: relative; }\n\n.meter-bar-verybad {\n  background-color: #be312f;\n  width: 20%; }\n\n.meter-bar-bad {\n  background-color: #ff8048;\n  width: 40%; }\n\n.meter-bar-average {\n  background-color: #e5e500;\n  width: 60%; }\n\n.meter-bar-good {\n  background-color: #32bc6c;\n  width: 80%; }\n\n.meter-bar-verygood {\n  background-color: #239664;\n  width: 100%; }\n\n.meter {\n  background: #d7d7d7;\n  border: 0.25em solid #d7d7d7;\n  border-radius: 0.25em;\n  color: transparent;\n  overflow: hidden; }\n\n.meter-bar {\n  background: none;\n  border-radius: inherit;\n  border-bottom-right-radius: 0;\n  border-top-right-radius: 0;\n  height: 1em;\n  position: relative; }\n\n.meter-bar-verybad {\n  background-color: #be312f;\n  width: 20%; }\n\n.meter-bar-bad {\n  background-color: #ff8048;\n  width: 40%; }\n\n.meter-bar-average {\n  background-color: #e5e500;\n  width: 60%; }\n\n.meter-bar-good {\n  background-color: #32bc6c;\n  width: 80%; }\n\n.meter-bar-verygood {\n  background-color: #239664;\n  width: 100%; }\n", ""]);
-
-// exports
-
-
-/***/ }),
 /* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(undefined);
 // imports
-
+exports.i(__webpack_require__(7), "");
 
 // module
-exports.push([module.i, "@font-face {\r\n    font-family: 'Fira Sans';\r\n    src: url(" + __webpack_require__(7) + ") format('woff2'),\r\n         url(" + __webpack_require__(8) + ") format('woff');\r\n    font-weight: 700;\r\n    font-style: normal;\r\n}\r\n\r\n@font-face {\r\n    font-family: 'Fira Sans';\r\n    src: url(" + __webpack_require__(9) + ") format('woff2'),\r\n         url(" + __webpack_require__(10) + ") format('woff');\r\n    font-weight: 400;\r\n    font-style: italic;\r\n}\r\n\r\n@font-face {\r\n    font-family: 'Fira Sans';\r\n    src: url(" + __webpack_require__(11) + ") format('woff2'),\r\n         url(" + __webpack_require__(12) + ") format('woff');\r\n    font-weight: 500;\r\n    font-style: normal;\r\n}\r\n\r\n@font-face {\r\n    font-family: 'Fira Sans';\r\n    src: url(" + __webpack_require__(13) + ") format('woff2'),\r\n         url(" + __webpack_require__(14) + ") format('woff');\r\n    font-weight: 500;\r\n    font-style: italic;\r\n}\r\n\r\n@font-face {\r\n    font-family: 'Fira Sans';\r\n    src: url(" + __webpack_require__(15) + ") format('woff2'),\r\n         url(" + __webpack_require__(16) + ") format('woff');\r\n    font-weight: 400;\r\n    font-style: normal;\r\n}", ""]);
+exports.push([module.i, "@charset \"UTF-8\";\n/*!\r\n * Bootstrap v3.3.7 (http://getbootstrap.com)\r\n * Copyright 2011-2016 Twitter, Inc.\r\n * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)\r\n * Modified by Joshua Velasco\r\n */\n/*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */\nhtml {\n  font-family: sans-serif;\n  -ms-text-size-adjust: 100%;\n  -webkit-text-size-adjust: 100%; }\n\narticle, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {\n  display: block; }\n\naudio, canvas, progress, video {\n  display: inline-block;\n  vertical-align: baseline; }\n\naudio:not([controls]) {\n  display: none;\n  height: 0; }\n\n[hidden], template {\n  display: none; }\n\na {\n  background-color: transparent; }\n\na:active, a:hover {\n  outline: 0; }\n\nabbr[title] {\n  border-bottom: 1px dotted; }\n\nb, strong {\n  font-weight: bold; }\n\ndfn {\n  font-style: italic; }\n\nmark {\n  background: #ff0;\n  color: #000; }\n\nsmall {\n  font-size: 80%; }\n\nsub, sup {\n  font-size: 75%;\n  line-height: 0;\n  position: relative;\n  vertical-align: baseline; }\n\nsup {\n  top: -0.5em; }\n\nsub {\n  bottom: -0.25em; }\n\nimg {\n  border: 0; }\n\nsvg:not(:root) {\n  overflow: hidden; }\n\nfigure {\n  margin: 1em 40px; }\n\nhr {\n  -webkit-box-sizing: content-box;\n  -moz-box-sizing: content-box;\n  box-sizing: content-box;\n  height: 0; }\n\npre {\n  overflow: auto; }\n\ncode, kbd, pre, samp {\n  font-family: monospace, monospace;\n  font-size: 1em; }\n\nbutton {\n  overflow: visible; }\n\nbutton, button, html input[type=\"button\"], input[type=\"reset\"], input[type=\"submit\"] {\n  -webkit-appearance: button;\n  cursor: pointer; }\n\nbutton[disabled], html input[disabled] {\n  cursor: default; }\n\nbutton::-moz-focus-inner, input::-moz-focus-inner {\n  border: 0;\n  padding: 0; }\n\ninput {\n  line-height: normal; }\n\ninput[type=\"checkbox\"], input[type=\"radio\"] {\n  -webkit-box-sizing: border-box;\n  -moz-box-sizing: border-box;\n  box-sizing: border-box;\n  padding: 0; }\n\ninput[type=\"number\"]::-webkit-inner-spin-button, input[type=\"number\"]::-webkit-outer-spin-button {\n  height: auto; }\n\ninput[type=\"search\"] {\n  -webkit-appearance: textfield;\n  -webkit-box-sizing: content-box;\n  -moz-box-sizing: content-box;\n  box-sizing: content-box; }\n\ninput[type=\"search\"]::-webkit-search-cancel-button, input[type=\"search\"]::-webkit-search-decoration {\n  -webkit-appearance: none; }\n\nfieldset {\n  border: 1px solid #c0c0c0;\n  margin: 0 2px;\n  padding: 0.35em 0.625em 0.75em; }\n\nlegend {\n  border: 0;\n  padding: 0; }\n\ntextarea {\n  overflow: auto; }\n\noptgroup {\n  font-weight: bold; }\n\ntable {\n  border-collapse: collapse;\n  border-spacing: 0; }\n\ntd, th {\n  padding: 0; }\n\n* {\n  -webkit-box-sizing: border-box;\n  -moz-box-sizing: border-box;\n  box-sizing: border-box; }\n\n*:before, *:after {\n  -webkit-box-sizing: border-box;\n  -moz-box-sizing: border-box;\n  box-sizing: border-box; }\n\nhtml {\n  font-size: 10px;\n  -webkit-tap-highlight-color: transparent; }\n\ninput, button, a {\n  color: #337ab7;\n  text-decoration: none; }\n\na:hover, a:focus {\n  color: #23527c;\n  text-decoration: underline; }\n\na:focus {\n  outline: 5px auto -webkit-focus-ring-color;\n  outline-offset: -2px; }\n\nfigure {\n  margin: 0; }\n\nimg {\n  vertical-align: middle; }\n\n.img-responsive {\n  display: block;\n  max-width: 100%;\n  height: auto; }\n\n.img-rounded {\n  border-radius: 6px; }\n\n.img-thumbnail {\n  padding: 4px;\n  line-height: 1.42857143;\n  background-color: #fff;\n  border: 1px solid #ddd;\n  border-radius: 4px;\n  -webkit-transition: all .2s ease-in-out;\n  -o-transition: all .2s ease-in-out;\n  transition: all .2s ease-in-out;\n  display: inline-block;\n  max-width: 100%;\n  height: auto; }\n\n.img-circle {\n  border-radius: 50%; }\n\nhr {\n  margin-top: 20px;\n  margin-bottom: 20px;\n  border: 0;\n  border-top: 1px solid #eee; }\n\n.sr-only {\n  position: absolute;\n  width: 1px;\n  height: 1px;\n  margin: -1px;\n  padding: 0;\n  overflow: hidden;\n  clip: rect(0, 0, 0, 0);\n  border: 0; }\n\n.sr-only-focusable:active, .sr-only-focusable:focus {\n  position: static;\n  width: auto;\n  height: auto;\n  margin: 0;\n  overflow: visible;\n  clip: auto; }\n\n[role=\"button\"] {\n  cursor: pointer; }\n\n.container {\n  margin-right: auto;\n  margin-left: auto;\n  padding-left: 15px;\n  padding-right: 15px; }\n\n@media (min-width: 768px) {\n  .container {\n    width: 750px; } }\n\n@media (min-width: 992px) {\n  .container {\n    width: 970px; } }\n\n@media (min-width: 1200px) {\n  .container {\n    width: 1170px; } }\n\n.container-fluid {\n  margin-right: auto;\n  margin-left: auto;\n  padding-left: 15px;\n  padding-right: 15px; }\n\n.col-xs-1, .col-sm-1, .col-md-1, .col-lg-1, .col-xs-2, .col-sm-2, .col-md-2, .col-lg-2, .col-xs-3, .col-sm-3, .col-md-3, .col-lg-3, .col-xs-4, .col-sm-4, .col-md-4, .col-lg-4, .col-xs-5, .col-sm-5, .col-md-5, .col-lg-5, .col-xs-6, .col-sm-6, .col-md-6, .col-lg-6, .col-xs-7, .col-sm-7, .col-md-7, .col-lg-7, .col-xs-8, .col-sm-8, .col-md-8, .col-lg-8, .col-xs-9, .col-sm-9, .col-md-9, .col-lg-9, .col-xs-10, .col-sm-10, .col-md-10, .col-lg-10, .col-xs-11, .col-sm-11, .col-md-11, .col-lg-11, .col-xs-12, .col-sm-12, .col-md-12, .col-lg-12 {\n  position: relative;\n  min-height: 1px;\n  padding-left: 15px;\n  padding-right: 15px; }\n\n.col-xs-1, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9, .col-xs-10, .col-xs-11, .col-xs-12 {\n  float: left; }\n\n.col-xs-12 {\n  width: 100%; }\n\n.col-xs-11 {\n  width: 91.66666667%; }\n\n.col-xs-10 {\n  width: 83.33333333%; }\n\n.col-xs-9 {\n  width: 75%; }\n\n.col-xs-8 {\n  width: 66.66666667%; }\n\n.col-xs-7 {\n  width: 58.33333333%; }\n\n.col-xs-6 {\n  width: 50%; }\n\n.col-xs-5 {\n  width: 41.66666667%; }\n\n.col-xs-4 {\n  width: 33.33333333%; }\n\n.col-xs-3 {\n  width: 25%; }\n\n.col-xs-2 {\n  width: 16.66666667%; }\n\n.col-xs-1 {\n  width: 8.33333333%; }\n\n.col-xs-pull-12 {\n  right: 100%; }\n\n.col-xs-pull-11 {\n  right: 91.66666667%; }\n\n.col-xs-pull-10 {\n  right: 83.33333333%; }\n\n.col-xs-pull-9 {\n  right: 75%; }\n\n.col-xs-pull-8 {\n  right: 66.66666667%; }\n\n.col-xs-pull-7 {\n  right: 58.33333333%; }\n\n.col-xs-pull-6 {\n  right: 50%; }\n\n.col-xs-pull-5 {\n  right: 41.66666667%; }\n\n.col-xs-pull-4 {\n  right: 33.33333333%; }\n\n.col-xs-pull-3 {\n  right: 25%; }\n\n.col-xs-pull-2 {\n  right: 16.66666667%; }\n\n.col-xs-pull-1 {\n  right: 8.33333333%; }\n\n.col-xs-pull-0 {\n  right: auto; }\n\n.col-xs-push-12 {\n  left: 100%; }\n\n.col-xs-push-11 {\n  left: 91.66666667%; }\n\n.col-xs-push-10 {\n  left: 83.33333333%; }\n\n.col-xs-push-9 {\n  left: 75%; }\n\n.col-xs-push-8 {\n  left: 66.66666667%; }\n\n.col-xs-push-7 {\n  left: 58.33333333%; }\n\n.col-xs-push-6 {\n  left: 50%; }\n\n.col-xs-push-5 {\n  left: 41.66666667%; }\n\n.col-xs-push-4 {\n  left: 33.33333333%; }\n\n.col-xs-push-3 {\n  left: 25%; }\n\n.col-xs-push-2 {\n  left: 16.66666667%; }\n\n.col-xs-push-1 {\n  left: 8.33333333%; }\n\n.col-xs-push-0 {\n  left: auto; }\n\n.col-xs-offset-12 {\n  margin-left: 100%; }\n\n.col-xs-offset-11 {\n  margin-left: 91.66666667%; }\n\n.col-xs-offset-10 {\n  margin-left: 83.33333333%; }\n\n.col-xs-offset-9 {\n  margin-left: 75%; }\n\n.col-xs-offset-8 {\n  margin-left: 66.66666667%; }\n\n.col-xs-offset-7 {\n  margin-left: 58.33333333%; }\n\n.col-xs-offset-6 {\n  margin-left: 50%; }\n\n.col-xs-offset-5 {\n  margin-left: 41.66666667%; }\n\n.col-xs-offset-4 {\n  margin-left: 33.33333333%; }\n\n.col-xs-offset-3 {\n  margin-left: 25%; }\n\n.col-xs-offset-2 {\n  margin-left: 16.66666667%; }\n\n.col-xs-offset-1 {\n  margin-left: 8.33333333%; }\n\n.col-xs-offset-0 {\n  margin-left: 0; }\n\n@media (min-width: 768px) {\n  .col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12 {\n    float: left; }\n  .col-sm-12 {\n    width: 100%; }\n  .col-sm-11 {\n    width: 91.66666667%; }\n  .col-sm-10 {\n    width: 83.33333333%; }\n  .col-sm-9 {\n    width: 75%; }\n  .col-sm-8 {\n    width: 66.66666667%; }\n  .col-sm-7 {\n    width: 58.33333333%; }\n  .col-sm-6 {\n    width: 50%; }\n  .col-sm-5 {\n    width: 41.66666667%; }\n  .col-sm-4 {\n    width: 33.33333333%; }\n  .col-sm-3 {\n    width: 25%; }\n  .col-sm-2 {\n    width: 16.66666667%; }\n  .col-sm-1 {\n    width: 8.33333333%; }\n  .col-sm-pull-12 {\n    right: 100%; }\n  .col-sm-pull-11 {\n    right: 91.66666667%; }\n  .col-sm-pull-10 {\n    right: 83.33333333%; }\n  .col-sm-pull-9 {\n    right: 75%; }\n  .col-sm-pull-8 {\n    right: 66.66666667%; }\n  .col-sm-pull-7 {\n    right: 58.33333333%; }\n  .col-sm-pull-6 {\n    right: 50%; }\n  .col-sm-pull-5 {\n    right: 41.66666667%; }\n  .col-sm-pull-4 {\n    right: 33.33333333%; }\n  .col-sm-pull-3 {\n    right: 25%; }\n  .col-sm-pull-2 {\n    right: 16.66666667%; }\n  .col-sm-pull-1 {\n    right: 8.33333333%; }\n  .col-sm-pull-0 {\n    right: auto; }\n  .col-sm-push-12 {\n    left: 100%; }\n  .col-sm-push-11 {\n    left: 91.66666667%; }\n  .col-sm-push-10 {\n    left: 83.33333333%; }\n  .col-sm-push-9 {\n    left: 75%; }\n  .col-sm-push-8 {\n    left: 66.66666667%; }\n  .col-sm-push-7 {\n    left: 58.33333333%; }\n  .col-sm-push-6 {\n    left: 50%; }\n  .col-sm-push-5 {\n    left: 41.66666667%; }\n  .col-sm-push-4 {\n    left: 33.33333333%; }\n  .col-sm-push-3 {\n    left: 25%; }\n  .col-sm-push-2 {\n    left: 16.66666667%; }\n  .col-sm-push-1 {\n    left: 8.33333333%; }\n  .col-sm-push-0 {\n    left: auto; }\n  .col-sm-offset-12 {\n    margin-left: 100%; }\n  .col-sm-offset-11 {\n    margin-left: 91.66666667%; }\n  .col-sm-offset-10 {\n    margin-left: 83.33333333%; }\n  .col-sm-offset-9 {\n    margin-left: 75%; }\n  .col-sm-offset-8 {\n    margin-left: 66.66666667%; }\n  .col-sm-offset-7 {\n    margin-left: 58.33333333%; }\n  .col-sm-offset-6 {\n    margin-left: 50%; }\n  .col-sm-offset-5 {\n    margin-left: 41.66666667%; }\n  .col-sm-offset-4 {\n    margin-left: 33.33333333%; }\n  .col-sm-offset-3 {\n    margin-left: 25%; }\n  .col-sm-offset-2 {\n    margin-left: 16.66666667%; }\n  .col-sm-offset-1 {\n    margin-left: 8.33333333%; }\n  .col-sm-offset-0 {\n    margin-left: 0; } }\n\n@media (min-width: 992px) {\n  .col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12 {\n    float: left; }\n  .col-md-12 {\n    width: 100%; }\n  .col-md-11 {\n    width: 91.66666667%; }\n  .col-md-10 {\n    width: 83.33333333%; }\n  .col-md-9 {\n    width: 75%; }\n  .col-md-8 {\n    width: 66.66666667%; }\n  .col-md-7 {\n    width: 58.33333333%; }\n  .col-md-6 {\n    width: 50%; }\n  .col-md-5 {\n    width: 41.66666667%; }\n  .col-md-4 {\n    width: 33.33333333%; }\n  .col-md-3 {\n    width: 25%; }\n  .col-md-2 {\n    width: 16.66666667%; }\n  .col-md-1 {\n    width: 8.33333333%; }\n  .col-md-pull-12 {\n    right: 100%; }\n  .col-md-pull-11 {\n    right: 91.66666667%; }\n  .col-md-pull-10 {\n    right: 83.33333333%; }\n  .col-md-pull-9 {\n    right: 75%; }\n  .col-md-pull-8 {\n    right: 66.66666667%; }\n  .col-md-pull-7 {\n    right: 58.33333333%; }\n  .col-md-pull-6 {\n    right: 50%; }\n  .col-md-pull-5 {\n    right: 41.66666667%; }\n  .col-md-pull-4 {\n    right: 33.33333333%; }\n  .col-md-pull-3 {\n    right: 25%; }\n  .col-md-pull-2 {\n    right: 16.66666667%; }\n  .col-md-pull-1 {\n    right: 8.33333333%; }\n  .col-md-pull-0 {\n    right: auto; }\n  .col-md-push-12 {\n    left: 100%; }\n  .col-md-push-11 {\n    left: 91.66666667%; }\n  .col-md-push-10 {\n    left: 83.33333333%; }\n  .col-md-push-9 {\n    left: 75%; }\n  .col-md-push-8 {\n    left: 66.66666667%; }\n  .col-md-push-7 {\n    left: 58.33333333%; }\n  .col-md-push-6 {\n    left: 50%; }\n  .col-md-push-5 {\n    left: 41.66666667%; }\n  .col-md-push-4 {\n    left: 33.33333333%; }\n  .col-md-push-3 {\n    left: 25%; }\n  .col-md-push-2 {\n    left: 16.66666667%; }\n  .col-md-push-1 {\n    left: 8.33333333%; }\n  .col-md-push-0 {\n    left: auto; }\n  .col-md-offset-12 {\n    margin-left: 100%; }\n  .col-md-offset-11 {\n    margin-left: 91.66666667%; }\n  .col-md-offset-10 {\n    margin-left: 83.33333333%; }\n  .col-md-offset-9 {\n    margin-left: 75%; }\n  .col-md-offset-8 {\n    margin-left: 66.66666667%; }\n  .col-md-offset-7 {\n    margin-left: 58.33333333%; }\n  .col-md-offset-6 {\n    margin-left: 50%; }\n  .col-md-offset-5 {\n    margin-left: 41.66666667%; }\n  .col-md-offset-4 {\n    margin-left: 33.33333333%; }\n  .col-md-offset-3 {\n    margin-left: 25%; }\n  .col-md-offset-2 {\n    margin-left: 16.66666667%; }\n  .col-md-offset-1 {\n    margin-left: 8.33333333%; }\n  .col-md-offset-0 {\n    margin-left: 0; } }\n\n@media (min-width: 1200px) {\n  .col-lg-1, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-10, .col-lg-11, .col-lg-12 {\n    float: left; }\n  .col-lg-12 {\n    width: 100%; }\n  .col-lg-11 {\n    width: 91.66666667%; }\n  .col-lg-10 {\n    width: 83.33333333%; }\n  .col-lg-9 {\n    width: 75%; }\n  .col-lg-8 {\n    width: 66.66666667%; }\n  .col-lg-7 {\n    width: 58.33333333%; }\n  .col-lg-6 {\n    width: 50%; }\n  .col-lg-5 {\n    width: 41.66666667%; }\n  .col-lg-4 {\n    width: 33.33333333%; }\n  .col-lg-3 {\n    width: 25%; }\n  .col-lg-2 {\n    width: 16.66666667%; }\n  .col-lg-1 {\n    width: 8.33333333%; }\n  .col-lg-pull-12 {\n    right: 100%; }\n  .col-lg-pull-11 {\n    right: 91.66666667%; }\n  .col-lg-pull-10 {\n    right: 83.33333333%; }\n  .col-lg-pull-9 {\n    right: 75%; }\n  .col-lg-pull-8 {\n    right: 66.66666667%; }\n  .col-lg-pull-7 {\n    right: 58.33333333%; }\n  .col-lg-pull-6 {\n    right: 50%; }\n  .col-lg-pull-5 {\n    right: 41.66666667%; }\n  .col-lg-pull-4 {\n    right: 33.33333333%; }\n  .col-lg-pull-3 {\n    right: 25%; }\n  .col-lg-pull-2 {\n    right: 16.66666667%; }\n  .col-lg-pull-1 {\n    right: 8.33333333%; }\n  .col-lg-pull-0 {\n    right: auto; }\n  .col-lg-push-12 {\n    left: 100%; }\n  .col-lg-push-11 {\n    left: 91.66666667%; }\n  .col-lg-push-10 {\n    left: 83.33333333%; }\n  .col-lg-push-9 {\n    left: 75%; }\n  .col-lg-push-8 {\n    left: 66.66666667%; }\n  .col-lg-push-7 {\n    left: 58.33333333%; }\n  .col-lg-push-6 {\n    left: 50%; }\n  .col-lg-push-5 {\n    left: 41.66666667%; }\n  .col-lg-push-4 {\n    left: 33.33333333%; }\n  .col-lg-push-3 {\n    left: 25%; }\n  .col-lg-push-2 {\n    left: 16.66666667%; }\n  .col-lg-push-1 {\n    left: 8.33333333%; }\n  .col-lg-push-0 {\n    left: auto; }\n  .col-lg-offset-12 {\n    margin-left: 100%; }\n  .col-lg-offset-11 {\n    margin-left: 91.66666667%; }\n  .col-lg-offset-10 {\n    margin-left: 83.33333333%; }\n  .col-lg-offset-9 {\n    margin-left: 75%; }\n  .col-lg-offset-8 {\n    margin-left: 66.66666667%; }\n  .col-lg-offset-7 {\n    margin-left: 58.33333333%; }\n  .col-lg-offset-6 {\n    margin-left: 50%; }\n  .col-lg-offset-5 {\n    margin-left: 41.66666667%; }\n  .col-lg-offset-4 {\n    margin-left: 33.33333333%; }\n  .col-lg-offset-3 {\n    margin-left: 25%; }\n  .col-lg-offset-2 {\n    margin-left: 16.66666667%; }\n  .col-lg-offset-1 {\n    margin-left: 8.33333333%; }\n  .col-lg-offset-0 {\n    margin-left: 0; } }\n\n.clearfix:before, .clearfix:after, .container:before, .container:after, .container-fluid:before, .container-fluid:after, .row:before, .row:after {\n  content: \" \";\n  display: table; }\n\n.clearfix:after, .container:after, .container-fluid:after, .row:after {\n  clear: both; }\n\n.center-block {\n  display: block;\n  margin-left: auto;\n  margin-right: auto; }\n\n.pull-right {\n  float: right !important; }\n\n.pull-left {\n  float: left !important; }\n\n.hide {\n  display: none !important; }\n\n.show {\n  display: block !important; }\n\n.invisible {\n  visibility: hidden; }\n\n.text-hide {\n  font: 0/0 a;\n  color: transparent;\n  text-shadow: none;\n  background-color: transparent;\n  border: 0; }\n\n.hidden {\n  display: none !important; }\n\n.affix {\n  position: fixed; }\n\n@-ms-viewport {\n  width: device-width; }\n\n.visible-xs, .visible-sm, .visible-md, .visible-lg {\n  display: none !important; }\n\n.visible-xs-block, .visible-xs-inline, .visible-xs-inline-block, .visible-sm-block, .visible-sm-inline, .visible-sm-inline-block, .visible-md-block, .visible-md-inline, .visible-md-inline-block, .visible-lg-block, .visible-lg-inline, .visible-lg-inline-block {\n  display: none !important; }\n\n@media (max-width: 767px) {\n  .visible-xs {\n    display: block !important; }\n  table.visible-xs {\n    display: table !important; }\n  tr.visible-xs {\n    display: table-row !important; }\n  th.visible-xs, td.visible-xs {\n    display: table-cell !important; } }\n\n@media (max-width: 767px) {\n  .visible-xs-block {\n    display: block !important; } }\n\n@media (max-width: 767px) {\n  .visible-xs-inline {\n    display: inline !important; } }\n\n@media (max-width: 767px) {\n  .visible-xs-inline-block {\n    display: inline-block !important; } }\n\n@media (min-width: 768px) and (max-width: 991px) {\n  .visible-sm {\n    display: block !important; }\n  table.visible-sm {\n    display: table !important; }\n  tr.visible-sm {\n    display: table-row !important; }\n  th.visible-sm, td.visible-sm {\n    display: table-cell !important; } }\n\n@media (min-width: 768px) and (max-width: 991px) {\n  .visible-sm-block {\n    display: block !important; } }\n\n@media (min-width: 768px) and (max-width: 991px) {\n  .visible-sm-inline {\n    display: inline !important; } }\n\n@media (min-width: 768px) and (max-width: 991px) {\n  .visible-sm-inline-block {\n    display: inline-block !important; } }\n\n@media (min-width: 992px) and (max-width: 1199px) {\n  .visible-md {\n    display: block !important; }\n  table.visible-md {\n    display: table !important; }\n  tr.visible-md {\n    display: table-row !important; }\n  th.visible-md, td.visible-md {\n    display: table-cell !important; } }\n\n@media (min-width: 992px) and (max-width: 1199px) {\n  .visible-md-block {\n    display: block !important; } }\n\n@media (min-width: 992px) and (max-width: 1199px) {\n  .visible-md-inline {\n    display: inline !important; } }\n\n@media (min-width: 992px) and (max-width: 1199px) {\n  .visible-md-inline-block {\n    display: inline-block !important; } }\n\n@media (min-width: 1200px) {\n  .visible-lg {\n    display: block !important; }\n  table.visible-lg {\n    display: table !important; }\n  tr.visible-lg {\n    display: table-row !important; }\n  th.visible-lg, td.visible-lg {\n    display: table-cell !important; } }\n\n@media (min-width: 1200px) {\n  .visible-lg-block {\n    display: block !important; } }\n\n@media (min-width: 1200px) {\n  .visible-lg-inline {\n    display: inline !important; } }\n\n@media (min-width: 1200px) {\n  .visible-lg-inline-block {\n    display: inline-block !important; } }\n\n@media (max-width: 767px) {\n  .hidden-xs {\n    display: none !important; } }\n\n@media (min-width: 768px) and (max-width: 991px) {\n  .hidden-sm {\n    display: none !important; } }\n\n@media (min-width: 992px) and (max-width: 1199px) {\n  .hidden-md {\n    display: none !important; } }\n\n@media (min-width: 1200px) {\n  .hidden-lg {\n    display: none !important; } }\n\n.visible-print {\n  display: none !important; }\n\n@media print {\n  .visible-print {\n    display: block !important; }\n  table.visible-print {\n    display: table !important; }\n  tr.visible-print {\n    display: table-row !important; }\n  th.visible-print, td.visible-print {\n    display: table-cell !important; } }\n\n.visible-print-block {\n  display: none !important; }\n\n@media print {\n  .visible-print-block {\n    display: block !important; } }\n\n.visible-print-inline {\n  display: none !important; }\n\n@media print {\n  .visible-print-inline {\n    display: inline !important; } }\n\n.visible-print-inline-block {\n  display: none !important; }\n\n@media print {\n  .visible-print-inline-block {\n    display: inline-block !important; } }\n\n@media print {\n  .hidden-print {\n    display: none !important; } }\n\n/*!\r\n *  Font Awesome 4.7.0 by @davegandy - http://fontawesome.io - @fontawesome\r\n *  License - http://fontawesome.io/license (Font: SIL OFL 1.1, CSS: MIT License)\r\n */\n/* FONT PATH\r\n * -------------------------- */\n@font-face {\n  font-family: 'FontAwesome';\n  src: url(" + __webpack_require__(18) + ");\n  src: url(" + __webpack_require__(19) + "?#iefix&v=4.7.0) format(\"embedded-opentype\"), url(" + __webpack_require__(20) + ") format(\"woff2\"), url(" + __webpack_require__(21) + ") format(\"woff\"), url(" + __webpack_require__(22) + ") format(\"truetype\"), url(" + __webpack_require__(23) + "#fontawesomeregular) format(\"svg\");\n  font-weight: normal;\n  font-style: normal; }\n\n.fa {\n  display: inline-block;\n  font: normal normal normal 14px/1 FontAwesome;\n  font-size: inherit;\n  text-rendering: auto;\n  -webkit-font-smoothing: antialiased;\n  -moz-osx-font-smoothing: grayscale; }\n\n/* makes the font 33% larger relative to the icon container */\n.fa-lg {\n  font-size: 1.33333em;\n  line-height: 0.75em;\n  vertical-align: -15%; }\n\n.fa-2x {\n  font-size: 2em; }\n\n.fa-3x {\n  font-size: 3em; }\n\n.fa-4x {\n  font-size: 4em; }\n\n.fa-5x {\n  font-size: 5em; }\n\n.fa-fw {\n  width: 1.28571em;\n  text-align: center; }\n\n.fa-ul {\n  padding-left: 0;\n  margin-left: 2.14286em;\n  list-style-type: none; }\n  .fa-ul > li {\n    position: relative; }\n\n.fa-li {\n  position: absolute;\n  left: -2.14286em;\n  width: 2.14286em;\n  top: 0.14286em;\n  text-align: center; }\n  .fa-li.fa-lg {\n    left: -1.85714em; }\n\n.fa-border {\n  padding: .2em .25em .15em;\n  border: solid 0.08em #eee;\n  border-radius: .1em; }\n\n.fa-pull-left {\n  float: left; }\n\n.fa-pull-right {\n  float: right; }\n\n.fa.fa-pull-left {\n  margin-right: .3em; }\n\n.fa.fa-pull-right {\n  margin-left: .3em; }\n\n/* Deprecated as of 4.4.0 */\n.pull-right {\n  float: right; }\n\n.pull-left {\n  float: left; }\n\n.fa.pull-left {\n  margin-right: .3em; }\n\n.fa.pull-right {\n  margin-left: .3em; }\n\n.fa-spin {\n  -webkit-animation: fa-spin 2s infinite linear;\n  animation: fa-spin 2s infinite linear; }\n\n.fa-pulse {\n  -webkit-animation: fa-spin 1s infinite steps(8);\n  animation: fa-spin 1s infinite steps(8); }\n\n@-webkit-keyframes fa-spin {\n  0% {\n    -webkit-transform: rotate(0deg);\n    transform: rotate(0deg); }\n  100% {\n    -webkit-transform: rotate(359deg);\n    transform: rotate(359deg); } }\n\n@keyframes fa-spin {\n  0% {\n    -webkit-transform: rotate(0deg);\n    transform: rotate(0deg); }\n  100% {\n    -webkit-transform: rotate(359deg);\n    transform: rotate(359deg); } }\n\n.fa-rotate-90 {\n  -ms-filter: \"progid:DXImageTransform.Microsoft.BasicImage(rotation=1)\";\n  -webkit-transform: rotate(90deg);\n  -ms-transform: rotate(90deg);\n  transform: rotate(90deg); }\n\n.fa-rotate-180 {\n  -ms-filter: \"progid:DXImageTransform.Microsoft.BasicImage(rotation=2)\";\n  -webkit-transform: rotate(180deg);\n  -ms-transform: rotate(180deg);\n  transform: rotate(180deg); }\n\n.fa-rotate-270 {\n  -ms-filter: \"progid:DXImageTransform.Microsoft.BasicImage(rotation=3)\";\n  -webkit-transform: rotate(270deg);\n  -ms-transform: rotate(270deg);\n  transform: rotate(270deg); }\n\n.fa-flip-horizontal {\n  -ms-filter: \"progid:DXImageTransform.Microsoft.BasicImage(rotation=0, mirror=1)\";\n  -webkit-transform: scale(-1, 1);\n  -ms-transform: scale(-1, 1);\n  transform: scale(-1, 1); }\n\n.fa-flip-vertical {\n  -ms-filter: \"progid:DXImageTransform.Microsoft.BasicImage(rotation=2, mirror=1)\";\n  -webkit-transform: scale(1, -1);\n  -ms-transform: scale(1, -1);\n  transform: scale(1, -1); }\n\n:root .fa-rotate-90,\n:root .fa-rotate-180,\n:root .fa-rotate-270,\n:root .fa-flip-horizontal,\n:root .fa-flip-vertical {\n  filter: none; }\n\n.fa-stack {\n  position: relative;\n  display: inline-block;\n  width: 2em;\n  height: 2em;\n  line-height: 2em;\n  vertical-align: middle; }\n\n.fa-stack-1x, .fa-stack-2x {\n  position: absolute;\n  left: 0;\n  width: 100%;\n  text-align: center; }\n\n.fa-stack-1x {\n  line-height: inherit; }\n\n.fa-stack-2x {\n  font-size: 2em; }\n\n.fa-inverse {\n  color: #fff; }\n\n/* Font Awesome uses the Unicode Private Use Area (PUA) to ensure screen\r\n   readers do not read off random characters that represent icons */\n.fa-glass:before {\n  content: \"\\F000\"; }\n\n.fa-music:before {\n  content: \"\\F001\"; }\n\n.fa-search:before {\n  content: \"\\F002\"; }\n\n.fa-envelope-o:before {\n  content: \"\\F003\"; }\n\n.fa-heart:before {\n  content: \"\\F004\"; }\n\n.fa-star:before {\n  content: \"\\F005\"; }\n\n.fa-star-o:before {\n  content: \"\\F006\"; }\n\n.fa-user:before {\n  content: \"\\F007\"; }\n\n.fa-film:before {\n  content: \"\\F008\"; }\n\n.fa-th-large:before {\n  content: \"\\F009\"; }\n\n.fa-th:before {\n  content: \"\\F00A\"; }\n\n.fa-th-list:before {\n  content: \"\\F00B\"; }\n\n.fa-check:before {\n  content: \"\\F00C\"; }\n\n.fa-remove:before,\n.fa-close:before,\n.fa-times:before {\n  content: \"\\F00D\"; }\n\n.fa-search-plus:before {\n  content: \"\\F00E\"; }\n\n.fa-search-minus:before {\n  content: \"\\F010\"; }\n\n.fa-power-off:before {\n  content: \"\\F011\"; }\n\n.fa-signal:before {\n  content: \"\\F012\"; }\n\n.fa-gear:before,\n.fa-cog:before {\n  content: \"\\F013\"; }\n\n.fa-trash-o:before {\n  content: \"\\F014\"; }\n\n.fa-home:before {\n  content: \"\\F015\"; }\n\n.fa-file-o:before {\n  content: \"\\F016\"; }\n\n.fa-clock-o:before {\n  content: \"\\F017\"; }\n\n.fa-road:before {\n  content: \"\\F018\"; }\n\n.fa-download:before {\n  content: \"\\F019\"; }\n\n.fa-arrow-circle-o-down:before {\n  content: \"\\F01A\"; }\n\n.fa-arrow-circle-o-up:before {\n  content: \"\\F01B\"; }\n\n.fa-inbox:before {\n  content: \"\\F01C\"; }\n\n.fa-play-circle-o:before {\n  content: \"\\F01D\"; }\n\n.fa-rotate-right:before,\n.fa-repeat:before {\n  content: \"\\F01E\"; }\n\n.fa-refresh:before {\n  content: \"\\F021\"; }\n\n.fa-list-alt:before {\n  content: \"\\F022\"; }\n\n.fa-lock:before {\n  content: \"\\F023\"; }\n\n.fa-flag:before {\n  content: \"\\F024\"; }\n\n.fa-headphones:before {\n  content: \"\\F025\"; }\n\n.fa-volume-off:before {\n  content: \"\\F026\"; }\n\n.fa-volume-down:before {\n  content: \"\\F027\"; }\n\n.fa-volume-up:before {\n  content: \"\\F028\"; }\n\n.fa-qrcode:before {\n  content: \"\\F029\"; }\n\n.fa-barcode:before {\n  content: \"\\F02A\"; }\n\n.fa-tag:before {\n  content: \"\\F02B\"; }\n\n.fa-tags:before {\n  content: \"\\F02C\"; }\n\n.fa-book:before {\n  content: \"\\F02D\"; }\n\n.fa-bookmark:before {\n  content: \"\\F02E\"; }\n\n.fa-print:before {\n  content: \"\\F02F\"; }\n\n.fa-camera:before {\n  content: \"\\F030\"; }\n\n.fa-font:before {\n  content: \"\\F031\"; }\n\n.fa-bold:before {\n  content: \"\\F032\"; }\n\n.fa-italic:before {\n  content: \"\\F033\"; }\n\n.fa-text-height:before {\n  content: \"\\F034\"; }\n\n.fa-text-width:before {\n  content: \"\\F035\"; }\n\n.fa-align-left:before {\n  content: \"\\F036\"; }\n\n.fa-align-center:before {\n  content: \"\\F037\"; }\n\n.fa-align-right:before {\n  content: \"\\F038\"; }\n\n.fa-align-justify:before {\n  content: \"\\F039\"; }\n\n.fa-list:before {\n  content: \"\\F03A\"; }\n\n.fa-dedent:before,\n.fa-outdent:before {\n  content: \"\\F03B\"; }\n\n.fa-indent:before {\n  content: \"\\F03C\"; }\n\n.fa-video-camera:before {\n  content: \"\\F03D\"; }\n\n.fa-photo:before,\n.fa-image:before,\n.fa-picture-o:before {\n  content: \"\\F03E\"; }\n\n.fa-pencil:before {\n  content: \"\\F040\"; }\n\n.fa-map-marker:before {\n  content: \"\\F041\"; }\n\n.fa-adjust:before {\n  content: \"\\F042\"; }\n\n.fa-tint:before {\n  content: \"\\F043\"; }\n\n.fa-edit:before,\n.fa-pencil-square-o:before {\n  content: \"\\F044\"; }\n\n.fa-share-square-o:before {\n  content: \"\\F045\"; }\n\n.fa-check-square-o:before {\n  content: \"\\F046\"; }\n\n.fa-arrows:before {\n  content: \"\\F047\"; }\n\n.fa-step-backward:before {\n  content: \"\\F048\"; }\n\n.fa-fast-backward:before {\n  content: \"\\F049\"; }\n\n.fa-backward:before {\n  content: \"\\F04A\"; }\n\n.fa-play:before {\n  content: \"\\F04B\"; }\n\n.fa-pause:before {\n  content: \"\\F04C\"; }\n\n.fa-stop:before {\n  content: \"\\F04D\"; }\n\n.fa-forward:before {\n  content: \"\\F04E\"; }\n\n.fa-fast-forward:before {\n  content: \"\\F050\"; }\n\n.fa-step-forward:before {\n  content: \"\\F051\"; }\n\n.fa-eject:before {\n  content: \"\\F052\"; }\n\n.fa-chevron-left:before {\n  content: \"\\F053\"; }\n\n.fa-chevron-right:before {\n  content: \"\\F054\"; }\n\n.fa-plus-circle:before {\n  content: \"\\F055\"; }\n\n.fa-minus-circle:before {\n  content: \"\\F056\"; }\n\n.fa-times-circle:before {\n  content: \"\\F057\"; }\n\n.fa-check-circle:before {\n  content: \"\\F058\"; }\n\n.fa-question-circle:before {\n  content: \"\\F059\"; }\n\n.fa-info-circle:before {\n  content: \"\\F05A\"; }\n\n.fa-crosshairs:before {\n  content: \"\\F05B\"; }\n\n.fa-times-circle-o:before {\n  content: \"\\F05C\"; }\n\n.fa-check-circle-o:before {\n  content: \"\\F05D\"; }\n\n.fa-ban:before {\n  content: \"\\F05E\"; }\n\n.fa-arrow-left:before {\n  content: \"\\F060\"; }\n\n.fa-arrow-right:before {\n  content: \"\\F061\"; }\n\n.fa-arrow-up:before {\n  content: \"\\F062\"; }\n\n.fa-arrow-down:before {\n  content: \"\\F063\"; }\n\n.fa-mail-forward:before,\n.fa-share:before {\n  content: \"\\F064\"; }\n\n.fa-expand:before {\n  content: \"\\F065\"; }\n\n.fa-compress:before {\n  content: \"\\F066\"; }\n\n.fa-plus:before {\n  content: \"\\F067\"; }\n\n.fa-minus:before {\n  content: \"\\F068\"; }\n\n.fa-asterisk:before {\n  content: \"\\F069\"; }\n\n.fa-exclamation-circle:before {\n  content: \"\\F06A\"; }\n\n.fa-gift:before {\n  content: \"\\F06B\"; }\n\n.fa-leaf:before {\n  content: \"\\F06C\"; }\n\n.fa-fire:before {\n  content: \"\\F06D\"; }\n\n.fa-eye:before {\n  content: \"\\F06E\"; }\n\n.fa-eye-slash:before {\n  content: \"\\F070\"; }\n\n.fa-warning:before,\n.fa-exclamation-triangle:before {\n  content: \"\\F071\"; }\n\n.fa-plane:before {\n  content: \"\\F072\"; }\n\n.fa-calendar:before {\n  content: \"\\F073\"; }\n\n.fa-random:before {\n  content: \"\\F074\"; }\n\n.fa-comment:before {\n  content: \"\\F075\"; }\n\n.fa-magnet:before {\n  content: \"\\F076\"; }\n\n.fa-chevron-up:before {\n  content: \"\\F077\"; }\n\n.fa-chevron-down:before {\n  content: \"\\F078\"; }\n\n.fa-retweet:before {\n  content: \"\\F079\"; }\n\n.fa-shopping-cart:before {\n  content: \"\\F07A\"; }\n\n.fa-folder:before {\n  content: \"\\F07B\"; }\n\n.fa-folder-open:before {\n  content: \"\\F07C\"; }\n\n.fa-arrows-v:before {\n  content: \"\\F07D\"; }\n\n.fa-arrows-h:before {\n  content: \"\\F07E\"; }\n\n.fa-bar-chart-o:before,\n.fa-bar-chart:before {\n  content: \"\\F080\"; }\n\n.fa-twitter-square:before {\n  content: \"\\F081\"; }\n\n.fa-facebook-square:before {\n  content: \"\\F082\"; }\n\n.fa-camera-retro:before {\n  content: \"\\F083\"; }\n\n.fa-key:before {\n  content: \"\\F084\"; }\n\n.fa-gears:before,\n.fa-cogs:before {\n  content: \"\\F085\"; }\n\n.fa-comments:before {\n  content: \"\\F086\"; }\n\n.fa-thumbs-o-up:before {\n  content: \"\\F087\"; }\n\n.fa-thumbs-o-down:before {\n  content: \"\\F088\"; }\n\n.fa-star-half:before {\n  content: \"\\F089\"; }\n\n.fa-heart-o:before {\n  content: \"\\F08A\"; }\n\n.fa-sign-out:before {\n  content: \"\\F08B\"; }\n\n.fa-linkedin-square:before {\n  content: \"\\F08C\"; }\n\n.fa-thumb-tack:before {\n  content: \"\\F08D\"; }\n\n.fa-external-link:before {\n  content: \"\\F08E\"; }\n\n.fa-sign-in:before {\n  content: \"\\F090\"; }\n\n.fa-trophy:before {\n  content: \"\\F091\"; }\n\n.fa-github-square:before {\n  content: \"\\F092\"; }\n\n.fa-upload:before {\n  content: \"\\F093\"; }\n\n.fa-lemon-o:before {\n  content: \"\\F094\"; }\n\n.fa-phone:before {\n  content: \"\\F095\"; }\n\n.fa-square-o:before {\n  content: \"\\F096\"; }\n\n.fa-bookmark-o:before {\n  content: \"\\F097\"; }\n\n.fa-phone-square:before {\n  content: \"\\F098\"; }\n\n.fa-twitter:before {\n  content: \"\\F099\"; }\n\n.fa-facebook-f:before,\n.fa-facebook:before {\n  content: \"\\F09A\"; }\n\n.fa-github:before {\n  content: \"\\F09B\"; }\n\n.fa-unlock:before {\n  content: \"\\F09C\"; }\n\n.fa-credit-card:before {\n  content: \"\\F09D\"; }\n\n.fa-feed:before,\n.fa-rss:before {\n  content: \"\\F09E\"; }\n\n.fa-hdd-o:before {\n  content: \"\\F0A0\"; }\n\n.fa-bullhorn:before {\n  content: \"\\F0A1\"; }\n\n.fa-bell:before {\n  content: \"\\F0F3\"; }\n\n.fa-certificate:before {\n  content: \"\\F0A3\"; }\n\n.fa-hand-o-right:before {\n  content: \"\\F0A4\"; }\n\n.fa-hand-o-left:before {\n  content: \"\\F0A5\"; }\n\n.fa-hand-o-up:before {\n  content: \"\\F0A6\"; }\n\n.fa-hand-o-down:before {\n  content: \"\\F0A7\"; }\n\n.fa-arrow-circle-left:before {\n  content: \"\\F0A8\"; }\n\n.fa-arrow-circle-right:before {\n  content: \"\\F0A9\"; }\n\n.fa-arrow-circle-up:before {\n  content: \"\\F0AA\"; }\n\n.fa-arrow-circle-down:before {\n  content: \"\\F0AB\"; }\n\n.fa-globe:before {\n  content: \"\\F0AC\"; }\n\n.fa-wrench:before {\n  content: \"\\F0AD\"; }\n\n.fa-tasks:before {\n  content: \"\\F0AE\"; }\n\n.fa-filter:before {\n  content: \"\\F0B0\"; }\n\n.fa-briefcase:before {\n  content: \"\\F0B1\"; }\n\n.fa-arrows-alt:before {\n  content: \"\\F0B2\"; }\n\n.fa-group:before,\n.fa-users:before {\n  content: \"\\F0C0\"; }\n\n.fa-chain:before,\n.fa-link:before {\n  content: \"\\F0C1\"; }\n\n.fa-cloud:before {\n  content: \"\\F0C2\"; }\n\n.fa-flask:before {\n  content: \"\\F0C3\"; }\n\n.fa-cut:before,\n.fa-scissors:before {\n  content: \"\\F0C4\"; }\n\n.fa-copy:before,\n.fa-files-o:before {\n  content: \"\\F0C5\"; }\n\n.fa-paperclip:before {\n  content: \"\\F0C6\"; }\n\n.fa-save:before,\n.fa-floppy-o:before {\n  content: \"\\F0C7\"; }\n\n.fa-square:before {\n  content: \"\\F0C8\"; }\n\n.fa-navicon:before,\n.fa-reorder:before,\n.fa-bars:before {\n  content: \"\\F0C9\"; }\n\n.fa-list-ul:before {\n  content: \"\\F0CA\"; }\n\n.fa-list-ol:before {\n  content: \"\\F0CB\"; }\n\n.fa-strikethrough:before {\n  content: \"\\F0CC\"; }\n\n.fa-underline:before {\n  content: \"\\F0CD\"; }\n\n.fa-table:before {\n  content: \"\\F0CE\"; }\n\n.fa-magic:before {\n  content: \"\\F0D0\"; }\n\n.fa-truck:before {\n  content: \"\\F0D1\"; }\n\n.fa-pinterest:before {\n  content: \"\\F0D2\"; }\n\n.fa-pinterest-square:before {\n  content: \"\\F0D3\"; }\n\n.fa-google-plus-square:before {\n  content: \"\\F0D4\"; }\n\n.fa-google-plus:before {\n  content: \"\\F0D5\"; }\n\n.fa-money:before {\n  content: \"\\F0D6\"; }\n\n.fa-caret-down:before {\n  content: \"\\F0D7\"; }\n\n.fa-caret-up:before {\n  content: \"\\F0D8\"; }\n\n.fa-caret-left:before {\n  content: \"\\F0D9\"; }\n\n.fa-caret-right:before {\n  content: \"\\F0DA\"; }\n\n.fa-columns:before {\n  content: \"\\F0DB\"; }\n\n.fa-unsorted:before,\n.fa-sort:before {\n  content: \"\\F0DC\"; }\n\n.fa-sort-down:before,\n.fa-sort-desc:before {\n  content: \"\\F0DD\"; }\n\n.fa-sort-up:before,\n.fa-sort-asc:before {\n  content: \"\\F0DE\"; }\n\n.fa-envelope:before {\n  content: \"\\F0E0\"; }\n\n.fa-linkedin:before {\n  content: \"\\F0E1\"; }\n\n.fa-rotate-left:before,\n.fa-undo:before {\n  content: \"\\F0E2\"; }\n\n.fa-legal:before,\n.fa-gavel:before {\n  content: \"\\F0E3\"; }\n\n.fa-dashboard:before,\n.fa-tachometer:before {\n  content: \"\\F0E4\"; }\n\n.fa-comment-o:before {\n  content: \"\\F0E5\"; }\n\n.fa-comments-o:before {\n  content: \"\\F0E6\"; }\n\n.fa-flash:before,\n.fa-bolt:before {\n  content: \"\\F0E7\"; }\n\n.fa-sitemap:before {\n  content: \"\\F0E8\"; }\n\n.fa-umbrella:before {\n  content: \"\\F0E9\"; }\n\n.fa-paste:before,\n.fa-clipboard:before {\n  content: \"\\F0EA\"; }\n\n.fa-lightbulb-o:before {\n  content: \"\\F0EB\"; }\n\n.fa-exchange:before {\n  content: \"\\F0EC\"; }\n\n.fa-cloud-download:before {\n  content: \"\\F0ED\"; }\n\n.fa-cloud-upload:before {\n  content: \"\\F0EE\"; }\n\n.fa-user-md:before {\n  content: \"\\F0F0\"; }\n\n.fa-stethoscope:before {\n  content: \"\\F0F1\"; }\n\n.fa-suitcase:before {\n  content: \"\\F0F2\"; }\n\n.fa-bell-o:before {\n  content: \"\\F0A2\"; }\n\n.fa-coffee:before {\n  content: \"\\F0F4\"; }\n\n.fa-cutlery:before {\n  content: \"\\F0F5\"; }\n\n.fa-file-text-o:before {\n  content: \"\\F0F6\"; }\n\n.fa-building-o:before {\n  content: \"\\F0F7\"; }\n\n.fa-hospital-o:before {\n  content: \"\\F0F8\"; }\n\n.fa-ambulance:before {\n  content: \"\\F0F9\"; }\n\n.fa-medkit:before {\n  content: \"\\F0FA\"; }\n\n.fa-fighter-jet:before {\n  content: \"\\F0FB\"; }\n\n.fa-beer:before {\n  content: \"\\F0FC\"; }\n\n.fa-h-square:before {\n  content: \"\\F0FD\"; }\n\n.fa-plus-square:before {\n  content: \"\\F0FE\"; }\n\n.fa-angle-double-left:before {\n  content: \"\\F100\"; }\n\n.fa-angle-double-right:before {\n  content: \"\\F101\"; }\n\n.fa-angle-double-up:before {\n  content: \"\\F102\"; }\n\n.fa-angle-double-down:before {\n  content: \"\\F103\"; }\n\n.fa-angle-left:before {\n  content: \"\\F104\"; }\n\n.fa-angle-right:before {\n  content: \"\\F105\"; }\n\n.fa-angle-up:before {\n  content: \"\\F106\"; }\n\n.fa-angle-down:before {\n  content: \"\\F107\"; }\n\n.fa-desktop:before {\n  content: \"\\F108\"; }\n\n.fa-laptop:before {\n  content: \"\\F109\"; }\n\n.fa-tablet:before {\n  content: \"\\F10A\"; }\n\n.fa-mobile-phone:before,\n.fa-mobile:before {\n  content: \"\\F10B\"; }\n\n.fa-circle-o:before {\n  content: \"\\F10C\"; }\n\n.fa-quote-left:before {\n  content: \"\\F10D\"; }\n\n.fa-quote-right:before {\n  content: \"\\F10E\"; }\n\n.fa-spinner:before {\n  content: \"\\F110\"; }\n\n.fa-circle:before {\n  content: \"\\F111\"; }\n\n.fa-mail-reply:before,\n.fa-reply:before {\n  content: \"\\F112\"; }\n\n.fa-github-alt:before {\n  content: \"\\F113\"; }\n\n.fa-folder-o:before {\n  content: \"\\F114\"; }\n\n.fa-folder-open-o:before {\n  content: \"\\F115\"; }\n\n.fa-smile-o:before {\n  content: \"\\F118\"; }\n\n.fa-frown-o:before {\n  content: \"\\F119\"; }\n\n.fa-meh-o:before {\n  content: \"\\F11A\"; }\n\n.fa-gamepad:before {\n  content: \"\\F11B\"; }\n\n.fa-keyboard-o:before {\n  content: \"\\F11C\"; }\n\n.fa-flag-o:before {\n  content: \"\\F11D\"; }\n\n.fa-flag-checkered:before {\n  content: \"\\F11E\"; }\n\n.fa-terminal:before {\n  content: \"\\F120\"; }\n\n.fa-code:before {\n  content: \"\\F121\"; }\n\n.fa-mail-reply-all:before,\n.fa-reply-all:before {\n  content: \"\\F122\"; }\n\n.fa-star-half-empty:before,\n.fa-star-half-full:before,\n.fa-star-half-o:before {\n  content: \"\\F123\"; }\n\n.fa-location-arrow:before {\n  content: \"\\F124\"; }\n\n.fa-crop:before {\n  content: \"\\F125\"; }\n\n.fa-code-fork:before {\n  content: \"\\F126\"; }\n\n.fa-unlink:before,\n.fa-chain-broken:before {\n  content: \"\\F127\"; }\n\n.fa-question:before {\n  content: \"\\F128\"; }\n\n.fa-info:before {\n  content: \"\\F129\"; }\n\n.fa-exclamation:before {\n  content: \"\\F12A\"; }\n\n.fa-superscript:before {\n  content: \"\\F12B\"; }\n\n.fa-subscript:before {\n  content: \"\\F12C\"; }\n\n.fa-eraser:before {\n  content: \"\\F12D\"; }\n\n.fa-puzzle-piece:before {\n  content: \"\\F12E\"; }\n\n.fa-microphone:before {\n  content: \"\\F130\"; }\n\n.fa-microphone-slash:before {\n  content: \"\\F131\"; }\n\n.fa-shield:before {\n  content: \"\\F132\"; }\n\n.fa-calendar-o:before {\n  content: \"\\F133\"; }\n\n.fa-fire-extinguisher:before {\n  content: \"\\F134\"; }\n\n.fa-rocket:before {\n  content: \"\\F135\"; }\n\n.fa-maxcdn:before {\n  content: \"\\F136\"; }\n\n.fa-chevron-circle-left:before {\n  content: \"\\F137\"; }\n\n.fa-chevron-circle-right:before {\n  content: \"\\F138\"; }\n\n.fa-chevron-circle-up:before {\n  content: \"\\F139\"; }\n\n.fa-chevron-circle-down:before {\n  content: \"\\F13A\"; }\n\n.fa-html5:before {\n  content: \"\\F13B\"; }\n\n.fa-css3:before {\n  content: \"\\F13C\"; }\n\n.fa-anchor:before {\n  content: \"\\F13D\"; }\n\n.fa-unlock-alt:before {\n  content: \"\\F13E\"; }\n\n.fa-bullseye:before {\n  content: \"\\F140\"; }\n\n.fa-ellipsis-h:before {\n  content: \"\\F141\"; }\n\n.fa-ellipsis-v:before {\n  content: \"\\F142\"; }\n\n.fa-rss-square:before {\n  content: \"\\F143\"; }\n\n.fa-play-circle:before {\n  content: \"\\F144\"; }\n\n.fa-ticket:before {\n  content: \"\\F145\"; }\n\n.fa-minus-square:before {\n  content: \"\\F146\"; }\n\n.fa-minus-square-o:before {\n  content: \"\\F147\"; }\n\n.fa-level-up:before {\n  content: \"\\F148\"; }\n\n.fa-level-down:before {\n  content: \"\\F149\"; }\n\n.fa-check-square:before {\n  content: \"\\F14A\"; }\n\n.fa-pencil-square:before {\n  content: \"\\F14B\"; }\n\n.fa-external-link-square:before {\n  content: \"\\F14C\"; }\n\n.fa-share-square:before {\n  content: \"\\F14D\"; }\n\n.fa-compass:before {\n  content: \"\\F14E\"; }\n\n.fa-toggle-down:before,\n.fa-caret-square-o-down:before {\n  content: \"\\F150\"; }\n\n.fa-toggle-up:before,\n.fa-caret-square-o-up:before {\n  content: \"\\F151\"; }\n\n.fa-toggle-right:before,\n.fa-caret-square-o-right:before {\n  content: \"\\F152\"; }\n\n.fa-euro:before,\n.fa-eur:before {\n  content: \"\\F153\"; }\n\n.fa-gbp:before {\n  content: \"\\F154\"; }\n\n.fa-dollar:before,\n.fa-usd:before {\n  content: \"\\F155\"; }\n\n.fa-rupee:before,\n.fa-inr:before {\n  content: \"\\F156\"; }\n\n.fa-cny:before,\n.fa-rmb:before,\n.fa-yen:before,\n.fa-jpy:before {\n  content: \"\\F157\"; }\n\n.fa-ruble:before,\n.fa-rouble:before,\n.fa-rub:before {\n  content: \"\\F158\"; }\n\n.fa-won:before,\n.fa-krw:before {\n  content: \"\\F159\"; }\n\n.fa-bitcoin:before,\n.fa-btc:before {\n  content: \"\\F15A\"; }\n\n.fa-file:before {\n  content: \"\\F15B\"; }\n\n.fa-file-text:before {\n  content: \"\\F15C\"; }\n\n.fa-sort-alpha-asc:before {\n  content: \"\\F15D\"; }\n\n.fa-sort-alpha-desc:before {\n  content: \"\\F15E\"; }\n\n.fa-sort-amount-asc:before {\n  content: \"\\F160\"; }\n\n.fa-sort-amount-desc:before {\n  content: \"\\F161\"; }\n\n.fa-sort-numeric-asc:before {\n  content: \"\\F162\"; }\n\n.fa-sort-numeric-desc:before {\n  content: \"\\F163\"; }\n\n.fa-thumbs-up:before {\n  content: \"\\F164\"; }\n\n.fa-thumbs-down:before {\n  content: \"\\F165\"; }\n\n.fa-youtube-square:before {\n  content: \"\\F166\"; }\n\n.fa-youtube:before {\n  content: \"\\F167\"; }\n\n.fa-xing:before {\n  content: \"\\F168\"; }\n\n.fa-xing-square:before {\n  content: \"\\F169\"; }\n\n.fa-youtube-play:before {\n  content: \"\\F16A\"; }\n\n.fa-dropbox:before {\n  content: \"\\F16B\"; }\n\n.fa-stack-overflow:before {\n  content: \"\\F16C\"; }\n\n.fa-instagram:before {\n  content: \"\\F16D\"; }\n\n.fa-flickr:before {\n  content: \"\\F16E\"; }\n\n.fa-adn:before {\n  content: \"\\F170\"; }\n\n.fa-bitbucket:before {\n  content: \"\\F171\"; }\n\n.fa-bitbucket-square:before {\n  content: \"\\F172\"; }\n\n.fa-tumblr:before {\n  content: \"\\F173\"; }\n\n.fa-tumblr-square:before {\n  content: \"\\F174\"; }\n\n.fa-long-arrow-down:before {\n  content: \"\\F175\"; }\n\n.fa-long-arrow-up:before {\n  content: \"\\F176\"; }\n\n.fa-long-arrow-left:before {\n  content: \"\\F177\"; }\n\n.fa-long-arrow-right:before {\n  content: \"\\F178\"; }\n\n.fa-apple:before {\n  content: \"\\F179\"; }\n\n.fa-windows:before {\n  content: \"\\F17A\"; }\n\n.fa-android:before {\n  content: \"\\F17B\"; }\n\n.fa-linux:before {\n  content: \"\\F17C\"; }\n\n.fa-dribbble:before {\n  content: \"\\F17D\"; }\n\n.fa-skype:before {\n  content: \"\\F17E\"; }\n\n.fa-foursquare:before {\n  content: \"\\F180\"; }\n\n.fa-trello:before {\n  content: \"\\F181\"; }\n\n.fa-female:before {\n  content: \"\\F182\"; }\n\n.fa-male:before {\n  content: \"\\F183\"; }\n\n.fa-gittip:before,\n.fa-gratipay:before {\n  content: \"\\F184\"; }\n\n.fa-sun-o:before {\n  content: \"\\F185\"; }\n\n.fa-moon-o:before {\n  content: \"\\F186\"; }\n\n.fa-archive:before {\n  content: \"\\F187\"; }\n\n.fa-bug:before {\n  content: \"\\F188\"; }\n\n.fa-vk:before {\n  content: \"\\F189\"; }\n\n.fa-weibo:before {\n  content: \"\\F18A\"; }\n\n.fa-renren:before {\n  content: \"\\F18B\"; }\n\n.fa-pagelines:before {\n  content: \"\\F18C\"; }\n\n.fa-stack-exchange:before {\n  content: \"\\F18D\"; }\n\n.fa-arrow-circle-o-right:before {\n  content: \"\\F18E\"; }\n\n.fa-arrow-circle-o-left:before {\n  content: \"\\F190\"; }\n\n.fa-toggle-left:before,\n.fa-caret-square-o-left:before {\n  content: \"\\F191\"; }\n\n.fa-dot-circle-o:before {\n  content: \"\\F192\"; }\n\n.fa-wheelchair:before {\n  content: \"\\F193\"; }\n\n.fa-vimeo-square:before {\n  content: \"\\F194\"; }\n\n.fa-turkish-lira:before,\n.fa-try:before {\n  content: \"\\F195\"; }\n\n.fa-plus-square-o:before {\n  content: \"\\F196\"; }\n\n.fa-space-shuttle:before {\n  content: \"\\F197\"; }\n\n.fa-slack:before {\n  content: \"\\F198\"; }\n\n.fa-envelope-square:before {\n  content: \"\\F199\"; }\n\n.fa-wordpress:before {\n  content: \"\\F19A\"; }\n\n.fa-openid:before {\n  content: \"\\F19B\"; }\n\n.fa-institution:before,\n.fa-bank:before,\n.fa-university:before {\n  content: \"\\F19C\"; }\n\n.fa-mortar-board:before,\n.fa-graduation-cap:before {\n  content: \"\\F19D\"; }\n\n.fa-yahoo:before {\n  content: \"\\F19E\"; }\n\n.fa-google:before {\n  content: \"\\F1A0\"; }\n\n.fa-reddit:before {\n  content: \"\\F1A1\"; }\n\n.fa-reddit-square:before {\n  content: \"\\F1A2\"; }\n\n.fa-stumbleupon-circle:before {\n  content: \"\\F1A3\"; }\n\n.fa-stumbleupon:before {\n  content: \"\\F1A4\"; }\n\n.fa-delicious:before {\n  content: \"\\F1A5\"; }\n\n.fa-digg:before {\n  content: \"\\F1A6\"; }\n\n.fa-pied-piper-pp:before {\n  content: \"\\F1A7\"; }\n\n.fa-pied-piper-alt:before {\n  content: \"\\F1A8\"; }\n\n.fa-drupal:before {\n  content: \"\\F1A9\"; }\n\n.fa-joomla:before {\n  content: \"\\F1AA\"; }\n\n.fa-language:before {\n  content: \"\\F1AB\"; }\n\n.fa-fax:before {\n  content: \"\\F1AC\"; }\n\n.fa-building:before {\n  content: \"\\F1AD\"; }\n\n.fa-child:before {\n  content: \"\\F1AE\"; }\n\n.fa-paw:before {\n  content: \"\\F1B0\"; }\n\n.fa-spoon:before {\n  content: \"\\F1B1\"; }\n\n.fa-cube:before {\n  content: \"\\F1B2\"; }\n\n.fa-cubes:before {\n  content: \"\\F1B3\"; }\n\n.fa-behance:before {\n  content: \"\\F1B4\"; }\n\n.fa-behance-square:before {\n  content: \"\\F1B5\"; }\n\n.fa-steam:before {\n  content: \"\\F1B6\"; }\n\n.fa-steam-square:before {\n  content: \"\\F1B7\"; }\n\n.fa-recycle:before {\n  content: \"\\F1B8\"; }\n\n.fa-automobile:before,\n.fa-car:before {\n  content: \"\\F1B9\"; }\n\n.fa-cab:before,\n.fa-taxi:before {\n  content: \"\\F1BA\"; }\n\n.fa-tree:before {\n  content: \"\\F1BB\"; }\n\n.fa-spotify:before {\n  content: \"\\F1BC\"; }\n\n.fa-deviantart:before {\n  content: \"\\F1BD\"; }\n\n.fa-soundcloud:before {\n  content: \"\\F1BE\"; }\n\n.fa-database:before {\n  content: \"\\F1C0\"; }\n\n.fa-file-pdf-o:before {\n  content: \"\\F1C1\"; }\n\n.fa-file-word-o:before {\n  content: \"\\F1C2\"; }\n\n.fa-file-excel-o:before {\n  content: \"\\F1C3\"; }\n\n.fa-file-powerpoint-o:before {\n  content: \"\\F1C4\"; }\n\n.fa-file-photo-o:before,\n.fa-file-picture-o:before,\n.fa-file-image-o:before {\n  content: \"\\F1C5\"; }\n\n.fa-file-zip-o:before,\n.fa-file-archive-o:before {\n  content: \"\\F1C6\"; }\n\n.fa-file-sound-o:before,\n.fa-file-audio-o:before {\n  content: \"\\F1C7\"; }\n\n.fa-file-movie-o:before,\n.fa-file-video-o:before {\n  content: \"\\F1C8\"; }\n\n.fa-file-code-o:before {\n  content: \"\\F1C9\"; }\n\n.fa-vine:before {\n  content: \"\\F1CA\"; }\n\n.fa-codepen:before {\n  content: \"\\F1CB\"; }\n\n.fa-jsfiddle:before {\n  content: \"\\F1CC\"; }\n\n.fa-life-bouy:before,\n.fa-life-buoy:before,\n.fa-life-saver:before,\n.fa-support:before,\n.fa-life-ring:before {\n  content: \"\\F1CD\"; }\n\n.fa-circle-o-notch:before {\n  content: \"\\F1CE\"; }\n\n.fa-ra:before,\n.fa-resistance:before,\n.fa-rebel:before {\n  content: \"\\F1D0\"; }\n\n.fa-ge:before,\n.fa-empire:before {\n  content: \"\\F1D1\"; }\n\n.fa-git-square:before {\n  content: \"\\F1D2\"; }\n\n.fa-git:before {\n  content: \"\\F1D3\"; }\n\n.fa-y-combinator-square:before,\n.fa-yc-square:before,\n.fa-hacker-news:before {\n  content: \"\\F1D4\"; }\n\n.fa-tencent-weibo:before {\n  content: \"\\F1D5\"; }\n\n.fa-qq:before {\n  content: \"\\F1D6\"; }\n\n.fa-wechat:before,\n.fa-weixin:before {\n  content: \"\\F1D7\"; }\n\n.fa-send:before,\n.fa-paper-plane:before {\n  content: \"\\F1D8\"; }\n\n.fa-send-o:before,\n.fa-paper-plane-o:before {\n  content: \"\\F1D9\"; }\n\n.fa-history:before {\n  content: \"\\F1DA\"; }\n\n.fa-circle-thin:before {\n  content: \"\\F1DB\"; }\n\n.fa-header:before {\n  content: \"\\F1DC\"; }\n\n.fa-paragraph:before {\n  content: \"\\F1DD\"; }\n\n.fa-sliders:before {\n  content: \"\\F1DE\"; }\n\n.fa-share-alt:before {\n  content: \"\\F1E0\"; }\n\n.fa-share-alt-square:before {\n  content: \"\\F1E1\"; }\n\n.fa-bomb:before {\n  content: \"\\F1E2\"; }\n\n.fa-soccer-ball-o:before,\n.fa-futbol-o:before {\n  content: \"\\F1E3\"; }\n\n.fa-tty:before {\n  content: \"\\F1E4\"; }\n\n.fa-binoculars:before {\n  content: \"\\F1E5\"; }\n\n.fa-plug:before {\n  content: \"\\F1E6\"; }\n\n.fa-slideshare:before {\n  content: \"\\F1E7\"; }\n\n.fa-twitch:before {\n  content: \"\\F1E8\"; }\n\n.fa-yelp:before {\n  content: \"\\F1E9\"; }\n\n.fa-newspaper-o:before {\n  content: \"\\F1EA\"; }\n\n.fa-wifi:before {\n  content: \"\\F1EB\"; }\n\n.fa-calculator:before {\n  content: \"\\F1EC\"; }\n\n.fa-paypal:before {\n  content: \"\\F1ED\"; }\n\n.fa-google-wallet:before {\n  content: \"\\F1EE\"; }\n\n.fa-cc-visa:before {\n  content: \"\\F1F0\"; }\n\n.fa-cc-mastercard:before {\n  content: \"\\F1F1\"; }\n\n.fa-cc-discover:before {\n  content: \"\\F1F2\"; }\n\n.fa-cc-amex:before {\n  content: \"\\F1F3\"; }\n\n.fa-cc-paypal:before {\n  content: \"\\F1F4\"; }\n\n.fa-cc-stripe:before {\n  content: \"\\F1F5\"; }\n\n.fa-bell-slash:before {\n  content: \"\\F1F6\"; }\n\n.fa-bell-slash-o:before {\n  content: \"\\F1F7\"; }\n\n.fa-trash:before {\n  content: \"\\F1F8\"; }\n\n.fa-copyright:before {\n  content: \"\\F1F9\"; }\n\n.fa-at:before {\n  content: \"\\F1FA\"; }\n\n.fa-eyedropper:before {\n  content: \"\\F1FB\"; }\n\n.fa-paint-brush:before {\n  content: \"\\F1FC\"; }\n\n.fa-birthday-cake:before {\n  content: \"\\F1FD\"; }\n\n.fa-area-chart:before {\n  content: \"\\F1FE\"; }\n\n.fa-pie-chart:before {\n  content: \"\\F200\"; }\n\n.fa-line-chart:before {\n  content: \"\\F201\"; }\n\n.fa-lastfm:before {\n  content: \"\\F202\"; }\n\n.fa-lastfm-square:before {\n  content: \"\\F203\"; }\n\n.fa-toggle-off:before {\n  content: \"\\F204\"; }\n\n.fa-toggle-on:before {\n  content: \"\\F205\"; }\n\n.fa-bicycle:before {\n  content: \"\\F206\"; }\n\n.fa-bus:before {\n  content: \"\\F207\"; }\n\n.fa-ioxhost:before {\n  content: \"\\F208\"; }\n\n.fa-angellist:before {\n  content: \"\\F209\"; }\n\n.fa-cc:before {\n  content: \"\\F20A\"; }\n\n.fa-shekel:before,\n.fa-sheqel:before,\n.fa-ils:before {\n  content: \"\\F20B\"; }\n\n.fa-meanpath:before {\n  content: \"\\F20C\"; }\n\n.fa-buysellads:before {\n  content: \"\\F20D\"; }\n\n.fa-connectdevelop:before {\n  content: \"\\F20E\"; }\n\n.fa-dashcube:before {\n  content: \"\\F210\"; }\n\n.fa-forumbee:before {\n  content: \"\\F211\"; }\n\n.fa-leanpub:before {\n  content: \"\\F212\"; }\n\n.fa-sellsy:before {\n  content: \"\\F213\"; }\n\n.fa-shirtsinbulk:before {\n  content: \"\\F214\"; }\n\n.fa-simplybuilt:before {\n  content: \"\\F215\"; }\n\n.fa-skyatlas:before {\n  content: \"\\F216\"; }\n\n.fa-cart-plus:before {\n  content: \"\\F217\"; }\n\n.fa-cart-arrow-down:before {\n  content: \"\\F218\"; }\n\n.fa-diamond:before {\n  content: \"\\F219\"; }\n\n.fa-ship:before {\n  content: \"\\F21A\"; }\n\n.fa-user-secret:before {\n  content: \"\\F21B\"; }\n\n.fa-motorcycle:before {\n  content: \"\\F21C\"; }\n\n.fa-street-view:before {\n  content: \"\\F21D\"; }\n\n.fa-heartbeat:before {\n  content: \"\\F21E\"; }\n\n.fa-venus:before {\n  content: \"\\F221\"; }\n\n.fa-mars:before {\n  content: \"\\F222\"; }\n\n.fa-mercury:before {\n  content: \"\\F223\"; }\n\n.fa-intersex:before,\n.fa-transgender:before {\n  content: \"\\F224\"; }\n\n.fa-transgender-alt:before {\n  content: \"\\F225\"; }\n\n.fa-venus-double:before {\n  content: \"\\F226\"; }\n\n.fa-mars-double:before {\n  content: \"\\F227\"; }\n\n.fa-venus-mars:before {\n  content: \"\\F228\"; }\n\n.fa-mars-stroke:before {\n  content: \"\\F229\"; }\n\n.fa-mars-stroke-v:before {\n  content: \"\\F22A\"; }\n\n.fa-mars-stroke-h:before {\n  content: \"\\F22B\"; }\n\n.fa-neuter:before {\n  content: \"\\F22C\"; }\n\n.fa-genderless:before {\n  content: \"\\F22D\"; }\n\n.fa-facebook-official:before {\n  content: \"\\F230\"; }\n\n.fa-pinterest-p:before {\n  content: \"\\F231\"; }\n\n.fa-whatsapp:before {\n  content: \"\\F232\"; }\n\n.fa-server:before {\n  content: \"\\F233\"; }\n\n.fa-user-plus:before {\n  content: \"\\F234\"; }\n\n.fa-user-times:before {\n  content: \"\\F235\"; }\n\n.fa-hotel:before,\n.fa-bed:before {\n  content: \"\\F236\"; }\n\n.fa-viacoin:before {\n  content: \"\\F237\"; }\n\n.fa-train:before {\n  content: \"\\F238\"; }\n\n.fa-subway:before {\n  content: \"\\F239\"; }\n\n.fa-medium:before {\n  content: \"\\F23A\"; }\n\n.fa-yc:before,\n.fa-y-combinator:before {\n  content: \"\\F23B\"; }\n\n.fa-optin-monster:before {\n  content: \"\\F23C\"; }\n\n.fa-opencart:before {\n  content: \"\\F23D\"; }\n\n.fa-expeditedssl:before {\n  content: \"\\F23E\"; }\n\n.fa-battery-4:before,\n.fa-battery:before,\n.fa-battery-full:before {\n  content: \"\\F240\"; }\n\n.fa-battery-3:before,\n.fa-battery-three-quarters:before {\n  content: \"\\F241\"; }\n\n.fa-battery-2:before,\n.fa-battery-half:before {\n  content: \"\\F242\"; }\n\n.fa-battery-1:before,\n.fa-battery-quarter:before {\n  content: \"\\F243\"; }\n\n.fa-battery-0:before,\n.fa-battery-empty:before {\n  content: \"\\F244\"; }\n\n.fa-mouse-pointer:before {\n  content: \"\\F245\"; }\n\n.fa-i-cursor:before {\n  content: \"\\F246\"; }\n\n.fa-object-group:before {\n  content: \"\\F247\"; }\n\n.fa-object-ungroup:before {\n  content: \"\\F248\"; }\n\n.fa-sticky-note:before {\n  content: \"\\F249\"; }\n\n.fa-sticky-note-o:before {\n  content: \"\\F24A\"; }\n\n.fa-cc-jcb:before {\n  content: \"\\F24B\"; }\n\n.fa-cc-diners-club:before {\n  content: \"\\F24C\"; }\n\n.fa-clone:before {\n  content: \"\\F24D\"; }\n\n.fa-balance-scale:before {\n  content: \"\\F24E\"; }\n\n.fa-hourglass-o:before {\n  content: \"\\F250\"; }\n\n.fa-hourglass-1:before,\n.fa-hourglass-start:before {\n  content: \"\\F251\"; }\n\n.fa-hourglass-2:before,\n.fa-hourglass-half:before {\n  content: \"\\F252\"; }\n\n.fa-hourglass-3:before,\n.fa-hourglass-end:before {\n  content: \"\\F253\"; }\n\n.fa-hourglass:before {\n  content: \"\\F254\"; }\n\n.fa-hand-grab-o:before,\n.fa-hand-rock-o:before {\n  content: \"\\F255\"; }\n\n.fa-hand-stop-o:before,\n.fa-hand-paper-o:before {\n  content: \"\\F256\"; }\n\n.fa-hand-scissors-o:before {\n  content: \"\\F257\"; }\n\n.fa-hand-lizard-o:before {\n  content: \"\\F258\"; }\n\n.fa-hand-spock-o:before {\n  content: \"\\F259\"; }\n\n.fa-hand-pointer-o:before {\n  content: \"\\F25A\"; }\n\n.fa-hand-peace-o:before {\n  content: \"\\F25B\"; }\n\n.fa-trademark:before {\n  content: \"\\F25C\"; }\n\n.fa-registered:before {\n  content: \"\\F25D\"; }\n\n.fa-creative-commons:before {\n  content: \"\\F25E\"; }\n\n.fa-gg:before {\n  content: \"\\F260\"; }\n\n.fa-gg-circle:before {\n  content: \"\\F261\"; }\n\n.fa-tripadvisor:before {\n  content: \"\\F262\"; }\n\n.fa-odnoklassniki:before {\n  content: \"\\F263\"; }\n\n.fa-odnoklassniki-square:before {\n  content: \"\\F264\"; }\n\n.fa-get-pocket:before {\n  content: \"\\F265\"; }\n\n.fa-wikipedia-w:before {\n  content: \"\\F266\"; }\n\n.fa-safari:before {\n  content: \"\\F267\"; }\n\n.fa-chrome:before {\n  content: \"\\F268\"; }\n\n.fa-firefox:before {\n  content: \"\\F269\"; }\n\n.fa-opera:before {\n  content: \"\\F26A\"; }\n\n.fa-internet-explorer:before {\n  content: \"\\F26B\"; }\n\n.fa-tv:before,\n.fa-television:before {\n  content: \"\\F26C\"; }\n\n.fa-contao:before {\n  content: \"\\F26D\"; }\n\n.fa-500px:before {\n  content: \"\\F26E\"; }\n\n.fa-amazon:before {\n  content: \"\\F270\"; }\n\n.fa-calendar-plus-o:before {\n  content: \"\\F271\"; }\n\n.fa-calendar-minus-o:before {\n  content: \"\\F272\"; }\n\n.fa-calendar-times-o:before {\n  content: \"\\F273\"; }\n\n.fa-calendar-check-o:before {\n  content: \"\\F274\"; }\n\n.fa-industry:before {\n  content: \"\\F275\"; }\n\n.fa-map-pin:before {\n  content: \"\\F276\"; }\n\n.fa-map-signs:before {\n  content: \"\\F277\"; }\n\n.fa-map-o:before {\n  content: \"\\F278\"; }\n\n.fa-map:before {\n  content: \"\\F279\"; }\n\n.fa-commenting:before {\n  content: \"\\F27A\"; }\n\n.fa-commenting-o:before {\n  content: \"\\F27B\"; }\n\n.fa-houzz:before {\n  content: \"\\F27C\"; }\n\n.fa-vimeo:before {\n  content: \"\\F27D\"; }\n\n.fa-black-tie:before {\n  content: \"\\F27E\"; }\n\n.fa-fonticons:before {\n  content: \"\\F280\"; }\n\n.fa-reddit-alien:before {\n  content: \"\\F281\"; }\n\n.fa-edge:before {\n  content: \"\\F282\"; }\n\n.fa-credit-card-alt:before {\n  content: \"\\F283\"; }\n\n.fa-codiepie:before {\n  content: \"\\F284\"; }\n\n.fa-modx:before {\n  content: \"\\F285\"; }\n\n.fa-fort-awesome:before {\n  content: \"\\F286\"; }\n\n.fa-usb:before {\n  content: \"\\F287\"; }\n\n.fa-product-hunt:before {\n  content: \"\\F288\"; }\n\n.fa-mixcloud:before {\n  content: \"\\F289\"; }\n\n.fa-scribd:before {\n  content: \"\\F28A\"; }\n\n.fa-pause-circle:before {\n  content: \"\\F28B\"; }\n\n.fa-pause-circle-o:before {\n  content: \"\\F28C\"; }\n\n.fa-stop-circle:before {\n  content: \"\\F28D\"; }\n\n.fa-stop-circle-o:before {\n  content: \"\\F28E\"; }\n\n.fa-shopping-bag:before {\n  content: \"\\F290\"; }\n\n.fa-shopping-basket:before {\n  content: \"\\F291\"; }\n\n.fa-hashtag:before {\n  content: \"\\F292\"; }\n\n.fa-bluetooth:before {\n  content: \"\\F293\"; }\n\n.fa-bluetooth-b:before {\n  content: \"\\F294\"; }\n\n.fa-percent:before {\n  content: \"\\F295\"; }\n\n.fa-gitlab:before {\n  content: \"\\F296\"; }\n\n.fa-wpbeginner:before {\n  content: \"\\F297\"; }\n\n.fa-wpforms:before {\n  content: \"\\F298\"; }\n\n.fa-envira:before {\n  content: \"\\F299\"; }\n\n.fa-universal-access:before {\n  content: \"\\F29A\"; }\n\n.fa-wheelchair-alt:before {\n  content: \"\\F29B\"; }\n\n.fa-question-circle-o:before {\n  content: \"\\F29C\"; }\n\n.fa-blind:before {\n  content: \"\\F29D\"; }\n\n.fa-audio-description:before {\n  content: \"\\F29E\"; }\n\n.fa-volume-control-phone:before {\n  content: \"\\F2A0\"; }\n\n.fa-braille:before {\n  content: \"\\F2A1\"; }\n\n.fa-assistive-listening-systems:before {\n  content: \"\\F2A2\"; }\n\n.fa-asl-interpreting:before,\n.fa-american-sign-language-interpreting:before {\n  content: \"\\F2A3\"; }\n\n.fa-deafness:before,\n.fa-hard-of-hearing:before,\n.fa-deaf:before {\n  content: \"\\F2A4\"; }\n\n.fa-glide:before {\n  content: \"\\F2A5\"; }\n\n.fa-glide-g:before {\n  content: \"\\F2A6\"; }\n\n.fa-signing:before,\n.fa-sign-language:before {\n  content: \"\\F2A7\"; }\n\n.fa-low-vision:before {\n  content: \"\\F2A8\"; }\n\n.fa-viadeo:before {\n  content: \"\\F2A9\"; }\n\n.fa-viadeo-square:before {\n  content: \"\\F2AA\"; }\n\n.fa-snapchat:before {\n  content: \"\\F2AB\"; }\n\n.fa-snapchat-ghost:before {\n  content: \"\\F2AC\"; }\n\n.fa-snapchat-square:before {\n  content: \"\\F2AD\"; }\n\n.fa-pied-piper:before {\n  content: \"\\F2AE\"; }\n\n.fa-first-order:before {\n  content: \"\\F2B0\"; }\n\n.fa-yoast:before {\n  content: \"\\F2B1\"; }\n\n.fa-themeisle:before {\n  content: \"\\F2B2\"; }\n\n.fa-google-plus-circle:before,\n.fa-google-plus-official:before {\n  content: \"\\F2B3\"; }\n\n.fa-fa:before,\n.fa-font-awesome:before {\n  content: \"\\F2B4\"; }\n\n.fa-handshake-o:before {\n  content: \"\\F2B5\"; }\n\n.fa-envelope-open:before {\n  content: \"\\F2B6\"; }\n\n.fa-envelope-open-o:before {\n  content: \"\\F2B7\"; }\n\n.fa-linode:before {\n  content: \"\\F2B8\"; }\n\n.fa-address-book:before {\n  content: \"\\F2B9\"; }\n\n.fa-address-book-o:before {\n  content: \"\\F2BA\"; }\n\n.fa-vcard:before,\n.fa-address-card:before {\n  content: \"\\F2BB\"; }\n\n.fa-vcard-o:before,\n.fa-address-card-o:before {\n  content: \"\\F2BC\"; }\n\n.fa-user-circle:before {\n  content: \"\\F2BD\"; }\n\n.fa-user-circle-o:before {\n  content: \"\\F2BE\"; }\n\n.fa-user-o:before {\n  content: \"\\F2C0\"; }\n\n.fa-id-badge:before {\n  content: \"\\F2C1\"; }\n\n.fa-drivers-license:before,\n.fa-id-card:before {\n  content: \"\\F2C2\"; }\n\n.fa-drivers-license-o:before,\n.fa-id-card-o:before {\n  content: \"\\F2C3\"; }\n\n.fa-quora:before {\n  content: \"\\F2C4\"; }\n\n.fa-free-code-camp:before {\n  content: \"\\F2C5\"; }\n\n.fa-telegram:before {\n  content: \"\\F2C6\"; }\n\n.fa-thermometer-4:before,\n.fa-thermometer:before,\n.fa-thermometer-full:before {\n  content: \"\\F2C7\"; }\n\n.fa-thermometer-3:before,\n.fa-thermometer-three-quarters:before {\n  content: \"\\F2C8\"; }\n\n.fa-thermometer-2:before,\n.fa-thermometer-half:before {\n  content: \"\\F2C9\"; }\n\n.fa-thermometer-1:before,\n.fa-thermometer-quarter:before {\n  content: \"\\F2CA\"; }\n\n.fa-thermometer-0:before,\n.fa-thermometer-empty:before {\n  content: \"\\F2CB\"; }\n\n.fa-shower:before {\n  content: \"\\F2CC\"; }\n\n.fa-bathtub:before,\n.fa-s15:before,\n.fa-bath:before {\n  content: \"\\F2CD\"; }\n\n.fa-podcast:before {\n  content: \"\\F2CE\"; }\n\n.fa-window-maximize:before {\n  content: \"\\F2D0\"; }\n\n.fa-window-minimize:before {\n  content: \"\\F2D1\"; }\n\n.fa-window-restore:before {\n  content: \"\\F2D2\"; }\n\n.fa-times-rectangle:before,\n.fa-window-close:before {\n  content: \"\\F2D3\"; }\n\n.fa-times-rectangle-o:before,\n.fa-window-close-o:before {\n  content: \"\\F2D4\"; }\n\n.fa-bandcamp:before {\n  content: \"\\F2D5\"; }\n\n.fa-grav:before {\n  content: \"\\F2D6\"; }\n\n.fa-etsy:before {\n  content: \"\\F2D7\"; }\n\n.fa-imdb:before {\n  content: \"\\F2D8\"; }\n\n.fa-ravelry:before {\n  content: \"\\F2D9\"; }\n\n.fa-eercast:before {\n  content: \"\\F2DA\"; }\n\n.fa-microchip:before {\n  content: \"\\F2DB\"; }\n\n.fa-snowflake-o:before {\n  content: \"\\F2DC\"; }\n\n.fa-superpowers:before {\n  content: \"\\F2DD\"; }\n\n.fa-wpexplorer:before {\n  content: \"\\F2DE\"; }\n\n.fa-meetup:before {\n  content: \"\\F2E0\"; }\n\n.sr-only {\n  position: absolute;\n  width: 1px;\n  height: 1px;\n  padding: 0;\n  margin: -1px;\n  overflow: hidden;\n  clip: rect(0, 0, 0, 0);\n  border: 0; }\n\n.sr-only-focusable:active, .sr-only-focusable:focus {\n  position: static;\n  width: auto;\n  height: auto;\n  margin: 0;\n  overflow: visible;\n  clip: auto; }\n\nbody {\n  margin: 0 auto;\n  padding: 0;\n  font-family: \"Fira Sans\", Helvetica, Arial, sans-serif;\n  font-size: 1.3em;\n  font-weight: 400;\n  -webkit-font-smoothing: antialiased !important;\n  -webkit-text-stroke: 0.1px; }\n\nh1 {\n  font-size: 3em;\n  font-weight: 700; }\n\n.subtitle {\n  margin-top: 0.6em;\n  display: inline-block;\n  font-size: 1.3em;\n  text-transform: uppercase; }\n\n.subtitle--variable {\n  font-style: italic;\n  text-transform: none; }\n\n.subtitle__value {\n  font-size: 1.5em;\n  font-weight: 500; }\n\n.match-padding, h1 {\n  padding: 0 15px; }\n\n.float-right {\n  float: right; }\n\n.float-left {\n  float: left; }\n\n.hyperlink {\n  color: #78C5EB;\n  cursor: pointer; }\n\na {\n  text-decoration: none;\n  color: #fff; }\n\n.unselectable, .pagination__container, .pagination__page, .pagination__current, .pagination__page:hover, .pagination__current:hover, .modal__btn {\n  -webkit-touch-callout: none;\n  -webkit-user-select: none;\n  -khtml-user-select: none;\n  -moz-user-select: none;\n  -ms-user-select: none;\n  -o-user-select: none;\n  user-select: none; }\n\n.edit-button {\n  color: #fff !important;\n  background-color: #1a566f !important; }\n\n.delete-button {\n  color: #fff !important;\n  background-color: #8a0719 !important; }\n\n.delete__icon {\n  float: right;\n  color: #ab9393; }\n\n.delete_btn {\n  margin-left: 12px; }\n\n.scrollable {\n  overflow: auto;\n  min-height: 140px;\n  max-height: 140px;\n  margin: 0.6em; }\n\n.borders {\n  border: 1.5px solid #000; }\n\n.nobttmpdng {\n  padding-bottom: 0.6em; }\n\ninput[type=text], input[type=password], input[type=number], input[type=email], input[type=date], select {\n  margin-top: 0.6em;\n  margin-bottom: 0.6em;\n  width: 100%;\n  height: 2em;\n  padding: 0.6em;\n  font-family: \"Fira Sans\", Helvetica, Arial, sans-serif;\n  font-size: 1.3em;\n  color: #000;\n  border: 1.5px solid #000;\n  transition: 0.3s ease;\n  -webkit-font-smoothing: antialiased !important; }\n\ninput[type=number].quant {\n  height: 1.5em;\n  text-align: center;\n  width: 40%;\n  color: #000;\n  border: 1px solid #000;\n  transition: 0.3s ease;\n  -webkit-font-smoothing: antialiased !important; }\n\n.checkboxText {\n  font-family: \"Fira Sans\", Helvetica, Arial, sans-serif;\n  font-size: 1.3em;\n  color: #000; }\n\ntextarea {\n  margin-top: 0.6em;\n  margin-bottom: 0.6em;\n  width: 100%;\n  height: 6em;\n  padding: 0.6em;\n  font-family: \"Fira Sans\", Helvetica, Arial, sans-serif;\n  font-size: 1.3em;\n  color: #000;\n  border: 1.5px solid #000;\n  transition: 0.3s ease;\n  -webkit-font-smoothing: antialiased !important; }\n\ninput[type=text]:focus, input[type=password]:focus, textarea:focus, select:focus {\n  border: 1.5px solid #63ECB0;\n  transition: 0.3s ease; }\n\n/* Overrides for removing spinner in number input fields */\ninput[type=number] {\n  -moz-appearance: textfield; }\n\ninput[type=date]::-webkit-inner-spin-button,\ninput[type=date]::-webkit-outer-spin-button,\ninput[type=number]::-webkit-inner-spin-button,\ninput[type=number]::-webkit-outer-spin-button {\n  -webkit-appearance: none; }\n\n/* End overrides */\n.shortinput {\n  width: 50% !important; }\n\nselect {\n  padding: 0.25em !important; }\n\noption {\n  width: 100%; }\n\ntextarea {\n  resize: none; }\n\nbutton {\n  padding: 0.6em;\n  font-family: \"Fira Sans\", Helvetica, Arial, sans-serif;\n  font-size: 1.3em;\n  color: #000 !important;\n  background-color: #78C5EB;\n  border: none;\n  transition: 0.2s ease;\n  margin-top: 0.6em;\n  margin-bottom: 0.6em; }\n\nbutton.outline {\n  padding: 0.6em 1em;\n  background-color: #EEE;\n  transition: 0.2s ease;\n  border: 1.5px solid #000; }\n\nbutton:hover {\n  background-color: #78C5EB;\n  transition: 0.2s ease; }\n\ninput, select, option {\n  outline: 0; }\n\n.card__container, .card__container--custom1, .card__container--flex, .card__container--tiny, .card__container--medium {\n  height: auto;\n  margin-bottom: 0.25em;\n  width: 100%;\n  padding: 1em;\n  background-color: #EEE;\n  cursor: pointer; }\n\n.selectedCard__container {\n  color: #CCC !important; }\n\n.newPatient__container {\n  color: #ed1c24 !important; }\n\n.card__tableDiv {\n  background-color: #EEE !important; }\n\n.card__container--custom1 {\n  height: 25em !important; }\n\n.card__container--flex {\n  height: auto !important; }\n\n.card__container--tiny {\n  height: .2em !important;\n  padding-top: .1em !important;\n  width: 4.5em !important;\n  background-color: white; }\n\n.card__container--medium {\n  height: .9em !important;\n  padding-top: .1em !important;\n  width: 6.5em !important;\n  background-color: white; }\n\n.card__title {\n  display: block;\n  font-size: 2em;\n  font-weight: 700; }\n\n.card__desc {\n  display: block;\n  font-size: 1.3em;\n  font-style: italic; }\n\n.card__desc--tiny {\n  font-size: .5em;\n  text-align: center; }\n\n.card__desc--medium {\n  font-size: .7em;\n  text-align: center; }\n\n.detail__container {\n  margin-bottom: 0.25em;\n  width: 100%;\n  padding: 1em;\n  background-color: #EEE; }\n\n.detail__title {\n  display: block;\n  font-size: 1.5em;\n  font-weight: 700; }\n\n.detail__desc {\n  display: block;\n  font-size: 1.3em;\n  font-style: bold; }\n\n.detail__subtitle {\n  display: block;\n  font-size: 1.5em;\n  font-weight: 500; }\n\n.detail__containerTotalPrice {\n  margin-bottom: 0.25em;\n  width: 100%;\n  padding: 1em;\n  background-color: #3E809C;\n  color: white;\n  font-size: 1.5em;\n  text-align: center; }\n\ntable {\n  border: 0px;\n  width: 100%;\n  background: transparent; }\n\nth {\n  height: 3em;\n  font-size: 1.5em; }\n\ntd {\n  font-size: 1.2em;\n  height: 2em;\n  text-align: center; }\n\ntd.name, th.name {\n  text-align: left; }\n\ntd.price, th.price {\n  text-align: right; }\n\n.pagination__container {\n  float: right;\n  vertical-align: middle; }\n\n.pagination__page, .pagination__current {\n  display: inline-block;\n  height: 1.5em;\n  width: 1.5em;\n  padding-top: 0.25em;\n  font-size: 1.5em !important;\n  font-weight: 500;\n  text-align: center;\n  background-color: #EEE;\n  cursor: pointer; }\n\n.pagination__page:hover, .pagination__current:hover {\n  background-color: #78C5EB; }\n\n.pagination__current {\n  background-color: #3E809C;\n  color: #fff;\n  font-weight: 700; }\n\n.modal__background {\n  position: fixed;\n  z-index: 9999;\n  margin: 0 auto;\n  padding: 0;\n  height: 100%;\n  width: 100%;\n  text-align: center;\n  background: rgba(0, 0, 0, 0.8); }\n\n.modal__box {\n  margin-top: 10%;\n  background: #EEE; }\n\n.modal__title {\n  padding-top: 0.75em;\n  font-size: 2em;\n  font-weight: 700; }\n\nhr.modal__divider {\n  margin-left: -15px;\n  margin-right: -15px;\n  border: 2px solid #63ECB0; }\n\n.modal__description {\n  padding-bottom: 0.6em;\n  font-size: 1.3em;\n  text-align: center; }\n\n.modal__btn {\n  width: 4em; }\n\n.modal__btn--bad {\n  background-color: #CCC; }\n\n.modal__btn--good {\n  background-color: #63ECB0; }\n\n.header__background {\n  height: 4em; }\n\n.header__app-text {\n  height: 4em;\n  font-size: 2em;\n  font-weight: 500;\n  line-height: 2em; }\n\n.header__user-container {\n  margin-top: 0.75em;\n  height: 4em;\n  text-align: right; }\n\n.header__user-name, .header__user-title {\n  display: block;\n  font-size: 1.3em;\n  font-weight: 500; }\n\n.header__user-title {\n  font-weight: 400; }\n\n.header__user-alignment {\n  display: inline-block;\n  padding: 0 0.25em;\n  vertical-align: top; }\n\nimg.header__logo {\n  height: 2em;\n  width: auto;\n  vertical-align: sub; }\n\n.dropbtn {\n  background-color: #78C5EB;\n  color: white;\n  padding: 5px;\n  border: none;\n  cursor: pointer;\n  margin-bottom: 5px; }\n\n.dropdown {\n  position: relative;\n  display: inline-block; }\n\n.dropdown-content {\n  display: none;\n  position: absolute;\n  background-color: #f9f9f9;\n  min-width: 160px;\n  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);\n  z-index: 1;\n  right: 0; }\n\n.dropdown-content a {\n  color: black;\n  padding: 12px 16px;\n  text-decoration: none;\n  display: block; }\n\n.dropdown-content a:hover {\n  background-color: #f1f1f1; }\n\n.dropdown:hover .dropdown-content {\n  display: block;\n  margin-top: 0px; }\n\n.dropdown:hover .dropbtn {\n  background-color: #77E1EF; }\n\n.link {\n  cursor: pointer; }\n\n.navbar__background {\n  height: 4em;\n  background-color: #EEE; }\n\n.navbar__btn {\n  display: inline-block;\n  height: 2.7em;\n  margin-left: -0.15em;\n  padding: 0.6em 1em 0 1em;\n  width: auto;\n  font-size: 1.5em;\n  font-weight: 500;\n  line-height: 1.5em;\n  text-align: center;\n  cursor: auto;\n  transition: 0.1s ease; }\n\n.navbar__btn:hover, .navbar__btn--action:hover {\n  background-color: #78C5EB;\n  color: #000;\n  cursor: pointer;\n  transition: 0.1s ease; }\n\n.navbar__btn--selected {\n  background-color: #3E809C;\n  color: #fff; }\n\n.navbar__btn--action {\n  background-color: #63ECB0;\n  color: #000; }\n\n.navbar__btn--action:hover {\n  background-color: #009E60;\n  color: #fff; }\n\n.navbar__action-container {\n  text-align: right; }\n\n.anchor-like {\n  cursor: pointer;\n  color: white; }\n\n.main {\n  margin: 0 auto;\n  max-width: 320px; }\n\n.login-or {\n  position: relative;\n  margin-top: 20%;\n  margin-bottom: 10px;\n  padding-top: 10px;\n  padding-bottom: 10px;\n  font-size: 18px;\n  color: #aaa; }\n\n.span-or {\n  position: absolute;\n  left: 50%;\n  top: -2px;\n  margin-left: -25px;\n  display: block;\n  width: 50px;\n  text-align: center;\n  background-color: #fff; }\n\n.hr-or {\n  margin-top: 0 !important;\n  margin-bottom: 0 !important;\n  height: 1px;\n  background-color: #cdcdcd; }\n\nh3 {\n  line-height: 300%;\n  text-align: center; }\n\ninput[type=\"password\"] {\n  margin-bottom: .6em;\n  padding: .25em;\n  width: 100%;\n  font-family: \"Fira Sans\", Helvetica, Arial, sans-serif;\n  font-size: 1.3em;\n  color: #000;\n  -webkit-font-smoothing: antialiased !important; }\n\n.login-form {\n  position: relative;\n  margin-top: 30%; }\n\n.collapsediv {\n  overflow: scroll;\n  height: 16em; }\n\n.card__container > .subtitle__value, .card__container--custom1 > .subtitle__value, .card__container--flex > .subtitle__value, .card__container--tiny > .subtitle__value, .card__container--medium > .subtitle__value {\n  font-size: 1.5em;\n  font-weight: 500; }\n\n.meter {\n  background: #d7d7d7;\n  border: 0.25em solid #d7d7d7;\n  border-radius: 0.25em;\n  color: transparent;\n  overflow: hidden; }\n\n.meter-bar {\n  background: none;\n  border-radius: inherit;\n  border-bottom-right-radius: 0;\n  border-top-right-radius: 0;\n  height: 1em;\n  position: relative; }\n\n.meter-bar-verybad {\n  background-color: #be312f;\n  width: 20%; }\n\n.meter-bar-bad {\n  background-color: #ff8048;\n  width: 40%; }\n\n.meter-bar-average {\n  background-color: #e5e500;\n  width: 60%; }\n\n.meter-bar-good {\n  background-color: #32bc6c;\n  width: 80%; }\n\n.meter-bar-verygood {\n  background-color: #239664;\n  width: 100%; }\n\n.meter {\n  background: #d7d7d7;\n  border: 0.25em solid #d7d7d7;\n  border-radius: 0.25em;\n  color: transparent;\n  overflow: hidden; }\n\n.meter-bar {\n  background: none;\n  border-radius: inherit;\n  border-bottom-right-radius: 0;\n  border-top-right-radius: 0;\n  height: 1em;\n  position: relative; }\n\n.meter-bar-verybad {\n  background-color: #be312f;\n  width: 20%; }\n\n.meter-bar-bad {\n  background-color: #ff8048;\n  width: 40%; }\n\n.meter-bar-average {\n  background-color: #e5e500;\n  width: 60%; }\n\n.meter-bar-good {\n  background-color: #32bc6c;\n  width: 80%; }\n\n.meter-bar-verygood {\n  background-color: #239664;\n  width: 100%; }\n", ""]);
 
 // exports
 
@@ -984,67 +989,75 @@ exports.push([module.i, "@font-face {\r\n    font-family: 'Fira Sans';\r\n    sr
 /* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "dist/fonts/firasans-bold-webfont.woff2";
+exports = module.exports = __webpack_require__(1)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, "@font-face {\r\n    font-family: 'Fira Sans';\r\n    src: url(" + __webpack_require__(8) + ") format('woff2'),\r\n         url(" + __webpack_require__(9) + ") format('woff');\r\n    font-weight: 700;\r\n    font-style: normal;\r\n}\r\n\r\n@font-face {\r\n    font-family: 'Fira Sans';\r\n    src: url(" + __webpack_require__(10) + ") format('woff2'),\r\n         url(" + __webpack_require__(11) + ") format('woff');\r\n    font-weight: 400;\r\n    font-style: italic;\r\n}\r\n\r\n@font-face {\r\n    font-family: 'Fira Sans';\r\n    src: url(" + __webpack_require__(12) + ") format('woff2'),\r\n         url(" + __webpack_require__(13) + ") format('woff');\r\n    font-weight: 500;\r\n    font-style: normal;\r\n}\r\n\r\n@font-face {\r\n    font-family: 'Fira Sans';\r\n    src: url(" + __webpack_require__(14) + ") format('woff2'),\r\n         url(" + __webpack_require__(15) + ") format('woff');\r\n    font-weight: 500;\r\n    font-style: italic;\r\n}\r\n\r\n@font-face {\r\n    font-family: 'Fira Sans';\r\n    src: url(" + __webpack_require__(16) + ") format('woff2'),\r\n         url(" + __webpack_require__(17) + ") format('woff');\r\n    font-weight: 400;\r\n    font-style: normal;\r\n}", ""]);
+
+// exports
+
 
 /***/ }),
 /* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "dist/fonts/firasans-bold-webfont.woff";
+module.exports = __webpack_require__.p + "dist/fonts/firasans-bold-webfont.woff2";
 
 /***/ }),
 /* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "dist/fonts/firasans-italic-webfont.woff2";
+module.exports = __webpack_require__.p + "dist/fonts/firasans-bold-webfont.woff";
 
 /***/ }),
 /* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "dist/fonts/firasans-italic-webfont.woff";
+module.exports = __webpack_require__.p + "dist/fonts/firasans-italic-webfont.woff2";
 
 /***/ }),
 /* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "dist/fonts/firasans-medium-webfont.woff2";
+module.exports = __webpack_require__.p + "dist/fonts/firasans-italic-webfont.woff";
 
 /***/ }),
 /* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "dist/fonts/firasans-medium-webfont.woff";
+module.exports = __webpack_require__.p + "dist/fonts/firasans-medium-webfont.woff2";
 
 /***/ }),
 /* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "dist/fonts/firasans-mediumitalic-webfont.woff2";
+module.exports = __webpack_require__.p + "dist/fonts/firasans-medium-webfont.woff";
 
 /***/ }),
 /* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "dist/fonts/firasans-mediumitalic-webfont.woff";
+module.exports = __webpack_require__.p + "dist/fonts/firasans-mediumitalic-webfont.woff2";
 
 /***/ }),
 /* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "dist/fonts/firasans-regular-webfont.woff2";
+module.exports = __webpack_require__.p + "dist/fonts/firasans-mediumitalic-webfont.woff";
 
 /***/ }),
 /* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "dist/fonts/firasans-regular-webfont.woff";
+module.exports = __webpack_require__.p + "dist/fonts/firasans-regular-webfont.woff2";
 
 /***/ }),
 /* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "dist/fonts/fontawesome-webfont.eot";
+module.exports = __webpack_require__.p + "dist/fonts/firasans-regular-webfont.woff";
 
 /***/ }),
 /* 18 */
@@ -1056,28 +1069,34 @@ module.exports = __webpack_require__.p + "dist/fonts/fontawesome-webfont.eot";
 /* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "dist/fonts/fontawesome-webfont.woff2";
+module.exports = __webpack_require__.p + "dist/fonts/fontawesome-webfont.eot";
 
 /***/ }),
 /* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "dist/fonts/fontawesome-webfont.woff";
+module.exports = __webpack_require__.p + "dist/fonts/fontawesome-webfont.woff2";
 
 /***/ }),
 /* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "dist/fonts/fontawesome-webfont.ttf";
+module.exports = __webpack_require__.p + "dist/fonts/fontawesome-webfont.woff";
 
 /***/ }),
 /* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "dist/fonts/fontawesome-webfont.svg";
+module.exports = __webpack_require__.p + "dist/fonts/fontawesome-webfont.ttf";
 
 /***/ }),
 /* 23 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "dist/fonts/fontawesome-webfont.svg";
+
+/***/ }),
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -1123,7 +1142,7 @@ var singleton = null;
 var	singletonCounter = 0;
 var	stylesInsertedAtTop = [];
 
-var	fixUrls = __webpack_require__(24);
+var	fixUrls = __webpack_require__(25);
 
 module.exports = function(list, options) {
 	if (typeof DEBUG !== "undefined" && DEBUG) {
@@ -1436,7 +1455,7 @@ function updateLink (link, options, obj) {
 
 
 /***/ }),
-/* 24 */
+/* 25 */
 /***/ (function(module, exports) {
 
 
@@ -1531,15 +1550,15 @@ module.exports = function (css) {
 
 
 /***/ }),
-/* 25 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(26);
+__webpack_require__(27);
 module.exports = angular;
 
 
 /***/ }),
-/* 26 */
+/* 27 */
 /***/ (function(module, exports) {
 
 /**
@@ -35433,15 +35452,15 @@ $provide.value("$locale", {
 !window.angular.$$csp().noInlineStyle && window.angular.element(document.head).prepend('<style type="text/css">@charset "UTF-8";[ng\\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>');
 
 /***/ }),
-/* 27 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(28);
+__webpack_require__(29);
 module.exports = 'ngRoute';
 
 
 /***/ }),
-/* 28 */
+/* 29 */
 /***/ (function(module, exports) {
 
 /**
@@ -36676,19 +36695,19 @@ function ngViewFillContentFactory($compile, $controller, $route) {
 
 
 /***/ }),
-/* 29 */
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // Generated by CoffeeScript 1.10.0
 var feedback, matching, scoring, time, time_estimates, zxcvbn;
 
-matching = __webpack_require__(30);
+matching = __webpack_require__(31);
 
 scoring = __webpack_require__(0);
 
-time_estimates = __webpack_require__(32);
+time_estimates = __webpack_require__(33);
 
-feedback = __webpack_require__(33);
+feedback = __webpack_require__(34);
 
 time = function() {
   return (new Date()).getTime();
@@ -36726,13 +36745,13 @@ module.exports = zxcvbn;
 
 
 /***/ }),
-/* 30 */
+/* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // Generated by CoffeeScript 1.10.0
 var DATE_MAX_YEAR, DATE_MIN_YEAR, DATE_SPLITS, GRAPHS, L33T_TABLE, RANKED_DICTIONARIES, REGEXEN, adjacency_graphs, build_ranked_dict, frequency_lists, lst, matching, name, scoring;
 
-frequency_lists = __webpack_require__(31);
+frequency_lists = __webpack_require__(32);
 
 adjacency_graphs = __webpack_require__(2);
 
@@ -37428,7 +37447,7 @@ module.exports = matching;
 
 
 /***/ }),
-/* 31 */
+/* 32 */
 /***/ (function(module, exports) {
 
 // Generated by CoffeeScript 1.10.0
@@ -37449,7 +37468,7 @@ module.exports = frequency_lists;
 
 
 /***/ }),
-/* 32 */
+/* 33 */
 /***/ (function(module, exports) {
 
 // Generated by CoffeeScript 1.10.0
@@ -37512,7 +37531,7 @@ module.exports = time_estimates;
 
 
 /***/ }),
-/* 33 */
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // Generated by CoffeeScript 1.10.0
@@ -37627,7 +37646,7 @@ module.exports = feedback;
 
 
 /***/ }),
-/* 34 */
+/* 35 */
 /***/ (function(module, exports) {
 
 (function () {
@@ -37802,15 +37821,15 @@ module.exports = feedback;
 
 
 /***/ }),
-/* 35 */
+/* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(36);
+__webpack_require__(37);
 module.exports = 'angularUtils.directives.dirPagination';
 
 
 /***/ }),
-/* 36 */
+/* 37 */
 /***/ (function(module, exports) {
 
 /**
@@ -38455,38 +38474,38 @@ module.exports = 'angularUtils.directives.dirPagination';
 
 
 /***/ }),
-/* 37 */
+/* 38 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(38);
-__webpack_require__(42);
-__webpack_require__(46);
-__webpack_require__(53);
+__webpack_require__(39);
+__webpack_require__(43);
+__webpack_require__(47);
+__webpack_require__(56);
 
-__webpack_require__(57);
 __webpack_require__(60);
-__webpack_require__(153);
 __webpack_require__(63);
-__webpack_require__(153);
+__webpack_require__(3);
+__webpack_require__(68);
+__webpack_require__(3);
 
-__webpack_require__(66);
-__webpack_require__(69);
-__webpack_require__(74);
-__webpack_require__(80);
-__webpack_require__(87);
-
-__webpack_require__(92);
+__webpack_require__(71);
+__webpack_require__(76);
+__webpack_require__(82);
+__webpack_require__(88);
 __webpack_require__(95);
-__webpack_require__(98);
-__webpack_require__(101);
-__webpack_require__(104);
-__webpack_require__(107);
-__webpack_require__(113);
-__webpack_require__(118);
-__webpack_require__(124);
-__webpack_require__(130);
-__webpack_require__(135);
-__webpack_require__(138);
+
+__webpack_require__(100);
+__webpack_require__(103);
+__webpack_require__(106);
+__webpack_require__(109);
+__webpack_require__(112);
+__webpack_require__(115);
+__webpack_require__(121);
+__webpack_require__(127);
+__webpack_require__(133);
+__webpack_require__(139);
+__webpack_require__(144);
+__webpack_require__(147);
 
 angular.module('hplus.modules', [
   'hplus.modules.header',
@@ -38519,19 +38538,19 @@ angular.module('hplus.modules', [
 
 
 /***/ }),
-/* 38 */
+/* 39 */
 /***/ (function(module, exports, __webpack_require__) {
 
 angular.module('hplus.modules.header', []);
 
-__webpack_require__(39);
-__webpack_require__(41);
+__webpack_require__(40);
+__webpack_require__(42);
 
 /***/ }),
-/* 39 */
+/* 40 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var header = __webpack_require__(40);
+var header = __webpack_require__(41);
 angular.module('hplus.modules.header')
 
   .directive('hplusHeader', function(){
@@ -38542,13 +38561,13 @@ angular.module('hplus.modules.header')
   })
 
 /***/ }),
-/* 40 */
+/* 41 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"row\" ng-controller=\"HeaderController\">\r\n  <div class=\"col col-md-10 col-md-offset-1 header__background\">\r\n\r\n    <div class=\"col col-md-8\" ng-click=\"go('/')\">\r\n      <a href=\"\">\r\n        <img class=\"header__logo\" src=\"/assets/img/logo.png\">\r\n      </a>\r\n        <span class=\"header__app-text\">HealthPlus</span>\r\n    </div>\r\n\r\n    <div ng-show=\"user != null\" class=\"col col-md-4 header__user-container\">\r\n      <span class=\"header__user-alignment\">\r\n        <span class=\"header__user-name\">{{ user.firstname+\" \"+ user.lastname}}</span>\r\n        <span class=\"header__user-title\">{{ user.specialization }}</span>\r\n      </span>\r\n      \r\n      <div class=\"dropdown header__user-alignment\">\r\n        <button class=\"dropbtn\"><span class=\"fa fa-caret-down\"></span></button>\r\n        <div class=\"dropdown-content\">\r\n          <a class=\"link\" ng-click=\"viewProfile('/admin/view/doctordetails')\">View Profile</a>\r\n          <a href=\"#\" ng-click=\"logout()\">Logout</a>\r\n        </div>\r\n      </div>\r\n    </div>\r\n\r\n  </div>\r\n</div>";
 
 /***/ }),
-/* 41 */
+/* 42 */
 /***/ (function(module, exports) {
 
 angular.module('hplus.modules.header')
@@ -38584,19 +38603,19 @@ angular.module('hplus.modules.header')
   );
 
 /***/ }),
-/* 42 */
+/* 43 */
 /***/ (function(module, exports, __webpack_require__) {
 
 angular.module('hplus.modules.navbar', []);
 
-__webpack_require__(43);
-__webpack_require__(45);
+__webpack_require__(44);
+__webpack_require__(46);
 
 /***/ }),
-/* 43 */
+/* 44 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var navbar = __webpack_require__(44);
+var navbar = __webpack_require__(45);
 angular.module('hplus.modules.navbar')
 
   .directive('hplusNavbar', function(){
@@ -38607,13 +38626,13 @@ angular.module('hplus.modules.navbar')
   });
 
 /***/ }),
-/* 44 */
+/* 45 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"row navbar__background\" ng-controller=\"NavbarController\">\r\n  <div class=\"col col-md-10 col-md-offset-1\">\r\n\r\n    <div class=\"col col-md-8\">\r\n      <div ng-show=\"user == null\" ng-class=\"selected('')\" ng-click=\"go('/')\">\r\n        HealthPlus\r\n      </div>\r\n      <div ng-show=\"user != null\" ng-class=\"selected('record')\" ng-click=\"go('/admin/list/record')\">\r\n        Medical Records\r\n      </div>\r\n      <div ng-show=\"user != null\" ng-class=\"selected('patient')\" ng-click=\"go('/admin/list/patient')\">\r\n        Patients\r\n      </div>\r\n      <div ng-show=\"user != null && user.admin\" ng-class=\"selected('doctor')\" ng-click=\"go('/admin/list/doctor')\">\r\n        Doctors\r\n      </div>\r\n      <div ng-show=\"user != null\" ng-class=\"selected('medicine')\" ng-click=\"go('/admin/list/medicine')\">\r\n        Medicines\r\n      </div>\r\n      <div ng-show=\"user != null\" ng-class=\"selected('disease')\" ng-click=\"go('/admin/list/disease')\">\r\n        Diseases\r\n      </div>\r\n    </div>\r\n    <div ng-show=\"checkPage()\" class=\"col col-md-4 navbar__action-container\">\r\n      <div class=\"navbar__btn navbar__btn--action\">\r\n        <span class=\"anchor-like\" ng-click=\"go(link)\">\r\n          <i class=\"fa fa-plus-square\"></i> {{ registerButton }}\r\n        </span>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n";
 
 /***/ }),
-/* 45 */
+/* 46 */
 /***/ (function(module, exports) {
 
 angular.module('hplus.modules.navbar')
@@ -38677,22 +38696,22 @@ angular.module('hplus.modules.navbar')
   );
 
 /***/ }),
-/* 46 */
+/* 47 */
 /***/ (function(module, exports, __webpack_require__) {
 
 angular.module('hplus.factory', [])
 
-__webpack_require__(47);
 __webpack_require__(48);
 __webpack_require__(49);
-__webpack_require__(145);
 __webpack_require__(50);
 __webpack_require__(51);
-__webpack_require__(146);
 __webpack_require__(52);
+__webpack_require__(53);
+__webpack_require__(54);
+__webpack_require__(55);
 
 /***/ }),
-/* 47 */
+/* 48 */
 /***/ (function(module, exports) {
 
 angular.module('hplus.factory')
@@ -38736,7 +38755,7 @@ angular.module('hplus.factory')
   );
 
 /***/ }),
-/* 48 */
+/* 49 */
 /***/ (function(module, exports) {
 
 angular.module('hplus.factory')
@@ -38763,7 +38782,7 @@ angular.module('hplus.factory')
   );
 
 /***/ }),
-/* 49 */
+/* 50 */
 /***/ (function(module, exports) {
 
 angular.module('hplus.factory')
@@ -38988,7 +39007,161 @@ angular.module('hplus.factory')
   );
 
 /***/ }),
-/* 50 */
+/* 51 */
+/***/ (function(module, exports) {
+
+angular.module('hplus.factory')
+
+  .factory('diseaseFactory', 
+    function($http, $rootScope, $route, modalFactory, $window, $location, globalFactory){
+
+      var registerDisease = function(diseaseObject){
+        $http({
+          method: 'POST',
+          url: '/Disease',
+          data: diseaseObject
+        }).then(function successCallback(response) {
+        	console.log(response);
+          var modalObject = {
+            type: "notify",
+            title: "Registration Successful!",
+            description: "Disease Registered.",
+            positiveButton: "Ok",
+            isVisible: true
+          };
+          modalFactory.setContents(modalObject);
+        }, function errorCallback(response) {
+          var errorMessage = "";
+          console.log(response);
+
+          var modalObject = {
+            type: "notify",
+            title: "Registration Failure!",
+            description: "A disease with the same name already exists!",
+            positiveButton: "Ok",
+            isVisible: true
+          };
+          modalFactory.setContents(modalObject);
+        });
+      }
+
+      var getListOfDiseases = function(){
+        return $http({
+          method: "GET",
+          url: "/Disease",
+        });
+      };
+
+      var goList = function(){
+        $location.path('/admin/list/disease');
+        $route.reload();
+      };
+
+      var updateDisease = function(disease){
+        var modalObject;
+
+        $http({
+          method: "PUT",
+          url: "/Disease",
+          data: disease
+        }).then(function(response){
+          console.log(response);
+          saveDisease(response.data);
+          modalObject = {
+            type: "notify",
+            title: "Successfully Updated!",
+            description: "Successfully updated disease!",
+            positiveButton: "Ok",
+            isVisible: true,
+            data: goList
+          };
+        
+          modalFactory.setContents(modalObject);
+        }, function(response){
+          console.log(response);
+          var modalObject = {
+            type: "notify",
+            title: "Update Failure!",
+            description: "Another disease with the same name already exists!",
+            positiveButton: "Ok",
+            isVisible: true
+          };
+        
+          modalFactory.setContents(modalObject);
+        });
+      };
+
+      var confirmDeleteDisease = function(disease){
+        var name = disease.name[0].toUpperCase() + disease.name.substr(1);
+
+        $http({
+          method: "DELETE",
+          url: "/Disease",
+          data: disease
+        }).then(function successCallback(response){
+          console.log(response);
+          var modalObject = {
+            type: "notify",
+            title: "Archive Successful!",
+            description: "Successfully archived " + name + "!",
+            positiveButton: "Ok",
+            isVisible: true,
+            data: goList
+          };
+
+            modalFactory.setContents(modalObject);
+        }, function errorCallback(response){
+          console.log(response);
+          var modalObject = {
+            type: "notify",
+            title: "Archive Failed!",
+            description: "Unable to archive disease, a patient currently has this disease.",
+            positiveButton: "Ok",
+            isVisible: true,
+            data: goList
+          };
+
+          modalFactory.setContents(modalObject);
+        }); 
+      };
+      
+      var deleteDisease = function(disease){
+        var name = disease.name[0].toUpperCase() + disease.name.substr(1);
+        var modalObject = {
+          type: "confirm",
+          title: "Archive Confirmation",
+          description: "Are you sure you want to archive " + name + "?",
+          negativeButton: "No",
+          positiveButton: "Yes",
+          isVisible: true,
+          data: confirmDeleteDisease,
+          object: disease
+        };
+
+        modalFactory.setContents(modalObject);
+      };
+
+      var saveDisease = function(disease){
+        $window.localStorage.setItem("disease", angular.toJson(disease));
+      };
+
+      var getDisease = function(){
+        return angular.fromJson($window.localStorage.getItem("disease"));
+      };
+  
+      return {
+        registerDisease: registerDisease,
+        getListOfDiseases: getListOfDiseases,
+        getDisease: getDisease,
+        saveDisease: saveDisease,
+        updateDisease: updateDisease,
+        deleteDisease: deleteDisease,
+      }
+    }
+  );
+
+/***/ }),
+/* 52 */
 /***/ (function(module, exports) {
 
 angular.module('hplus.factory')
@@ -39136,7 +39309,7 @@ angular.module('hplus.factory')
   );
 
 /***/ }),
-/* 51 */
+/* 53 */
 /***/ (function(module, exports) {
 
 angular.module('hplus.factory')
@@ -39288,7 +39461,84 @@ angular.module('hplus.factory')
 
 
 /***/ }),
-/* 52 */
+/* 54 */
+/***/ (function(module, exports) {
+
+angular.module('hplus.factory')
+
+  .factory('symptomFactory', 
+    function($http, modalFactory, $window, $location, globalFactory, $rootScope){
+
+      var registerSymptom = function(symptomObject){
+        var modalObject;
+
+        $http({
+          method: 'POST',
+          url: '/Symptom', // Change URL here
+          data: symptomObject
+        }).then(function successCallback(response) {
+        	console.log(response);
+          modalObject = {
+            type: "notify",
+            title: "Registration Successful!",
+            description: "Symptom Saved.",
+            positiveButton: "Ok",
+            isVisible: true
+          };
+
+          modalFactory.setContents(modalObject);
+          $rootScope.$broadcast("repopulate");
+        }, function errorCallback(response) {
+          console.log(response);
+          modalObject = {
+            type: "notify",
+            title: "Registration Failure!",
+            description: "Symptom with the same name already exists!",
+            positiveButton: "Ok",
+            isVisible: true
+          };
+
+          modalFactory.setContents(modalObject);
+        });
+      }
+
+      var getListOfSymptoms = function(){
+        return $http({
+          method: "GET",
+          url: "/Symptom",
+        });
+      };
+      
+      var getListOfSymptomsID = function(symptomObject){
+          return $http({
+            method: "GET",
+            url: "/Symptom",
+            data: symptomObject
+          });
+        };
+
+      var goList = function(){
+        $location.path('/admin/list/disease');
+      }
+      var getSymptom = function(symptomObject){
+        return $http({
+            method: "GET",
+            url: "/Symptom",
+            data: symptomObject
+          });
+      };
+      
+      return {
+        registerSymptom: registerSymptom,
+        getListOfSymptoms: getListOfSymptoms,
+        getListOfSymptomsID: getListOfSymptomsID,
+        getSymptom: getSymptom
+      }
+    }
+  );
+
+/***/ }),
+/* 55 */
 /***/ (function(module, exports) {
 
 angular.module('hplus.factory')
@@ -39340,19 +39590,19 @@ angular.module('hplus.factory')
   );
 
 /***/ }),
-/* 53 */
+/* 56 */
 /***/ (function(module, exports, __webpack_require__) {
 
 angular.module('hplus.modules.modal', []);
 
-__webpack_require__(54);
-__webpack_require__(56);
+__webpack_require__(57);
+__webpack_require__(59);
 
 /***/ }),
-/* 54 */
+/* 57 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var modal = __webpack_require__(55);
+var modal = __webpack_require__(58);
 angular.module('hplus.modules.modal')
 
   .directive('hplusModal', function(){
@@ -39363,13 +39613,13 @@ angular.module('hplus.modules.modal')
   })
 
 /***/ }),
-/* 55 */
+/* 58 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"modal__background\" ng-controller=\"ModalController\" ng-show=\"modalContents.isVisible\">\r\n\r\n  <div class=\"col col-md-offset-3 col-md-6 modal__box\">\r\n    <div class=\"modal__title\">\r\n      {{ modalContents.title }}\r\n    </div>\r\n\r\n    <hr class=\"modal__divider\">\r\n\r\n    <div class=\"modal__description\">\r\n      {{ modalContents.description }}\r\n    </div>\r\n\r\n    <button class=\"modal__btn modal__btn--bad\" ng-if=\"isType('confirm')\" ng-click=\"ret(false);close()\">{{ modalContents.negativeButton }}</button>\r\n    <button class=\"modal__btn modal__btn--good\" ng-click=\"ret(true);close()\">{{ modalContents.positiveButton }}</button>\r\n\r\n  </div>\r\n</div>";
 
 /***/ }),
-/* 56 */
+/* 59 */
 /***/ (function(module, exports) {
 
 angular.module('hplus.modules.modal')
@@ -39414,10 +39664,10 @@ angular.module('hplus.modules.modal')
   );
 
 /***/ }),
-/* 57 */
+/* 60 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var editdisease = __webpack_require__(58);
+var editdisease = __webpack_require__(61);
 
 angular.module('hplus.modules.editdisease', [])
 
@@ -39428,17 +39678,17 @@ angular.module('hplus.modules.editdisease', [])
       })
   });
   
-  __webpack_require__(59);
+  __webpack_require__(62);
 
 
 /***/ }),
-/* 58 */
+/* 61 */
 /***/ (function(module, exports) {
 
 module.exports = "<div ng-controller=\"EditDiseaseController\">\r\n\t<div class=\"row\">\r\n\t\t<div class=\"col col-md-8 col-md-offset-1\">\r\n\t\t\t<h1>Update Disease</h1>\r\n\t\t</div>\r\n\t</div>\r\n\r\n\t<div class=\"row\">\r\n\t\t<div class=\"col-md-10 col-md-offset-1\">\r\n\t\t\t<ng-form name=\"diseaseForm\">\r\n\t\t\t\t<div class=\"col col-md-4\">\r\n\t\t\t\t\t<label class=\"subtitle\">Name of Disease</label>\r\n\t\t\t\t\t<input type=\"text\" placeholder=\"Name\" ng-model=\"disease.name\" ng-required=\"true\" name=\"Name\">\r\n\t\t\t\t\t<button type=\"submit\" ng-class=\"checkStatus(diseaseForm.$valid)\" ng-disabled=\"diseaseForm.$invalid\" ng-click=\"updateDisease()\">Update</button>\r\n\t\t\t\t\t<button class=\"outline delete_btn\" ng-click=\"delete()\">Archive</button>\r\n\t\t\t\t</div>\r\n\t\t\t\r\n\t\t\t\t<div class=\"col col-md-4\">\r\n\t\t\t\t\t<label class=\"subtitle\">Symptoms</label>\r\n\t\t\t\t\t<input type=\"text\" placeholder=\"Search Symptom\" ng-model=\"searchFilterSymp\">\r\n\t\t\t\t\t<div class=\"borders\">\r\n\t\t\t\t\t\t<div class=\"scrollable\">\r\n\t\t\t\t\t\t\t<div ng-repeat=\"option in symptomList | filter: {'name' : searchFilterSymp} | orderBy:['-val','name']\">\r\n\t\t\t\t\t\t\t\t<input type=\"checkbox\" ng-model=\"option.val\" ng-change=\"addRemoveSymptom(symptomList | filter: {val: true} | orderBy : 'name')\" ng-required=\"!disease.symptomId.length\"><span class=\"checkboxText\">{{ option.name[0].toUpperCase() + option.name.substr(1) }}</span><br>\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\r\n\t\t\t\t</div>\r\n\t\t\t\t<div class=\"col col-md-4\">\r\n\t\t\t\t\t<label class=\"subtitle\">Medicines</label>\r\n\t\t\t\t\t<input type=\"text\" placeholder=\"Search Medicine\" ng-model=\"searchFilterMed\">\r\n\t\t\t\t\t<div class=\"borders\">\r\n\t\t\t\t\t\t<div class=\"scrollable\">\r\n\t\t\t\t\t\t\t<div ng-repeat=\"optionmed in medicineList | filter: {'name' : searchFilterMed} | orderBy:['-val','name']\">\r\n\t\t\t\t\t\t\t\t<input type=\"checkbox\" ng-model=\"optionmed.val\" ng-change=\"addRemoveMedicine(medicineList | filter: {val: true}| orderBy:'name')\" ng-required=\"!disease.medicineId.length\"><span class=\"checkboxText\">{{ optionmed.name[0].toUpperCase() + optionmed.name.substr(1) }}</span><br>\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t</div>\r\n\t\t\t</ng-form>\r\n\t\t</div>\r\n\t</div>\r\n\r\n\t<div class=\"row\">\r\n\t\t\r\n\t\t<div class=\"col-md-10 col-md-offset-1\">\r\n\t\t\t\t<div class=\"col col-md-4 col-md-offset-4\">\r\n\t\t\t\t<div class=\" col-md-12 borders\" ng-show=\"showAdd\">\r\n\t\t\t\t\t\t<ng-form name=\"saveSympForm\">\r\n\t\t\t\t\t\t\t<input type=\"text\" ng-model=\"addSymptom\" ng-required=\"true\" placeholder=\"Symptom Name\">\r\n\t\t\t\t\t\t\t<button ng-click=\"saveSymptom()\" ng-class=\"checkStatus(saveSympForm.$valid)\" ng-disabled=\"saveSympForm.$invalid\" type=\"submit\">Add</button>\r\n\t\t\t\t\t\t\t<button ng-click=\"showAdd = !showAdd\">Close</button>\r\n\t\t\t\t\t\t</ng-form>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t\t\r\n\t\t\t\t\t<button ng-hide=\"showAdd\" ng-click=\"showAdd = !showAdd\" type=\"submit\">Add New Symptom</button>\r\n\t\t\t\t</div>\r\n\t\t</div>\r\n\t</div>\r\n</div>";
 
 /***/ }),
-/* 59 */
+/* 62 */
 /***/ (function(module, exports) {
 
 angular.module('hplus.modules.editdisease')
@@ -39608,10 +39858,10 @@ angular.module('hplus.modules.editdisease')
   
 
 /***/ }),
-/* 60 */
+/* 63 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var editdoctor = __webpack_require__(61);
+var editdoctor = __webpack_require__(64);
 
 angular.module('hplus.modules.editdoctor', [])
 
@@ -39622,16 +39872,16 @@ angular.module('hplus.modules.editdoctor', [])
       })
   });
 
-  __webpack_require__(62);
+  __webpack_require__(65);
 
 /***/ }),
-/* 61 */
+/* 64 */
 /***/ (function(module, exports) {
 
 module.exports = "<div ng-controller=\"EditDoctorController\">\r\n  <div class=\"row\">\r\n    <div class=\"col col-md-8 col-md-offset-1\">\r\n      <h1><i class=\"fa fa-pencil-square-o\"></i> Editing Dr. {{ doctorData.firstname + \" \" + doctorData.lastname }} ({{ doctorData.username }})</h1>\r\n    </div>\r\n  </div>\r\n\r\n  <div class=\"row\">\r\n    <ng-form name=\"EditDoctorForm\">\r\n      <div class=\"col col-md-3 col-md-offset-1\">\r\n        <div class=\"match-padding\">\r\n          \r\n          <label class=\"subtitle\">Specialization</label>\r\n          <select ng-model=\"doctorData.specialization\" ng-required=\"true\">\r\n            <option ng-repeat=\"option in specialization\" value=\"{{ option }}\">{{ option }}</option>\r\n          </select>\r\n          \r\n          <label class=\"subtitle\">Contact Number</label>\r\n          <input type=\"text\" ng-model=\"doctorData.contactNo\" ng-pattern=\"contactNoRegex\" ng-required=\"true\">\r\n          \r\n          <label class=\"subtitle\">Address</label>\r\n          <input type=\"text\" ng-model=\"doctorData.address\" ng-required=\"true\">\r\n          \r\n          <label class=\"subtitle\">E-mail Address</label>\r\n          <input type=\"email\" ng-model=\"doctorData.email\" ng-required=\"true\">\r\n          \r\n          <div> \r\n            <button ng-class=\"checkStatus(EditDoctorForm.$valid)\" ng-disabled=\"EditDoctorForm.$invalid\" ng-click=\"update()\">Update</button>\r\n            <button class=\"outline delete_btn\" ng-show=\"doctorData.medicalRecords == null\" ng-click=\"delete()\">Archive</button>\r\n          </div>\r\n          \r\n        </div>\r\n      </div>\r\n    </ng-form>\r\n  </div>\r\n\r\n</div>";
 
 /***/ }),
-/* 62 */
+/* 65 */
 /***/ (function(module, exports) {
 
 angular.module('hplus.modules.editdoctor')
@@ -39732,2973 +39982,13 @@ angular.module('hplus.modules.editdoctor')
   );
 
 /***/ }),
-/* 63 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var editmedicine = __webpack_require__(64);
-
-angular.module('hplus.modules.editmedicine', [])
-
-  .config(function ($routeProvider){  
-    $routeProvider      
-      .when('/admin/update/medicine',{
-        template: editmedicine
-      })
-  });
-
-  __webpack_require__(65);
-
-/***/ }),
-/* 64 */
-/***/ (function(module, exports) {
-
-module.exports = "<div ng-controller=\"EditMedicineController\">\r\n\t<div class=\"row\">\r\n\t\t<div class=\"col col-md-8 col-md-offset-1\">\r\n\t\t\t<h1>Edit Medicine</h1>\r\n\t\t</div>\r\n\t</div>\r\n\r\n\t<div class=\"row\">\r\n\t\t<div class=\"col col-md-10 col-md-offset-1\">\r\n\t\t\t<ng-form name=\"medicineForm\">\r\n\t\t\t\t<div class=\"col-md-3\">\r\n\t\t\t\t\t<label class=\"subtitle\">Name of Medicine:</label>\r\n\t\t\t\t\t<input type=\"text\" placeholder=\"Brand Name\" ng-model=\"medicine.name\" ng-required=\"true\">\r\n\r\n\t\t\t\t<!--\t<label class=\"subtitle\">Generic Name:</label>\r\n\t\t\t\t\t<input type=\"text\" placeholder=\"Generic Name\" ng-model=\"medicine.generic\" ng-required=\"true\">\r\n\t\t\t\t-->\r\n\r\n\t\t\t\t\t<label class=\"subtitle\">Medicine Type:</label>\r\n\t\t\t\t\t<select name=\"selectMeds\" ng-model=\"medicine.type\" ng-required=\"true\" ng-options=\"value as value for value in medicineTypes\">\r\n\t\t\t\t\t\t<option value=\"\">--Select One--</option>\r\n\t\t\t\t\t</select>\r\n\r\n\t\t\t\t\t<label class=\"subtitle\">Price (PHP) :</label> \r\n\t\t\t\t\t<input id=\"priceInputField\" type=\"number\" placeholder=\"Price\" ng-model=\"medicine.price\" ng-required=\"true\">\r\n\r\n\t\t\t\t\t<button ng-class=\"checkStatus(medicineForm.$valid)\" ng-disabled=\"medicineForm.$invalid\"  type=\"submit\" ng-click=\"updateMedicine()\">Update</button>\r\n\t\t\t\t\t<button class=\"outline delete_btn\" ng-click=\"delete()\">Archive</button>\r\n\t\t\t\t</div>\r\n\t\t\t\t\r\n\t\t\t\t<div class=\"col col-md-9\">\r\n\t\t\t\t\t<label class=\"subtitle\">Description:</label>\r\n\t\t\t\t\t<textarea id=\"descMed\" rows=\"8\" cols=\"50\" ng-model=\"medicine.description\" placeholder=\"Description\" ng-required=\"true\"></textarea>\r\n\t\t\t\t</div>\r\n\t\t\t</ng-form>\r\n\t\t</div>\r\n\t</div>\r\n</div>";
-
-/***/ }),
-/* 65 */
-/***/ (function(module, exports) {
-
-angular.module('hplus.modules.editmedicine')
-
-  .controller('EditMedicineController',
-    function($scope, $location, globalFactory, doctorFactory, medicineFactory, modalFactory){
-
-      var user = doctorFactory.getUser();
-
-      if(user != null) {
-        if(!user.admin) {
-          $location.path("/admin/list/record");
-        }
-      } else {
-        $location.path("/");
-      }
-
-      $scope.medicine = medicineFactory.getMedicine();
-
-      if($scope.medicine == null){
-        $location.path('/admin/list/medicine');
-      } else if($scope.medicine.medicalRecords) {
-        $location.path("/admin/list/medicine");
-      }
-
-      $scope.go = function(path){
-        globalFactory.go(path);
-      };
-
-      var confirmUpdateMedicine = function() {
-        medicineFactory.updateMedicine($scope.medicine);
-      };
-      
-      $scope.updateMedicine = function(){
-        modalObject = {
-          type: "confirm",
-          title: "Confirm Update",
-          description: "Are you sure you want to update " + $scope.medicine.name + "?",
-          negativeButton: "No",
-          positiveButton: "Yes",
-          isVisible: true,
-          data: confirmUpdateMedicine
-        };
-      
-        modalFactory.setContents(modalObject);
-      };
-
-      $scope.checkStatus = function(status){
-        var retClass;
-
-        if(status){
-          retClass = "edit-button";
-        } else {
-          retClass = "delete-button";
-        }
-
-        return retClass;
-      };
-
-      $scope.delete = function(){
-          medicineFactory.deleteMedicine($scope.medicine);
-      };
-      
-      $scope.medicineTypes = [
-        "Liquid", 
-        "Tablet", 
-        "Capsule", 
-        "Topical Medicine", 
-        "Suppository",
-        "Drops",
-        "Inhaler",
-        "Injection",
-        "Implant",
-        "Patch",
-        "Buccal or Sublingual Tablets"
-      ];
-    }
-  );
-
-/***/ }),
 /* 66 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var registermedicalrecord = __webpack_require__(67);
-
-angular.module('hplus.modules.registermedicalrecord', [])
-
-  .config(function ($routeProvider){  
-    $routeProvider      
-      .when('/doctor/register/record',{
-        template: registermedicalrecord
-      })
-  });
-  __webpack_require__(151);
-  __webpack_require__(68);
-
-
-/***/ }),
-/* 67 */
-/***/ (function(module, exports) {
-
-module.exports = "<div class=\"row\">\r\n  <div class=\"col col-md-8 col-md-offset-1\">\r\n    <h1>Register Medical Record</h1>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row\" ng-controller=\"RegisterMedicalRecordController\">\r\n  <ng-form name=\"createMedicalRecordForm\">\r\n    <div class=\"col col-md-2 col-md-offset-1\" ng-hide=\"selectedPatient != null\">\r\n      <div class=\"row\">\r\n\t      <div class=\"col col-md-6\">\r\n\t        <label class=\"subtitle\">Search</label>\r\n\t      </div>\r\n\t    </div>\r\n\t\t  <div class=\"match-padding\">\r\n\t      <input type=\"text\" placeholder=\"Enter a name\" ng-model=\"searchFilter\">\r\n\t      <button ng-click=\"go('/admin/register/patient')\">New Patient</button>\r\n\t    </div>\r\n    </div>\r\n    <div class=\"col col-md-8\" ng-hide=\"selectedPatient != null\">\r\n      <div class=\"col col-md-9\"><!-- List sector -->\r\n\t\t    <span class=\"subtitle\"><span ng-hide=\"searchFilter == ''\">{{(patients | filter : {'name': searchFilter}).length}}</span><span ng-hide=\"searchFilter != ''\">All {{patients.length}}</span> Results</span>\r\n\t\t    <hplus-select-patient-card dir-paginate=\"pat in patients | filter: {'lastname' : searchFilter} | itemsPerPage:10  | orderBy : ['newPatient','lastname','firstname']\" data=\"pat\" ng-click=\"setSelected(pat)\" ng-class=\"{'selectedCard__container': pat == selectedPatient}\"></hplus-explore-patients-card>\r\n        <!-- Pagination Section -->\r\n        <dir-pagination-controls max-size=\"5\"></dir-pagination-controls>\r\n      </div>\r\n    </div>\r\n    \r\n    <div class=\"col-md-10 col-md-offset-1\" ng-hide=\"selectedPatient == null\">\r\n    <div class=\"row\">\r\n      <div class=\"col-md-5\">\r\n        <hplus-select-patient-card data=\"selectedPatient\" ng-click=\"selectedPatient = null\"></hplus-selected-patient-card>\r\n      </div>\r\n      \r\n    </div>\r\n      <ng-form name=\"createMedicalRecordForm\">\r\n\r\n\t\t\t  <div class=\"col-md-4\">\r\n\t\t\t    <label class=\"subtitle\">Discharge Date </label>\r\n\t\t\t    <input type=\"date\" ng-model=\"medicalRecord.dischargeDate\" ng-required=\"true\">\r\n\t\t\t  </div>\r\n\t\t\t  <div class=\"col-md-4 col-md-offset-4\">\r\n\t\t\t    <label class=\"subtitle\">Patient Type</label>\r\n\t\t\t    <select ng-model=\"medicalRecord.inPatient\" ng-required=\"true\" ng-options=\"type.val as type.name for type in patientType\">\r\n\t\t\t      <option>--Select--</option>\r\n\t\t\t    </select>\r\n\t\t\t  </div>\r\n\t\t\t\r\n\t\t\t\r\n\t\t\t<div class=\"col col-md-4\">\r\n\t\t\t  <label class=\"subtitle\">Symptoms</label>\r\n\t\t\t  <input type=\"text\" placeholder=\"Search Symptom\" ng-model=\"searchFilterSymp\">\r\n\t\t\t  <div class=\"borders\">\r\n\t\t\t    <div class=\"scrollable\">\r\n\t\t\t      <div ng-repeat=\"option in symptomList | filter: {'name':searchFilterSymp} | orderBy:['val','name']\">\r\n\t\t\t        <input type=\"checkbox\" ng-model=\"option.val\" ng-change=\"addRemoveSymptom(symptomList | filter: {val: true} | orderBy : 'name')\" ng-required=\"!medicalRecord.symptomIdList.length\" ng-false-value=\"null\">{{option.name}}<br>\r\n\t\t\t      </div>\r\n\t\t\t    </div>\r\n\t\t\t  </div>\r\n\t\t\t  <button ng-class=\"checkStatus(createMedicalRecordForm.$valid)\" type=\"submit\" ng-click=\"saveMedRec()\" ng-disabled=\"createMedicalRecordForm.$invalid\">Create</button>\r\n\t\t\t</div>\r\n\t\t\t\r\n\t\t\t<div class=\"col col-md-4\">\r\n\t\t\t  <label class=\"subtitle\">Diseases</label>\r\n\t\t\t  <input type=\"text\" placeholder=\"Search Disease\" ng-model=\"searchFilterDis\">\r\n\t\t\t  <div class=\"borders\">\r\n\t\t\t    <div class=\"scrollable\">\r\n\t\t\t      <div ng-repeat=\"option in diseaseListFiltered | filter: {'name':searchFilterDis} | orderBy:['val','name']\">\r\n\t\t\t        <input type=\"checkbox\" ng-model=\"option.val\" ng-change=\"addRemoveDisease(diseaseListFiltered | filter: {val: true} | orderBy : 'name')\" ng-required=\"!medicalRecord.diseaseIdList.length\" ng-false-value=\"null\">{{option.name}}<br>\r\n\t\t\t      </div>\r\n\t\t\t    </div>\r\n\t\t\t  </div>\r\n\t\t\t</div>\r\n\t\t\t\r\n\t\t\t<div class=\"col col-md-4\">\r\n\t\t\t  <label class=\"subtitle\">Medicines</label>\r\n\t\t\t  <input type=\"text\" placeholder=\"Search Medicine\" ng-model=\"searchFilterMed\">\r\n\t\t\t  <div class=\"borders\">\r\n\t\t\t    <div class=\"scrollable\">\r\n\t\t\t      <div ng-repeat=\"optionmed in medicineListFiltered | filter: {'name':searchFilterMed} | orderBy:['val','name']\">\r\n\t\t\t        <input type=\"checkbox\" ng-model=\"optionmed.val\" ng-change=\"addRemoveMedicine(medicineListFiltered | filter: {val: true}| orderBy:'name')\"  ng-required=\"medicalRecord.diseaseIdList.length > medicalRecord.medicineIdList.length\" ng-false-value=\"null\">{{optionmed.name}}\r\n\t\t\t        <div class=\"row\" ng-hide=\"!optionmed.val\">\r\n\t\t\t          <input type=\"number\" ng-model=\"optionmed.quantity\" placeholder=\"Quantity\" ng-change=\"calculateTotal()\" ng-required=\"optionmed.val\" class=\"quant\">{{' x ' + (optionmed.price|currency : 'PHP ')}}\r\n\t\t\t        </div>\r\n\t\t\t      </div>\r\n\t\t\t    </div>\r\n\t\t\t  </div>\r\n\t\t\t  <br>\r\n\t\t\t    <div class=\"margins\">\r\n\t\t\t      <div class=\"detail__containerTotalPrice\">\r\n\t\t\t          <b>Total:</b> {{medicalRecord.totalCost | currency : 'PHP '}}\r\n\t\t\t      </div>\r\n\t\t\t    </div>\r\n\t\t\t</div>\r\n\t\t\t</ng-form>\r\n\r\n\t  </div>\r\n\t  \r\n  </ng-form>\r\n</div>";
-
-/***/ }),
-/* 68 */
-/***/ (function(module, exports) {
-
-angular.module('hplus.modules.registermedicalrecord')
-
-  .controller('RegisterMedicalRecordController',
-    function($scope, $location, globalFactory, doctorFactory, symptomFactory, medicineFactory, diseaseFactory, patientFactory, medicalRecordFactory){
-
-      $scope.user = doctorFactory.getUser();
-      console.log($scope.user);
-      if($scope.user != null) {
-        if($scope.user.admin){
-          $location.path("/admin/list/record");
-        }
-      } else {
-        $location.path("/");
-      }
-      
-      $scope.go = function(path){
-        globalFactory.go(path);
-      };
-      
-      $scope.searchFilter = "";
-      
-      $scope.setSelected = function(pat){
-        $scope.selectedPatient = pat;
-      };
-      
-      $scope.patients=[];
-      
-      $scope.initComponents = function(){
-    	  $scope.medicalRecord.firstName = "";
-    	  $scope.medicalRecord.lastName = "";
-    	  $scope.medicalRecord.birthday = "";
-    	  $scope.medicalRecord.sex = "";
-    	  $scope.medicalRecord.admissionDate = "";
-    	  $scope.medicalRecord.disease = "";
-    	  
-    	  for(var i=0; i < $scope.medicalRecord.symptomIdList.length; i++){
-    		  $scope.medicalRecord.symptomIdList[i] = false;
-    	  }
-    	  
-    	  for(var i=0; i < $scope.medicalRecord.medicineIdList.length; i++){
-    		  $scope.medicalRecord.medicineIdList[i] = false;
-    	  }
-      };
-      
-      $scope.newPatient = patientFactory.getPatient();
-      
-      var toTitleCase = function(str){
-          return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
-      };
-      
-      var populate = function(){
-        patientFactory.getListOfPatients().then(function(response){
-          console.log(response);
-          $scope.patients = response.data.patients;
-          if($scope.newPatient != null && $scope.newPatient.id == null){
-            $scope.newPatient.firstname = toTitleCase($scope.newPatient.firstname);
-            $scope.newPatient.lastname = toTitleCase($scope.newPatient.lastname);
-            $scope.newPatient.address = toTitleCase($scope.newPatient.address);
-            console.log("New Patient exists "+ $scope.newPatient.firstname + " "+$scope.newPatient.lastname);
-            $scope.patients.forEach(function(pat){
-              if(pat.lastname == $scope.newPatient.lastname &&
-                 pat.firstname == $scope.newPatient.firstname &&
-                 pat.address == $scope.newPatient.address &&
-                 pat.sex == !$scope.newPatient.sex){
-                console.log("New Patient found "+ pat.firstname);
-                pat.newPatient = true;
-              }
-            });
-          }
-        }, function(response){
-          console.log(response);
-        });
-        symptomFactory.getListOfSymptoms().then(function(response){
-            console.log(response);
-    	      $scope.symptomList = response.data.symptoms;
-          });
-          medicineFactory.getListOfMedicines().then(function(response){
-            $scope.medicineList = response.data.medicines;
-          });
-          diseaseFactory.getListOfDiseases().then(function(response){
-            console.log(response); 
-            $scope.diseaseList = response.data.diseases;
-          });
-      };
-
-      populate();
-      
-      
-      
-      
-      
-
-	  $scope.medicalRecord = {
-	    "symptomIdList" : [],
-	    "diseaseIdList" : [],
-	    "medicineIdList" : [],
-	    "quantityList" : [],
-        "totalCost" : 0
-	  };
-	  
-	  $scope.patientType = [
-        {"name" : "Inpatient", "val" : true},
-        {"name" : "Outpatient", "val" : false}
-      ];
-	  
-	  $scope.addRemoveSymptom = function(hold){
-        $scope.medicalRecord.symptomIdList = hold;
-        
-        $scope.diseaseListFiltered = [];
-        if(hold.length > 0){
-          var i,j;
-          $scope.diseaseList.forEach(function(dis){
-            dis.symptomId.sort();
-            for(i=j=0; i < hold.length && j < dis.symptomId.length;){
-              if(hold[i].id == dis.symptomId[j]){
-                i++; j++;
-              }else if((hold[i].id > dis.symptomId[j])){
-                j++;
-              }else{
-                break;
-              }
-            }
-            if(i == hold.length){
-              $scope.diseaseListFiltered.push(dis);  
-            }
-            
-          });
-        }
-        
-	  };
-	  
-	  $scope.addRemoveDisease = function(hold){
-        $scope.medicalRecord.diseaseIdList = hold;
-        
-        $scope.medicineListFiltered = [];
-        if(hold.length > 0){
-          var i,j;
-          $scope.medicineList.forEach(function(med){
-            for(i = 0; i < hold.length; i++){
-              hold[i].medicineId.sort();
-              for(j = 0; j < hold[i].medicineId.length && med.id < hold[i].medicineId[j] ; j++){}
-              if(med.id == hold[i].medicineId[j]){
-                break;
-              }
-            }
-            if(i < hold.length){
-              $scope.medicineListFiltered.push(med);  
-            }
-            
-          });
-        }
-	  };
-	  
-	  $scope.addRemoveMedicine = function(hold){
-        $scope.medicalRecord.medicineIdList = hold;
-	  };
-	  
-	  $scope.calculateTotal = function(){
-        $scope.medicalRecord.totalCost = 0;
-        $scope.medicalRecord.medicineIdList.forEach(function(med){
-          $scope.medicalRecord.totalCost += (med.price * med.quantity);
-        });
-	  };
-	  
-	  $scope.symptomList = [];
-      
-      $scope.medicineList = [];
-      $scope.medicineListFiltered = [];
-      
-      $scope.diseaseList = [];
-      $scope.diseaseListFiltered = [];
-
-      $scope.delete = function(doctor){
-        doctorFactory.deleteDoctor(doctor);
-      };
-      
-      $scope.saveMedRec = function(){
-        var medHold =[];
-        var symHold =[];
-        var disHold =[];
-        $scope.medicalRecord.patientId = $scope.selectedPatient.id;
-        $scope.medicalRecord.doctorId = $scope.user.id;
-        $scope.medicalRecord.quantityList = [];
-        
-        $scope.medicalRecord.medicineIdList.forEach(function(med){
-          $scope.medicalRecord.quantityList.push(med.quantity);
-          medHold.push(med.id);
-        });
-        $scope.medicalRecord.symptomIdList.forEach(function(sym){
-          symHold.push(sym.id);
-        });
-        $scope.medicalRecord.diseaseIdList.forEach(function(dis){
-          disHold.push(dis.id);
-        });
-        
-        $scope.medicalRecord.medicineIdList = medHold;
-        $scope.medicalRecord.symptomIdList = symHold;
-        $scope.medicalRecord.diseaseIdList = disHold;
-        
-        //alert($scope.medicalRecord);
-        //registerMedRec
-        medicalRecordFactory.createMedicalRecord($scope.medicalRecord, $scope.initComponents).then(function(){
-          patientFactory.savePatient(null);
-          $scope.newPatient = patientFactory.getPatient();
-          $scope.selectedPatient = null;
-          $scope.medicalRecord = {
-    	    "symptomIdList" : [],
-    	    "diseaseIdList" : [],
-    	    "medicineIdList" : [],
-    	    "quantityList" : [],
-            "totalCost" : 0
-          };
-          populate();
-        },function(){});
-      };
-      
-      $scope.checkStatus = function(status){
-        return (status) ? "edit-button" : "delete-button";
-      };
-      
-      
-    }
-  );
-
-/***/ }),
-/* 69 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var explorediseases = __webpack_require__(70);
-
-angular.module('hplus.modules.explorediseases', [])
-
-  .config(function ($routeProvider){  
-    $routeProvider      
-      .when('/admin/list/disease',{
-        template: explorediseases
-      })
-  });
-  __webpack_require__(71);
-  __webpack_require__(73);
-  __webpack_require__(147);
-
-/***/ }),
-/* 70 */
-/***/ (function(module, exports) {
-
-module.exports = "<div class=\"row\">\r\n  <div class=\"col col-md-8 col-md-offset-1\">\r\n    <h1>List of All Diseases</h1>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row\" ng-controller=\"ExploreDiseasesController\">\r\n  <div class=\"col col-md-2 col-md-offset-1\">\r\n    <div class=\"row\">\r\n      <div class=\"col col-md-6\">\r\n        <span class=\"subtitle\">Search</span>\r\n      </div>\r\n    </div>\r\n\t\r\n    <div class=\"match-padding\">\r\n      <input type=\"text\" placeholder=\"Enter a keyword\" ng-model=\"query\">\r\n      <button ng-show=\"user.admin\" ng-click=\"go('/admin/register/disease')\">New Disease</button>\r\n    </div>\r\n  </div>\r\n\r\n  <div class=\"col col-md-8\">\r\n    <div> \r\n      <div class=\"col col-md-12 marginBottom\">\r\n        <span class=\"subtitle\"><span ng-hide=\"query == ''\">{{(diseases | filter : searchFilter).length}}</span><span ng-hide=\"query != ''\">All {{(diseases | filter : searchFilter).length}}</span> Results<span ng-hide=\"query != ''\"></span></span>\r\n        <hplus-explore-diseases-card dir-paginate=\"dis in diseases | filter : searchFilter | itemsPerPage : 10 | orderBy : 'name'\" data=\"dis\"></hplus-explore-diseases-card>\r\n        <dir-pagination-controls max-size=\"5\"></dir-pagination-controls>\r\n\t    </div>\r\n    </div>\r\n  </div>\r\n</div>";
-
-/***/ }),
-/* 71 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var card = __webpack_require__(72);
-angular.module('hplus.modules.explorediseases')
-
-  .directive('hplusExploreDiseasesCard', function(){
-    return{
-      restrict: 'EA',
-      scope: {
-        data: '='
-      },
-      template: card
-    };
-  })
-
-/***/ }),
-/* 72 */
-/***/ (function(module, exports) {
-
-module.exports = "<div class=\"margins\">\r\n  <div class=\"card__container\" ng-controller=\"CardController\">\r\n    <div class=\"card__title\">\r\n      {{ data.name[0].toUpperCase() + data.name.substr(1) }}\r\n    \r\n      <a ng-click=\"go('/admin/view/disease', data); $event.stopPropagation();\">\r\n        <span class=\"delete__icon\">\r\n          <i class=\"fa fa-eye\" aria-hidden=\"true\"></i>\r\n        </span>\r\n      </a>\r\n      <a ng-show=\"user.admin && !data.medicalRecords\" ng-click=\"go('/admin/update/disease', data); $event.stopPropagation();\">\r\n        <span class=\"delete__icon\">\r\n          <i class=\"fa fa-pencil-square-o\" aria-hidden=\"true\"></i>\r\n        </span>\r\n      </a>\r\n      <a ng-show=\"user.admin && !data.medicalRecords\" ng-click=\"delete(data); $event.stopPropagation();\">\r\n        <span class=\"delete__icon\">\r\n          <i class=\"fa fa-archive\" aria-hidden=\"true\"></i>\r\n        </span>\r\n      </a>\r\n    \r\n    </div>\r\n    \r\n    <div class=\"card__desc\">\r\n      Symptoms: <span ng-repeat=\"symp in data.symp\"><span ng-hide=\"$first\">,&nbsp;</span>{{ symp }}</span>.\r\n    </div>\r\n  </div>\r\n</div>";
-
-/***/ }),
-/* 73 */
-/***/ (function(module, exports) {
-
-angular.module('hplus.modules.explorediseases')
-
-  .controller('ExploreDiseasesController',
-    function($scope, $location, globalFactory, doctorFactory, globalFactory, modalFactory, diseaseFactory, symptomFactory){
-
-      $scope.user = doctorFactory.getUser();
-
-      if($scope.user == null){
-        $location.path("/");
-      }
-
-      $scope.go = function(path){
-        globalFactory.go(path);
-      };
-     
-      $scope.query = "";
-      
-      var populate = function() {
-        diseaseFactory.getListOfDiseases().then(function(response){
-          console.log(response); 
-          $scope.diseases = response.data.diseases;
-          var medicalRecords = response.data.medicalRecords;
-
-          var x, y, z;
-          
-          for(x = 0; x < $scope.diseases.length; x++) {
-            for(y = 0; y < medicalRecords.length; y++) {
-              for(z = 0; z < medicalRecords[y].diseaseIdList.length; z++) {
-                if(medicalRecords[y].diseaseIdList[z] == $scope.diseases[x].id) {
-                  if($scope.diseases[x].medicalRecords == null) {
-                    $scope.diseases[x].medicalRecords = [];
-                  }
-                  $scope.diseases[x].medicalRecords.push(medicalRecords[y]);
-                  z = medicalRecords[y].diseaseIdList.length;
-                }
-              } 
-            }
-          }
-
-          var symptoms = [];
-          
-          symptomFactory.getListOfSymptoms().then(function(response){
-            var symptomList = response.data.symptoms;
-          
-            symptomList.sort(function(a, b){return a.id - b.id});
-
-            $scope.diseases.forEach(function(dis){
-              dis.symp = [];              
-              dis.symptomId.sort(function(a, b){return a - b});
-              var i, j;
-              
-              for(i = j = 0; i < dis.symptomId.length && j < symptomList.length;){
-                if(dis.symptomId[i] == symptomList[j].id) {
-                  dis.symp.push(symptomList[j].name[0].toUpperCase() + symptomList[j].name.substr(1)); 
-                  i++; j++;
-                } else {
-                	(dis.symptomId[i] < symptomList[j].id)? i++ : j++;
-                }
-              }
-        
-            });
-            console.log($scope.diseases);
-          });
-        });
-      };
-
-      populate();
-    
-      $scope.searchFilter = function(disease){
-        var retVal;
-
-        if(!$scope.query 
-        || (disease.name.toLowerCase().indexOf($scope.query) != -1)){
-          retVal = true;
-        } else {
-          retVal = false;
-        }
-
-        return retVal;
-      };
-    
-    }
-  );
-
-/***/ }),
-/* 74 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var exploredoctors = __webpack_require__(75);
-
-angular.module('hplus.modules.exploredoctors', [])
-
-  .config(function ($routeProvider){  
-    $routeProvider
-      .when('/admin/list/doctor',{
-        template: exploredoctors,
-      })
-  });
-  
-  __webpack_require__(76);
-  __webpack_require__(78);
-  __webpack_require__(79);
-
-
-/***/ }),
-/* 75 */
-/***/ (function(module, exports) {
-
-module.exports = "<div class=\"row\"><!-- Header Portion -->\r\n  <div class=\"col col-md-10 col-md-offset-1\">\r\n    <h1>List of All Doctors</h1><!-- Header Name for this Module -->\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row\" ng-controller=\"ExploreDoctorsController\"><!-- Body Portion -->\r\n  <div class=\"col col-md-2 col-md-offset-1\"><!-- Section for search -->\r\n\r\n    <div class=\"row\">\r\n\t    <div class=\"col col-md-12\">\r\n\t      <label class=\"subtitle\">Search</label>\r\n\t      <input type=\"text\" placeholder=\"Enter a name or specialty\" ng-model=\"query\">\r\n        <button ng-click=\"go('/admin/register/doctor')\">New Doctor</button>\r\n\t    </div>\r\n\t  </div>\r\n\r\n  </div>\r\n  \r\n  <div class=\"col col-md-8\"><!-- Section containing the tabulated list of doctors -->\r\n    <div class=\"col col-md-12\">\r\n\t\t\t<span class=\"subtitle\"><span ng-hide=\"query == ''\">{{(doctorList | filter : searchFilter).length}}</span><span ng-hide=\"query != ''\">All {{(doctorList | filter : searchFilter).length}}</span> Results</span>\r\n\t\t\t<div class=\"margins\">\r\n        <!-- List Section -->\r\n        <label class=\"subtitle\" ng-hide=\"doctorList.length\">There are no doctors to display</label>\r\n\t\t\t\t<hplus-explore-doctors-card ng-show=\"doctorList.length\" dir-paginate=\"doctor in filtered = (doctorList | filter:searchFilter | itemsPerPage:10  | orderBy : ['lastname','firstname'])\" data=\"doctor\"></hplus-explore-doctors-card>\r\n\t\t\t\t<dir-pagination-controls max-size=\"5\"></dir-pagination-controls>\r\n\t\t  </div>\r\n    </div>\r\n  </div>\r\n</div>";
-
-/***/ }),
-/* 76 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var card = __webpack_require__(77);
-
-angular.module('hplus.modules.exploredoctors')
-
-  .directive('hplusExploreDoctorsCard', function(){
-    return{
-      restrict: 'EA',
-      scope: {
-        data: '='
-      },
-      template: card
-    };
-  })
-
-/***/ }),
-/* 77 */
-/***/ (function(module, exports) {
-
-module.exports = "<div class=\"card__container\" ng-controller=\"DoctorCardController\">\r\n  <div class=\"card__title\">\r\n    {{ data.lastname }}, {{ data.firstname }}\r\n\r\n    <a ng-click=\"go('/admin/view/doctordetails', data); $event.stopPropagation();\">\r\n      <span class=\"delete__icon\">\r\n        <i class=\"fa fa-eye\" aria-hidden=\"true\"></i>\r\n      </span>\r\n    </a>\r\n    <a ng-click=\"go('/admin/edit/doctor', data); $event.stopPropagation();\">\r\n      <span class=\"delete__icon\">\r\n        <i class=\"fa fa-pencil-square-o\" aria-hidden=\"true\"></i>\r\n      </span>\r\n    </a>\r\n    <a ng-hide=\"data.medicalRecords\" ng-click=\"delete(data); $event.stopPropagation();\">\r\n      <span class=\"delete__icon\">\r\n        <i class=\"fa fa-archive\" aria-hidden=\"true\"></i>\r\n      </span>\r\n    </a>\r\n\r\n  </div>\r\n  \r\n  <div class=\"card__desc\">\r\n    {{ data.specialization }}\r\n  </div>\r\n</div>";
-
-/***/ }),
-/* 78 */
-/***/ (function(module, exports) {
-
-angular.module('hplus.modules.exploredoctors')
-
-  .controller('ExploreDoctorsController',
-    function($scope, $location, globalFactory, modalFactory, doctorFactory){
-
-      var user = doctorFactory.getUser();
-
-      if(user != null){
-        if(!user.admin){
-          $location.path("/admin/list/record");
-        }
-      } else {
-        $location.path("/");
-      }
-
-      $scope.go = function(path){
-        globalFactory.go(path);
-      };
-      
-      $scope.query = "";
-      
-      $scope.doctorList = [];
-
-      var populate = function(){
-        doctorFactory.getListOfDoctors().then(function(response){
-          console.log(response);
-          $scope.doctorList = response.data.doctors;
-          $scope.medicalRecords = response.data.medicalRecords;
-          var x, y;
-
-          for(x = 0; x < $scope.doctorList.length; x++){
-            for(y = 0; y < $scope.medicalRecords.length; y++){
-              if($scope.doctorList[x].id == $scope.medicalRecords[y].doctorId){
-                if($scope.doctorList[x].medicalRecords == null){
-                  $scope.doctorList[x].medicalRecords = [];
-                }
-                $scope.doctorList[x].medicalRecords.push($scope.medicalRecords[y]);
-              } 
-            }
-          }
-        }, function(response){
-          console.log(response.statusText);
-        });
-      };
-
-      populate();
-
-      $scope.searchFilter = function(doctor){
-        if(!$scope.query 
-        || (doctor.firstname.toLowerCase().indexOf($scope.query) != -1) 
-        || (doctor.lastname.toLowerCase().indexOf($scope.query) != -1)
-        || (doctor.specialization.toLowerCase().indexOf($scope.query) != -1)){
-          return true;
-        } else {
-          return false;
-        }
-      };
-    }
-  );
-
-/***/ }),
-/* 79 */
-/***/ (function(module, exports) {
-
-angular.module('hplus.modules.exploredoctors')
-
-  .controller('DoctorCardController',
-    function($scope, globalFactory, doctorFactory){
-
-      $scope.go = function(path, doctor){
-        doctorFactory.saveDoctor(doctor);
-        globalFactory.go(path);
-      };
-
-      $scope.delete = function(doctor){
-        doctorFactory.deleteDoctor(doctor);
-      };
-    }
-  );
-
-/***/ }),
-/* 80 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var exploremedicines = __webpack_require__(81);
-
-angular.module('hplus.modules.exploremedicines', [])
-
-  .config(function ($routeProvider){  
-    $routeProvider
-      .when('/admin/list/medicine',{
-        template: exploremedicines
-      })
-  });
-  __webpack_require__(82);
-  __webpack_require__(85);
-  __webpack_require__(86);
-
-/***/ }),
-/* 81 */
-/***/ (function(module, exports) {
-
-module.exports = "<div class=\"row\"><!-- Header Portion -->\r\n  <div class=\"col col-md-10 col-md-offset-1\">\r\n    <h1>List of All Medicines</h1><!-- Header Name for this Module -->\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row\" ng-controller=\"ExploreMedicinesController\"><!-- Body Portion -->\r\n  <div class=\"col col-md-2 col-md-offset-1\"><!-- Section for search -->\r\n\t\t<div class=\"row\">\r\n\t\t  <div class=\"col col-md-6\">\r\n\t\t\t<label class=\"subtitle\">Search</label>\r\n\t\t  </div>\r\n\t\t</div>\r\n\t\r\n\t\t<div class=\"match-padding\">\r\n\t\t  <input type=\"text\" placeholder=\"Enter a name\" ng-model=\"query\">\r\n\t\t  <button ng-show=\"user.admin\" ng-click=\"go('/admin/register/medicine')\">New Medicine</button>\r\n\t\t</div>\r\n  </div>\r\n\r\n  <div class=\"col col-md-8\"><!-- Section containing the list and detail of medicines -->\r\n    <div class=\"col col-md-6\"><!-- List sector -->\r\n\t\t  <span class=\"subtitle\"><span ng-hide=\"query == ''\">{{(medicineList | filter : searchFilter).length }}</span><span ng-hide=\"query != ''\">All {{(medicineList | filter : searchFilter).length }}</span> Results</span>\r\n\t\t  \r\n\t\t  <div class=\"margins\" >\r\n\t\t    <hplus-explore-medicines-card dir-paginate=\"med in medicineList | filter: searchFilter | itemsPerPage:10  | orderBy : 'name'\" data=\"med\" ng-click=\"setSelected(med)\" ng-class=\"{'selectedCard__container': med == selectedMedicine}\"></hplus-explore-medicines-card>       \r\n      </div>\r\n      <div class=\"col-md-12\">\r\n      <!-- Pagination Section -->\r\n      <dir-pagination-controls max-size=\"5\"></dir-pagination-controls>\r\n      </div>\r\n    </div>\r\n    \r\n   \t<div class=\"col col-md-6\"><!-- Detail Sector -->\r\n\t\t  <hplus-selected-medicine-card data=\"selectedMedicine\" ng-show=\"selectedMedicine\"></hplus-selected-medicine-card>\r\n\t\t</div>\r\n\r\n  </div>\r\n</div>\r\n\r\n";
-
-/***/ }),
-/* 82 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var card = __webpack_require__(83);
-var scard = __webpack_require__(84);
-angular.module('hplus.modules.exploremedicines')
-
-  .directive('hplusExploreMedicinesCard', function(){
-    return{
-      restrict: 'EA',
-      scope: {
-        data: '='
-      },
-      template: card
-    };
-  })
-  
-  .directive('hplusSelectedMedicineCard', function(){
-    return{
-      restrict: 'EA',
-      scope: {
-        data: '='
-      },
-      template: scard
-    };
-  })
-
-/***/ }),
-/* 83 */
-/***/ (function(module, exports) {
-
-module.exports = "<div class=\"card__container\">\r\n  <div class=\"card__title\">\r\n    {{ data.name[0].toUpperCase() + data.name.substr(1) }}\r\n  </div>\r\n      \r\n  <div class=\"card__desc\">\r\n    <span ng-repeat=\"treats in data.treats | limitTo: 3\"><span ng-hide=\"$first\">,&nbsp;</span>{{ treats }}</span>\r\n  </div>\r\n</div>\r\n";
-
-/***/ }),
-/* 84 */
-/***/ (function(module, exports) {
-
-module.exports = "<div ng-controller=\"MedicineCardController\">\r\n      <label class=\"subtitle\">DETAILS FOR {{ data.name }}</label>\r\n      <div class=\"margins\">\r\n        <!-- Detail Section -->\r\n        <div class=\"detail__container\">\r\n          <div class=\"card__title\">\r\n            {{ data.name[0].toUpperCase() + data.name.substr(1) }}\r\n          </div>\r\n      \r\n          <div class=\"detail__desc\">\r\n            <p>\r\n            {{ data.description }}\r\n            </p>\r\n          </div>\r\n          <span class=\"detail__title\">PRICE (PHP)</span>\r\n          <span class=\"detail__subtitle\">{{ data.price | currency : 'PHP '}}</span>\r\n          <br>\r\n          <br>\r\n          <span class=\"detail__title\">TREATMENT FOR</span>\r\n          <span class=\"detail__subtitle\"><span ng-repeat=\"treats in data.treats\"><span ng-hide=\"$first\">,&nbsp;</span>{{ treats }}</span></span> \r\n          <br>\r\n          <br>\r\n          <div> \r\n            <button ng-show=\"isAdmin() && !data.medicalRecords\" class=\"outline\" ng-click=\"go('/admin/update/medicine', data)\">Edit</button>\r\n            <button ng-show=\"isAdmin() && !data.medicalRecords\" class=\"outline\" ng-click=\"delete(data)\">Archive</button>\r\n            <button class=\"outline\" ng-click=\"go('/admin/view/medicine', data)\">View</button>\r\n          </div>\r\n        </div>\r\n      </div>\r\n</div>";
-
-/***/ }),
-/* 85 */
-/***/ (function(module, exports) {
-
-angular.module('hplus.modules.exploremedicines')
-
-  .controller('ExploreMedicinesController',
-    function($scope, $location, globalFactory, doctorFactory, medicineFactory, diseaseFactory){
-	  
-      $scope.selectedMedicine = null;
-      $scope.query = "";
-      $scope.diseaseList = [];
-
-      $scope.user = doctorFactory.getUser();
-
-      if($scope.user == null){
-        $location.path("/");
-      }
-
-      $scope.searchFilter = function(medicine){
-        if(!$scope.query 
-        || (medicine.name.toLowerCase().indexOf($scope.query) != -1)){
-          return true;
-        } else {
-          return false;
-        }
-      };
-      
-      var populate = function(){
-        medicineFactory.getListOfMedicines().then(function(response){
-          console.log(response);
-          $scope.medicineList = response.data.medicines;
-          var medicalRecords = response.data.medicalRecords;
-
-          var x, y, z;
-          
-          for(x = 0; x < $scope.medicineList.length; x++) {
-            for(y = 0; y < medicalRecords.length; y++) {
-              for(z = 0; z < medicalRecords[y].medicineIdList.length; z++) {
-                if(medicalRecords[y].medicineIdList[z] == $scope.medicineList[x].id) {
-                  if($scope.medicineList[x].medicalRecords == null) {
-                    $scope.medicineList[x].medicalRecords = [];
-                  }
-                  $scope.medicineList[x].medicalRecords.push(medicalRecords[y]);
-                  z = medicalRecords[y].medicineIdList.length;
-                }
-              } 
-            }
-          }
-          
-          diseaseFactory.getListOfDiseases().then(function(response){
-            console.log(response);
-            $scope.diseaseList = response.data.diseases;
-            var x, y, treats, name;
-
-            for(x = 0; x < $scope.medicineList.length; x++){
-              treats = [];
-              for(y = 0; y < $scope.diseaseList.length; y++){
-                if($scope.diseaseList[y].medicineId.indexOf($scope.medicineList[x].id) != -1){
-                  name = $scope.diseaseList[y].name;
-                  treats.push(name[0].toUpperCase() + name.substr(1));
-                }
-              }
-              if(treats.length == 0){
-                treats.push("Nothing");
-              }
-              $scope.medicineList[x].treats = treats;
-            }
-            
-
-          });
-
-        }, function(response){
-          console.log(response);
-        });
-      };
-
-      populate();
-
-      $scope.go = function(path){
-        globalFactory.go(path);
-      };
-      
-      
-      $scope.setSelected = function(med){
-    	  $scope.selectedMedicine = med;
-      };
-    }
-  );
-
-/***/ }),
-/* 86 */
-/***/ (function(module, exports) {
-
-angular.module('hplus.modules.exploremedicines')
-
-  .controller('MedicineCardController',
-    function($scope, $location, globalFactory, doctorFactory, medicineFactory, modalFactory){
-      
-      var user = doctorFactory.getUser();
-      
-      $scope.isAdmin = function(){
-        return user.admin;
-      };
-
-      $scope.go = function(path, medicine) {
-        medicineFactory.saveMedicine(medicine);
-        globalFactory.go(path);
-      };
-
-      $scope.delete = function(medicine) {
-        medicineFactory.deleteMedicine(medicine);
-      };
-
-    }
-  );
-
-/***/ }),
-/* 87 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var exploremedicalrecords = __webpack_require__(88);
-
-angular.module('hplus.modules.exploremedicalrecords', [])
-
-  .config(function ($routeProvider){  
-    $routeProvider
-      .when('/admin/list/record',{
-        template: exploremedicalrecords
-      })
-  });
-
-__webpack_require__(89);
-__webpack_require__(91);
-
-/***/ }),
-/* 88 */
-/***/ (function(module, exports) {
-
-module.exports = "<div class=\"row\"><!-- Header Portion -->\r\n  <div class=\"col col-md-10 col-md-offset-1\">\r\n    <h1>List of All Medical Records</h1><!-- Header Name for this Module -->\r\n  </div>\r\n</div>\r\n\t\r\n<div class=\"row\" ng-controller=\"ExploreMedicalRecordsController\"><!-- Body Portion -->\r\n  <div class=\"col col-md-2 col-md-offset-1\"><!-- Section for search -->\r\n    <div class=\"row\">\r\n      <div class=\"col col-md-6\">\r\n        <label class=\"subtitle\">Search</label>\r\n      </div>\r\n    </div>\r\n    \r\n    <div class=\"match-padding\">\r\n      <input type=\"text\" placeholder=\"Enter a name\" ng-model=\"query\">\r\n      <button ng-show=\"!user.admin\" ng-click=\"go('/doctor/register/record')\">New Record</button>\r\n    </div>\r\n  </div>\r\n  \r\n  <div > \r\n    <div class=\"col col-md-8\"><!-- Section containing the tabulated list of doctors -->\r\n\t\t  <div class=\"col col-md-12\">\r\n        <span class=\"subtitle\"><span ng-hide=\"query == ''\">{{(medRecs | filter : searchFilter).length }}</span><span ng-hide=\"query != ''\">All {{(medRecsList | filter : searchFilter).length }}</span> Results</span>\r\n\r\n        <hplus-explore-medical-records-card dir-paginate=\"pat in medRecs | filter : searchFilter | itemsPerPage:10 | orderBy : ['lastName','firstName']\" data=\"pat\"></hplus-explore-medical-records-card>\r\n        <!-- Pagination Section -->\r\n        <dir-pagination-controls max-size=\"5\"></dir-pagination-controls>\r\n\t\t  </div>\r\n\t\t</div>\r\n  </div>\r\n</div>\r\n\r\n\r\n";
-
-/***/ }),
-/* 89 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var card = __webpack_require__(90);
-angular.module('hplus.modules.exploremedicalrecords')
-
-  .directive('hplusExploreMedicalRecordsCard', function(){
-    return{
-      restrict: 'EA',
-      scope: {
-        data: '='
-      },
-      template: card
-    };
-  })
-
-/***/ }),
-/* 90 */
-/***/ (function(module, exports) {
-
-module.exports = "<div class=\"margins\">\r\n  <!-- List Section -->  \r\n  <div class=\"card__container\">\r\n    <div class=\"card__title\">\r\n      {{ data.lastname + ', ' + data.firstname }}\r\n      <span ng-if=\"data.discharged\">(Discharged)</span>\r\n    </div>\r\n    \r\n    <div class=\"card__desc\">\r\n      Admitted {{data.createdAt | date : \"longDate\"}} for <span ng-repeat=\"dis in data.diseases\"><span ng-hide=\"$first\">,&nbsp;</span>{{ dis }}</span>\r\n    </div>\r\n  </div>\r\n</div>";
-
-/***/ }),
-/* 91 */
-/***/ (function(module, exports) {
-
-angular.module('hplus.modules.exploremedicalrecords')
-
-  .controller('ExploreMedicalRecordsController',
-	function($scope, $location, globalFactory, doctorFactory, patientFactory, medicalRecordFactory, diseaseFactory){
-
-		$scope.user = doctorFactory.getUser();
-		var monthNames = ["January", "February", "March", "April", "May", "June",
-		"July", "August", "September", "October", "November", "December"];
-
-		if($scope.user == null){
-			$location.path("/");
-		}
-		
-	  $scope.go = function(path){
-			globalFactory.go(path);
-	  };
-	  
-	  $scope.medRecs =[];
-	  
-	  $scope.medicalRecords = [];
-	  
-	  var populate = function(){
-	    console.log("medFactoryStart");
-	    patientFactory.getListOfPatients().then(function(response){
-	      $scope.patients = response.data.patients;
-	      console.log(response.data.patients);
-	    });
-	    diseaseFactory.getListOfDiseases().then(function(response){
-	      $scope.diseases = response.data.diseases;
-	      console.log(response.data.diseases);
-	      medicalRecordFactory.getListOfMedicalRecords().then(function(response){
-		      $scope.medicalRecords = response.data.medicalRecords;
-		      console.log(response.data.medicalRecords);
-		      
-		      $scope.diseases.sort(function(a, b){return a.id-b.id});
-		      $scope.patients.sort(function(a, b){return a.id-b.id})
-		      
-		      $scope.medicalRecords.forEach(function(medR) {
-		        medR.diseaseIdList.sort();
-		        var d;
-						var hold={ "firstname" : "No patient","lastname" : "No patient", "createdAt" : "","diseases" : [], "discharged" : "" };
-						var date = medR.createdAt.split(" ");
-						var discharged = medR.dischargeDate.split(" ");
-						var tempDate = null;
-						var tempDischarged = null;
-						var realDate;
-
-						for(var i = 0; i < monthNames.length && (tempDate == null || tempDischarged == null); i++) {
-							if(monthNames[i].indexOf(date[1]) != -1) {
-								realDate = new Date(date[5], (i + 1), parseInt(date[2]) + 1);
-
-								tempDate = monthNames[i].substr(0, 3);
-								if(monthNames[i].length > 3){
-									tempDate += ".";
-								}
-								tempDate += " " + realDate.getDate() + ", " + realDate.getFullYear();
-							}
-							if(monthNames[i].indexOf(discharged[1]) != -1) {
-								realDate = new Date(discharged[5], i, parseInt(discharged[2]) + 1);
-								
-								console.log(new Date());
-								console.log(realDate);
-								if(new Date() < realDate) {
-									tempDischarged = false;
-								} else {
-									tempDischarged = true;
-								}
-							}
-						}
-
-						hold.createdAt = tempDate;
-						hold.discharged = tempDischarged;
-		        
-		        for(var i = d = 0; i < medR.diseaseIdList.length && d < $scope.diseases.length;){
-		          if($scope.diseases[d].id == medR.diseaseIdList[i]){
-		            hold.diseases.push($scope.diseases[d].name[0].toUpperCase() + $scope.diseases[d].name.substr(1));
-		            d++; i++;
-		          }else{
-		            ($scope.diseases[d].id > medR.diseaseIdList[i].id)?i++:d++;
-		          }
-		        }
-		        
-		        for(d = 0; d < $scope.patients.length && medR.patientId != $scope.patients[d].id; d++){}
-		        if(d < $scope.patients.length){
-		          hold.firstname = $scope.patients[d].firstname;
-			      hold.lastname = $scope.patients[d].lastname;
-		        }
-		        
-		        $scope.medRecs.push(hold);
-		      });
-		      console.log($scope.medRecs);
-		    },function(){});
-	    },function(){});
-	    
-	  };
-	  
-		populate();
-		
-		$scope.searchFilter = function(medicalRecord){
-			if(!$scope.query 
-			|| (medicalRecord.firstname.toLowerCase().indexOf($scope.query) != -1)
-			|| (medicalRecord.lastname.toLowerCase().indexOf($scope.query) != -1)){
-				return true;
-			} else {
-				return false;
-			}
-		};
-	}
-);
-
-/***/ }),
-/* 92 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var registerdiseases = __webpack_require__(93);
-
-angular.module('hplus.modules.registerdiseases', [])
-
-  .config(function ($routeProvider){  
-    $routeProvider
-      .when('/admin/register/disease',{
-        template: registerdiseases
-      })
-  });
-
-  __webpack_require__(94);
-
-/***/ }),
-/* 93 */
-/***/ (function(module, exports) {
-
-module.exports = "<div ng-controller=\"RegisterDiseasesController\">\r\n\t<div class=\"row\">\r\n\t\t<div class=\"col col-md-8 col-md-offset-1\">\r\n\t\t\t<h1>Register Diseases</h1>\r\n\t\t</div>\r\n\t</div>\r\n\r\n\t<div class=\"row\">\r\n\t\t<div class=\"col-md-10 col-md-offset-1\">\r\n\t\t\t<ng-form name=\"diseaseForm\">\r\n\t\t\t\t<div class=\"col col-md-4\">\r\n\t\t\t\t\t<label class=\"subtitle\">Name of Disease</label>\r\n\t\t\t\t\t<input type=\"text\" placeholder=\"Name\" ng-model=\"disease.name\" ng-required=\"true\" name=\"Name\">\r\n\t\t\t\t\t<button type=\"submit\" ng-class=\"checkStatus(diseaseForm.$valid)\" ng-disabled=\"diseaseForm.$invalid\" ng-click=\"saveDisease()\">Save</button>\r\n\t\t\t\t\t\r\n\t\t\t\t</div>\r\n\t\t\t\r\n\t\t\t\t<div class=\"col col-md-4\">\r\n\t\t\t\t\t<label class=\"subtitle\">Symptoms</label>\r\n\t\t\t\t\t<input type=\"text\" placeholder=\"Search Symptom\" ng-model=\"searchFilterSymp\">\r\n\t\t\t\t\t<div class=\"borders\">\r\n\t\t\t\t\t\t<div class=\"scrollable\">\r\n\t\t\t\t\t\t\t<div ng-repeat=\"option in symptomList | filter: {'name' : searchFilterSymp} | orderBy:['-val','name']\">\r\n\t\t\t\t\t\t\t\t<input type=\"checkbox\" ng-model=\"option.val\" ng-change=\"addRemoveSymptom(symptomList | filter: {val: true} | orderBy : 'name')\" ng-required=\"!disease.symptomId.length\"><span class=\"checkboxText\">{{ option.name[0].toUpperCase() + option.name.substr(1) }}</span><br>\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\r\n\t\t\t\t</div>\r\n\t\t\t\t<div class=\"col col-md-4\">\r\n\t\t\t\t\t<label class=\"subtitle\">Medicines</label>\r\n\t\t\t\t\t<input type=\"text\" placeholder=\"Search Medicine\" ng-model=\"searchFilterMed\">\r\n\t\t\t\t\t<div class=\"borders\">\r\n\t\t\t\t\t\t<div class=\"scrollable\">\r\n\t\t\t\t\t\t\t<div ng-repeat=\"optionmed in medicineList | filter: {'name' : searchFilterMed} | orderBy:['-val','name']\">\r\n\t\t\t\t\t\t\t\t<input type=\"checkbox\" ng-model=\"optionmed.val\" ng-change=\"addRemoveMedicine(medicineList | filter: {val: true}| orderBy:'name')\" ng-required=\"!disease.medicineId.length\"><span class=\"checkboxText\">{{ optionmed.name[0].toUpperCase() + optionmed.name.substr(1) }}</span><br>\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t</div>\r\n\t\t\t</ng-form>\r\n\t\t</div>\r\n\t</div>\r\n\r\n\t<div class=\"row\">\r\n\t\t\r\n\t\t<div class=\"col-md-10 col-md-offset-1\">\r\n\t\t\t\t<div class=\"col col-md-4 col-md-offset-4\">\r\n\t\t\t\t<div class=\" col-md-12 borders\" ng-show=\"showAdd\">\r\n\t\t\t\t\t\t<ng-form name=\"saveSympForm\">\r\n\t\t\t\t\t\t\t<input type=\"text\" ng-model=\"addSymptom\" ng-required=\"true\" placeholder=\"Symptom Name\">\r\n\t\t\t\t\t\t\t<button ng-click=\"saveSymptom()\" ng-class=\"checkStatus(saveSympForm.$valid)\" ng-disabled=\"saveSympForm.$invalid\" type=\"submit\">Add</button>\r\n\t\t\t\t\t\t\t<button ng-click=\"showAdd = !showAdd\">Close</button>\r\n\t\t\t\t\t\t</ng-form>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t\t\r\n\t\t\t\t\t<button ng-hide=\"showAdd\" ng-click=\"showAdd = !showAdd\" type=\"submit\">Add New Symptom</button>\r\n\t\t\t\t</div>\r\n\t\t</div>\r\n\t</div>\r\n</div>";
-
-/***/ }),
-/* 94 */
-/***/ (function(module, exports) {
-
-angular.module('hplus.modules.registerdiseases')
-
-  .controller('RegisterDiseasesController',
-    function($scope, $location, globalFactory, doctorFactory, symptomFactory, medicineFactory, diseaseFactory){
-	 
-      var user = doctorFactory.getUser();
-
-      if(user != null) {
-        if(!user.admin){
-          $location.path("/admin/list/record");
-        }
-      } else {
-        $location.path("/");
-      }
-
-      $scope.disease = 
-      {
-        "name" : "",
-        "symptomId" : [],
-        "medicineId" : []
-      };
-      
-      $scope.go = function(path){
-        globalFactory.go(path);
-      };
-     
-      $scope.checkStatus = function(status) {
-          var retValue = "edit-button";
-
-          if(status){
-            retValue = "edit-button";
-          } else {
-            retValue = "delete-button";
-          }
-
-          return retValue;
-        };
-      
-      $scope.showAdd = false;
-      
-      $scope.saveSymptom = function(){
-        var data = {"name":$scope.addSymptom};
-        symptomFactory.registerSymptom(data);
-      };
-
-      $scope.$on("repopulate", function(event){
-        $scope.showAdd = !$scope.showAdd;
-        $scope.addSymptom = "";
-
-        symptomFactory.getListOfSymptoms().then(function(response){
-          $scope.symptomList = response.data.symptoms;
-          $scope.symptomList.forEach(function(med){
-            med.val = false;
-          });
-
-          populate();
-        });
-
-      });
-      
-      $scope.saveDisease = function(){
-        console.log("meds");
-        console.log($scope.disease.medicineId);
-        console.log($scope.disease.symptomId);
-        console.log($scope.disease.name);
-        
-        diseaseFactory.registerDisease($scope.disease);
-        
-        $scope.disease = {
-                "name" : "",
-                "symptomId" : [],
-                "medicineId" : []
-        };
-        
-        $scope.searchFilterSymp = "";
-        setVals($scope.symptomList, false);
-        setVals($scope.medicineList, false);
-      };
-      
-      $scope.addRemoveSymptom = function(hold){
-    	  $scope.disease.symptomId = hold;
-      };
-    
-      $scope.addRemoveMedicine = function(hold){
-    	  $scope.disease.medicineId = hold;
-      };
-      
-      var populate = function(){
-            symptomFactory.getListOfSymptoms().then(function(response){
-              console.log(response);
-        	    $scope.symptomList = response.data.symptoms;
-        	    $scope.symptomList.forEach(function(med){
-                med.val = false;
-              });
-            });
-            medicineFactory.getListOfMedicines().then(function(response){
-              $scope.medicineList = response.data.medicines;
-              $scope.medicineList.forEach(function(med){
-                med.val = false;
-              });
-            });
-      };
-
-      populate();
-      
-      var setVals = function (a, v) {
-        var i, n = a.length;
-        for (i = 0; i < n; ++i) {
-            a[i].val = v;
-        }
-    	};
-      
-    }
-  );
-
-/***/ }),
-/* 95 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var registerdoctor = __webpack_require__(96);
-
-angular.module('hplus.modules.registerdoctor', [])
-
-  .config(function ($routeProvider){  
-    $routeProvider
-      .when('/admin/register/doctor',{
-        template: registerdoctor
-      })
-  });
-
-__webpack_require__(97);
-
-/***/ }),
-/* 96 */
-/***/ (function(module, exports) {
-
-module.exports = "<div class=\"row\">\r\n  <div class=\"col col-md-8 col-md-offset-1\">\r\n    <h1>Register an Account</h1>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row\" ng-controller=\"RegisterDoctorController\">\r\n  <ng-form name=\"registerDoctorForm\">\r\n\r\n    <div class=\"row match-padding\">\r\n      <div class=\"col col-md-3 col-md-offset-1\">\r\n        <label class=\"subtitle\">First Name</label>\r\n        <input type=\"text\" ng-model=\"doctor.firstname\" ng-required=\"true\">\r\n      </div>\r\n      <div class=\"col col-md-3\">\r\n        <label class=\"subtitle\">Last Name</label>\r\n        <input type=\"text\" ng-model=\"doctor.lastname\" ng-required=\"true\">\r\n      </div>\r\n    </div>\r\n\r\n    <div class=\"row match-padding\">\r\n      <div class=\"col col-md-3 col-md-offset-1\">\r\n        <label class=\"subtitle\">Email Address</label>\r\n        <input type=\"email\" ng-model=\"doctor.email\" ng-required=\"true\">\r\n      </div>\r\n      <div class=\"col col-md-3\">\r\n        <label class=\"subtitle\">Address</label>\r\n        <input type=\"text\" ng-model=\"doctor.address\" ng-required=\"true\">\r\n      </div>\r\n    </div>\r\n    \r\n    <div class=\"row match-padding\">\r\n      <div class=\"col col-md-3 col-md-offset-1\">\r\n        <label class=\"subtitle\">Specialization</label>\r\n          <select ng-model=\"doctor.specialization\" ng-required=\"true\">\r\n            <option value=\"\">Choose a specialization</option>\r\n            <option ng-repeat=\"option in specialization\" value=\"{{ option }}\">{{ option }}</option>\r\n          </select>\r\n      </div>\r\n      <div class=\"col col-md-3\">\r\n        <label class=\"subtitle\">Contact Number</label>\r\n        <input type=\"text\" ng-model=\"doctor.contactNo\" ng-pattern=\"contactNoRegex\" ng-required=\"true\">\r\n      </div>\r\n    </div>\r\n    \r\n    <div class=\"row match-padding\">\r\n      <div class=\"col col-md-3 col-md-offset-1\">\r\n        <label class=\"subtitle\">Username</label>\r\n        <input type=\"text\" ng-model=\"doctor.username\" ng-required=\"true\">\r\n      </div>\r\n      <div class=\"col col-md-3\">\r\n        <label class=\"subtitle\">Birthday</label>\r\n        <input type=\"date\" ng-model=\"doctor.birthday\" ng-required=\"true\">\r\n      </div>\r\n    </div>\r\n    \r\n    <div class=\"row match-padding\">\r\n      <div class=\"col col-md-3 col-md-offset-1\">\r\n        <label class=\"subtitle\">Password (At least 6 characters)</label>\r\n        <input type=\"password\" ng-model=\"doctor.password\" ng-pattern=\"passwordRegex\" zxcvbn=\"passwordStrength\" ng-required=\"true\">\r\n      </div>\r\n      <div class=\"col col-md-3\">\r\n        <label class=\"subtitle\">Confirm Password</label>\r\n        <input type=\"password\" ng-model=\"doctor.passwordAgain\" ng-required=\"true\">\r\n      </div>\r\n    </div>\r\n    <div class=\"row match-padding\">\r\n      <div class=\"col col-md-3 col-md-offset-1\">\r\n          <div class=\"meter\">\r\n            <div ng-class=\"meter\" role=\"progressbar\" aria-valuenow=\"40\" aria-valuemin=\"0\" aria-valuemax=\"100\"></div>\r\n          </div>\r\n          <span class=\"subtitle\">{{ passwordStatus }}</span>\r\n      </div>\r\n    </div>\r\n    <div class=\"row match-padding\">\r\n        <div class=\"col col-md-3 col-md-offset-1\">\r\n          <button ng-class=\"checkStatus(registerDoctorForm.$valid)\" ng-disabled=\"registerDoctorForm.$invalid\" ng-click=\"registerDoctor()\">{{ button }}</button>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </ng-form>\r\n</div>";
-
-/***/ }),
-/* 97 */
-/***/ (function(module, exports) {
-
-angular.module('hplus.modules.registerdoctor')
-
-  .controller('RegisterDoctorController',
-    function($scope, $location, globalFactory, doctorFactory, modalFactory){
-
-      var user = doctorFactory.getUser();
-      console.log(user);
-
-      if(user != null) {
-        if(!user.admin){
-          $location.path("/admin/list/record");
-        }
-      } else {
-        $location.path("/");
-      }
-
-      $scope.contactNoRegex = "\\d{7,}";
-      $scope.passwordRegex = ".{6,}";
-      $scope.meter = "meter-bar";
-      $scope.passwordStatus = "Enter a password";
-
-      var errorMessage = "";
-
-      $scope.go = function(path){
-        globalFactory.go(path);
-      };
-
-      $scope.$watch(
-        // This function returns the value being watched. It is called for each turn of the $digest loop
-        function() { return $scope.passwordStrength; },
-        // This is the change listener, called when the value returned from the above function changes
-        function(newValue, oldValue) {
-          if (newValue != undefined && newValue.password != "") {
-            switch(newValue.score){
-              case 0:
-                $scope.meter = "meter-bar meter-bar-verybad";
-                $scope.passwordStatus = "Very Weak";
-                break;
-              case 1:
-                $scope.meter = "meter-bar meter-bar-bad";
-                $scope.passwordStatus = "Weak";
-                break;
-              case 2:
-                $scope.meter = "meter-bar meter-bar-average";
-                $scope.passwordStatus = "Average";
-                break;
-              case 3:
-                $scope.meter = "meter-bar meter-bar-good";
-                $scope.passwordStatus = "Strong";
-                break;
-              case 4:
-                $scope.meter = "meter-bar meter-bar-verygood";
-                $scope.passwordStatus = "Very Strong";
-            }
-          } else {
-            $scope.meter = "meter-bar";
-            $scope.passwordStatus = "Enter a password";
-          }
-      });
-
-      $scope.checkStatus = function(status){
-        var retType;
-
-        if(status) {
-          $scope.button = "Register Doctor";
-          retType = "edit-button";
-        } else {
-          $scope.button = "Please fill out all of the fields correctly";
-          retType = "delete-button";
-        }
-
-        return retType;
-      };
-
-      var validity = function(){
-        var state;
-        var yearDiff;
-
-        if(Date.now() - $scope.doctor.birthday.getTime < 0){
-          yearDiff = Date.now() + $scope.doctor.birthday.getTime();
-        } else {
-          yearDiff = Date.now() - $scope.doctor.birthday.getTime();
-        }
-
-        yearDiff = new Date(yearDiff);
-        yearDiff = parseInt(Math.abs(yearDiff.getUTCFullYear() - 1970));
-        errorMessage = "";
-
-        if($scope.doctor.password == $scope.doctor.passwordAgain){
-          state = true;
-        } else {
-          state = false;
-          errorMessage += "Passwords don't match!";
-        }
-
-        if(yearDiff <= 24 || yearDiff >= 66) {
-          state = false;
-          if(errorMessage != ""){
-            errorMessage += "\n";
-          }
-          errorMessage += "Invalid age! You can't be " + yearDiff + " years old!";
-        }
-
-        return state;
-      };
-
-      var confirmRegisterDoctor = function(doctor, initComponents){
-        doctorFactory.registerDoctor(doctor, initComponents);
-      };
-
-      $scope.registerDoctor = function(){
-        var modalObject = {};
-
-        if(validity()){
-          modalObject = {
-            type: "confirm",
-            title: "Confirm Registration",
-            description: "Are you sure you want to register " + $scope.doctor.firstname + "?",
-            negativeButton: "No",
-            positiveButton: "Yes",
-            isVisible: true,
-            data: confirmRegisterDoctor,
-            object: $scope.doctor,
-            clean: $scope.initComponents
-          };
-        
-          modalFactory.setContents(modalObject);
-        } else {
-          modalObject = {
-            type: "notify",
-            title: "Unable to register doctor!",
-            description: errorMessage,
-            positiveButton: "Ok",
-            isVisible: true
-          };
-          
-          modalFactory.setContents(modalObject);
-        }
-      };
-      
-      $scope.initComponents = function(){
-    	  $scope.doctor.firstname = "";
-    	  $scope.doctor.lastname = "";
-    	  $scope.doctor.specialization = "";
-    	  $scope.doctor.address = "";
-    	  $scope.doctor.contactNo = "";
-    	  $scope.doctor.birthday = "";
-    	  $scope.doctor.username = "";
-    	  $scope.doctor.password = "";
-    	  $scope.doctor.passwordAgain = "";
-    	  $scope.doctor.email = "";
-      };
-
-      $scope.specialization = [
-        "Allergist",
-        "Cardiologist",
-        "Dermatologist",
-        "Gastroenterologist",
-        "Gynecologist",
-        "Hematologist",
-        "Internal Medicine Physician",
-        "Nephrologist",
-        "Neurologist",
-        "Neurosurgeon",
-        "Nurse-Midwifery",
-        "Obstetrician",
-        "Occupational Medicine Physician",
-        "Oncologist",
-        "Ophthalmologist",
-        "Oral Surgeon",
-        "Orthopaedic Surgeon",
-        "Otolaryngologist",
-        "Pathologist", 
-        "Pediatrician", 
-        "Plastic Surgeon",
-        "Podiatrist",
-        "Psychiatrist",
-        "Pulmonary Medicine Physician",
-        "Radiation Oncologist",
-        "Diagnostic Radiologist",
-        "Rheumatologist", 
-        "Urologist"
-      ];
-
-    }
-  );
-
-/***/ }),
-/* 98 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var registermedicine = __webpack_require__(99);
-
-angular.module('hplus.modules.registermedicine', [])
-
-  .config(function ($routeProvider){  
-    $routeProvider
-      .when('/admin/register/medicine',{
-        template: registermedicine
-      })
-  });
-
-  __webpack_require__(100);
-
-/***/ }),
-/* 99 */
-/***/ (function(module, exports) {
-
-module.exports = "<div ng-controller=\"RegisterMedicineController\">\r\n\t<div class=\"row\">\r\n\t\t<div class=\"col col-md-8 col-md-offset-1\">\r\n\t\t\t<h1>Register Medicine</h1>\r\n\t\t</div>\r\n\t</div>\r\n\r\n\t<div class=\"row\">\r\n\t\t<div class=\"col col-md-10 col-md-offset-1\">\r\n\t\t\t<ng-form name=\"medicineForm\">\r\n\t\t\t\t<div class=\"col-md-3\">\r\n\t\t\t\t\t<label class=\"subtitle\">Name of Medicine:</label>\r\n\t\t\t\t\t<input type=\"text\" ng-model=\"medicine.name\" placeholder=\"Name\" ng-required=\"true\">\r\n\r\n\t\t\t<!--\t\t<label class=\"subtitle\">Generic Name:</label>\r\n\t\t\t\t\t<input type=\"text\" placeholder=\"Generic Name\" ng-model=\"medicine.generic\" ng-required=\"true\">\r\n\t\t\t-->\r\n\t\t\t\t\t<label class=\"subtitle\">Medicine Type:</label>\r\n\t\t\t\t\t<select name=\"selectMeds\" ng-model=\"medicine.type\" ng-options=\"type as type for type in medicineTypes\" ng-required=\"true\">\r\n\t\t\t\t\t\t<option value=\"\">--Select One--</option>\r\n\t\t\t\t\t</select>\r\n\r\n\t\t\t\t\t<label class=\"subtitle\">Price (PHP) :</label> \r\n\t\t\t\t\t<input type=\"number\" id=\"priceInputField\" ng-model=\"medicine.price\" placeholder=\"Price\" ng-required=\"true\">\r\n\r\n\t\t\t\t\t<button ng-class=\"checkStatus(medicineForm.$valid)\" type=\"submit\" ng-disabled=\"medicineForm.$invalid\" ng-click=\"registerMedicine()\">{{ button }}</button>\r\n\t\t\t\t</div>\r\n\t\t\t\t\r\n\t\t\t\t<div class=\"col col-md-9\">\r\n\t\t\t\t\t<label class=\"subtitle\">Description:</label>\r\n\t\t\t\t\t<textarea id=\"descMed\" ng-model=\"medicine.description\" rows=\"8\" cols=\"50\" placeholder=\"Description\" ng-required=\"true\"></textarea>\r\n\t\t\t\t</div>\r\n\t\t\t</ng-form>\r\n\t\t</div>\r\n\t</div>\r\n</div>";
-
-/***/ }),
-/* 100 */
-/***/ (function(module, exports) {
-
-angular.module('hplus.modules.registermedicine')
-
-  .controller('RegisterMedicineController',
-    function($scope, $location, globalFactory, medicineFactory, doctorFactory, modalFactory){
-
-      $scope.button = "Register";
-      $scope.medicine = {};
-
-      var user = doctorFactory.getUser();
-      
-      if(user != null) {
-        if(!user.admin){
-          $location.path("/admin/list/record");
-        }
-      } else {
-        $location.path("/");
-      }
-
-      $scope.go = function(path){
-        globalFactory.go(path);
-      };
-
-      var clear = function(){
-        $scope.medicine = {};
-      };
-
-      var confirmRegisterMedicine = function(){
-        medicineFactory.registerMedicine($scope.medicine);
-        clear();
-      };
-      
-      $scope.registerMedicine = function(){
-        var modalObject = {};
-  
-        if($scope.medicine.price >= 0){
-          modalObject = {
-            type: "confirm",
-            title: "Confirm Registration",
-            description: "Are you sure you want to register " + $scope.medicine.name + "?",
-            negativeButton: "No",
-            positiveButton: "Yes",
-            isVisible: true,
-            data: confirmRegisterMedicine
-          };
-        
-          modalFactory.setContents(modalObject);
-        } else {
-          modalObject = {
-            type: "notify",
-            title: "Unable to register medicine!",
-            description: "Price can't be negative!",
-            positiveButton: "Ok",
-            isVisible: true
-          };
-          
-          modalFactory.setContents(modalObject);
-        }
-
-      };
-
-      $scope.checkStatus = function(status){
-        var retType;
-
-        if(status) {
-          $scope.button = "Register";
-          retType = "edit-button";
-        } else {
-          $scope.button = "Please fill out all of the fields";
-          retType = "delete-button";
-        }
-
-        return retType;
-      };
-      
-      $scope.medicineTypes = [
-            "Liquid", 
-            "Tablet", 
-            "Capsule", 
-            "Topical Medicine", 
-            "Suppository",
-            "Drops",
-            "Inhaler",
-            "Injection",
-            "Implant",
-            "Patch",
-            "Buccal or Sublingual Tablets"
-      ];
-    }
-  );
-
-
-/***/ }),
-/* 101 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var registerpatient = __webpack_require__(102);
-
-angular.module('hplus.modules.registerpatient', [])
-
-  .config(function ($routeProvider){  
-    $routeProvider
-      .when('/admin/register/patient',{
-        template: registerpatient
-      })
-  });
-
-  __webpack_require__(103);
-
-/***/ }),
-/* 102 */
-/***/ (function(module, exports) {
-
-module.exports = "<div ng-controller=\"RegisterPatientController\">\r\n<div class=\"row\">\r\n  <div class=\"col col-md-8 col-md-offset-1\">\r\n    <h1>Register Patient</h1>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row\">\r\n  <ng-form name=\"registerPatientForm\">\r\n      <div class=\"row match-padding\">\r\n        <div class=\"col col-md-3 col-md-offset-1\">\r\n          <label class=\"subtitle\">Patient's First Name</label>\r\n          <input type=\"text\" ng-model=\"patient.firstname\" ng-required=\"true\">\r\n        </div>\r\n        <div class=\"col col-md-3\">\r\n          <label class=\"subtitle\">Patient's Last Name</label>\r\n          <input type=\"text\" ng-model=\"patient.lastname\" ng-required=\"true\">\r\n        </div>\r\n      </div>\r\n  \r\n      <div class=\"row match-padding\">\r\n        <div class=\"col col-md-3 col-md-offset-1\">\r\n          <label class=\"subtitle\">Patient's Address</label>\r\n          <input type=\"text\" ng-model=\"patient.address\" ng-required=\"true\">\r\n        </div>\r\n        <div class=\"col col-md-3\">\r\n          <label class=\"subtitle\">Patient's Contact Number</label>\r\n          <input type=\"text\" ng-model=\"patient.contactNo\" ng-pattern=\"regex\" ng-required=\"true\">\r\n        </div>\r\n      </div>\r\n              \r\n      <div class=\"row match-padding\">\r\n        <div class=\"col col-md-3 col-md-offset-1\">\r\n          <label class=\"subtitle\">Birthday</label>\r\n          <input type=\"date\" ng-model=\"patient.birthday\" ng-required=\"true\">\r\n        </div>\r\n        <div class=\"col col-md-3\">\r\n          <label class=\"subtitle\">Sex</label>\r\n          <select ng-model=\"patient.sex\" ng-required=\"true\">\r\n            <option value=\"\">Choose a sex</option>\r\n            <option value=\"true\">Male</option>\r\n            <option value=\"false\">Female</option>\r\n          </select>\r\n        </div>\r\n      </div>\r\n      <div class=\"row match-padding\">\r\n        <div class=\"col col-md-3 col-md-offset-1\">\r\n          <button class=\"outline\" ng-class=\"checkStatus(registerPatientForm.$valid)\" ng-disabled=\"registerPatientForm.$invalid\" ng-click=\"registerPatient()\">Register Patient</button>\r\n        </div>\r\n      </div>\r\n  </ng-form>\r\n</div>\r\n</div>";
-
-/***/ }),
-/* 103 */
-/***/ (function(module, exports) {
-
-angular.module('hplus.modules.registerpatient')
-
-  .controller('RegisterPatientController',
-    function($scope, $location, globalFactory, patientFactory, doctorFactory, modalFactory, symptomFactory, diseaseFactory, medicineFactory){
-
-      var user = doctorFactory.getUser();
-      $scope.regex = "\\d{6,}";
-
-
-      if(user == null) {
-        $location.path("/");
-      }
-
-      $scope.go = function(path){
-        globalFactory.go(path);
-      };
-
-      var validity = function(){
-        return ($scope.patient.birthday < new Date());
-      };
-
-      var confirmRegisterPatient = function(){
-        patientFactory.registerPatient($scope.patient);        
-//        $scope.patient = {};
-        patientFactory.savePatient($scope.patient);
-
-        $scope.go("/doctor/register/record");
-      };
-	  
-	    $scope.registerPatient = function(){
-        var modalObject = {};
-
-        if(validity()){
-          modalObject = {
-            type: "confirm",
-            title: "Confirm Registration",
-            description: "Are you sure you want to register " + $scope.patient.firstname + "?",
-            negativeButton: "No",
-            positiveButton: "Yes",
-            isVisible: true,
-            data: confirmRegisterPatient
-          };
-        } else {
-          modalObject = {
-            type: "notify",
-            title: "Unable to register patient!",
-            description: "Invalid birthday!",
-            positiveButton: "Ok",
-            isVisible: true
-          };
-        }
-
-        modalFactory.setContents(modalObject);
-      };
-      
-      $scope.checkStatus = function(status){
-        return (status) ? "edit-button" : "delete-button";
-      };
-
-      
-    }
-  );
-
-
-/***/ }),
-/* 104 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var userLogin = __webpack_require__(105);
-
-angular.module('hplus.modules.login', [])
-
-  .config(function ($routeProvider){  
-    $routeProvider
-      .when('/',{
-        template: userLogin
-      })
-
-      .when('/user/login',{
-        template: userLogin
-      })
-  });
-
-__webpack_require__(106);
-
-/***/ }),
-/* 105 */
-/***/ (function(module, exports) {
-
-module.exports = "<div class=\"row\" ng-controller=\"LoginController\">\r\n  <div class=\"col-md-10 col-md-offset-1\">\r\n    <div ng-hide=\"true\" class=\"col-md-8\">\r\n      This is just for testing purposes. Add your page here.<br>\r\n      All pages:<br>\r\n      <div class=\"hyperlink\" ng-click=\"go('/admin/update/disease')\">Update Disease</div>\r\n\r\n      <div class=\"hyperlink\" ng-click=\"go('/admin/edit/doctor')\">Edit Doctor</div>\r\n\r\n      <div class=\"hyperlink\" ng-click=\"go('/admin/update/medicine')\">Update Medicine</div>\r\n\r\n      <div class=\"hyperlink\" ng-click=\"go('/admin/list/disease')\">Explore Diseases</div>\r\n\r\n      <div class=\"hyperlink\" ng-click=\"go('/admin/list/doctor')\">Explore Doctors</div>\r\n      \r\n      <div class=\"hyperlink\" ng-click=\"go('/admin/list/record')\">Explore Medical Records</div>\r\n\r\n      <div class=\"hyperlink\" ng-click=\"go('/admin/list/medicine')\">Explore Medicines</div>\r\n\r\n      <div class=\"hyperlink\" ng-click=\"go('/admin/register/disease')\">Register Diseases</div>\r\n\r\n      <div class=\"hyperlink\" ng-click=\"go('/admin/register/doctor')\">Register Doctor</div>\r\n\r\n      <div class=\"hyperlink\" ng-click=\"go('/admin/register/medicine')\">Register Medicines</div>\r\n\r\n      <div class=\"hyperlink\" ng-click=\"go('/admin/view/doctordetails')\">View Doctor</div>\r\n\r\n      <div class=\"hyperlink\" ng-click=\"go('/doctor/create/record')\">Create Medical Record</div>\r\n\r\n      <div class=\"hyperlink\" ng-click=\"go('/admin/view/medicine')\">View Medicine</div>\r\n\r\n    <div class=\"hyperlink\" ng-click=\"go('/patient/view/details')\">View Patient</div>\r\n    </div>\r\n\r\n    <div class=\"col-md-4\">   \r\n      <form class=\"login-form\" role=\"form\">\r\n        <div class=\"form-group\">\r\n          <label class=\"subtitle\" for=\"inputUsernameEmail\">Username or email</label>\r\n          <input class=\"form-control\" id=\"inputUsernameEmail\" type=\"text\" ng-model='username'>\r\n        </div>\r\n        <div class=\"form-group\">\r\n          <label class=\"subtitle\" for=\"inputPassword\">Password</label>\r\n          <input type=\"password\" class=\"form-control\" id=\"inputPassword\" ng-model='password'>\r\n        </div>\r\n        <button type=\"submit\" class=\"btn pull-right\" ng-click=\"loginDoctor();\">\r\n          Log In\r\n        </button>\r\n      </form>\r\n    </div>\r\n  </div>\r\n</div>";
-
-/***/ }),
-/* 106 */
-/***/ (function(module, exports) {
-
-angular.module('hplus.modules.login')
-
-  .controller('LoginController',
-    function($scope, globalFactory, doctorFactory, $location){
-
-      var user = doctorFactory.getUser();
-      console.log(user);
-
-      if(user != null){
-        $location.path("/admin/list/record");
-      }
-
-      $scope.go = function(path){
-        globalFactory.go(path);
-      };
-      
-      $scope.loginDoctor = function(){
-        doctorFactory.login($scope.username, $scope.password);
-      };
-    }
-  );
-
-/***/ }),
-/* 107 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var viewdoctor = __webpack_require__(108);
-
-angular.module('hplus.modules.viewdoctor', [])
-
-  .config(function ($routeProvider){  
-    $routeProvider      
-      .when('/admin/view/doctordetails',{
-        template: viewdoctor
-      })
-  });
-
-  __webpack_require__(109);
-  __webpack_require__(111);
-  __webpack_require__(112);
-
-/***/ }),
-/* 108 */
-/***/ (function(module, exports) {
-
-module.exports = "<ng-controller ng-controller=\"ViewDoctorController\">\r\n  <div class=\"row\">\r\n    <div class=\"col col-md-8 col-md-offset-1\">\r\n      <h1><i class=\"fa fa-user-md\"></i>Dr. {{ doctorData.firstname + \" \" + doctorData.lastname }} ({{ doctorData.username }})</h1>\r\n    </div>\r\n  </div>\r\n\r\n  <div class=\"row\">\r\n    <div class=\"col col-md-3 col-md-offset-1\">\r\n      <div class=\"match-padding\">\r\n        <label class=\"subtitle\">Specialization</label>\r\n        <div class=\"subtitle__value\">\r\n          {{ doctorData.specialization }}\r\n        </div>\r\n\r\n        <label class=\"subtitle\">Contact #</label>\r\n        <div class=\"subtitle__value\">\r\n          {{ doctorData.contactNo }}\r\n        </div>\r\n\r\n        <label class=\"subtitle\">E-mail Address</label>\r\n        <div class=\"subtitle__value\">\r\n          {{ doctorData.email }}\r\n        </div>\r\n\r\n        <label class=\"subtitle\">Address</label>\r\n        <div class=\"subtitle__value\">\r\n          {{ doctorData.address }}\r\n        </div>\r\n\r\n        <label class=\"subtitle\">Birthday</label>\r\n        <div class=\"subtitle__value\">\r\n          {{ doctorData.processedBirthday }}\r\n        </div>\r\n\r\n        <div>\r\n          <button class=\"outline\" ng-click=\"go('/admin/edit/doctor')\">Edit</button>\r\n          <button class=\"outline\" ng-show=\"recordList == null && user.admin\" ng-click=\"delete()\">Archive</button>\r\n          <button class=\"outline\" ng-show=\"!user.admin || (user.admin && user.id == doctorData.id)\" ng-click=\"go('admin/reset/password')\">Change Password</button> \r\n        </div>\r\n      </div>\r\n    </div>\r\n\r\n    <div ng-show=\"!user.admin || user.id != doctorData.id\" class=\"col col-md-7\">\r\n      <div class=\"col col-md-12\">\r\n        <label class=\"subtitle\" ng-if=\"user.admin\">Medical Records Handled By</label>\r\n        <label class=\"subtitle\" ng-if=\"!user.admin\">You are handling the following medical records </label>\r\n\r\n        <span ng-if=\"user.admin\" class=\"subtitle subtitle--variable\">\r\n          Dr. {{ doctorData.firstname + \" \" + doctorData.lastname }}\r\n        </span>\r\n\r\n        <span ng-if=\"recordList.length\" class=\"subtitle subtitle--variable\">\r\n          Total: {{ recordList.length }}\r\n        </span>\r\n\r\n        <div ng-hide=\"recordList.length\">\r\n          <span ng-if=\"user.admin\" class=\"subtitle\">This doctor isn't handling any medical records</span>\r\n          <span ng-if=\"!user.admin\" class=\"subtitle\">You aren't handling any medical records</span>\r\n        </div>\r\n\r\n  \t\t  <hplus-view-doctors-card ng-show=\"recordList.length\" dir-paginate=\"record in recordList | itemsPerPage:10\" data=\"record\"></hplus-view-doctors-card>\r\n      </div>\r\n    </div>\r\n  </div>\r\n\r\n  <dir-pagination-controls max-size=\"5\"></dir-pagination-controls>\r\n</ng-controller>";
-
-/***/ }),
-/* 109 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var card = __webpack_require__(110);
-angular.module('hplus.modules.viewdoctor')
-
-  .directive('hplusViewDoctorsCard', function(){
-    return{
-      restrict: 'EA',
-      scope: {
-        data: '='
-      },
-      template: card
-    };
-  })
-
-/***/ }),
-/* 110 */
-/***/ (function(module, exports) {
-
-module.exports = "<div class=\"card__container\" ng-controller=\"DoctorRecordCardController\">\r\n  <div class=\"card__title\">\r\n    {{ data.name }}\r\n\r\n    <a ng-click=\"go('/view/medicalrecord', data); $event.stopPropagation()\"><span class=\"delete__icon\"><i class=\"fa fa-eye\" aria-hidden=\"true\"></i></span></a>\r\n    <a ng-click=\"go('/update/medicalrecord', data); $event.stopPropagation()\"><span class=\"delete__icon\"><i class=\"fa fa-pencil-square-o\" aria-hidden=\"true\"></i></span></a>\r\n  \r\n  </div>\r\n  \r\n  <div class=\"card__desc\">\r\n    Admitted {{ data.date }} for {{ data.disease }}\r\n  </div>\r\n</div>";
-
-/***/ }),
-/* 111 */
-/***/ (function(module, exports) {
-
-angular.module('hplus.modules.viewdoctor')
-
-  .controller('ViewDoctorController',
-    function($scope, $location, $timeout, globalFactory, doctorFactory, modalFactory, patientFactory, diseaseFactory){
-    
-      $scope.user = doctorFactory.getUser();
-      var monthNames = ["January", "February", "March", "April", "May", "June",
-      "July", "August", "September", "October", "November", "December"];
-
-      if($scope.user != null) {
-        if($scope.user.admin){
-          $scope.doctorData = doctorFactory.getDoctor();
-        } else {
-          $scope.doctorData = $scope.user;
-        }
-      } else {
-        $location.path("/");
-      }
-
-      var modalObject;
-
-      if($scope.doctorData == null) {
-        $location.path('/admin/list/doctor');
-      } else {
-        console.log($scope.doctorData);
-        var brokenDate = $scope.doctorData.birthday.split(" ");
-        var realDate;
-
-        for(var i = 0; i < monthNames.length && $scope.doctorData.processedBirthday == null; i++){
-          if(monthNames[i].indexOf(brokenDate[1]) != -1) {
-            realDate = new Date(brokenDate[5], (i + 1), parseInt(brokenDate[2]) + 1);
-            $scope.doctorData.processedBirthday = monthNames[i] + " " + realDate.getDate() + ", " + realDate.getFullYear();
-          }
-        }
-
-        $scope.recordList = $scope.doctorData.medicalRecords;
-
-        patientFactory.getListOfPatients().then(function(response){
-          console.log(response);
-          var patientList = response.data.patients;
-          var x, y;
-
-          for(x = 0; x < $scope.recordList.length; x++) {
-            for(y = 0; y < patientList.length && $scope.recordList[x].name == null; y++) {
-              if($scope.recordList[x].patientId == patientList[y].id){
-                $scope.recordList[x].name = patientList[y].lastname + ", " + patientList[y].firstname;
-
-                var date = $scope.recordList[x].createdAt.split(" ");
-                
-                for(var i = 0; i < monthNames.length && $scope.recordList[x].date == null; i++) {
-                  if(monthNames[i].indexOf(date[1]) != -1) {
-                    realDate = new Date(date[5], (i + 1), parseInt(date[2]) + 1);
-                    $scope.recordList[x].date = monthNames[i].substr(0, 3);
-                    if(monthNames[i].length > 3){
-                      $scope.recordList[x].date += ".";
-                    }
-                    $scope.recordList[x].date += " " + realDate.getDate() + ", " + realDate.getFullYear();
-                  }
-                }
-              }
-            }
-          }
-        });
-
-        diseaseFactory.getListOfDiseases().then(function(response){
-          console.log(response); 
-          console.log($scope.recordList);
-          var diseaseList = response.data.diseases;
-          var x, y, z;
-
-          for(x = 0; x < $scope.recordList.length; x++) {
-            var disease = "";
-            for(y = 0; y < $scope.recordList[x].diseaseIdList.length; y++) {
-              for(z = 0; z < diseaseList.length; z++) {
-                if($scope.recordList[x].diseaseIdList[y] == diseaseList[z].id) {
-                  if(disease == "") {
-                    disease = diseaseList[z].name[0].toUpperCase() + diseaseList[z].name.substr(1);
-                  } else {
-                    disease +=", " + diseaseList[z].name[0].toUpperCase() + diseaseList[z].name.substr(1);
-                  }
-                }
-              }
-            }
-            $scope.recordList[x].disease = disease;
-          }
-            
-        });
-      }
-
-      $scope.$on("updateProfile", function(event) {
-        $scope.doctorData = doctorFactory.getUser();
-      });
-
-      $scope.go = function(path){
-        doctorFactory.saveDoctor($scope.doctorData);
-        globalFactory.go(path);
-      };
-
-      $scope.delete = function(){
-        doctorFactory.deleteDoctor($scope.doctorData);
-      };
-  });
-
-/***/ }),
-/* 112 */
-/***/ (function(module, exports) {
-
-angular.module('hplus.modules.viewdoctor')
-
-  .controller('DoctorRecordCardController',
-    function($scope, $location, globalFactory, medicalRecordFactory){
-      
-      $scope.go = function(path, medicalRecord){
-        medicalRecordFactory.saveMedicalRecord(medicalRecord);
-        globalFactory.go(path);
-      };
-
-  });
-
-/***/ }),
-/* 113 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var viewdisease = __webpack_require__(114);
-
-angular.module('hplus.modules.viewdisease', [])
-
-  .config(function ($routeProvider){  
-    $routeProvider      
-      .when('/admin/view/disease',{
-        template: viewdisease
-      })
-  });
-
-__webpack_require__(115);
-__webpack_require__(117);
-__webpack_require__(156);
-
-/***/ }),
-/* 114 */
-/***/ (function(module, exports) {
-
-module.exports = "<ng-controller ng-controller=\"ViewDiseaseController\">\r\n\t<div class=\"row\">\r\n\t  <div class=\"col col-md-8 col-md-offset-1\">\r\n\t    <h1>\r\n\t      <i class=\"fa fa-thermometer-full\"></i>\r\n\t      {{ disease.name[0].toUpperCase() + disease.name.substr(1) }}\r\n\t    </h1>\r\n\t  </div>\r\n\t</div>\r\n\t\r\n\t<div class=\"row\">\r\n\t  <div class=\"col col-md-2 col-md-offset-1\">\r\n\t    <div class=\"match-padding\">\r\n\t      <span class=\"subtitle\">\r\n\t        Symptoms\r\n\t      </span>\r\n\t      <div class=\"subtitle__value\">\r\n\t        <div class=\"row card__container--flex\">\r\n\r\n\t          <div class=\"card__container--medium\" ng-repeat=\"symptom in disease.symp\">\r\n\t            <div class=\"card__desc--medium\">\r\n\t              {{ symptom }}\r\n\t            </div>\r\n\t          </div>\r\n\t\t\t\t\t\r\n\t\t\t\t\t</div>\r\n\t      </div>\r\n\t      <br>\r\n\t      <span class=\"subtitle\">\r\n\t        Medicine\r\n\t      </span>\r\n\t      <br>\r\n\t     <table>\r\n\t        <tr ng-repeat=\"medicine in disease.meds\">\r\n\t          <td><span>{{ medicine }}</span></td>\r\n\t        </tr>\r\n\t      </table>\r\n\t      <br>\r\n\t      <button class=\"outline\" ng-click=\"go('/admin/update/disease')\" ng-show=\"user.admin && !recordList\">Edit</button>\r\n\t      <button class=\"outline\" ng-click=\"delete()\" ng-show=\"user.admin && !recordList\">Archive</button>\r\n\t    </div>\r\n\t  </div>\r\n\t\r\n\t  <div class=\"col col-md-8\">\r\n\t    <div class=\"col col-md-12\">\r\n\t      <div class=\"row\">\r\n\t        <div class=\"col col-md-4\">\r\n\t          <span class=\"subtitle\">\r\n\t            OCCURRENCE IN\r\n\t          </span>\r\n\t          <span class=\"subtitle subtitle--variable\">\r\n\t            {{ monthAndYear }}\r\n\t          </span>\r\n\t          <div class=\"subtitle__value\">\r\n\t            {{ monthUsage }} Patients\r\n\t          </div>\r\n\t        </div>\r\n\t          \r\n\t        <div class=\"col col-md-4\">\r\n\t          <span class=\"subtitle\">\r\n\t            OCCURRENCE IN YEAR\r\n\t          </span>\r\n\t          <span class=\"subtitle subtitle--variable\">\r\n\t            {{ year }}\r\n\t          </span>\r\n\t          <div class=\"subtitle__value\">\r\n\t            {{ yearUsage }} Patients\r\n\t          </div>\r\n\t        </div>\r\n\t      </div>\r\n\t    </div>\r\n\t\r\n\t    <div class=\"col col-md-12\">\r\n\t      <br>\r\n\t\t\t\t<br>\r\n\t\t\t\t<label ng-if=\"!recordList\" class=\"subtitle\">Hasn't been diagnosed in any patient</label>\r\n\t      <label ng-if=\"recordList\" class=\"subtitle\">DIAGNOSED IN THE FOLLOWING PATIENTS</label>\r\n\t      <hplus-view-disease-card dir-paginate=\"record in recordList | itemsPerPage:10\" data=\"record\"></hplus-view-disease-card>\r\n\t    </div>\r\n\t  </div>\r\n\t</div>\r\n\t<dir-pagination-controls max-size=\"5\"></dir-pagination-controls>\r\n</ng-controller>";
-
-/***/ }),
-/* 115 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var card = __webpack_require__(116);
-angular.module('hplus.modules.viewdisease')
-
-  .directive('hplusViewDiseaseCard', function(){
-    return{
-      restrict: 'EA',
-      scope: {
-        data: '='
-      },
-      template: card
-    };
-  })
-
-/***/ }),
-/* 116 */
-/***/ (function(module, exports) {
-
-module.exports = "<div class=\"card__container\" ng-controller=\"DiseaseRecordCardController\">\r\n  <div class=\"card__title\">\r\n    {{ data.name }} \r\n\r\n    <a ng-click=\"go('/view/medicalrecord', data); $event.stopPropagation()\"><span class=\"delete__icon\"><i class=\"fa fa-eye\" aria-hidden=\"true\"></i></span></a>\r\n    <a ng-show=\"user.admin || (user.id == data.doctorId)\" ng-click=\"go('/update/medicalrecord', data); $event.stopPropagation()\"><span class=\"delete__icon\"><i class=\"fa fa-pencil-square-o\" aria-hidden=\"true\"></i></span></a>\r\n    \r\n  </div>\r\n  \r\n  <div class=\"card__desc\">\r\n    Diagnosed on {{ data.date }} by Dr. {{ data.doctor }}\r\n  </div>\r\n</div>";
-
-/***/ }),
-/* 117 */
-/***/ (function(module, exports) {
-
-app = angular.module('hplus.modules.viewdisease')
-
-  .controller('ViewDiseaseController',
-    function($scope, $location, globalFactory, doctorFactory, diseaseFactory, medicineFactory, patientFactory){
-
-      $scope.user = doctorFactory.getUser();
-      $scope.disease = diseaseFactory.getDisease();
-
-      var date = new Date();
-      var monthNames = ["January", "February", "March", "April", "May", "June",
-      "July", "August", "September", "October", "November", "December"];
-
-      $scope.monthAndYear = monthNames[date.getMonth()].toUpperCase() + " " + date.getFullYear();
-      $scope.year = date.getFullYear();
-
-      if($scope.user == null) {
-        $location.path("/");
-      }
-
-      if($scope.disease == null){
-        $location.path("/admin/list/disease");
-      } else {
-        $scope.recordList = $scope.disease.medicalRecords;
-
-        $scope.monthUsage = 0;
-        $scope.yearUsage = 0;
-        
-        patientFactory.getListOfPatients().then(function(response){
-          console.log(response);
-          var patientList = response.data.patients;
-          var x, y;
-
-          for(x = 0; x < $scope.recordList.length; x++) {
-            for(y = 0; y < patientList.length && $scope.recordList[x].name == null; y++) {
-              if($scope.recordList[x].patientId == patientList[y].id){
-                $scope.recordList[x].name = patientList[y].lastname + ", " + patientList[y].firstname;
-
-                var date = $scope.recordList[x].createdAt.split(" ");
-
-                for(var i = 0; i < monthNames.length && $scope.recordList[x].date == null; i++) {
-                  if(monthNames[i].indexOf(date[1]) != -1) {
-                    realDate = new Date(date[5], (i + 1), parseInt(date[2]) + 1);
-
-                    if($scope.monthAndYear.toLowerCase().indexOf(monthNames[i].toLowerCase()) != -1) {
-                      $scope.yearUsage++;
-                      $scope.monthUsage++;
-                    } else if(date[5] == $scope.year) {
-                      $scope.yearUsage++;
-                    }
-
-                    $scope.recordList[x].date = monthNames[i].substr(0, 3);
-                    if(monthNames[i].length > 3){
-                      $scope.recordList[x].date += ".";
-                    }
-                    $scope.recordList[x].date += " " + realDate.getDate() + ", " + realDate.getFullYear();
-                  }
-                }
-              }
-            }
-          }
-        });
-
-        doctorFactory.getListOfDoctors().then(function(response){
-          console.log(response);
-          var doctorList = response.data.doctors;
-          var x, y;
-
-          for(x = 0; x < $scope.recordList.length; x++) {
-            for(y = 0; y < doctorList.length && $scope.recordList[x].doctor == null; y++) {
-              if($scope.recordList[x].doctorId == doctorList[y].id) {
-                $scope.recordList[x].doctor = doctorList[y].firstname + " " + doctorList[y].lastname;
-                $scope.recordList[x].doctorId = doctorList[y].id;
-              }
-            }
-          }
-        });
-      }
-
-      $scope.go = function(path){
-        globalFactory.go(path);
-      };
-
-      var populate = function(){
-        medicineFactory.getListOfMedicines().then(function(response){
-          console.log(response);
-          var medicineList = response.data.medicines;
-          var meds = [];
-          var x, y;
-
-          for(x = 0; x < medicineList.length; x++){
-            for(y = 0; y < $scope.disease.medicineId.length; y++){
-              if(medicineList[x].id == $scope.disease.medicineId[y]){
-                meds.push(medicineList[x].name);
-              }
-            }
-          }
-
-          $scope.disease.meds = meds;
-        });
-      };
-
-      populate();
-
-      $scope.delete = function(){
-        diseaseFactory.deleteDisease($scope.disease);
-      };
-    });
-
-/***/ }),
-/* 118 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var viewmedicine = __webpack_require__(119);
-
-angular.module('hplus.modules.viewmedicine', [])
-
-  .config(function ($routeProvider){  
-    $routeProvider      
-      .when('/admin/view/medicine',{
-        template: viewmedicine
-      })
-  });
-  __webpack_require__(120);
-  __webpack_require__(122);
-  __webpack_require__(123);
-
-/***/ }),
-/* 119 */
-/***/ (function(module, exports) {
-
-module.exports = "<ng-controller ng-controller=\"ViewMedicineController\">\r\n\t<div class=\"row\">\r\n\t  <div class=\"col col-md-8 col-md-offset-1\">\r\n\t    <h1><i class=\"fa fa-heartbeat\"></i>{{ medicine.name[0].toUpperCase() + medicine.name.substr(1) }}</h1>\r\n\t  </div>\r\n\t</div>\r\n\t\r\n\t<div class=\"row\">\r\n\t  <div class=\"col col-md-10 col-md-offset-1\">\r\n\t    <div class=\"col-md-3\">\r\n\t      <span class=\"subtitle\">Price:</span>\r\n\t      <div class=\"subtitle__value\">\r\n\t        PHP {{ medicine.price }}\r\n\t      </div>\r\n\t    </div>\r\n\t    <div class=\"col-md-3\">\r\n\t      <label class=\"subtitle\">USAGE FOR</label>\r\n\t      <span class=\"subtitle subtitle--variable\">{{ monthAndYear }}</span>\r\n\t      <div class=\"subtitle__value\">\r\n\t        {{ monthUsage }} Patients\r\n\t      </div>\r\n\t    </div>\r\n\t    <div class=\"col-md-3\">\r\n\t      <label class=\"subtitle\">USAGE FOR THE YEAR</label>\r\n\t      <span class=\"subtitle subtitle--variable\">{{ year }}</span>\r\n\t      <div class=\"subtitle__value\">\r\n\t        {{ yearUsage }} Patients\r\n\t      </div>\r\n\t    </div>\r\n\t  </div>\r\n\t</div>\r\n\t\r\n\t<div class=\"row margins\">\r\n\t  <div class=\"col-md-10 col-md-offset-1 margins\">\r\n\t\t  <div class=\"col-md-3\">\r\n\t      <label class=\"subtitle marginTop\">Type of Medicine</label>\r\n\t      <div class=\"subtitle__value\">\r\n\t        {{ medicine.type }}\r\n\t      </div>\r\n\t\t    <label class=\"subtitle marginTop\">Description:</label>\r\n\t\t    <div class=\"subtitle__value\">\r\n\t\t      {{ medicine.description }}\r\n\t\t    </div>\r\n\t\t\t\t<button class=\"outline\" ng-show=\"user.admin && !recordList\" ng-click=\"go('/admin/update/medicine')\">Edit</button>\r\n\t\t\t\t<button class=\"outline delete_btn\" ng-show=\"user.admin && !recordList\" ng-click=\"delete()\">Archive</button>\r\n\t\t  </div>\r\n\t\t  <div class=\"col-md-9\">\r\n\t\t\t\t<label ng-if=\"!recordList\" class=\"subtitle\">Hasn't been dispensed</label>\r\n\t\t\t\t<label ng-if=\"recordList\" class=\"subtitle\">DISPENSED TO THE FOLLOWING PATIENTS</label>\r\n\t        <hplus-view-medicine-card dir-paginate=\"record in recordList | itemsPerPage:10\" data=\"record\"></hplus-view-medicine-card>\r\n\t\t  </div>\r\n\t  </div>\r\n\t</div>\r\n\t<dir-pagination-controls max-size=\"5\"></dir-pagination-controls>\r\n</ng-controller>";
-
-/***/ }),
-/* 120 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var card = __webpack_require__(121);
-angular.module('hplus.modules.viewmedicine')
-
-  .directive('hplusViewMedicineCard', function(){
-    return{
-      restrict: 'EA',
-      scope: {
-        data: '='
-      },
-      template: card
-    };
-  })
-
-/***/ }),
-/* 121 */
-/***/ (function(module, exports) {
-
-module.exports = "<div class=\"card__container\" ng-controller=\"RecordCardController\">\r\n  <div class=\"card__title\">\r\n    {{ data.name }} \r\n\r\n    <a ng-click=\"go('/view/medicalrecord', data); $event.stopPropagation()\"><span class=\"delete__icon\"><i class=\"fa fa-eye\" aria-hidden=\"true\"></i></span></a>\r\n    <a ng-show=\"user.admin || (user.id == data.doctorId)\" ng-click=\"go('/update/medicalrecord', data); $event.stopPropagation()\"><span class=\"delete__icon\"><i class=\"fa fa-pencil-square-o\" aria-hidden=\"true\"></i></span></a>\r\n  </div>\r\n  \r\n  <div class=\"card__desc\">\r\n    Dispensed on {{ data.date }} by Dr. {{ data.doctor }}\r\n  </div>\r\n</div>";
-
-/***/ }),
-/* 122 */
-/***/ (function(module, exports) {
-
-app = angular.module('hplus.modules.viewmedicine')
-
-  .controller('ViewMedicineController',
-    function($scope, $location, globalFactory, doctorFactory, medicineFactory, patientFactory){
-
-      $scope.user = doctorFactory.getUser();
-      var date = new Date();
-      var monthNames = ["January", "February", "March", "April", "May", "June",
-      "July", "August", "September", "October", "November", "December"];
-
-      $scope.medicine = medicineFactory.getMedicine();
-      $scope.monthAndYear = monthNames[date.getMonth()].toUpperCase() + " " + date.getFullYear();
-      $scope.year = date.getFullYear();
-
-      if($scope.user == null) {
-        $location.path("/");
-      }
-
-      var modalObject;
-
-      if($scope.medicine == null){
-        $location.path('/admin/list/medicine');
-      } else {
-        $scope.recordList = $scope.medicine.medicalRecords;
-        console.log($scope.recordList);
-        $scope.monthUsage = 0;
-        $scope.yearUsage = 0;
-        
-        patientFactory.getListOfPatients().then(function(response){
-          console.log(response);
-          var patientList = response.data.patients;
-          var x, y;
-
-          for(x = 0; x < $scope.recordList.length; x++) {
-            for(y = 0; y < patientList.length && $scope.recordList[x].name == null; y++) {
-              if($scope.recordList[x].patientId == patientList[y].id){
-                $scope.recordList[x].name = patientList[y].lastname + ", " + patientList[y].firstname;
-
-                var date = $scope.recordList[x].createdAt.split(" ");
-
-                for(var i = 0; i < monthNames.length && $scope.recordList[x].date == null; i++) {
-                  if(monthNames[i].indexOf(date[1]) != -1) {
-                    realDate = new Date(date[5], (i + 1), parseInt(date[2]) + 1);
-
-                    if($scope.monthAndYear.toLowerCase().indexOf(monthNames[i].toLowerCase()) != -1) {
-                      $scope.yearUsage++;
-                      $scope.monthUsage++;
-                    } else if(date[5] == $scope.year) {
-                      $scope.yearUsage++;
-                    }
-
-                    $scope.recordList[x].date = monthNames[i].substr(0, 3);
-                    if(monthNames[i].length > 3){
-                      $scope.recordList[x].date += ".";
-                    }
-                    $scope.recordList[x].date += " " + realDate.getDate() + ", " + realDate.getFullYear();
-                  }
-                }
-              }
-            }
-          }
-        });
-
-        doctorFactory.getListOfDoctors().then(function(response){
-          console.log(response);
-          var doctorList = response.data.doctors;
-          var x, y;
-
-          for(x = 0; x < $scope.recordList.length; x++) {
-            for(y = 0; y < doctorList.length && $scope.recordList[x].doctor == null; y++) {
-              if($scope.recordList[x].doctorId == doctorList[y].id) {
-                $scope.recordList[x].doctor = doctorList[y].firstname + " " + doctorList[y].lastname;
-                $scope.recordList[x].doctorId = doctorList[y].id;
-              }
-            }
-          }
-        });
-      }
-	  
-      $scope.go = function(path) {
-    	  medicineFactory.saveMedicine($scope.medicine);
-        globalFactory.go(path);
-      };
-      
-      $scope.delete = function(){
-        medicineFactory.deleteMedicine($scope.medicine);
-      };
-      
- /*      $scope.recordList = [
-        {
-          name: "Doe, Jane",
-          date: "Feb. 20, 2016",
-          disease: "Heart Attack",
-          id: 1
-        },
-        {
-          name: "Rizal, Jose",
-          date: "Apr. 10, 2013",
-          disease: "Heart Attack",
-          id: 2
-        },
-        {
-          name: "Lietzkirg, Jaiyra",
-          date: "May. 19, 2011",
-          disease: "Heart Attack",
-          id: 3
-        },
-        {
-          name: "Doe, Jane",
-          date: "Feb. 20, 2016",
-          disease: "Heart Attack",
-          id: 4
-        },
-        {
-          name: "Doe, Jane",
-          date: "Feb. 20, 2016",
-          disease: "Heart Attack",
-          id: 5
-        },
-        {
-          name: "Doe, Jane",
-          date: "Feb. 20, 2016",
-          disease: "Heart Attack",
-          id: 6
-        },
-        {
-          name: "Doe, Jane",
-          date: "Feb. 20, 2016",
-          disease: "Heart Attack",
-          id: 7
-        },
-        {
-          name: "Doe, Jane",
-          date: "Feb. 20, 2016",
-          disease: "Heart Attack",
-          id: 8
-        },
-        {
-          name: "Doe, Jane",
-          date: "Feb. 20, 2016",
-          disease: "Heart Attack",
-          id: 9
-        },
-        {
-          name: "Doe, Jane",
-          date: "Feb. 20, 2016",
-          disease: "Heart Attack",
-          id: 10
-        },
-        {
-          name: "Doe, Jane",
-          date: "Feb. 20, 2016",
-          disease: "Heart Attack",
-          id: 11
-        }
-      ];
-      */
-  });
-
-/***/ }),
-/* 123 */
-/***/ (function(module, exports) {
-
-angular.module('hplus.modules.viewmedicine')
-
-  .controller('RecordCardController',
-    function($scope, $location, globalFactory, doctorFactory, medicalRecordFactory){
-      
-      $scope.user = doctorFactory.getUser();
-
-      $scope.go = function(path, medicalRecord){
-        medicalRecordFactory.saveMedicalRecord(medicalRecord);
-        globalFactory.go(path);
-      };
-
-  });
-
-/***/ }),
-/* 124 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var viewmedicalrecord = __webpack_require__(125);
-
-angular.module('hplus.modules.viewmedicalrecord', [])
-
-  .config(function ($routeProvider){  
-    $routeProvider      
-      .when('/view/medicalrecord',{
-        template: viewmedicalrecord
-      })
-  });
-  __webpack_require__(126);  
-  __webpack_require__(127);
-  __webpack_require__(129);
-
-
-/***/ }),
-/* 125 */
-/***/ (function(module, exports) {
-
-module.exports = "<div class=\"row\">\r\n  <div class=\"col col-md-8 col-md-offset-1\">\r\n    <h1>Medical Record</h1>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row\" ng-controller=\"ViewMedicalRecordController\">\r\n  <div class=\"col col-md-2 col-md-offset-1\">\r\n    <div class=\"row\">\r\n      <div class=\"col col-md-12\">\r\n        <label class=\"subtitle\">Patient</label>\r\n        <div class=\"subtitle__value\">\r\n\t        {{patient.lastName + ', ' + patient.firstName}}\r\n\t      </div>\r\n\t      <label class=\"subtitle\">Date of Birth</label>\r\n        <div class=\"subtitle__value\">\r\n          {{patient.dateOfBirth | date : \"longDate\"}}\r\n        </div>\r\n        <label class=\"subtitle\">Sex</label>\r\n        <div class=\"subtitle__value\">\r\n          {{sex}}\r\n        </div>\r\n        <label class=\"subtitle\">Admission Date</label>\r\n        <div class=\"subtitle__value\">\r\n          {{record.createdAt | date : \"longDate\"}}\r\n        </div>\r\n        <label class=\"subtitle\">Discharge Date</label>\r\n        <div class=\"subtitle__value\">\r\n          {{record.dischargeDate | date : \"longDate\"}}\r\n        </div>\r\n        <button class=\"outline\">Edit</button></br>\r\n        <button class=\"outline\">Delete</button>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <div class=\"col col-md-7\">\r\n    <div class=\"row\">\r\n      <div class=\"col-md-12\">\r\n        <!-- <hplus-view-medical-record-card dir-paginate=\"rec in records | itemsPerPage:10\" data=\"rec\"></hplus-view-medical-record-card> -->\r\n        <hplus-view-medical-record-card dir-paginate=\"dis in diseases | itemsPerPage:10\" data=\"dis\" array=\"symptoms\"></hplus-view-medical-record-card>\r\n        <dir-pagination-controls max-size=\"5\"></dir-pagination-controls>\r\n        <div class=\"margins\">\r\n          <div class=\"detail__container\">\r\n            <div class=\"card__title\">\r\n              Medicines\r\n            </div>\r\n            <table class=\"table table-striped\">\r\n              <thead>\r\n                 <tr>\r\n                   <th class=\"name\">Name</th>\r\n                   <th>Price</th>\r\n                   <th>Quantity</th>\r\n                   <th class=\"price\">Total</th>\r\n                 </tr>\r\n              </thead>\r\n              <tbody>\r\n                <tr ng-repeat=\"med in medicines\">\r\n                  <td class=\"name\">{{med.name}}</td>\r\n                  <td>{{med.price | currency : \"PHP \"}}</td>\r\n                  <td>{{record.quantity[$index]}}</td>\r\n                  <td class=\"price\">{{med.price * record.quantity[$index] | currency : \"PHP \"}}</td>\r\n                </tr>\r\n              </tbody>\r\n            </table>\r\n          </div>\r\n        </div>\r\n      </div>\r\n      <div class=\"col-md-5 col-md-offset-7\">\r\n          <div class=\"margins\">\r\n            <div class=\"detail__containerTotalPrice\">\r\n              \r\n                <b>Total:</b> {{totalBill | currency : 'PHP '}} \r\n              \r\n            </div>\r\n          </div>\r\n        </div>\r\n    </div>\r\n  </div>\r\n</div>";
-
-/***/ }),
-/* 126 */
-/***/ (function(module, exports) {
-
-angular.module('hplus.modules.viewmedicalrecord')
-
-  .filter('intersect', function() {
-    return function(array1, array2) {
-      return array1.filter(function (ar) {
-        return this.indexOf(ar) !== -1;
-      }, array2);
-    };
-  });
-
-/***/ }),
-/* 127 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var card = __webpack_require__(128);
-angular.module('hplus.modules.viewmedicalrecord')
-
-  .directive('hplusViewMedicalRecordCard', function(){
-    return{
-      restrict: 'EA',
-      scope: {
-        data: '=',
-        array: '='
-      },
-      template: card
-    };
-  })
-
-/***/ }),
-/* 128 */
-/***/ (function(module, exports) {
-
-module.exports = "<div class=\"margins\">\r\n  <div class=\"detail__container\">\r\n    <div class=\"card__title\">\r\n      {{data.name}}\r\n    </div>\r\n    \r\n    <label class=\"subtitle\">Symptoms</label>\r\n    <div class=\"subtitle__value\">\r\n      <span ng-repeat=\"ar in array | intersect : data.symptoms\"><span ng-hide=\"$first\">,&nbsp;</span>{{ar}}</span>\r\n    </div>\r\n  </div>\r\n</div>";
-
-/***/ }),
-/* 129 */
-/***/ (function(module, exports) {
-
-angular.module('hplus.modules.viewmedicalrecord')
-
-  .controller('ViewMedicalRecordController',
-    function($scope, globalFactory, medicalRecordFactory){
-	  $scope.record = {
-        "symptoms" : [],
-        "diseases" : [],
-        "medicines" : [],
-        "quantity" : [ 7 , 21],
-        "dischargeDate" : "2018-01-05T09:05:05.035Z",
-        "createdAt" : "2016-02-20T09:05:05.035Z"
-	  };
-	  
-	  $scope.diseases = [
-	    {
-	      "name" : "Hyperacidity",
-          "symptoms" : ["Vomiting","Repeatedly pulling hair out","Noticeable hair loss","Low self-esteem"]
-	    },
-	    {
-	      "name" : "Trichotrillomania",
-	      "symptoms" : ["Lack of appetite","Constipation","Indigestion","Sour Belching"]
-	    }
-	  ];
-	  
-	  $scope.symptoms = ["Lack of appetite","Constipation","Indigestion","Repeatedly pulling hair out","Noticeable hair loss","Low self-esteem"];
-	  
-      $scope.patient = {
-        "firstName" : "Jane",
-        "lastName" : "Doe",
-        "dateOfBirth" : "1970-01-01T09:05:05.035Z",
-        "sex" : false
-      };
-      
-      $scope.sex = ($scope.patient.sex)? "Male" : "Female";
-      
-      $scope.medicines =[
-        {
-          "name" : "Omeprazole 20mg",
-          "price" : 44
-        },
-        {
-          "name" : "Clomipramine 25mg",
-          "price" : 55
-        }
-      ];
-      
-      $scope.totalBill = 0;
-      $scope.medicines.forEach(function(med,i){
-        $scope.totalBill += med.price * $scope.record.quantity[i]; 
-      });
-    }
-  );
-
-/***/ }),
-/* 130 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var viewdoctor = __webpack_require__(131);
-
-angular.module('hplus.modules.viewpatient', [])
-
-  .config(function ($routeProvider){  
-    $routeProvider      
-      .when('/patient/view/details',{
-        template: viewdoctor
-      })
-  });
-  __webpack_require__(132);
-  __webpack_require__(134);
-
-
-/***/ }),
-/* 131 */
-/***/ (function(module, exports) {
-
-module.exports = "<ng-controller ng-controller=\"ViewPatientController\">\r\n\t<div class=\"row\">\r\n\t  <div class=\"col col-md-8 col-md-offset-1\">\r\n\t    <h1><i class=\"fa fa-user-o\"></i> {{ patient.name }}</h1>\r\n\t  </div>\r\n\t</div>\r\n\t\r\n\t<div class=\"row\">\r\n\t  <div class=\"col col-md-2 col-md-offset-1\">\r\n\t    <div class=\"match-padding\">\r\n\t      <span class=\"subtitle\">\r\n\t        Date of Birth\r\n\t      </span>\r\n\t      <div class=\"subtitle__value\">\r\n\t\t\t\t\t{{ patient.processedBirthday }}\r\n\t      </div>\r\n\t      \r\n\t       <br>\r\n\t      <span class=\"subtitle\">Address</span>\r\n\t      <div class=\"subtitle__value\">\r\n\t        {{ patient.address }}\r\n\t      </div>\r\n\t      \r\n\t       <br>\r\n\t      <span class=\"subtitle\">Contact Number</span>\r\n\t      <div class=\"subtitle__value\">\r\n\t        {{ patient.contactNo }}\r\n\t      </div>\r\n\t      \r\n\t      <br>\r\n\t      <span class=\"subtitle\">Sex</span>\r\n\t      <div class=\"subtitle__value\">\r\n\t        {{ patient.sexDisplay }}\r\n\t      </div>\r\n\t    </div>\r\n\t  </div>\r\n\t\r\n\t  <div class=\"col col-md-8\">\r\n\t    <div class=\"col col-md-12\">\r\n\t      <span class=\"subtitle\">Medical Records of this patient</span>\r\n\t      <br><br>\r\n\t      <hplus-view-patient-card dir-paginate=\"record in recordList | itemsPerPage:10\" data=\"record\"></hplus-view-patient-card>\r\n\t    </div>\r\n\t  </div>\r\n\t</div>\r\n\t<dir-pagination-controls max-size=\"5\"></dir-pagination-controls>\r\n</ng-controller>";
-
-/***/ }),
-/* 132 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var card = __webpack_require__(133);
-angular.module('hplus.modules.viewpatient')
-
-  .directive('hplusViewPatientCard', function(){
-    return{
-      restrict: 'EA',
-      scope: {
-        data: '='
-      },
-      template: card
-    };
-  })
-
-/***/ }),
-/* 133 */
-/***/ (function(module, exports) {
-
-module.exports = "<div class=\"card__container\">\r\n  <div class=\"card__title match-padding\">\r\n    {{ data.name }} \r\n  </div>\r\n  \r\n  <br>\r\n  <span class=\"subtitle match-padding\">Symptoms</span>\r\n  <div class=\"subtitle__value match-padding\">\r\n    {{ data.symptom }} \r\n  </div>\r\n  \r\n  <br>\r\n  <span class=\"subtitle match-padding\">Medications</span>\r\n  <div class=\"subtitle__value match-padding\">\r\n    {{ data.medicine }} &times; {{ data.dosage }}\r\n  </div>\r\n  \r\n  <div class=\"row\">\r\n   <div class=\"col col-md-4 \">\r\n     <br>\r\n     <span class=\"subtitle\">Admission Date</span>\r\n     <div class=\"subtitle__value\">\r\n       {{ data.admission }}\r\n     </div>\r\n   </div>\r\n   <div class=\"col col-md-4\">\r\n     <br>\r\n     <span class=\"subtitle\">Discharge Date</span>\r\n     <div class=\"subtitle__value\">\r\n       {{ data.discharge }}\r\n     </div>\r\n   </div>\r\n   <div class=\"col col-md-4\">\r\n     <br>\r\n     <span class=\"subtitle\">Bill for this disease</span>\r\n     <div class=\"subtitle__value\">\r\n       {{ data.bill }}\r\n     </div>\r\n   </div>\r\n </div>\r\n</div>";
-
-/***/ }),
-/* 134 */
-/***/ (function(module, exports) {
-
-app = angular.module('hplus.modules.viewpatient');
-
-  app.controller('ViewPatientController',
-    function($scope, $location, globalFactory, doctorFactory, patientFactory){
-	  
-      var user = doctorFactory.getUser();
-      var monthNames = ["January", "February", "March", "April", "May", "June",
-      "July", "August", "September", "October", "November", "December"];
-
-      if(user == null) {
-        $location.path("/");
-      }
-	  
-      $scope.patient = patientFactory.getPatient();
-      var modalObject;
-
-      if($scope.patient == null){
-        $location.path('/admin/list/patient');
-      } else {
-        $scope.patient.name = $scope.patient.lastname + ", " + $scope.patient.firstname;
-        $scope.recordList = $scope.patient.medicalRecords;
-
-        var brokenDate = $scope.patient.birthday.split(" ");
-        for(var i = 0; i < monthNames.length && $scope.patient.processedBirthday == null; i++){
-          if(monthNames[i].indexOf(brokenDate[1]) != -1) {
-            var realDate = new Date(brokenDate[5], (i + 1), parseInt(brokenDate[2]) + 1);
-            $scope.patient.processedBirthday = monthNames[i] + " " + realDate.getDate() + ", " + realDate.getFullYear();
-          }
-        }
-
-        $scope.patient.sexDisplay = ($scope.patient.sex) ? "Male" : "Female";
-      }
-	  
-      $scope.go = function(path){
-    	  patientFactory.savePatient($scope.patient);  
-        globalFactory.go(path);
-      };
-      
-      $scope.delete = function(){
-        patientFactory.deletePatient($scope.patient);
-      };
-      
-      /*
-       $scope.recordList = [
-        {
-    	 name: "Hyperacidity",
-         symptom:"Hot, Cold, Warm",
-         medicine: "Biogesic",
-         dosage: "20mgx7",
-         admission: "February 20, 2016",
-         discharge: "February 21, 2016",
-         bill: "308.00"
-        }*/
-  });
-
-/***/ }),
-/* 135 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var resetpassword = __webpack_require__(136);
-
-angular.module('hplus.modules.resetpassword', [])
-
-  .config(function ($routeProvider){  
-    $routeProvider
-      .when('/admin/reset/password',{
-        template: resetpassword
-      })
-  });
-
-  __webpack_require__(137);
-
-/***/ }),
-/* 136 */
-/***/ (function(module, exports) {
-
-module.exports = "<div  ng-controller=\"ResetPasswordController\">\r\n  <div class=\"row\">\r\n    <div class=\"col col-md-8 col-md-offset-1\">\r\n      <h1>Reset Your Password</h1>\r\n    </div>\r\n  </div>\r\n\r\n  <ng-form name=\"resetPasswordForm\">\r\n    <div class=\"row\">\r\n      <div class=\"col col-md-4 col-md-offset-1\">\r\n        <div class=\"row\">\r\n          <div class=\"col col-md-12\">\r\n            <label class=\"subtitle\">Old Password</label>\r\n            <input type=\"password\" ng-model=\"password.oldPass\" ng-required=\"true\">\r\n            \r\n            <label class=\"subtitle\">New Password (At least 6 characters)</label>\r\n            <input type=\"password\" ng-model=\"password.newPass\" ng-pattern=\"passwordRegex\" zxcvbn=\"passwordStrength\" ng-required=\"true\">\r\n\r\n\r\n            <label class=\"subtitle\">Repeat your new password</label>\r\n            <input type=\"password\" ng-model=\"password.confirmPass\" ng-required=\"true\">\r\n            \r\n            <div class=\"row\">\r\n                <div class=\"meter\">\r\n                  <div ng-class=\"meter\" role=\"progressbar\" aria-valuenow=\"40\" aria-valuemin=\"0\" aria-valuemax=\"100\"></div>\r\n                </div>\r\n                <span class=\"subtitle\">{{ passwordStatus }}</span>\r\n            </div>\r\n            <br><br>\r\n            \r\n            <button ng-class=\"checkStatus(resetPasswordForm.$valid)\" ng-disabled=\"resetPasswordForm.$invalid\" ng-click=\"resetPassword()\">{{ buttonText }}</button>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </ng-form>\r\n</div>";
-
-/***/ }),
-/* 137 */
-/***/ (function(module, exports) {
-
-angular.module('hplus.modules.resetpassword')
-
-  .controller('ResetPasswordController',
-    function($scope, $location, globalFactory, modalFactory, doctorFactory){
-
-      $scope.passwordRegex = ".{6,}";
-      $scope.meter = "meter-bar";
-      $scope.passwordStatus = "Enter a password";
-      $scope.buttonText = "Please fill out all fields";
-
-      var errorMessage = "";
-
-      var user = doctorFactory.getUser();
-      console.log(user);
-
-      if(user == null) {
-        $location.path("/");
-      }
-
-      $scope.go = function(path){
-        globalFactory.go(path);
-      };
-
-      $scope.$watch(
-        // This function returns the value being watched. It is called for each turn of the $digest loop
-        function() { return $scope.passwordStrength; },
-        // This is the change listener, called when the value returned from the above function changes
-        function(newValue, oldValue) {
-          if (newValue != undefined && newValue.password != "") {
-            switch(newValue.score){
-              case 0:
-                $scope.meter = "meter-bar meter-bar-verybad";
-                $scope.passwordStatus = "Very Weak";
-                break;
-              case 1:
-                $scope.meter = "meter-bar meter-bar-bad";
-                $scope.passwordStatus = "Weak";
-                break;
-              case 2:
-                $scope.meter = "meter-bar meter-bar-average";
-                $scope.passwordStatus = "Average";
-                break;
-              case 3:
-                $scope.meter = "meter-bar meter-bar-good";
-                $scope.passwordStatus = "Strong";
-                break;
-              case 4:
-                $scope.meter = "meter-bar meter-bar-verygood";
-                $scope.passwordStatus = "Very Strong";
-            }
-          } else {
-            $scope.meter = "meter-bar";
-            $scope.passwordStatus = "Enter a password";
-          }
-      })
-
-      var validity = function(){
-        var state = false;
-        errorMessage = "";
-
-        if($scope.password.oldPass != user.password){
-          errorMessage += "Old password is wrong!";
-        }
-        
-        if($scope.passwordStrength.password != $scope.password.confirmPass){
-          errorMessage += "Passwords don't match!";
-        } 
-        
-        if(errorMessage == "") {
-          state = true;
-        }
-
-        return state;
-      };
-
-      var confirmPasswordReset = function(){
-        user.password = $scope.password.newPass;
-        doctorFactory.updateDoctor(user);
-      };
-
-      $scope.resetPassword = function(){
-        var modalObject = {};
-        console.log("resetPassword");
-
-        if(validity()){
-          modalObject = {
-            type: "confirm",
-            title: "Confirm Password Reset",
-            description: "Are you sure you want to change your password?",
-            negativeButton: "No",
-            positiveButton: "Yes",
-            isVisible: true,
-            data: confirmPasswordReset
-          };
-        
-          modalFactory.setContents(modalObject);
-        } else {
-          modalObject = {
-            type: "notify",
-            title: "Unable to change password!",
-            description: errorMessage,
-            positiveButton: "Ok",
-            isVisible: true
-          };
-          
-          modalFactory.setContents(modalObject);
-        }
-      };
-
-      $scope.checkStatus = function(status){
-        var retClass;
-
-        if(status){
-          $scope.buttonText = "Reset Password";
-          retClass = "edit-button";
-        } else {
-          $scope.buttonText = "Please fill out all fields";
-          retClass = "delete-button";
-        }
-
-        return retClass;
-      };
-    }
-  );
-
-/***/ }),
-/* 138 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var explorepatients = __webpack_require__(139);
-
-angular.module('hplus.modules.explorepatients', [])
-
-  .config(function ($routeProvider){  
-    $routeProvider
-      .when('/admin/list/patient',{
-        template: explorepatients,
-      })
-  });
-  
-  __webpack_require__(140);
-  __webpack_require__(142);
-  __webpack_require__(143);
-
-
-/***/ }),
-/* 139 */
-/***/ (function(module, exports) {
-
-module.exports = "<div class=\"row\"><!-- Header Portion -->\r\n  <div class=\"col col-md-10 col-md-offset-1\">\r\n    <h1>List of All Patients</h1><!-- Header Name for this Module -->\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row\" ng-controller=\"ExplorePatientsController\"><!-- Body Portion -->\r\n  <div class=\"col col-md-2 col-md-offset-1\"><!-- Section for search -->\r\n    <div class=\"row\">\r\n\t  <div class=\"col col-md-12\">\r\n\t    <label class=\"subtitle\">Search</label>\r\n\t    <input type=\"text\" placeholder=\"Enter a name\" ng-model=\"query\">\r\n\t  </div>\r\n\t</div>\r\n\r\n  </div>\r\n  \r\n  <div class=\"col col-md-8\"><!-- Section containing the tabulated list of patients -->\r\n    <div class=\"col col-md-12\">\r\n      <span class=\"subtitle\">\r\n        <span ng-hide=\"query == ''\">{{(patientList | filter: searchFilter).length}}</span><span ng-hide=\"query != ''\">All {{(patientList | filter: searchFilter).length}}</span> Results</span>\r\n\t\t  \r\n\t  <div class=\"margins\" >\r\n      <label class=\"subtitle\" ng-hide=\"patientList.length\">There are no patients to display</label>\r\n\t    <hplus-explore-patients-card dir-paginate=\"pat in filtered = (patientList | filter: searchFilter | itemsPerPage:10 | orderBy : ['lastname','firstname'])\" data=\"pat\"></hplus-explore-patients-card>       \r\n      </div>\r\n      <div class=\"col-md-12\">\r\n      <dir-pagination-controls max-size=\"5\"></dir-pagination-controls>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n\r\n<dir-pagination-controls max-size=\"5\"></dir-pagination-controls>";
-
-/***/ }),
-/* 140 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var card = __webpack_require__(141);
-
-angular.module('hplus.modules.explorepatients')
-
-  .directive('hplusExplorePatientsCard', function(){
-    return{
-      restrict: 'EA',
-      scope: {
-        data: '='
-      },
-      template: card
-    };
-  })
-
-/***/ }),
-/* 141 */
-/***/ (function(module, exports) {
-
-module.exports = "<div class=\"card__container\" ng-controller=\"PatientCardController\">\r\n  <div class=\"card__title\">\r\n    {{ data.lastname }}, {{ data.firstname }}\r\n\r\n    <a ng-click=\"go('/patient/view/details', data); $event.stopPropagation();\">\r\n      <span class=\"delete__icon\">\r\n        <i class=\"fa fa-eye\" aria-hidden=\"true\"></i>\r\n      </span>\r\n    </a>\r\n\r\n  </div>\r\n  \r\n  <div class=\"card__desc\">\r\n    Address: {{ data.address }}\r\n  </div>\r\n</div>";
-
-/***/ }),
-/* 142 */
-/***/ (function(module, exports) {
-
-angular.module('hplus.modules.explorepatients')
-
-  .controller('ExplorePatientsController',
-    function($scope, $location, globalFactory, doctorFactory, modalFactory, patientFactory){
-
-      $scope.length;
-      $scope.selectedPatient = null;
-      $scope.query = "";
-      
-      var user = doctorFactory.getUser();
-
-      if(user == null){
-        $location.path("/");
-      }
-
-      var populate = function(){
-        patientFactory.getListOfPatients().then(function(response){
-          console.log(response);
-          $scope.patientList = response.data.patients;
-          var recordsList = response.data.medicalRecords;
-          var x, y;
-
-          for(x = 0; x < $scope.patientList.length; x++) {
-            for(y = 0; y < recordsList.length; y++) {
-              if($scope.patientList[x].id == recordsList[y].patientId) {
-                if($scope.patientList[x].medicalRecords == null) {
-                  $scope.patientList[x].medicalRecords = [];
-                }
-                $scope.patientList[x].medicalRecords.push(recordsList[y]);
-              }
-            }
-          }
-
-        }, function(response){
-          console.log(response);
-        });
-      };
-
-      populate();
-      
-      $scope.go = function(path){
-        globalFactory.go(path);
-      };
-      
-      $scope.setSelected = function(pat){
-    	  $scope.selectedPatient = pat;
-      };
-
-      $scope.searchFilter = function(patient){
-        if(!$scope.query 
-        || (patient.firstname.toLowerCase().indexOf($scope.query) != -1) 
-        || (patient.lastname.toLowerCase().indexOf($scope.query) != -1)){
-          return true;
-        } else {
-          return false;
-        }
-      }
-    }
-  );
-
-/***/ }),
-/* 143 */
-/***/ (function(module, exports) {
-
-angular.module('hplus.modules.explorepatients')
-
-  .controller('PatientCardController',
-    function($scope, $location, globalFactory, doctorFactory, patientFactory, modalFactory){
-
-      $scope.go = function(path, patient){
-        patientFactory.savePatient(patient);
-        globalFactory.go(path);
-      };
-
-      $scope.delete = function(patient){
-        patientFactory.deletePatient(patient);
-      };
-    }
-  );
-
-/***/ }),
-/* 144 */
-/***/ (function(module, exports) {
-
-module.exports = "<div class=\"row\">\r\n  <div class=\"col-md-12\" align=\"right\">\r\n      <div class=\"pagination__container\" ng-if=\"1 < pages.length || !autoHide\">\r\n      <div ng-if=\"boundaryLinks\"  class=\"pagination__page\" ng-click=\"setCurrent(1)\">\r\n        &laquo;\r\n      </div> \r\n      <div ng-if=\"directionLinks\" class=\"pagination__page\" ng-click=\"setCurrent(pagination.current - 1)\">\r\n        &lsaquo;\r\n      </div>\r\n      <div ng-repeat=\"pageNumber in pages track by tracker(pageNumber, $index)\" class=\"pagination__page\" ng-class=\"{ pagination__current : pagination.current == pageNumber, pagination__page : pageNumber == '...' }\" ng-click=\"setCurrent(pageNumber)\">\r\n        {{ pageNumber }}\r\n      </div>\r\n      <div ng-if=\"directionLinks\" class=\"pagination__page\" ng-click=\"setCurrent(pagination.current + 1)\">\r\n        &rsaquo;\r\n      </div>\r\n      <div ng-if=\"boundaryLinks\"  class=\"pagination__page\" ng-click=\"setCurrent(pagination.last)\">\r\n        &raquo;\r\n      </div>\r\n    </div>\r\n</div>";
-
-/***/ }),
-/* 145 */
-/***/ (function(module, exports) {
-
-angular.module('hplus.factory')
-
-  .factory('diseaseFactory', 
-    function($http, $rootScope, $route, modalFactory, $window, $location, globalFactory){
-
-      var registerDisease = function(diseaseObject){
-        $http({
-          method: 'POST',
-          url: '/Disease',
-          data: diseaseObject
-        }).then(function successCallback(response) {
-        	console.log(response);
-          var modalObject = {
-            type: "notify",
-            title: "Registration Successful!",
-            description: "Disease Registered.",
-            positiveButton: "Ok",
-            isVisible: true
-          };
-          modalFactory.setContents(modalObject);
-        }, function errorCallback(response) {
-          var errorMessage = "";
-          console.log(response);
-
-          var modalObject = {
-            type: "notify",
-            title: "Registration Failure!",
-            description: "A disease with the same name already exists!",
-            positiveButton: "Ok",
-            isVisible: true
-          };
-          modalFactory.setContents(modalObject);
-        });
-      }
-
-      var getListOfDiseases = function(){
-        return $http({
-          method: "GET",
-          url: "/Disease",
-        });
-      };
-
-      var goList = function(){
-        $location.path('/admin/list/disease');
-        $route.reload();
-      };
-
-      var updateDisease = function(disease){
-        var modalObject;
-
-        $http({
-          method: "PUT",
-          url: "/Disease",
-          data: disease
-        }).then(function(response){
-          console.log(response);
-          saveDisease(response.data);
-          modalObject = {
-            type: "notify",
-            title: "Successfully Updated!",
-            description: "Successfully updated disease!",
-            positiveButton: "Ok",
-            isVisible: true,
-            data: goList
-          };
-        
-          modalFactory.setContents(modalObject);
-        }, function(response){
-          console.log(response);
-          var modalObject = {
-            type: "notify",
-            title: "Update Failure!",
-            description: "Another disease with the same name already exists!",
-            positiveButton: "Ok",
-            isVisible: true
-          };
-        
-          modalFactory.setContents(modalObject);
-        });
-      };
-
-      var confirmDeleteDisease = function(disease){
-        var name = disease.name[0].toUpperCase() + disease.name.substr(1);
-
-        $http({
-          method: "DELETE",
-          url: "/Disease",
-          data: disease
-        }).then(function successCallback(response){
-          console.log(response);
-          var modalObject = {
-            type: "notify",
-            title: "Archive Successful!",
-            description: "Successfully archived " + name + "!",
-            positiveButton: "Ok",
-            isVisible: true,
-            data: goList
-          };
-
-            modalFactory.setContents(modalObject);
-        }, function errorCallback(response){
-          console.log(response);
-          var modalObject = {
-            type: "notify",
-            title: "Archive Failed!",
-            description: "Unable to archive disease, a patient currently has this disease.",
-            positiveButton: "Ok",
-            isVisible: true,
-            data: goList
-          };
-
-          modalFactory.setContents(modalObject);
-        }); 
-      };
-      
-      var deleteDisease = function(disease){
-        var name = disease.name[0].toUpperCase() + disease.name.substr(1);
-        var modalObject = {
-          type: "confirm",
-          title: "Archive Confirmation",
-          description: "Are you sure you want to archive " + name + "?",
-          negativeButton: "No",
-          positiveButton: "Yes",
-          isVisible: true,
-          data: confirmDeleteDisease,
-          object: disease
-        };
-
-        modalFactory.setContents(modalObject);
-      };
-
-      var saveDisease = function(disease){
-        $window.localStorage.setItem("disease", angular.toJson(disease));
-      };
-
-      var getDisease = function(){
-        return angular.fromJson($window.localStorage.getItem("disease"));
-      };
-  
-      return {
-        registerDisease: registerDisease,
-        getListOfDiseases: getListOfDiseases,
-        getDisease: getDisease,
-        saveDisease: saveDisease,
-        updateDisease: updateDisease,
-        deleteDisease: deleteDisease,
-      }
-    }
-  );
-
-/***/ }),
-/* 146 */
-/***/ (function(module, exports) {
-
-angular.module('hplus.factory')
-
-  .factory('symptomFactory', 
-    function($http, modalFactory, $window, $location, globalFactory, $rootScope){
-
-      var registerSymptom = function(symptomObject){
-        var modalObject;
-
-        $http({
-          method: 'POST',
-          url: '/Symptom', // Change URL here
-          data: symptomObject
-        }).then(function successCallback(response) {
-        	console.log(response);
-          modalObject = {
-            type: "notify",
-            title: "Registration Successful!",
-            description: "Symptom Saved.",
-            positiveButton: "Ok",
-            isVisible: true
-          };
-
-          modalFactory.setContents(modalObject);
-          $rootScope.$broadcast("repopulate");
-        }, function errorCallback(response) {
-          console.log(response);
-          modalObject = {
-            type: "notify",
-            title: "Registration Failure!",
-            description: "Symptom with the same name already exists!",
-            positiveButton: "Ok",
-            isVisible: true
-          };
-
-          modalFactory.setContents(modalObject);
-        });
-      }
-
-      var getListOfSymptoms = function(){
-        return $http({
-          method: "GET",
-          url: "/Symptom",
-        });
-      };
-      
-      var getListOfSymptomsID = function(symptomObject){
-          return $http({
-            method: "GET",
-            url: "/Symptom",
-            data: symptomObject
-          });
-        };
-
-      var goList = function(){
-        $location.path('/admin/list/disease');
-      }
-      var getSymptom = function(symptomObject){
-        return $http({
-            method: "GET",
-            url: "/Symptom",
-            data: symptomObject
-          });
-      };
-      
-      return {
-        registerSymptom: registerSymptom,
-        getListOfSymptoms: getListOfSymptoms,
-        getListOfSymptomsID: getListOfSymptomsID,
-        getSymptom: getSymptom
-      }
-    }
-  );
-
-/***/ }),
-/* 147 */
-/***/ (function(module, exports) {
-
-angular.module('hplus.modules.explorediseases')
-
-  .controller('CardController',
-    function($scope, globalFactory, diseaseFactory, doctorFactory){
-      
-      $scope.user = doctorFactory.getUser();
-
-      $scope.go = function(path, disease){
-        diseaseFactory.saveDisease(disease);
-        globalFactory.go(path);
-      };
-
-      $scope.delete = function(disease){
-        diseaseFactory.deleteDisease(disease);
-      };
-    }
-  );
-
-/***/ }),
-/* 148 */,
-/* 149 */,
-/* 150 */,
-/* 151 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var card = __webpack_require__(152);
-angular.module('hplus.modules.registermedicalrecord')
-
-  .directive('hplusSelectPatientCard', function(){
-    return{
-      restrict: 'EA',
-      scope: {
-        data: '='
-      },
-      template: card
-    };
-  })
-
-/***/ }),
-/* 152 */
-/***/ (function(module, exports) {
-
-module.exports = "<div class=\"card__container\" ng-class=\"{'newPatient__container': data.newPatient}\">\r\n  <div class=\"card__title\">\r\n    {{data.lastname + ', ' + data.firstname}}\r\n  </div>\r\n  <span ng-show=\"data.newPatient\">This is a new Patient!</span>\r\n  <div class=\"card__desc\">\r\n    Last admitted: {{data.createdAt}}\r\n  </div>\r\n</div>";
-
-/***/ }),
-/* 153 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var editmedicalrecord = __webpack_require__(154);
-
-angular.module('hplus.modules.editmedicalrecord', [])
-
-  .config(function ($routeProvider){  
-    $routeProvider      
-      .when('/update/medicalrecord',{
-        template: editmedicalrecord	
-      })
-  });
-
-  __webpack_require__(155);
-
-
-
-/***/ }),
-/* 154 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"row\">\r\n  <div class=\"col col-md-8 col-md-offset-1\">\r\n    <h1>Edit Medical Record</h1>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row\" ng-controller=\"EditMedicalRecordController\">\r\n  \r\n    <div class=\"col-md-10 col-md-offset-1\">\r\n\t\t  <div class=\"row\">\r\n\t\t\t  <div class=\"col-md-5\">\r\n\t\t\t    <div class=\"card__container\">\r\n\t\t\t      <div class=\"card__title\">\r\n\t\t\t        {{selectedPatient.lastname + ', ' + selectedPatient.firstname}}\r\n\t\t\t      </div>\r\n\t\t\t      <div class=\"card__desc\">\r\n\t\t\t        Last admitted: {{selectedPatient.createdAt}}\r\n\t\t\t      </div>\r\n\t\t\t    </div>\r\n\t\t\t  </div>\r\n\t\t\t    \r\n\t\t\t</div>\r\n      <ng-form name=\"editMedicalRecordForm\">\r\n\r\n        <div class=\"col-md-4\">\r\n          <label class=\"subtitle\">Discharge Date </label>\r\n          <input type=\"date\" ng-model=\"medicalRecord.dischargeDate\" ng-required=\"true\">\r\n        </div>\r\n        <div class=\"col-md-4 col-md-offset-4\">\r\n          <label class=\"subtitle\">Patient Type</label>\r\n          <select ng-model=\"medicalRecord.inPatient\" ng-required=\"true\" ng-options=\"type.val as type.name for type in patientType\">\r\n            <option>--Select--</option>\r\n          </select>\r\n        </div>\r\n      \r\n      \r\n      <div class=\"col col-md-4\">\r\n        <label class=\"subtitle\">Symptoms</label>\r\n        <input type=\"text\" placeholder=\"Search Symptom\" ng-model=\"searchFilterSymp\">\r\n        <div class=\"borders\">\r\n          <div class=\"scrollable\">\r\n            <div ng-repeat=\"option in symptomList | filter: {'name':searchFilterSymp} | orderBy:['val','name']\">\r\n              <input type=\"checkbox\" ng-model=\"option.val\" ng-change=\"addRemoveSymptom(symptomList | filter: {val: true} | orderBy : 'name')\" ng-required=\"!medicalRecord.symptomIdList.length\" ng-false-value=\"null\">{{option.name}}<br>\r\n            </div>\r\n          </div>\r\n        </div>\r\n        <button ng-class=\"checkStatus(createMedicalRecordForm.$valid)\" type=\"submit\" ng-click=\"saveMedRec()\" ng-disabled=\"createMedicalRecordForm.$invalid\">Save Record</button>\r\n      </div>\r\n      \r\n      <div class=\"col col-md-4\">\r\n        <label class=\"subtitle\">Diseases</label>\r\n        <input type=\"text\" placeholder=\"Search Disease\" ng-model=\"searchFilterDis\">\r\n        <div class=\"borders\">\r\n          <div class=\"scrollable\">\r\n            <div ng-repeat=\"option in diseaseListFiltered | filter: {'name':searchFilterDis} | orderBy:['val','name']\">\r\n              <input type=\"checkbox\" ng-model=\"option.val\" ng-change=\"addRemoveDisease(diseaseListFiltered | filter: {val: true} | orderBy : 'name')\" ng-required=\"!medicalRecord.diseaseIdList.length\" ng-false-value=\"null\">{{option.name}}<br>\r\n            </div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n      \r\n      <div class=\"col col-md-4\">\r\n        <label class=\"subtitle\">Medicines</label>\r\n        <input type=\"text\" placeholder=\"Search Medicine\" ng-model=\"searchFilterMed\">\r\n        <div class=\"borders\">\r\n          <div class=\"scrollable\">\r\n            <div ng-repeat=\"optionmed in medicineListFiltered | filter: {'name':searchFilterMed} | orderBy:['val','name']\">\r\n              <input type=\"checkbox\" ng-model=\"optionmed.val\" ng-change=\"addRemoveMedicine(medicineListFiltered | filter: {val: true}| orderBy:'name')\"  ng-required=\"medicalRecord.diseaseIdList.length > medicalRecord.medicineIdList.length\" ng-false-value=\"null\">{{optionmed.name}}\r\n              <div class=\"row\" ng-hide=\"!optionmed.val\">\r\n                <input type=\"number\" ng-model=\"optionmed.quantity\" placeholder=\"Quantity\" ng-change=\"calculateTotal()\" ng-required=\"optionmed.val\" class=\"quant\">{{' x ' + (optionmed.price|currency : 'PHP ')}}\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n        <br>\r\n          <div class=\"margins\">\r\n            <div class=\"detail__containerTotalPrice\">\r\n                <b>Total:</b> {{medicalRecord.totalCost | currency : 'PHP '}}\r\n            </div>\r\n          </div>\r\n      </div>\r\n      </ng-form>\r\n\r\n    </div>\r\n    \r\n</div>\r\n\r\n";
 
 /***/ }),
-/* 155 */
+/* 67 */
 /***/ (function(module, exports) {
 
 angular.module('hplus.modules.editmedicalrecord')
@@ -42906,7 +40196,1977 @@ angular.module('hplus.modules.editmedicalrecord')
   );
 
 /***/ }),
-/* 156 */
+/* 68 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var editmedicine = __webpack_require__(69);
+
+angular.module('hplus.modules.editmedicine', [])
+
+  .config(function ($routeProvider){  
+    $routeProvider      
+      .when('/admin/update/medicine',{
+        template: editmedicine
+      })
+  });
+
+  __webpack_require__(70);
+
+/***/ }),
+/* 69 */
+/***/ (function(module, exports) {
+
+module.exports = "<div ng-controller=\"EditMedicineController\">\r\n\t<div class=\"row\">\r\n\t\t<div class=\"col col-md-8 col-md-offset-1\">\r\n\t\t\t<h1>Edit Medicine</h1>\r\n\t\t</div>\r\n\t</div>\r\n\r\n\t<div class=\"row\">\r\n\t\t<div class=\"col col-md-10 col-md-offset-1\">\r\n\t\t\t<ng-form name=\"medicineForm\">\r\n\t\t\t\t<div class=\"col-md-3\">\r\n\t\t\t\t\t<label class=\"subtitle\">Name of Medicine:</label>\r\n\t\t\t\t\t<input type=\"text\" placeholder=\"Brand Name\" ng-model=\"medicine.name\" ng-required=\"true\">\r\n\r\n\t\t\t\t<!--\t<label class=\"subtitle\">Generic Name:</label>\r\n\t\t\t\t\t<input type=\"text\" placeholder=\"Generic Name\" ng-model=\"medicine.generic\" ng-required=\"true\">\r\n\t\t\t\t-->\r\n\r\n\t\t\t\t\t<label class=\"subtitle\">Medicine Type:</label>\r\n\t\t\t\t\t<select name=\"selectMeds\" ng-model=\"medicine.type\" ng-required=\"true\" ng-options=\"value as value for value in medicineTypes\">\r\n\t\t\t\t\t\t<option value=\"\">--Select One--</option>\r\n\t\t\t\t\t</select>\r\n\r\n\t\t\t\t\t<label class=\"subtitle\">Price (PHP) :</label> \r\n\t\t\t\t\t<input id=\"priceInputField\" type=\"number\" placeholder=\"Price\" ng-model=\"medicine.price\" ng-required=\"true\">\r\n\r\n\t\t\t\t\t<button ng-class=\"checkStatus(medicineForm.$valid)\" ng-disabled=\"medicineForm.$invalid\"  type=\"submit\" ng-click=\"updateMedicine()\">Update</button>\r\n\t\t\t\t\t<button class=\"outline delete_btn\" ng-click=\"delete()\">Archive</button>\r\n\t\t\t\t</div>\r\n\t\t\t\t\r\n\t\t\t\t<div class=\"col col-md-9\">\r\n\t\t\t\t\t<label class=\"subtitle\">Description:</label>\r\n\t\t\t\t\t<textarea id=\"descMed\" rows=\"8\" cols=\"50\" ng-model=\"medicine.description\" placeholder=\"Description\" ng-required=\"true\"></textarea>\r\n\t\t\t\t</div>\r\n\t\t\t</ng-form>\r\n\t\t</div>\r\n\t</div>\r\n</div>";
+
+/***/ }),
+/* 70 */
+/***/ (function(module, exports) {
+
+angular.module('hplus.modules.editmedicine')
+
+  .controller('EditMedicineController',
+    function($scope, $location, globalFactory, doctorFactory, medicineFactory, modalFactory){
+
+      var user = doctorFactory.getUser();
+
+      if(user != null) {
+        if(!user.admin) {
+          $location.path("/admin/list/record");
+        }
+      } else {
+        $location.path("/");
+      }
+
+      $scope.medicine = medicineFactory.getMedicine();
+
+      if($scope.medicine == null){
+        $location.path('/admin/list/medicine');
+      } else if($scope.medicine.medicalRecords) {
+        $location.path("/admin/list/medicine");
+      }
+
+      $scope.go = function(path){
+        globalFactory.go(path);
+      };
+
+      var confirmUpdateMedicine = function() {
+        medicineFactory.updateMedicine($scope.medicine);
+      };
+      
+      $scope.updateMedicine = function(){
+        modalObject = {
+          type: "confirm",
+          title: "Confirm Update",
+          description: "Are you sure you want to update " + $scope.medicine.name + "?",
+          negativeButton: "No",
+          positiveButton: "Yes",
+          isVisible: true,
+          data: confirmUpdateMedicine
+        };
+      
+        modalFactory.setContents(modalObject);
+      };
+
+      $scope.checkStatus = function(status){
+        var retClass;
+
+        if(status){
+          retClass = "edit-button";
+        } else {
+          retClass = "delete-button";
+        }
+
+        return retClass;
+      };
+
+      $scope.delete = function(){
+          medicineFactory.deleteMedicine($scope.medicine);
+      };
+      
+      $scope.medicineTypes = [
+        "Liquid", 
+        "Tablet", 
+        "Capsule", 
+        "Topical Medicine", 
+        "Suppository",
+        "Drops",
+        "Inhaler",
+        "Injection",
+        "Implant",
+        "Patch",
+        "Buccal or Sublingual Tablets"
+      ];
+    }
+  );
+
+/***/ }),
+/* 71 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var registermedicalrecord = __webpack_require__(72);
+
+angular.module('hplus.modules.registermedicalrecord', [])
+
+  .config(function ($routeProvider){  
+    $routeProvider      
+      .when('/doctor/register/record',{
+        template: registermedicalrecord
+      })
+  });
+  __webpack_require__(73);
+  __webpack_require__(75);
+
+
+/***/ }),
+/* 72 */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"row\">\r\n  <div class=\"col col-md-8 col-md-offset-1\">\r\n    <h1>Register Medical Record</h1>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row\" ng-controller=\"RegisterMedicalRecordController\">\r\n  <ng-form name=\"createMedicalRecordForm\">\r\n    <div class=\"col col-md-2 col-md-offset-1\" ng-hide=\"selectedPatient != null\">\r\n      <div class=\"row\">\r\n\t      <div class=\"col col-md-6\">\r\n\t        <label class=\"subtitle\">Search</label>\r\n\t      </div>\r\n\t    </div>\r\n\t\t  <div class=\"match-padding\">\r\n\t      <input type=\"text\" placeholder=\"Enter a name\" ng-model=\"searchFilter\">\r\n\t      <button ng-click=\"go('/admin/register/patient')\">New Patient</button>\r\n\t    </div>\r\n    </div>\r\n    <div class=\"col col-md-8\" ng-hide=\"selectedPatient != null\">\r\n      <div class=\"col col-md-9\"><!-- List sector -->\r\n\t\t    <span class=\"subtitle\"><span ng-hide=\"searchFilter == ''\">{{(patients | filter : {'name': searchFilter}).length}}</span><span ng-hide=\"searchFilter != ''\">All {{patients.length}}</span> Results</span>\r\n\t\t    <hplus-select-patient-card dir-paginate=\"pat in patients | filter: {'lastname' : searchFilter} | itemsPerPage:10  | orderBy : ['newPatient','lastname','firstname']\" data=\"pat\" ng-click=\"setSelected(pat)\" ng-class=\"{'selectedCard__container': pat == selectedPatient}\"></hplus-explore-patients-card>\r\n        <!-- Pagination Section -->\r\n        <dir-pagination-controls max-size=\"5\"></dir-pagination-controls>\r\n      </div>\r\n    </div>\r\n    \r\n    <div class=\"col-md-10 col-md-offset-1\" ng-hide=\"selectedPatient == null\">\r\n    <div class=\"row\">\r\n      <div class=\"col-md-5\">\r\n        <hplus-select-patient-card data=\"selectedPatient\" ng-click=\"selectedPatient = null\"></hplus-selected-patient-card>\r\n      </div>\r\n      \r\n    </div>\r\n      <ng-form name=\"createMedicalRecordForm\">\r\n\r\n\t\t\t  <div class=\"col-md-4\">\r\n\t\t\t    <label class=\"subtitle\">Discharge Date </label>\r\n\t\t\t    <input type=\"date\" ng-model=\"medicalRecord.dischargeDate\" ng-required=\"true\">\r\n\t\t\t  </div>\r\n\t\t\t  <div class=\"col-md-4 col-md-offset-4\">\r\n\t\t\t    <label class=\"subtitle\">Patient Type</label>\r\n\t\t\t    <select ng-model=\"medicalRecord.inPatient\" ng-required=\"true\" ng-options=\"type.val as type.name for type in patientType\">\r\n\t\t\t      <option>--Select--</option>\r\n\t\t\t    </select>\r\n\t\t\t  </div>\r\n\t\t\t\r\n\t\t\t\r\n\t\t\t<div class=\"col col-md-4\">\r\n\t\t\t  <label class=\"subtitle\">Symptoms</label>\r\n\t\t\t  <input type=\"text\" placeholder=\"Search Symptom\" ng-model=\"searchFilterSymp\">\r\n\t\t\t  <div class=\"borders\">\r\n\t\t\t    <div class=\"scrollable\">\r\n\t\t\t      <div ng-repeat=\"option in symptomList | filter: {'name':searchFilterSymp} | orderBy:['val','name']\">\r\n\t\t\t        <input type=\"checkbox\" ng-model=\"option.val\" ng-change=\"addRemoveSymptom(symptomList | filter: {val: true} | orderBy : 'name')\" ng-required=\"!medicalRecord.symptomIdList.length\" ng-false-value=\"null\">{{option.name}}<br>\r\n\t\t\t      </div>\r\n\t\t\t    </div>\r\n\t\t\t  </div>\r\n\t\t\t  <button ng-class=\"checkStatus(createMedicalRecordForm.$valid)\" type=\"submit\" ng-click=\"saveMedRec()\" ng-disabled=\"createMedicalRecordForm.$invalid\">Create</button>\r\n\t\t\t</div>\r\n\t\t\t\r\n\t\t\t<div class=\"col col-md-4\">\r\n\t\t\t  <label class=\"subtitle\">Diseases</label>\r\n\t\t\t  <input type=\"text\" placeholder=\"Search Disease\" ng-model=\"searchFilterDis\">\r\n\t\t\t  <div class=\"borders\">\r\n\t\t\t    <div class=\"scrollable\">\r\n\t\t\t      <div ng-repeat=\"option in diseaseListFiltered | filter: {'name':searchFilterDis} | orderBy:['val','name']\">\r\n\t\t\t        <input type=\"checkbox\" ng-model=\"option.val\" ng-change=\"addRemoveDisease(diseaseListFiltered | filter: {val: true} | orderBy : 'name')\" ng-required=\"!medicalRecord.diseaseIdList.length\" ng-false-value=\"null\">{{option.name}}<br>\r\n\t\t\t      </div>\r\n\t\t\t    </div>\r\n\t\t\t  </div>\r\n\t\t\t</div>\r\n\t\t\t\r\n\t\t\t<div class=\"col col-md-4\">\r\n\t\t\t  <label class=\"subtitle\">Medicines</label>\r\n\t\t\t  <input type=\"text\" placeholder=\"Search Medicine\" ng-model=\"searchFilterMed\">\r\n\t\t\t  <div class=\"borders\">\r\n\t\t\t    <div class=\"scrollable\">\r\n\t\t\t      <div ng-repeat=\"optionmed in medicineListFiltered | filter: {'name':searchFilterMed} | orderBy:['val','name']\">\r\n\t\t\t        <input type=\"checkbox\" ng-model=\"optionmed.val\" ng-change=\"addRemoveMedicine(medicineListFiltered | filter: {val: true}| orderBy:'name')\"  ng-required=\"medicalRecord.diseaseIdList.length > medicalRecord.medicineIdList.length\" ng-false-value=\"null\">{{optionmed.name}}\r\n\t\t\t        <div class=\"row\" ng-hide=\"!optionmed.val\">\r\n\t\t\t          <input type=\"number\" ng-model=\"optionmed.quantity\" placeholder=\"Quantity\" ng-change=\"calculateTotal()\" ng-required=\"optionmed.val\" class=\"quant\">{{' x ' + (optionmed.price|currency : 'PHP ')}}\r\n\t\t\t        </div>\r\n\t\t\t      </div>\r\n\t\t\t    </div>\r\n\t\t\t  </div>\r\n\t\t\t  <br>\r\n\t\t\t    <div class=\"margins\">\r\n\t\t\t      <div class=\"detail__containerTotalPrice\">\r\n\t\t\t          <b>Total:</b> {{medicalRecord.totalCost | currency : 'PHP '}}\r\n\t\t\t      </div>\r\n\t\t\t    </div>\r\n\t\t\t</div>\r\n\t\t\t</ng-form>\r\n\r\n\t  </div>\r\n\t  \r\n  </ng-form>\r\n</div>";
+
+/***/ }),
+/* 73 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var card = __webpack_require__(74);
+angular.module('hplus.modules.registermedicalrecord')
+
+  .directive('hplusSelectPatientCard', function(){
+    return{
+      restrict: 'EA',
+      scope: {
+        data: '='
+      },
+      template: card
+    };
+  })
+
+/***/ }),
+/* 74 */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"card__container\" ng-class=\"{'newPatient__container': data.newPatient}\">\r\n  <div class=\"card__title\">\r\n    {{data.lastname + ', ' + data.firstname}}\r\n  </div>\r\n  <span ng-show=\"data.newPatient\">This is a new Patient!</span>\r\n  <div class=\"card__desc\">\r\n    Last admitted: {{data.createdAt}}\r\n  </div>\r\n</div>";
+
+/***/ }),
+/* 75 */
+/***/ (function(module, exports) {
+
+angular.module('hplus.modules.registermedicalrecord')
+
+  .controller('RegisterMedicalRecordController',
+    function($scope, $location, globalFactory, doctorFactory, symptomFactory, medicineFactory, diseaseFactory, patientFactory, medicalRecordFactory){
+
+      $scope.user = doctorFactory.getUser();
+      console.log($scope.user);
+      if($scope.user != null) {
+        if($scope.user.admin){
+          $location.path("/admin/list/record");
+        }
+      } else {
+        $location.path("/");
+      }
+      
+      $scope.go = function(path){
+        globalFactory.go(path);
+      };
+      
+      $scope.searchFilter = "";
+      
+      $scope.setSelected = function(pat){
+        $scope.selectedPatient = pat;
+      };
+      
+      $scope.patients=[];
+      
+      $scope.initComponents = function(){
+    	  $scope.medicalRecord.firstName = "";
+    	  $scope.medicalRecord.lastName = "";
+    	  $scope.medicalRecord.birthday = "";
+    	  $scope.medicalRecord.sex = "";
+    	  $scope.medicalRecord.admissionDate = "";
+    	  $scope.medicalRecord.disease = "";
+    	  
+    	  for(var i=0; i < $scope.medicalRecord.symptomIdList.length; i++){
+    		  $scope.medicalRecord.symptomIdList[i] = false;
+    	  }
+    	  
+    	  for(var i=0; i < $scope.medicalRecord.medicineIdList.length; i++){
+    		  $scope.medicalRecord.medicineIdList[i] = false;
+    	  }
+      };
+      
+      $scope.newPatient = patientFactory.getPatient();
+      
+      var toTitleCase = function(str){
+          return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+      };
+      
+      var populate = function(){
+        patientFactory.getListOfPatients().then(function(response){
+          console.log(response);
+          $scope.patients = response.data.patients;
+          if($scope.newPatient != null && $scope.newPatient.id == null){
+            $scope.newPatient.firstname = toTitleCase($scope.newPatient.firstname);
+            $scope.newPatient.lastname = toTitleCase($scope.newPatient.lastname);
+            $scope.newPatient.address = toTitleCase($scope.newPatient.address);
+            console.log("New Patient exists "+ $scope.newPatient.firstname + " "+$scope.newPatient.lastname);
+            $scope.patients.forEach(function(pat){
+              if(pat.lastname == $scope.newPatient.lastname &&
+                 pat.firstname == $scope.newPatient.firstname &&
+                 pat.address == $scope.newPatient.address &&
+                 pat.sex == !$scope.newPatient.sex){
+                console.log("New Patient found "+ pat.firstname);
+                pat.newPatient = true;
+              }
+            });
+          }
+        }, function(response){
+          console.log(response);
+        });
+        symptomFactory.getListOfSymptoms().then(function(response){
+            console.log(response);
+    	      $scope.symptomList = response.data.symptoms;
+          });
+          medicineFactory.getListOfMedicines().then(function(response){
+            $scope.medicineList = response.data.medicines;
+          });
+          diseaseFactory.getListOfDiseases().then(function(response){
+            console.log(response); 
+            $scope.diseaseList = response.data.diseases;
+          });
+      };
+
+      populate();
+      
+      
+      
+      
+      
+
+	  $scope.medicalRecord = {
+	    "symptomIdList" : [],
+	    "diseaseIdList" : [],
+	    "medicineIdList" : [],
+	    "quantityList" : [],
+        "totalCost" : 0
+	  };
+	  
+	  $scope.patientType = [
+        {"name" : "Inpatient", "val" : true},
+        {"name" : "Outpatient", "val" : false}
+      ];
+	  
+	  $scope.addRemoveSymptom = function(hold){
+        $scope.medicalRecord.symptomIdList = hold;
+        
+        $scope.diseaseListFiltered = [];
+        if(hold.length > 0){
+          var i,j;
+          $scope.diseaseList.forEach(function(dis){
+            dis.symptomId.sort();
+              for(i=j=0; i < hold.length && j < dis.symptomId.length;){
+                if(hold[i].id == dis.symptomId[j]){
+                  break;
+                }else if((hold[i].id > dis.symptomId[j])){
+                  j++;
+                }else{
+                  i++;
+                }
+              }
+//            for(i=j=0; i < hold.length && j < dis.symptomId.length;){
+//              if(hold[i].id == dis.symptomId[j]){
+//                i++; j++;
+//              }else if((hold[i].id > dis.symptomId[j])){
+//                j++;
+//              }else{
+//                break;
+//              }
+//            }
+            if(i < hold.length){
+              $scope.diseaseListFiltered.push(dis);  
+            }
+            
+          });
+        }
+        
+	  };
+	  
+	  $scope.addRemoveDisease = function(hold){
+        $scope.medicalRecord.diseaseIdList = hold;
+        
+        $scope.medicineListFiltered = [];
+        if(hold.length > 0){
+          var i,j;
+          $scope.medicineList.forEach(function(med){
+            for(i = 0; i < hold.length; i++){
+              hold[i].medicineId.sort();
+              for(j = 0; j < hold[i].medicineId.length && med.id < hold[i].medicineId[j] ; j++){}
+              if(med.id == hold[i].medicineId[j]){
+                break;
+              }
+            }
+            if(i < hold.length){
+              $scope.medicineListFiltered.push(med);  
+            }
+            
+          });
+        }
+	  };
+	  
+	  $scope.addRemoveMedicine = function(hold){
+        $scope.medicalRecord.medicineIdList = hold;
+	  };
+	  
+	  $scope.calculateTotal = function(){
+        $scope.medicalRecord.totalCost = 0;
+        $scope.medicalRecord.medicineIdList.forEach(function(med){
+          $scope.medicalRecord.totalCost += (med.price * med.quantity);
+        });
+	  };
+	  
+	  $scope.symptomList = [];
+      
+      $scope.medicineList = [];
+      $scope.medicineListFiltered = [];
+      
+      $scope.diseaseList = [];
+      $scope.diseaseListFiltered = [];
+
+      $scope.delete = function(doctor){
+        doctorFactory.deleteDoctor(doctor);
+      };
+      
+      $scope.saveMedRec = function(){
+        var medHold =[];
+        var symHold =[];
+        var disHold =[];
+        $scope.medicalRecord.patientId = $scope.selectedPatient.id;
+        $scope.medicalRecord.doctorId = $scope.user.id;
+        $scope.medicalRecord.quantityList = [];
+        
+        $scope.medicalRecord.medicineIdList.forEach(function(med){
+          $scope.medicalRecord.quantityList.push(med.quantity);
+          medHold.push(med.id);
+        });
+        $scope.medicalRecord.symptomIdList.forEach(function(sym){
+          symHold.push(sym.id);
+        });
+        $scope.medicalRecord.diseaseIdList.forEach(function(dis){
+          disHold.push(dis.id);
+        });
+        
+        $scope.medicalRecord.medicineIdList = medHold;
+        $scope.medicalRecord.symptomIdList = symHold;
+        $scope.medicalRecord.diseaseIdList = disHold;
+        
+        //alert($scope.medicalRecord);
+        //registerMedRec
+        medicalRecordFactory.createMedicalRecord($scope.medicalRecord, $scope.initComponents).then(function(){
+          patientFactory.savePatient(null);
+          $scope.newPatient = patientFactory.getPatient();
+          $scope.selectedPatient = null;
+          $scope.medicalRecord = {
+    	    "symptomIdList" : [],
+    	    "diseaseIdList" : [],
+    	    "medicineIdList" : [],
+    	    "quantityList" : [],
+            "totalCost" : 0
+          };
+          populate();
+        },function(){});
+      };
+      
+      $scope.checkStatus = function(status){
+        return (status) ? "edit-button" : "delete-button";
+      };
+      
+      
+    }
+  );
+
+/***/ }),
+/* 76 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var explorediseases = __webpack_require__(77);
+
+angular.module('hplus.modules.explorediseases', [])
+
+  .config(function ($routeProvider){  
+    $routeProvider      
+      .when('/admin/list/disease',{
+        template: explorediseases
+      })
+  });
+  __webpack_require__(78);
+  __webpack_require__(80);
+  __webpack_require__(81);
+
+/***/ }),
+/* 77 */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"row\">\r\n  <div class=\"col col-md-8 col-md-offset-1\">\r\n    <h1>List of All Diseases</h1>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row\" ng-controller=\"ExploreDiseasesController\">\r\n  <div class=\"col col-md-2 col-md-offset-1\">\r\n    <div class=\"row\">\r\n      <div class=\"col col-md-6\">\r\n        <span class=\"subtitle\">Search</span>\r\n      </div>\r\n    </div>\r\n\t\r\n    <div class=\"match-padding\">\r\n      <input type=\"text\" placeholder=\"Enter a keyword\" ng-model=\"query\">\r\n      <button ng-show=\"user.admin\" ng-click=\"go('/admin/register/disease')\">New Disease</button>\r\n    </div>\r\n  </div>\r\n\r\n  <div class=\"col col-md-8\">\r\n    <div> \r\n      <div class=\"col col-md-12 marginBottom\">\r\n        <span class=\"subtitle\"><span ng-hide=\"query == ''\">{{(diseases | filter : searchFilter).length}}</span><span ng-hide=\"query != ''\">All {{(diseases | filter : searchFilter).length}}</span> Results<span ng-hide=\"query != ''\"></span></span>\r\n        <hplus-explore-diseases-card dir-paginate=\"dis in diseases | filter : searchFilter | itemsPerPage : 10 | orderBy : 'name'\" data=\"dis\"></hplus-explore-diseases-card>\r\n        <dir-pagination-controls max-size=\"5\"></dir-pagination-controls>\r\n\t    </div>\r\n    </div>\r\n  </div>\r\n</div>";
+
+/***/ }),
+/* 78 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var card = __webpack_require__(79);
+angular.module('hplus.modules.explorediseases')
+
+  .directive('hplusExploreDiseasesCard', function(){
+    return{
+      restrict: 'EA',
+      scope: {
+        data: '='
+      },
+      template: card
+    };
+  })
+
+/***/ }),
+/* 79 */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"margins\">\r\n  <div class=\"card__container\" ng-controller=\"CardController\">\r\n    <div class=\"card__title\">\r\n      {{ data.name[0].toUpperCase() + data.name.substr(1) }}\r\n    \r\n      <a ng-click=\"go('/admin/view/disease', data); $event.stopPropagation();\">\r\n        <span class=\"delete__icon\">\r\n          <i class=\"fa fa-eye\" aria-hidden=\"true\"></i>\r\n        </span>\r\n      </a>\r\n      <a ng-show=\"user.admin && !data.medicalRecords\" ng-click=\"go('/admin/update/disease', data); $event.stopPropagation();\">\r\n        <span class=\"delete__icon\">\r\n          <i class=\"fa fa-pencil-square-o\" aria-hidden=\"true\"></i>\r\n        </span>\r\n      </a>\r\n      <a ng-show=\"user.admin && !data.medicalRecords\" ng-click=\"delete(data); $event.stopPropagation();\">\r\n        <span class=\"delete__icon\">\r\n          <i class=\"fa fa-archive\" aria-hidden=\"true\"></i>\r\n        </span>\r\n      </a>\r\n    \r\n    </div>\r\n    \r\n    <div class=\"card__desc\">\r\n      Symptoms: <span ng-repeat=\"symp in data.symp\"><span ng-hide=\"$first\">,&nbsp;</span>{{ symp }}</span>.\r\n    </div>\r\n  </div>\r\n</div>";
+
+/***/ }),
+/* 80 */
+/***/ (function(module, exports) {
+
+angular.module('hplus.modules.explorediseases')
+
+  .controller('ExploreDiseasesController',
+    function($scope, $location, globalFactory, doctorFactory, globalFactory, modalFactory, diseaseFactory, symptomFactory){
+
+      $scope.user = doctorFactory.getUser();
+
+      if($scope.user == null){
+        $location.path("/");
+      }
+
+      $scope.go = function(path){
+        globalFactory.go(path);
+      };
+     
+      $scope.query = "";
+      
+      var populate = function() {
+        diseaseFactory.getListOfDiseases().then(function(response){
+          console.log(response); 
+          $scope.diseases = response.data.diseases;
+          var medicalRecords = response.data.medicalRecords;
+
+          var x, y, z;
+          
+          for(x = 0; x < $scope.diseases.length; x++) {
+            for(y = 0; y < medicalRecords.length; y++) {
+              for(z = 0; z < medicalRecords[y].diseaseIdList.length; z++) {
+                if(medicalRecords[y].diseaseIdList[z] == $scope.diseases[x].id) {
+                  if($scope.diseases[x].medicalRecords == null) {
+                    $scope.diseases[x].medicalRecords = [];
+                  }
+                  $scope.diseases[x].medicalRecords.push(medicalRecords[y]);
+                  z = medicalRecords[y].diseaseIdList.length;
+                }
+              } 
+            }
+          }
+
+          var symptoms = [];
+          
+          symptomFactory.getListOfSymptoms().then(function(response){
+            var symptomList = response.data.symptoms;
+          
+            symptomList.sort(function(a, b){return a.id - b.id});
+
+            $scope.diseases.forEach(function(dis){
+              dis.symp = [];              
+              dis.symptomId.sort(function(a, b){return a - b});
+              var i, j;
+              
+              for(i = j = 0; i < dis.symptomId.length && j < symptomList.length;){
+                if(dis.symptomId[i] == symptomList[j].id) {
+                  dis.symp.push(symptomList[j].name[0].toUpperCase() + symptomList[j].name.substr(1)); 
+                  i++; j++;
+                } else {
+                	(dis.symptomId[i] < symptomList[j].id)? i++ : j++;
+                }
+              }
+        
+            });
+            console.log($scope.diseases);
+          });
+        });
+      };
+
+      populate();
+    
+      $scope.searchFilter = function(disease){
+        var retVal;
+
+        if(!$scope.query 
+        || (disease.name.toLowerCase().indexOf($scope.query) != -1)){
+          retVal = true;
+        } else {
+          retVal = false;
+        }
+
+        return retVal;
+      };
+    
+    }
+  );
+
+/***/ }),
+/* 81 */
+/***/ (function(module, exports) {
+
+angular.module('hplus.modules.explorediseases')
+
+  .controller('CardController',
+    function($scope, globalFactory, diseaseFactory, doctorFactory){
+      
+      $scope.user = doctorFactory.getUser();
+
+      $scope.go = function(path, disease){
+        diseaseFactory.saveDisease(disease);
+        globalFactory.go(path);
+      };
+
+      $scope.delete = function(disease){
+        diseaseFactory.deleteDisease(disease);
+      };
+    }
+  );
+
+/***/ }),
+/* 82 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var exploredoctors = __webpack_require__(83);
+
+angular.module('hplus.modules.exploredoctors', [])
+
+  .config(function ($routeProvider){  
+    $routeProvider
+      .when('/admin/list/doctor',{
+        template: exploredoctors,
+      })
+  });
+  
+  __webpack_require__(84);
+  __webpack_require__(86);
+  __webpack_require__(87);
+
+
+/***/ }),
+/* 83 */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"row\"><!-- Header Portion -->\r\n  <div class=\"col col-md-10 col-md-offset-1\">\r\n    <h1>List of All Doctors</h1><!-- Header Name for this Module -->\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row\" ng-controller=\"ExploreDoctorsController\"><!-- Body Portion -->\r\n  <div class=\"col col-md-2 col-md-offset-1\"><!-- Section for search -->\r\n\r\n    <div class=\"row\">\r\n\t    <div class=\"col col-md-12\">\r\n\t      <label class=\"subtitle\">Search</label>\r\n\t      <input type=\"text\" placeholder=\"Enter a name or specialty\" ng-model=\"query\">\r\n        <button ng-click=\"go('/admin/register/doctor')\">New Doctor</button>\r\n\t    </div>\r\n\t  </div>\r\n\r\n  </div>\r\n  \r\n  <div class=\"col col-md-8\"><!-- Section containing the tabulated list of doctors -->\r\n    <div class=\"col col-md-12\">\r\n\t\t\t<span class=\"subtitle\"><span ng-hide=\"query == ''\">{{(doctorList | filter : searchFilter).length}}</span><span ng-hide=\"query != ''\">All {{(doctorList | filter : searchFilter).length}}</span> Results</span>\r\n\t\t\t<div class=\"margins\">\r\n        <!-- List Section -->\r\n        <label class=\"subtitle\" ng-hide=\"doctorList.length\">There are no doctors to display</label>\r\n\t\t\t\t<hplus-explore-doctors-card ng-show=\"doctorList.length\" dir-paginate=\"doctor in filtered = (doctorList | filter:searchFilter | itemsPerPage:10  | orderBy : ['lastname','firstname'])\" data=\"doctor\"></hplus-explore-doctors-card>\r\n\t\t\t\t<dir-pagination-controls max-size=\"5\"></dir-pagination-controls>\r\n\t\t  </div>\r\n    </div>\r\n  </div>\r\n</div>";
+
+/***/ }),
+/* 84 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var card = __webpack_require__(85);
+
+angular.module('hplus.modules.exploredoctors')
+
+  .directive('hplusExploreDoctorsCard', function(){
+    return{
+      restrict: 'EA',
+      scope: {
+        data: '='
+      },
+      template: card
+    };
+  })
+
+/***/ }),
+/* 85 */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"card__container\" ng-controller=\"DoctorCardController\">\r\n  <div class=\"card__title\">\r\n    {{ data.lastname }}, {{ data.firstname }}\r\n\r\n    <a ng-click=\"go('/admin/view/doctordetails', data); $event.stopPropagation();\">\r\n      <span class=\"delete__icon\">\r\n        <i class=\"fa fa-eye\" aria-hidden=\"true\"></i>\r\n      </span>\r\n    </a>\r\n    <a ng-click=\"go('/admin/edit/doctor', data); $event.stopPropagation();\">\r\n      <span class=\"delete__icon\">\r\n        <i class=\"fa fa-pencil-square-o\" aria-hidden=\"true\"></i>\r\n      </span>\r\n    </a>\r\n    <a ng-hide=\"data.medicalRecords\" ng-click=\"delete(data); $event.stopPropagation();\">\r\n      <span class=\"delete__icon\">\r\n        <i class=\"fa fa-archive\" aria-hidden=\"true\"></i>\r\n      </span>\r\n    </a>\r\n\r\n  </div>\r\n  \r\n  <div class=\"card__desc\">\r\n    {{ data.specialization }}\r\n  </div>\r\n</div>";
+
+/***/ }),
+/* 86 */
+/***/ (function(module, exports) {
+
+angular.module('hplus.modules.exploredoctors')
+
+  .controller('ExploreDoctorsController',
+    function($scope, $location, globalFactory, modalFactory, doctorFactory){
+
+      var user = doctorFactory.getUser();
+
+      if(user != null){
+        if(!user.admin){
+          $location.path("/admin/list/record");
+        }
+      } else {
+        $location.path("/");
+      }
+
+      $scope.go = function(path){
+        globalFactory.go(path);
+      };
+      
+      $scope.query = "";
+      
+      $scope.doctorList = [];
+
+      var populate = function(){
+        doctorFactory.getListOfDoctors().then(function(response){
+          console.log(response);
+          $scope.doctorList = response.data.doctors;
+          $scope.medicalRecords = response.data.medicalRecords;
+          var x, y;
+
+          for(x = 0; x < $scope.doctorList.length; x++){
+            for(y = 0; y < $scope.medicalRecords.length; y++){
+              if($scope.doctorList[x].id == $scope.medicalRecords[y].doctorId){
+                if($scope.doctorList[x].medicalRecords == null){
+                  $scope.doctorList[x].medicalRecords = [];
+                }
+                $scope.doctorList[x].medicalRecords.push($scope.medicalRecords[y]);
+              } 
+            }
+          }
+        }, function(response){
+          console.log(response.statusText);
+        });
+      };
+
+      populate();
+
+      $scope.searchFilter = function(doctor){
+        if(!$scope.query 
+        || (doctor.firstname.toLowerCase().indexOf($scope.query) != -1) 
+        || (doctor.lastname.toLowerCase().indexOf($scope.query) != -1)
+        || (doctor.specialization.toLowerCase().indexOf($scope.query) != -1)){
+          return true;
+        } else {
+          return false;
+        }
+      };
+    }
+  );
+
+/***/ }),
+/* 87 */
+/***/ (function(module, exports) {
+
+angular.module('hplus.modules.exploredoctors')
+
+  .controller('DoctorCardController',
+    function($scope, globalFactory, doctorFactory){
+
+      $scope.go = function(path, doctor){
+        doctorFactory.saveDoctor(doctor);
+        globalFactory.go(path);
+      };
+
+      $scope.delete = function(doctor){
+        doctorFactory.deleteDoctor(doctor);
+      };
+    }
+  );
+
+/***/ }),
+/* 88 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var exploremedicines = __webpack_require__(89);
+
+angular.module('hplus.modules.exploremedicines', [])
+
+  .config(function ($routeProvider){  
+    $routeProvider
+      .when('/admin/list/medicine',{
+        template: exploremedicines
+      })
+  });
+  __webpack_require__(90);
+  __webpack_require__(93);
+  __webpack_require__(94);
+
+/***/ }),
+/* 89 */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"row\"><!-- Header Portion -->\r\n  <div class=\"col col-md-10 col-md-offset-1\">\r\n    <h1>List of All Medicines</h1><!-- Header Name for this Module -->\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row\" ng-controller=\"ExploreMedicinesController\"><!-- Body Portion -->\r\n  <div class=\"col col-md-2 col-md-offset-1\"><!-- Section for search -->\r\n\t\t<div class=\"row\">\r\n\t\t  <div class=\"col col-md-6\">\r\n\t\t\t<label class=\"subtitle\">Search</label>\r\n\t\t  </div>\r\n\t\t</div>\r\n\t\r\n\t\t<div class=\"match-padding\">\r\n\t\t  <input type=\"text\" placeholder=\"Enter a name\" ng-model=\"query\">\r\n\t\t  <button ng-show=\"user.admin\" ng-click=\"go('/admin/register/medicine')\">New Medicine</button>\r\n\t\t</div>\r\n  </div>\r\n\r\n  <div class=\"col col-md-8\"><!-- Section containing the list and detail of medicines -->\r\n    <div class=\"col col-md-6\"><!-- List sector -->\r\n\t\t  <span class=\"subtitle\"><span ng-hide=\"query == ''\">{{(medicineList | filter : searchFilter).length }}</span><span ng-hide=\"query != ''\">All {{(medicineList | filter : searchFilter).length }}</span> Results</span>\r\n\t\t  \r\n\t\t  <div class=\"margins\" >\r\n\t\t    <hplus-explore-medicines-card dir-paginate=\"med in medicineList | filter: searchFilter | itemsPerPage:10  | orderBy : 'name'\" data=\"med\" ng-click=\"setSelected(med)\" ng-class=\"{'selectedCard__container': med == selectedMedicine}\"></hplus-explore-medicines-card>       \r\n      </div>\r\n      <div class=\"col-md-12\">\r\n      <!-- Pagination Section -->\r\n      <dir-pagination-controls max-size=\"5\"></dir-pagination-controls>\r\n      </div>\r\n    </div>\r\n    \r\n   \t<div class=\"col col-md-6\"><!-- Detail Sector -->\r\n\t\t  <hplus-selected-medicine-card data=\"selectedMedicine\" ng-show=\"selectedMedicine\"></hplus-selected-medicine-card>\r\n\t\t</div>\r\n\r\n  </div>\r\n</div>\r\n\r\n";
+
+/***/ }),
+/* 90 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var card = __webpack_require__(91);
+var scard = __webpack_require__(92);
+angular.module('hplus.modules.exploremedicines')
+
+  .directive('hplusExploreMedicinesCard', function(){
+    return{
+      restrict: 'EA',
+      scope: {
+        data: '='
+      },
+      template: card
+    };
+  })
+  
+  .directive('hplusSelectedMedicineCard', function(){
+    return{
+      restrict: 'EA',
+      scope: {
+        data: '='
+      },
+      template: scard
+    };
+  })
+
+/***/ }),
+/* 91 */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"card__container\">\r\n  <div class=\"card__title\">\r\n    {{ data.name[0].toUpperCase() + data.name.substr(1) }}\r\n  </div>\r\n      \r\n  <div class=\"card__desc\">\r\n    <span ng-repeat=\"treats in data.treats | limitTo: 3\"><span ng-hide=\"$first\">,&nbsp;</span>{{ treats }}</span>\r\n  </div>\r\n</div>\r\n";
+
+/***/ }),
+/* 92 */
+/***/ (function(module, exports) {
+
+module.exports = "<div ng-controller=\"MedicineCardController\">\r\n      <label class=\"subtitle\">DETAILS FOR {{ data.name }}</label>\r\n      <div class=\"margins\">\r\n        <!-- Detail Section -->\r\n        <div class=\"detail__container\">\r\n          <div class=\"card__title\">\r\n            {{ data.name[0].toUpperCase() + data.name.substr(1) }}\r\n          </div>\r\n      \r\n          <div class=\"detail__desc\">\r\n            <p>\r\n            {{ data.description }}\r\n            </p>\r\n          </div>\r\n          <span class=\"detail__title\">PRICE (PHP)</span>\r\n          <span class=\"detail__subtitle\">{{ data.price | currency : 'PHP '}}</span>\r\n          <br>\r\n          <br>\r\n          <span class=\"detail__title\">TREATMENT FOR</span>\r\n          <span class=\"detail__subtitle\"><span ng-repeat=\"treats in data.treats\"><span ng-hide=\"$first\">,&nbsp;</span>{{ treats }}</span></span> \r\n          <br>\r\n          <br>\r\n          <div> \r\n            <button ng-show=\"isAdmin() && !data.medicalRecords\" class=\"outline\" ng-click=\"go('/admin/update/medicine', data)\">Edit</button>\r\n            <button ng-show=\"isAdmin() && !data.medicalRecords\" class=\"outline\" ng-click=\"delete(data)\">Archive</button>\r\n            <button class=\"outline\" ng-click=\"go('/admin/view/medicine', data)\">View</button>\r\n          </div>\r\n        </div>\r\n      </div>\r\n</div>";
+
+/***/ }),
+/* 93 */
+/***/ (function(module, exports) {
+
+angular.module('hplus.modules.exploremedicines')
+
+  .controller('ExploreMedicinesController',
+    function($scope, $location, globalFactory, doctorFactory, medicineFactory, diseaseFactory){
+	  
+      $scope.selectedMedicine = null;
+      $scope.query = "";
+      $scope.diseaseList = [];
+
+      $scope.user = doctorFactory.getUser();
+
+      if($scope.user == null){
+        $location.path("/");
+      }
+
+      $scope.searchFilter = function(medicine){
+        if(!$scope.query 
+        || (medicine.name.toLowerCase().indexOf($scope.query) != -1)){
+          return true;
+        } else {
+          return false;
+        }
+      };
+      
+      var populate = function(){
+        medicineFactory.getListOfMedicines().then(function(response){
+          console.log(response);
+          $scope.medicineList = response.data.medicines;
+          var medicalRecords = response.data.medicalRecords;
+
+          var x, y, z;
+          
+          for(x = 0; x < $scope.medicineList.length; x++) {
+            for(y = 0; y < medicalRecords.length; y++) {
+              for(z = 0; z < medicalRecords[y].medicineIdList.length; z++) {
+                if(medicalRecords[y].medicineIdList[z] == $scope.medicineList[x].id) {
+                  if($scope.medicineList[x].medicalRecords == null) {
+                    $scope.medicineList[x].medicalRecords = [];
+                  }
+                  $scope.medicineList[x].medicalRecords.push(medicalRecords[y]);
+                  z = medicalRecords[y].medicineIdList.length;
+                }
+              } 
+            }
+          }
+          
+          diseaseFactory.getListOfDiseases().then(function(response){
+            console.log(response);
+            $scope.diseaseList = response.data.diseases;
+            var x, y, treats, name;
+
+            for(x = 0; x < $scope.medicineList.length; x++){
+              treats = [];
+              for(y = 0; y < $scope.diseaseList.length; y++){
+                if($scope.diseaseList[y].medicineId.indexOf($scope.medicineList[x].id) != -1){
+                  name = $scope.diseaseList[y].name;
+                  treats.push(name[0].toUpperCase() + name.substr(1));
+                }
+              }
+              if(treats.length == 0){
+                treats.push("Nothing");
+              }
+              $scope.medicineList[x].treats = treats;
+            }
+            
+
+          });
+
+        }, function(response){
+          console.log(response);
+        });
+      };
+
+      populate();
+
+      $scope.go = function(path){
+        globalFactory.go(path);
+      };
+      
+      
+      $scope.setSelected = function(med){
+    	  $scope.selectedMedicine = med;
+      };
+    }
+  );
+
+/***/ }),
+/* 94 */
+/***/ (function(module, exports) {
+
+angular.module('hplus.modules.exploremedicines')
+
+  .controller('MedicineCardController',
+    function($scope, $location, globalFactory, doctorFactory, medicineFactory, modalFactory){
+      
+      var user = doctorFactory.getUser();
+      
+      $scope.isAdmin = function(){
+        return user.admin;
+      };
+
+      $scope.go = function(path, medicine) {
+        medicineFactory.saveMedicine(medicine);
+        globalFactory.go(path);
+      };
+
+      $scope.delete = function(medicine) {
+        medicineFactory.deleteMedicine(medicine);
+      };
+
+    }
+  );
+
+/***/ }),
+/* 95 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var exploremedicalrecords = __webpack_require__(96);
+
+angular.module('hplus.modules.exploremedicalrecords', [])
+
+  .config(function ($routeProvider){  
+    $routeProvider
+      .when('/admin/list/record',{
+        template: exploremedicalrecords
+      })
+  });
+
+__webpack_require__(97);
+__webpack_require__(99);
+
+/***/ }),
+/* 96 */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"row\"><!-- Header Portion -->\r\n  <div class=\"col col-md-10 col-md-offset-1\">\r\n    <h1>List of All Medical Records</h1><!-- Header Name for this Module -->\r\n  </div>\r\n</div>\r\n\t\r\n<div class=\"row\" ng-controller=\"ExploreMedicalRecordsController\"><!-- Body Portion -->\r\n  <div class=\"col col-md-2 col-md-offset-1\"><!-- Section for search -->\r\n    <div class=\"row\">\r\n      <div class=\"col col-md-6\">\r\n        <label class=\"subtitle\">Search</label>\r\n      </div>\r\n    </div>\r\n    \r\n    <div class=\"match-padding\">\r\n      <input type=\"text\" placeholder=\"Enter a name\" ng-model=\"query\">\r\n      <button ng-show=\"!user.admin\" ng-click=\"go('/doctor/register/record')\">New Record</button>\r\n    </div>\r\n  </div>\r\n  \r\n  <div > \r\n    <div class=\"col col-md-8\"><!-- Section containing the tabulated list of doctors -->\r\n\t\t  <div class=\"col col-md-12\">\r\n        <span class=\"subtitle\"><span ng-hide=\"query == ''\">{{(medRecs | filter : searchFilter).length }}</span><span ng-hide=\"query != ''\">All {{(medRecsList | filter : searchFilter).length }}</span> Results</span>\r\n\r\n        <hplus-explore-medical-records-card dir-paginate=\"pat in medRecs | filter : searchFilter | itemsPerPage:10 | orderBy : ['lastName','firstName']\" data=\"pat\"></hplus-explore-medical-records-card>\r\n        <!-- Pagination Section -->\r\n        <dir-pagination-controls max-size=\"5\"></dir-pagination-controls>\r\n\t\t  </div>\r\n\t\t</div>\r\n  </div>\r\n</div>\r\n\r\n\r\n";
+
+/***/ }),
+/* 97 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var card = __webpack_require__(98);
+angular.module('hplus.modules.exploremedicalrecords')
+
+  .directive('hplusExploreMedicalRecordsCard', function(){
+    return{
+      restrict: 'EA',
+      scope: {
+        data: '='
+      },
+      template: card
+    };
+  })
+
+/***/ }),
+/* 98 */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"margins\">\r\n  <!-- List Section -->  \r\n  <div class=\"card__container\">\r\n    <div class=\"card__title\">\r\n      {{ data.lastname + ', ' + data.firstname }}\r\n      <span ng-if=\"data.discharged\">(Discharged)</span>\r\n    </div>\r\n    \r\n    <div class=\"card__desc\">\r\n      Admitted {{data.createdAt | date : \"longDate\"}} for <span ng-repeat=\"dis in data.diseases\"><span ng-hide=\"$first\">,&nbsp;</span>{{ dis }}</span>\r\n    </div>\r\n  </div>\r\n</div>";
+
+/***/ }),
+/* 99 */
+/***/ (function(module, exports) {
+
+angular.module('hplus.modules.exploremedicalrecords')
+
+  .controller('ExploreMedicalRecordsController',
+	function($scope, $location, globalFactory, doctorFactory, patientFactory, medicalRecordFactory, diseaseFactory){
+
+		$scope.user = doctorFactory.getUser();
+		var monthNames = ["January", "February", "March", "April", "May", "June",
+		"July", "August", "September", "October", "November", "December"];
+
+		if($scope.user == null){
+			$location.path("/");
+		}
+		
+	  $scope.go = function(path){
+			globalFactory.go(path);
+	  };
+	  
+	  $scope.medRecs =[];
+	  
+	  $scope.medicalRecords = [];
+	  
+	  var populate = function(){
+	    console.log("medFactoryStart");
+	    patientFactory.getListOfPatients().then(function(response){
+	      $scope.patients = response.data.patients;
+	      console.log(response.data.patients);
+	    });
+	    diseaseFactory.getListOfDiseases().then(function(response){
+	      $scope.diseases = response.data.diseases;
+	      console.log(response.data.diseases);
+	      medicalRecordFactory.getListOfMedicalRecords().then(function(response){
+		      $scope.medicalRecords = response.data.medicalRecords;
+		      console.log(response.data.medicalRecords);
+		      
+		      $scope.diseases.sort(function(a, b){return a.id-b.id});
+		      $scope.patients.sort(function(a, b){return a.id-b.id})
+		      
+		      $scope.medicalRecords.forEach(function(medR) {
+		        medR.diseaseIdList.sort();
+		        var d;
+						var hold={ "firstname" : "No patient","lastname" : "No patient", "createdAt" : "","diseases" : [], "discharged" : "" };
+						var date = medR.createdAt.split(" ");
+						var discharged = medR.dischargeDate.split(" ");
+						var tempDate = null;
+						var tempDischarged = null;
+						var realDate;
+
+						for(var i = 0; i < monthNames.length && (tempDate == null || tempDischarged == null); i++) {
+							if(monthNames[i].indexOf(date[1]) != -1) {
+								realDate = new Date(date[5], (i + 1), parseInt(date[2]) + 1);
+
+								tempDate = monthNames[i].substr(0, 3);
+								if(monthNames[i].length > 3){
+									tempDate += ".";
+								}
+								tempDate += " " + realDate.getDate() + ", " + realDate.getFullYear();
+							}
+							if(monthNames[i].indexOf(discharged[1]) != -1) {
+								realDate = new Date(discharged[5], i, parseInt(discharged[2]) + 1);
+								
+								console.log(new Date());
+								console.log(realDate);
+								if(new Date() < realDate) {
+									tempDischarged = false;
+								} else {
+									tempDischarged = true;
+								}
+							}
+						}
+
+						hold.createdAt = tempDate;
+						hold.discharged = tempDischarged;
+		        
+		        for(var i = d = 0; i < medR.diseaseIdList.length && d < $scope.diseases.length;){
+		          if($scope.diseases[d].id == medR.diseaseIdList[i]){
+		            hold.diseases.push($scope.diseases[d].name[0].toUpperCase() + $scope.diseases[d].name.substr(1));
+		            d++; i++;
+		          }else{
+		            ($scope.diseases[d].id > medR.diseaseIdList[i].id)?i++:d++;
+		          }
+		        }
+		        
+		        for(d = 0; d < $scope.patients.length && medR.patientId != $scope.patients[d].id; d++){}
+		        if(d < $scope.patients.length){
+		          hold.firstname = $scope.patients[d].firstname;
+			      hold.lastname = $scope.patients[d].lastname;
+		        }
+		        
+		        $scope.medRecs.push(hold);
+		      });
+		      console.log($scope.medRecs);
+		    },function(){});
+	    },function(){});
+	    
+	  };
+	  
+		populate();
+		
+		$scope.searchFilter = function(medicalRecord){
+			if(!$scope.query 
+			|| (medicalRecord.firstname.toLowerCase().indexOf($scope.query) != -1)
+			|| (medicalRecord.lastname.toLowerCase().indexOf($scope.query) != -1)){
+				return true;
+			} else {
+				return false;
+			}
+		};
+	}
+);
+
+/***/ }),
+/* 100 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var registerdiseases = __webpack_require__(101);
+
+angular.module('hplus.modules.registerdiseases', [])
+
+  .config(function ($routeProvider){  
+    $routeProvider
+      .when('/admin/register/disease',{
+        template: registerdiseases
+      })
+  });
+
+  __webpack_require__(102);
+
+/***/ }),
+/* 101 */
+/***/ (function(module, exports) {
+
+module.exports = "<div ng-controller=\"RegisterDiseasesController\">\r\n\t<div class=\"row\">\r\n\t\t<div class=\"col col-md-8 col-md-offset-1\">\r\n\t\t\t<h1>Register Diseases</h1>\r\n\t\t</div>\r\n\t</div>\r\n\r\n\t<div class=\"row\">\r\n\t\t<div class=\"col-md-10 col-md-offset-1\">\r\n\t\t\t<ng-form name=\"diseaseForm\">\r\n\t\t\t\t<div class=\"col col-md-4\">\r\n\t\t\t\t\t<label class=\"subtitle\">Name of Disease</label>\r\n\t\t\t\t\t<input type=\"text\" placeholder=\"Name\" ng-model=\"disease.name\" ng-required=\"true\" name=\"Name\">\r\n\t\t\t\t\t<button type=\"submit\" ng-class=\"checkStatus(diseaseForm.$valid)\" ng-disabled=\"diseaseForm.$invalid\" ng-click=\"saveDisease()\">Save</button>\r\n\t\t\t\t\t\r\n\t\t\t\t</div>\r\n\t\t\t\r\n\t\t\t\t<div class=\"col col-md-4\">\r\n\t\t\t\t\t<label class=\"subtitle\">Symptoms</label>\r\n\t\t\t\t\t<input type=\"text\" placeholder=\"Search Symptom\" ng-model=\"searchFilterSymp\">\r\n\t\t\t\t\t<div class=\"borders\">\r\n\t\t\t\t\t\t<div class=\"scrollable\">\r\n\t\t\t\t\t\t\t<div ng-repeat=\"option in symptomList | filter: {'name' : searchFilterSymp} | orderBy:['-val','name']\">\r\n\t\t\t\t\t\t\t\t<input type=\"checkbox\" ng-model=\"option.val\" ng-change=\"addRemoveSymptom(symptomList | filter: {val: true} | orderBy : 'name')\" ng-required=\"!disease.symptomId.length\"><span class=\"checkboxText\">{{ option.name[0].toUpperCase() + option.name.substr(1) }}</span><br>\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\r\n\t\t\t\t</div>\r\n\t\t\t\t<div class=\"col col-md-4\">\r\n\t\t\t\t\t<label class=\"subtitle\">Medicines</label>\r\n\t\t\t\t\t<input type=\"text\" placeholder=\"Search Medicine\" ng-model=\"searchFilterMed\">\r\n\t\t\t\t\t<div class=\"borders\">\r\n\t\t\t\t\t\t<div class=\"scrollable\">\r\n\t\t\t\t\t\t\t<div ng-repeat=\"optionmed in medicineList | filter: {'name' : searchFilterMed} | orderBy:['-val','name']\">\r\n\t\t\t\t\t\t\t\t<input type=\"checkbox\" ng-model=\"optionmed.val\" ng-change=\"addRemoveMedicine(medicineList | filter: {val: true}| orderBy:'name')\" ng-required=\"!disease.medicineId.length\"><span class=\"checkboxText\">{{ optionmed.name[0].toUpperCase() + optionmed.name.substr(1) }}</span><br>\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t</div>\r\n\t\t\t</ng-form>\r\n\t\t</div>\r\n\t</div>\r\n\r\n\t<div class=\"row\">\r\n\t\t\r\n\t\t<div class=\"col-md-10 col-md-offset-1\">\r\n\t\t\t\t<div class=\"col col-md-4 col-md-offset-4\">\r\n\t\t\t\t<div class=\" col-md-12 borders\" ng-show=\"showAdd\">\r\n\t\t\t\t\t\t<ng-form name=\"saveSympForm\">\r\n\t\t\t\t\t\t\t<input type=\"text\" ng-model=\"addSymptom\" ng-required=\"true\" placeholder=\"Symptom Name\">\r\n\t\t\t\t\t\t\t<button ng-click=\"saveSymptom()\" ng-class=\"checkStatus(saveSympForm.$valid)\" ng-disabled=\"saveSympForm.$invalid\" type=\"submit\">Add</button>\r\n\t\t\t\t\t\t\t<button ng-click=\"showAdd = !showAdd\">Close</button>\r\n\t\t\t\t\t\t</ng-form>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t\t\r\n\t\t\t\t\t<button ng-hide=\"showAdd\" ng-click=\"showAdd = !showAdd\" type=\"submit\">Add New Symptom</button>\r\n\t\t\t\t</div>\r\n\t\t</div>\r\n\t</div>\r\n</div>";
+
+/***/ }),
+/* 102 */
+/***/ (function(module, exports) {
+
+angular.module('hplus.modules.registerdiseases')
+
+  .controller('RegisterDiseasesController',
+    function($scope, $location, globalFactory, doctorFactory, symptomFactory, medicineFactory, diseaseFactory){
+	 
+      var user = doctorFactory.getUser();
+
+      if(user != null) {
+        if(!user.admin){
+          $location.path("/admin/list/record");
+        }
+      } else {
+        $location.path("/");
+      }
+
+      $scope.disease = 
+      {
+        "name" : "",
+        "symptomId" : [],
+        "medicineId" : []
+      };
+      
+      $scope.go = function(path){
+        globalFactory.go(path);
+      };
+     
+      $scope.checkStatus = function(status) {
+          var retValue = "edit-button";
+
+          if(status){
+            retValue = "edit-button";
+          } else {
+            retValue = "delete-button";
+          }
+
+          return retValue;
+        };
+      
+      $scope.showAdd = false;
+      
+      $scope.saveSymptom = function(){
+        var data = {"name":$scope.addSymptom};
+        symptomFactory.registerSymptom(data);
+      };
+
+      $scope.$on("repopulate", function(event){
+        $scope.showAdd = !$scope.showAdd;
+        $scope.addSymptom = "";
+
+        symptomFactory.getListOfSymptoms().then(function(response){
+          $scope.symptomList = response.data.symptoms;
+          $scope.symptomList.forEach(function(med){
+            med.val = false;
+          });
+
+          populate();
+        });
+
+      });
+      
+      $scope.saveDisease = function(){
+        console.log("meds");
+        console.log($scope.disease.medicineId);
+        console.log($scope.disease.symptomId);
+        console.log($scope.disease.name);
+        
+        diseaseFactory.registerDisease($scope.disease);
+        
+        $scope.disease = {
+                "name" : "",
+                "symptomId" : [],
+                "medicineId" : []
+        };
+        
+        $scope.searchFilterSymp = "";
+        setVals($scope.symptomList, false);
+        setVals($scope.medicineList, false);
+      };
+      
+      $scope.addRemoveSymptom = function(hold){
+    	  $scope.disease.symptomId = hold;
+      };
+    
+      $scope.addRemoveMedicine = function(hold){
+    	  $scope.disease.medicineId = hold;
+      };
+      
+      var populate = function(){
+            symptomFactory.getListOfSymptoms().then(function(response){
+              console.log(response);
+        	    $scope.symptomList = response.data.symptoms;
+        	    $scope.symptomList.forEach(function(med){
+                med.val = false;
+              });
+            });
+            medicineFactory.getListOfMedicines().then(function(response){
+              $scope.medicineList = response.data.medicines;
+              $scope.medicineList.forEach(function(med){
+                med.val = false;
+              });
+            });
+      };
+
+      populate();
+      
+      var setVals = function (a, v) {
+        var i, n = a.length;
+        for (i = 0; i < n; ++i) {
+            a[i].val = v;
+        }
+    	};
+      
+    }
+  );
+
+/***/ }),
+/* 103 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var registerdoctor = __webpack_require__(104);
+
+angular.module('hplus.modules.registerdoctor', [])
+
+  .config(function ($routeProvider){  
+    $routeProvider
+      .when('/admin/register/doctor',{
+        template: registerdoctor
+      })
+  });
+
+__webpack_require__(105);
+
+/***/ }),
+/* 104 */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"row\">\r\n  <div class=\"col col-md-8 col-md-offset-1\">\r\n    <h1>Register an Account</h1>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row\" ng-controller=\"RegisterDoctorController\">\r\n  <ng-form name=\"registerDoctorForm\">\r\n\r\n    <div class=\"row match-padding\">\r\n      <div class=\"col col-md-3 col-md-offset-1\">\r\n        <label class=\"subtitle\">First Name</label>\r\n        <input type=\"text\" ng-model=\"doctor.firstname\" ng-required=\"true\">\r\n      </div>\r\n      <div class=\"col col-md-3\">\r\n        <label class=\"subtitle\">Last Name</label>\r\n        <input type=\"text\" ng-model=\"doctor.lastname\" ng-required=\"true\">\r\n      </div>\r\n    </div>\r\n\r\n    <div class=\"row match-padding\">\r\n      <div class=\"col col-md-3 col-md-offset-1\">\r\n        <label class=\"subtitle\">Email Address</label>\r\n        <input type=\"email\" ng-model=\"doctor.email\" ng-required=\"true\">\r\n      </div>\r\n      <div class=\"col col-md-3\">\r\n        <label class=\"subtitle\">Address</label>\r\n        <input type=\"text\" ng-model=\"doctor.address\" ng-required=\"true\">\r\n      </div>\r\n    </div>\r\n    \r\n    <div class=\"row match-padding\">\r\n      <div class=\"col col-md-3 col-md-offset-1\">\r\n        <label class=\"subtitle\">Specialization</label>\r\n          <select ng-model=\"doctor.specialization\" ng-required=\"true\">\r\n            <option value=\"\">Choose a specialization</option>\r\n            <option ng-repeat=\"option in specialization\" value=\"{{ option }}\">{{ option }}</option>\r\n          </select>\r\n      </div>\r\n      <div class=\"col col-md-3\">\r\n        <label class=\"subtitle\">Contact Number</label>\r\n        <input type=\"text\" ng-model=\"doctor.contactNo\" ng-pattern=\"contactNoRegex\" ng-required=\"true\">\r\n      </div>\r\n    </div>\r\n    \r\n    <div class=\"row match-padding\">\r\n      <div class=\"col col-md-3 col-md-offset-1\">\r\n        <label class=\"subtitle\">Username</label>\r\n        <input type=\"text\" ng-model=\"doctor.username\" ng-required=\"true\">\r\n      </div>\r\n      <div class=\"col col-md-3\">\r\n        <label class=\"subtitle\">Birthday</label>\r\n        <input type=\"date\" ng-model=\"doctor.birthday\" ng-required=\"true\">\r\n      </div>\r\n    </div>\r\n    \r\n    <div class=\"row match-padding\">\r\n      <div class=\"col col-md-3 col-md-offset-1\">\r\n        <label class=\"subtitle\">Password (At least 6 characters)</label>\r\n        <input type=\"password\" ng-model=\"doctor.password\" ng-pattern=\"passwordRegex\" zxcvbn=\"passwordStrength\" ng-required=\"true\">\r\n      </div>\r\n      <div class=\"col col-md-3\">\r\n        <label class=\"subtitle\">Confirm Password</label>\r\n        <input type=\"password\" ng-model=\"doctor.passwordAgain\" ng-required=\"true\">\r\n      </div>\r\n    </div>\r\n    <div class=\"row match-padding\">\r\n      <div class=\"col col-md-3 col-md-offset-1\">\r\n          <div class=\"meter\">\r\n            <div ng-class=\"meter\" role=\"progressbar\" aria-valuenow=\"40\" aria-valuemin=\"0\" aria-valuemax=\"100\"></div>\r\n          </div>\r\n          <span class=\"subtitle\">{{ passwordStatus }}</span>\r\n      </div>\r\n    </div>\r\n    <div class=\"row match-padding\">\r\n        <div class=\"col col-md-3 col-md-offset-1\">\r\n          <button ng-class=\"checkStatus(registerDoctorForm.$valid)\" ng-disabled=\"registerDoctorForm.$invalid\" ng-click=\"registerDoctor()\">{{ button }}</button>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </ng-form>\r\n</div>";
+
+/***/ }),
+/* 105 */
+/***/ (function(module, exports) {
+
+angular.module('hplus.modules.registerdoctor')
+
+  .controller('RegisterDoctorController',
+    function($scope, $location, globalFactory, doctorFactory, modalFactory){
+
+      var user = doctorFactory.getUser();
+      console.log(user);
+
+      if(user != null) {
+        if(!user.admin){
+          $location.path("/admin/list/record");
+        }
+      } else {
+        $location.path("/");
+      }
+
+      $scope.contactNoRegex = "\\d{7,}";
+      $scope.passwordRegex = ".{6,}";
+      $scope.meter = "meter-bar";
+      $scope.passwordStatus = "Enter a password";
+
+      var errorMessage = "";
+
+      $scope.go = function(path){
+        globalFactory.go(path);
+      };
+
+      $scope.$watch(
+        // This function returns the value being watched. It is called for each turn of the $digest loop
+        function() { return $scope.passwordStrength; },
+        // This is the change listener, called when the value returned from the above function changes
+        function(newValue, oldValue) {
+          if (newValue != undefined && newValue.password != "") {
+            switch(newValue.score){
+              case 0:
+                $scope.meter = "meter-bar meter-bar-verybad";
+                $scope.passwordStatus = "Very Weak";
+                break;
+              case 1:
+                $scope.meter = "meter-bar meter-bar-bad";
+                $scope.passwordStatus = "Weak";
+                break;
+              case 2:
+                $scope.meter = "meter-bar meter-bar-average";
+                $scope.passwordStatus = "Average";
+                break;
+              case 3:
+                $scope.meter = "meter-bar meter-bar-good";
+                $scope.passwordStatus = "Strong";
+                break;
+              case 4:
+                $scope.meter = "meter-bar meter-bar-verygood";
+                $scope.passwordStatus = "Very Strong";
+            }
+          } else {
+            $scope.meter = "meter-bar";
+            $scope.passwordStatus = "Enter a password";
+          }
+      });
+
+      $scope.checkStatus = function(status){
+        var retType;
+
+        if(status) {
+          $scope.button = "Register Doctor";
+          retType = "edit-button";
+        } else {
+          $scope.button = "Please fill out all of the fields correctly";
+          retType = "delete-button";
+        }
+
+        return retType;
+      };
+
+      var validity = function(){
+        var state;
+        var yearDiff;
+
+        if(Date.now() - $scope.doctor.birthday.getTime < 0){
+          yearDiff = Date.now() + $scope.doctor.birthday.getTime();
+        } else {
+          yearDiff = Date.now() - $scope.doctor.birthday.getTime();
+        }
+
+        yearDiff = new Date(yearDiff);
+        yearDiff = parseInt(Math.abs(yearDiff.getUTCFullYear() - 1970));
+        errorMessage = "";
+
+        if($scope.doctor.password == $scope.doctor.passwordAgain){
+          state = true;
+        } else {
+          state = false;
+          errorMessage += "Passwords don't match!";
+        }
+
+        if(yearDiff <= 24 || yearDiff >= 66) {
+          state = false;
+          if(errorMessage != ""){
+            errorMessage += "\n";
+          }
+          errorMessage += "Invalid age! You can't be " + yearDiff + " years old!";
+        }
+
+        return state;
+      };
+
+      var confirmRegisterDoctor = function(doctor, initComponents){
+        doctorFactory.registerDoctor(doctor, initComponents);
+      };
+
+      $scope.registerDoctor = function(){
+        var modalObject = {};
+
+        if(validity()){
+          modalObject = {
+            type: "confirm",
+            title: "Confirm Registration",
+            description: "Are you sure you want to register " + $scope.doctor.firstname + "?",
+            negativeButton: "No",
+            positiveButton: "Yes",
+            isVisible: true,
+            data: confirmRegisterDoctor,
+            object: $scope.doctor,
+            clean: $scope.initComponents
+          };
+        
+          modalFactory.setContents(modalObject);
+        } else {
+          modalObject = {
+            type: "notify",
+            title: "Unable to register doctor!",
+            description: errorMessage,
+            positiveButton: "Ok",
+            isVisible: true
+          };
+          
+          modalFactory.setContents(modalObject);
+        }
+      };
+      
+      $scope.initComponents = function(){
+    	  $scope.doctor.firstname = "";
+    	  $scope.doctor.lastname = "";
+    	  $scope.doctor.specialization = "";
+    	  $scope.doctor.address = "";
+    	  $scope.doctor.contactNo = "";
+    	  $scope.doctor.birthday = "";
+    	  $scope.doctor.username = "";
+    	  $scope.doctor.password = "";
+    	  $scope.doctor.passwordAgain = "";
+    	  $scope.doctor.email = "";
+      };
+
+      $scope.specialization = [
+        "Allergist",
+        "Cardiologist",
+        "Dermatologist",
+        "Gastroenterologist",
+        "Gynecologist",
+        "Hematologist",
+        "Internal Medicine Physician",
+        "Nephrologist",
+        "Neurologist",
+        "Neurosurgeon",
+        "Nurse-Midwifery",
+        "Obstetrician",
+        "Occupational Medicine Physician",
+        "Oncologist",
+        "Ophthalmologist",
+        "Oral Surgeon",
+        "Orthopaedic Surgeon",
+        "Otolaryngologist",
+        "Pathologist", 
+        "Pediatrician", 
+        "Plastic Surgeon",
+        "Podiatrist",
+        "Psychiatrist",
+        "Pulmonary Medicine Physician",
+        "Radiation Oncologist",
+        "Diagnostic Radiologist",
+        "Rheumatologist", 
+        "Urologist"
+      ];
+
+    }
+  );
+
+/***/ }),
+/* 106 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var registermedicine = __webpack_require__(107);
+
+angular.module('hplus.modules.registermedicine', [])
+
+  .config(function ($routeProvider){  
+    $routeProvider
+      .when('/admin/register/medicine',{
+        template: registermedicine
+      })
+  });
+
+  __webpack_require__(108);
+
+/***/ }),
+/* 107 */
+/***/ (function(module, exports) {
+
+module.exports = "<div ng-controller=\"RegisterMedicineController\">\r\n\t<div class=\"row\">\r\n\t\t<div class=\"col col-md-8 col-md-offset-1\">\r\n\t\t\t<h1>Register Medicine</h1>\r\n\t\t</div>\r\n\t</div>\r\n\r\n\t<div class=\"row\">\r\n\t\t<div class=\"col col-md-10 col-md-offset-1\">\r\n\t\t\t<ng-form name=\"medicineForm\">\r\n\t\t\t\t<div class=\"col-md-3\">\r\n\t\t\t\t\t<label class=\"subtitle\">Name of Medicine:</label>\r\n\t\t\t\t\t<input type=\"text\" ng-model=\"medicine.name\" placeholder=\"Name\" ng-required=\"true\">\r\n\r\n\t\t\t<!--\t\t<label class=\"subtitle\">Generic Name:</label>\r\n\t\t\t\t\t<input type=\"text\" placeholder=\"Generic Name\" ng-model=\"medicine.generic\" ng-required=\"true\">\r\n\t\t\t-->\r\n\t\t\t\t\t<label class=\"subtitle\">Medicine Type:</label>\r\n\t\t\t\t\t<select name=\"selectMeds\" ng-model=\"medicine.type\" ng-options=\"type as type for type in medicineTypes\" ng-required=\"true\">\r\n\t\t\t\t\t\t<option value=\"\">--Select One--</option>\r\n\t\t\t\t\t</select>\r\n\r\n\t\t\t\t\t<label class=\"subtitle\">Price (PHP) :</label> \r\n\t\t\t\t\t<input type=\"number\" id=\"priceInputField\" ng-model=\"medicine.price\" placeholder=\"Price\" ng-required=\"true\">\r\n\r\n\t\t\t\t\t<button ng-class=\"checkStatus(medicineForm.$valid)\" type=\"submit\" ng-disabled=\"medicineForm.$invalid\" ng-click=\"registerMedicine()\">{{ button }}</button>\r\n\t\t\t\t</div>\r\n\t\t\t\t\r\n\t\t\t\t<div class=\"col col-md-9\">\r\n\t\t\t\t\t<label class=\"subtitle\">Description:</label>\r\n\t\t\t\t\t<textarea id=\"descMed\" ng-model=\"medicine.description\" rows=\"8\" cols=\"50\" placeholder=\"Description\" ng-required=\"true\"></textarea>\r\n\t\t\t\t</div>\r\n\t\t\t</ng-form>\r\n\t\t</div>\r\n\t</div>\r\n</div>";
+
+/***/ }),
+/* 108 */
+/***/ (function(module, exports) {
+
+angular.module('hplus.modules.registermedicine')
+
+  .controller('RegisterMedicineController',
+    function($scope, $location, globalFactory, medicineFactory, doctorFactory, modalFactory){
+
+      $scope.button = "Register";
+      $scope.medicine = {};
+
+      var user = doctorFactory.getUser();
+      
+      if(user != null) {
+        if(!user.admin){
+          $location.path("/admin/list/record");
+        }
+      } else {
+        $location.path("/");
+      }
+
+      $scope.go = function(path){
+        globalFactory.go(path);
+      };
+
+      var clear = function(){
+        $scope.medicine = {};
+      };
+
+      var confirmRegisterMedicine = function(){
+        medicineFactory.registerMedicine($scope.medicine);
+        clear();
+      };
+      
+      $scope.registerMedicine = function(){
+        var modalObject = {};
+  
+        if($scope.medicine.price >= 0){
+          modalObject = {
+            type: "confirm",
+            title: "Confirm Registration",
+            description: "Are you sure you want to register " + $scope.medicine.name + "?",
+            negativeButton: "No",
+            positiveButton: "Yes",
+            isVisible: true,
+            data: confirmRegisterMedicine
+          };
+        
+          modalFactory.setContents(modalObject);
+        } else {
+          modalObject = {
+            type: "notify",
+            title: "Unable to register medicine!",
+            description: "Price can't be negative!",
+            positiveButton: "Ok",
+            isVisible: true
+          };
+          
+          modalFactory.setContents(modalObject);
+        }
+
+      };
+
+      $scope.checkStatus = function(status){
+        var retType;
+
+        if(status) {
+          $scope.button = "Register";
+          retType = "edit-button";
+        } else {
+          $scope.button = "Please fill out all of the fields";
+          retType = "delete-button";
+        }
+
+        return retType;
+      };
+      
+      $scope.medicineTypes = [
+            "Liquid", 
+            "Tablet", 
+            "Capsule", 
+            "Topical Medicine", 
+            "Suppository",
+            "Drops",
+            "Inhaler",
+            "Injection",
+            "Implant",
+            "Patch",
+            "Buccal or Sublingual Tablets"
+      ];
+    }
+  );
+
+
+/***/ }),
+/* 109 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var registerpatient = __webpack_require__(110);
+
+angular.module('hplus.modules.registerpatient', [])
+
+  .config(function ($routeProvider){  
+    $routeProvider
+      .when('/admin/register/patient',{
+        template: registerpatient
+      })
+  });
+
+  __webpack_require__(111);
+
+/***/ }),
+/* 110 */
+/***/ (function(module, exports) {
+
+module.exports = "<div ng-controller=\"RegisterPatientController\">\r\n<div class=\"row\">\r\n  <div class=\"col col-md-8 col-md-offset-1\">\r\n    <h1>Register Patient</h1>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row\">\r\n  <ng-form name=\"registerPatientForm\">\r\n      <div class=\"row match-padding\">\r\n        <div class=\"col col-md-3 col-md-offset-1\">\r\n          <label class=\"subtitle\">Patient's First Name</label>\r\n          <input type=\"text\" ng-model=\"patient.firstname\" ng-required=\"true\">\r\n        </div>\r\n        <div class=\"col col-md-3\">\r\n          <label class=\"subtitle\">Patient's Last Name</label>\r\n          <input type=\"text\" ng-model=\"patient.lastname\" ng-required=\"true\">\r\n        </div>\r\n      </div>\r\n  \r\n      <div class=\"row match-padding\">\r\n        <div class=\"col col-md-3 col-md-offset-1\">\r\n          <label class=\"subtitle\">Patient's Address</label>\r\n          <input type=\"text\" ng-model=\"patient.address\" ng-required=\"true\">\r\n        </div>\r\n        <div class=\"col col-md-3\">\r\n          <label class=\"subtitle\">Patient's Contact Number</label>\r\n          <input type=\"text\" ng-model=\"patient.contactNo\" ng-pattern=\"regex\" ng-required=\"true\">\r\n        </div>\r\n      </div>\r\n              \r\n      <div class=\"row match-padding\">\r\n        <div class=\"col col-md-3 col-md-offset-1\">\r\n          <label class=\"subtitle\">Birthday</label>\r\n          <input type=\"date\" ng-model=\"patient.birthday\" ng-required=\"true\">\r\n        </div>\r\n        <div class=\"col col-md-3\">\r\n          <label class=\"subtitle\">Sex</label>\r\n          <select ng-model=\"patient.sex\" ng-required=\"true\">\r\n            <option value=\"\">Choose a sex</option>\r\n            <option value=\"true\">Male</option>\r\n            <option value=\"false\">Female</option>\r\n          </select>\r\n        </div>\r\n      </div>\r\n      <div class=\"row match-padding\">\r\n        <div class=\"col col-md-3 col-md-offset-1\">\r\n          <button class=\"outline\" ng-class=\"checkStatus(registerPatientForm.$valid)\" ng-disabled=\"registerPatientForm.$invalid\" ng-click=\"registerPatient()\">Register Patient</button>\r\n        </div>\r\n      </div>\r\n  </ng-form>\r\n</div>\r\n</div>";
+
+/***/ }),
+/* 111 */
+/***/ (function(module, exports) {
+
+angular.module('hplus.modules.registerpatient')
+
+  .controller('RegisterPatientController',
+    function($scope, $location, globalFactory, patientFactory, doctorFactory, modalFactory, symptomFactory, diseaseFactory, medicineFactory){
+
+      var user = doctorFactory.getUser();
+      $scope.regex = "\\d{6,}";
+
+
+      if(user == null) {
+        $location.path("/");
+      }
+
+      $scope.go = function(path){
+        globalFactory.go(path);
+      };
+
+      var validity = function(){
+        return ($scope.patient.birthday < new Date());
+      };
+
+      var confirmRegisterPatient = function(){
+        patientFactory.registerPatient($scope.patient);        
+//        $scope.patient = {};
+        patientFactory.savePatient($scope.patient);
+
+        $scope.go("/doctor/register/record");
+      };
+	  
+	    $scope.registerPatient = function(){
+        var modalObject = {};
+
+        if(validity()){
+          modalObject = {
+            type: "confirm",
+            title: "Confirm Registration",
+            description: "Are you sure you want to register " + $scope.patient.firstname + "?",
+            negativeButton: "No",
+            positiveButton: "Yes",
+            isVisible: true,
+            data: confirmRegisterPatient
+          };
+        } else {
+          modalObject = {
+            type: "notify",
+            title: "Unable to register patient!",
+            description: "Invalid birthday!",
+            positiveButton: "Ok",
+            isVisible: true
+          };
+        }
+
+        modalFactory.setContents(modalObject);
+      };
+      
+      $scope.checkStatus = function(status){
+        return (status) ? "edit-button" : "delete-button";
+      };
+
+      
+    }
+  );
+
+
+/***/ }),
+/* 112 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var userLogin = __webpack_require__(113);
+
+angular.module('hplus.modules.login', [])
+
+  .config(function ($routeProvider){  
+    $routeProvider
+      .when('/',{
+        template: userLogin
+      })
+
+      .when('/user/login',{
+        template: userLogin
+      })
+  });
+
+__webpack_require__(114);
+
+/***/ }),
+/* 113 */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"row\" ng-controller=\"LoginController\">\r\n  <div class=\"col-md-10 col-md-offset-1\">\r\n    <div ng-hide=\"true\" class=\"col-md-8\">\r\n      This is just for testing purposes. Add your page here.<br>\r\n      All pages:<br>\r\n      <div class=\"hyperlink\" ng-click=\"go('/admin/update/disease')\">Update Disease</div>\r\n\r\n      <div class=\"hyperlink\" ng-click=\"go('/admin/edit/doctor')\">Edit Doctor</div>\r\n\r\n      <div class=\"hyperlink\" ng-click=\"go('/admin/update/medicine')\">Update Medicine</div>\r\n\r\n      <div class=\"hyperlink\" ng-click=\"go('/admin/list/disease')\">Explore Diseases</div>\r\n\r\n      <div class=\"hyperlink\" ng-click=\"go('/admin/list/doctor')\">Explore Doctors</div>\r\n      \r\n      <div class=\"hyperlink\" ng-click=\"go('/admin/list/record')\">Explore Medical Records</div>\r\n\r\n      <div class=\"hyperlink\" ng-click=\"go('/admin/list/medicine')\">Explore Medicines</div>\r\n\r\n      <div class=\"hyperlink\" ng-click=\"go('/admin/register/disease')\">Register Diseases</div>\r\n\r\n      <div class=\"hyperlink\" ng-click=\"go('/admin/register/doctor')\">Register Doctor</div>\r\n\r\n      <div class=\"hyperlink\" ng-click=\"go('/admin/register/medicine')\">Register Medicines</div>\r\n\r\n      <div class=\"hyperlink\" ng-click=\"go('/admin/view/doctordetails')\">View Doctor</div>\r\n\r\n      <div class=\"hyperlink\" ng-click=\"go('/doctor/create/record')\">Create Medical Record</div>\r\n\r\n      <div class=\"hyperlink\" ng-click=\"go('/admin/view/medicine')\">View Medicine</div>\r\n\r\n    <div class=\"hyperlink\" ng-click=\"go('/patient/view/details')\">View Patient</div>\r\n    </div>\r\n\r\n    <div class=\"col-md-4\">   \r\n      <form class=\"login-form\" role=\"form\">\r\n        <div class=\"form-group\">\r\n          <label class=\"subtitle\" for=\"inputUsernameEmail\">Username or email</label>\r\n          <input class=\"form-control\" id=\"inputUsernameEmail\" type=\"text\" ng-model='username'>\r\n        </div>\r\n        <div class=\"form-group\">\r\n          <label class=\"subtitle\" for=\"inputPassword\">Password</label>\r\n          <input type=\"password\" class=\"form-control\" id=\"inputPassword\" ng-model='password'>\r\n        </div>\r\n        <button type=\"submit\" class=\"btn pull-right\" ng-click=\"loginDoctor();\">\r\n          Log In\r\n        </button>\r\n      </form>\r\n    </div>\r\n  </div>\r\n</div>";
+
+/***/ }),
+/* 114 */
+/***/ (function(module, exports) {
+
+angular.module('hplus.modules.login')
+
+  .controller('LoginController',
+    function($scope, globalFactory, doctorFactory, $location){
+
+      var user = doctorFactory.getUser();
+      console.log(user);
+
+      if(user != null){
+        $location.path("/admin/list/record");
+      }
+
+      $scope.go = function(path){
+        globalFactory.go(path);
+      };
+      
+      $scope.loginDoctor = function(){
+        doctorFactory.login($scope.username, $scope.password);
+      };
+    }
+  );
+
+/***/ }),
+/* 115 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var viewdoctor = __webpack_require__(116);
+
+angular.module('hplus.modules.viewdoctor', [])
+
+  .config(function ($routeProvider){  
+    $routeProvider      
+      .when('/admin/view/doctordetails',{
+        template: viewdoctor
+      })
+  });
+
+  __webpack_require__(117);
+  __webpack_require__(119);
+  __webpack_require__(120);
+
+/***/ }),
+/* 116 */
+/***/ (function(module, exports) {
+
+module.exports = "<ng-controller ng-controller=\"ViewDoctorController\">\r\n  <div class=\"row\">\r\n    <div class=\"col col-md-8 col-md-offset-1\">\r\n      <h1><i class=\"fa fa-user-md\"></i>Dr. {{ doctorData.firstname + \" \" + doctorData.lastname }} ({{ doctorData.username }})</h1>\r\n    </div>\r\n  </div>\r\n\r\n  <div class=\"row\">\r\n    <div class=\"col col-md-3 col-md-offset-1\">\r\n      <div class=\"match-padding\">\r\n        <label class=\"subtitle\">Specialization</label>\r\n        <div class=\"subtitle__value\">\r\n          {{ doctorData.specialization }}\r\n        </div>\r\n\r\n        <label class=\"subtitle\">Contact #</label>\r\n        <div class=\"subtitle__value\">\r\n          {{ doctorData.contactNo }}\r\n        </div>\r\n\r\n        <label class=\"subtitle\">E-mail Address</label>\r\n        <div class=\"subtitle__value\">\r\n          {{ doctorData.email }}\r\n        </div>\r\n\r\n        <label class=\"subtitle\">Address</label>\r\n        <div class=\"subtitle__value\">\r\n          {{ doctorData.address }}\r\n        </div>\r\n\r\n        <label class=\"subtitle\">Birthday</label>\r\n        <div class=\"subtitle__value\">\r\n          {{ doctorData.processedBirthday }}\r\n        </div>\r\n\r\n        <div>\r\n          <button class=\"outline\" ng-click=\"go('/admin/edit/doctor')\">Edit</button>\r\n          <button class=\"outline\" ng-show=\"recordList == null && user.admin\" ng-click=\"delete()\">Archive</button>\r\n          <button class=\"outline\" ng-show=\"!user.admin || (user.admin && user.id == doctorData.id)\" ng-click=\"go('admin/reset/password')\">Change Password</button> \r\n        </div>\r\n      </div>\r\n    </div>\r\n\r\n    <div ng-show=\"!user.admin || user.id != doctorData.id\" class=\"col col-md-7\">\r\n      <div class=\"col col-md-12\">\r\n        <label class=\"subtitle\" ng-if=\"user.admin\">Medical Records Handled By</label>\r\n        <label class=\"subtitle\" ng-if=\"!user.admin\">You are handling the following medical records </label>\r\n\r\n        <span ng-if=\"user.admin\" class=\"subtitle subtitle--variable\">\r\n          Dr. {{ doctorData.firstname + \" \" + doctorData.lastname }}\r\n        </span>\r\n\r\n        <span ng-if=\"recordList.length\" class=\"subtitle subtitle--variable\">\r\n          Total: {{ recordList.length }}\r\n        </span>\r\n\r\n        <div ng-hide=\"recordList.length\">\r\n          <span ng-if=\"user.admin\" class=\"subtitle\">This doctor isn't handling any medical records</span>\r\n          <span ng-if=\"!user.admin\" class=\"subtitle\">You aren't handling any medical records</span>\r\n        </div>\r\n\r\n  \t\t  <hplus-view-doctors-card ng-show=\"recordList.length\" dir-paginate=\"record in recordList | itemsPerPage:10\" data=\"record\"></hplus-view-doctors-card>\r\n      </div>\r\n    </div>\r\n  </div>\r\n\r\n  <dir-pagination-controls max-size=\"5\"></dir-pagination-controls>\r\n</ng-controller>";
+
+/***/ }),
+/* 117 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var card = __webpack_require__(118);
+angular.module('hplus.modules.viewdoctor')
+
+  .directive('hplusViewDoctorsCard', function(){
+    return{
+      restrict: 'EA',
+      scope: {
+        data: '='
+      },
+      template: card
+    };
+  })
+
+/***/ }),
+/* 118 */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"card__container\" ng-controller=\"DoctorRecordCardController\">\r\n  <div class=\"card__title\">\r\n    {{ data.name }}\r\n\r\n    <a ng-click=\"go('/view/medicalrecord', data); $event.stopPropagation()\"><span class=\"delete__icon\"><i class=\"fa fa-eye\" aria-hidden=\"true\"></i></span></a>\r\n    <a ng-click=\"go('/update/medicalrecord', data); $event.stopPropagation()\"><span class=\"delete__icon\"><i class=\"fa fa-pencil-square-o\" aria-hidden=\"true\"></i></span></a>\r\n  \r\n  </div>\r\n  \r\n  <div class=\"card__desc\">\r\n    Admitted {{ data.date }} for {{ data.disease }}\r\n  </div>\r\n</div>";
+
+/***/ }),
+/* 119 */
+/***/ (function(module, exports) {
+
+angular.module('hplus.modules.viewdoctor')
+
+  .controller('ViewDoctorController',
+    function($scope, $location, $timeout, globalFactory, doctorFactory, modalFactory, patientFactory, diseaseFactory){
+    
+      $scope.user = doctorFactory.getUser();
+      var monthNames = ["January", "February", "March", "April", "May", "June",
+      "July", "August", "September", "October", "November", "December"];
+
+      if($scope.user != null) {
+        if($scope.user.admin){
+          $scope.doctorData = doctorFactory.getDoctor();
+        } else {
+          $scope.doctorData = $scope.user;
+        }
+      } else {
+        $location.path("/");
+      }
+
+      var modalObject;
+
+      if($scope.doctorData == null) {
+        $location.path('/admin/list/doctor');
+      } else {
+        console.log($scope.doctorData);
+        var brokenDate = $scope.doctorData.birthday.split(" ");
+        var realDate;
+
+        for(var i = 0; i < monthNames.length && $scope.doctorData.processedBirthday == null; i++){
+          if(monthNames[i].indexOf(brokenDate[1]) != -1) {
+            realDate = new Date(brokenDate[5], (i + 1), parseInt(brokenDate[2]) + 1);
+            $scope.doctorData.processedBirthday = monthNames[i] + " " + realDate.getDate() + ", " + realDate.getFullYear();
+          }
+        }
+
+        $scope.recordList = $scope.doctorData.medicalRecords;
+
+        patientFactory.getListOfPatients().then(function(response){
+          console.log(response);
+          var patientList = response.data.patients;
+          var x, y;
+
+          for(x = 0; x < $scope.recordList.length; x++) {
+            for(y = 0; y < patientList.length && $scope.recordList[x].name == null; y++) {
+              if($scope.recordList[x].patientId == patientList[y].id){
+                $scope.recordList[x].name = patientList[y].lastname + ", " + patientList[y].firstname;
+
+                var date = $scope.recordList[x].createdAt.split(" ");
+                
+                for(var i = 0; i < monthNames.length && $scope.recordList[x].date == null; i++) {
+                  if(monthNames[i].indexOf(date[1]) != -1) {
+                    realDate = new Date(date[5], (i + 1), parseInt(date[2]) + 1);
+                    $scope.recordList[x].date = monthNames[i].substr(0, 3);
+                    if(monthNames[i].length > 3){
+                      $scope.recordList[x].date += ".";
+                    }
+                    $scope.recordList[x].date += " " + realDate.getDate() + ", " + realDate.getFullYear();
+                  }
+                }
+              }
+            }
+          }
+        });
+
+        diseaseFactory.getListOfDiseases().then(function(response){
+          console.log(response); 
+          console.log($scope.recordList);
+          var diseaseList = response.data.diseases;
+          var x, y, z;
+
+          for(x = 0; x < $scope.recordList.length; x++) {
+            var disease = "";
+            for(y = 0; y < $scope.recordList[x].diseaseIdList.length; y++) {
+              for(z = 0; z < diseaseList.length; z++) {
+                if($scope.recordList[x].diseaseIdList[y] == diseaseList[z].id) {
+                  if(disease == "") {
+                    disease = diseaseList[z].name[0].toUpperCase() + diseaseList[z].name.substr(1);
+                  } else {
+                    disease +=", " + diseaseList[z].name[0].toUpperCase() + diseaseList[z].name.substr(1);
+                  }
+                }
+              }
+            }
+            $scope.recordList[x].disease = disease;
+          }
+            
+        });
+      }
+
+      $scope.$on("updateProfile", function(event) {
+        $scope.doctorData = doctorFactory.getUser();
+      });
+
+      $scope.go = function(path){
+        doctorFactory.saveDoctor($scope.doctorData);
+        globalFactory.go(path);
+      };
+
+      $scope.delete = function(){
+        doctorFactory.deleteDoctor($scope.doctorData);
+      };
+  });
+
+/***/ }),
+/* 120 */
+/***/ (function(module, exports) {
+
+angular.module('hplus.modules.viewdoctor')
+
+  .controller('DoctorRecordCardController',
+    function($scope, $location, globalFactory, medicalRecordFactory){
+      
+      $scope.go = function(path, medicalRecord){
+        medicalRecordFactory.saveMedicalRecord(medicalRecord);
+        globalFactory.go(path);
+      };
+
+  });
+
+/***/ }),
+/* 121 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var viewdisease = __webpack_require__(122);
+
+angular.module('hplus.modules.viewdisease', [])
+
+  .config(function ($routeProvider){  
+    $routeProvider      
+      .when('/admin/view/disease',{
+        template: viewdisease
+      })
+  });
+
+__webpack_require__(123);
+__webpack_require__(125);
+__webpack_require__(126);
+
+/***/ }),
+/* 122 */
+/***/ (function(module, exports) {
+
+module.exports = "<ng-controller ng-controller=\"ViewDiseaseController\">\r\n\t<div class=\"row\">\r\n\t  <div class=\"col col-md-8 col-md-offset-1\">\r\n\t    <h1>\r\n\t      <i class=\"fa fa-thermometer-full\"></i>\r\n\t      {{ disease.name[0].toUpperCase() + disease.name.substr(1) }}\r\n\t    </h1>\r\n\t  </div>\r\n\t</div>\r\n\t\r\n\t<div class=\"row\">\r\n\t  <div class=\"col col-md-2 col-md-offset-1\">\r\n\t    <div class=\"match-padding\">\r\n\t      <span class=\"subtitle\">\r\n\t        Symptoms\r\n\t      </span>\r\n\t      <div class=\"subtitle__value\">\r\n\t        <div class=\"row card__container--flex\">\r\n\r\n\t          <div class=\"card__container--medium\" ng-repeat=\"symptom in disease.symp\">\r\n\t            <div class=\"card__desc--medium\">\r\n\t              {{ symptom }}\r\n\t            </div>\r\n\t          </div>\r\n\t\t\t\t\t\r\n\t\t\t\t\t</div>\r\n\t      </div>\r\n\t      <br>\r\n\t      <span class=\"subtitle\">\r\n\t        Medicine\r\n\t      </span>\r\n\t      <br>\r\n\t     <table>\r\n\t        <tr ng-repeat=\"medicine in disease.meds\">\r\n\t          <td><span>{{ medicine }}</span></td>\r\n\t        </tr>\r\n\t      </table>\r\n\t      <br>\r\n\t      <button class=\"outline\" ng-click=\"go('/admin/update/disease')\" ng-show=\"user.admin && !recordList\">Edit</button>\r\n\t      <button class=\"outline\" ng-click=\"delete()\" ng-show=\"user.admin && !recordList\">Archive</button>\r\n\t    </div>\r\n\t  </div>\r\n\t\r\n\t  <div class=\"col col-md-8\">\r\n\t    <div class=\"col col-md-12\">\r\n\t      <div class=\"row\">\r\n\t        <div class=\"col col-md-4\">\r\n\t          <span class=\"subtitle\">\r\n\t            OCCURRENCE IN\r\n\t          </span>\r\n\t          <span class=\"subtitle subtitle--variable\">\r\n\t            {{ monthAndYear }}\r\n\t          </span>\r\n\t          <div class=\"subtitle__value\">\r\n\t            {{ monthUsage }} Patients\r\n\t          </div>\r\n\t        </div>\r\n\t          \r\n\t        <div class=\"col col-md-4\">\r\n\t          <span class=\"subtitle\">\r\n\t            OCCURRENCE IN YEAR\r\n\t          </span>\r\n\t          <span class=\"subtitle subtitle--variable\">\r\n\t            {{ year }}\r\n\t          </span>\r\n\t          <div class=\"subtitle__value\">\r\n\t            {{ yearUsage }} Patients\r\n\t          </div>\r\n\t        </div>\r\n\t      </div>\r\n\t    </div>\r\n\t\r\n\t    <div class=\"col col-md-12\">\r\n\t      <br>\r\n\t\t\t\t<br>\r\n\t\t\t\t<label ng-if=\"!recordList\" class=\"subtitle\">Hasn't been diagnosed in any patient</label>\r\n\t      <label ng-if=\"recordList\" class=\"subtitle\">DIAGNOSED IN THE FOLLOWING PATIENTS</label>\r\n\t      <hplus-view-disease-card dir-paginate=\"record in recordList | itemsPerPage:10\" data=\"record\"></hplus-view-disease-card>\r\n\t    </div>\r\n\t  </div>\r\n\t</div>\r\n\t<dir-pagination-controls max-size=\"5\"></dir-pagination-controls>\r\n</ng-controller>";
+
+/***/ }),
+/* 123 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var card = __webpack_require__(124);
+angular.module('hplus.modules.viewdisease')
+
+  .directive('hplusViewDiseaseCard', function(){
+    return{
+      restrict: 'EA',
+      scope: {
+        data: '='
+      },
+      template: card
+    };
+  })
+
+/***/ }),
+/* 124 */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"card__container\" ng-controller=\"DiseaseRecordCardController\">\r\n  <div class=\"card__title\">\r\n    {{ data.name }} \r\n\r\n    <a ng-click=\"go('/view/medicalrecord', data); $event.stopPropagation()\"><span class=\"delete__icon\"><i class=\"fa fa-eye\" aria-hidden=\"true\"></i></span></a>\r\n    <a ng-show=\"user.admin || (user.id == data.doctorId)\" ng-click=\"go('/update/medicalrecord', data); $event.stopPropagation()\"><span class=\"delete__icon\"><i class=\"fa fa-pencil-square-o\" aria-hidden=\"true\"></i></span></a>\r\n    \r\n  </div>\r\n  \r\n  <div class=\"card__desc\">\r\n    Diagnosed on {{ data.date }} by Dr. {{ data.doctor }}\r\n  </div>\r\n</div>";
+
+/***/ }),
+/* 125 */
+/***/ (function(module, exports) {
+
+app = angular.module('hplus.modules.viewdisease')
+
+  .controller('ViewDiseaseController',
+    function($scope, $location, globalFactory, doctorFactory, diseaseFactory, medicineFactory, patientFactory){
+
+      $scope.user = doctorFactory.getUser();
+      $scope.disease = diseaseFactory.getDisease();
+
+      var date = new Date();
+      var monthNames = ["January", "February", "March", "April", "May", "June",
+      "July", "August", "September", "October", "November", "December"];
+
+      $scope.monthAndYear = monthNames[date.getMonth()].toUpperCase() + " " + date.getFullYear();
+      $scope.year = date.getFullYear();
+
+      if($scope.user == null) {
+        $location.path("/");
+      }
+
+      if($scope.disease == null){
+        $location.path("/admin/list/disease");
+      } else {
+        $scope.recordList = $scope.disease.medicalRecords;
+
+        $scope.monthUsage = 0;
+        $scope.yearUsage = 0;
+        
+        patientFactory.getListOfPatients().then(function(response){
+          console.log(response);
+          var patientList = response.data.patients;
+          var x, y;
+
+          for(x = 0; x < $scope.recordList.length; x++) {
+            for(y = 0; y < patientList.length && $scope.recordList[x].name == null; y++) {
+              if($scope.recordList[x].patientId == patientList[y].id){
+                $scope.recordList[x].name = patientList[y].lastname + ", " + patientList[y].firstname;
+
+                var date = $scope.recordList[x].createdAt.split(" ");
+
+                for(var i = 0; i < monthNames.length && $scope.recordList[x].date == null; i++) {
+                  if(monthNames[i].indexOf(date[1]) != -1) {
+                    realDate = new Date(date[5], (i + 1), parseInt(date[2]) + 1);
+
+                    if($scope.monthAndYear.toLowerCase().indexOf(monthNames[i].toLowerCase()) != -1) {
+                      $scope.yearUsage++;
+                      $scope.monthUsage++;
+                    } else if(date[5] == $scope.year) {
+                      $scope.yearUsage++;
+                    }
+
+                    $scope.recordList[x].date = monthNames[i].substr(0, 3);
+                    if(monthNames[i].length > 3){
+                      $scope.recordList[x].date += ".";
+                    }
+                    $scope.recordList[x].date += " " + realDate.getDate() + ", " + realDate.getFullYear();
+                  }
+                }
+              }
+            }
+          }
+        });
+
+        doctorFactory.getListOfDoctors().then(function(response){
+          console.log(response);
+          var doctorList = response.data.doctors;
+          var x, y;
+
+          for(x = 0; x < $scope.recordList.length; x++) {
+            for(y = 0; y < doctorList.length && $scope.recordList[x].doctor == null; y++) {
+              if($scope.recordList[x].doctorId == doctorList[y].id) {
+                $scope.recordList[x].doctor = doctorList[y].firstname + " " + doctorList[y].lastname;
+                $scope.recordList[x].doctorId = doctorList[y].id;
+              }
+            }
+          }
+        });
+      }
+
+      $scope.go = function(path){
+        globalFactory.go(path);
+      };
+
+      var populate = function(){
+        medicineFactory.getListOfMedicines().then(function(response){
+          console.log(response);
+          var medicineList = response.data.medicines;
+          var meds = [];
+          var x, y;
+
+          for(x = 0; x < medicineList.length; x++){
+            for(y = 0; y < $scope.disease.medicineId.length; y++){
+              if(medicineList[x].id == $scope.disease.medicineId[y]){
+                meds.push(medicineList[x].name);
+              }
+            }
+          }
+
+          $scope.disease.meds = meds;
+        });
+      };
+
+      populate();
+
+      $scope.delete = function(){
+        diseaseFactory.deleteDisease($scope.disease);
+      };
+    });
+
+/***/ }),
+/* 126 */
 /***/ (function(module, exports) {
 
 angular.module('hplus.modules.viewdisease')
@@ -42922,6 +42182,752 @@ angular.module('hplus.modules.viewdisease')
       };
 
   });
+
+/***/ }),
+/* 127 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var viewmedicine = __webpack_require__(128);
+
+angular.module('hplus.modules.viewmedicine', [])
+
+  .config(function ($routeProvider){  
+    $routeProvider      
+      .when('/admin/view/medicine',{
+        template: viewmedicine
+      })
+  });
+  __webpack_require__(129);
+  __webpack_require__(131);
+  __webpack_require__(132);
+
+/***/ }),
+/* 128 */
+/***/ (function(module, exports) {
+
+module.exports = "<ng-controller ng-controller=\"ViewMedicineController\">\r\n\t<div class=\"row\">\r\n\t  <div class=\"col col-md-8 col-md-offset-1\">\r\n\t    <h1><i class=\"fa fa-heartbeat\"></i>{{ medicine.name[0].toUpperCase() + medicine.name.substr(1) }}</h1>\r\n\t  </div>\r\n\t</div>\r\n\t\r\n\t<div class=\"row\">\r\n\t  <div class=\"col col-md-10 col-md-offset-1\">\r\n\t    <div class=\"col-md-3\">\r\n\t      <span class=\"subtitle\">Price:</span>\r\n\t      <div class=\"subtitle__value\">\r\n\t        PHP {{ medicine.price }}\r\n\t      </div>\r\n\t    </div>\r\n\t    <div class=\"col-md-3\">\r\n\t      <label class=\"subtitle\">USAGE FOR</label>\r\n\t      <span class=\"subtitle subtitle--variable\">{{ monthAndYear }}</span>\r\n\t      <div class=\"subtitle__value\">\r\n\t        {{ monthUsage }} Patients\r\n\t      </div>\r\n\t    </div>\r\n\t    <div class=\"col-md-3\">\r\n\t      <label class=\"subtitle\">USAGE FOR THE YEAR</label>\r\n\t      <span class=\"subtitle subtitle--variable\">{{ year }}</span>\r\n\t      <div class=\"subtitle__value\">\r\n\t        {{ yearUsage }} Patients\r\n\t      </div>\r\n\t    </div>\r\n\t  </div>\r\n\t</div>\r\n\t\r\n\t<div class=\"row margins\">\r\n\t  <div class=\"col-md-10 col-md-offset-1 margins\">\r\n\t\t  <div class=\"col-md-3\">\r\n\t      <label class=\"subtitle marginTop\">Type of Medicine</label>\r\n\t      <div class=\"subtitle__value\">\r\n\t        {{ medicine.type }}\r\n\t      </div>\r\n\t\t    <label class=\"subtitle marginTop\">Description:</label>\r\n\t\t    <div class=\"subtitle__value\">\r\n\t\t      {{ medicine.description }}\r\n\t\t    </div>\r\n\t\t\t\t<button class=\"outline\" ng-show=\"user.admin && !recordList\" ng-click=\"go('/admin/update/medicine')\">Edit</button>\r\n\t\t\t\t<button class=\"outline delete_btn\" ng-show=\"user.admin && !recordList\" ng-click=\"delete()\">Archive</button>\r\n\t\t  </div>\r\n\t\t  <div class=\"col-md-9\">\r\n\t\t\t\t<label ng-if=\"!recordList\" class=\"subtitle\">Hasn't been dispensed</label>\r\n\t\t\t\t<label ng-if=\"recordList\" class=\"subtitle\">DISPENSED TO THE FOLLOWING PATIENTS</label>\r\n\t        <hplus-view-medicine-card dir-paginate=\"record in recordList | itemsPerPage:10\" data=\"record\"></hplus-view-medicine-card>\r\n\t\t  </div>\r\n\t  </div>\r\n\t</div>\r\n\t<dir-pagination-controls max-size=\"5\"></dir-pagination-controls>\r\n</ng-controller>";
+
+/***/ }),
+/* 129 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var card = __webpack_require__(130);
+angular.module('hplus.modules.viewmedicine')
+
+  .directive('hplusViewMedicineCard', function(){
+    return{
+      restrict: 'EA',
+      scope: {
+        data: '='
+      },
+      template: card
+    };
+  })
+
+/***/ }),
+/* 130 */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"card__container\" ng-controller=\"RecordCardController\">\r\n  <div class=\"card__title\">\r\n    {{ data.name }} \r\n\r\n    <a ng-click=\"go('/view/medicalrecord', data); $event.stopPropagation()\"><span class=\"delete__icon\"><i class=\"fa fa-eye\" aria-hidden=\"true\"></i></span></a>\r\n    <a ng-show=\"user.admin || (user.id == data.doctorId)\" ng-click=\"go('/update/medicalrecord', data); $event.stopPropagation()\"><span class=\"delete__icon\"><i class=\"fa fa-pencil-square-o\" aria-hidden=\"true\"></i></span></a>\r\n  </div>\r\n  \r\n  <div class=\"card__desc\">\r\n    Dispensed on {{ data.date }} by Dr. {{ data.doctor }}\r\n  </div>\r\n</div>";
+
+/***/ }),
+/* 131 */
+/***/ (function(module, exports) {
+
+app = angular.module('hplus.modules.viewmedicine')
+
+  .controller('ViewMedicineController',
+    function($scope, $location, globalFactory, doctorFactory, medicineFactory, patientFactory){
+
+      $scope.user = doctorFactory.getUser();
+      var date = new Date();
+      var monthNames = ["January", "February", "March", "April", "May", "June",
+      "July", "August", "September", "October", "November", "December"];
+
+      $scope.medicine = medicineFactory.getMedicine();
+      $scope.monthAndYear = monthNames[date.getMonth()].toUpperCase() + " " + date.getFullYear();
+      $scope.year = date.getFullYear();
+
+      if($scope.user == null) {
+        $location.path("/");
+      }
+
+      var modalObject;
+
+      if($scope.medicine == null){
+        $location.path('/admin/list/medicine');
+      } else {
+        $scope.recordList = $scope.medicine.medicalRecords;
+        console.log($scope.recordList);
+        $scope.monthUsage = 0;
+        $scope.yearUsage = 0;
+        
+        patientFactory.getListOfPatients().then(function(response){
+          console.log(response);
+          var patientList = response.data.patients;
+          var x, y;
+
+          for(x = 0; x < $scope.recordList.length; x++) {
+            for(y = 0; y < patientList.length && $scope.recordList[x].name == null; y++) {
+              if($scope.recordList[x].patientId == patientList[y].id){
+                $scope.recordList[x].name = patientList[y].lastname + ", " + patientList[y].firstname;
+
+                var date = $scope.recordList[x].createdAt.split(" ");
+
+                for(var i = 0; i < monthNames.length && $scope.recordList[x].date == null; i++) {
+                  if(monthNames[i].indexOf(date[1]) != -1) {
+                    realDate = new Date(date[5], (i + 1), parseInt(date[2]) + 1);
+
+                    if($scope.monthAndYear.toLowerCase().indexOf(monthNames[i].toLowerCase()) != -1) {
+                      $scope.yearUsage++;
+                      $scope.monthUsage++;
+                    } else if(date[5] == $scope.year) {
+                      $scope.yearUsage++;
+                    }
+
+                    $scope.recordList[x].date = monthNames[i].substr(0, 3);
+                    if(monthNames[i].length > 3){
+                      $scope.recordList[x].date += ".";
+                    }
+                    $scope.recordList[x].date += " " + realDate.getDate() + ", " + realDate.getFullYear();
+                  }
+                }
+              }
+            }
+          }
+        });
+
+        doctorFactory.getListOfDoctors().then(function(response){
+          console.log(response);
+          var doctorList = response.data.doctors;
+          var x, y;
+
+          for(x = 0; x < $scope.recordList.length; x++) {
+            for(y = 0; y < doctorList.length && $scope.recordList[x].doctor == null; y++) {
+              if($scope.recordList[x].doctorId == doctorList[y].id) {
+                $scope.recordList[x].doctor = doctorList[y].firstname + " " + doctorList[y].lastname;
+                $scope.recordList[x].doctorId = doctorList[y].id;
+              }
+            }
+          }
+        });
+      }
+	  
+      $scope.go = function(path) {
+    	  medicineFactory.saveMedicine($scope.medicine);
+        globalFactory.go(path);
+      };
+      
+      $scope.delete = function(){
+        medicineFactory.deleteMedicine($scope.medicine);
+      };
+      
+ /*      $scope.recordList = [
+        {
+          name: "Doe, Jane",
+          date: "Feb. 20, 2016",
+          disease: "Heart Attack",
+          id: 1
+        },
+        {
+          name: "Rizal, Jose",
+          date: "Apr. 10, 2013",
+          disease: "Heart Attack",
+          id: 2
+        },
+        {
+          name: "Lietzkirg, Jaiyra",
+          date: "May. 19, 2011",
+          disease: "Heart Attack",
+          id: 3
+        },
+        {
+          name: "Doe, Jane",
+          date: "Feb. 20, 2016",
+          disease: "Heart Attack",
+          id: 4
+        },
+        {
+          name: "Doe, Jane",
+          date: "Feb. 20, 2016",
+          disease: "Heart Attack",
+          id: 5
+        },
+        {
+          name: "Doe, Jane",
+          date: "Feb. 20, 2016",
+          disease: "Heart Attack",
+          id: 6
+        },
+        {
+          name: "Doe, Jane",
+          date: "Feb. 20, 2016",
+          disease: "Heart Attack",
+          id: 7
+        },
+        {
+          name: "Doe, Jane",
+          date: "Feb. 20, 2016",
+          disease: "Heart Attack",
+          id: 8
+        },
+        {
+          name: "Doe, Jane",
+          date: "Feb. 20, 2016",
+          disease: "Heart Attack",
+          id: 9
+        },
+        {
+          name: "Doe, Jane",
+          date: "Feb. 20, 2016",
+          disease: "Heart Attack",
+          id: 10
+        },
+        {
+          name: "Doe, Jane",
+          date: "Feb. 20, 2016",
+          disease: "Heart Attack",
+          id: 11
+        }
+      ];
+      */
+  });
+
+/***/ }),
+/* 132 */
+/***/ (function(module, exports) {
+
+angular.module('hplus.modules.viewmedicine')
+
+  .controller('RecordCardController',
+    function($scope, $location, globalFactory, doctorFactory, medicalRecordFactory){
+      
+      $scope.user = doctorFactory.getUser();
+
+      $scope.go = function(path, medicalRecord){
+        medicalRecordFactory.saveMedicalRecord(medicalRecord);
+        globalFactory.go(path);
+      };
+
+  });
+
+/***/ }),
+/* 133 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var viewmedicalrecord = __webpack_require__(134);
+
+angular.module('hplus.modules.viewmedicalrecord', [])
+
+  .config(function ($routeProvider){  
+    $routeProvider      
+      .when('/view/medicalrecord',{
+        template: viewmedicalrecord
+      })
+  });
+  __webpack_require__(135);  
+  __webpack_require__(136);
+  __webpack_require__(138);
+
+
+/***/ }),
+/* 134 */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"row\">\r\n  <div class=\"col col-md-8 col-md-offset-1\">\r\n    <h1>Medical Record</h1>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row\" ng-controller=\"ViewMedicalRecordController\">\r\n  <div class=\"col col-md-2 col-md-offset-1\">\r\n    <div class=\"row\">\r\n      <div class=\"col col-md-12\">\r\n        <label class=\"subtitle\">Patient</label>\r\n        <div class=\"subtitle__value\">\r\n\t        {{patient.lastName + ', ' + patient.firstName}}\r\n\t      </div>\r\n\t      <label class=\"subtitle\">Date of Birth</label>\r\n        <div class=\"subtitle__value\">\r\n          {{patient.dateOfBirth | date : \"longDate\"}}\r\n        </div>\r\n        <label class=\"subtitle\">Sex</label>\r\n        <div class=\"subtitle__value\">\r\n          {{sex}}\r\n        </div>\r\n        <label class=\"subtitle\">Admission Date</label>\r\n        <div class=\"subtitle__value\">\r\n          {{record.createdAt | date : \"longDate\"}}\r\n        </div>\r\n        <label class=\"subtitle\">Discharge Date</label>\r\n        <div class=\"subtitle__value\">\r\n          {{record.dischargeDate | date : \"longDate\"}}\r\n        </div>\r\n        <button class=\"outline\">Edit</button></br>\r\n        <button class=\"outline\">Delete</button>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <div class=\"col col-md-7\">\r\n    <div class=\"row\">\r\n      <div class=\"col-md-12\">\r\n        <!-- <hplus-view-medical-record-card dir-paginate=\"rec in records | itemsPerPage:10\" data=\"rec\"></hplus-view-medical-record-card> -->\r\n        <hplus-view-medical-record-card dir-paginate=\"dis in diseases | itemsPerPage:10\" data=\"dis\" array=\"symptoms\"></hplus-view-medical-record-card>\r\n        <dir-pagination-controls max-size=\"5\"></dir-pagination-controls>\r\n        <div class=\"margins\">\r\n          <div class=\"detail__container\">\r\n            <div class=\"card__title\">\r\n              Medicines\r\n            </div>\r\n            <table class=\"table table-striped\">\r\n              <thead>\r\n                 <tr>\r\n                   <th class=\"name\">Name</th>\r\n                   <th>Price</th>\r\n                   <th>Quantity</th>\r\n                   <th class=\"price\">Total</th>\r\n                 </tr>\r\n              </thead>\r\n              <tbody>\r\n                <tr ng-repeat=\"med in medicines\">\r\n                  <td class=\"name\">{{med.name}}</td>\r\n                  <td>{{med.price | currency : \"PHP \"}}</td>\r\n                  <td>{{record.quantity[$index]}}</td>\r\n                  <td class=\"price\">{{med.price * record.quantity[$index] | currency : \"PHP \"}}</td>\r\n                </tr>\r\n              </tbody>\r\n            </table>\r\n          </div>\r\n        </div>\r\n      </div>\r\n      <div class=\"col-md-5 col-md-offset-7\">\r\n          <div class=\"margins\">\r\n            <div class=\"detail__containerTotalPrice\">\r\n              \r\n                <b>Total:</b> {{totalBill | currency : 'PHP '}} \r\n              \r\n            </div>\r\n          </div>\r\n        </div>\r\n    </div>\r\n  </div>\r\n</div>";
+
+/***/ }),
+/* 135 */
+/***/ (function(module, exports) {
+
+angular.module('hplus.modules.viewmedicalrecord')
+
+  .filter('intersect', function() {
+    return function(array1, array2) {
+      return array1.filter(function (ar) {
+        return this.indexOf(ar) !== -1;
+      }, array2);
+    };
+  });
+
+/***/ }),
+/* 136 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var card = __webpack_require__(137);
+angular.module('hplus.modules.viewmedicalrecord')
+
+  .directive('hplusViewMedicalRecordCard', function(){
+    return{
+      restrict: 'EA',
+      scope: {
+        data: '=',
+        array: '='
+      },
+      template: card
+    };
+  })
+
+/***/ }),
+/* 137 */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"margins\">\r\n  <div class=\"detail__container\">\r\n    <div class=\"card__title\">\r\n      {{data.name}}\r\n    </div>\r\n    \r\n    <label class=\"subtitle\">Symptoms</label>\r\n    <div class=\"subtitle__value\">\r\n      <span ng-repeat=\"ar in array | intersect : data.symptoms\"><span ng-hide=\"$first\">,&nbsp;</span>{{ar}}</span>\r\n    </div>\r\n  </div>\r\n</div>";
+
+/***/ }),
+/* 138 */
+/***/ (function(module, exports) {
+
+angular.module('hplus.modules.viewmedicalrecord')
+
+  .controller('ViewMedicalRecordController',
+    function($scope, globalFactory, medicalRecordFactory){
+	  $scope.record = {
+        "symptoms" : [],
+        "diseases" : [],
+        "medicines" : [],
+        "quantity" : [ 7 , 21],
+        "dischargeDate" : "2018-01-05T09:05:05.035Z",
+        "createdAt" : "2016-02-20T09:05:05.035Z"
+	  };
+	  
+	  $scope.diseases = [
+	    {
+	      "name" : "Hyperacidity",
+          "symptoms" : ["Vomiting","Repeatedly pulling hair out","Noticeable hair loss","Low self-esteem"]
+	    },
+	    {
+	      "name" : "Trichotrillomania",
+	      "symptoms" : ["Lack of appetite","Constipation","Indigestion","Sour Belching"]
+	    }
+	  ];
+	  
+	  $scope.symptoms = ["Lack of appetite","Constipation","Indigestion","Repeatedly pulling hair out","Noticeable hair loss","Low self-esteem"];
+	  
+      $scope.patient = {
+        "firstName" : "Jane",
+        "lastName" : "Doe",
+        "dateOfBirth" : "1970-01-01T09:05:05.035Z",
+        "sex" : false
+      };
+      
+      $scope.sex = ($scope.patient.sex)? "Male" : "Female";
+      
+      $scope.medicines =[
+        {
+          "name" : "Omeprazole 20mg",
+          "price" : 44
+        },
+        {
+          "name" : "Clomipramine 25mg",
+          "price" : 55
+        }
+      ];
+      
+      $scope.totalBill = 0;
+      $scope.medicines.forEach(function(med,i){
+        $scope.totalBill += med.price * $scope.record.quantity[i]; 
+      });
+    }
+  );
+
+/***/ }),
+/* 139 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var viewdoctor = __webpack_require__(140);
+
+angular.module('hplus.modules.viewpatient', [])
+
+  .config(function ($routeProvider){  
+    $routeProvider      
+      .when('/patient/view/details',{
+        template: viewdoctor
+      })
+  });
+  __webpack_require__(141);
+  __webpack_require__(143);
+
+
+/***/ }),
+/* 140 */
+/***/ (function(module, exports) {
+
+module.exports = "<ng-controller ng-controller=\"ViewPatientController\">\r\n\t<div class=\"row\">\r\n\t  <div class=\"col col-md-8 col-md-offset-1\">\r\n\t    <h1><i class=\"fa fa-user-o\"></i> {{ patient.name }}</h1>\r\n\t  </div>\r\n\t</div>\r\n\t\r\n\t<div class=\"row\">\r\n\t  <div class=\"col col-md-2 col-md-offset-1\">\r\n\t    <div class=\"match-padding\">\r\n\t      <span class=\"subtitle\">\r\n\t        Date of Birth\r\n\t      </span>\r\n\t      <div class=\"subtitle__value\">\r\n\t\t\t\t\t{{ patient.processedBirthday }}\r\n\t      </div>\r\n\t      \r\n\t       <br>\r\n\t      <span class=\"subtitle\">Address</span>\r\n\t      <div class=\"subtitle__value\">\r\n\t        {{ patient.address }}\r\n\t      </div>\r\n\t      \r\n\t       <br>\r\n\t      <span class=\"subtitle\">Contact Number</span>\r\n\t      <div class=\"subtitle__value\">\r\n\t        {{ patient.contactNo }}\r\n\t      </div>\r\n\t      \r\n\t      <br>\r\n\t      <span class=\"subtitle\">Sex</span>\r\n\t      <div class=\"subtitle__value\">\r\n\t        {{ patient.sexDisplay }}\r\n\t      </div>\r\n\t    </div>\r\n\t  </div>\r\n\t\r\n\t  <div class=\"col col-md-8\">\r\n\t    <div class=\"col col-md-12\">\r\n\t      <span class=\"subtitle\">Medical Records of this patient</span>\r\n\t      <br><br>\r\n\t      <hplus-view-patient-card dir-paginate=\"record in recordList | itemsPerPage:10\" data=\"record\"></hplus-view-patient-card>\r\n\t    </div>\r\n\t  </div>\r\n\t</div>\r\n\t<dir-pagination-controls max-size=\"5\"></dir-pagination-controls>\r\n</ng-controller>";
+
+/***/ }),
+/* 141 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var card = __webpack_require__(142);
+angular.module('hplus.modules.viewpatient')
+
+  .directive('hplusViewPatientCard', function(){
+    return{
+      restrict: 'EA',
+      scope: {
+        data: '='
+      },
+      template: card
+    };
+  })
+
+/***/ }),
+/* 142 */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"card__container\">\r\n  <div class=\"card__title match-padding\">\r\n    {{ data.name }} \r\n  </div>\r\n  \r\n  <br>\r\n  <span class=\"subtitle match-padding\">Symptoms</span>\r\n  <div class=\"subtitle__value match-padding\">\r\n    {{ data.symptom }} \r\n  </div>\r\n  \r\n  <br>\r\n  <span class=\"subtitle match-padding\">Medications</span>\r\n  <div class=\"subtitle__value match-padding\">\r\n    {{ data.medicine }} &times; {{ data.dosage }}\r\n  </div>\r\n  \r\n  <div class=\"row\">\r\n   <div class=\"col col-md-4 \">\r\n     <br>\r\n     <span class=\"subtitle\">Admission Date</span>\r\n     <div class=\"subtitle__value\">\r\n       {{ data.admission }}\r\n     </div>\r\n   </div>\r\n   <div class=\"col col-md-4\">\r\n     <br>\r\n     <span class=\"subtitle\">Discharge Date</span>\r\n     <div class=\"subtitle__value\">\r\n       {{ data.discharge }}\r\n     </div>\r\n   </div>\r\n   <div class=\"col col-md-4\">\r\n     <br>\r\n     <span class=\"subtitle\">Bill for this disease</span>\r\n     <div class=\"subtitle__value\">\r\n       {{ data.bill }}\r\n     </div>\r\n   </div>\r\n </div>\r\n</div>";
+
+/***/ }),
+/* 143 */
+/***/ (function(module, exports) {
+
+app = angular.module('hplus.modules.viewpatient');
+
+  app.controller('ViewPatientController',
+    function($scope, $location, globalFactory, doctorFactory, patientFactory){
+	  
+      var user = doctorFactory.getUser();
+      var monthNames = ["January", "February", "March", "April", "May", "June",
+      "July", "August", "September", "October", "November", "December"];
+
+      if(user == null) {
+        $location.path("/");
+      }
+	  
+      $scope.patient = patientFactory.getPatient();
+      var modalObject;
+
+      if($scope.patient == null){
+        $location.path('/admin/list/patient');
+      } else {
+        $scope.patient.name = $scope.patient.lastname + ", " + $scope.patient.firstname;
+        $scope.recordList = $scope.patient.medicalRecords;
+
+        var brokenDate = $scope.patient.birthday.split(" ");
+        for(var i = 0; i < monthNames.length && $scope.patient.processedBirthday == null; i++){
+          if(monthNames[i].indexOf(brokenDate[1]) != -1) {
+            var realDate = new Date(brokenDate[5], (i + 1), parseInt(brokenDate[2]) + 1);
+            $scope.patient.processedBirthday = monthNames[i] + " " + realDate.getDate() + ", " + realDate.getFullYear();
+          }
+        }
+
+        $scope.patient.sexDisplay = ($scope.patient.sex) ? "Male" : "Female";
+      }
+	  
+      $scope.go = function(path){
+    	  patientFactory.savePatient($scope.patient);  
+        globalFactory.go(path);
+      };
+      
+      $scope.delete = function(){
+        patientFactory.deletePatient($scope.patient);
+      };
+      
+      /*
+       $scope.recordList = [
+        {
+    	 name: "Hyperacidity",
+         symptom:"Hot, Cold, Warm",
+         medicine: "Biogesic",
+         dosage: "20mgx7",
+         admission: "February 20, 2016",
+         discharge: "February 21, 2016",
+         bill: "308.00"
+        }*/
+  });
+
+/***/ }),
+/* 144 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var resetpassword = __webpack_require__(145);
+
+angular.module('hplus.modules.resetpassword', [])
+
+  .config(function ($routeProvider){  
+    $routeProvider
+      .when('/admin/reset/password',{
+        template: resetpassword
+      })
+  });
+
+  __webpack_require__(146);
+
+/***/ }),
+/* 145 */
+/***/ (function(module, exports) {
+
+module.exports = "<div  ng-controller=\"ResetPasswordController\">\r\n  <div class=\"row\">\r\n    <div class=\"col col-md-8 col-md-offset-1\">\r\n      <h1>Reset Your Password</h1>\r\n    </div>\r\n  </div>\r\n\r\n  <ng-form name=\"resetPasswordForm\">\r\n    <div class=\"row\">\r\n      <div class=\"col col-md-4 col-md-offset-1\">\r\n        <div class=\"row\">\r\n          <div class=\"col col-md-12\">\r\n            <label class=\"subtitle\">Old Password</label>\r\n            <input type=\"password\" ng-model=\"password.oldPass\" ng-required=\"true\">\r\n            \r\n            <label class=\"subtitle\">New Password (At least 6 characters)</label>\r\n            <input type=\"password\" ng-model=\"password.newPass\" ng-pattern=\"passwordRegex\" zxcvbn=\"passwordStrength\" ng-required=\"true\">\r\n\r\n\r\n            <label class=\"subtitle\">Repeat your new password</label>\r\n            <input type=\"password\" ng-model=\"password.confirmPass\" ng-required=\"true\">\r\n            \r\n            <div class=\"row\">\r\n                <div class=\"meter\">\r\n                  <div ng-class=\"meter\" role=\"progressbar\" aria-valuenow=\"40\" aria-valuemin=\"0\" aria-valuemax=\"100\"></div>\r\n                </div>\r\n                <span class=\"subtitle\">{{ passwordStatus }}</span>\r\n            </div>\r\n            <br><br>\r\n            \r\n            <button ng-class=\"checkStatus(resetPasswordForm.$valid)\" ng-disabled=\"resetPasswordForm.$invalid\" ng-click=\"resetPassword()\">{{ buttonText }}</button>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </ng-form>\r\n</div>";
+
+/***/ }),
+/* 146 */
+/***/ (function(module, exports) {
+
+angular.module('hplus.modules.resetpassword')
+
+  .controller('ResetPasswordController',
+    function($scope, $location, globalFactory, modalFactory, doctorFactory){
+
+      $scope.passwordRegex = ".{6,}";
+      $scope.meter = "meter-bar";
+      $scope.passwordStatus = "Enter a password";
+      $scope.buttonText = "Please fill out all fields";
+
+      var errorMessage = "";
+
+      var user = doctorFactory.getUser();
+      console.log(user);
+
+      if(user == null) {
+        $location.path("/");
+      }
+
+      $scope.go = function(path){
+        globalFactory.go(path);
+      };
+
+      $scope.$watch(
+        // This function returns the value being watched. It is called for each turn of the $digest loop
+        function() { return $scope.passwordStrength; },
+        // This is the change listener, called when the value returned from the above function changes
+        function(newValue, oldValue) {
+          if (newValue != undefined && newValue.password != "") {
+            switch(newValue.score){
+              case 0:
+                $scope.meter = "meter-bar meter-bar-verybad";
+                $scope.passwordStatus = "Very Weak";
+                break;
+              case 1:
+                $scope.meter = "meter-bar meter-bar-bad";
+                $scope.passwordStatus = "Weak";
+                break;
+              case 2:
+                $scope.meter = "meter-bar meter-bar-average";
+                $scope.passwordStatus = "Average";
+                break;
+              case 3:
+                $scope.meter = "meter-bar meter-bar-good";
+                $scope.passwordStatus = "Strong";
+                break;
+              case 4:
+                $scope.meter = "meter-bar meter-bar-verygood";
+                $scope.passwordStatus = "Very Strong";
+            }
+          } else {
+            $scope.meter = "meter-bar";
+            $scope.passwordStatus = "Enter a password";
+          }
+      })
+
+      var validity = function(){
+        var state = false;
+        errorMessage = "";
+
+        if($scope.password.oldPass != user.password){
+          errorMessage += "Old password is wrong!";
+        }
+        
+        if($scope.passwordStrength.password != $scope.password.confirmPass){
+          errorMessage += "Passwords don't match!";
+        } 
+        
+        if(errorMessage == "") {
+          state = true;
+        }
+
+        return state;
+      };
+
+      var confirmPasswordReset = function(){
+        user.password = $scope.password.newPass;
+        doctorFactory.updateDoctor(user);
+      };
+
+      $scope.resetPassword = function(){
+        var modalObject = {};
+        console.log("resetPassword");
+
+        if(validity()){
+          modalObject = {
+            type: "confirm",
+            title: "Confirm Password Reset",
+            description: "Are you sure you want to change your password?",
+            negativeButton: "No",
+            positiveButton: "Yes",
+            isVisible: true,
+            data: confirmPasswordReset
+          };
+        
+          modalFactory.setContents(modalObject);
+        } else {
+          modalObject = {
+            type: "notify",
+            title: "Unable to change password!",
+            description: errorMessage,
+            positiveButton: "Ok",
+            isVisible: true
+          };
+          
+          modalFactory.setContents(modalObject);
+        }
+      };
+
+      $scope.checkStatus = function(status){
+        var retClass;
+
+        if(status){
+          $scope.buttonText = "Reset Password";
+          retClass = "edit-button";
+        } else {
+          $scope.buttonText = "Please fill out all fields";
+          retClass = "delete-button";
+        }
+
+        return retClass;
+      };
+    }
+  );
+
+/***/ }),
+/* 147 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var explorepatients = __webpack_require__(148);
+
+angular.module('hplus.modules.explorepatients', [])
+
+  .config(function ($routeProvider){  
+    $routeProvider
+      .when('/admin/list/patient',{
+        template: explorepatients,
+      })
+  });
+  
+  __webpack_require__(149);
+  __webpack_require__(151);
+  __webpack_require__(152);
+
+
+/***/ }),
+/* 148 */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"row\"><!-- Header Portion -->\r\n  <div class=\"col col-md-10 col-md-offset-1\">\r\n    <h1>List of All Patients</h1><!-- Header Name for this Module -->\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row\" ng-controller=\"ExplorePatientsController\"><!-- Body Portion -->\r\n  <div class=\"col col-md-2 col-md-offset-1\"><!-- Section for search -->\r\n    <div class=\"row\">\r\n\t  <div class=\"col col-md-12\">\r\n\t    <label class=\"subtitle\">Search</label>\r\n\t    <input type=\"text\" placeholder=\"Enter a name\" ng-model=\"query\">\r\n\t  </div>\r\n\t</div>\r\n\r\n  </div>\r\n  \r\n  <div class=\"col col-md-8\"><!-- Section containing the tabulated list of patients -->\r\n    <div class=\"col col-md-12\">\r\n      <span class=\"subtitle\">\r\n        <span ng-hide=\"query == ''\">{{(patientList | filter: searchFilter).length}}</span><span ng-hide=\"query != ''\">All {{(patientList | filter: searchFilter).length}}</span> Results</span>\r\n\t\t  \r\n\t  <div class=\"margins\" >\r\n      <label class=\"subtitle\" ng-hide=\"patientList.length\">There are no patients to display</label>\r\n\t    <hplus-explore-patients-card dir-paginate=\"pat in filtered = (patientList | filter: searchFilter | itemsPerPage:10 | orderBy : ['lastname','firstname'])\" data=\"pat\"></hplus-explore-patients-card>       \r\n      </div>\r\n      <div class=\"col-md-12\">\r\n      <dir-pagination-controls max-size=\"5\"></dir-pagination-controls>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n\r\n<dir-pagination-controls max-size=\"5\"></dir-pagination-controls>";
+
+/***/ }),
+/* 149 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var card = __webpack_require__(150);
+
+angular.module('hplus.modules.explorepatients')
+
+  .directive('hplusExplorePatientsCard', function(){
+    return{
+      restrict: 'EA',
+      scope: {
+        data: '='
+      },
+      template: card
+    };
+  })
+
+/***/ }),
+/* 150 */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"card__container\" ng-controller=\"PatientCardController\">\r\n  <div class=\"card__title\">\r\n    {{ data.lastname }}, {{ data.firstname }}\r\n\r\n    <a ng-click=\"go('/patient/view/details', data); $event.stopPropagation();\">\r\n      <span class=\"delete__icon\">\r\n        <i class=\"fa fa-eye\" aria-hidden=\"true\"></i>\r\n      </span>\r\n    </a>\r\n\r\n  </div>\r\n  \r\n  <div class=\"card__desc\">\r\n    Address: {{ data.address }}\r\n  </div>\r\n</div>";
+
+/***/ }),
+/* 151 */
+/***/ (function(module, exports) {
+
+angular.module('hplus.modules.explorepatients')
+
+  .controller('ExplorePatientsController',
+    function($scope, $location, globalFactory, doctorFactory, modalFactory, patientFactory){
+
+      $scope.length;
+      $scope.selectedPatient = null;
+      $scope.query = "";
+      
+      var user = doctorFactory.getUser();
+
+      if(user == null){
+        $location.path("/");
+      }
+
+      var populate = function(){
+        patientFactory.getListOfPatients().then(function(response){
+          console.log(response);
+          $scope.patientList = response.data.patients;
+          var recordsList = response.data.medicalRecords;
+          var x, y;
+
+          for(x = 0; x < $scope.patientList.length; x++) {
+            for(y = 0; y < recordsList.length; y++) {
+              if($scope.patientList[x].id == recordsList[y].patientId) {
+                if($scope.patientList[x].medicalRecords == null) {
+                  $scope.patientList[x].medicalRecords = [];
+                }
+                $scope.patientList[x].medicalRecords.push(recordsList[y]);
+              }
+            }
+          }
+
+        }, function(response){
+          console.log(response);
+        });
+      };
+
+      populate();
+      
+      $scope.go = function(path){
+        globalFactory.go(path);
+      };
+      
+      $scope.setSelected = function(pat){
+    	  $scope.selectedPatient = pat;
+      };
+
+      $scope.searchFilter = function(patient){
+        if(!$scope.query 
+        || (patient.firstname.toLowerCase().indexOf($scope.query) != -1) 
+        || (patient.lastname.toLowerCase().indexOf($scope.query) != -1)){
+          return true;
+        } else {
+          return false;
+        }
+      }
+    }
+  );
+
+/***/ }),
+/* 152 */
+/***/ (function(module, exports) {
+
+angular.module('hplus.modules.explorepatients')
+
+  .controller('PatientCardController',
+    function($scope, $location, globalFactory, doctorFactory, patientFactory, modalFactory){
+
+      $scope.go = function(path, patient){
+        patientFactory.savePatient(patient);
+        globalFactory.go(path);
+      };
+
+      $scope.delete = function(patient){
+        patientFactory.deletePatient(patient);
+      };
+    }
+  );
+
+/***/ }),
+/* 153 */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"row\">\r\n  <div class=\"col-md-12\" align=\"right\">\r\n      <div class=\"pagination__container\" ng-if=\"1 < pages.length || !autoHide\">\r\n      <div ng-if=\"boundaryLinks\"  class=\"pagination__page\" ng-click=\"setCurrent(1)\">\r\n        &laquo;\r\n      </div> \r\n      <div ng-if=\"directionLinks\" class=\"pagination__page\" ng-click=\"setCurrent(pagination.current - 1)\">\r\n        &lsaquo;\r\n      </div>\r\n      <div ng-repeat=\"pageNumber in pages track by tracker(pageNumber, $index)\" class=\"pagination__page\" ng-class=\"{ pagination__current : pagination.current == pageNumber, pagination__page : pageNumber == '...' }\" ng-click=\"setCurrent(pageNumber)\">\r\n        {{ pageNumber }}\r\n      </div>\r\n      <div ng-if=\"directionLinks\" class=\"pagination__page\" ng-click=\"setCurrent(pagination.current + 1)\">\r\n        &rsaquo;\r\n      </div>\r\n      <div ng-if=\"boundaryLinks\"  class=\"pagination__page\" ng-click=\"setCurrent(pagination.last)\">\r\n        &raquo;\r\n      </div>\r\n    </div>\r\n</div>";
 
 /***/ })
 /******/ ]);
