@@ -111,16 +111,25 @@ angular.module('hplus.modules.registermedicalrecord')
           var i,j;
           $scope.diseaseList.forEach(function(dis){
             dis.symptomId.sort();
-            for(i=j=0; i < hold.length && j < dis.symptomId.length;){
-              if(hold[i].id == dis.symptomId[j]){
-                i++; j++;
-              }else if((hold[i].id > dis.symptomId[j])){
-                j++;
-              }else{
-                break;
+              for(i=j=0; i < hold.length && j < dis.symptomId.length;){
+                if(hold[i].id == dis.symptomId[j]){
+                  break;
+                }else if((hold[i].id > dis.symptomId[j])){
+                  j++;
+                }else{
+                  i++;
+                }
               }
-            }
-            if(i == hold.length){
+//            for(i=j=0; i < hold.length && j < dis.symptomId.length;){
+//              if(hold[i].id == dis.symptomId[j]){
+//                i++; j++;
+//              }else if((hold[i].id > dis.symptomId[j])){
+//                j++;
+//              }else{
+//                break;
+//              }
+//            }
+            if(i < hold.length){
               $scope.diseaseListFiltered.push(dis);  
             }
             
