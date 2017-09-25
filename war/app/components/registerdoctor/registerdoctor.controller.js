@@ -25,21 +25,6 @@ angular.module('hplus.modules.registerdoctor')
         globalFactory.go(path);
       };
 
-      $scope.specialization = [
-        {
-          name: "Cardiology",
-          id: 1
-        },
-        {
-          name: "Dentistry",
-          id: 2
-        },
-        {
-          name: "Nephrology",
-          id: 3
-        }
-      ];
-
       $scope.$watch(
         // This function returns the value being watched. It is called for each turn of the $digest loop
         function() { return $scope.passwordStrength; },
@@ -165,6 +150,37 @@ angular.module('hplus.modules.registerdoctor')
     	  $scope.doctor.passwordAgain = "";
     	  $scope.doctor.email = "";
       };
+
+      $scope.specialization = [
+        "Allergist",
+        "Cardiologist",
+        "Dermatologist",
+        "Gastroenterologist",
+        "Gynecologist",
+        "Hematologist",
+        "Internal Medicine Physician",
+        "Nephrologist",
+        "Neurologist",
+        "Neurosurgeon",
+        "Nurse-Midwifery",
+        "Obstetrician",
+        "Occupational Medicine Physician",
+        "Oncologist",
+        "Ophthalmologist",
+        "Oral Surgeon",
+        "Orthopaedic Surgeon",
+        "Otolaryngologist",
+        "Pathologist", 
+        "Pediatrician", 
+        "Plastic Surgeon",
+        "Podiatrist",
+        "Psychiatrist",
+        "Pulmonary Medicine Physician",
+        "Radiation Oncologist",
+        "Diagnostic Radiologist",
+        "Rheumatologist", 
+        "Urologist"
+      ];
 
     }
   );

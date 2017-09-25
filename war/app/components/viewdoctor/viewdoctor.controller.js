@@ -1,7 +1,7 @@
 angular.module('hplus.modules.viewdoctor')
 
   .controller('ViewDoctorController',
-    function($scope, $location, $timeout, globalFactory, doctorFactory, modalFactory){
+    function($scope, $location, $timeout, globalFactory, doctorFactory, modalFactory, patientFactory, diseaseFactory){
     
       $scope.user = doctorFactory.getUser();
       var monthNames = ["January", "February", "March", "April", "May", "June",
@@ -22,13 +22,69 @@ angular.module('hplus.modules.viewdoctor')
       if($scope.doctorData == null) {
         $location.path('/admin/list/doctor');
       } else {
+        console.log($scope.doctorData);
         var brokenDate = $scope.doctorData.birthday.split(" ");
+        var realDate;
 
         for(var i = 0; i < monthNames.length && $scope.doctorData.processedBirthday == null; i++){
           if(monthNames[i].indexOf(brokenDate[1]) != -1) {
-            $scope.doctorData.processedBirthday = monthNames[i] + " " + (parseInt(brokenDate[2]) + 1) + ", " + brokenDate[5];
+            realDate = new Date(brokenDate[5], (i + 1), parseInt(brokenDate[2]) + 1);
+            $scope.doctorData.processedBirthday = monthNames[i] + " " + realDate.getDate() + ", " + realDate.getFullYear();
           }
         }
+
+        $scope.recordList = $scope.doctorData.medicalRecords;
+
+        patientFactory.getListOfPatients().then(function(response){
+          console.log(response);
+          var patientList = response.data.patients;
+          var x, y;
+
+          for(x = 0; x < $scope.recordList.length; x++) {
+            for(y = 0; y < patientList.length && $scope.recordList[x].name == null; y++) {
+              if($scope.recordList[x].patientId == patientList[y].id){
+                $scope.recordList[x].name = patientList[y].lastname + ", " + patientList[y].firstname;
+
+                var date = $scope.recordList[x].createdAt.split(" ");
+                
+                for(var i = 0; i < monthNames.length && $scope.recordList[x].date == null; i++) {
+                  if(monthNames[i].indexOf(date[1]) != -1) {
+                    realDate = new Date(date[5], (i + 1), parseInt(date[2]) + 1);
+                    $scope.recordList[x].date = monthNames[i].substr(0, 3);
+                    if(monthNames[i].length > 3){
+                      $scope.recordList[x].date += ".";
+                    }
+                    $scope.recordList[x].date += " " + realDate.getDate() + ", " + realDate.getFullYear();
+                  }
+                }
+              }
+            }
+          }
+        });
+
+        diseaseFactory.getListOfDiseases().then(function(response){
+          console.log(response); 
+          console.log($scope.recordList);
+          var diseaseList = response.data.diseases;
+          var x, y, z;
+
+          for(x = 0; x < $scope.recordList.length; x++) {
+            var disease = "";
+            for(y = 0; y < $scope.recordList[x].diseaseIdList.length; y++) {
+              for(z = 0; z < diseaseList.length; z++) {
+                if($scope.recordList[x].diseaseIdList[y] == diseaseList[z].id) {
+                  if(disease == "") {
+                    disease = diseaseList[z].name[0].toUpperCase() + diseaseList[z].name.substr(1);
+                  } else {
+                    disease +=", " + diseaseList[z].name[0].toUpperCase() + diseaseList[z].name.substr(1);
+                  }
+                }
+              }
+            }
+            $scope.recordList[x].disease = disease;
+          }
+            
+        });
       }
 
       $scope.$on("updateProfile", function(event) {
@@ -43,75 +99,4 @@ angular.module('hplus.modules.viewdoctor')
       $scope.delete = function(){
         doctorFactory.deleteDoctor($scope.doctorData);
       };
-
-      $scope.recordList = [
-        {
-          name: "Doe, Jane",
-    		  date: "Feb. 20, 2016",
-    		  disease: "Wisdom Tooth Eruption",
-          id: 1
-        },
-        {
-          name: "Phour, Mahn",
-    		  date: "June 19, 2015",
-    		  disease: "Gingivitis, Periodontitis, Dental Calculus",
-          id: 2
-        },
-        {
-          name: "Xing, Ah Mae",
-    		  date: "Mar. 3, 2015",
-    		  disease: "Malocclusion",
-          id: 3
-        },
-    		{
-          name: "Williams, Andrew",
-    		  date: "Jan. 18, 2014",
-    		  disease: "Heart Failure, Kidney Cancer",
-          id: 4
-        },
-    		{
-          name: "Adamwoods, Holi",
-    		  date: "June 9, 2014",
-    		  disease: "Liver Infection",
-          id: 5
-        },
-    		{
-          name: "Armstrong, Rory",
-    		  date: "Mar. 3, 2015",
-    		  disease: "Body Pain, Stomachache",
-          id: 6
-        },
-    		{
-          name: "Einstein, Albert",
-    		  date: "Mar. 18, 2013",
-    		  disease: "Malaria, Gingivitis, Blindness",
-          id: 7
-        },
-    		{
-          name: "Rizal, Jose",
-    		  date: "Sept. 21, 2013",
-    		  disease: "Bleeding",
-          id: 8
-        },
-    		{
-          name: "Rizal, Josie",
-    		  date: "Sept. 21, 2013",
-    		  disease: "Bleeding",
-          id: 9
-        },
-    		{
-          name: "Rizal, John",
-    		  date: "Sept. 21, 2013",
-    		  disease: "Bleeding",
-          id: 10
-        },
-    		{
-          name: "Rizal, Philip",
-    		  date: "Sept. 21, 2013",
-    		  disease: "Bleeding",
-          id: 11
-        }
-      ];
-
-      $scope.recordList = [];
   });

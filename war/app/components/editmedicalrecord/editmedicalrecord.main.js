@@ -4,8 +4,10 @@ angular.module('hplus.modules.editmedicalrecord', [])
 
   .config(function ($routeProvider){  
     $routeProvider      
-      .when('/doctor/edit/record',{
-        template: editmedicalrecord
+      .when('/update/medicalrecord',{
+        template: editmedicalrecord	
       })
   });
+
   require('./editmedicalrecord.controller.js');
+

@@ -17,6 +17,8 @@ angular.module('hplus.modules.editmedicine')
 
       if($scope.medicine == null){
         $location.path('/admin/list/medicine');
+      } else if($scope.medicine.medicalRecords) {
+        $location.path("/admin/list/medicine");
       }
 
       $scope.go = function(path){

@@ -1,8 +1,10 @@
-<div class="card__container" ng-controller="RecordCardController">
+<div class="card__container" ng-controller="DoctorRecordCardController">
   <div class="card__title">
-    {{ data.name }} 
-    <a ng-click="go('/admin/view/doctordetails'); $event.stopPropagation()"><span class="delete__icon"><i class="fa fa-eye" aria-hidden="true"></i></span></a>
-    <a ng-click="go('/admin/edit/doctor'); $event.stopPropagation()"><span class="delete__icon"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></span></a>
+    {{ data.name }}
+
+    <a ng-click="go('/view/medicalrecord', data); $event.stopPropagation()"><span class="delete__icon"><i class="fa fa-eye" aria-hidden="true"></i></span></a>
+    <a ng-click="go('/update/medicalrecord', data); $event.stopPropagation()"><span class="delete__icon"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></span></a>
+  
   </div>
   
   <div class="card__desc">

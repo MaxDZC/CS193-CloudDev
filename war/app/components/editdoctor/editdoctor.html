@@ -12,7 +12,7 @@
           
           <label class="subtitle">Specialization</label>
           <select ng-model="doctorData.specialization" ng-required="true">
-            <option ng-repeat="option in specialization" value="{{ option.name }}">{{option.name}}</option>
+            <option ng-repeat="option in specialization" value="{{ option }}">{{ option }}</option>
           </select>
           
           <label class="subtitle">Contact Number</label>
@@ -26,7 +26,7 @@
           
           <div> 
             <button ng-class="checkStatus(EditDoctorForm.$valid)" ng-disabled="EditDoctorForm.$invalid" ng-click="update()">Update</button>
-            <button class="outline delete_btn" ng-show="data.medicalRecords == null" ng-click="delete()">Archive</button>
+            <button class="outline delete_btn" ng-show="doctorData.medicalRecords == null" ng-click="delete()">Archive</button>
           </div>
           
         </div>

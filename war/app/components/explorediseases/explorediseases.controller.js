@@ -18,8 +18,25 @@ angular.module('hplus.modules.explorediseases')
       var populate = function() {
         diseaseFactory.getListOfDiseases().then(function(response){
           console.log(response); 
-          
           $scope.diseases = response.data.diseases;
+          var medicalRecords = response.data.medicalRecords;
+
+          var x, y, z;
+          
+          for(x = 0; x < $scope.diseases.length; x++) {
+            for(y = 0; y < medicalRecords.length; y++) {
+              for(z = 0; z < medicalRecords[y].diseaseIdList.length; z++) {
+                if(medicalRecords[y].diseaseIdList[z] == $scope.diseases[x].id) {
+                  if($scope.diseases[x].medicalRecords == null) {
+                    $scope.diseases[x].medicalRecords = [];
+                  }
+                  $scope.diseases[x].medicalRecords.push(medicalRecords[y]);
+                  z = medicalRecords[y].diseaseIdList.length;
+                }
+              } 
+            }
+          }
+
           var symptoms = [];
           
           symptomFactory.getListOfSymptoms().then(function(response){

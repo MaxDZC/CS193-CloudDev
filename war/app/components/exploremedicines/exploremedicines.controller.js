@@ -3,7 +3,6 @@ angular.module('hplus.modules.exploremedicines')
   .controller('ExploreMedicinesController',
     function($scope, $location, globalFactory, doctorFactory, medicineFactory, diseaseFactory){
 	  
-      $scope.length = 0;
       $scope.selectedMedicine = null;
       $scope.query = "";
       $scope.diseaseList = [];
@@ -27,8 +26,24 @@ angular.module('hplus.modules.exploremedicines')
         medicineFactory.getListOfMedicines().then(function(response){
           console.log(response);
           $scope.medicineList = response.data.medicines;
-          $scope.length = $scope.medicineList.length;
+          var medicalRecords = response.data.medicalRecords;
 
+          var x, y, z;
+          
+          for(x = 0; x < $scope.medicineList.length; x++) {
+            for(y = 0; y < medicalRecords.length; y++) {
+              for(z = 0; z < medicalRecords[y].medicineIdList.length; z++) {
+                if(medicalRecords[y].medicineIdList[z] == $scope.medicineList[x].id) {
+                  if($scope.medicineList[x].medicalRecords == null) {
+                    $scope.medicineList[x].medicalRecords = [];
+                  }
+                  $scope.medicineList[x].medicalRecords.push(medicalRecords[y]);
+                  z = medicalRecords[y].medicineIdList.length;
+                }
+              } 
+            }
+          }
+          
           diseaseFactory.getListOfDiseases().then(function(response){
             console.log(response);
             $scope.diseaseList = response.data.diseases;

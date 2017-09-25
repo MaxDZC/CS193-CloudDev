@@ -36,8 +36,8 @@
 	        </tr>
 	      </table>
 	      <br>
-	      <button class="outline" ng-click="go('/admin/update/disease')" ng-show="user.admin">Edit</button>
-	      <button class="outline" ng-click="delete()" ng-show="user.admin">Archive</button>
+	      <button class="outline" ng-click="go('/admin/update/disease')" ng-show="user.admin && !recordList">Edit</button>
+	      <button class="outline" ng-click="delete()" ng-show="user.admin && !recordList">Archive</button>
 	    </div>
 	  </div>
 	

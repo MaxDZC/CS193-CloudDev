@@ -1,7 +1,7 @@
 angular.module('hplus.factory')
 
   .factory('medicalRecordFactory', 
-    function($http){
+    function($http, $window){
 
       var createMedicalRecord = function(medicalRecordObject, clear){
         return $http({
@@ -9,13 +9,9 @@ angular.module('hplus.factory')
           url: '/MedicalRecord', // Change URL here
           data: medicalRecordObject
         }).then(function successCallback(response) {
-            // this callback will be called asynchronously
-            // when the response is available
         	console.log(response);
         	clear();
           }, function errorCallback(response) {
-            // called asynchronously if an error occurs
-            // or server returns response with an error status.
         	  var errorMessage = "";
         	  
         	  for(var i=0; i < response.data.errorList.length; i++){
@@ -31,11 +27,21 @@ angular.module('hplus.factory')
             method: 'GET',
             url: '/MedicalRecord' // Change URL here
           });
-        }
+      };
       
+      var saveMedicalRecord = function(medicine){
+        $window.localStorage.setItem("medicalRecord", angular.toJson(medicine));
+      };
+    
+      var getMedicalRecord = function(){
+        return angular.fromJson($window.localStorage.getItem("medicalRecord"));
+      };  
+
       return {
     	  createMedicalRecord: createMedicalRecord,
-    	  getListOfMedicalRecords: getListOfMedicalRecords
+        getListOfMedicalRecords: getListOfMedicalRecords,
+        saveMedicalRecord: saveMedicalRecord,
+        getMedicalRecord: getMedicalRecord
       }
     }
   );

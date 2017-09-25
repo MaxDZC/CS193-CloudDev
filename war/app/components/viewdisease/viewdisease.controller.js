@@ -19,6 +19,8 @@ app = angular.module('hplus.modules.viewdisease')
 
       if($scope.disease == null){
         $location.path("/admin/list/disease");
+      } else {
+        $scope.recordList = $scope.disease.medicalRecords;
       }
 
       $scope.go = function(path){

@@ -1,7 +1,7 @@
 app = angular.module('hplus.modules.viewmedicine')
 
   .controller('ViewMedicineController',
-    function($scope, $location, globalFactory, doctorFactory, medicineFactory){
+    function($scope, $location, globalFactory, doctorFactory, medicineFactory, patientFactory){
 
       $scope.user = doctorFactory.getUser();
       var date = new Date();
@@ -20,6 +20,60 @@ app = angular.module('hplus.modules.viewmedicine')
 
       if($scope.medicine == null){
         $location.path('/admin/list/medicine');
+      } else {
+        $scope.recordList = $scope.medicine.medicalRecords;
+        console.log($scope.recordList);
+        $scope.monthUsage = 0;
+        $scope.yearUsage = 0;
+        
+        patientFactory.getListOfPatients().then(function(response){
+          console.log(response);
+          var patientList = response.data.patients;
+          var x, y;
+
+          for(x = 0; x < $scope.recordList.length; x++) {
+            for(y = 0; y < patientList.length && $scope.recordList[x].name == null; y++) {
+              if($scope.recordList[x].patientId == patientList[y].id){
+                $scope.recordList[x].name = patientList[y].lastname + ", " + patientList[y].firstname;
+
+                var date = $scope.recordList[x].createdAt.split(" ");
+
+                for(var i = 0; i < monthNames.length && $scope.recordList[x].date == null; i++) {
+                  if(monthNames[i].indexOf(date[1]) != -1) {
+                    realDate = new Date(date[5], (i + 1), parseInt(date[2]) + 1);
+
+                    if($scope.monthAndYear.toLowerCase().indexOf(monthNames[i].toLowerCase()) != -1) {
+                      $scope.yearUsage++;
+                      $scope.monthUsage++;
+                    } else if(date[5] == $scope.year) {
+                      $scope.yearUsage++;
+                    }
+
+                    $scope.recordList[x].date = monthNames[i].substr(0, 3);
+                    if(monthNames[i].length > 3){
+                      $scope.recordList[x].date += ".";
+                    }
+                    $scope.recordList[x].date += " " + realDate.getDate() + ", " + realDate.getFullYear();
+                  }
+                }
+              }
+            }
+          }
+        });
+
+        doctorFactory.getListOfDoctors().then(function(response){
+          console.log(response);
+          var doctorList = response.data.doctors;
+          var x, y;
+
+          for(x = 0; x < $scope.recordList.length; x++) {
+            for(y = 0; y < doctorList.length && $scope.recordList[x].doctor == null; y++) {
+              if($scope.recordList[x].doctorId == doctorList[y].id) {
+                $scope.recordList[x].doctor = doctorList[y].firstname + " " + doctorList[y].lastname;
+              }
+            }
+          }
+        });
       }
 	  
       $scope.go = function(path) {
@@ -31,7 +85,7 @@ app = angular.module('hplus.modules.viewmedicine')
         medicineFactory.deleteMedicine($scope.medicine);
       };
       
-       $scope.recordList = [
+ /*      $scope.recordList = [
         {
           name: "Doe, Jane",
           date: "Feb. 20, 2016",
@@ -99,4 +153,5 @@ app = angular.module('hplus.modules.viewmedicine')
           id: 11
         }
       ];
+      */
   });

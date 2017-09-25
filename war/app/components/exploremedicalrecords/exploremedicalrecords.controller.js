@@ -27,7 +27,7 @@ angular.module('hplus.modules.exploremedicalrecords')
 	    },function(){});
 	    diseaseFactory.getListOfDiseases().then(function(response){
 	      $scope.diseases = response.data.diseases;
-	      console.log(response.data);
+	      console.log(response.data.diseases);
 	    },function(){});
 	    medicalRecordFactory.getListOfMedicalRecords().then(function(response){
 	      $scope.medicalRecords = response.data.medicalRecords;
