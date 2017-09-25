@@ -63,18 +63,34 @@ angular.module('hplus.modules.editdoctor')
       };
       
       $scope.specialization = [
-        {
-          name: "Cardiology",
-          id: 1
-        },
-        {
-          name: "Dentistry",
-          id: 2
-        },
-        {
-          name: "Nephrology",
-          id: 3
-        }
+        "Allergist",
+        "Cardiologist",
+        "Dermatologist",
+        "Gastroenterologist",
+        "Gynecologist",
+        "Hematologist",
+        "Internal Medicine Physician",
+        "Nephrologist",
+        "Neurologist",
+        "Neurosurgeon",
+        "Nurse-Midwifery",
+        "Obstetrician",
+        "Occupational Medicine Physician",
+        "Oncologist",
+        "Ophthalmologist",
+        "Oral Surgeon",
+        "Orthopaedic Surgeon",
+        "Otolaryngologist",
+        "Pathologist", 
+        "Pediatrician", 
+        "Plastic Surgeon",
+        "Podiatrist",
+        "Psychiatrist",
+        "Pulmonary Medicine Physician",
+        "Radiation Oncologist",
+        "Diagnostic Radiologist",
+        "Rheumatologist", 
+        "Urologist"
       ];
     }
   );

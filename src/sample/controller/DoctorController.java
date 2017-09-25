@@ -2,7 +2,9 @@ package sample.controller;
 
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import org.slim3.controller.Controller;
 import org.slim3.controller.Navigation;
@@ -11,6 +13,7 @@ import org.slim3.util.RequestMap;
 
 import sample.dto.DoctorDto;
 import sample.meta.DoctorModelMeta;
+import sample.model.DoctorModel;
 import sample.service.DoctorService;
 import sample.service.MedicalRecordService;
 import sample.utils.JSONValidators;
@@ -46,10 +49,10 @@ public class DoctorController extends Controller {
         String message;
         
         try{
-        /*    DoctorDto adminAccount = new DoctorDto();
+          /*  DoctorDto adminAccount = new DoctorDto();
             
-            adminAccount.setFirstname("admin");
-            adminAccount.setLastname("admin");
+            adminAccount.setFirstname("Administrator");
+            adminAccount.setLastname("Max");
             adminAccount.setAddress("Sto. Nino Village, Road 1 Zone Sikwa Pakna-an, Mandaue City");
             adminAccount.setAdmin(true);
             adminAccount.setUsername("root");
@@ -57,6 +60,7 @@ public class DoctorController extends Controller {
             adminAccount.setSpecialization("Administrator");
             adminAccount.setContactNo("09323437269");
             adminAccount.setEmail("teambob.cloud@gmail.com");
+            adminAccount.setBirthday(new Date());
             
             
             adminAccount.setCreatedAt(new Date());
@@ -66,7 +70,8 @@ public class DoctorController extends Controller {
             message = doctorService.insertDoc(adminAccount);
             jsonObject = new JSONObject();
             method = "";
-        */
+            */
+        
             
             if(method.equals("POST")){
                 jsonObject = new JSONObject(this.request.getReader().readLine());
@@ -95,14 +100,18 @@ public class DoctorController extends Controller {
                 jsonObject = new JSONObject(new RequestMap(this.request));
                 
                 if(jsonObject.has("username")) {
-                    Object tester = doctorService.loginDoctor(jsonObject.getString("username"), jsonObject.getString("password"));
-                    if(tester != null){
-                        String doc = DoctorModelMeta.get().modelToJson(tester);
-                        System.out.println(doc);
-                        JSONObject jsonResult = new JSONObject(doc);
-                        long doctorId = jsonResult.getLong("id");
-                        jsonObject.put("doctor", doc);
-                        jsonObject.put("doctorMedicalRecords", medicalRecordService.getMedicalRecordByDoctorId(doctorId));
+                    DoctorModel doctorModel = doctorService.loginDoctor(jsonObject.getString("username"), jsonObject.getString("password"));
+                    //Object tester = doctorService.loginDoctor(jsonObject.getString("username"), jsonObject.getString("password"));
+                    if(doctorModel != null){
+                        List<DoctorModel> dm = new ArrayList<DoctorModel>();
+                        dm.add(doctorModel);
+                       // String doc = DoctorModelMeta.get().modelToJson(tester);
+                       // System.out.println(doc);
+                       // JSONObject jsonResult = new JSONObject(doc);
+                       // long doctorId = jsonResult.getLong("id");
+                        System.out.println("What");
+                        jsonObject.put("doctor", dm);
+                        jsonObject.put("doctorMedicalRecords", medicalRecordService.getMedicalRecordByDoctorId(doctorModel.getId()));
                     } else {
                        response.setStatus(400);
                     }

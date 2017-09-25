@@ -35,7 +35,7 @@
 
         <div>
           <button class="outline" ng-click="go('/admin/edit/doctor')">Edit</button>
-          <button class="outline" ng-show="data.medicalRecords == null" ng-click="delete()">Archive</button>
+          <button class="outline" ng-show="recordList == null && user.admin" ng-click="delete()">Archive</button>
           <button class="outline" ng-show="!user.admin || (user.admin && user.id == doctorData.id)" ng-click="go('admin/reset/password')">Change Password</button> 
         </div>
       </div>
@@ -47,10 +47,10 @@
         <label class="subtitle" ng-if="!user.admin">You are handling the following medical records </label>
 
         <span ng-if="user.admin" class="subtitle subtitle--variable">
-          Dr. {{ doctorData.firstname + " " + doctorData.lastname }} - Total: {{ recordList.length }}
+          Dr. {{ doctorData.firstname + " " + doctorData.lastname }}
         </span>
 
-        <span ng-if="!user.admin" class="subtitle subtitle--variable">
+        <span ng-if="recordList.length" class="subtitle subtitle--variable">
           Total: {{ recordList.length }}
         </span>
 

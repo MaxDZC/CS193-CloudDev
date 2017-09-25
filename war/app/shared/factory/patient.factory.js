@@ -40,98 +40,98 @@ angular.module('hplus.factory')
             method: "GET",
             url: "/Patient",
           });
-        };
+      };
 
-        var updatePatient = function(patient){
-            $http({
-              method: "PUT",
-              url: "/Patient",
-              data: patient
-            }).then(function(response){
+      var updatePatient = function(patient){
+          $http({
+            method: "PUT",
+            url: "/Patient",
+            data: patient
+          }).then(function(response){
+            console.log(response);
+            var modalObject = {
+              type: "notify",
+              title: "Successfully Updated!",
+              description: "Successfully updated " + patient.lastname + "'s profile!",
+              positiveButton: "Ok",
+              isVisible: true
+            };
+
+            modalFactory.setContents(modalObject);
+            savePatient(response.data);
+            $location.path('/admin/view/patientdetails');
+          }, function(response){
               console.log(response);
               var modalObject = {
                 type: "notify",
-                title: "Successfully Updated!",
-                description: "Successfully updated " + patient.lastname + "'s profile!",
+                title: "Update Failure!",
+                description: "This patient already exist",
                 positiveButton: "Ok",
                 isVisible: true
               };
 
               modalFactory.setContents(modalObject);
-              savePatient(response.data);
-              $location.path('/admin/view/patientdetails');
-            }, function(response){
+            });
+          };
+
+          var goList = function(){
+              $location.path('/admin/list/patient');
+            }
+
+          var confirmDeletePatient = function(patient){
+              $http({
+                method: "DELETE",
+                url: "/Patient",
+                data: patient
+              }).then(function successCallback(response){
                 console.log(response);
                 var modalObject = {
                   type: "notify",
-                  title: "Update Failure!",
-                  description: "This patient already exist",
+                  title: "Archive Successful!",
+                  description: "Successfully archived " + patient.lastname + "!",
                   positiveButton: "Ok",
-                  isVisible: true
-                };
+                  isVisible: true,
+                  data: goList
+                }
+
+                modalFactory.setContents(modalObject);
+              }, function errorCallback(response){
+                console.log(response);
+                var modalObject = {
+                  type: "notify",
+                  title: "Archive Failed!",
+                  description: "Failed to archive " + patient.lastname + "!",
+                  positiveButton: "Ok",
+                  isVisible: true,
+                  data: goList
+                }
 
                 modalFactory.setContents(modalObject);
               });
             };
 
-            var goList = function(){
-                $location.path('/admin/list/patient');
-              }
+            var deletePatient = function(patient){
+                var modalObject = {
+                  type: "confirm",
+                  title: "Archive Confirmation",
+                  description: "Are you sure you want to archive " + patient.lastname + "?",
+                  negativeButton: "No",
+                  positiveButton: "Yes",
+                  isVisible: true,
+                  data: confirmDeletePatient,
+                  object: patient
+                }
 
-            var confirmDeletePatient = function(patient){
-                $http({
-                  method: "DELETE",
-                  url: "/Patient",
-                  data: patient
-                }).then(function successCallback(response){
-                  console.log(response);
-                  var modalObject = {
-                    type: "notify",
-                    title: "Archive Successful!",
-                    description: "Successfully archived " + patient.lastname + "!",
-                    positiveButton: "Ok",
-                    isVisible: true,
-                    data: goList
-                  }
-
-                  modalFactory.setContents(modalObject);
-                }, function errorCallback(response){
-                  console.log(response);
-                  var modalObject = {
-                    type: "notify",
-                    title: "Archive Failed!",
-                    description: "Failed to archive " + patient.lastname + "!",
-                    positiveButton: "Ok",
-                    isVisible: true,
-                    data: goList
-                  }
-
-                  modalFactory.setContents(modalObject);
-                });
+                modalFactory.setContents(modalObject);
               };
 
-              var deletePatient = function(patient){
-                  var modalObject = {
-                    type: "confirm",
-                    title: "Archive Confirmation",
-                    description: "Are you sure you want to archive " + patient.lastname + "?",
-                    negativeButton: "No",
-                    positiveButton: "Yes",
-                    isVisible: true,
-                    data: confirmDeletePatient,
-                    object: patient
-                  }
+              var savePatient = function(patient){
+                $window.localStorage.setItem("patient", angular.toJson(patient));
+              };
 
-                  modalFactory.setContents(modalObject);
-                };
-
-                var savePatient = function(patient){
-                  $window.localStorage.setItem("patient", angular.toJson(patient));
-                };
-
-                var getPatient = function(){
-                  return angular.fromJson($window.localStorage.getItem("patient"));
-                };
+              var getPatient = function(){
+                return angular.fromJson($window.localStorage.getItem("patient"));
+              };
 
 
       return {

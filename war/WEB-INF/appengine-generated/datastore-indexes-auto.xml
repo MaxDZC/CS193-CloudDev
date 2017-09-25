@@ -1,4 +1,19 @@
-<!-- Indices written at Mon, 25 Sep 2017 22:46:48 SGT -->
+<!-- Indices written at Tue, 26 Sep 2017 02:56:52 SGT -->
 
-<datastore-indexes/>
+<datastore-indexes>
 
+    <!-- Used 4 times in query history -->
+    <datastore-index kind="DoctorModel" ancestor="false" source="auto">
+        <property name="deletedAt" direction="asc"/>
+        <property name="email" direction="asc"/>
+        <property name="id" direction="asc"/>
+    </datastore-index>
+
+    <!-- Used 3 times in query history -->
+    <datastore-index kind="MedicalRecordModel" ancestor="false" source="auto">
+        <property name="deletedAt" direction="asc"/>
+        <property name="patientId" direction="asc"/>
+        <property name="dischargeDate" direction="asc"/>
+    </datastore-index>
+
+</datastore-indexes>

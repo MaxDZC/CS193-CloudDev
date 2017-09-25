@@ -13,8 +13,6 @@ angular.module('hplus.modules.exploredoctors')
         $location.path("/");
       }
 
-      $scope.length;
-
       $scope.go = function(path){
         globalFactory.go(path);
       };
@@ -27,7 +25,19 @@ angular.module('hplus.modules.exploredoctors')
         doctorFactory.getListOfDoctors().then(function(response){
           console.log(response);
           $scope.doctorList = response.data.doctors;
-          $scope.length = $scope.doctorList.length;
+          $scope.medicalRecords = response.data.medicalRecords;
+          var x, y;
+
+          for(x = 0; x < $scope.doctorList.length; x++){
+            for(y = 0; y < $scope.medicalRecords.length; y++){
+              if($scope.doctorList[x].id == $scope.medicalRecords[y].doctorId){
+                if($scope.doctorList[x].medicalRecords == null){
+                  $scope.doctorList[x].medicalRecords = [];
+                }
+                $scope.doctorList[x].medicalRecords.push($scope.medicalRecords[y]);
+              } 
+            }
+          }
         }, function(response){
           console.log(response.statusText);
         });

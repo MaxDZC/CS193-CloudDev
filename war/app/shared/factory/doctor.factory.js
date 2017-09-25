@@ -24,14 +24,14 @@ angular.module('hplus.factory')
           console.log(response);
 
           if(response.data.errors.indexOf("email") != -1){
-            errorMessage = "The email "+ doctorObject.email +" already exists!";
+            errorMessage = "The email "+ doctorObject.email +" is already in use!";
           }
 
           if(response.data.errors.indexOf("username") != -1){
             if(errorMessage != ""){
               errorMessage += "\n";
             }
-            errorMessage += "The username " + doctorObject.username + " already exists!";
+            errorMessage += "The username " + doctorObject.username + " is already in use!";
           }
 
           var modalObject = {
@@ -76,7 +76,7 @@ angular.module('hplus.factory')
           var modalObject = {
             type: "notify",
             title: "Update Failure!",
-            description: "The email you have chosen already exists!",
+            description: "The email you have chosen is already in use!",
             positiveButton: "Ok",
             isVisible: true
           };
@@ -170,7 +170,7 @@ angular.module('hplus.factory')
             params: data
         }).then(function successCallback(response) {
           console.log(response);
-          var doctor = JSON.parse(response.data.doctor);
+          var doctor = response.data.doctor[0];
           var modalObject = {
             type: "notify",
             title: "Login Successful!",

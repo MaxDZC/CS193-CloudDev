@@ -4,7 +4,7 @@ angular.module('hplus.modules.viewmedicalrecord', [])
 
   .config(function ($routeProvider){  
     $routeProvider      
-      .when('/doctor/view/record',{
+      .when('/view/record',{
         template: viewmedicalrecord
       })
   });
