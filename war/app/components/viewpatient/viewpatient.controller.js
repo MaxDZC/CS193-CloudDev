@@ -18,11 +18,13 @@ app = angular.module('hplus.modules.viewpatient');
         $location.path('/admin/list/patient');
       } else {
         $scope.patient.name = $scope.patient.lastname + ", " + $scope.patient.firstname;
+        $scope.recordList = $scope.patient.medicalRecords;
 
         var brokenDate = $scope.patient.birthday.split(" ");
         for(var i = 0; i < monthNames.length && $scope.patient.processedBirthday == null; i++){
           if(monthNames[i].indexOf(brokenDate[1]) != -1) {
-            $scope.patient.processedBirthday = monthNames[i] + " " + (parseInt(brokenDate[2]) + 1) + ", " + brokenDate[5];
+            var realDate = new Date(brokenDate[5], (i + 1), parseInt(brokenDate[2]) + 1);
+            $scope.patient.processedBirthday = monthNames[i] + " " + realDate.getDate() + ", " + realDate.getFullYear();
           }
         }
 
@@ -38,6 +40,7 @@ app = angular.module('hplus.modules.viewpatient');
         patientFactory.deletePatient($scope.patient);
       };
       
+      /*
        $scope.recordList = [
         {
     	 name: "Hyperacidity",
@@ -47,105 +50,5 @@ app = angular.module('hplus.modules.viewpatient');
          admission: "February 20, 2016",
          discharge: "February 21, 2016",
          bill: "308.00"
-        },
-        {
-       	 name: "Heart Burn",
-         symptom:"Hot, Cold, Warm",
-         medicine: "Biogesic",
-         dosage: "20mgx7",
-         admission: "February 20, 2016",
-         discharge: "February 21, 2016",
-         bill: "400.00"
-        },
-        {
-         name: "Osteoporosis",
-         symptom:"Hot, Cold, Warm",
-         medicine: "Biogesic",
-         dosage: "20mgx7",
-         admission: "February 20, 2016",
-         discharge: "February 21, 2016",
-         bill: "308.00"
-        },
-        {
-         name: "Hyperacidity",
-         symptom:"Hot, Cold, Warm",
-         medicine: "Biogesic",
-         dosage: "20mgx7",
-         admission: "February 20, 2016",
-         discharge: "February 21, 2016",
-         bill: "308.00"
-        },
-        {
-          name: "Hyperacidity",
-          symptom:"Hot, Cold, Warm",
-          medicine: "Biogesic",
-          dosage: "20mgx7",
-          admission: "February 20, 2016",
-          discharge: "February 21, 2016",          
-          bill: "308.00"
-         },
-         {
-          name: "Hyperacidity",
-          symptom:"Hot, Cold, Warm",
-          medicine: "Biogesic",
-          dosage: "20mgx7",
-          admission: "February 20, 2016",
-          discharge: "February 21, 2016",
-          bill: "308.00"
-        },
-        {
-          name: "Hyperacidity",
-          symptom:"Hot, Cold, Warm",
-          medicine: "Biogesic",
-          dosage: "20mgx7",
-          admission: "February 20, 2016",
-          discharge: "February 21, 2016",
-          bill: "308.00"
-         },
-         {
-          name: "Hyperacidity",
-          symptom:"Hot, Cold, Warm",
-          medicine: "Biogesic",
-          dosage: "20mgx7",
-          admission: "February 20, 2016",
-          discharge: "February 21, 2016",
-          bill: "308.00"
-         },
-         {
-          name: "Hyperacidity",
-          symptom:"Hot, Cold, Warm",
-          medicine: "Biogesic",
-          dosage: "20mgx7",
-          admission: "February 20, 2016",
-          discharge: "February 21, 2016",
-          bill: "308.00"
-         },
-         {
-    	  name: "Hyperacidity",
-          symptom:"Hot, Cold, Warm",
-          medicine: "Biogesic",
-          dosage: "20mgx7",
-          admission: "February 20, 2016",
-          discharge: "February 21, 2016",
-          bill: "308.00"
-         },
-         {
-          name: "Hyperacidity",
-          symptom:"Hot, Cold, Warm",
-          medicine: "Biogesic",
-          dosage: "20mgx7",
-          admission: "February 20, 2016",
-          discharge: "February 21, 2016",
-          bill: "308.00"
-         },
-         {
-          name: "Hyperacidity",
-          symptom:"Hot, Cold, Warm",
-          medicine: "Biogesic",
-          dosage: "20mgx7",
-          admission: "February 20, 2016",
-          discharge: "February 21, 2016",
-          bill: "308.00"
-         }
-      ];
+        }*/
   });

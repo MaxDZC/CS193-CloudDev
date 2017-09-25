@@ -1,6 +1,10 @@
-<div class="card__container">
+<div class="card__container" ng-controller="DiseaseRecordCardController">
   <div class="card__title">
     {{ data.name }} 
+
+    <a ng-click="go('/view/medicalrecord', data); $event.stopPropagation()"><span class="delete__icon"><i class="fa fa-eye" aria-hidden="true"></i></span></a>
+    <a ng-show="user.admin || (user.id == data.doctorId)" ng-click="go('/update/medicalrecord', data); $event.stopPropagation()"><span class="delete__icon"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></span></a>
+    
   </div>
   
   <div class="card__desc">

@@ -11,3 +11,4 @@ angular.module('hplus.modules.viewdisease', [])
 
 require('./viewdisease.directive.js');
 require('./viewdisease.controller.js');
+require('./xxdiseaserecordcard.controller.js');

@@ -17,6 +17,20 @@ angular.module('hplus.modules.explorepatients')
         patientFactory.getListOfPatients().then(function(response){
           console.log(response);
           $scope.patientList = response.data.patients;
+          var recordsList = response.data.medicalRecords;
+          var x, y;
+
+          for(x = 0; x < $scope.patientList.length; x++) {
+            for(y = 0; y < recordsList.length; y++) {
+              if($scope.patientList[x].id == recordsList[y].patientId) {
+                if($scope.patientList[x].medicalRecords == null) {
+                  $scope.patientList[x].medicalRecords = [];
+                }
+                $scope.patientList[x].medicalRecords.push(recordsList[y]);
+              }
+            }
+          }
+
         }, function(response){
           console.log(response);
         });

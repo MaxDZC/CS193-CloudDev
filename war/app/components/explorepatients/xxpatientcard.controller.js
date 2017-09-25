@@ -2,7 +2,7 @@ angular.module('hplus.modules.explorepatients')
 
   .controller('PatientCardController',
     function($scope, $location, globalFactory, doctorFactory, patientFactory, modalFactory){
-      
+
       $scope.go = function(path, patient){
         patientFactory.savePatient(patient);
         globalFactory.go(path);
