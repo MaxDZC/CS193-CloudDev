@@ -4,7 +4,7 @@ angular.module('hplus.factory')
     function($http){
 
       var createMedicalRecord = function(medicalRecordObject, clear){
-        $http({
+        return $http({
           method: 'POST',
           url: '/MedicalRecord', // Change URL here
           data: medicalRecordObject
@@ -26,8 +26,16 @@ angular.module('hplus.factory')
           });
       }
       
+      var getListOfMedicalRecords = function(){
+          return $http({
+            method: 'GET',
+            url: '/MedicalRecord' // Change URL here
+          });
+        }
+      
       return {
-    	  createMedicalRecord: createMedicalRecord
+    	  createMedicalRecord: createMedicalRecord,
+    	  getListOfMedicalRecords: getListOfMedicalRecords
       }
     }
   );

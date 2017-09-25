@@ -1,7 +1,7 @@
 angular.module('hplus.modules.exploremedicalrecords')
 
   .controller('ExploreMedicalRecordsController',
-	function($scope, $location, globalFactory, doctorFactory, patientFactory){
+	function($scope, $location, globalFactory, doctorFactory, patientFactory, medicalRecordFactory, diseaseFactory){
 
 		$scope.user = doctorFactory.getUser();
 
@@ -35,5 +35,15 @@ angular.module('hplus.modules.exploremedicalrecords')
 		  "diseases" : ["Trichophagia","Tuberculosis"]
 	    }
 	  ];
+	  
+	  var populate = function(){
+	    medicalRecordFactory.getListOfMedicalRecords().then(function(response){
+	      $scope.medicalRecords = response.data;
+	      console.log("DATA");
+	      console.log(response.data);
+	    },function(){});
+	  };
+	  
+	  populate();
 	}
   );

@@ -17,13 +17,11 @@
 	      <button ng-click="go('/admin/register/patient')">New Patient</button>
 	    </div>
     </div>
- 
     <div class="col col-md-8" ng-hide="selectedPatient != null">
       <div class="col col-md-9"><!-- List sector -->
 		    <span class="subtitle"><span ng-hide="searchFilter == ''">{{(patients | filter : {'name': searchFilter}).length}}</span><span ng-hide="searchFilter != ''">All {{patients.length}}</span> Results</span>
-		    <hplus-select-patient-card dir-paginate="pat in patients | filter: {'lastname' : searchFilter} | itemsPerPage:10  | orderBy : ['lastname','firstname']" data="pat" ng-click="setSelected(pat)" ng-class="{'selectedCard__container': pat == selectedPatient}"></hplus-explore-patients-card>
+		    <hplus-select-patient-card dir-paginate="pat in patients | filter: {'lastname' : searchFilter} | itemsPerPage:10  | orderBy : ['newPatient','lastname','firstname']" data="pat" ng-click="setSelected(pat)" ng-class="{'selectedCard__container': pat == selectedPatient}"></hplus-explore-patients-card>
         <!-- Pagination Section -->
-        {{patients}}
         <dir-pagination-controls max-size="5"></dir-pagination-controls>
       </div>
     </div>
@@ -43,7 +41,7 @@
 			  </div>
 			  <div class="col-md-4 col-md-offset-4">
 			    <label class="subtitle">Patient Type</label>
-			    <select ng-model="medicalRecord.type" ng-required="true" ng-options="type.val as type.name for type in patientType">
+			    <select ng-model="medicalRecord.inPatient" ng-required="true" ng-options="type.val as type.name for type in patientType">
 			      <option>--Select--</option>
 			    </select>
 			  </div>
@@ -55,7 +53,7 @@
 			  <div class="borders">
 			    <div class="scrollable">
 			      <div ng-repeat="option in symptomList | filter: {'name':searchFilterSymp} | orderBy:['val','name']">
-			        <input type="checkbox" ng-model="option.val" ng-change="addRemoveSymptom(symptomList | filter: {val: true} | orderBy : 'name')" ng-required="!medicalRecord.symptomId.length" ng-false-value="null">{{option.name}}<br>
+			        <input type="checkbox" ng-model="option.val" ng-change="addRemoveSymptom(symptomList | filter: {val: true} | orderBy : 'name')" ng-required="!medicalRecord.symptomIdList.length" ng-false-value="null">{{option.name}}<br>
 			      </div>
 			    </div>
 			  </div>
@@ -68,7 +66,7 @@
 			  <div class="borders">
 			    <div class="scrollable">
 			      <div ng-repeat="option in diseaseList | filter: {'name':searchFilterDis} | orderBy:['val','name']">
-			        <input type="checkbox" ng-model="option.val" ng-change="addRemoveDisease(diseaseList | filter: {val: true} | orderBy : 'name')" ng-required="!medicalRecord.diseaseId.length" ng-false-value="null">{{option.name}}<br>
+			        <input type="checkbox" ng-model="option.val" ng-change="addRemoveDisease(diseaseList | filter: {val: true} | orderBy : 'name')" ng-required="!medicalRecord.diseaseIdList.length" ng-false-value="null">{{option.name}}<br>
 			      </div>
 			    </div>
 			  </div>
@@ -80,7 +78,7 @@
 			  <div class="borders">
 			    <div class="scrollable">
 			      <div ng-repeat="optionmed in medicineList | filter: {'name':searchFilterMed} | orderBy:['val','name']">
-			        <input type="checkbox" ng-model="optionmed.val" ng-change="addRemoveMedicine(medicineList | filter: {val: true}| orderBy:'name')"  ng-required="medicalRecord.diseaseId.length > medicalRecord.medicineId.length" ng-false-value="null">{{optionmed.name}}
+			        <input type="checkbox" ng-model="optionmed.val" ng-change="addRemoveMedicine(medicineList | filter: {val: true}| orderBy:'name')"  ng-required="medicalRecord.diseaseIdList.length > medicalRecord.medicineIdList.length" ng-false-value="null">{{optionmed.name}}
 			        <div class="row" ng-hide="!optionmed.val">
 			          <input type="number" ng-model="optionmed.quantity" placeholder="Quantity" ng-change="calculateTotal()" ng-required="optionmed.val" class="quant">{{' x ' + (optionmed.price|currency : 'PHP ')}}
 			        </div>
@@ -90,8 +88,7 @@
 			  <br>
 			    <div class="margins">
 			      <div class="detail__containerTotalPrice">
-			          <b>Total:</b> {{medicalRecord.totalCost | currency : 'PHP '}} 
-			        
+			          <b>Total:</b> {{medicalRecord.totalCost | currency : 'PHP '}}
 			      </div>
 			    </div>
 			</div>

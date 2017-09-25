@@ -1,18 +1,18 @@
 angular.module('hplus.modules.registermedicalrecord')
 
   .controller('RegisterMedicalRecordController',
-    function($scope, $location, globalFactory, doctorFactory, symptomFactory, medicineFactory, diseaseFactory, patientFactory){
+    function($scope, $location, globalFactory, doctorFactory, symptomFactory, medicineFactory, diseaseFactory, patientFactory, medicalRecordFactory){
 
       $scope.user = doctorFactory.getUser();
-
-//      if($scope.user != null) {
-//        if(user.admin){
-//          $location.path("/admin/list/record");
-//        }
-//      } else {
-//        $location.path("/");
-//      }
-
+      console.log($scope.user);
+      if($scope.user != null) {
+        if($scope.user.admin){
+          $location.path("/admin/list/record");
+        }
+      } else {
+        $location.path("/");
+      }
+      
       $scope.go = function(path){
         globalFactory.go(path);
       };
@@ -21,14 +21,9 @@ angular.module('hplus.modules.registermedicalrecord')
       
       $scope.setSelected = function(pat){
         $scope.selectedPatient = pat;
-        $scope.medicalRecord.patient = $scope.selectedPatient.id;
       };
       
       $scope.patients=[];
-                
-      $scope.createMedicalRecord = function(){
-    	  medicalRecordFactory.createMedicalRecord($scope.medicalRecord, $scope.initComponents);
-      }
       
       $scope.initComponents = function(){
     	  $scope.medicalRecord.firstName = "";
@@ -38,19 +33,40 @@ angular.module('hplus.modules.registermedicalrecord')
     	  $scope.medicalRecord.admissionDate = "";
     	  $scope.medicalRecord.disease = "";
     	  
-    	  for(var i=0; i < $scope.medicalRecord.symptomChoice.length; i++){
-    		  $scope.medicalRecord.symptomChoice[i] = false;
+    	  for(var i=0; i < $scope.medicalRecord.symptomIdList.length; i++){
+    		  $scope.medicalRecord.symptomIdList[i] = false;
     	  }
     	  
-    	  for(var i=0; i < $scope.medicalRecord.medicineChoice.length; i++){
-    		  $scope.medicalRecord.medicineChoice[i] = false;
+    	  for(var i=0; i < $scope.medicalRecord.medicineIdList.length; i++){
+    		  $scope.medicalRecord.medicineIdList[i] = false;
     	  }
+      };
+      
+      $scope.newPatient = patientFactory.getPatient();
+      
+      var toTitleCase = function(str){
+          return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
       };
       
       var populate = function(){
         patientFactory.getListOfPatients().then(function(response){
           console.log(response);
           $scope.patients = response.data.patients;
+          if($scope.newPatient != null && $scope.newPatient.id == null){
+            $scope.newPatient.firstname = toTitleCase($scope.newPatient.firstname);
+            $scope.newPatient.lastname = toTitleCase($scope.newPatient.lastname);
+            $scope.newPatient.address = toTitleCase($scope.newPatient.address);
+            console.log("New Patient exists "+ $scope.newPatient.firstname + " "+$scope.newPatient.lastname);
+            $scope.patients.forEach(function(pat){
+              if(pat.lastname == $scope.newPatient.lastname &&
+                 pat.firstname == $scope.newPatient.firstname &&
+                 pat.address == $scope.newPatient.address &&
+                 pat.sex == !$scope.newPatient.sex){
+                console.log("New Patient found "+ pat.firstname);
+                pat.newPatient = true;
+              }
+            });
+          }
         }, function(response){
           console.log(response);
         });
@@ -75,10 +91,9 @@ angular.module('hplus.modules.registermedicalrecord')
       
 
 	  $scope.medicalRecord = {
-	    "patient" : "",
-	    "symptomId" : [],
-	    "diseaseId" : [],
-	    "medicineId" : [],
+	    "symptomIdList" : [],
+	    "diseaseIdList" : [],
+	    "medicineIdList" : [],
 	    "quantityList" : [],
         "totalCost" : 0
 	  };
@@ -89,20 +104,20 @@ angular.module('hplus.modules.registermedicalrecord')
       ];
 	  
 	  $scope.addRemoveSymptom = function(hold){
-        $scope.medicalRecord.symptomId = hold;
+        $scope.medicalRecord.symptomIdList = hold;
 	  };
 	  
 	  $scope.addRemoveDisease = function(hold){
-        $scope.medicalRecord.diseaseId = hold;
+        $scope.medicalRecord.diseaseIdList = hold;
 	  };
 	  
 	  $scope.addRemoveMedicine = function(hold){
-        $scope.medicalRecord.medicineId = hold;
+        $scope.medicalRecord.medicineIdList = hold;
 	  };
 	  
 	  $scope.calculateTotal = function(){
         $scope.medicalRecord.totalCost = 0;
-        $scope.medicalRecord.medicineId.forEach(function(med){
+        $scope.medicalRecord.medicineIdList.forEach(function(med){
           $scope.medicalRecord.totalCost += (med.price * med.quantity);
         });
 	  };
@@ -118,29 +133,43 @@ angular.module('hplus.modules.registermedicalrecord')
       };
       
       $scope.saveMedRec = function(){
-        alert("test");
         var medHold =[];
         var symHold =[];
         var disHold =[];
+        $scope.medicalRecord.patientId = $scope.selectedPatient.id;
+        $scope.medicalRecord.doctorId = $scope.user.id;
         $scope.medicalRecord.quantityList = [];
         
-        $scope.medicalRecord.medicineId.forEach(function(med){
+        $scope.medicalRecord.medicineIdList.forEach(function(med){
           $scope.medicalRecord.quantityList.push(med.quantity);
           medHold.push(med.id);
         });
-        $scope.medicalRecord.symptomId.forEach(function(sym){
+        $scope.medicalRecord.symptomIdList.forEach(function(sym){
           symHold.push(sym.id);
         });
-        $scope.medicalRecord.diseaseId.forEach(function(dis){
+        $scope.medicalRecord.diseaseIdList.forEach(function(dis){
           disHold.push(dis.id);
         });
         
-        $scope.medicalRecord.medicineId = medHold;
-        $scope.medicalRecord.symptomId = symHold;
-        $scope.medicalRecord.diseaseId = disHold;
+        $scope.medicalRecord.medicineIdList = medHold;
+        $scope.medicalRecord.symptomIdList = symHold;
+        $scope.medicalRecord.diseaseIdList = disHold;
         
         //alert($scope.medicalRecord);
         //registerMedRec
+        medicalRecordFactory.createMedicalRecord($scope.medicalRecord, $scope.initComponents).then(function(){
+          patientFactory.savePatient(null);
+          $scope.newPatient = patientFactory.getPatient();
+          $scope.selectedPatient = null;
+          $scope.medicalRecord = {
+    	    "symptomIdList" : [],
+    	    "diseaseIdList" : [],
+    	    "medicineIdList" : [],
+    	    "quantityList" : [],
+            "totalCost" : 0
+          };
+          populate();
+        },function(){});
       };
       
       $scope.checkStatus = function(status){
