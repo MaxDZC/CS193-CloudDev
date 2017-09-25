@@ -1,7 +1,7 @@
 app = angular.module('hplus.modules.viewpatient');
 
   app.controller('ViewPatientController',
-    function($scope, $location, globalFactory, doctorFactory, patientFactory){
+    function($scope, $location, globalFactory, doctorFactory, patientFactory, medicineFactory){
 	  
       var user = doctorFactory.getUser();
       var monthNames = ["January", "February", "March", "April", "May", "June",
@@ -29,6 +29,29 @@ app = angular.module('hplus.modules.viewpatient');
         }
 
         $scope.patient.sexDisplay = ($scope.patient.sex) ? "Male" : "Female";
+
+        medicineFactory.getListOfMedicines().then(function(response){
+          console.log(response);
+          var meds = response.data.medicines;
+
+          var x, y, z;
+          
+          for(x = 0; x < $scope.recordList.length; x++) {
+            for(y = 0; y < $scope.recordList[x].medicineIdList.length; y++) {
+              for(z = 0; z < meds.length; z++) {
+                if($scope.recordList[x].medicineIdList[y] == meds[z].id) {
+                  if($scope.recordList[x].medicines == null) {
+                    $scope.recordList[x].medicines = [];
+                  }
+                  $scope.recordList[x].medicines.push(meds[z]);
+                }
+              } 
+            }
+          }
+
+          console.log($scope.recordList);
+
+        });
       }
 	  
       $scope.go = function(path){
