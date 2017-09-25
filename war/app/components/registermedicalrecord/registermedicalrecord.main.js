@@ -8,6 +8,5 @@ angular.module('hplus.modules.registermedicalrecord', [])
         template: registermedicalrecord
       })
   });
-  require('./xxdetailscard.controller.js');
   require('./registermedicalrecord.directive.js');
   require('./registermedicalrecord.controller.js');

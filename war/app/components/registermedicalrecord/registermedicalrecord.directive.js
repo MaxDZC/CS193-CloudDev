@@ -1,5 +1,4 @@
 var card = require('html-loader!./xxcard.html');
-var scard = require('html-loader!./xxdetailsCard.html');
 angular.module('hplus.modules.registermedicalrecord')
 
   .directive('hplusSelectPatientCard', function(){
@@ -9,15 +8,5 @@ angular.module('hplus.modules.registermedicalrecord')
         data: '='
       },
       template: card
-    };
-  })
-  
-  .directive('hplusSelectedPatientCard', function(){
-    return{
-      restrict: 'EA',
-      scope: {
-        data: '='
-      },
-      template: scard
     };
   })

@@ -40042,7 +40042,6 @@ angular.module('hplus.modules.registermedicalrecord', [])
         template: registermedicalrecord
       })
   });
-  __webpack_require__(70);
   __webpack_require__(71);
   __webpack_require__(74);
 
@@ -40051,122 +40050,14 @@ angular.module('hplus.modules.registermedicalrecord', [])
 /* 69 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\r\n  <div class=\"col col-md-8 col-md-offset-1\">\r\n    <h1>Register Medical Record</h1>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row\" ng-controller=\"RegisterMedicalRecordController\">\r\n  <ng-form name=\"createMedicalRecordForm\">\r\n    <div class=\"col col-md-2 col-md-offset-1\" ng-hide=\"selectedPatient != null\">\r\n      <div class=\"row\">\r\n\t      <div class=\"col col-md-6\">\r\n\t        <label class=\"subtitle\">Search</label>\r\n\t      </div>\r\n\t    </div>\r\n\t\t  <div class=\"match-padding\">\r\n\t      <input type=\"text\" placeholder=\"Enter a name\" ng-model=\"searchFilter\">\r\n\t      <button ng-click=\"go('/admin/register/patient')\">New Patient</button>\r\n\t    </div>\r\n    </div>\r\n \r\n    <div class=\"col col-md-8\" ng-hide=\"selectedPatient != null\">\r\n      <div class=\"col col-md-9\"><!-- List sector -->\r\n\t\t    <span class=\"subtitle\"><span ng-hide=\"searchFilter == ''\">{{(patients | filter : {'name': searchFilter}).length}}</span><span ng-hide=\"searchFilter != ''\">All {{patients.length}}</span> Results</span>\r\n\t\t    <hplus-select-patient-card dir-paginate=\"pat in patients | filter: {'lastname' : searchFilter} | itemsPerPage:10  | orderBy : ['lastname','firstname']\" data=\"pat\" ng-click=\"setSelected(pat)\" ng-class=\"{'selectedCard__container': pat == selectedPatient}\"></hplus-explore-patients-card>\r\n        <!-- Pagination Section -->\r\n        {{patients}}\r\n        <dir-pagination-controls max-size=\"5\"></dir-pagination-controls>\r\n      </div>\r\n    </div>\r\n    \r\n    <div class=\"col-md-10 col-md-offset-1\" ng-hide=\"selectedPatient == null\">\r\n    <div class=\"row\">\r\n      <div class=\"col-md-5\">\r\n        <hplus-select-patient-card data=\"selectedPatient\" ng-click=\"selectedPatient = null\"></hplus-selected-patient-card>\r\n      </div>\r\n      \r\n    </div>\r\n      <hplus-selected-patient-card data=\"selectedPatient\"></hplus-selected-patient-card>\r\n      \r\n\t  </div>\r\n\t  \r\n  </ng-form>\r\n</div>";
+module.exports = "<div class=\"row\">\r\n  <div class=\"col col-md-8 col-md-offset-1\">\r\n    <h1>Register Medical Record</h1>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row\" ng-controller=\"RegisterMedicalRecordController\">\r\n  <ng-form name=\"createMedicalRecordForm\">\r\n    <div class=\"col col-md-2 col-md-offset-1\" ng-hide=\"selectedPatient != null\">\r\n      <div class=\"row\">\r\n\t      <div class=\"col col-md-6\">\r\n\t        <label class=\"subtitle\">Search</label>\r\n\t      </div>\r\n\t    </div>\r\n\t\t  <div class=\"match-padding\">\r\n\t      <input type=\"text\" placeholder=\"Enter a name\" ng-model=\"searchFilter\">\r\n\t      <button ng-click=\"go('/admin/register/patient')\">New Patient</button>\r\n\t    </div>\r\n    </div>\r\n \r\n    <div class=\"col col-md-8\" ng-hide=\"selectedPatient != null\">\r\n      <div class=\"col col-md-9\"><!-- List sector -->\r\n\t\t    <span class=\"subtitle\"><span ng-hide=\"searchFilter == ''\">{{(patients | filter : {'name': searchFilter}).length}}</span><span ng-hide=\"searchFilter != ''\">All {{patients.length}}</span> Results</span>\r\n\t\t    <hplus-select-patient-card dir-paginate=\"pat in patients | filter: {'lastname' : searchFilter} | itemsPerPage:10  | orderBy : ['lastname','firstname']\" data=\"pat\" ng-click=\"setSelected(pat)\" ng-class=\"{'selectedCard__container': pat == selectedPatient}\"></hplus-explore-patients-card>\r\n        <!-- Pagination Section -->\r\n        {{patients}}\r\n        <dir-pagination-controls max-size=\"5\"></dir-pagination-controls>\r\n      </div>\r\n    </div>\r\n    \r\n    <div class=\"col-md-10 col-md-offset-1\" ng-hide=\"selectedPatient == null\">\r\n    <div class=\"row\">\r\n      <div class=\"col-md-5\">\r\n        <hplus-select-patient-card data=\"selectedPatient\" ng-click=\"selectedPatient = null\"></hplus-selected-patient-card>\r\n      </div>\r\n      \r\n    </div>\r\n      <ng-form name=\"createMedicalRecordForm\">\r\n\r\n\t\t\t  <div class=\"col-md-4\">\r\n\t\t\t    <label class=\"subtitle\">Discharge Date </label>\r\n\t\t\t    <input type=\"date\" ng-model=\"medicalRecord.dischargeDate\" ng-required=\"true\">\r\n\t\t\t  </div>\r\n\t\t\t  <div class=\"col-md-4 col-md-offset-4\">\r\n\t\t\t    <label class=\"subtitle\">Patient Type</label>\r\n\t\t\t    <select ng-model=\"medicalRecord.type\" ng-required=\"true\" ng-options=\"type.val as type.name for type in patientType\">\r\n\t\t\t      <option>--Select--</option>\r\n\t\t\t    </select>\r\n\t\t\t  </div>\r\n\t\t\t\r\n\t\t\t\r\n\t\t\t<div class=\"col col-md-4\">\r\n\t\t\t  <label class=\"subtitle\">Symptoms</label>\r\n\t\t\t  <input type=\"text\" placeholder=\"Search Symptom\" ng-model=\"searchFilterSymp\">\r\n\t\t\t  <div class=\"borders\">\r\n\t\t\t    <div class=\"scrollable\">\r\n\t\t\t      <div ng-repeat=\"option in symptomList | filter: {'name':searchFilterSymp} | orderBy:['val','name']\">\r\n\t\t\t        <input type=\"checkbox\" ng-model=\"option.val\" ng-change=\"addRemoveSymptom(symptomList | filter: {val: true} | orderBy : 'name')\" ng-required=\"!medicalRecord.symptomId.length\" ng-false-value=\"null\">{{option.name}}<br>\r\n\t\t\t      </div>\r\n\t\t\t    </div>\r\n\t\t\t  </div>\r\n\t\t\t  <button ng-class=\"checkStatus(createMedicalRecordForm.$valid)\" type=\"submit\" ng-click=\"saveMedRec()\" ng-disabled=\"createMedicalRecordForm.$invalid\">Create</button>\r\n\t\t\t</div>\r\n\t\t\t\r\n\t\t\t<div class=\"col col-md-4\">\r\n\t\t\t  <label class=\"subtitle\">Diseases</label>\r\n\t\t\t  <input type=\"text\" placeholder=\"Search Disease\" ng-model=\"searchFilterDis\">\r\n\t\t\t  <div class=\"borders\">\r\n\t\t\t    <div class=\"scrollable\">\r\n\t\t\t      <div ng-repeat=\"option in diseaseList | filter: {'name':searchFilterDis} | orderBy:['val','name']\">\r\n\t\t\t        <input type=\"checkbox\" ng-model=\"option.val\" ng-change=\"addRemoveDisease(diseaseList | filter: {val: true} | orderBy : 'name')\" ng-required=\"!medicalRecord.diseaseId.length\" ng-false-value=\"null\">{{option.name}}<br>\r\n\t\t\t      </div>\r\n\t\t\t    </div>\r\n\t\t\t  </div>\r\n\t\t\t</div>\r\n\t\t\t\r\n\t\t\t<div class=\"col col-md-4\">\r\n\t\t\t  <label class=\"subtitle\">Medicines</label>\r\n\t\t\t  <input type=\"text\" placeholder=\"Search Medicine\" ng-model=\"searchFilterMed\">\r\n\t\t\t  <div class=\"borders\">\r\n\t\t\t    <div class=\"scrollable\">\r\n\t\t\t      <div ng-repeat=\"optionmed in medicineList | filter: {'name':searchFilterMed} | orderBy:['val','name']\">\r\n\t\t\t        <input type=\"checkbox\" ng-model=\"optionmed.val\" ng-change=\"addRemoveMedicine(medicineList | filter: {val: true}| orderBy:'name')\"  ng-required=\"medicalRecord.diseaseId.length > medicalRecord.medicineId.length\" ng-false-value=\"null\">{{optionmed.name}}\r\n\t\t\t        <div class=\"row\" ng-hide=\"!optionmed.val\">\r\n\t\t\t          <input type=\"number\" ng-model=\"optionmed.quantity\" placeholder=\"Quantity\" ng-change=\"calculateTotal()\" ng-required=\"optionmed.val\" class=\"quant\">{{' x ' + (optionmed.price|currency : 'PHP ')}}\r\n\t\t\t        </div>\r\n\t\t\t      </div>\r\n\t\t\t    </div>\r\n\t\t\t  </div>\r\n\t\t\t  <br>\r\n\t\t\t    <div class=\"margins\">\r\n\t\t\t      <div class=\"detail__containerTotalPrice\">\r\n\t\t\t          <b>Total:</b> {{medicalRecord.totalCost | currency : 'PHP '}} \r\n\t\t\t        \r\n\t\t\t      </div>\r\n\t\t\t    </div>\r\n\t\t\t</div>\r\n\t\t\t</ng-form>\r\n\r\n\t  </div>\r\n\t  \r\n  </ng-form>\r\n</div>";
 
 /***/ }),
-/* 70 */
-/***/ (function(module, exports) {
-
-angular.module('hplus.modules.registermedicalrecord')
-
-  .controller('DetailsCardController',
-    function($scope, $location, globalFactory, doctorFactory, symptomFactory, medicineFactory, diseaseFactory	){
-      
-	  $scope.medicalRecord = {
-	    "patient" : "",
-	    "symptomId" : [],
-	    "diseaseId" : [],
-	    "medicineId" : [],
-	    "quantityList" : [],
-        "totalCost" : 0
-	  };
-	  
-	  $scope.patientType = [
-        {"name" : "Inpatient", "val" : true},
-        {"name" : "Outpatient", "val" : false}
-      ];
-	  
-	  $scope.populate = function(data){
-        if(data != null){
-          $scope.medicalRecord.patient = data.id;
-        }
-	  };
-	  
-	  $scope.addRemoveSymptom = function(hold){
-        $scope.medicalRecord.symptomId = hold;
-	  };
-	  
-	  $scope.addRemoveDisease = function(hold){
-        $scope.medicalRecord.diseaseId = hold;
-	  };
-	  
-	  $scope.addRemoveMedicine = function(hold){
-        $scope.medicalRecord.medicineId = hold;
-	  };
-	  
-	  $scope.calculateTotal = function(){
-        $scope.medicalRecord.totalCost = 0;
-        $scope.medicalRecord.medicineId.forEach(function(med){
-          $scope.medicalRecord.totalCost += (med.price * med.quantity);
-        });
-	  };
-	  
-	  $scope.symptomList = [];
-      
-      $scope.medicineList = [];
-      
-      $scope.diseaseList = [];
-      
-      $scope.go = function(path){
-        globalFactory.go(path);
-      };
-
-      $scope.delete = function(doctor){
-        doctorFactory.deleteDoctor(doctor);
-      };
-      
-      $scope.saveMedRec = function(){
-        alert("test");
-        var medHold =[];
-        var symHold =[];
-        var disHold =[];
-        
-        $scope.medicalRecord.medicineId.forEach(function(med){
-          $scope.medicalRecord.quantityList.push(med.quantity);
-          medHold.push(med.id);
-        });
-        $scope.medicalRecord.symptomId.forEach(function(sym){
-          symHold.push(sym.id);
-        });
-        $scope.medicalRecord.diseaseId.forEach(function(dis){
-          disHold.push(dis.id);
-        });
-        
-        $scope.medicalRecord.medicineId = medHold;
-        $scope.medicalRecord.symptomId = symHold;
-        $scope.medicalRecord.diseaseId = disHold;
-        
-        alert($scope.medicalRecord);
-        //registerMedRec
-      };
-      
-      var populate = function(){
-        symptomFactory.getListOfSymptoms().then(function(response){
-          console.log(response);
-  	      $scope.symptomList = response.data.symptoms;
-        });
-        medicineFactory.getListOfMedicines().then(function(response){
-          $scope.medicineList = response.data.medicines;
-        });
-        diseaseFactory.getListOfDiseases().then(function(response){
-          console.log(response); 
-          $scope.diseaseList = response.data.diseases;
-        });
-      };
-      populate();
-      
-      $scope.checkStatus = function(status){
-        return (status) ? "edit-button" : "delete-button";
-      };
-    }
-  );
-
-/***/ }),
+/* 70 */,
 /* 71 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var card = __webpack_require__(72);
-var scard = __webpack_require__(73);
 angular.module('hplus.modules.registermedicalrecord')
 
   .directive('hplusSelectPatientCard', function(){
@@ -40178,16 +40069,6 @@ angular.module('hplus.modules.registermedicalrecord')
       template: card
     };
   })
-  
-  .directive('hplusSelectedPatientCard', function(){
-    return{
-      restrict: 'EA',
-      scope: {
-        data: '='
-      },
-      template: scard
-    };
-  })
 
 /***/ }),
 /* 72 */
@@ -40196,12 +40077,7 @@ angular.module('hplus.modules.registermedicalrecord')
 module.exports = "<div class=\"card__container\">\r\n  <div class=\"card__title\">\r\n    {{data.lastname + ', ' + data.firstname}}\r\n  </div>\r\n      \r\n  <div class=\"card__desc\">\r\n    Last admitted: {{data.createdAt}}\r\n  </div>\r\n</div>";
 
 /***/ }),
-/* 73 */
-/***/ (function(module, exports) {
-
-module.exports = "<div ng-controller=\"DetailsCardController\">\r\n<ng-form name=\"createMedicalRecordForm\">\r\n\r\n  <div class=\"col-md-4\">\r\n    <label class=\"subtitle\">Discharge Date </label>\r\n    <input type=\"date\" ng-model=\"medicalRecord.dischargeDate\" ng-required=\"true\">\r\n  </div>\r\n  <div class=\"col-md-4 col-md-offset-4\">\r\n \t\t<label class=\"subtitle\">Patient Type</label>\r\n \t\t<select ng-model=\"medicalRecord.type\" ng-required=\"true\" ng-options=\"type.val as type.name for type in patientType\">\r\n      <option>--Select--</option>\r\n \t\t</select>\r\n  </div>\r\n\r\n\r\n<div class=\"col col-md-4\">\r\n  <label class=\"subtitle\">Symptoms</label>\r\n  <input type=\"text\" placeholder=\"Search Symptom\" ng-model=\"searchFilterSymp\">\r\n  <div class=\"borders\">\r\n    <div class=\"scrollable\">\r\n      <div ng-repeat=\"option in symptomList | filter: {'name':searchFilterSymp} | orderBy:['val','name']\">\r\n        <input type=\"checkbox\" ng-model=\"option.val\" ng-change=\"addRemoveSymptom(symptomList | filter: {val: true} | orderBy : 'name')\" ng-required=\"!medicalRecord.symptomId.length\" ng-false-value=\"null\">{{option.name}}<br>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <button ng-class=\"checkStatus(createMedicalRecordForm.$valid)\" type=\"submit\" ng-click=\"saveMedRec()\" ng-disabled=\"createMedicalRecordForm.$invalid\">Create</button>\r\n</div>\r\n\r\n<div class=\"col col-md-4\">\r\n  <label class=\"subtitle\">Diseases</label>\r\n  <input type=\"text\" placeholder=\"Search Disease\" ng-model=\"searchFilterDis\">\r\n  <div class=\"borders\">\r\n    <div class=\"scrollable\">\r\n      <div ng-repeat=\"option in diseaseList | filter: {'name':searchFilterDis} | orderBy:['val','name']\">\r\n        <input type=\"checkbox\" ng-model=\"option.val\" ng-change=\"addRemoveDisease(diseaseList | filter: {val: true} | orderBy : 'name')\" ng-required=\"!medicalRecord.diseaseId.length\" ng-false-value=\"null\">{{option.name}}<br>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"col col-md-4\">\r\n  <label class=\"subtitle\">Medicines</label>\r\n  <input type=\"text\" placeholder=\"Search Medicine\" ng-model=\"searchFilterMed\">\r\n  <div class=\"borders\">\r\n    <div class=\"scrollable\">\r\n      <div ng-repeat=\"optionmed in medicineList | filter: {'name':searchFilterMed} | orderBy:['val','name']\">\r\n        <input type=\"checkbox\" ng-model=\"optionmed.val\" ng-change=\"addRemoveMedicine(medicineList | filter: {val: true}| orderBy:'name')\"  ng-required=\"medicalRecord.diseaseId.length > medicalRecord.medicineId.length\" ng-false-value=\"null\">{{optionmed.name}}\r\n        <div class=\"row\" ng-hide=\"!optionmed.val\">\r\n          <input type=\"number\" ng-model=\"optionmed.quantity\" placeholder=\"Quantity\" ng-change=\"calculateTotal()\" ng-required=\"optionmed.val\" class=\"quant\">{{' x ' + (optionmed.price|currency : 'PHP ')}}\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <br>\r\n    <div class=\"margins\">\r\n      <div class=\"detail__containerTotalPrice\">\r\n        \r\n          <b>Total:</b> {{medicalRecord.totalCost | currency : 'PHP '}} \r\n        \r\n      </div>\r\n    </div>\r\n</div>\r\n</ng-form>\r\n</div>\r\n";
-
-/***/ }),
+/* 73 */,
 /* 74 */
 /***/ (function(module, exports) {
 
@@ -40228,7 +40104,9 @@ angular.module('hplus.modules.registermedicalrecord')
       
       $scope.setSelected = function(pat){
         $scope.selectedPatient = pat;
+        $scope.medicalRecord.patient = $scope.selectedPatient.id;
       };
+      
       $scope.patients=[];
                 
       $scope.createMedicalRecord = function(){
@@ -40259,9 +40137,100 @@ angular.module('hplus.modules.registermedicalrecord')
         }, function(response){
           console.log(response);
         });
+        symptomFactory.getListOfSymptoms().then(function(response){
+            console.log(response);
+    	      $scope.symptomList = response.data.symptoms;
+          });
+          medicineFactory.getListOfMedicines().then(function(response){
+            $scope.medicineList = response.data.medicines;
+          });
+          diseaseFactory.getListOfDiseases().then(function(response){
+            console.log(response); 
+            $scope.diseaseList = response.data.diseases;
+          });
       };
 
       populate();
+      
+      
+      
+      
+      
+
+	  $scope.medicalRecord = {
+	    "patient" : "",
+	    "symptomId" : [],
+	    "diseaseId" : [],
+	    "medicineId" : [],
+	    "quantityList" : [],
+        "totalCost" : 0
+	  };
+	  
+	  $scope.patientType = [
+        {"name" : "Inpatient", "val" : true},
+        {"name" : "Outpatient", "val" : false}
+      ];
+	  
+	  $scope.addRemoveSymptom = function(hold){
+        $scope.medicalRecord.symptomId = hold;
+	  };
+	  
+	  $scope.addRemoveDisease = function(hold){
+        $scope.medicalRecord.diseaseId = hold;
+	  };
+	  
+	  $scope.addRemoveMedicine = function(hold){
+        $scope.medicalRecord.medicineId = hold;
+	  };
+	  
+	  $scope.calculateTotal = function(){
+        $scope.medicalRecord.totalCost = 0;
+        $scope.medicalRecord.medicineId.forEach(function(med){
+          $scope.medicalRecord.totalCost += (med.price * med.quantity);
+        });
+	  };
+	  
+	  $scope.symptomList = [];
+      
+      $scope.medicineList = [];
+      
+      $scope.diseaseList = [];
+
+      $scope.delete = function(doctor){
+        doctorFactory.deleteDoctor(doctor);
+      };
+      
+      $scope.saveMedRec = function(){
+        alert("test");
+        var medHold =[];
+        var symHold =[];
+        var disHold =[];
+        $scope.medicalRecord.quantityList = [];
+        
+        $scope.medicalRecord.medicineId.forEach(function(med){
+          $scope.medicalRecord.quantityList.push(med.quantity);
+          medHold.push(med.id);
+        });
+        $scope.medicalRecord.symptomId.forEach(function(sym){
+          symHold.push(sym.id);
+        });
+        $scope.medicalRecord.diseaseId.forEach(function(dis){
+          disHold.push(dis.id);
+        });
+        
+        $scope.medicalRecord.medicineId = medHold;
+        $scope.medicalRecord.symptomId = symHold;
+        $scope.medicalRecord.diseaseId = disHold;
+        
+        //alert($scope.medicalRecord);
+        //registerMedRec
+      };
+      
+      $scope.checkStatus = function(status){
+        return (status) ? "edit-button" : "delete-button";
+      };
+      
+      
     }
   );
 
@@ -41289,7 +41258,7 @@ angular.module('hplus.modules.registerpatient')
       };
 
       var validity = function(){
-        return ($scope.patient.birthday < new Date());;
+        return ($scope.patient.birthday < new Date());
       };
 
       var confirmRegisterPatient = function(){

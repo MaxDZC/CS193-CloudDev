@@ -16,7 +16,7 @@ angular.module('hplus.modules.registerpatient')
       };
 
       var validity = function(){
-        return ($scope.patient.birthday < new Date());;
+        return ($scope.patient.birthday < new Date());
       };
 
       var confirmRegisterPatient = function(){
