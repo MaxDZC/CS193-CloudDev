@@ -1,17 +1,17 @@
-angular.module('hplus.modules.registermedicalrecord')
+angular.module('hplus.modules.editmedicalrecord')
 
-  .controller('RegisterMedicalRecordController',
+  .controller('EditMedicalRecordController',
     function($scope, $location, globalFactory, doctorFactory, symptomFactory, medicineFactory, diseaseFactory, patientFactory, medicalRecordFactory){
-
+	  
       $scope.user = doctorFactory.getUser();
       console.log($scope.user);
-      if($scope.user != null) {
-        if($scope.user.admin){
-          $location.path("/admin/list/record");
-        }
-      } else {
-        $location.path("/");
-      }
+//      if($scope.user != null) {
+//        if($scope.user.admin){
+//          $location.path("/admin/list/record");
+//        }
+//      } else {
+//        $location.path("/");
+//      }
       
       $scope.go = function(path){
         globalFactory.go(path);
@@ -19,9 +19,8 @@ angular.module('hplus.modules.registermedicalrecord')
       
       $scope.searchFilter = "";
       
-      $scope.setSelected = function(pat){
-        $scope.selectedPatient = pat;
-      };
+      
+      $scope.selectedPatient = patientFactory.getPatient();
       
       $scope.patients=[];
       
@@ -49,27 +48,6 @@ angular.module('hplus.modules.registermedicalrecord')
       };
       
       var populate = function(){
-        patientFactory.getListOfPatients().then(function(response){
-          console.log(response);
-          $scope.patients = response.data.patients;
-          if($scope.newPatient != null && $scope.newPatient.id == null){
-            $scope.newPatient.firstname = toTitleCase($scope.newPatient.firstname);
-            $scope.newPatient.lastname = toTitleCase($scope.newPatient.lastname);
-            $scope.newPatient.address = toTitleCase($scope.newPatient.address);
-            console.log("New Patient exists "+ $scope.newPatient.firstname + " "+$scope.newPatient.lastname);
-            $scope.patients.forEach(function(pat){
-              if(pat.lastname == $scope.newPatient.lastname &&
-                 pat.firstname == $scope.newPatient.firstname &&
-                 pat.address == $scope.newPatient.address &&
-                 pat.sex == !$scope.newPatient.sex){
-                console.log("New Patient found "+ pat.firstname);
-                pat.newPatient = true;
-              }
-            });
-          }
-        }, function(response){
-          console.log(response);
-        });
         symptomFactory.getListOfSymptoms().then(function(response){
             console.log(response);
     	      $scope.symptomList = response.data.symptoms;
@@ -103,6 +81,7 @@ angular.module('hplus.modules.registermedicalrecord')
         {"name" : "Outpatient", "val" : false}
       ];
 	  
+
 	  $scope.addRemoveSymptom = function(hold){
         $scope.medicalRecord.symptomIdList = hold;
         
@@ -150,6 +129,7 @@ angular.module('hplus.modules.registermedicalrecord')
           });
         }
 	  };
+	  
 	  
 	  $scope.addRemoveMedicine = function(hold){
         $scope.medicalRecord.medicineIdList = hold;

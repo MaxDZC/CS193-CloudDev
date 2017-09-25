@@ -6,6 +6,7 @@ require('./shared/modal/modal.main.js');
 require('./components/editdisease/editdisease.main.js');
 require('./components/editdoctor/editdoctor.main.js');
 require('./components/editmedicine/editmedicine.main.js');
+require('./components/editmedicalrecord/editmedicalrecord.main.js');
 
 require('./components/registermedicalrecord/registermedicalrecord.main.js');
 require('./components/explorediseases/explorediseases.main.js');
@@ -33,6 +34,7 @@ angular.module('hplus.modules', [
   'hplus.modules.editdisease',
   'hplus.modules.editdoctor',
   'hplus.modules.editmedicine',
+  'hplus.modules.editmedicalrecord',
   'hplus.modules.explorediseases',
   'hplus.modules.exploredoctors',
   'hplus.modules.exploremedicines',

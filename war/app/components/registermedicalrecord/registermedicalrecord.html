@@ -65,8 +65,8 @@
 			  <input type="text" placeholder="Search Disease" ng-model="searchFilterDis">
 			  <div class="borders">
 			    <div class="scrollable">
-			      <div ng-repeat="option in diseaseList | filter: {'name':searchFilterDis} | orderBy:['val','name']">
-			        <input type="checkbox" ng-model="option.val" ng-change="addRemoveDisease(diseaseList | filter: {val: true} | orderBy : 'name')" ng-required="!medicalRecord.diseaseIdList.length" ng-false-value="null">{{option.name}}<br>
+			      <div ng-repeat="option in diseaseListFiltered | filter: {'name':searchFilterDis} | orderBy:['val','name']">
+			        <input type="checkbox" ng-model="option.val" ng-change="addRemoveDisease(diseaseListFiltered | filter: {val: true} | orderBy : 'name')" ng-required="!medicalRecord.diseaseIdList.length" ng-false-value="null">{{option.name}}<br>
 			      </div>
 			    </div>
 			  </div>
@@ -77,8 +77,8 @@
 			  <input type="text" placeholder="Search Medicine" ng-model="searchFilterMed">
 			  <div class="borders">
 			    <div class="scrollable">
-			      <div ng-repeat="optionmed in medicineList | filter: {'name':searchFilterMed} | orderBy:['val','name']">
-			        <input type="checkbox" ng-model="optionmed.val" ng-change="addRemoveMedicine(medicineList | filter: {val: true}| orderBy:'name')"  ng-required="medicalRecord.diseaseIdList.length > medicalRecord.medicineIdList.length" ng-false-value="null">{{optionmed.name}}
+			      <div ng-repeat="optionmed in medicineListFiltered | filter: {'name':searchFilterMed} | orderBy:['val','name']">
+			        <input type="checkbox" ng-model="optionmed.val" ng-change="addRemoveMedicine(medicineListFiltered | filter: {val: true}| orderBy:'name')"  ng-required="medicalRecord.diseaseIdList.length > medicalRecord.medicineIdList.length" ng-false-value="null">{{optionmed.name}}
 			        <div class="row" ng-hide="!optionmed.val">
 			          <input type="number" ng-model="optionmed.quantity" placeholder="Quantity" ng-change="calculateTotal()" ng-required="optionmed.val" class="quant">{{' x ' + (optionmed.price|currency : 'PHP ')}}
 			        </div>
