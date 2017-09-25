@@ -43,8 +43,6 @@ angular.module('hplus.modules.exploremedicines')
               } 
             }
           }
-
-          console.log($scope.medicineList);
           
           diseaseFactory.getListOfDiseases().then(function(response){
             console.log(response);

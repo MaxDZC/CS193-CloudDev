@@ -40086,7 +40086,7 @@ angular.module('hplus.modules.explorediseases')
 /* 72 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"margins\">\r\n  <div class=\"card__container\" ng-controller=\"CardController\">\r\n    <div class=\"card__title\">\r\n      {{ data.name[0].toUpperCase() + data.name.substr(1) }}\r\n    \r\n      <a ng-click=\"go('/admin/view/disease', data); $event.stopPropagation();\">\r\n        <span class=\"delete__icon\">\r\n          <i class=\"fa fa-eye\" aria-hidden=\"true\"></i>\r\n        </span>\r\n      </a>\r\n      <a ng-show=\"user.admin\" ng-click=\"go('/admin/update/disease', data); $event.stopPropagation();\">\r\n        <span class=\"delete__icon\">\r\n          <i class=\"fa fa-pencil-square-o\" aria-hidden=\"true\"></i>\r\n        </span>\r\n      </a>\r\n      <a ng-show=\"user.admin\" ng-click=\"delete(data); $event.stopPropagation();\">\r\n        <span class=\"delete__icon\">\r\n          <i class=\"fa fa-archive\" aria-hidden=\"true\"></i>\r\n        </span>\r\n      </a>\r\n    \r\n    </div>\r\n    \r\n    <div class=\"card__desc\">\r\n      Symptoms: <span ng-repeat=\"symp in data.symp\"><span ng-hide=\"$first\">,&nbsp;</span>{{ symp }}</span>.\r\n    </div>\r\n  </div>\r\n</div>";
+module.exports = "<div class=\"margins\">\r\n  <div class=\"card__container\" ng-controller=\"CardController\">\r\n    <div class=\"card__title\">\r\n      {{ data.name[0].toUpperCase() + data.name.substr(1) }}\r\n    \r\n      <a ng-click=\"go('/admin/view/disease', data); $event.stopPropagation();\">\r\n        <span class=\"delete__icon\">\r\n          <i class=\"fa fa-eye\" aria-hidden=\"true\"></i>\r\n        </span>\r\n      </a>\r\n      <a ng-show=\"user.admin && !data.medicalRecords\" ng-click=\"go('/admin/update/disease', data); $event.stopPropagation();\">\r\n        <span class=\"delete__icon\">\r\n          <i class=\"fa fa-pencil-square-o\" aria-hidden=\"true\"></i>\r\n        </span>\r\n      </a>\r\n      <a ng-show=\"user.admin && !data.medicalRecords\" ng-click=\"delete(data); $event.stopPropagation();\">\r\n        <span class=\"delete__icon\">\r\n          <i class=\"fa fa-archive\" aria-hidden=\"true\"></i>\r\n        </span>\r\n      </a>\r\n    \r\n    </div>\r\n    \r\n    <div class=\"card__desc\">\r\n      Symptoms: <span ng-repeat=\"symp in data.symp\"><span ng-hide=\"$first\">,&nbsp;</span>{{ symp }}</span>.\r\n    </div>\r\n  </div>\r\n</div>";
 
 /***/ }),
 /* 73 */
@@ -40112,8 +40112,25 @@ angular.module('hplus.modules.explorediseases')
       var populate = function() {
         diseaseFactory.getListOfDiseases().then(function(response){
           console.log(response); 
-          
           $scope.diseases = response.data.diseases;
+          var medicalRecords = response.data.medicalRecords;
+
+          var x, y, z;
+          
+          for(x = 0; x < $scope.diseases.length; x++) {
+            for(y = 0; y < medicalRecords.length; y++) {
+              for(z = 0; z < medicalRecords[y].diseaseIdList.length; z++) {
+                if(medicalRecords[y].diseaseIdList[z] == $scope.diseases[x].id) {
+                  if($scope.diseases[x].medicalRecords == null) {
+                    $scope.diseases[x].medicalRecords = [];
+                  }
+                  $scope.diseases[x].medicalRecords.push(medicalRecords[y]);
+                  z = medicalRecords[y].diseaseIdList.length;
+                }
+              } 
+            }
+          }
+
           var symptoms = [];
           
           symptomFactory.getListOfSymptoms().then(function(response){
@@ -40406,8 +40423,6 @@ angular.module('hplus.modules.exploremedicines')
               } 
             }
           }
-
-          console.log($scope.medicineList);
           
           diseaseFactory.getListOfDiseases().then(function(response){
             console.log(response);
@@ -41408,7 +41423,7 @@ __webpack_require__(117);
 /* 114 */
 /***/ (function(module, exports) {
 
-module.exports = "<ng-controller ng-controller=\"ViewDiseaseController\">\r\n\t<div class=\"row\">\r\n\t  <div class=\"col col-md-8 col-md-offset-1\">\r\n\t    <h1>\r\n\t      <i class=\"fa fa-thermometer-full\"></i>\r\n\t      {{ disease.name[0].toUpperCase() + disease.name.substr(1) }}\r\n\t    </h1>\r\n\t  </div>\r\n\t</div>\r\n\t\r\n\t<div class=\"row\">\r\n\t  <div class=\"col col-md-2 col-md-offset-1\">\r\n\t    <div class=\"match-padding\">\r\n\t      <span class=\"subtitle\">\r\n\t        Symptoms\r\n\t      </span>\r\n\t      <div class=\"subtitle__value\">\r\n\t        <div class=\"row card__container--flex\">\r\n\r\n\t          <div class=\"card__container--medium\" ng-repeat=\"symptom in disease.symp\">\r\n\t            <div class=\"card__desc--medium\">\r\n\t              {{ symptom }}\r\n\t            </div>\r\n\t          </div>\r\n\t\t\t\t\t\r\n\t\t\t\t\t</div>\r\n\t      </div>\r\n\t      <br>\r\n\t      <span class=\"subtitle\">\r\n\t        Medicine\r\n\t      </span>\r\n\t      <br>\r\n\t     <table>\r\n\t        <tr ng-repeat=\"medicine in disease.meds\">\r\n\t          <td><span>{{ medicine }}</span></td>\r\n\t        </tr>\r\n\t      </table>\r\n\t      <br>\r\n\t      <button class=\"outline\" ng-click=\"go('/admin/update/disease')\" ng-show=\"user.admin\">Edit</button>\r\n\t      <button class=\"outline\" ng-click=\"delete()\" ng-show=\"user.admin\">Archive</button>\r\n\t    </div>\r\n\t  </div>\r\n\t\r\n\t  <div class=\"col col-md-8\">\r\n\t    <div class=\"col col-md-12\">\r\n\t      <div class=\"row\">\r\n\t        <div class=\"col col-md-4\">\r\n\t          <span class=\"subtitle\">\r\n\t            OCCURRENCE IN\r\n\t          </span>\r\n\t          <span class=\"subtitle subtitle--variable\">\r\n\t            {{ monthAndYear }}\r\n\t          </span>\r\n\t          <div class=\"subtitle__value\">\r\n\t            {{ recordList.length }} Patients\r\n\t          </div>\r\n\t        </div>\r\n\t          \r\n\t        <div class=\"col col-md-4\">\r\n\t          <span class=\"subtitle\">\r\n\t            OCCURRENCE IN YEAR\r\n\t          </span>\r\n\t          <span class=\"subtitle subtitle--variable\">\r\n\t            {{ year }}\r\n\t          </span>\r\n\t          <div class=\"subtitle__value\">\r\n\t            24 PATIENTS\r\n\t          </div>\r\n\t        </div>\r\n\t      </div>\r\n\t    </div>\r\n\t\r\n\t    <div class=\"col col-md-12\">\r\n\t      <br>\r\n\t      <br>\r\n\t      <label class=\"subtitle\">RECENTLY DIAGNOSED IN THE FOLLOWING PATIENTS</label>\r\n\t      <hplus-view-disease-card dir-paginate=\"record in recordList | itemsPerPage:10\" data=\"record\"></hplus-view-disease-card>\r\n\t    </div>\r\n\t  </div>\r\n\t</div>\r\n\t<dir-pagination-controls max-size=\"5\"></dir-pagination-controls>\r\n</ng-controller>";
+module.exports = "<ng-controller ng-controller=\"ViewDiseaseController\">\r\n\t<div class=\"row\">\r\n\t  <div class=\"col col-md-8 col-md-offset-1\">\r\n\t    <h1>\r\n\t      <i class=\"fa fa-thermometer-full\"></i>\r\n\t      {{ disease.name[0].toUpperCase() + disease.name.substr(1) }}\r\n\t    </h1>\r\n\t  </div>\r\n\t</div>\r\n\t\r\n\t<div class=\"row\">\r\n\t  <div class=\"col col-md-2 col-md-offset-1\">\r\n\t    <div class=\"match-padding\">\r\n\t      <span class=\"subtitle\">\r\n\t        Symptoms\r\n\t      </span>\r\n\t      <div class=\"subtitle__value\">\r\n\t        <div class=\"row card__container--flex\">\r\n\r\n\t          <div class=\"card__container--medium\" ng-repeat=\"symptom in disease.symp\">\r\n\t            <div class=\"card__desc--medium\">\r\n\t              {{ symptom }}\r\n\t            </div>\r\n\t          </div>\r\n\t\t\t\t\t\r\n\t\t\t\t\t</div>\r\n\t      </div>\r\n\t      <br>\r\n\t      <span class=\"subtitle\">\r\n\t        Medicine\r\n\t      </span>\r\n\t      <br>\r\n\t     <table>\r\n\t        <tr ng-repeat=\"medicine in disease.meds\">\r\n\t          <td><span>{{ medicine }}</span></td>\r\n\t        </tr>\r\n\t      </table>\r\n\t      <br>\r\n\t      <button class=\"outline\" ng-click=\"go('/admin/update/disease')\" ng-show=\"user.admin && !recordList\">Edit</button>\r\n\t      <button class=\"outline\" ng-click=\"delete()\" ng-show=\"user.admin && !recordList\">Archive</button>\r\n\t    </div>\r\n\t  </div>\r\n\t\r\n\t  <div class=\"col col-md-8\">\r\n\t    <div class=\"col col-md-12\">\r\n\t      <div class=\"row\">\r\n\t        <div class=\"col col-md-4\">\r\n\t          <span class=\"subtitle\">\r\n\t            OCCURRENCE IN\r\n\t          </span>\r\n\t          <span class=\"subtitle subtitle--variable\">\r\n\t            {{ monthAndYear }}\r\n\t          </span>\r\n\t          <div class=\"subtitle__value\">\r\n\t            {{ recordList.length }} Patients\r\n\t          </div>\r\n\t        </div>\r\n\t          \r\n\t        <div class=\"col col-md-4\">\r\n\t          <span class=\"subtitle\">\r\n\t            OCCURRENCE IN YEAR\r\n\t          </span>\r\n\t          <span class=\"subtitle subtitle--variable\">\r\n\t            {{ year }}\r\n\t          </span>\r\n\t          <div class=\"subtitle__value\">\r\n\t            24 PATIENTS\r\n\t          </div>\r\n\t        </div>\r\n\t      </div>\r\n\t    </div>\r\n\t\r\n\t    <div class=\"col col-md-12\">\r\n\t      <br>\r\n\t      <br>\r\n\t      <label class=\"subtitle\">RECENTLY DIAGNOSED IN THE FOLLOWING PATIENTS</label>\r\n\t      <hplus-view-disease-card dir-paginate=\"record in recordList | itemsPerPage:10\" data=\"record\"></hplus-view-disease-card>\r\n\t    </div>\r\n\t  </div>\r\n\t</div>\r\n\t<dir-pagination-controls max-size=\"5\"></dir-pagination-controls>\r\n</ng-controller>";
 
 /***/ }),
 /* 115 */
@@ -41458,6 +41473,8 @@ app = angular.module('hplus.modules.viewdisease')
 
       if($scope.disease == null){
         $location.path("/admin/list/disease");
+      } else {
+        $scope.recordList = $scope.disease.medicalRecords;
       }
 
       $scope.go = function(path){
@@ -41604,7 +41621,7 @@ angular.module('hplus.modules.viewmedicine')
 /* 121 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"card__container\" ng-controller=\"RecordCardController\">\r\n  <div class=\"card__title\">\r\n    {{ data.name }} \r\n\r\n    <a ng-click=\"go('/view/medicalrecord', data); $event.stopPropagation()\"><span class=\"delete__icon\"><i class=\"fa fa-eye\" aria-hidden=\"true\"></i></span></a>\r\n    <a ng-click=\"go('/update/medicalrecord', data); $event.stopPropagation()\"><span class=\"delete__icon\"><i class=\"fa fa-pencil-square-o\" aria-hidden=\"true\"></i></span></a>\r\n  </div>\r\n  \r\n  <div class=\"card__desc\">\r\n    Dispensed  {{ data.date }} as Demanded by Dr. John Appleseed\r\n  </div>\r\n</div>";
+module.exports = "<div class=\"card__container\" ng-controller=\"RecordCardController\">\r\n  <div class=\"card__title\">\r\n    {{ data.name }} \r\n\r\n    <a ng-click=\"go('/view/medicalrecord', data); $event.stopPropagation()\"><span class=\"delete__icon\"><i class=\"fa fa-eye\" aria-hidden=\"true\"></i></span></a>\r\n    <a ng-click=\"go('/update/medicalrecord', data); $event.stopPropagation()\"><span class=\"delete__icon\"><i class=\"fa fa-pencil-square-o\" aria-hidden=\"true\"></i></span></a>\r\n  </div>\r\n  \r\n  <div class=\"card__desc\">\r\n    Dispensed on {{ data.date }} by Dr. {{ data.doctor }}\r\n  </div>\r\n</div>";
 
 /***/ }),
 /* 122 */
@@ -41638,7 +41655,6 @@ app = angular.module('hplus.modules.viewmedicine')
         $scope.monthUsage = 0;
         $scope.yearUsage = 0;
         
-
         patientFactory.getListOfPatients().then(function(response){
           console.log(response);
           var patientList = response.data.patients;
@@ -41669,6 +41685,20 @@ app = angular.module('hplus.modules.viewmedicine')
                     $scope.recordList[x].date += " " + realDate.getDate() + ", " + realDate.getFullYear();
                   }
                 }
+              }
+            }
+          }
+        });
+
+        doctorFactory.getListOfDoctors().then(function(response){
+          console.log(response);
+          var doctorList = response.data.doctors;
+          var x, y;
+
+          for(x = 0; x < $scope.recordList.length; x++) {
+            for(y = 0; y < doctorList.length && $scope.recordList[x].doctor == null; y++) {
+              if($scope.recordList[x].doctorId == doctorList[y].id) {
+                $scope.recordList[x].doctor = doctorList[y].firstname + " " + doctorList[y].lastname;
               }
             }
           }

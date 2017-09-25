@@ -26,7 +26,6 @@ app = angular.module('hplus.modules.viewmedicine')
         $scope.monthUsage = 0;
         $scope.yearUsage = 0;
         
-
         patientFactory.getListOfPatients().then(function(response){
           console.log(response);
           var patientList = response.data.patients;
@@ -57,6 +56,20 @@ app = angular.module('hplus.modules.viewmedicine')
                     $scope.recordList[x].date += " " + realDate.getDate() + ", " + realDate.getFullYear();
                   }
                 }
+              }
+            }
+          }
+        });
+
+        doctorFactory.getListOfDoctors().then(function(response){
+          console.log(response);
+          var doctorList = response.data.doctors;
+          var x, y;
+
+          for(x = 0; x < $scope.recordList.length; x++) {
+            for(y = 0; y < doctorList.length && $scope.recordList[x].doctor == null; y++) {
+              if($scope.recordList[x].doctorId == doctorList[y].id) {
+                $scope.recordList[x].doctor = doctorList[y].firstname + " " + doctorList[y].lastname;
               }
             }
           }
