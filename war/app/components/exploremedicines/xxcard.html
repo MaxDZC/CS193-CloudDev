@@ -1,0 +1,9 @@
+<div class="card__container">
+  <div class="card__title">
+    {{ data.name[0].toUpperCase() + data.name.substr(1) }}
+  </div>
+      
+  <div class="card__desc">
+    <span ng-repeat="treats in data.treats | limitTo: 3"><span ng-hide="$first">,&nbsp;</span>{{ treats }}</span>
+  </div>
+</div>

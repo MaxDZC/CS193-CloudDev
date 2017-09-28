@@ -1,0 +1,16 @@
+<div class="card__container" ng-controller="PatientCardController">
+  <div class="card__title">
+    {{ data.lastname }}, {{ data.firstname }}
+
+    <a ng-click="go('/patient/view/details', data); $event.stopPropagation();">
+      <span class="delete__icon">
+        <i class="fa fa-eye" aria-hidden="true"></i>
+      </span>
+    </a>
+
+  </div>
+  
+  <div class="card__desc">
+    Address: {{ data.address }}
+  </div>
+</div>

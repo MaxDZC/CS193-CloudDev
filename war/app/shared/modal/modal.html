@@ -1,0 +1,18 @@
+<div class="modal__background" ng-controller="ModalController" ng-show="modalContents.isVisible">
+
+  <div class="col col-md-offset-3 col-md-6 modal__box">
+    <div class="modal__title">
+      {{ modalContents.title }}
+    </div>
+
+    <hr class="modal__divider">
+
+    <div class="modal__description">
+      {{ modalContents.description }}
+    </div>
+
+    <button class="modal__btn modal__btn--bad" ng-if="isType('confirm')" ng-click="ret(false);close()">{{ modalContents.negativeButton }}</button>
+    <button class="modal__btn modal__btn--good" ng-click="ret(true);close()">{{ modalContents.positiveButton }}</button>
+
+  </div>
+</div>

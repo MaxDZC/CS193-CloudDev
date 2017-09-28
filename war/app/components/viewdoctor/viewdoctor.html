@@ -1,94 +1,68 @@
-<div class="row">
-  <div class="col col-md-8 col-md-offset-1">
-    <h1><i class="fa fa-user-md"></i> Dr. John Appleseed</h1>
-  </div>
-</div>
-
-<div class="row">
-  <div class="col col-md-2 col-md-offset-1">
-    <div class="match-padding">
-      <span class="subtitle">
-        Specialization
-      </span>
-      <div class="subtitle__value">
-        Dentistry
-      </div>
-      <br>
-      <span class="subtitle">
-        E-mail Address
-      </span>
-      <div class="subtitle__value">
-        joappleseed@hplus.com
-      </div>
-      <br>
-      <button class="outline">Edit</button>
+<ng-controller ng-controller="ViewDoctorController">
+  <div class="row">
+    <div class="col col-md-8 col-md-offset-1">
+      <h1><i class="fa fa-user-md"></i>Dr. {{ doctorData.firstname + " " + doctorData.lastname }} ({{ doctorData.username }})</h1>
     </div>
   </div>
 
-  <div class="col col-md-8">
+  <div class="row">
+    <div class="col col-md-3 col-md-offset-1">
+      <div class="match-padding">
+        <label class="subtitle">Specialization</label>
+        <div class="subtitle__value">
+          {{ doctorData.specialization }}
+        </div>
 
-    <div class="col col-md-12">
-      <span class="subtitle">
-        Medical Records Handled By
-      </span>
-      
-      <span class="subtitle subtitle--variable">
-        Dr. John Appleseed
-      </span>
-      <br><br>
-    
-      <div class="card__container">
-        <div class="card__title">
-          Doe, Jane
+        <label class="subtitle">Contact #</label>
+        <div class="subtitle__value">
+          {{ doctorData.contactNo }}
         </div>
-        <div class="card__desc">
-          Admitted Feb. 20, 2016 for Wisdom Tooth Eruption
-        </div>
-      </div>
 
-      <div class="card__container">
-        <div class="card__title">
-          Phour, Mahn
+        <label class="subtitle">E-mail Address</label>
+        <div class="subtitle__value">
+          {{ doctorData.email }}
         </div>
-        <div class="card__desc">
-          Admitted June 19, 2015 for Gingivitis,
-          Periodontitis, Dental Calculus, and
-          2 more...
-        </div>
-      </div>
 
-      <div class="card__container">
-        <div class="card__title">
-          Xing, Ah Mae
+        <label class="subtitle">Address</label>
+        <div class="subtitle__value">
+          {{ doctorData.address }}
         </div>
-        <div class="card__desc">
-          Admitted Mar. 3, 2015 for Malocclusion
-        </div>
-      </div>
 
-      <div class="pagination__container">
-        <div class="pagination__page">
-          <i class="fa fa-angle-double-left"></i>
+        <label class="subtitle">Birthday</label>
+        <div class="subtitle__value">
+          {{ doctorData.processedBirthday }}
         </div>
-        <div class="pagination__page">
-          <i class="fa fa-angle-left"></i>
-        </div>
-        <div class="pagination__page">
-          2
-        </div>
-        <div class="pagination__current">
-          3
-        </div>
-        <div class="pagination__page">
-          4
-        </div>
-        <div class="pagination__page">
-          <i class="fa fa-angle-right"></i>
-        </div>
-        <div class="pagination__page">
-          <i class="fa fa-angle-double-right"></i>
+
+        <div>
+          <button class="outline" ng-click="go('/admin/edit/doctor')">Edit</button>
+          <button class="outline" ng-show="recordList == null && user.admin" ng-click="delete()">Archive</button>
+          <button class="outline" ng-show="!user.admin || (user.admin && user.id == doctorData.id)" ng-click="go('admin/reset/password')">Change Password</button> 
         </div>
       </div>
     </div>
+
+    <div ng-show="!user.admin || user.id != doctorData.id" class="col col-md-7">
+      <div class="col col-md-12">
+        <label class="subtitle" ng-if="user.admin">Medical Records Handled By</label>
+        <label class="subtitle" ng-if="!user.admin">You are handling the following medical records </label>
+
+        <span ng-if="user.admin" class="subtitle subtitle--variable">
+          Dr. {{ doctorData.firstname + " " + doctorData.lastname }}
+        </span>
+
+        <span ng-if="recordList.length" class="subtitle subtitle--variable">
+          Total: {{ recordList.length }}
+        </span>
+
+        <div ng-hide="recordList.length">
+          <span ng-if="user.admin" class="subtitle">This doctor isn't handling any medical records</span>
+          <span ng-if="!user.admin" class="subtitle">You aren't handling any medical records</span>
+        </div>
+
+  		  <hplus-view-doctors-card ng-show="recordList.length" dir-paginate="record in recordList | itemsPerPage:10" data="record"></hplus-view-doctors-card>
+      </div>
+    </div>
   </div>
-</div>
+
+  <dir-pagination-controls max-size="5"></dir-pagination-controls>
+</ng-controller>

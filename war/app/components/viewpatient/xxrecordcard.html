@@ -1,0 +1,40 @@
+<div class="row">
+    <div class="col col-md-12">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="margins">
+            <div class="detail__container">
+              <div class="card__title">
+                Medicines
+              </div>
+              <table class="table table-striped">
+                <thead>
+                   <tr>
+                     <th class="name">Name</th>
+                     <th>Price</th>
+                     <th>Quantity</th>
+                     <th class="price">Total</th>
+                   </tr>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="med in data.medicines">
+                    <td class="name">{{med.name}}</td>
+                    <td>{{med.price | currency : "PHP "}}</td>
+                    <td>{{data.quantityList[$index]}}</td>
+                    <td class="price">{{med.price * data.quantityList[$index] | currency : "PHP "}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-5 col-md-offset-7">
+            <div class="margins">
+              <div class="detail__containerTotalPrice">
+                  <b>Total:</b> {{totalBill | currency : 'PHP '}} 
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>

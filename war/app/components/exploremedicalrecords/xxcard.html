@@ -1,0 +1,13 @@
+<div class="margins">
+  <!-- List Section -->  
+  <div class="card__container">
+    <div class="card__title">
+      {{ data.lastname + ', ' + data.firstname }}
+      <span ng-if="data.discharged">(Discharged)</span>
+    </div>
+    
+    <div class="card__desc">
+      Admitted {{data.createdAt | date : "longDate"}} for <span ng-repeat="dis in data.diseases"><span ng-hide="$first">,&nbsp;</span>{{ dis }}</span>
+    </div>
+  </div>
+</div>

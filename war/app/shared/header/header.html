@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row" ng-controller="HeaderController">
   <div class="col col-md-10 col-md-offset-1 header__background">
 
     <div class="col col-md-8" ng-click="go('/')">
@@ -8,16 +8,19 @@
         <span class="header__app-text">HealthPlus</span>
     </div>
 
-    <div class="col col-md-4 header__user-container">
+    <div ng-show="user != null" class="col col-md-4 header__user-container">
       <span class="header__user-alignment">
-        <span class="header__user-name">James Appleseed</span>
-        <span class="header__user-title">Administrator</span>
+        <span class="header__user-name">{{ user.firstname+" "+ user.lastname}}</span>
+        <span class="header__user-title">{{ user.specialization }}</span>
       </span>
-
-      <span class="fa-stack fa-lg header__user-alignment">
-        <i class="fa fa-square fa-stack-2x"></i>
-        <i class="fa fa-chevron-down fa-stack-1x fa-inverse"></i>
-      </span>
+      
+      <div class="dropdown header__user-alignment">
+        <button class="dropbtn"><span class="fa fa-caret-down"></span></button>
+        <div class="dropdown-content">
+          <a class="link" ng-click="viewProfile('/admin/view/doctordetails')">View Profile</a>
+          <a href="#" ng-click="logout()">Logout</a>
+        </div>
+      </div>
     </div>
 
   </div>

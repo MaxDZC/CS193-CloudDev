@@ -1,0 +1,9 @@
+<div class="card__container" ng-class="{'newPatient__container': data.newPatient}">
+  <div class="card__title">
+    {{data.lastname + ', ' + data.firstname}}
+  </div>
+  <span ng-show="data.newPatient">This is a new Patient!</span>
+  <div class="card__desc">
+    Last admitted: {{data.createdAt}}
+  </div>
+</div>

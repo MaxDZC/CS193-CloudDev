@@ -1,157 +1,40 @@
-	<div class="row"><!-- Header Portion -->
-  		<div class="col col-md-10 col-md-offset-1">
-    		<h1>List of All Medicines</h1><!-- Header Name for this Module -->
-  		</div>
-	</div>
+<div class="row"><!-- Header Portion -->
+  <div class="col col-md-10 col-md-offset-1">
+    <h1>List of All Medicines</h1><!-- Header Name for this Module -->
+  </div>
+</div>
 
-	<div class="row"><!-- Body Portion -->
-  		<div class="col col-md-2 col-md-offset-1"><!-- Section for search -->
-
-    		<div class="row">
-      			<div class="col col-md-6">
-        			<label class="subtitle">
-          				Search
-        			</label>
-      			</div>
-    			<br><br>
-    		</div>
-    		
-    		<div class="match-padding">
-
-      			<input type="text" placeholder="Enter a name">
-
-      			<button>Search</button>
-    		</div>
-
-  		</div>
-
-  		<div class="col col-md-8"><!-- Section containing the list and detail of medicines -->
-
-    		<div class="col col-md-6"><!-- List sector -->
-      			<label class="subtitle">
-        			ALL RESULTS
-      			</label>
-      			<br><br>
-      			
-    			<!-- List Section -->
-      			<div class="card__container">
-        			<div class="card__title">
-          				Metformin
-        			</div>
-        			<div class="card__desc">
-          				Diabetes Mellitus
-        			</div>
-      			</div>
-
-      			<div class="card__container">
-        			<div class="card__title">
-          				Methadone
-        			</div>
-        			<div class="card__desc">
-          				Opioid dependency, chronic pain
-        			</div>
-      			</div>
-      			
-      			<div class="card__container">
-        			<div class="card__title">
-          				Methamphetamine
-        			</div>
-        			<div class="card__desc">
-          				Attention deficit hyperactivity disorder, obesity, and more...
-        			</div>
-      			</div>
-      			
-      			<div class="card__container">
-        			<div class="card__title">
-          				Methazolamide
-        			</div>
-        			<div class="card__desc">
-          				Intraocular pressure in glaucoma
-        			</div>
-      			</div>      			
-    		</div>
-    		<br><br><br><br><br>
-    		<div class="col col-md-5 col-md-offset-1"><!-- Detail Sector -->
-      			<label class="subtitle">
-        			DETAILS FOR Methampetamine
-      			</label>
-      			<br><br>
-      			
-    			<!-- Detail Section -->
-    			
-      			<div class="detail__container">
-      			
-      				<br><br>
-      				
-        			<div class="card__title">
-          				Methampetamine
-        			</div>
-        	
-        			<div class="detail__desc">
-          				<p>
-          					Methamphetamine is a strong central nervous system stimulant that is
-          					mainly used as a recreational drug and less commonly as a treatment
-          					for attention deficit hyperactivity disorder and obesity.
-          				</p>
-        			</div>
-        			
-        			<span class="detail__title">PRICE (PHP)</span>
-        			<span class="detail__subtitle">24,990.00</span>
-        			
-        			<br><br>
-        			
-        			<span class="detail__title">TREATMENT FOR</span>
-        			<span class="detail__subtitle">
-        				Attention deficit hyperactivity disorder, obesity
-        			</span>
-        			
-        			<br><br>
-        			 <div ng-controller="modalCtrl as alert"> 
-        			<a href="#!/admin/edit/medicine"><button >Edit</button></a><button class="delete_btn" ng-click="alert.confirm()">Delete</button>
-        			</div>
-      			</div>
-      		</div>
-  		</div>
-	</div>
+<div class="row" ng-controller="ExploreMedicinesController"><!-- Body Portion -->
+  <div class="col col-md-2 col-md-offset-1"><!-- Section for search -->
+		<div class="row">
+		  <div class="col col-md-6">
+			<label class="subtitle">Search</label>
+		  </div>
+		</div>
 	
-	<br><br><br><br>
-	
-	<!-- Pagination Section -->
-	<div class="row">
-	
-		<div class="col col-md-3 col-md-offset-5">
-		
-			<div class="pagination__container">
-			
-				<div class="pagination__page">
-					<<
-				</div>
-				
-				<div class="pagination__page">
-					<
-				</div>
-				
-				<div class="pagination__page ">
-					2
-				</div>
-				
-				<div class="pagination__page pagination__current">
-					3
-				</div>
-				
-				<div class="pagination__page">
-					4
-				</div>
-				
-				<div class="pagination__page">
-					>
-				</div>
-				
-				<div class="pagination__page">
-					>>
-				</div>
-				
-			</div>
-			
-  		</div>
-  	</div>
+		<div class="match-padding">
+		  <input type="text" placeholder="Enter a name" ng-model="query">
+		  <button ng-show="user.admin" ng-click="go('/admin/register/medicine')">New Medicine</button>
+		</div>
+  </div>
+
+  <div class="col col-md-8"><!-- Section containing the list and detail of medicines -->
+    <div class="col col-md-6"><!-- List sector -->
+		  <span class="subtitle"><span ng-hide="query == ''">{{(medicineList | filter : searchFilter).length }}</span><span ng-hide="query != ''">All {{(medicineList | filter : searchFilter).length }}</span> Results</span>
+		  
+		  <div class="margins" >
+		    <hplus-explore-medicines-card dir-paginate="med in medicineList | filter: searchFilter | itemsPerPage:10  | orderBy : 'name'" data="med" ng-click="setSelected(med)" ng-class="{'selectedCard__container': med == selectedMedicine}"></hplus-explore-medicines-card>       
+      </div>
+      <div class="col-md-12">
+      <!-- Pagination Section -->
+      <dir-pagination-controls max-size="5"></dir-pagination-controls>
+      </div>
+    </div>
+    
+   	<div class="col col-md-6"><!-- Detail Sector -->
+		  <hplus-selected-medicine-card data="selectedMedicine" ng-show="selectedMedicine"></hplus-selected-medicine-card>
+		</div>
+
+  </div>
+</div>
+

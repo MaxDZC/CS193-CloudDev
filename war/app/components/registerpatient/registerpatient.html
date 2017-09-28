@@ -1,0 +1,53 @@
+<div ng-controller="RegisterPatientController">
+<div class="row">
+  <div class="col col-md-8 col-md-offset-1">
+    <h1>Register Patient</h1>
+  </div>
+</div>
+
+<div class="row">
+  <ng-form name="registerPatientForm">
+      <div class="row match-padding">
+        <div class="col col-md-3 col-md-offset-1">
+          <label class="subtitle">Patient's First Name</label>
+          <input type="text" ng-model="patient.firstname" ng-required="true">
+        </div>
+        <div class="col col-md-3">
+          <label class="subtitle">Patient's Last Name</label>
+          <input type="text" ng-model="patient.lastname" ng-required="true">
+        </div>
+      </div>
+  
+      <div class="row match-padding">
+        <div class="col col-md-3 col-md-offset-1">
+          <label class="subtitle">Patient's Address</label>
+          <input type="text" ng-model="patient.address" ng-required="true">
+        </div>
+        <div class="col col-md-3">
+          <label class="subtitle">Patient's Contact Number</label>
+          <input type="text" ng-model="patient.contactNo" ng-pattern="regex" ng-required="true">
+        </div>
+      </div>
+              
+      <div class="row match-padding">
+        <div class="col col-md-3 col-md-offset-1">
+          <label class="subtitle">Birthday</label>
+          <input type="date" ng-model="patient.birthday" ng-required="true">
+        </div>
+        <div class="col col-md-3">
+          <label class="subtitle">Sex</label>
+          <select ng-model="patient.sex" ng-required="true">
+            <option value="">Choose a sex</option>
+            <option value="true">Male</option>
+            <option value="false">Female</option>
+          </select>
+        </div>
+      </div>
+      <div class="row match-padding">
+        <div class="col col-md-3 col-md-offset-1">
+          <button class="outline" ng-class="checkStatus(registerPatientForm.$valid)" ng-disabled="registerPatientForm.$invalid" ng-click="registerPatient()">Register Patient</button>
+        </div>
+      </div>
+  </ng-form>
+</div>
+</div>

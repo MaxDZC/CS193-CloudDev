@@ -1,0 +1,87 @@
+<div class="row">
+  <div class="col col-md-8 col-md-offset-1">
+    <h1>Edit Medical Record</h1>
+  </div>
+</div>
+
+<div class="row" ng-controller="EditMedicalRecordController">
+  
+    <div class="col-md-10 col-md-offset-1">
+		  <div class="row">
+			  <div class="col-md-5">
+			    <div class="card__container">
+			      <div class="card__title">
+			        {{selectedPatient.lastname + ', ' + selectedPatient.firstname}}
+			      </div>
+			      <div class="card__desc">
+			        Last admitted: {{selectedPatient.createdAt}}
+			      </div>
+			    </div>
+			  </div>
+			    
+			</div>
+      <ng-form name="editMedicalRecordForm">
+
+        <div class="col-md-4">
+          <label class="subtitle">Discharge Date </label>
+          <input type="date" ng-model="medicalRecord.dischargeDate" ng-required="true">
+        </div>
+        <div class="col-md-4 col-md-offset-4">
+          <label class="subtitle">Patient Type</label>
+          <select ng-model="medicalRecord.inPatient" ng-required="true" ng-options="type.val as type.name for type in patientType">
+            <option>--Select--</option>
+          </select>
+        </div>
+      
+      
+      <div class="col col-md-4">
+        <label class="subtitle">Symptoms</label>
+        <input type="text" placeholder="Search Symptom" ng-model="searchFilterSymp">
+        <div class="borders">
+          <div class="scrollable">
+            <div ng-repeat="option in symptomList | filter: {'name':searchFilterSymp} | orderBy:['val','name']">
+              <input type="checkbox" ng-model="option.val" ng-change="addRemoveSymptom(symptomList | filter: {val: true} | orderBy : 'name')" ng-required="!medicalRecord.symptomIdList.length" ng-false-value="null">{{option.name}}<br>
+            </div>
+          </div>
+        </div>
+        <button ng-class="checkStatus(createMedicalRecordForm.$valid)" type="submit" ng-click="saveMedRec()" ng-disabled="createMedicalRecordForm.$invalid">Save Record</button>
+      </div>
+      
+      <div class="col col-md-4">
+        <label class="subtitle">Diseases</label>
+        <input type="text" placeholder="Search Disease" ng-model="searchFilterDis">
+        <div class="borders">
+          <div class="scrollable">
+            <div ng-repeat="option in diseaseListFiltered | filter: {'name':searchFilterDis} | orderBy:['val','name']">
+              <input type="checkbox" ng-model="option.val" ng-change="addRemoveDisease(diseaseListFiltered | filter: {val: true} | orderBy : 'name')" ng-required="!medicalRecord.diseaseIdList.length" ng-false-value="null">{{option.name}}<br>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col col-md-4">
+        <label class="subtitle">Medicines</label>
+        <input type="text" placeholder="Search Medicine" ng-model="searchFilterMed">
+        <div class="borders">
+          <div class="scrollable">
+            <div ng-repeat="optionmed in medicineListFiltered | filter: {'name':searchFilterMed} | orderBy:['val','name']">
+              <input type="checkbox" ng-model="optionmed.val" ng-change="addRemoveMedicine(medicineListFiltered | filter: {val: true}| orderBy:'name')"  ng-required="medicalRecord.diseaseIdList.length > medicalRecord.medicineIdList.length" ng-false-value="null">{{optionmed.name}}
+              <div class="row" ng-hide="!optionmed.val">
+                <input type="number" ng-model="optionmed.quantity" placeholder="Quantity" ng-change="calculateTotal()" ng-required="optionmed.val" class="quant">{{' x ' + (optionmed.price|currency : 'PHP ')}}
+              </div>
+            </div>
+          </div>
+        </div>
+        <br>
+          <div class="margins">
+            <div class="detail__containerTotalPrice">
+                <b>Total:</b> {{medicalRecord.totalCost | currency : 'PHP '}}
+            </div>
+          </div>
+      </div>
+      </ng-form>
+
+    </div>
+    
+</div>
+

@@ -8,3 +8,5 @@ angular.module('hplus.modules.resetpassword', [])
         template: resetpassword
       })
   });
+
+  require('./resetpassword.controller.js');

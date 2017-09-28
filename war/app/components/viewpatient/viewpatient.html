@@ -1,0 +1,47 @@
+<ng-controller ng-controller="ViewPatientController">
+	<div class="row">
+	  <div class="col col-md-8 col-md-offset-1">
+	    <h1><i class="fa fa-user-o"></i> {{ patient.name }}</h1>
+	  </div>
+	</div>
+	
+	<div class="row">
+	  <div class="col col-md-2 col-md-offset-1">
+	    <div class="match-padding">
+	      <span class="subtitle">
+	        Date of Birth
+	      </span>
+	      <div class="subtitle__value">
+					{{ patient.processedBirthday }}
+	      </div>
+	      
+	       <br>
+	      <span class="subtitle">Address</span>
+	      <div class="subtitle__value">
+	        {{ patient.address }}
+	      </div>
+	      
+	       <br>
+	      <span class="subtitle">Contact Number</span>
+	      <div class="subtitle__value">
+	        {{ patient.contactNo }}
+	      </div>
+	      
+	      <br>
+	      <span class="subtitle">Sex</span>
+	      <div class="subtitle__value">
+	        {{ patient.sexDisplay }}
+	      </div>
+	    </div>
+	  </div>
+	
+	<!--  <div class="col col-md-8">
+	    <div class="col col-md-12">
+	      <span class="subtitle">Medical Records of this patient</span>
+	      <br><br>
+	      <hplus-view-patient-card dir-paginate="record in recordList | itemsPerPage:10" data="record"></hplus-view-patient-card>
+	    </div>
+	  </div> -->
+	</div>
+	<dir-pagination-controls max-size="5"></dir-pagination-controls>
+</ng-controller>

@@ -8,3 +8,6 @@ angular.module('hplus.modules.viewmedicine', [])
         template: viewmedicine
       })
   });
+  require('./viewmedicine.directive.js');
+  require('./viewmedicine.controller.js');
+  require('./xxrecordcard.controller.js');

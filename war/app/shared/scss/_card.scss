@@ -1,10 +1,19 @@
 .card__container{
-  height: $heightCard;
+  height: auto;
   margin-bottom: $sizePaddingThin;
   width: 100%;
   padding: $sizePadding;
   background-color: $softWhite;
   cursor: pointer;
+}
+.selectedCard__container{
+  color: $lightGray !important;
+}
+.newPatient__container{
+  color: $red !important;
+}
+.card__tableDiv{
+  background-color: $softWhite !important;
 }
 .card__container--custom1{
   @extend  .card__container;
@@ -21,6 +30,15 @@
   width: 4.5em !important;
   background-color:white;
 }
+
+.card__container--medium{
+  @extend  .card__container;
+  height: .9em !important;
+  padding-top:.1em !important;
+  width: 6.5em !important;
+  background-color:white;
+}
+
 .card__title{
   display: block;
   font-size: $sizeCardTitle;
@@ -34,6 +52,11 @@
 }
 .card__desc--tiny{
   font-size: .5em;
+  text-align: center;
+}
+
+.card__desc--medium{
+  font-size: .7em;
   text-align: center;
 }
 
@@ -60,4 +83,14 @@
   display: block;
   font-size: $sizeDetailTitle;
   font-weight: 500;
+}
+
+.detail__containerTotalPrice{
+  margin-bottom: $sizePaddingThin;
+  width: 100%;
+  padding: $sizePadding;
+  background-color: $teal;
+  color: white;
+  font-size: $sizeDetailTitle;
+  text-align: center
 }
